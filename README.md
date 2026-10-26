@@ -2,6 +2,8 @@
 
 Rabby Wallet is an open-source browser plugin for the DeFi ecosystem, providing users with a better-to-use and more secure multi-chain experience.
 
+Cloned at commit `f3fa88953363307d51fec897caf26001781add20` (release 0.94.13) on Oct 26 00:05 PST
+
 ## Install
 
 You can download the latest Rabby [here](https://github.com/RabbyHub/Rabby/releases/latest).
