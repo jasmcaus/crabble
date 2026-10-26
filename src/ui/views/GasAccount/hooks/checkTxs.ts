@@ -169,7 +169,7 @@ export const useLoginDepositConfirm = (params: {
           ghost: true,
           className: clsx(
             'h-[40px] border-blue-light text-blue-light',
-            'hover:bg-r-blue-light1 active:bg-[#0000001A]',
+            'hover:bg-[var(--crb-sunken)] active:bg-[#0000001A]',
             'rounded-[8px]',
             'before:content-none',
             'flex items-center justify-center'

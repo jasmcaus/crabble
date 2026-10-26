@@ -48,7 +48,7 @@ export const ChainSelectorButton: React.FC<Props> = ({
             <div
               className={clsx(
                 'flex items-center gap-[6px] ',
-                'hover:bg-r-blue-light1',
+                'hover:bg-[var(--crb-sunken)]',
                 large
                   ? ['rounded-[4px] w-full h-full pl-[10px] pr-[4px]']
                   : ['rounded-[2px]', 'py-[4px] pl-[9px] pr-[3px]']
@@ -64,7 +64,7 @@ export const ChainSelectorButton: React.FC<Props> = ({
             </div>
             <span
               className={clsx(
-                'cursor-pointer text-r-neutral-foot hover:bg-r-blue-light1',
+                'cursor-pointer text-r-neutral-foot hover:bg-[var(--crb-sunken)]',
                 large
                   ? [
                       'rounded-[4px] h-full px-[4px]',
@@ -93,7 +93,7 @@ export const ChainSelectorButton: React.FC<Props> = ({
                     'border border-solid border-transparent',
                     'rounded-[8px] bg-r-neutral-card1',
                     'h-[48px] px-[10px]',
-                    'hover:border-rabby-blue-default hover:bg-r-blue-light1',
+                    'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]',
                   ]
                 : ['text-[13px] leading-[16px]']
             )}

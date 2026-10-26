@@ -289,7 +289,7 @@ export const PerpsWithdrawPopup: React.FC<PerpsWithdrawPopupProps> = ({
             onClick={() => setChainSelectVisible(true)}
             className={clsx(
               'flex items-center justify-between bg-r-neutral-card1 rounded-[12px] px-16 h-[48px] mb-12 cursor-pointer',
-              'border border-solid border-transparent hover:border-rabby-blue-default'
+              'border border-solid border-transparent hover:border-[var(--crb-hairline-strong)]'
             )}
           >
             <div className="flex items-center gap-8">
@@ -371,7 +371,7 @@ export const PerpsWithdrawPopup: React.FC<PerpsWithdrawPopupProps> = ({
                 className={clsx(
                   'flex items-center gap-6 px-12 h-[36px] rounded-[8px]',
                   'bg-r-neutral-card-2 border border-solid border-transparent',
-                  'cursor-pointer hover:bg-r-blue-light1 hover:border-rabby-blue-default'
+                  'cursor-pointer hover:bg-[var(--crb-sunken)] hover:border-[var(--crb-hairline-strong)]'
                 )}
                 onClick={() => setTokenVisible(true)}
               >
@@ -401,7 +401,7 @@ export const PerpsWithdrawPopup: React.FC<PerpsWithdrawPopupProps> = ({
                   'flex-1 h-[36px] flex items-center justify-center rounded-[12px]',
                   'bg-r-neutral-card1 border border-solid border-transparent',
                   'text-13 font-medium text-r-neutral-title-1 cursor-pointer',
-                  'hover:border-rabby-blue-default hover:text-r-blue-default'
+                  'hover:border-[var(--crb-hairline-strong)] hover:text-r-blue-default'
                 )}
                 onClick={() => handlePercent(pct)}
               >
@@ -413,7 +413,7 @@ export const PerpsWithdrawPopup: React.FC<PerpsWithdrawPopupProps> = ({
                 'flex-1 h-[36px] flex items-center justify-center rounded-[12px]',
                 'bg-r-neutral-card1 border border-solid border-transparent',
                 'text-13 font-medium text-r-neutral-title-1 cursor-pointer',
-                'hover:border-rabby-blue-default hover:text-r-blue-default'
+                'hover:border-[var(--crb-hairline-strong)] hover:text-r-blue-default'
               )}
               onClick={handleMax}
             >
@@ -533,7 +533,7 @@ export const PerpsWithdrawPopup: React.FC<PerpsWithdrawPopupProps> = ({
                     'border border-solid',
                     selected
                       ? 'border-rabby-blue-default'
-                      : 'border-transparent hover:border-rabby-blue-default'
+                      : 'border-transparent hover:border-[var(--crb-hairline-strong)]'
                   )}
                 >
                   <div className="flex items-center gap-12">
@@ -587,7 +587,7 @@ export const PerpsWithdrawPopup: React.FC<PerpsWithdrawPopupProps> = ({
                     'border border-solid',
                     selected
                       ? 'border-rabby-blue-default'
-                      : 'border-transparent hover:border-rabby-blue-default'
+                      : 'border-transparent hover:border-[var(--crb-hairline-strong)]'
                   )}
                 >
                   {chain?.logo ? (

@@ -271,7 +271,7 @@ export const DappSearchPage = () => {
                       key={item}
                       className={clsx(
                         'px-[15px] py-[7px] bg-r-neutral-card1 rounded-[12px] border-[1px] border-transparent',
-                        'hover:border-rabby-blue-default hover:bg-r-blue-light1 cursor-pointer',
+                        'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)] cursor-pointer',
                         'text-r-neutral-body text-[13px] leading-[16px]'
                       )}
                       onMouseDown={() => {

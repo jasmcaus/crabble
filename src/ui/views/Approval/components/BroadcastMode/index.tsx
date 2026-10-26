@@ -108,7 +108,7 @@ const Wrapper = styled(Card)`
           cursor: pointer;
 
           &:hover {
-            border-color: var(--r-blue-default, #f26b3a);
+            border-color: var(--crb-hairline-strong);
           }
           &.is-selected {
             border-color: var(--r-blue-default, #f26b3a);
@@ -138,7 +138,7 @@ const OptionList = styled.div`
       background: var(--r-blue-light-1, #fdefe9);
     }
     &:not(.is-disabled):hover {
-      border: 1px solid var(--r-blue-default, #f26b3a);
+      border: 1px solid var(--crb-hairline-strong);
     }
 
     &.is-disabled {

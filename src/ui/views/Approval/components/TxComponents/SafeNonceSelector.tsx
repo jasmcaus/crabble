@@ -39,7 +39,7 @@ const Wrapper = styled(Card)`
       margin-bottom: 8px;
     }
     .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
-      border-color: var(--r-blue-default, #f26b3a);
+      border-color: var(--crb-hairline-strong);
       border-right-width: 1px !important;
       z-index: 1;
     }

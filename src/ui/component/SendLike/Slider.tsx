@@ -8,7 +8,7 @@ const StyledSlider = styled(Slider)`
   }
 
   &:hover .ant-slider-rail {
-    background-color: var(--r-blue-light-2);
+    background-color: var(--crb-sunken);
   }
 
   .ant-slider-track,

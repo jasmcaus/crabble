@@ -328,8 +328,8 @@ const ChainSelectWrapper = styled.div`
   border: 1px solid transparent;
   border-bottom: 0.5px solid var(--r-neutral-line, rgba(255, 255, 255, 0.1));
   &:hover {
-    border: 1px solid var(--r-blue-default, #f26b3a);
-    background-color: var(--r-blue-light-1, #fdefe9);
+    border: 1px solid var(--crb-hairline-strong);
+    background-color: var(--crb-sunken);
     border-radius: 12px;
   }
 `;
@@ -3128,7 +3128,7 @@ const SendToken = () => {
         className={clsx(
           'send-token',
           isTab || isDesktop
-            ? 'w-full h-full overflow-auto min-h-0 rounded-[16px] shadow-[0px_24px_64px_-12px_rgba(9, 9, 11,0.18)'
+            ? 'w-full h-full overflow-auto min-h-0 rounded-[16px] shadow-[0px_24px_64px_-12px_rgba(9,9,11,0.18)'
             : ''
         )}
       >

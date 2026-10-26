@@ -98,7 +98,7 @@ export const ImportMyMetaMaskAccount: React.FC<{
 
             <div
               className={clsx(
-                'border border-transparent hover:border-rabby-blue-default hover:bg-rabby-blue-light1',
+                'border border-transparent hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]',
                 'w-[210px] h-[44px] cursor-pointer mt-4',
                 'flex justify-center items-center gap-[6px]',
                 'text-[13px] font-medium text-r-neutral-body',
@@ -138,7 +138,7 @@ export const ImportMyMetaMaskAccount: React.FC<{
 
             <div
               className={clsx(
-                'border border-transparent hover:border-rabby-blue-default hover:bg-rabby-blue-light1',
+                'border border-transparent hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]',
                 'w-[210px] h-[44px] cursor-pointer mt-4',
                 'flex justify-center items-center gap-[6px]',
                 'text-[13px] font-medium text-r-neutral-body',
@@ -154,7 +154,7 @@ export const ImportMyMetaMaskAccount: React.FC<{
 
             <div
               className={clsx(
-                'border border-transparent hover:border-rabby-blue-default hover:bg-rabby-blue-light1',
+                'border border-transparent hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]',
                 'w-[210px] h-[44px]  cursor-pointer mt-16',
                 'flex justify-center items-center gap-[6px]',
                 'text-[13px] font-medium text-r-neutral-body',

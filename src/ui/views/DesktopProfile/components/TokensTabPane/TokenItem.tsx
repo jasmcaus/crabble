@@ -53,7 +53,7 @@ const ActionBottom = ({
         px-10 h-[24px] leading-[24px] 
         text-r-blue-default text-12 font-medium rounded-[8px] 
         border-[0.5px] border-r-blue-default w-min whitespace-nowrap cursor-pointer 
-        hover:bg-r-blue-light1
+        hover:bg-[var(--crb-sunken)]
       `}
     >
       {text}

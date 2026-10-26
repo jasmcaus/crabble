@@ -102,7 +102,7 @@ export const ResetConfirm: React.FC<{
           placeholder="RESET"
           className={clsx(
             'h-[52px] rounded-[12px]',
-            'border-rabby-neutral-line bg-r-neutral-bg1 hover:border-rabby-blue-default focus:border-rabby-blue-default',
+            'border-rabby-neutral-line bg-r-neutral-bg1 hover:border-[var(--crb-hairline-strong)] focus:border-rabby-blue-default',
             'text-r-neutral-title1 text-15 placeholder-r-neutral-foot/70'
           )}
           size="large"

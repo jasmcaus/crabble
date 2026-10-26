@@ -288,7 +288,7 @@ export const AddCustomTokenPopup = ({ visible, onClose, onConfirm }: Props) => {
                       'flex items-center bg-r-neutral-card2 rounded-[8px]',
                       'px-[16px] py-[12px] min-h-[52px] cursor-pointer',
                       'border-[1px] border-transparent',
-                      'hover:border-rabby-blue-default hover:bg-r-blue-light1'
+                      'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]'
                     )}
                   >
                     <div className="text-r-neutral-title1 text-[15px] leading-[18px]">
@@ -304,7 +304,7 @@ export const AddCustomTokenPopup = ({ visible, onClose, onConfirm }: Props) => {
                       'flex items-center bg-r-neutral-card2 rounded-[8px]',
                       'gap-[8px] px-[16px] py-[12px] min-h-[52px] cursor-pointer',
                       'border-[1px] border-transparent',
-                      'hover:border-rabby-blue-default hover:bg-r-blue-light1'
+                      'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]'
                     )}
                   >
                     <img

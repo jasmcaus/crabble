@@ -67,7 +67,7 @@ const UnlockMethodSwitch = styled.button`
   font-weight: 500;
 
   &:hover {
-    background: var(--r-blue-light-2);
+    background: var(--crb-sunken);
   }
 `;
 

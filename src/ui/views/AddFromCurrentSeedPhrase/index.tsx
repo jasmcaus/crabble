@@ -67,7 +67,7 @@ const Group = ({
         onClick={() => onAdd(data.publicKey!)}
         type="primary"
         className={clsx(
-          'bg-rabby-blue-light1 w-full shadow-none h-[40px] border-transparent hover:border-rabby-blue-default hover:bg-r-blue-light-2 hover:before:hidden',
+          'bg-rabby-blue-light1 w-full shadow-none h-[40px] border-transparent hover:bg-r-blue-light2 hover:before:hidden',
           data.list.length ? 'mt-[20px]' : 'mt-[6px]'
         )}
       >

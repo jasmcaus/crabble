@@ -884,7 +884,7 @@ export const LimitTradingContainer: React.FC<TradingContainerProps> = () => {
                 bboEnabled
                   ? 'bg-rb-brand-light-1 text-rb-neutral-title-1 border-rb-brand-default'
                   : canEnableBbo
-                  ? 'bg-rb-neutral-bg-2 text-r-neutral-title-1 border-transparent hover:border-rb-brand-default'
+                  ? 'bg-rb-neutral-bg-2 text-r-neutral-title-1 border-transparent hover:border-[var(--crb-hairline-strong)]'
                   : 'bg-rb-neutral-bg-2 text-r-neutral-title-1 border-transparent opacity-50'
               )}
               onClick={handleBboToggle}

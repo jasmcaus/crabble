@@ -37,7 +37,7 @@ export const CustomTestnetItem = ({
         'border-[1px] border-transparent rounded-[8px]',
         disabled
           ? 'opacity-50'
-          : 'hover:border-rabby-blue-default hover:bg-r-blue-light1 cursor-pointer',
+          : 'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)] cursor-pointer',
         'group',
         className
       )}

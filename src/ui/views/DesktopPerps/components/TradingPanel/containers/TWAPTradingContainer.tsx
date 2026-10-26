@@ -494,7 +494,7 @@ export const TWAPTradingContainer: React.FC<TradingContainerProps> = () => {
                     ? 'bg-rb-brand-light-1 text-rb-neutral-title-1 border-rb-brand-default cursor-pointer'
                     : isDisabled
                     ? 'bg-rb-neutral-bg-2 text-rb-neutral-foot border-transparent opacity-50 cursor-not-allowed'
-                    : 'bg-rb-neutral-bg-2 text-r-neutral-title-1 border-transparent hover:border-rb-brand-default cursor-pointer'
+                    : 'bg-rb-neutral-bg-2 text-r-neutral-title-1 border-transparent hover:border-[var(--crb-hairline-strong)] cursor-pointer'
                 )}
                 onClick={() => {
                   if (!isDisabled) {

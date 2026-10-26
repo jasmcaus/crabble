@@ -208,7 +208,7 @@ export const EditLimitPriceTag: React.FC<EditLimitPriceTagProps> = ({
                 className={clsx(
                   'flex-1 h-[32px] flex items-center justify-center rounded-[12px] cursor-pointer text-13px',
                   'border border-solid',
-                  'bg-r-neutral-card2 border-transparent text-r-neutral-body hover:border-rabby-blue-default'
+                  'bg-r-neutral-card2 border-transparent text-r-neutral-body hover:border-[var(--crb-hairline-strong)]'
                 )}
                 onClick={() => handleQuickOption(option.pct)}
               >

@@ -232,7 +232,7 @@ export const SignMainnetShowMoreGasModal = ({
                     'flex justify-between items-center',
                     'px-[8px] h-[48px] rounded-[8px]',
                     'cursor-pointer',
-                    'hover:bg-r-blue-light-1'
+                    'hover:bg-[var(--crb-sunken)]'
                   )}
                 >
                   <span className="text-[13px] text-r-neutral-title-1">
@@ -369,7 +369,7 @@ export const SignMainnetShowMoreGasModal = ({
                       'flex justify-between items-center',
                       'px-[8px] h-[48px] rounded-[8px]',
                       'cursor-pointer',
-                      'hover:bg-r-blue-light-1',
+                      'hover:bg-[var(--crb-sunken)]',
                       isActive ? 'bg-r-blue-light-1' : 'bg-transparent'
                     )}
                   >
@@ -470,7 +470,7 @@ export const SignMainnetShowMoreGasModal = ({
                     'h-[52px] rounded-[12px] px-10 flex items-center justify-between mb-8 border bg-r-neutral-card-1 border-transparent',
                     isDisabled
                       ? 'cursor-not-allowed opacity-50'
-                      : 'cursor-pointer hover:bg-r-blue-light1 hover:border-rabby-blue-default'
+                      : 'cursor-pointer hover:bg-[var(--crb-sunken)] hover:border-[var(--crb-hairline-strong)]'
                   )}
                   onClick={() => {
                     if (isDisabled) return;

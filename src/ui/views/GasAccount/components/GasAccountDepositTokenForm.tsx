@@ -1373,7 +1373,7 @@ const GasAccountDepositTokenFormInner: React.FC<
                         'flex-1 h-[40px] flex items-center justify-center rounded-[12px] border border-solid text-13 font-medium',
                         isSubmittingDeposit
                           ? 'border-transparent text-r-neutral-title-1 bg-r-neutral-card1'
-                          : 'border-transparent text-r-neutral-title-1 bg-r-neutral-card1 hover:border-rabby-blue-default hover:bg-r-blue-light1 hover:text-r-blue-default',
+                          : 'border-transparent text-r-neutral-title-1 bg-r-neutral-card1 hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)] hover:text-r-blue-default',
                         isSubmittingDeposit && 'cursor-not-allowed opacity-50'
                       )}
                       onClick={() => {

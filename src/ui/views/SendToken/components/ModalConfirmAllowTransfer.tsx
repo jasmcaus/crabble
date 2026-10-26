@@ -40,7 +40,7 @@ const FormInputItem = styled(Form.Item)`
     }
     &:focus,
     &:hover {
-      border-color: var(--r-blue-default, #f26b3a) !important;
+      border-color: var(--crb-hairline-strong) !important;
     }
   }
 `;

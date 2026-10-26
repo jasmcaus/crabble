@@ -88,8 +88,8 @@ const Container = styled.div`
 
       &.is-support:hover {
         cursor: pointer;
-        border: 1px solid var(--r-blue-default, #f26b3a);
-        background: var(--r-blue-light1, #fdefe9);
+        border: 1px solid var(--crb-hairline-strong);
+        background: var(--crb-sunken);
       }
     }
 
@@ -145,7 +145,7 @@ const Container = styled.div`
       pointer-events: none;
     }
     &:hover {
-      background-color: rgba(242, 138, 99, 0.2);
+      background-color: var(--crb-sunken);
     }
   }
 `;

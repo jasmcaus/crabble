@@ -83,7 +83,7 @@ export const RemovedTokenActions = ({
                 'px-20 py-16 rounded-none text-r-neutral-title-1 text-15 font-semibold leading-[22px]',
                 action.disabled
                   ? 'opacity-50'
-                  : 'hover:bg-r-blue-light-1 active:bg-r-blue-light-2 active:text-r-blue-default [&.ant-dropdown-menu-item-active]:bg-r-blue-light-1 [&.ant-dropdown-menu-item-active:active]:bg-r-blue-light-2'
+                  : 'hover:bg-[var(--crb-sunken)] active:bg-r-blue-light-2 active:text-r-blue-default [&.ant-dropdown-menu-item-active]:bg-r-blue-light-1 [&.ant-dropdown-menu-item-active:active]:bg-r-blue-light-2'
               ),
               onClick: () => {
                 setMoreOpen(false);
@@ -119,7 +119,7 @@ export const RemovedTokenActions = ({
           type="button"
           className={clsx(
             'flex items-center justify-center shrink-0 w-40 h-40 p-0 border rounded-[12px] bg-r-neutral-bg-1 cursor-pointer',
-            'hover:border-r-blue-default hover:text-r-blue-default active:border-r-blue-default active:bg-r-blue-light-2 active:text-r-blue-default',
+            'hover:border-[var(--crb-hairline-strong)] hover:text-r-blue-default active:border-r-blue-default active:bg-r-blue-light-2 active:text-r-blue-default',
             'focus-visible:outline-2 focus-visible:outline-r-blue-default focus-visible:outline-offset-2',
             'border-r-neutral-line text-r-neutral-body'
           )}

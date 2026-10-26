@@ -44,7 +44,7 @@ export const SelectWallet: React.FC<Props> = ({
               'p-[20px] h-[100px] cursor-pointer',
               'bg-r-neutral-card-1 rounded-[12px] border-[1px] border-transparent',
               'flex flex-col items-center justify-center',
-              'hover:bg-r-blue-light1 hover:border-rabby-blue-default'
+              'hover:bg-[var(--crb-sunken)] hover:border-[var(--crb-hairline-strong)]'
             )}
             style={{ boxShadow: '0px 4px 16px 0px rgba(0, 0, 0, 0.04)' }}
             onClick={() => {
@@ -69,7 +69,7 @@ export const SelectWallet: React.FC<Props> = ({
                   'p-[20px] h-[100px] cursor-pointer',
                   'bg-r-neutral-card-1 rounded-[12px] border-[1px] border-transparent',
                   'flex flex-col items-center justify-center',
-                  'hover:bg-r-blue-light1 hover:border-rabby-blue-default'
+                  'hover:bg-[var(--crb-sunken)] hover:border-[var(--crb-hairline-strong)]'
                 )}
                 style={{ boxShadow: '0px 4px 16px 0px rgba(0, 0, 0, 0.04)' }}
                 onClick={() => {

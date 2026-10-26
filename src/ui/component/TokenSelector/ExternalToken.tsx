@@ -181,7 +181,7 @@ export const ExternalContent = ({
         'px-8 py-6 mx-16 rounded-[8px]',
         'border-[0.5px] border-solid border-transparent',
         'text-12 font-medium text-r-neutral-foot',
-        'hover:bg-r-blue-light2'
+        'hover:bg-[var(--crb-sunken)]'
       )}
       onClick={onEnter}
       onMouseEnter={() => setIsHover(true)}

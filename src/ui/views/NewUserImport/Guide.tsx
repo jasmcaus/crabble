@@ -58,7 +58,7 @@ export const Guide = () => {
             className={clsx(
               'h-[56px] shadow-none rounded-[12px] w-[360px]',
               'text-[17px] font-medium',
-              'hover:bg-r-blue-light-2 hover:before:hidden hover:border-rabby-blue-default hover:text-r-blue-default'
+              'hover:bg-[var(--crb-sunken)] hover:before:hidden hover:border-[var(--crb-hairline-strong)] hover:text-r-blue-default'
             )}
           >
             {t('page.newUserImport.guide.importAddress')}

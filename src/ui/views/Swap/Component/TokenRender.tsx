@@ -20,7 +20,7 @@ const TokenRenderWrapper = styled.div`
   border: 1px solid transparent;
   cursor: pointer;
   &:hover {
-    background: var(--r-blue-light2, #fdefe9);
+    background: var(--crb-sunken);
   }
   .token {
     display: flex;

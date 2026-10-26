@@ -97,7 +97,7 @@ const BridgeOrNative = ({
               flex flex-row items-center gap-6 cursor-pointer 
               border border-transparent 
               bg-r-neutral-card-2
-              hover:bg-blue-light/10 hover:border-rabby-blue-default
+              hover:bg-[var(--crb-sunken)] hover:border-[var(--crb-hairline-strong)]
               rounded-[8px] px-12 py-6"
               >
                 <span className="text-r-neutral-title-1 text-13 font-medium truncate max-w-[170px]  text-ellipsis whitespace-nowrap">
@@ -121,7 +121,7 @@ const BridgeOrNative = ({
               flex flex-row items-center gap-6 cursor-pointer 
               border border-transparent 
               bg-r-neutral-card-2
-              hover:bg-blue-light/10 hover:border-rabby-blue-default
+              hover:bg-[var(--crb-sunken)] hover:border-[var(--crb-hairline-strong)]
               rounded-[8px] px-12 py-6"
                   onClick={() => {
                     setVisible(true);
@@ -373,7 +373,7 @@ const ListSiteAndCex = ({
         className="flex flex-row bg-r-neutral-card-1 rounded-[12px] 
       px-16 py-14 items-center justify-between 
       border border-transparent
-      hover:bg-blue-light/10 hover:border-rabby-blue-default
+      hover:bg-[var(--crb-sunken)] hover:border-[var(--crb-hairline-strong)]
       cursor-pointer"
         onClick={() => {
           setDetailVisible(true);
@@ -419,7 +419,7 @@ const ListSiteAndCex = ({
               rounded-[8px]
               border border-transparent 
               bg-r-neutral-card-1
-              hover:bg-blue-light/10 hover:border-rabby-blue-default
+              hover:bg-[var(--crb-sunken)] hover:border-[var(--crb-hairline-strong)]
               cursor-pointer"
               onClick={() => {
                 openInTab(item.url || item.site_url);

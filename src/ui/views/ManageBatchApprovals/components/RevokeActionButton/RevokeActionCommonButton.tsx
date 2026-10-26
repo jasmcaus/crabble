@@ -28,7 +28,7 @@ export const RevokeActionCommonButton: React.FC<{
           onClick: () => task.pause(),
           type: 'default' as const,
           className:
-            'before:hidden border border-rabby-blue-default bg-transparent text-r-blue-default hover:bg-r-blue-light1',
+            'before:hidden border border-rabby-blue-default bg-transparent text-r-blue-default hover:bg-[var(--crb-sunken)]',
         };
       case 'completed':
         return {

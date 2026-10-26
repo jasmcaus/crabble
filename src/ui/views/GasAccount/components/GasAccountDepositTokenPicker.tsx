@@ -91,7 +91,7 @@ const GasAccountDepositTokenPickerRow = ({
         className={clsx(
           'flex w-full justify-between items-center h-[68px] px-16 rounded-[12px] text-left',
           'bg-r-neutral-card1 border border-solid border-transparent',
-          'cursor-pointer hover:border-rabby-blue-default hover:bg-r-blue-light-1'
+          'cursor-pointer hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]'
         )}
         onClick={() => {
           data.onSelect?.(item);

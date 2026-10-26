@@ -42,7 +42,7 @@ export const PerpsLoginContent = ({
           cursor-pointer
           border-[1px]
           border-solid
-          hover:bg-r-blue-light1 hover:border-rabby-blue-default"
+          hover:bg-[var(--crb-sunken)] hover:border-[var(--crb-hairline-strong)]"
           style={{
             height: 48,
           }}

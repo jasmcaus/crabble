@@ -163,7 +163,7 @@ const PositionItem: React.FC<{
         'border-[1px]',
         !isDesktop ? 'bg-r-neutral-card1' : 'bg-rb-neutral-bg-3',
         'border-solid border-transparent',
-        'hover:bg-r-blue-light1 hover:border-rabby-blue-default'
+        'hover:bg-[var(--crb-sunken)] hover:border-[var(--crb-hairline-strong)]'
       )}
       onClick={handleNavigate}
     >
@@ -249,7 +249,7 @@ const PositionItem: React.FC<{
             'px-[12px]',
             'h-[24px] leading-[24px]',
             'border-[0.5px] border-r-blue-default rounded-[8px]',
-            'hover:bg-r-blue-light1'
+            'hover:bg-[var(--crb-sunken)]'
           )}
         >
           {t('component.DappActions.manage')}

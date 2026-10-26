@@ -45,7 +45,7 @@ const ActionButton = ({ text, onClick, className }: ActionButtonProps) => {
         cursor-pointer text-r-blue-default font-medium text-[13px] text-center
         h-[36px] leading-[34px]
         border border-r-blue-default rounded-[8px]
-        hover:bg-r-blue-light1
+        hover:bg-[var(--crb-sunken)]
         ${className}
       `}
       onClick={onClick}

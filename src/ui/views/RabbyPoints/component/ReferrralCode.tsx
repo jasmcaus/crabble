@@ -171,7 +171,7 @@ export const SetReferralCode = ({
               isValidCode && 'border-rabby-blue-default'
             )}
             suffix={
-              <div className="rounded group w-[32px] h-[32px] flex items-center justify-center bg-transparent hover:bg-r-blue-light-1 cursor-pointer text-r-neutral-foot hover:text-r-blue-default">
+              <div className="rounded group w-[32px] h-[32px] flex items-center justify-center bg-transparent hover:bg-[var(--crb-sunken)] cursor-pointer text-r-neutral-foot hover:text-r-blue-default">
                 <IconDice
                   className="w-[24px] h-[24px]"
                   onClick={getDiceReferralCode}

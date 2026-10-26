@@ -81,7 +81,7 @@ const Content: React.FC<SpotSwapContentProps> = ({
         return (
           <Menu.Item
             key={c}
-            className="text-r-neutral-title-1 hover:bg-r-blue-light-1"
+            className="text-r-neutral-title-1 hover:bg-[var(--crb-sunken)]"
           >
             <div className="flex items-center justify-between gap-12">
               <CoinOption coin={c} />
@@ -101,7 +101,7 @@ const Content: React.FC<SpotSwapContentProps> = ({
     'inline-flex items-center gap-6 px-12 h-[36px] rounded-[12px]',
     'border border-solid border-rabby-neutral-line bg-transparent',
     'text-15 font-medium text-r-neutral-title-1',
-    'hover:border-r-blue-default disabled:cursor-default'
+    'hover:border-[var(--crb-hairline-strong)] disabled:cursor-default'
   );
 
   return (
@@ -211,7 +211,7 @@ const Content: React.FC<SpotSwapContentProps> = ({
               'flex-1 h-[36px] flex items-center justify-center rounded-[12px]',
               'bg-r-neutral-card1 border border-solid border-transparent',
               'text-13 font-medium text-r-neutral-title-1 cursor-pointer',
-              'hover:border-rabby-blue-default hover:text-r-blue-default'
+              'hover:border-[var(--crb-hairline-strong)] hover:text-r-blue-default'
             )}
           >
             {p === 1 ? t('page.perps.PerpsSpotSwap.max') : `${p * 100}%`}

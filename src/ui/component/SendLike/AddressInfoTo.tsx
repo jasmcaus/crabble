@@ -132,7 +132,7 @@ export function AddressInfoTo({
             className={clsx(
               'h-[58px] w-[100%] flex items-center justify-between p-[16px] ',
               isDarkTheme ? 'bg-r-neutral-card1' : 'bg-r-neutral-bg1',
-              'cursor-pointer border-[1px] border-rabby-neutral-line hover:border-rabby-blue-default rounded-[12px] group'
+              'cursor-pointer border-[1px] border-rabby-neutral-line hover:border-[var(--crb-hairline-strong)] rounded-[12px] group'
             )}
             onClick={onClick}
           >

@@ -21,7 +21,7 @@ export const GasCardBody = styled.div<{
             cursor: pointer;
 
             &:hover {
-              border: 1px solid var(--r-blue-default, #f26b3a);
+              border: 1px solid var(--crb-hairline-strong);
             }
 
             &.active {

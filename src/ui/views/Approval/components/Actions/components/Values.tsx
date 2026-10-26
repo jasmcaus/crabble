@@ -333,8 +333,8 @@ const AddressWrapper = styled.div`
       color: var(--r-neutral-foot, #71717a);
     }
     &:hover {
-      border-color: var(--r-blue-default, #f26b3a);
-      background-color: var(--r-blue-light1, #fdefe9);
+      border-color: var(--crb-hairline-strong);
+      background-color: var(--crb-sunken);
     }
   }
 `;

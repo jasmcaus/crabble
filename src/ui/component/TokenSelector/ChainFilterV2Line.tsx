@@ -126,7 +126,7 @@ export function ChainFilterV2Line({
             'h-[32px] py-[4px] px-[8px] rounded-[12px] cursor-pointer',
             'flex items-center justify-start',
             'border-[1px] border-[solid] border-transparent bg-r-neutral-card1',
-            'hover:border-rabby-blue-default hover:bg-r-blue-light1'
+            'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]'
           )}
           onClick={() => {
             onStartSelectChain?.();
@@ -177,7 +177,7 @@ export function ChainFilterV2Line({
             'h-[32px] py-[4px] px-[8px] rounded-[12px] cursor-pointer',
             'flex items-center justify-start',
             'border-[1px] border-[solid] border-transparent bg-r-neutral-card1',
-            'hover:border-rabby-blue-default hover:bg-r-blue-light1'
+            'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]'
           )}
           onClick={() => {
             onStartSelectChain?.();

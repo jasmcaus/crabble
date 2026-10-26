@@ -43,7 +43,7 @@ const SearchInput = styled(Input)`
     color: var(--r-neutral-foot, #71717a) !important;
   }
   &:hover {
-    border-color: var(--r-blue-default, #f26b3a) !important;
+    border-color: var(--crb-hairline-strong) !important;
   }
   border-color: var(--r-neutral-line, #d4d4d8) !important;
 `;

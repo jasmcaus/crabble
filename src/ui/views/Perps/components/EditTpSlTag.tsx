@@ -355,7 +355,7 @@ export const EditTpSlTag: React.FC<EditTpSlTagProps> = ({
                   className={clsx(
                     'flex-1 h-[40px] flex items-center justify-center rounded-[8px] cursor-pointer text-[14px] font-medium',
                     'border border-solid',
-                    'bg-r-neutral-line border-transparent text-r-neutral-body hover:border-rabby-blue-default'
+                    'bg-r-neutral-line border-transparent text-r-neutral-body hover:border-[var(--crb-hairline-strong)]'
                   )}
                   onClick={() => handleQuickOptionPress(option.value)}
                 >

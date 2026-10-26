@@ -336,7 +336,7 @@ export const PositionsInfo: React.FC = () => {
         className={clsx(
           'bg-rb-neutral-bg-5 rounded-[3px] px-12 h-24',
           'border border-transparent',
-          'hover:border-rb-brand-default',
+          'hover:border-[var(--crb-hairline-strong)]',
           'text-12 text-r-neutral-title-1'
         )}
         onClick={(e) => {
@@ -659,7 +659,7 @@ export const PositionsInfo: React.FC = () => {
                 className={clsx(
                   'bg-rb-neutral-bg-5 rounded-[3px] px-12 h-24',
                   'border border-transparent',
-                  'hover:border-rb-brand-default',
+                  'hover:border-[var(--crb-hairline-strong)]',
                   'text-12 text-r-neutral-title-1'
                 )}
                 onClick={(e) => {

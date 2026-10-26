@@ -99,7 +99,7 @@ const CoinSelectPopup: React.FC<{
                   'text-13 font-medium text-rb-neutral-title-1 cursor-pointer',
                   selected
                     ? 'border-rabby-blue-default'
-                    : 'border-transparent hover:border-rabby-blue-default'
+                    : 'border-transparent hover:border-[var(--crb-hairline-strong)]'
                 )}
               >
                 <CoinOption coin={c} />
@@ -203,7 +203,8 @@ export const SpotSwapModal: React.FC<SpotSwapModalProps> = ({
             'w-full flex items-center justify-between',
             'bg-rb-neutral-bg-2 rounded-[8px] px-16 py-[12px]',
             'border border-solid border-transparent',
-            !(locked || submitting) && 'hover:border-rb-brand-default',
+            !(locked || submitting) &&
+              'hover:border-[var(--crb-hairline-strong)]',
             'disabled:cursor-default'
           )}
         >
@@ -228,7 +229,8 @@ export const SpotSwapModal: React.FC<SpotSwapModalProps> = ({
           'shrink-0 flex items-center gap-6',
           'bg-r-neutral-card-2 rounded-[8px] p-[6px]',
           'border border-solid border-transparent',
-          !(locked || submitting) && 'hover:border-rb-brand-default',
+          !(locked || submitting) &&
+            'hover:border-[var(--crb-hairline-strong)]',
           'disabled:cursor-default'
         )}
       >
@@ -343,7 +345,7 @@ export const SpotSwapModal: React.FC<SpotSwapModalProps> = ({
                       'flex-1 h-[36px] rounded-[8px] text-13',
                       'bg-rb-neutral-bg-2 border border-solid border-transparent',
                       'text-rb-neutral-body',
-                      'hover:border-rb-brand-default hover:text-rb-brand-default',
+                      'hover:border-[var(--crb-hairline-strong)] hover:text-rb-brand-default',
                       'disabled:opacity-60 disabled:cursor-not-allowed'
                     )}
                     disabled={submitting}

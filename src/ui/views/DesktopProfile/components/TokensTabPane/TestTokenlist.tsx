@@ -206,7 +206,7 @@ export const CustomTestnetAssetList: React.FC<Props> = ({
             className={clsx(
               'rounded-[8px] bg-r-neutral-card1 px-[9px] py-[10px] cursor-pointer min-w-[292px]',
               ' border border-rabby-blue-default min-w-[82px] text-center',
-              'hover:border-rabby-blue-default hover:bg-r-blue-light1'
+              'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]'
             )}
           >
             <div
@@ -232,7 +232,7 @@ export const CustomTestnetAssetList: React.FC<Props> = ({
             className={clsx(
               'rounded-[8px] bg-r-neutral-card1 px-[9px] py-[10px] cursor-pointer min-w-[292px]',
               ' border border-rabby-blue-default min-w-[82px] text-center',
-              'hover:border-rabby-blue-default hover:bg-r-blue-light1'
+              'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]'
             )}
           >
             <div

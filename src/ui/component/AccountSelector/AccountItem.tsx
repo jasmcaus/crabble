@@ -258,7 +258,7 @@ export const AccountItem = memo(
           'border-[1px] border-solid border-transparent rounded-[12px]',
           disabled
             ? 'cursor-default'
-            : 'cursor-pointer hover:border-rabby-blue-default hover:bg-r-blue-light1'
+            : 'cursor-pointer hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]'
         )}
         style={style}
         onClick={handleClick}

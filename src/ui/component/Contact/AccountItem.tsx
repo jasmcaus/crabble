@@ -27,8 +27,8 @@ const AccountItemWrapper = styled.div`
   border: 1px solid transparent;
 
   &:hover {
-    background-color: var(--r-blue-light-1, #fdefe9);
-    border-color: var(--r-blue-default, #f26b3a);
+    background-color: var(--crb-sunken);
+    border-color: var(--crb-hairline-strong);
   }
   .name {
     font-weight: 500;

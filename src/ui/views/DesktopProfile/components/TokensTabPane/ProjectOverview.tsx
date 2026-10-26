@@ -57,7 +57,7 @@ const ProjectOverviewItem = ({
       onClick={handleGotoProject}
       className={clsx(
         'border-[1px] border-solid border-transparent',
-        'hover:bg-r-blue-light1 hover:border-rabby-blue-default'
+        'hover:bg-[var(--crb-sunken)] hover:border-[var(--crb-hairline-strong)]'
       )}
     >
       {isTokenWallet ? (

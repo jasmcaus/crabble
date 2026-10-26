@@ -76,7 +76,7 @@ export const InModalApprovalAssetRow: React.FC<InModalApprovalAssetRowProps> = (
     <div
       className={clsx(
         'flex items-center justify-between gap-[12px] rounded-[12px] p-[11px] cursor-pointer',
-        'border-[1px] hover:border-rabby-blue-default',
+        'border-[1px] hover:border-[var(--crb-hairline-strong)]',
         isSelected
           ? 'bg-r-blue-light1 border-rabby-blue-default'
           : 'bg-r-neutral-card1 border-transparent'

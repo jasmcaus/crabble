@@ -213,7 +213,7 @@ export const AddCustomTestnetTokenContent = ({
                     'flex items-center bg-r-neutral-card2 rounded-[8px]',
                     'px-[16px] py-[12px] min-h-[52px] cursor-pointer',
                     'border-[1px] border-transparent',
-                    'hover:border-rabby-blue-default hover:bg-r-blue-light1',
+                    'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]',
                     inModal ? 'bg-rb-neutral-card-1' : ''
                   )}
                 >
@@ -230,7 +230,7 @@ export const AddCustomTestnetTokenContent = ({
                     'flex items-center bg-r-neutral-card2 rounded-[8px]',
                     'gap-[8px] px-[16px] py-[12px] min-h-[52px] cursor-pointer',
                     'border-[1px] border-transparent',
-                    'hover:border-rabby-blue-default hover:bg-r-blue-light1',
+                    'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]',
                     inModal ? 'bg-rb-neutral-card-1' : ''
                   )}
                 >

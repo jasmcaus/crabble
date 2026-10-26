@@ -448,7 +448,7 @@ const TokenWrapper = styled.div`
   padding: 4px;
   border-radius: 4px;
   &:hover {
-    background: rgba(242, 138, 99, 0.3);
+    background: var(--crb-sunken);
   }
 `;
 

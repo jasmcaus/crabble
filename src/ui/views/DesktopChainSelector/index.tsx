@@ -41,13 +41,13 @@ export const DesktopChainSelector: React.FC<Props> = ({
               'px-[10px] h-[32px]',
               'rounded-[12px]',
               'border border-solid border-rabby-neutral-line',
-              'hover:border-rabby-blue-default hover:bg-r-blue-light1'
+              'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]'
             )}
           >
             <div
               className={clsx(
                 'flex items-center gap-[6px] ',
-                // 'hover:bg-r-blue-light1',
+                // 'hover:bg-[var(--crb-sunken)]',
                 'rounded-[12px]'
               )}
             >
@@ -76,7 +76,7 @@ export const DesktopChainSelector: React.FC<Props> = ({
               'flex items-center gap-[4px] cursor-pointer rounded-[12px] px-[6px] h-[32px] bg-rb-neutral-bg-3',
               'text-[14px] leading-[18px] text-r-neutral-foot',
               'border border-solid border-transparent',
-              'hover:border-rabby-blue-default hover:bg-r-blue-light1'
+              'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]'
             )}
           >
             <div className={clsx('flex items-center')}>

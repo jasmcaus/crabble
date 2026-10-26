@@ -63,7 +63,7 @@ export const TpSlAmountInput: React.FC<TpSlAmountInputProps> = ({
       <div
         className={clsx(
           'flex h-[40px] items-center gap-[8px] rounded-[8px] border border-solid bg-rb-neutral-bg-5 px-[11px]',
-          'hover:border-rb-brand-default focus-within:border-rb-brand-default',
+          'hover:border-[var(--crb-hairline-strong)] focus-within:border-rb-brand-default',
           hasError || errorText ? 'border-rb-red-default' : 'border-transparent'
         )}
       >

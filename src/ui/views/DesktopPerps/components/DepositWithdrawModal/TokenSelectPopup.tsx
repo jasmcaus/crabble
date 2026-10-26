@@ -131,7 +131,7 @@ export const TokenSelectPopup: React.FC<TokenSelectPopupProps> = ({
             'text-13 font-medium text-rb-neutral-title-1 cursor-pointer',
             selectedToken?.id === item.id && selectedToken?.chain === item.chain
               ? 'border-rabby-blue-default'
-              : 'border-transparent hover:border-rabby-blue-default'
+              : 'border-transparent hover:border-[var(--crb-hairline-strong)]'
           )}
           onClick={() => {
             if (isDisabled) return;

@@ -28,7 +28,7 @@ const Container = styled.div`
     background: var(--r-blue-light1, #fdefe9);
   }
   &:not(.is-danger):hover {
-    border-color: var(--r-blue-default, #e8552a);
+    border-color: var(--crb-hairline-strong);
   }
 `;
 

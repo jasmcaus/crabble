@@ -59,7 +59,7 @@ export const SelectPopup = ({
                 'w-[25%] text-center py-[10px] px-[4px]',
                 'border rounded-[8px]',
                 'text-[14px] leading-[18px]',
-                'hover:border-rabby-blue-default hover:bg-r-blue-light1 hover:text-r-blue-default cursor-pointer',
+                'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)] hover:text-r-blue-default cursor-pointer',
                 isActive
                   ? 'border-rabby-blue-default bg-r-blue-light1 text-r-blue-default'
                   : 'border-rabby-neutral-line text-r-neutral-title1'

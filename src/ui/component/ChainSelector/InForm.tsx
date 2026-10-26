@@ -48,7 +48,7 @@ const ChainGlobalStyle = createGlobalStyle`
         border-color: var(--r-blue-default);
         color: var(--r-blue-default);
         &:hover {
-          background: var(--r-blue-light1, #fdefe9) !important;
+          background: var(--crb-sunken) !important;
         }
       }
     }
@@ -107,7 +107,7 @@ const ChainWrapper = styled.div`
     }
   }
   &:hover {
-    background: var(--r-blue-light2, #fdefe9);
+    background: var(--crb-sunken);
   }
 
   &.swap:hover {

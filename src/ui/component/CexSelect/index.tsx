@@ -66,7 +66,7 @@ export const CexListSelectModal = ({
             h-[58px] bg-r-neutral-card1 rounded-[12px] w-full pl-[16px] pr-[18px] mb-[8px]
             flex justify-between items-center cursor-pointer
             border-[1px] border-solid border-transparent
-          hover:border-rabby-blue-default hover:bg-r-blue-light1
+          hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]
           `}
           onClick={() => {
             onSelect?.(cex);

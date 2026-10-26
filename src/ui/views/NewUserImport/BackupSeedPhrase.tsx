@@ -99,7 +99,7 @@ export const BackupSeedPhrase = () => {
               'inline-flex justify-center items-center gap-[4px]',
               'text-13 font-medium text-r-neutral-body',
               'bg-rabby-neutral-card-2 rounded-[12px]',
-              'hover:bg-r-blue-light-1 hover:text-rabby-blue-default'
+              'hover:bg-[var(--crb-sunken)] hover:text-rabby-blue-default'
             )}
             onClick={onCopyMnemonics}
           >

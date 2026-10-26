@@ -190,8 +190,8 @@ const Wrapper = styled.div<{
     cursor: pointer;
 
     &:hover {
-      background-color: rgba(242, 138, 99, 0.2);
-      border: 1px solid var(--r-blue-default, #f26b3a);
+      background-color: var(--crb-sunken);
+      border: 1px solid var(--crb-hairline-strong);
     }
   }
 

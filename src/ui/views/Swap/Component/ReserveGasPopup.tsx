@@ -137,7 +137,7 @@ const ReserveGasContent = React.forwardRef<
                 checked ? 'border-rabby-blue-default' : 'border-transparent',
                 gasIsSufficient
                   ? 'opacity-50 cursor-not-allowed'
-                  : 'hover:border-rabby-blue-default cursor-pointer'
+                  : 'hover:border-[var(--crb-hairline-strong)] cursor-pointer'
               )}
               onClick={onChecked}
             >

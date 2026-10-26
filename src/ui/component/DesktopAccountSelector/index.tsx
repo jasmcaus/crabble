@@ -111,7 +111,7 @@ export const DesktopAccountSelector: React.FC<DesktopAccountSelectorProps> = ({
             'border border-rb-neutral-line',
             disabled
               ? 'cursor-not-allowed opacity-50'
-              : 'cursor-pointer hover:bg-rb-brand-light-1 hover:border-rb-brand-default',
+              : 'cursor-pointer hover:bg-[var(--crb-sunken)] hover:border-[var(--crb-hairline-strong)]',
             className
           )}
         >

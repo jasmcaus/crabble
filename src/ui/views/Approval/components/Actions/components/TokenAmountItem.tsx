@@ -57,7 +57,7 @@ export const TokenAmountItem: React.FC<Props> = ({
             'rounded-[4px]',
             'overflow-hidden py-[4px] px-[7px]',
             'border-[0.5px] border-rabby-neutral-line',
-            onEdit ? 'cursor-pointer hover:bg-r-blue-light1' : undefined
+            onEdit ? 'cursor-pointer hover:bg-[var(--crb-sunken)]' : undefined
           )}
           logo={logoUrl}
           text={

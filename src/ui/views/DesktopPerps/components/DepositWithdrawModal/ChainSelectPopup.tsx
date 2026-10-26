@@ -60,7 +60,7 @@ export const ChainSelectPopup: React.FC<ChainSelectPopupProps> = ({
                   'bg-rb-neutral-bg-5 text-13 text-rb-neutral-title-1 font-medium',
                   selected === c.serverChain
                     ? 'border-rabby-blue-default'
-                    : 'border-transparent hover:border-rabby-blue-default'
+                    : 'border-transparent hover:border-[var(--crb-hairline-strong)]'
                 )}
               >
                 {chain?.logo && (

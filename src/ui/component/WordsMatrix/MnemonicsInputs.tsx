@@ -75,7 +75,7 @@ const MatrixWrapper = styled.div.withConfig<{
         font-size: 22px;
         color: var(--r-neutral-title-1, #09090b);
         &:hover {
-          border-color: var(--r-blue-default, #f26b3a);
+          border-color: var(--crb-hairline-strong);
         }
         &:focus,
         &.ant-input-focused {
@@ -85,7 +85,7 @@ const MatrixWrapper = styled.div.withConfig<{
 
       &:not(.invalid) {
         .mnemonics-input:hover {
-          border-color: var(--r-blue-default, #f26b3a);
+          border-color: var(--crb-hairline-strong);
         }
       }
 
@@ -837,7 +837,7 @@ function MnemonicsInputs({
                         'w-[108px] h-[44px] flex items-center justify-center',
                         'text-[13px] leading-[16px] text-r-neutral-title-1 font-medium',
                         'rounded-[8px] cursor-pointer',
-                        'hover:bg-r-blue-light1'
+                        'hover:bg-[var(--crb-sunken)]'
                       )}
                       onMouseDown={(e) => {
                         // 阻止默认行为，防止触发 input 的 blur 事件

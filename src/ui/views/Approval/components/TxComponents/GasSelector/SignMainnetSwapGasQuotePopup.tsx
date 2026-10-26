@@ -323,7 +323,7 @@ export const SignMainnetSwapGasQuotePopup = ({
         className="z-[999]"
         getContainer={getContainer}
       >
-        <div className="flex h-full flex-col gap-24 overflow-hidden rounded-t-[16px] bg-r-neutral-bg-2 p-20 pb-0 shadow-[0_-12px_10px_rgba(9, 9, 11,0.1)]">
+        <div className="flex h-full flex-col gap-24 overflow-hidden rounded-t-[16px] bg-r-neutral-bg-2 p-20 pb-0 shadow-[0_-12px_10px_rgba(9,9,11,0.1)]">
           <div className="flex shrink-0 flex-col gap-12">
             <div className="flex items-center justify-between">
               <span className="text-[16px] font-medium text-r-neutral-title-1">
@@ -448,7 +448,7 @@ export const SignMainnetSwapGasQuotePopup = ({
                     'mb-8 flex h-[52px] items-center justify-between rounded-[12px] border border-transparent bg-r-neutral-card-1 px-10',
                     isDisabled
                       ? 'cursor-not-allowed opacity-50'
-                      : 'cursor-pointer hover:border-r-blue-default hover:bg-r-blue-light1'
+                      : 'cursor-pointer hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]'
                   )}
                   onClick={() => {
                     if (isDisabled) return;

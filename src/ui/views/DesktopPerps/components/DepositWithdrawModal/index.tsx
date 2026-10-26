@@ -259,7 +259,7 @@ export const DepositWithdrawModal: React.FC<DepositWithdrawModalProps> = ({
                   onClick={() => setChainSelectVisible(true)}
                   className={clsx(
                     'bg-rb-neutral-bg-2 rounded-[8px] w-full flex items-center justify-between px-16 h-[56px] border border-solid border-transparent mb-24',
-                    'hover:border-rabby-blue-default cursor-pointer'
+                    'hover:border-[var(--crb-hairline-strong)] cursor-pointer'
                   )}
                 >
                   <div className="flex items-center gap-8">
@@ -336,7 +336,7 @@ export const DepositWithdrawModal: React.FC<DepositWithdrawModalProps> = ({
                       className={clsx(
                         'flex items-center justify-center gap-6 pl-6 pr-8 h-32 rounded-[8px] border border-solid border-transparent',
                         'bg-r-neutral-card-2 cursor-pointer shrink-0',
-                        'hover:border-rabby-blue-default hover:text-rb-brand-default'
+                        'hover:border-[var(--crb-hairline-strong)] hover:text-rb-brand-default'
                       )}
                     >
                       <TokenWithChain
@@ -363,7 +363,7 @@ export const DepositWithdrawModal: React.FC<DepositWithdrawModalProps> = ({
                       className={clsx(
                         'flex-1 h-[36px] flex items-center justify-center rounded-[8px] text-13 font-medium',
                         'bg-rb-neutral-bg-2 border border-solid border-transparent text-rb-neutral-foot',
-                        'hover:border-rabby-blue-default hover:text-rb-brand-default'
+                        'hover:border-[var(--crb-hairline-strong)] hover:text-rb-brand-default'
                       )}
                     >
                       {option.label}
@@ -419,7 +419,7 @@ export const DepositWithdrawModal: React.FC<DepositWithdrawModalProps> = ({
                         className={clsx(
                           'px-20 h-[36px] flex items-center justify-center rounded-[8px] text-13',
                           'border border-solid border-transparent',
-                          'hover:bg-rb-brand-light-1 hover:text-rb-brand-default hover:border-rb-brand-default',
+                          'hover:bg-[var(--crb-sunken)] hover:text-rb-brand-default hover:border-[var(--crb-hairline-strong)]',
                           'bg-rb-neutral-bg-5 text-rb-neutral-foot'
                         )}
                       >
@@ -441,7 +441,7 @@ export const DepositWithdrawModal: React.FC<DepositWithdrawModalProps> = ({
                   }}
                   className={clsx(
                     'bg-rb-neutral-bg-2 rounded-[8px] w-full flex items-center justify-between text-13 px-16 h-[48px] border border-solid border-transparent',
-                    'hover:border-rabby-blue-default cursor-pointer'
+                    'hover:border-[var(--crb-hairline-strong)] cursor-pointer'
                   )}
                 >
                   <div className="text-rb-neutral-body text-13">

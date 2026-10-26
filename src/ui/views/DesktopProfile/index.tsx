@@ -257,7 +257,7 @@ const DesktopProfileContent: React.FC<DesktopProfileProps> = ({
                                   'flex items-center justify-center gap-[4px] cursor-pointer',
                                   'text-rb-brand-default text-[14px] leading-[16px] font-medium',
                                   'border-[0.5px] border-solid border-rb-brand-default',
-                                  'hover:bg-r-blue-light-1'
+                                  'hover:bg-[var(--crb-sunken)]'
                                 )}
                                 onClick={() => {
                                   history.replace(

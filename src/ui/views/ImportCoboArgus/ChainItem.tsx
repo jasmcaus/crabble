@@ -18,7 +18,7 @@ export const ChainItem: React.FC<Props> = ({ chain, checked, onChecked }) => {
         'py-12 px-16',
         'rounded-[8px]',
         'cursor-pointer',
-        'hover:border-blue-light border',
+        'hover:border-[var(--crb-hairline-strong)] border',
         {
           'border-blue-light': checked,
           'border-transparent': !checked,

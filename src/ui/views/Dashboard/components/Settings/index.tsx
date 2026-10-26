@@ -1772,7 +1772,7 @@ const SettingsInner = ({
           })}
         </div>
         <footer className="footer">
-          <div className="px-8 py-2 rounded hover:bg-r-blue-light-1 inline-block">
+          <div className="px-8 py-2 rounded hover:bg-[var(--crb-sunken)] inline-block">
             <img
               className="inline-block cursor-pointer"
               src={LogoRabby}

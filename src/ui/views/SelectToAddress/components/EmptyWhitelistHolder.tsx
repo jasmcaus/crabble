@@ -43,7 +43,7 @@ export const EmptyWhitelistHolder = ({
         className={`mt-[47px] font-medium text-[16px] text-r-blue-default text-center w-full
           border border-r-blue-default rounded-[12px]
           h-[48px] leading-[48px] cursor-pointer
-          hover:bg-r-blue-light1
+          hover:bg-[var(--crb-sunken)]
         `}
         onClick={handleAddWhitelist}
       >

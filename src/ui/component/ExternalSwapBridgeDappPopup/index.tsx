@@ -62,7 +62,7 @@ const Item = ({ name, url, logo }: SwapBridgeExternalDappInfo) => {
         'cursor-pointer',
         'rounded-[8px] p-16 pt-12',
         'border border-solid border-transparent',
-        'hover:border-rabby-blue-default hover:bg-r-blue-light1'
+        'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]'
       )}
       onClick={openDapp}
     >

@@ -19,7 +19,7 @@ const ManuallySetGasLimitAlert = styled.li`
 const Div = styled.div`
   .ant-input.popup-input {
     &:hover {
-      border-color: var(--r-blue-default, #f26b3a) !important;
+      border-color: var(--crb-hairline-strong) !important;
     }
   }
 `;

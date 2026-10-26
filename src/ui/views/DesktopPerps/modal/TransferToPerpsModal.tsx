@@ -283,7 +283,7 @@ export const TransferToPerpsModal: React.FC<TransferToPerpsModalProps> = ({
                     'flex-1 h-[36px] rounded-[12px] text-13 font-medium',
                     'bg-rb-neutral-bg-2 border border-solid border-transparent',
                     'text-rb-neutral-foot',
-                    'hover:border-rb-brand-default hover:text-rb-brand-default',
+                    'hover:border-[var(--crb-hairline-strong)] hover:text-rb-brand-default',
                     'disabled:opacity-60 disabled:cursor-not-allowed'
                   )}
                   disabled={submitting}

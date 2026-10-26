@@ -71,7 +71,7 @@ export const SelectAddressItem: React.FC<{
           'bg-r-neutral-card1',
           'py-[11px] px-[16px] rounded-[12px]',
           'border border-transparent border-solid',
-          'hover:bg-r-blue-light1 hover:border-rabby-blue-default',
+          'hover:bg-[var(--crb-sunken)] hover:border-[var(--crb-hairline-strong)]',
           checked && 'bg-r-blue-light1 border-rabby-blue-default',
           disabled && 'cursor-not-allowed opacity-50',
           className

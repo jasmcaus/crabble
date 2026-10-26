@@ -60,7 +60,7 @@ export const PerpsLimitOrderItem: React.FC<{
         'w-full bg-r-neutral-card1 rounded-[12px] flex items-center justify-between',
         'px-16 py-12 cursor-pointer',
         'border-[1px] border-solid border-transparent',
-        'hover:bg-r-blue-light1 hover:border-rabby-blue-default'
+        'hover:bg-[var(--crb-sunken)] hover:border-[var(--crb-hairline-strong)]'
       )}
       onClick={onClick}
     >

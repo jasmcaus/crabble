@@ -48,9 +48,9 @@ export const GasAccountBlueBorderedButton = styled(Button)`
   }
 
   &:hover {
-    background: var(--r-blue-light1, #fdefe9);
+    background: var(--crb-sunken);
     color: var(--r-blue-default, #f26b3a);
-    border: 1px solid var(--r-blue-default, #f26b3a);
+    border: 1px solid var(--crb-hairline-strong);
   }
 
   &:hover:before {
