@@ -445,26 +445,39 @@
     .switch-theme-option-list {
       overflow: auto;
       max-height: calc(100% - 48px);
+      border-radius: 16px;
+      background: var(--crb-raised, #fff);
+      box-shadow: var(--crb-shadow-card);
+
       &-item {
+        position: relative;
         display: flex;
-        height: 52px;
-        padding: 17px 15px;
-        border-radius: 8px;
-        background: var(--r-neutral-card-2, rgba(255, 255, 255, 0.06));
+        height: 48px;
+        padding: 0 16px;
+        background: transparent;
         align-items: center;
-        margin-bottom: 12px;
+        margin-bottom: 0;
 
         color: var(--r-neutral-title-1, #fafafa);
         font-size: 14px;
         font-weight: 500;
         line-height: 16px;
-        border: 1px solid transparent;
 
         cursor: pointer;
+        transition: background-color 0.14s ease;
+
+        & + &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 16px;
+          right: 0;
+          height: 1px;
+          background: var(--crb-hairline);
+        }
 
         &:hover {
-          background-color: var(--crb-sunken);
-          border: 1px solid var(--crb-hairline-strong);
+          background-color: var(--crb-hover);
         }
 
         &-icon {

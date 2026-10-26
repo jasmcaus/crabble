@@ -49,6 +49,11 @@
 @font-family: 'Geist', 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
   Roboto, sans-serif;
 @font-size-lg: 14px;
+/* antd puts tabular figures ('tnum') on everything, which also widens the
+   hyphen to figure width ("Watch - only"). Proportional by default; numeric
+   contexts opt back in (crabble-ui.less, `tabular-nums`). */
+@font-variant-base: normal;
+@font-feature-settings-base: normal;
 
 @outline-width: 0;
 
