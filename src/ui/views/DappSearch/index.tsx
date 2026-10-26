@@ -39,17 +39,17 @@ const SearchWrapper = styled.div`
 
   .ant-input-affix-wrapper {
     border-radius: 8px 0 0 8px !important;
-    border: 1px solid var(--r-neutral-line, #d3d8e0);
+    border: 1px solid var(--r-neutral-line, #d9d5cf);
     padding: 13px 15px;
     line-height: 24px !important;
     background: var(--r-neutral-card1, #fff);
 
     input::placeholder {
-      color: var(--r-neutral-foot, #6a7587);
+      color: var(--r-neutral-foot, #827e77);
     }
 
     .ant-input-clear-icon {
-      color: var(--r-neutral-foot, #6a7587);
+      color: var(--r-neutral-foot, #827e77);
     }
 
     .ant-input-prefix {
@@ -57,14 +57,14 @@ const SearchWrapper = styled.div`
     }
     .ant-input {
       background-color: transparent;
-      color: var(--r-neutral-title1, #192945);
+      color: var(--r-neutral-title1, #1a1917);
       &::placeholder {
-        color: var(--r-neutral-foot, #6a7587);
+        color: var(--r-neutral-foot, #827e77);
       }
     }
 
     &-focused {
-      border: 1px solid var(--r-blue-default, #7084ff);
+      border: 1px solid var(--r-blue-default, #f26b3a);
     }
   }
   .ant-input-group-addon {

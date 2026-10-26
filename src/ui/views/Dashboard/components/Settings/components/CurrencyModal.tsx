@@ -160,11 +160,11 @@ const Wrapper = styled.div<{
     line-height: 13px;
     &:active,
     &:focus {
-      border: 1px solid var(--r-blue-default, #4c65ff) !important;
+      border: 1px solid var(--r-blue-default, #e8552a) !important;
     }
 
     .ant-input {
-      color: var(--r-neutral-title-1, #f7fafc);
+      color: var(--r-neutral-title-1, #faf9f7);
       border-radius: 0;
     }
   }
@@ -182,7 +182,7 @@ const Wrapper = styled.div<{
     background: var(--r-neutral-card-2, rgba(255, 255, 255, 0.06));
     align-items: center;
     margin-bottom: 12px;
-    color: var(--r-neutral-title-1, #f7fafc);
+    color: var(--r-neutral-title-1, #faf9f7);
     font-size: 14px;
     font-weight: 500;
     line-height: 16px;
@@ -190,8 +190,8 @@ const Wrapper = styled.div<{
     cursor: pointer;
 
     &:hover {
-      background-color: rgba(134, 151, 255, 0.2);
-      border: 1px solid var(--r-blue-default, #7084ff);
+      background-color: rgba(242, 138, 99, 0.2);
+      border: 1px solid var(--r-blue-default, #f26b3a);
     }
   }
 
@@ -223,7 +223,7 @@ const Wrapper = styled.div<{
 
   .currency-empty {
     text-align: center;
-    color: var(--r-neutral-foot, #6a7587);
+    color: var(--r-neutral-foot, #827e77);
     font-size: 12px;
     line-height: 16px;
     padding: 16px 0;

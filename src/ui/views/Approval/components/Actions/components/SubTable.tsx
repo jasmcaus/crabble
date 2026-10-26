@@ -7,7 +7,7 @@ import { ReactComponent as IconTableArrow } from 'ui/assets/sign/table-arrow.svg
 
 const SubTableWrapper = styled.div`
   border-radius: 6px;
-  background: var(--r-neutral-card3, #f7fafc);
+  background: var(--r-neutral-card3, #faf9f7);
   padding: 12px;
   row-gap: 12px;
   display: flex;
@@ -83,7 +83,7 @@ const SubColWrapper = styled.div`
     margin-top: -6px;
 
     .row {
-      color: var(--r-neutral-foot, #6a7587) !important;
+      color: var(--r-neutral-foot, #827e77) !important;
       font-weight: 400 !important;
     }
   }
@@ -112,7 +112,7 @@ export const SubCol = ({
 const SubRowWrapper = styled.div`
   font-size: 14px;
   line-height: normal;
-  color: var(--r-neutral-body, #3e495e);
+  color: var(--r-neutral-body, #4b4844);
   font-weight: 500;
 
   &:has(.security-level-tag) {

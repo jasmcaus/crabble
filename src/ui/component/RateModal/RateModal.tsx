@@ -29,7 +29,7 @@ const DASHED_LINE_STYLE = {
   opacity: 0.5,
   height: 0,
   width: '100%',
-  borderBottom: '1px dashed var(--r-blue-default, #7084FF)',
+  borderBottom: '1px dashed var(--r-blue-default, #F26B3A)',
 };
 
 function useForceDisableRateGuideOnLaunch(modalShow: boolean) {
@@ -119,7 +119,7 @@ export default function RateModal() {
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
-        background: 'var(--r-neutral-bg2, #F2F4F7)',
+        background: 'var(--r-neutral-bg2, #F3F2EF)',
         borderTopLeftRadius: '16px',
         borderTopRightRadius: '16px',
       }}

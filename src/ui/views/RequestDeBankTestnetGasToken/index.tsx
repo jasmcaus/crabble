@@ -106,7 +106,7 @@ const Wrapper = styled.div<{
       display: flex;
       align-items: center;
       gap: 4px;
-      color: var(--r-neutral-body, #d3d8e0);
+      color: var(--r-neutral-body, #d9d5cf);
       font-size: 15px;
       font-weight: 400;
     }
@@ -116,7 +116,7 @@ const Wrapper = styled.div<{
       display: flex;
       align-items: center;
       gap: 4px;
-      color: var(--r-neutral-title1, #f7fafc);
+      color: var(--r-neutral-title1, #faf9f7);
       font-size: 13px;
       font-weight: 400;
     }

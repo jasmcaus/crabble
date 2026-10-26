@@ -92,7 +92,7 @@ export const PerpsPortfolioChart: React.FC<{
     return chartPoints;
   }, [data, isEmpty, period]);
 
-  const color = 'var(--r-blue-default, #4c65ff)';
+  const color = 'var(--r-blue-default, #e8552a)';
   const showInteraction = expanded && !isEmpty;
 
   const wrapperRef = useRef<HTMLDivElement>(null);

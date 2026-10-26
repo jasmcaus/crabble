@@ -45,13 +45,13 @@ const RPCItemWrapper = styled.div`
         font-size: 13px;
         font-weight: 500;
         line-height: 18px;
-        color: var(--r-neutral-title-1, #f7fafc);
+        color: var(--r-neutral-title-1, #faf9f7);
       }
       &:nth-child(2) {
         font-weight: 400;
         font-size: 13px;
         line-height: 15px;
-        color: var(--r-neutral-body, #d3d8e0);
+        color: var(--r-neutral-body, #d9d5cf);
       }
     }
   }
@@ -78,8 +78,8 @@ const RPCItemWrapper = styled.div`
     }
   }
   &:hover {
-    background: var(--r-blue-light-1, #eef1ff);
-    border: 1px solid var(--r-blue-default, #7084ff);
+    background: var(--r-blue-light-1, #fdefe9);
+    border: 1px solid var(--r-blue-default, #f26b3a);
     border-radius: 6px;
     .operation {
       opacity: 1;

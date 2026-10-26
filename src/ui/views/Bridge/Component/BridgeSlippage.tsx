@@ -33,18 +33,18 @@ const SlippageItem = styled.div`
   background: var(--r-neutral-card-1, #fff);
   border-radius: 6px;
   overflow: hidden;
-  color: var(--r-neutral-title1, #192945);
+  color: var(--r-neutral-title1, #1a1917);
 
   &.input-wrapper {
-    border: 1px solid var(--r-neutral-line, #e0e5ec);
+    border: 1px solid var(--r-neutral-line, #eae7e2);
     background: var(--r-neutral-card-1, #fff);
   }
 
   &:hover,
   &.active {
-    color: var(--r-blue-default, #7084ff);
-    background: var(--r-blue-light1, #eef1ff);
-    border: 1px solid var(--r-blue-default, #7084ff);
+    color: var(--r-blue-default, #f26b3a);
+    background: var(--r-blue-light1, #fdefe9);
+    border: 1px solid var(--r-blue-default, #f26b3a);
   }
 
   &.error,

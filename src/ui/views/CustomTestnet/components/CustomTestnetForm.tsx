@@ -11,7 +11,7 @@ const Warper = styled.div`
     margin-bottom: 16px;
   }
   .ant-form-item-label > label {
-    color: var(--r-neutral-body, #3e495e);
+    color: var(--r-neutral-body, #4b4844);
     font-size: 13px;
     line-height: 16px;
   }
@@ -22,22 +22,22 @@ const Warper = styled.div`
     margin-left: auto;
     margin-right: auto;
     background: transparent !important;
-    border: 1px solid var(--r-neutral-line, #d3d8e0);
+    border: 1px solid var(--r-neutral-line, #d9d5cf);
     border-radius: 6px;
 
-    color: var(--r-neutral-title1, #192945);
+    color: var(--r-neutral-title1, #1a1917);
     font-size: 15px;
     font-weight: 500;
 
     &:focus,
     &:hover {
-      border-color: var(--r-blue-default, #7084ff);
+      border-color: var(--r-blue-default, #f26b3a);
     }
   }
   .ant-input[disabled] {
-    background: var(--r-neutral-card2, #f2f4f7);
+    background: var(--r-neutral-card2, #f3f2ef);
     border-color: transparent;
-    /* color: var(--r-neutral-foot, #6a7587); */
+    /* color: var(--r-neutral-foot, #827e77); */
     &:hover {
       border-color: transparent;
     }

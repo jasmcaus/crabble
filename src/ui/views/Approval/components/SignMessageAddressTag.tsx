@@ -27,14 +27,14 @@ const Trigger = styled.button<{
     ${({ $danger }) =>
       $danger
         ? 'var(--r-red-default, #E34935)'
-        : 'var(--r-neutral-line, #E0E5EC)'};
+        : 'var(--r-neutral-line, #EAE7E2)'};
   border-radius: 4px;
   background: ${({ $danger }) =>
-    $danger ? 'var(--r-red-light, #fce5e5)' : 'var(--r-neutral-bg2, #f2f4f7)'};
+    $danger ? 'var(--r-red-light, #fce5e5)' : 'var(--r-neutral-bg2, #f3f2ef)'};
   color: ${({ $danger }) =>
     $danger
       ? 'var(--r-red-default, #ec5151)'
-      : 'var(--r-neutral-body, #3e495e)'};
+      : 'var(--r-neutral-body, #4b4844)'};
   font-size: 13px;
   line-height: normal;
   font-weight: 400;

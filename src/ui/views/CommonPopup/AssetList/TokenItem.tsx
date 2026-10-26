@@ -69,7 +69,7 @@ const StyledTRow = styled(TRow)`
     box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.04);
   }
   &:active:not(:has(.token-action-btn:active)) {
-    background-color: var(--r-blue-light1, #edf0ff) !important;
+    background-color: var(--r-blue-light1, #fdefe9) !important;
     ${ActionBtnWrapper}::after {
       display: none;
     }
@@ -106,7 +106,7 @@ const ActionBtn = styled.div`
   }
 
   &:hover {
-    color: var(--r-blue-default, #7084ff);
+    color: var(--r-blue-default, #f26b3a);
   }
 `;
 

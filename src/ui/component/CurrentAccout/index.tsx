@@ -40,10 +40,10 @@ const CurrentAccountWrapper = styled.div`
   &.success {
     background: var(--r-neutral-card2, rgba(255, 255, 255, 0.06));
     .name {
-      color: var(--r-neutral-title1, #f7fafc);
+      color: var(--r-neutral-title1, #faf9f7);
     }
     .addr {
-      color: var(--r-neutral-body, #d3d8e0);
+      color: var(--r-neutral-body, #d9d5cf);
     }
   }
 `;

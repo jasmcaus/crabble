@@ -33,7 +33,7 @@ import { isTempoChain } from '@/utils/tempo';
 import { AutoSizeAmountInput } from '@/ui/component/AutoSizeAmountInput';
 
 const StyledInput = styled(Input)`
-  color: var(--r-neutral-title1, #192945);
+  color: var(--r-neutral-title1, #1a1917);
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -42,7 +42,7 @@ const StyledInput = styled(Input)`
   padding-left: 0;
   padding-right: 0;
   & > .ant-input {
-    color: var(--r-neutral-title1, #192945);
+    color: var(--r-neutral-title1, #1a1917);
     font-size: 24px;
     font-style: normal;
     font-weight: 500;
@@ -52,7 +52,7 @@ const StyledInput = styled(Input)`
   }
 
   &::placeholder {
-    color: var(--r-neutral-foot, #6a7587);
+    color: var(--r-neutral-foot, #827e77);
   }
 
   &::-webkit-inner-spin-button,

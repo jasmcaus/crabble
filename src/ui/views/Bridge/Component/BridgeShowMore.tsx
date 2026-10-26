@@ -78,7 +78,7 @@ const PreferMEVGuardSwitch = styled(Switch)`
   height: 12px;
 
   &.ant-switch-checked {
-    background-color: var(--r-blue-default, #7084ff);
+    background-color: var(--r-blue-default, #f26b3a);
     .ant-switch-handle {
       left: calc(100% - 10px - 1px);
       top: 1px;

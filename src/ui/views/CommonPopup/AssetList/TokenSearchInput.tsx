@@ -18,15 +18,15 @@ export interface Props {
 const InputStyled = styled(Input)`
   background-color: var(--r-neutral-card1, #fff) !important;
   &.ant-input-affix-wrapper-focused {
-    border-color: var(--r-blue-default, #7084ff) !important;
+    border-color: var(--r-blue-default, #f26b3a) !important;
   }
   &:hover {
-    border-color: var(--r-blue-default, #7084ff) !important;
+    border-color: var(--r-blue-default, #f26b3a) !important;
   }
 
   input::placeholder {
     font-size: 12px;
-    color: var(--r-neutral-foot, #6a7587);
+    color: var(--r-neutral-foot, #827e77);
   }
 `;
 

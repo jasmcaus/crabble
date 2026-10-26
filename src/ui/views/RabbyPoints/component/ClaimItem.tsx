@@ -9,7 +9,7 @@ import { ReactComponent as IconInputLoading } from 'ui/assets/rabby-points/loadi
 
 const Wrapper = styled.div`
   position: relative;
-  border: 0.5px solid var(--r-neutral-line, #d3d8e0);
+  border: 0.5px solid var(--r-neutral-line, #d9d5cf);
   border-radius: 8px;
   padding: 12px 0;
   padding-top: 14px;

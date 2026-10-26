@@ -67,13 +67,13 @@ interface AddAssetProps {
 const AddAssetWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: var(--r-neutral-bg2, #f2f4f7);
+  background-color: var(--r-neutral-bg2, #f3f2ef);
   height: 100vh;
   overflow: hidden;
   .header {
     padding: 20px;
     text-align: center;
-    background-color: var(--r-blue-default, #7084ff);
+    background-color: var(--r-blue-default, #f26b3a);
     color: var(--r-neutral-title2, #fff);
     font-size: 20px;
     font-weight: 500;
@@ -86,7 +86,7 @@ const AddAssetWrapper = styled.div`
     flex-direction: column;
     overflow: hidden;
     overflow-y: auto;
-    background-color: var(--r-neutral-bg2, #f2f4f7);
+    background-color: var(--r-neutral-bg2, #f3f2ef);
     .token-info {
       display: flex;
       align-items: center;
@@ -175,7 +175,7 @@ const NoTokenWrapper = styled.div`
     font-weight: 500;
     line-height: 24px;
     text-align: center;
-    color: var(--r-neutral-body, #d3d8e0);
+    color: var(--r-neutral-body, #d9d5cf);
     .icon-warning {
       margin: 0 auto 40px;
     }

@@ -19,7 +19,7 @@ const MINIMUM_PASSWORD_LENGTH = 8;
 const Container = styled.div`
   .ant-form-item-label {
     & > label {
-      color: var(--r-neutral-title1, #192945);
+      color: var(--r-neutral-title1, #1a1917);
       font-size: 15px;
       font-weight: 500;
       line-height: 18px;
@@ -47,12 +47,12 @@ const Container = styled.div`
 
   /* .ant-input {
     border-radius: 8px;
-    border: 1px solid var(--r-neutral-line, #e0e5ec);
+    border: 1px solid var(--r-neutral-line, #eae7e2);
   }
 
   .ant-input:focus,
   .ant-input-focused {
-    border-color: var(--r-blue-default, #7084ff);
+    border-color: var(--r-blue-default, #f26b3a);
   }
 
   .ant-form-item-has-error {
@@ -66,10 +66,10 @@ const Container = styled.div`
     &:hover,
     &-focused,
     &-focused:hover {
-      border: 1px solid var(--r-blue-default, #7084ff);
+      border: 1px solid var(--r-blue-default, #f26b3a);
     }
     border-radius: 8px;
-    border: 1px solid var(--r-neutral-line, #e0e5ec);
+    border: 1px solid var(--r-neutral-line, #eae7e2);
     .ant-input {
       border: none !important;
       border-radius: 0 !important;
@@ -81,7 +81,7 @@ const Container = styled.div`
       &::placeholder {
         font-size: 15px;
         line-height: 18px;
-        color: var(--r-neutral-foot, #6a7587);
+        color: var(--r-neutral-foot, #827e77);
       }
     }
   }

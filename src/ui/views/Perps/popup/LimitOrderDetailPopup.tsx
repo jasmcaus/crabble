@@ -39,7 +39,7 @@ export const LimitOrderDetailPopup: React.FC<{
     height: 'fit-content' as const,
     bodyStyle: {
       padding: 0,
-      background: 'var(--r-neutral-bg2, #F2F4F7)',
+      background: 'var(--r-neutral-bg2, #F3F2EF)',
       borderRadius: '16px 16px 0 0',
     },
     closeIcon: (

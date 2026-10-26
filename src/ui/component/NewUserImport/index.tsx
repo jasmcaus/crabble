@@ -8,10 +8,6 @@ import { useThemeMode } from '@/ui/hooks/usePreference';
 const StyedBg = styled.div<{
   isDarkTheme: boolean;
 }>`
-  background: ${(props) =>
-    props.isDarkTheme
-      ? 'linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%), var(--r-blue-default, #7084FF)'
-      : 'var(--r-blue-default, #7084ff)'};
   overflow-x: auto;
   min-height: 100vh;
   display: flex;
@@ -22,15 +18,21 @@ const StyedBg = styled.div<{
 const StyledCard = styled.div`
   width: 400px;
   min-height: 520px;
-  border-radius: 16px;
+  border-radius: 20px;
   background-color: var(--r-neutral-bg1, #fff);
-  box-shadow: 0px 40px 80px 0px rgba(43, 57, 143, 0.4);
+  border: 1px solid var(--r-neutral-line, #eae7e2);
+  box-shadow: 0 1px 2px rgba(26, 25, 23, 0.04),
+    0 24px 64px -12px rgba(26, 25, 23, 0.14);
+
+  html.dark & {
+    box-shadow: 0 24px 64px -12px rgba(0, 0, 0, 0.6);
+  }
   padding: 0px 20px 20px;
   .header {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--r-neutral-title1, #192945);
+    color: var(--r-neutral-title1, #1a1917);
     text-align: center;
     font-size: 20px;
     font-style: normal;
@@ -44,22 +46,22 @@ const StyledCard = styled.div`
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
-      color: var(--r-neutral-body, #3e495e);
+      color: var(--r-neutral-body, #4b4844);
       border-radius: 8px;
       padding: 6px;
     }
     .back-icon:hover {
-      background: var(--r-neutral-card2, #f2f4f7);
+      background: var(--r-neutral-card2, #f3f2ef);
     }
   }
 
   input.ant-input::placeholder {
-    color: var(--r-neutral-foot, #6a7587);
+    color: var(--r-neutral-foot, #827e77);
   }
 
   button.ant-btn.ant-btn-primary.ant-btn-loading {
-    border-color: #5a6acc;
-    background: #5a6acc;
+    border-color: #c94a24;
+    background: #c94a24;
   }
 `;
 
@@ -104,7 +106,7 @@ export const Card = ({
   const { isDarkTheme } = useThemeMode();
 
   return (
-    <StyedBg isDarkTheme={isDarkTheme}>
+    <StyedBg isDarkTheme={isDarkTheme} className="crabble-atmosphere">
       <StyledCard className={className} style={cardStyle}>
         <div
           className={clsx(

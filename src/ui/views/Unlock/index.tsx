@@ -11,7 +11,6 @@ import {
   isSameAddress,
 } from 'ui/utils';
 import rabbyLogo from '@/ui/assets/unlock/rabby.svg';
-import unlockBackground from '@/ui/assets/unlock/background.svg';
 import { ReactComponent as BiometricsSVG } from '@/ui/assets/unlock/biometrics.svg';
 import { ReactComponent as PasswordSwitchSVG } from '@/ui/assets/dashboard/settings/password.svg';
 import { ReactComponent as BiometricSwitchSVG } from '@/ui/assets/dashboard/settings/biometric.svg';
@@ -25,8 +24,7 @@ import {
   decryptBiometricUnlockPassword,
   isBiometricUnlockSupported,
 } from '@/ui/utils/biometric';
-import { useMemoizedFn, useUnmount } from 'ahooks';
-import { useThemeMode } from '@/ui/hooks/usePreference';
+import { useMemoizedFn } from 'ahooks';
 import { useEventBusListener } from '@/ui/hooks/useEventBusListener';
 import { EVENTS } from '@/constant';
 import { ga4 } from '@/utils/ga4';
@@ -50,15 +48,8 @@ const BiometricsImage = styled.div`
 `;
 
 const UnlockPage = styled.div`
-  background-color: #ecf3ff;
-  background-image: url(${unlockBackground});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-
-  html.dark & {
-    background-color: var(--r-neutral-bg-1);
-    background-image: none;
+  h1 {
+    letter-spacing: -0.02em;
   }
 `;
 
@@ -70,21 +61,13 @@ const UnlockMethodSwitch = styled.button`
   padding: 7px 10.5px;
   border: 0;
   border-radius: 8px;
-  background: #ccd2ff;
+  background: var(--r-blue-light-1);
   color: var(--r-blue-default);
   font-size: 13px;
   font-weight: 500;
 
   &:hover {
-    background: #b8c1ff;
-  }
-
-  html.dark & {
-    background: #232b4e;
-  }
-
-  html.dark &:hover {
-    background: #2a3770;
+    background: var(--r-blue-light-2);
   }
 `;
 
@@ -358,23 +341,9 @@ const Unlock = () => {
     wallet.savedUnencryptedKeyringData().then(setHasForgotPassword);
   }, []);
 
-  useEffect(() => {
-    if (UiType.isTab || UiType.isDesktop) {
-      document.documentElement.classList.remove('dark');
-    }
-  }, []);
-
-  const { isDarkTheme } = useThemeMode();
-
-  useUnmount(() => {
-    if (isDarkTheme && !document.documentElement.classList.contains('dark')) {
-      document.documentElement.classList.add('dark');
-    }
-  });
-
   return (
     <FullscreenContainer isUnlock>
-      <UnlockPage className="unlock page-has-ant-input relative h-full min-h-[550px]">
+      <UnlockPage className="unlock crabble-atmosphere page-has-ant-input relative h-full min-h-[550px]">
         <div className="pt-[124px]">
           {showBiometricSwitch && (
             <div className="w-full absolute top-32 left-0 right-0 flex justify-center z-10">
@@ -397,7 +366,10 @@ const Unlock = () => {
               )}
             </div>
           )}
-          <img src={rabbyLogo} className="m-auto w-[100px] h-[100px]" />
+          <img
+            src={rabbyLogo}
+            className="crabble-brand-tile m-auto w-[88px] h-[88px]"
+          />
           <h1
             className={clsx(
               'text-[24px] font-semibold',
@@ -463,8 +435,8 @@ const Unlock = () => {
                 className={clsx(
                   'bg-r-neutral-card1 hover:border-rabby-blue-default focus:border-rabby-blue-default placeholder-r-neutral-foot',
                   'h-[56px]',
-                  'text-13',
-                  'rounded-[8px]'
+                  'text-14',
+                  'rounded-[12px]'
                 )}
                 size="large"
                 type="password"
@@ -481,7 +453,7 @@ const Unlock = () => {
                 <Button
                   block
                   className={clsx(
-                    'w-full py-18 h-auto rounded-[8px] border-none',
+                    'w-full py-18 h-auto rounded-[12px] border-none',
                     'text-[17px] leading-[20px]',
                     'font-medium'
                   )}

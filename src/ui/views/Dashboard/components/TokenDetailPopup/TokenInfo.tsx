@@ -40,7 +40,7 @@ const isDesktop = getUiType().isDesktop;
 const Divide = styled.div`
   height: 1px;
   height: 0.5px;
-  background-color: var(--r-neutral-card2, #f2f4f7);
+  background-color: var(--r-neutral-card2, #f3f2ef);
   display: flex;
   flex: 1;
 `;

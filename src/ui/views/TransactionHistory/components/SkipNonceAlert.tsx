@@ -33,13 +33,13 @@ const Warper = styled.div`
     }
 
     &-content {
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #1a1917);
       font-size: 13px;
       font-weight: 400;
       line-height: 18px; /* 138.462% */
 
       .link {
-        color: var(--r-blue-default, #7084ff);
+        color: var(--r-blue-default, #f26b3a);
         text-decoration-line: underline;
         cursor: pointer;
       }

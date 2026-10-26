@@ -81,14 +81,14 @@ const AuthFormItemWrapper = styled.div<{ $hasError?: boolean }>`
     }
   }
   .ant-input.ant-input-lg.popup-input {
-    border: 1px solid var(--r-neutral-line, #d3d8e0) !important;
+    border: 1px solid var(--r-neutral-line, #d9d5cf) !important;
     background: var(--r-neutral-card1, #ffffff) !important;
     &::placeholder {
-      color: var(--r-neutral-foot, #6a7587) !important;
+      color: var(--r-neutral-foot, #827e77) !important;
     }
     &:focus,
     &:hover {
-      border-color: var(--r-blue-default, #7084ff) !important;
+      border-color: var(--r-blue-default, #f26b3a) !important;
     }
     ${({ $hasError }) =>
       $hasError && 'border-color: var(--r-red-default) !important;'}

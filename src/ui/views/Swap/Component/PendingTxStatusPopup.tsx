@@ -120,7 +120,7 @@ export const PendingTxStatusPopup = ({
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
-        background: 'var(--r-neutral-bg2, #F2F4F7)',
+        background: 'var(--r-neutral-bg2, #F3F2EF)',
         borderTopLeftRadius: '16px',
         borderTopRightRadius: '16px',
       }}

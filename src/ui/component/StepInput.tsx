@@ -16,8 +16,8 @@ const Root = styled.div`
 
   .step-btn {
     padding: 6px;
-    color: var(--r-neutral-body, #3e495e);
-    border: 1px solid var(--r-neutral-line, #e0e5ec);
+    color: var(--r-neutral-body, #4b4844);
+    border: 1px solid var(--r-neutral-line, #eae7e2);
 
     &:first-child {
       border-right: none;
@@ -37,7 +37,7 @@ const Root = styled.div`
   }
 
   .step-input-field {
-    color: var(--r-neutral-title1, #192945);
+    color: var(--r-neutral-title1, #1a1917);
     text-align: center;
     font-size: 13px;
     font-weight: 500;
@@ -45,7 +45,7 @@ const Root = styled.div`
     width: 64px;
     height: 34px;
 
-    border: 1px solid var(--r-neutral-line, #e0e5ec);
+    border: 1px solid var(--r-neutral-line, #eae7e2);
     background-color: transparent;
 
     &:disabled {
@@ -54,7 +54,7 @@ const Root = styled.div`
 
     &:focus {
       outline: none;
-      border-color: var(--r-blue-default, #4c65ff);
+      border-color: var(--r-blue-default, #e8552a);
     }
   }
 `;

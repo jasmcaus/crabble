@@ -103,7 +103,7 @@ const GlobalStyle = createGlobalStyle`
       align-items: center;
 
       &:hover {
-        background: var(--r-blue-light1, #edf0ff);
+        background: var(--r-blue-light1, #fdefe9);
       }
 
       &:has(.panel-item-jump-button:hover) {
@@ -121,15 +121,15 @@ const GlobalStyle = createGlobalStyle`
         justify-content: center;
         padding: 5px;
 
-        color: var(--r-neutral-title1, #192945);
-        background: var(--r-neutral-card3, #f7fafc);
+        color: var(--r-neutral-title1, #1a1917);
+        background: var(--r-neutral-card3, #faf9f7);
         border: 0;
         border-radius: 4px;
         cursor: pointer;
 
         &:hover {
-          color: var(--r-blue-default, #4c65ff);
-          background: var(--r-blue-light1, #edf0ff);
+          color: var(--r-blue-default, #e8552a);
+          background: var(--r-blue-light1, #fdefe9);
         }
       }
 
@@ -142,7 +142,7 @@ const GlobalStyle = createGlobalStyle`
         height: 24px;
         justify-self: center;
         margin-bottom: 6px;
-        color: var(--r-neutral-title1, #192945);
+        color: var(--r-neutral-title1, #1a1917);
 
         &.icon-spin {
           animation: icn-spin 1.5s linear infinite;
@@ -165,7 +165,7 @@ const GlobalStyle = createGlobalStyle`
         font-weight: 500;
         font-size: 13px;
         line-height: 16px;
-        color: var(--r-neutral-title-1, rgba(25, 41, 69, 1));
+        color: var(--r-neutral-title-1, rgba(26, 25, 23, 1));
         text-align: center;
       }
 
@@ -184,7 +184,7 @@ const GlobalStyle = createGlobalStyle`
 
     .ant-badge {
       .ant-badge-count {
-        background-color: var(--r-blue-default, #7084ff);
+        background-color: var(--r-blue-default, #f26b3a);
         padding: 2px 6px;
         font-size: 13px;
         line-height: 1;

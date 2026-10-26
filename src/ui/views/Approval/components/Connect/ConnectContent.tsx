@@ -48,7 +48,7 @@ const ConnectWrapper = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--r-neutral-bg2, #f2f4f7);
+  background-color: var(--r-neutral-bg2, #f3f2ef);
   .approval-connect {
     padding: 11px 20px 20px 26px;
     flex: 1;
@@ -57,13 +57,13 @@ const ConnectWrapper = styled.div`
       font-weight: 500;
       font-size: 18px;
       line-height: 21px;
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #1a1917);
     }
     .chain-selector {
       height: 32px;
       border-radius: 8px;
-      background: var(--r-neutral-bg2, #f2f4f7);
-      color: var(--r-neutral-title-1, #192945);
+      background: var(--r-neutral-bg2, #f3f2ef);
+      color: var(--r-neutral-title-1, #1a1917);
       font-size: 13px;
       border: 0.5px solid var(--r-neutral-line, rgba(255, 255, 255, 0.1));
       border: 1px solid var(--r-neutral-line, rgba(255, 255, 255, 0.1));
@@ -77,8 +77,8 @@ const ConnectWrapper = styled.div`
         }
       }
       &.hover {
-        border: 1px solid var(--r-blue-default, #7084ff);
-        background: var(--r-blue-light1, #eef1ff);
+        border: 1px solid var(--r-blue-default, #f26b3a);
+        background: var(--r-blue-light1, #fdefe9);
       }
     }
     .connect-card {
@@ -87,7 +87,7 @@ const ConnectWrapper = styled.div`
       flex-direction: column;
       align-items: center;
       position: relative;
-      border-bottom: 0.5px solid var(--r-neutral-line, #e0e5ec);
+      border-bottom: 0.5px solid var(--r-neutral-line, #eae7e2);
       .connect-origin {
         margin-top: 8px;
         margin-bottom: 0;
@@ -95,7 +95,7 @@ const ConnectWrapper = styled.div`
         font-size: 22px;
         line-height: 24px;
         text-align: center;
-        color: var(--r-neutral-title-1, #192945);
+        color: var(--r-neutral-title-1, #1a1917);
         word-wrap: break-word;
         max-width: 100%;
       }
@@ -110,8 +110,8 @@ const Footer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
-  border-top: 1px solid var(--r-neutral-line, #e0e5ec);
-  border-top: 0.5px solid var(--r-neutral-line, #e0e5ec);
+  border-top: 1px solid var(--r-neutral-line, #eae7e2);
+  border-top: 0.5px solid var(--r-neutral-line, #eae7e2);
   width: 100%;
   background: var(--r-neutral-card-1, #fff);
   .ant-btn {

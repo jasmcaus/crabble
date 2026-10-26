@@ -86,7 +86,7 @@ export const ReceiveSummary: React.FC<ReceiveSummaryProps> = ({
           'shrink-0 py-[24px] px-[32px] flex flex-col'
         )}
         style={{
-          boxShadow: '0 16px 40px rgba(25, 41, 69, 0.06)',
+          boxShadow: '0 16px 40px rgba(26, 25, 23, 0.06)',
           transition: 'width 0.3s',
           width:
             task?.status === 'idle'

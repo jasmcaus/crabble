@@ -16,13 +16,13 @@ import { ellipsisAddress } from '@/ui/utils/address';
 const Container = styled.div`
   .ant-input {
     border-radius: 8px;
-    border: 1px solid var(--r-neutral-line, #e0e5ec);
+    border: 1px solid var(--r-neutral-line, #eae7e2);
     font-size: 15px;
     line-height: 18px;
-    color: var(--r-neutral-title-1, #192945) !important;
+    color: var(--r-neutral-title-1, #1a1917) !important;
     background: var(--r-neutral-card1, #fff) !important;
     &::placeholder {
-      color: var(--r-neutral-foot, #6a7587);
+      color: var(--r-neutral-foot, #827e77);
       font-weight: 400;
       font-size: 15px;
       line-height: 18px;
@@ -31,7 +31,7 @@ const Container = styled.div`
 
   .ant-input:focus,
   .ant-input-focused {
-    border-color: var(--r-blue-default, #7084ff);
+    border-color: var(--r-blue-default, #f26b3a);
   }
 
   .ant-form-item-has-error .ant-input {

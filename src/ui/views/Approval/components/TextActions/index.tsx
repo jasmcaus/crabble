@@ -48,7 +48,7 @@ export const MessageWrapper = styled.div`
 
     .title-text {
       font-size: 14px;
-      color: var(--r-blue-default, #7084ff);
+      color: var(--r-blue-default, #f26b3a);
       text-align: center;
       font-weight: 500;
       padding: 0 8px;
@@ -82,14 +82,14 @@ export const MessageWrapper = styled.div`
     font-size: 13px;
     line-height: 16px;
     font-weight: 400;
-    color: var(--r-neutral-body, #3e495e);
+    color: var(--r-neutral-body, #4b4844);
     max-height: 544px;
     overflow-y: auto;
     padding: 0 16px 16px;
     /* font-family: 'Roboto Mono'; */
   }
   .message-highlight {
-    color: var(--r-blue-default, #7084ff);
+    color: var(--r-blue-default, #f26b3a);
     font-weight: 500;
   }
   &.no-action {

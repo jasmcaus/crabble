@@ -31,13 +31,13 @@ const Wrapper = styled(Card)`
       align-items: center;
     }
     &-title {
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #1a1917);
       font-size: 14px;
       font-weight: 500;
       line-height: 16px;
     }
     &-extra {
-      color: var(--r-neutral-body, #3e495e);
+      color: var(--r-neutral-body, #4b4844);
       font-size: 14px;
       font-weight: 400;
       line-height: 16px;
@@ -52,7 +52,7 @@ const Wrapper = styled(Card)`
 
       svg {
         path {
-          stroke: var(--r-neutral-foot, #6a7587);
+          stroke: var(--r-neutral-foot, #827e77);
         }
       }
     }
@@ -63,7 +63,7 @@ const Wrapper = styled(Card)`
         margin-top: 0px;
         margin-bottom: 0;
         font-size: 13px;
-        color: var(--r-neutral-body, #3e495e);
+        color: var(--r-neutral-body, #4b4844);
 
         li {
           position: relative;
@@ -78,7 +78,7 @@ const Wrapper = styled(Card)`
             width: 4px;
             height: 4px;
             border-radius: 100%;
-            background-color: var(--r-neutral-body, #3e495e);
+            background-color: var(--r-neutral-body, #4b4844);
             left: 0;
             top: 8px;
           }
@@ -94,10 +94,10 @@ const Wrapper = styled(Card)`
         &-option {
           padding: 2px 4px;
           border-radius: 2px;
-          background: var(--r-neutral-card-2, #f2f4f7);
+          background: var(--r-neutral-card-2, #f3f2ef);
           min-width: 40px;
 
-          color: var(--r-neutral-title-1, #192945);
+          color: var(--r-neutral-title-1, #1a1917);
           text-align: center;
           font-size: 13px;
           line-height: 16px;
@@ -108,11 +108,11 @@ const Wrapper = styled(Card)`
           cursor: pointer;
 
           &:hover {
-            border-color: var(--r-blue-default, #7084ff);
+            border-color: var(--r-blue-default, #f26b3a);
           }
           &.is-selected {
-            border-color: var(--r-blue-default, #7084ff);
-            background: var(--r-blue-light-1, #eef1ff);
+            border-color: var(--r-blue-default, #f26b3a);
+            background: var(--r-blue-light-1, #fdefe9);
           }
         }
       }
@@ -134,11 +134,11 @@ const OptionList = styled.div`
     }
 
     &.is-selected {
-      border: 1px solid var(--r-blue-default, #7084ff);
-      background: var(--r-blue-light-1, #eef1ff);
+      border: 1px solid var(--r-blue-default, #f26b3a);
+      background: var(--r-blue-light-1, #fdefe9);
     }
     &:not(.is-disabled):hover {
-      border: 1px solid var(--r-blue-default, #7084ff);
+      border: 1px solid var(--r-blue-default, #f26b3a);
     }
 
     &.is-disabled {
@@ -147,7 +147,7 @@ const OptionList = styled.div`
     }
 
     &-title {
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #1a1917);
       font-size: 15px;
       font-weight: 500;
       line-height: 18px;
@@ -155,7 +155,7 @@ const OptionList = styled.div`
     }
 
     &-desc {
-      color: var(--r-neutral-body, #3e495e);
+      color: var(--r-neutral-body, #4b4844);
       font-size: 13px;
       font-weight: 400;
       line-height: 16px;

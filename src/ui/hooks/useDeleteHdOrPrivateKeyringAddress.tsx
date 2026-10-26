@@ -213,7 +213,7 @@ const AddressHdKeyringOrSimpleKeyringDelete = ({
       onCancel={closeDeleteHDKeyringPopup}
       height={'fit-content'}
       contentWrapperStyle={{
-        background: 'var(--r-neutral-bg2, #F2F4F7)',
+        background: 'var(--r-neutral-bg2, #F3F2EF)',
         borderRadius: 16,
       }}
     >

@@ -35,10 +35,10 @@ const PopupContainer = styled.div`
     line-height: 18px;
     display: flex;
     margin-bottom: 17px;
-    color: var(--r-neutral-body, #3e495e);
+    color: var(--r-neutral-body, #4b4844);
 
     .value-address {
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #1a1917);
       font-weight: 500;
       margin-left: 7px;
       display: flex;
@@ -61,12 +61,12 @@ const PopupContainer = styled.div`
     }
 
     .text {
-      color: var(--r-neutral-body, #3e495e);
+      color: var(--r-neutral-body, #4b4844);
     }
 
     .row {
       &:nth-child(1) {
-        color: var(--r-neutral-body, #3e495e);
+        color: var(--r-neutral-body, #4b4844);
         font-weight: 400;
         justify-content: flex-start;
         align-items: center;

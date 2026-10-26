@@ -7,6 +7,14 @@ html,
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Roboto,
     sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--r-blue-light-2);
+  color: var(--r-neutral-title-1);
 }
 
 [lang='zh-CN'],
@@ -55,7 +63,7 @@ button:focus {
 
 .create-new-header {
   position: relative;
-  background: var(--r-blue-default, #7084ff);
+  background: var(--r-blue-default, #f26b3a);
   padding: 32px 20px;
 
   .unlock-logo {
@@ -101,7 +109,7 @@ button:focus {
 
 @media (min-width: 401px) {
   .rabby-stray-page {
-    background-color: var(--r-neutral-bg-2, #f2f4f7);
+    background-color: var(--r-neutral-bg-2, #f3f2ef);
     height: 100%;
 
     .footer {
@@ -123,7 +131,7 @@ button:focus {
 .stray-page {
   .stray-footer-nav {
     background-color: var(--r-neutral-card-1, #fff);
-    border-top: 0.5px solid var(--r-neutral-line, #d3d8e0);
+    border-top: 0.5px solid var(--r-neutral-line, #d9d5cf);
 
     .ant-btn {
       height: 42px !important;
@@ -176,7 +184,7 @@ button:focus {
   // background-color: #f5f6fa;
   &__header {
     height: 180px;
-    background: var(--r-blue-default, #4c65ff);
+    background: var(--r-blue-default, #e8552a);
   }
   &__header-inner {
     position: relative;
@@ -250,7 +258,7 @@ button:focus {
     padding: 11px 0;
     font-size: 12px;
     line-height: 14px;
-    color: var(--r-neutral-title-1, #192945);
+    color: var(--r-neutral-title-1, #1a1917);
     background: var(--r-neutral-card-1, #fff);
     border-radius: 6px;
     cursor: pointer;
@@ -265,7 +273,7 @@ button:focus {
     position: absolute;
     padding: 4px;
     border-radius: 6px;
-    background-color: var(--r-blue-light-2, #dbe0ff);
+    background-color: var(--r-blue-light-2, #faddd1);
     width: 360px;
     top: calc(100% + 8px);
     left: 50%;
@@ -273,7 +281,7 @@ button:focus {
     cursor: pointer;
     user-select: none;
     &__inner {
-      background-color: var(--r-blue-light-2, #dbe0ff);
+      background-color: var(--r-blue-light-2, #faddd1);
       border-radius: 4px;
       height: 40px;
       display: flex;
@@ -282,7 +290,7 @@ button:focus {
       justify-content: space-between;
       font-size: 12px;
       line-height: 14px;
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #1a1917);
     }
   }
   .icon-checked {
@@ -307,7 +315,7 @@ button:focus {
     padding-top: 32px;
   }
   .guide {
-    color: var(--r-neutral-title-1, #192945);
+    color: var(--r-neutral-title-1, #1a1917);
     font-weight: 500;
     font-size: 15px;
     line-height: 18px;
@@ -357,7 +365,7 @@ button:focus {
   border-width: 1px;
   transition: border 0.2s;
   &:hover {
-    border-color: #b0bdff;
+    border-color: #f8bfa9;
   }
 }
 
@@ -392,7 +400,7 @@ button:focus {
 
 @media (min-width: 401px) {
   html.page-notification {
-    background: var(--r-neutral-bg-3, #f7fafc);
+    background: var(--r-neutral-bg-3, #faf9f7);
     overflow: hidden;
     body {
       max-width: 400px;
@@ -415,15 +423,15 @@ button:focus {
 
 .rabby-btn-ghost.ant-btn-primary.ant-btn-background-ghost:hover {
   // background: #f3f5fe !important;
-  background: var(--r-blue-light-2, #eef1ff) !important;
-  color: var(--r-blue-default, #7084ff);
+  background: var(--r-blue-light-2, #fdefe9) !important;
+  color: var(--r-blue-default, #f26b3a);
   box-shadow: none;
   &::before {
     opacity: 0;
   }
 }
 .rabby-btn-ghost.ant-btn-primary.ant-btn-background-ghost:disabled {
-  color: var(--r-blue-default, #7084ff) !important;
+  color: var(--r-blue-default, #f26b3a) !important;
 }
 
 .input-password-popup {
@@ -535,4 +543,43 @@ button:focus {
 
 .no-transitions * {
   transition: none !important;
+}
+
+/* Crabble atmosphere: warm paper (light) / deep ink (dark) with a soft coral glow.
+   Used behind onboarding, unlock and other full-bleed brand screens. */
+.crabble-atmosphere {
+  background-color: #faf9f7;
+  background-image: radial-gradient(
+      120% 55% at 50% -12%,
+      rgba(255, 143, 97, 0.28) 0%,
+      rgba(255, 143, 97, 0.08) 45%,
+      rgba(255, 143, 97, 0) 70%
+    ),
+    radial-gradient(
+      70% 40% at 100% 105%,
+      rgba(232, 85, 42, 0.07) 0%,
+      rgba(232, 85, 42, 0) 70%
+    );
+  background-repeat: no-repeat;
+
+  html.dark & {
+    background-color: #0e0e10;
+    background-image: radial-gradient(
+        120% 55% at 50% -12%,
+        rgba(242, 107, 58, 0.26) 0%,
+        rgba(242, 107, 58, 0.07) 45%,
+        rgba(242, 107, 58, 0) 70%
+      ),
+      radial-gradient(
+        70% 40% at 100% 105%,
+        rgba(242, 107, 58, 0.06) 0%,
+        rgba(242, 107, 58, 0) 70%
+      );
+  }
+}
+
+/* App-icon lift used for the brand tile on hero screens. */
+.crabble-brand-tile {
+  filter: drop-shadow(0 14px 28px rgba(232, 85, 42, 0.32))
+    drop-shadow(0 2px 4px rgba(26, 25, 23, 0.12));
 }

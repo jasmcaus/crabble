@@ -82,13 +82,13 @@ const WhitelistItemWrapper = styled.div`
 
   &.is-whitelist-item-drag-overlay {
     box-sizing: border-box;
-    border: 1px solid var(--r-blue-default, #7084ff);
-    background-color: var(--r-blue-light1, #eef1ff);
+    border: 1px solid var(--r-blue-default, #f26b3a);
+    background-color: var(--r-blue-light1, #fdefe9);
     box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.13);
 
     .whitelist-item {
       border-color: transparent !important;
-      background-color: var(--r-blue-light1, #eef1ff) !important;
+      background-color: var(--r-blue-light1, #fdefe9) !important;
     }
   }
 `;

@@ -19,7 +19,7 @@ const Footer = styled.div`
     font-weight: 500;
     font-size: 15px;
     line-height: 18px;
-    color: var(--r-neutral-title1, #192945);
+    color: var(--r-neutral-title1, #1a1917);
     position: relative;
     border: 1px solid transparent;
     border-radius: 8px;
@@ -33,8 +33,8 @@ const Footer = styled.div`
       }
     }
     &:hover {
-      background: var(--r-blue-light-1, #eef1ff);
-      border: 1px solid var(--r-blue-default, #7084ff);
+      background: var(--r-blue-light-1, #fdefe9);
+      border: 1px solid var(--r-blue-default, #f26b3a);
     }
   }
 `;

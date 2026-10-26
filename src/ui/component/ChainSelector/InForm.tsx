@@ -36,7 +36,7 @@ const ChainGlobalStyle = createGlobalStyle`
       font-size: 14px;
       font-weight: 500;
       text-align: center;
-      color: var(--r-neutral-title1, #192945);
+      color: var(--r-neutral-title1, #1a1917);
     }
     .ant-modal-confirm-btns {
       margin-top: 35px !important;
@@ -48,7 +48,7 @@ const ChainGlobalStyle = createGlobalStyle`
         border-color: var(--r-blue-default);
         color: var(--r-blue-default);
         &:hover {
-          background: var(--r-blue-light1, #eef1ff) !important;
+          background: var(--r-blue-light1, #fdefe9) !important;
         }
       }
     }
@@ -56,7 +56,7 @@ const ChainGlobalStyle = createGlobalStyle`
 `;
 const ChainWrapper = styled.div`
   /* height: 40px; */
-  background: var(--r-neutral-card-2, #f2f4f7);
+  background: var(--r-neutral-card-2, #f3f2ef);
   border-radius: 6px;
   padding: 12px 12px;
   width: 100%;
@@ -80,7 +80,7 @@ const ChainWrapper = styled.div`
         height: 14px;
       }
       .name {
-        color: var(--r-neutral-title-1, #192945);
+        color: var(--r-neutral-title-1, #1a1917);
         line-height: normal;
         margin-left: 6px;
         margin-right: 4px;
@@ -97,7 +97,7 @@ const ChainWrapper = styled.div`
     position: relative;
 
     & > .name {
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #1a1917);
       font-size: 15px;
     }
 
@@ -107,23 +107,23 @@ const ChainWrapper = styled.div`
     }
   }
   &:hover {
-    background: var(--r-blue-light2, #eef1ff);
+    background: var(--r-blue-light2, #fdefe9);
   }
 
   &.swap:hover {
-    background: var(--r-blue-light1, #edf0ff);
-    border: 1px solid var(--r-blue-default, #4c65ff);
+    background: var(--r-blue-light1, #fdefe9);
+    border: 1px solid var(--r-blue-default, #e8552a);
     border-radius: 8px;
 
     & > .name {
-      color: var(--r-blue-default, #4c65ff);
+      color: var(--r-blue-default, #e8552a);
     }
 
     & > .down {
-      color: var(--r-blue-default, #4c65ff) !important;
+      color: var(--r-blue-default, #e8552a) !important;
 
       path {
-        stroke: var(--r-blue-default, #4c65ff) !important;
+        stroke: var(--r-blue-default, #e8552a) !important;
       }
     }
   }
@@ -132,10 +132,10 @@ const ChainWrapper = styled.div`
       margin-left: auto;
       width: 20px;
       height: 20px;
-      color: var(--r-neutral-body, #3e495e);
+      color: var(--r-neutral-body, #4b4844);
     }
     .name {
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #1a1917);
       line-height: 15px;
     }
   }

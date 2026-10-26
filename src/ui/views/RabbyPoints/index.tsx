@@ -74,9 +74,9 @@ const Wrapper = styled.div`
       margin: 0;
     }
     .ant-tabs-tab-btn {
-      color: var(--r-neutral-body, #3e495e);
+      color: var(--r-neutral-body, #4b4844);
       &:hover {
-        color: var(--r-blue-default, #7084ff);
+        color: var(--r-blue-default, #f26b3a);
       }
     }
     .ant-tabs-nav-list {
@@ -89,11 +89,11 @@ const Wrapper = styled.div`
       }
     }
     .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-      color: var(--r-blue-default, #7084ff);
+      color: var(--r-blue-default, #f26b3a);
     }
 
     .ant-tabs-nav::before {
-      border-bottom: 0.5px solid var(--r-neutral-line, #d3d8e0) !important;
+      border-bottom: 0.5px solid var(--r-neutral-line, #d9d5cf) !important;
     }
   }
 `;

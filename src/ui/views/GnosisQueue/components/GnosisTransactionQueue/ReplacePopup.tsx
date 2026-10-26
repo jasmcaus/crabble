@@ -8,7 +8,7 @@ import IconArrowRight from 'ui/assets/dashboard/settings/icon-right-arrow.svg';
 const GlobalStyle = createGlobalStyle`
   .safe-replace-popup {
     .ant-drawer-title {
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #1a1917);
       font-size: 17px;
       line-height: 20px;
       font-weight: 500;
@@ -23,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
 
 const Wrapper = styled.div`
   .desc {
-    color: var(--r-neutral-body, #3e495e);
+    color: var(--r-neutral-body, #4b4844);
     font-size: 14px;
     font-weight: 400;
     margin-bottom: 20px;
@@ -34,7 +34,7 @@ const Wrapper = styled.div`
       display: flex;
       align-items: center;
       border-radius: 6px;
-      background: var(--r-neutral-card-2, #f2f4f7);
+      background: var(--r-neutral-card-2, #f3f2ef);
       border: 1px solid transparent;
       padding: 15px;
       cursor: pointer;
@@ -44,12 +44,12 @@ const Wrapper = styled.div`
       }
 
       &:hover {
-        border: 1px solid var(--r-blue-default, #7084ff);
-        background: var(--r-blue-light-1, #eef1ff);
+        border: 1px solid var(--r-blue-default, #f26b3a);
+        background: var(--r-blue-light-1, #fdefe9);
       }
 
       &-content {
-        color: var(--r-neutral-title-1, #192945);
+        color: var(--r-neutral-title-1, #1a1917);
         font-size: 15px;
         font-weight: 500;
         line-height: 18px;

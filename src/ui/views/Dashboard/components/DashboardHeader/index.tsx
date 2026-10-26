@@ -57,7 +57,18 @@ import {
 const Container = styled.div`
   width: 100%;
   height: 196px;
-  background: linear-gradient(0deg, #2539b7 0%, #2539b7 100%), #2539b7;
+  /* Ink card lit by a soft ember glow; reads the same in light and dark. */
+  background: radial-gradient(
+      90% 120% at 105% -10%,
+      rgba(255, 143, 97, 0.46) 0%,
+      rgba(255, 143, 97, 0) 58%
+    ),
+    radial-gradient(
+      70% 90% at -10% 110%,
+      rgba(232, 70, 31, 0.22) 0%,
+      rgba(232, 70, 31, 0) 60%
+    ),
+    linear-gradient(160deg, #26252a 0%, #141416 100%);
   position: relative;
   overflow: hidden;
   padding: 12px 16px;

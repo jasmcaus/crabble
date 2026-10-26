@@ -52,7 +52,7 @@ export interface OrderConfirmModalProps {
  * than the shared `PerpsCheckbox`, which is why this dialog doesn't reuse it.
  * The unchecked stroke takes `--rb-neutral-secondary` via currentColor so light
  * mode follows the token. Checked uses the brand blue (`--rb-brand-default`,
- * #7084FF in dark); `--rb-blue-default` is the system blue #0A84FF there.
+ * #F26B3A in dark); `--rb-blue-default` is the system blue #0A84FF there.
  */
 export const OrderConfirmCheckbox: React.FC<{ checked: boolean }> = ({
   checked,
@@ -71,8 +71,8 @@ export const OrderConfirmCheckbox: React.FC<{ checked: boolean }> = ({
       width="11.2"
       height="11.2"
       rx="0.9333"
-      fill={checked ? 'var(--rb-brand-default, #7084ff)' : 'none'}
-      stroke={checked ? 'var(--rb-brand-default, #7084ff)' : 'currentColor'}
+      fill={checked ? 'var(--rb-brand-default, #f26b3a)' : 'none'}
+      stroke={checked ? 'var(--rb-brand-default, #f26b3a)' : 'currentColor'}
       strokeWidth="0.875"
       strokeLinejoin="round"
     />

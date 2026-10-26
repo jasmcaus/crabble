@@ -15,21 +15,21 @@ import { GnosisChainList } from './GnosisChainList';
 const Container = styled.div`
   .ant-input {
     border-radius: 8px;
-    border: 1px solid var(--r-neutral-line, #e0e5ec);
-    color: var(--r-neutral-title1, #192945);
+    border: 1px solid var(--r-neutral-line, #eae7e2);
+    color: var(--r-neutral-title1, #1a1917);
     font-size: 15px;
     font-weight: 500;
     line-height: 18px;
 
     &::placeholder {
-      color: var(--r-neutral-foot, #6a7587);
+      color: var(--r-neutral-foot, #827e77);
       font-weight: 400;
     }
   }
 
   .ant-input:focus,
   .ant-input-focused {
-    border-color: var(--r-blue-default, #7084ff);
+    border-color: var(--r-blue-default, #f26b3a);
   }
 
   .ant-form-item-has-error .ant-input {
@@ -51,7 +51,7 @@ const Container = styled.div`
     font-weight: 400;
     font-size: 13px;
     line-height: 15px;
-    color: var(--r-neutral-body, #3e495e);
+    color: var(--r-neutral-body, #4b4844);
     display: flex;
     align-items: center;
     gap: 4px;

@@ -15,8 +15,8 @@ import {
 const Wrapper = styled.div`
   .container {
     flex: 1;
-    background: var(--r-blue-light-1, #eef1ff);
-    border: 1px solid var(--r-blue-default, #7084ff);
+    background: var(--r-blue-light-1, #fdefe9);
+    border: 1px solid var(--r-blue-default, #f26b3a);
     border-radius: 6px;
     padding: 12px;
     // margin-top: 14px;
@@ -27,7 +27,7 @@ const Wrapper = styled.div`
       position: absolute;
       text-align: center;
       z-index: 1;
-      color: var(--r-blue-default, #7084ff);
+      color: var(--r-blue-default, #f26b3a);
       font-size: 12px;
       line-height: 12px;
       top: -7px;
@@ -51,10 +51,10 @@ const Wrapper = styled.div`
         font-size: 14px;
         line-height: 16px;
         &:nth-child(1) {
-          color: var(--r-neutral-title-1, #f7fafc);
+          color: var(--r-neutral-title-1, #faf9f7);
         }
         &:nth-child(2) {
-          color: var(--r-neutral-foot, #babec5);
+          color: var(--r-neutral-foot, #b5b1aa);
         }
       }
       &:nth-last-child(1) {

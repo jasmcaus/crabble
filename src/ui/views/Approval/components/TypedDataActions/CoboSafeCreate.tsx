@@ -51,7 +51,7 @@ const CoboSafeCreate = ({
                   fontWeight: 'normal',
                   fontSize: '13px',
                   lineHeight: '15px',
-                  color: 'var(--r-neutral-body, #3E495E)',
+                  color: 'var(--r-neutral-body, #4B4844)',
                 }}
               />
             </SubRow>

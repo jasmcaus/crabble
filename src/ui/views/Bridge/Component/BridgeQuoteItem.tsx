@@ -38,7 +38,7 @@ const ItemWrapper = styled.div`
       position: absolute;
       z-index: 2;
       content: '';
-      border: var(--quote-border-width) solid var(--r-blue-default, #7084ff);
+      border: var(--quote-border-width) solid var(--r-blue-default, #f26b3a);
       pointer-events: none;
     }
 
@@ -48,7 +48,7 @@ const ItemWrapper = styled.div`
 
     &.active {
       border: var(--quote-border-width) solid transparent;
-      background: var(--r-blue-light-1, #eef1ff);
+      background: var(--r-blue-light-1, #fdefe9);
 
       &::after {
         inset: calc(0px - var(--quote-border-width));

@@ -43,20 +43,20 @@ const EditRPCWrapped = styled.div`
     margin-left: auto;
     margin-right: auto;
     background: transparent !important;
-    border: 1px solid var(--r-neutral-line, #d3d8e0) !important;
+    border: 1px solid var(--r-neutral-line, #d9d5cf) !important;
     border-radius: 6px;
 
-    color: var(--r-neutral-title1, #192945) !important;
+    color: var(--r-neutral-title1, #1a1917) !important;
     font-size: 15px;
     /* font-weight: 500; */
     &:focus {
-      border-color: var(--r-blue-default, #7084ff) !important;
+      border-color: var(--r-blue-default, #f26b3a) !important;
     }
     &.has-error {
       border-color: #ec5151 !important;
     }
     &::placeholder {
-      color: var(--r-neutral-foot, #6a7587) !important;
+      color: var(--r-neutral-foot, #827e77) !important;
     }
   }
 `;

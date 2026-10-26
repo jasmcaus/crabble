@@ -37,7 +37,7 @@ type ValidatedPrivateKeyResult = {
 
 const Page = styled.div`
   min-height: 100vh;
-  background: var(--r-neutral-bg-2, #f2f4f7);
+  background: var(--r-neutral-bg-2, #f3f2ef);
   overflow-y: auto;
 `;
 
@@ -54,22 +54,22 @@ const PasswordInput = styled(Input)`
   &.ant-input {
     height: 52px;
     border-radius: 8px;
-    border: 1px solid var(--r-neutral-line, #e0e5ec);
+    border: 1px solid var(--r-neutral-line, #eae7e2);
     background: var(--r-neutral-card-1, #fff);
     padding: 0 15px;
     font-size: 15px;
     line-height: 18px;
-    color: var(--r-neutral-title-1, #192945);
+    color: var(--r-neutral-title-1, #1a1917);
     box-shadow: none;
   }
 
   &.ant-input::placeholder {
-    color: var(--r-neutral-foot, #6a7587);
+    color: var(--r-neutral-foot, #827e77);
   }
 
   &.ant-input:focus,
   &.ant-input-focused {
-    border-color: var(--r-blue-default, #4c65ff);
+    border-color: var(--r-blue-default, #e8552a);
     box-shadow: none;
   }
   &.ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input,
@@ -89,7 +89,7 @@ const EmptyTextarea = styled.textarea`
   outline: none;
   background: transparent;
   padding: 0;
-  color: var(--r-neutral-title-1, #192945);
+  color: var(--r-neutral-title-1, #1a1917);
   font-size: 13px;
   line-height: 16px;
   font-weight: 400;
@@ -98,7 +98,7 @@ const EmptyTextarea = styled.textarea`
   overflow-wrap: anywhere;
 
   &::placeholder {
-    color: var(--r-neutral-foot, #6a7587);
+    color: var(--r-neutral-foot, #827e77);
   }
 `;
 
@@ -107,7 +107,7 @@ const HiddenRowInput = styled.input`
   background: transparent;
   border: 0;
   outline: none;
-  color: var(--r-neutral-title-1, #192945);
+  color: var(--r-neutral-title-1, #1a1917);
   font-size: 13px;
   line-height: 16px;
   height: 16px;
@@ -134,7 +134,7 @@ const VisibleRowTextarea = styled.textarea`
   border: 0;
   outline: none;
   padding: 0;
-  color: var(--r-neutral-title-1, #192945);
+  color: var(--r-neutral-title-1, #1a1917);
   font-size: 13px;
   line-height: 16px;
   min-height: 16px;
@@ -1124,7 +1124,7 @@ const BulkImportPrivateKey: React.FC = () => {
                                       style={{
                                         color: isInvalid
                                           ? 'var(--r-red-default, #e34935)'
-                                          : 'var(--r-neutral-title-1, #192945)',
+                                          : 'var(--r-neutral-title-1, #1a1917)',
                                       }}
                                     />
                                   ) : (
@@ -1157,7 +1157,7 @@ const BulkImportPrivateKey: React.FC = () => {
                                         WebkitTextSecurity: 'disc',
                                         color: isInvalid
                                           ? 'var(--r-red-default, #e34935)'
-                                          : 'var(--r-neutral-title-1, #192945)',
+                                          : 'var(--r-neutral-title-1, #1a1917)',
                                       }}
                                     />
                                   )}

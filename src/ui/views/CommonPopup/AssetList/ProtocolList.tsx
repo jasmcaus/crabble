@@ -83,7 +83,7 @@ const PoolItem = ({
 };
 
 const ProtocolItemWrapper = styled.div`
-  background: var(--r-neutral-card-1, #f2f4f7);
+  background: var(--r-neutral-card-1, #f3f2ef);
   border-radius: 8px;
 
   .title {
@@ -97,14 +97,14 @@ const ProtocolItemWrapper = styled.div`
       font-weight: 500;
       font-size: 13px;
       line-height: 15px;
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #1a1917);
     }
     .net-worth {
       font-weight: 500;
       font-size: 13px;
       line-height: 15px;
       text-align: right;
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #1a1917);
     }
   }
 `;

@@ -36,12 +36,12 @@ const Container = styled.div`
   &.site-group:hover {
     .site-icon-container.is-support {
       cursor: pointer;
-      border: 1px solid var(--r-blue-default, #7084ff);
-      background: var(--r-blue-light1, #eef1ff);
+      border: 1px solid var(--r-blue-default, #f26b3a);
+      background: var(--r-blue-light1, #fdefe9);
     }
     .global-account-selector:not(.is-disabled) {
-      border: 1px solid var(--r-blue-default, #7084ff);
-      background: var(--r-blue-light1, #eef1ff);
+      border: 1px solid var(--r-blue-default, #f26b3a);
+      background: var(--r-blue-light1, #fdefe9);
     }
     .site-status-icon {
       color: var(--r-red-default, #e34935) !important;
@@ -69,7 +69,7 @@ const Container = styled.div`
         font-weight: 400;
         font-size: 12px;
         line-height: 14px;
-        color: var(--r-neutral-foot, #6a7587);
+        color: var(--r-neutral-foot, #827e77);
       }
     }
     & .site-status.active .site-status-icon {
@@ -88,8 +88,8 @@ const Container = styled.div`
 
       &.is-support:hover {
         cursor: pointer;
-        border: 1px solid var(--r-blue-default, #7084ff);
-        background: var(--r-blue-light1, #eef1ff);
+        border: 1px solid var(--r-blue-default, #f26b3a);
+        background: var(--r-blue-light1, #fdefe9);
       }
     }
 
@@ -101,14 +101,14 @@ const Container = styled.div`
       font-weight: 400;
       font-size: 13px;
       line-height: 15px;
-      color: var(--r-neutral-title-1, rgba(25, 41, 69, 1));
+      color: var(--r-neutral-title-1, rgba(26, 25, 23, 1));
       margin-bottom: 2px;
     }
     &-status {
       font-weight: 400;
       font-size: 11px;
       line-height: 13px;
-      color: var(--r-neutral-foot, #6a7587);
+      color: var(--r-neutral-foot, #827e77);
       display: flex;
       align-items: center;
       &.active {
@@ -129,7 +129,7 @@ const Container = styled.div`
     height: 36px;
     border-radius: 8px;
     padding-left: 8px;
-    color: var(--r-neutral-title-1, rgba(25, 41, 69, 1));
+    color: var(--r-neutral-title-1, rgba(26, 25, 23, 1));
 
     .chain-logo {
       width: 20px;
@@ -145,7 +145,7 @@ const Container = styled.div`
       pointer-events: none;
     }
     &:hover {
-      background-color: rgba(134, 151, 255, 0.2);
+      background-color: rgba(242, 138, 99, 0.2);
     }
   }
 `;

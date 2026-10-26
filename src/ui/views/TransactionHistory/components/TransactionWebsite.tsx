@@ -7,13 +7,13 @@ const TransactionWebsiteWrapper = styled.a`
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
-  color: var(--r-neutral-foot, #babec5);
+  color: var(--r-neutral-foot, #b5b1aa);
   flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   &:hover {
-    color: var(--r-neutral-foot, #babec5);
+    color: var(--r-neutral-foot, #b5b1aa);
     text-decoration: underline;
   }
 `;

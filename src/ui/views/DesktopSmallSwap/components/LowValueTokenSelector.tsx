@@ -41,8 +41,8 @@ const Container = styled.section`
 
   .token-list-header {
     height: 40px;
-    background-color: var(--r-neutral-bg2, #f2f4f7);
-    color: var(--r-neutral-body, #3e495e);
+    background-color: var(--r-neutral-bg2, #f3f2ef);
+    color: var(--r-neutral-body, #4b4844);
     font-size: 14px;
     font-weight: 500;
     line-height: 17px;
@@ -64,7 +64,7 @@ const Container = styled.section`
   .token-list-cell {
     height: 48px;
     padding: 0 16px;
-    color: var(--r-neutral-title1, #192945);
+    color: var(--r-neutral-title1, #1a1917);
     font-size: 14px;
     line-height: 17px;
   }
@@ -85,7 +85,7 @@ const Container = styled.section`
   }
 
   .token-list-row:not(.is-disabled):hover {
-    background: rgba(112, 132, 255, 0.04);
+    background: rgba(242, 107, 58, 0.04);
   }
 
   .token-list-row + .token-list-row {
@@ -224,7 +224,7 @@ export const LowValueTokenSelector: React.FC<LowValueTokenSelectorProps> = ({
         'min-w-0 flex flex-col rounded-[16px] bg-r-neutral-card-1 px-[32px] py-[24px]'
       )}
       style={{
-        boxShadow: '0 16px 40px rgba(25, 41, 69, 0.06)',
+        boxShadow: '0 16px 40px rgba(26, 25, 23, 0.06)',
         transition: 'width 0.3s',
         width:
           task?.status === 'idle'

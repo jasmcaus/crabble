@@ -8,7 +8,7 @@
 }
 
 .ant-input {
-  border-radius: 6px;
+  border-radius: 8px;
   &[type='password'] {
     letter-spacing: 4px;
     &::placeholder {
@@ -22,7 +22,7 @@
 ---------------------*/
 
 .ant-btn {
-  border-radius: 6px;
+  border-radius: 8px;
 
   & > .ant-btn-loading-icon .anticon {
     display: block;
@@ -52,13 +52,17 @@
 }
 
 .ant-btn-primary {
-  background-color: var(--r-blue-default, #7084ff);
+  background-color: var(--r-blue-default, #e8552a);
   border-color: var(--r-blue-default);
+  /* a hairline top highlight gives the flat coral a little depth */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 1px 2px rgba(26, 25, 23, 0.12);
   &:hover,
   &:focus {
-    background-color: var(--r-blue-default, #7084ff);
-    border-color: var(--r-blue-default, #7084ff);
-    box-shadow: 0px 8px 16px rgba(134, 151, 255, 0.3);
+    background-color: var(--r-blue-default, #e8552a);
+    border-color: var(--r-blue-default, #e8552a);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16),
+      0 8px 20px -6px rgba(232, 85, 42, 0.55);
   }
 
   &[disabled],
@@ -66,8 +70,9 @@
   &[disabled]:focus,
   &[disabled]:active {
     color: var(--r-neutral-title-2, #fff);
-    background-color: var(--r-blue-disable, rgba(219, 224, 255, 1));
-    border-color: var(--r-blue-disable, rgba(219, 224, 255, 1));
+    background-color: var(--r-blue-disable, rgba(243, 172, 148, 1));
+    border-color: var(--r-blue-disable, rgba(243, 172, 148, 1));
+    box-shadow: none;
   }
 }
 /*---------------------
@@ -94,8 +99,8 @@
 }
 .ant-message-notice-content {
   padding: 8px 12px;
-  background: rgba(45, 48, 51, 0.95);
-  border-radius: 2px;
+  background: rgba(26, 25, 23, 0.94);
+  border-radius: 8px;
   .ant-message-custom-content {
     display: flex;
     align-items: center;
@@ -183,11 +188,11 @@
   .ant-modal-confirm-title,
   .ant-modal-confirm-body .ant-modal-confirm-title,
   .ant-modal-confirm-body .ant-modal-confirm-content {
-    color: var(--r-neutral-title-1, #f7fafc);
+    color: var(--r-neutral-title-1, #faf9f7);
   }
 
   .ant-modal-close-x .anticon-close svg {
-    color: var(--r-neutral-foot, #6a7587);
+    color: var(--r-neutral-foot, #827e77);
   }
 }
 
@@ -354,10 +359,10 @@
 
 .ant-checkbox-checked {
   .ant-checkbox-inner {
-    background-color: var(--r-blue-default, #7084ff);
+    background-color: var(--r-blue-default, #f26b3a);
   }
   &::after {
-    border-color: var(--r-blue-default, #7084ff);
+    border-color: var(--r-blue-default, #f26b3a);
   }
 }
 
@@ -633,8 +638,8 @@ html.dark
   border: 1px solid transparent;
 
   &:hover {
-    background-color: rgba(134, 151, 255, 0.2);
-    border: 1px solid var(--r-blue-default, #7084ff);
+    background-color: rgba(242, 138, 99, 0.2);
+    border: 1px solid var(--r-blue-default, #f26b3a);
   }
 }
 
@@ -760,7 +765,7 @@ html.perps-pro-theme {
 
 html[desktop] {
   .ant-switch {
-    background: var(--rb-neutral-line, #e0e5ec);
+    background: var(--rb-neutral-line, #eae7e2);
 
     &:focus {
       box-shadow: none !important;
@@ -775,10 +780,10 @@ html[desktop] {
     .ant-select-selector {
       border-radius: 6px;
       background-color: var(--rb-neutral-bg-1 #fff);
-      border-color: var(--rb-neutral-line, #e0e5ec);
+      border-color: var(--rb-neutral-line, #eae7e2);
     }
     .ant-select-arrow {
-      color: var(--rb-neutral-foot, #6a7587);
+      color: var(--rb-neutral-foot, #827e77);
     }
   }
 

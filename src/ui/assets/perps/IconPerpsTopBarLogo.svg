@@ -11,20 +11,20 @@
   </g>
   <defs>
     <linearGradient id="perpsTopBarBodyGradient" x1="16.1556" y1="17.8623" x2="22.3779" y2="19.6268" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#8797FF"/>
+      <stop stop-color="#F28A63"/>
       <stop offset="1" stop-color="#AAA8FF"/>
     </linearGradient>
     <linearGradient id="perpsTopBarEarGradient" x1="21.329" y1="17.7432" x2="16.8403" y2="13.2443" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#3B22A0"/>
-      <stop offset="1" stop-color="#5156D8" stop-opacity="0"/>
+      <stop stop-color="#A8361A"/>
+      <stop offset="1" stop-color="#CF4A26" stop-opacity="0"/>
     </linearGradient>
     <linearGradient id="perpsTopBarShadowLegGradient" x1="19.0107" y1="20.2575" x2="14.7003" y2="17.7784" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#3B1E8F"/>
-      <stop offset="1" stop-color="#6A6FFB" stop-opacity="0"/>
+      <stop stop-color="#98301A"/>
+      <stop offset="1" stop-color="#F06A3C" stop-opacity="0"/>
     </linearGradient>
     <linearGradient id="perpsTopBarLegGradient" x1="16.5267" y1="17.8149" x2="19.4419" y2="21.5189" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#8898FF"/>
-      <stop offset="0.983895" stop-color="#5F47F1"/>
+      <stop stop-color="#F28A63"/>
+      <stop offset="0.983895" stop-color="#E2532A"/>
     </linearGradient>
     <clipPath id="perpsTopBarLogoClip">
       <rect width="24" height="24" fill="white"/>

@@ -21,14 +21,14 @@ const AuthFormItemWrapper = styled.div`
     }
   }
   .ant-input.ant-input-lg.popup-input {
-    border: 1px solid var(--r-neutral-line, #d3d8e0) !important;
+    border: 1px solid var(--r-neutral-line, #d9d5cf) !important;
     background: var(--r-neutral-card1, #fff) !important;
     &::placeholder {
-      color: var(--r-neutral-foot, #6a7587) !important;
+      color: var(--r-neutral-foot, #827e77) !important;
     }
     &:focus,
     &:hover {
-      border-color: var(--r-blue-default, #7084ff) !important;
+      border-color: var(--r-blue-default, #f26b3a) !important;
     }
   }
 `;
@@ -55,7 +55,7 @@ const Description = styled.div`
   font-size: 14px;
   line-height: 16px;
   text-align: center;
-  color: var(--r-neutral-body, #d3d8e0);
+  color: var(--r-neutral-body, #d9d5cf);
 `;
 
 const FieldList = styled.div`
@@ -69,13 +69,13 @@ const FieldList = styled.div`
     font-weight: 400;
     font-size: 14px;
     line-height: 18px;
-    color: var(--r-neutral-title-1, #f7fafc);
+    color: var(--r-neutral-title-1, #faf9f7);
     border: 1px solid transparent;
     margin-bottom: 8px;
 
     &:hover {
-      background-color: rgba(134, 151, 255, 0.2);
-      border: 1px solid var(--r-blue-default, #7084ff);
+      background-color: rgba(242, 138, 99, 0.2);
+      border: 1px solid var(--r-blue-default, #f26b3a);
     }
 
     &:nth-last-child(1) {

@@ -15,7 +15,7 @@ const Wrapper = styled.div`
     margin-right: 6px;
   }
   .text {
-    color: var(--r-neutral-title-1, #192945);
+    color: var(--r-neutral-title-1, #1a1917);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

@@ -6,7 +6,6 @@ import browser from 'webextension-polyfill';
 import clsx from 'clsx';
 import { useLocation } from 'react-router-dom';
 
-import { ReactComponent as BackgroundSVG } from '@/ui/assets/unlock/background.svg';
 import { ReactComponent as BiometricsSVG } from '@/ui/assets/unlock/biometrics.svg';
 import { useWallet } from '@/ui/utils';
 import { useRabbyDispatch } from '@/ui/store';
@@ -61,7 +60,7 @@ const InputWrap = styled.div`
 
   .biometric-pwd-input:focus,
   .biometric-pwd-input.ant-input-focused {
-    border: 1px solid var(--r-blue-default, #4c65ff) !important;
+    border: 1px solid var(--r-blue-default, #e8552a) !important;
   }
 
   .biometric-pwd-input.error {
@@ -86,7 +85,7 @@ const Footer = styled.footer`
   width: 100%;
   flex-shrink: 0;
   padding: 18px 20px;
-  border-top: 0.5px solid var(--r-neutral-line, #e0e5ec);
+  border-top: 0.5px solid var(--r-neutral-line, #eae7e2);
   display: flex;
   gap: 16px;
 `;
@@ -185,11 +184,7 @@ export const BiometricUnlockSetup = () => {
   };
 
   return (
-    <Container className="page-has-ant-input">
-      <BackgroundSVG
-        className="absolute inset-0 z-[-1] w-full h-full"
-        preserveAspectRatio="none"
-      />
+    <Container className="crabble-atmosphere page-has-ant-input">
       <Body>
         <BiometricsSVG className="w-[100]" />
 

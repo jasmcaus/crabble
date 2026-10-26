@@ -57,7 +57,7 @@ const MatrixWrapper = styled.div.withConfig<{
     return !['rowCount'].includes(prop) && defaultValidatorFn(prop);
   },
 })`
-  background-color: var(--r-neutral-card-3, #f7fafc);
+  background-color: var(--r-neutral-card-3, #faf9f7);
   display: flex;
   flex-wrap: wrap;
 
@@ -70,12 +70,12 @@ const MatrixWrapper = styled.div.withConfig<{
 
       .mnemonics-input {
         border-radius: 8px;
-        border: 1px solid var(--r-neutral-line, #e0e5ec);
+        border: 1px solid var(--r-neutral-line, #eae7e2);
         text-align: center;
         font-size: 22px;
-        color: var(--r-neutral-title-1, #192945);
+        color: var(--r-neutral-title-1, #1a1917);
         &:hover {
-          border-color: var(--r-blue-default, #7084ff);
+          border-color: var(--r-blue-default, #f26b3a);
         }
         &:focus,
         &.ant-input-focused {
@@ -85,14 +85,14 @@ const MatrixWrapper = styled.div.withConfig<{
 
       &:not(.invalid) {
         .mnemonics-input:hover {
-          border-color: var(--r-blue-default, #7084ff);
+          border-color: var(--r-blue-default, #f26b3a);
         }
       }
 
       ${styid(NumberFlag)} {
         top: 6px;
         left: 8px;
-        color: var(--r-neutral-body, #3e495e);
+        color: var(--r-neutral-body, #4b4844);
         font-size: 10px;
         line-height: 12px;
         font-style: normal;
@@ -120,21 +120,21 @@ const MatrixWrapper = styled.div.withConfig<{
       .mnemonics-input {
         padding: 0 12px 0 24px;
         border-radius: 8px;
-        border: 0.5px solid var(--r-neutral-line, #e0e5ec);
+        border: 0.5px solid var(--r-neutral-line, #eae7e2);
         background: var(--r-neutral-card-1, #fff);
         text-align: left;
         line-height: 51px;
         font-size: 15px;
         font-weight: 400;
-        color: var(--r-neutral-title-1, #192945);
+        color: var(--r-neutral-title-1, #1a1917);
 
         &:hover {
-          border-color: var(--r-neutral-line, #e0e5ec);
+          border-color: var(--r-neutral-line, #eae7e2);
         }
 
         &:focus,
         &.ant-input-focused {
-          border-color: var(--r-blue-default, #4c65ff);
+          border-color: var(--r-blue-default, #e8552a);
           background: var(--r-neutral-card-1, #fff);
           box-shadow: none;
         }
@@ -144,7 +144,7 @@ const MatrixWrapper = styled.div.withConfig<{
         top: 7px;
         left: 7px;
         height: 16px;
-        color: var(--r-neutral-foot, #6a7587);
+        color: var(--r-neutral-foot, #827e77);
         font-size: 13px;
         line-height: 16px;
         font-weight: 500;
@@ -153,7 +153,7 @@ const MatrixWrapper = styled.div.withConfig<{
 
     .matrix-word-item.compact-focused {
       ${styid(NumberFlag)} {
-        color: var(--r-blue-default, #4c65ff);
+        color: var(--r-blue-default, #e8552a);
       }
     }
 
@@ -239,7 +239,7 @@ const MatrixWrapper = styled.div.withConfig<{
   /* for MnemonicsInputs :start */
   .mnemonics-input {
     background-color: transparent;
-    color: var(--r-neutral-title-1, #192945);
+    color: var(--r-neutral-title-1, #1a1917);
     height: 100%;
     display: inline-block;
     line-height: ${ITEM_H}px;
@@ -248,7 +248,7 @@ const MatrixWrapper = styled.div.withConfig<{
 
     &:focus,
     &.ant-input-focused {
-      border-color: var(--r-blue-default, #7084ff);
+      border-color: var(--r-blue-default, #f26b3a);
       background-color: var(--r-neutral-bg-1, #fff);
       box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.24);
     }
@@ -600,7 +600,7 @@ function MnemonicsInputs({
                         My seed phrase has
                         <b
                           style={{
-                            color: 'var(--r-blue-default, #7084ff)',
+                            color: 'var(--r-blue-default, #f26b3a)',
                           }}
                         >
                           {{ count } as any}
@@ -635,7 +635,7 @@ function MnemonicsInputs({
                             My seed phrase has
                             <b
                               style={{
-                                color: 'var(--r-blue-default, #7084ff)',
+                                color: 'var(--r-blue-default, #f26b3a)',
                               }}
                             >
                               {{ count } as any}
@@ -670,7 +670,7 @@ function MnemonicsInputs({
                               My seed phrase is
                               <b
                                 style={{
-                                  color: 'var(--r-blue-default, #7084ff)',
+                                  color: 'var(--r-blue-default, #f26b3a)',
                                 }}
                               ></b>
                               with password
@@ -684,7 +684,7 @@ function MnemonicsInputs({
                               My seed phrase is
                               <b
                                 style={{
-                                  color: 'var(--r-blue-default, #7084ff)',
+                                  color: 'var(--r-blue-default, #f26b3a)',
                                 }}
                               ></b>
                             </Trans>
@@ -737,7 +737,7 @@ function MnemonicsInputs({
                   I have a
                   <b
                     style={{
-                      color: 'var(--r-blue-default, #7084ff)',
+                      color: 'var(--r-blue-default, #f26b3a)',
                     }}
                   >
                     {{ mnemonicsCount } as any}
@@ -757,7 +757,7 @@ function MnemonicsInputs({
                   My seed phrase is
                   <b
                     style={{
-                      color: 'var(--r-blue-default, #7084ff)',
+                      color: 'var(--r-blue-default, #f26b3a)',
                     }}
                   />
                 </Trans>

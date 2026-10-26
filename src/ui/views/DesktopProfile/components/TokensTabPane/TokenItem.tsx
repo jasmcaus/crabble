@@ -296,7 +296,7 @@ const TokenRowWrapper = styled(TRow)`
     display: none !important;
   }
   &:hover {
-    background-color: var(--rb-neutral-bg-2, #f2f4f7);
+    background-color: var(--rb-neutral-bg-2, #f3f2ef);
     .swap-action-btn {
       display: block !important;
     }

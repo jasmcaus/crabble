@@ -41,18 +41,18 @@ const StyledInput = styled(Input)`
   background: var(--r-neutral-bg1, #fff);
   &.ant-input-affix-wrapper {
     border-radius: 8px;
-    border: 1px solid var(--r-neutral-line, #d3d8e0);
+    border: 1px solid var(--r-neutral-line, #d9d5cf);
     & > input.ant-input {
       height: 44px;
       font-size: 15px;
       font-weight: 500;
       text-align: center;
       background: var(--r-neutral-bg1, #fff);
-      color: var(--r-neutral-title1, #192945);
+      color: var(--r-neutral-title1, #1a1917);
       transition: none;
 
       &:placeholder-shown {
-        color: var(--r-neutral-foot, #6a7587);
+        color: var(--r-neutral-foot, #827e77);
         font-size: 13px;
         font-weight: normal;
       }
@@ -60,7 +60,7 @@ const StyledInput = styled(Input)`
   }
   &:hover,
   &.ant-input-affix-wrapper-focused {
-    border: 1px solid var(--r-blue-default, #7084ff);
+    border: 1px solid var(--r-blue-default, #f26b3a);
   }
 `;
 
