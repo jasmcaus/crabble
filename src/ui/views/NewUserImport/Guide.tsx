@@ -30,7 +30,7 @@ export const Guide = () => {
             src={rabbyLogo}
             className="crabble-brand-tile w-[96px] h-[96px]"
           />
-          <div className="mt-24 mb-8 text-[28px] leading-[34px] font-semibold tracking-[-0.02em] text-r-neutral-title1">
+          <div className="crb-display mt-24 mb-8 text-[48px] leading-[52px] text-r-neutral-title1">
             {t('page.newUserImport.guide.title')}
           </div>
           <div className="text-14 font-normal text-r-neutral-foot text-center">

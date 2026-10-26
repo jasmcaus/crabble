@@ -4,6 +4,7 @@ import { Button } from 'antd';
 import clsx from 'clsx';
 import {
   KEYRING_CLASS,
+  KEYRING_ICONS,
   KEYRING_ICONS_WHITE,
   KEYRING_TYPE,
   WALLET_BRAND_CONTENT,
@@ -29,6 +30,7 @@ import { CommonSignal } from '@/ui/component/ConnectStatus/CommonSignal';
 import { SeedPhraseBackupAlert } from '@/ui/component/SeedPhraseBackupAlert';
 import { useWalletConnectIcon } from '@/ui/component/WalletConnect/useWalletConnectIcon';
 import { useCurrentAccount } from '@/ui/hooks/backgroundState/useAccount';
+import { useThemeMode } from '@/ui/hooks/usePreference';
 import { copyAddress } from '@/ui/utils/clipboard';
 import {
   useGasAccountInfo,
@@ -56,26 +58,8 @@ import {
 
 const Container = styled.div`
   width: 100%;
-  height: 196px;
-  /* Ink card lit by a soft ember glow; reads the same in light and dark. */
-  background: radial-gradient(
-      90% 120% at 105% -10%,
-      rgba(255, 143, 97, 0.46) 0%,
-      rgba(255, 143, 97, 0) 58%
-    ),
-    radial-gradient(
-      70% 90% at -10% 110%,
-      rgba(232, 70, 31, 0.22) 0%,
-      rgba(232, 70, 31, 0) 60%
-    ),
-    linear-gradient(160deg, #26252a 0%, #141416 100%);
   position: relative;
-  overflow: hidden;
-  padding: 12px 16px;
-
-  &:has(.balance-view-jump-button-external:hover) .balance-view-card {
-    background: rgba(255, 255, 255, 0.05);
-  }
+  padding: 12px 16px 0;
 `;
 
 export const DashboardHeader: React.FC<{ onSettingClick?(): void }> = ({
@@ -86,6 +70,7 @@ export const DashboardHeader: React.FC<{ onSettingClick?(): void }> = ({
   const wallet = useWallet();
 
   const currentAccount = useCurrentAccount();
+  const { isDarkTheme } = useThemeMode();
 
   const pendingTxCount = useTransactionsStore(
     (state) => state.pendingTransactionCount
@@ -151,8 +136,9 @@ export const DashboardHeader: React.FC<{ onSettingClick?(): void }> = ({
             <div
               className={clsx(
                 'flex-1 min-w-0 flex items-center justify-end',
-                'gap-[6px] pl-[12px] pr-[8px] py-[7px] rounded-full cursor-pointer',
-                'bg-[rgba(255,255,255,0.07)] hover:bg-[rgba(255,255,255,0.12)]'
+                'gap-[6px] pl-[10px] pr-[8px] py-[6px] rounded-full cursor-pointer',
+                'bg-r-neutral-card1 shadow-[var(--crb-shadow-card)] hover:bg-[var(--crb-sunken)]',
+                'crb-recolor text-r-neutral-foot'
               )}
               onClick={handleSwitchAddress}
             >
@@ -162,9 +148,11 @@ export const DashboardHeader: React.FC<{ onSettingClick?(): void }> = ({
                   src={
                     brandIcon ||
                     WALLET_BRAND_CONTENT[currentAccount.brandName]?.image ||
-                    (currentAccount.type === KEYRING_CLASS.WATCH
-                      ? WatchLogo
-                      : KEYRING_ICONS_WHITE[currentAccount.type])
+                    (isDarkTheme
+                      ? currentAccount.type === KEYRING_CLASS.WATCH
+                        ? WatchLogo
+                        : KEYRING_ICONS_WHITE[currentAccount.type]
+                      : KEYRING_ICONS[currentAccount.type])
                   }
                 />
                 <CommonSignal
@@ -174,7 +162,7 @@ export const DashboardHeader: React.FC<{ onSettingClick?(): void }> = ({
                 />
               </div>
               <div
-                className="text-[15px] leading-[18px] font-medium text-r-neutral-title2 truncate max-w-[86px]"
+                className="text-[14px] leading-[18px] font-semibold text-r-neutral-title1 truncate max-w-[96px]"
                 title={displayName}
               >
                 {displayName}
@@ -183,7 +171,7 @@ export const DashboardHeader: React.FC<{ onSettingClick?(): void }> = ({
                 <AddressViewer
                   address={currentAccount.address}
                   showArrow={false}
-                  className="text-[12px] leading-[14px] text-r-neutral-title2 opacity-60"
+                  className="text-[12px] leading-[14px] text-r-neutral-foot"
                 />
               )}
               <IconArrowRight className="shrink-0" />
@@ -191,7 +179,7 @@ export const DashboardHeader: React.FC<{ onSettingClick?(): void }> = ({
 
             <RcIconCopy
               viewBox="0 0 16 16"
-              className="w-[16px] h-[16px] cursor-pointer opacity-60 hover:opacity-80"
+              className="crb-recolor w-[16px] h-[16px] cursor-pointer text-r-neutral-foot hover:text-r-neutral-title1"
               onClick={() => {
                 copyAddress(currentAccount.address);
                 matomoRequestEvent({
@@ -216,8 +204,8 @@ export const DashboardHeader: React.FC<{ onSettingClick?(): void }> = ({
 
             <div
               className={clsx(
-                'p-[7px] rounded-full cursor-pointer text-r-neutral-title-2 shrink-0',
-                'bg-[rgba(255,255,255,0.07)] hover:bg-[rgba(255,255,255,0.12)]'
+                'p-[7px] rounded-full cursor-pointer text-r-neutral-title1 shrink-0',
+                'bg-r-neutral-card1 shadow-[var(--crb-shadow-card)] hover:bg-[var(--crb-sunken)]'
               )}
               onClick={onSettingClick}
             >
@@ -231,38 +219,40 @@ export const DashboardHeader: React.FC<{ onSettingClick?(): void }> = ({
           </div>
         </div>
       )}
-      {hasTopRightAction ? (
-        <div className="group/balance-view-actions relative">
-          {dashboardBalanceCacheInited && (
-            <BalanceView currentAccount={currentAccount} hideJumpButton />
-          )}
-
-          <div className="absolute right-[12px] top-[10px] z-[1] flex items-center gap-[8px]">
-            <BalanceViewJumpButton
-              className="balance-view-jump-button-external group-hover/balance-view-actions:flex"
-              onClick={onClickOpenInDesktop}
-            />
-            {isGnosis ? (
-              <Queue
-                // count={gnosisPendingCount || 0}
-                count={0}
-                className={clsx(
-                  'transition-all'
-                  // !false ? 'opacity-0 pointer-events-none' : 'opacity-100'
-                )}
-              />
-            ) : (
-              <PendingTxs pendingTxCount={pendingTxCount} />
+      <div className="crb-hero-card mt-[12px]">
+        {hasTopRightAction ? (
+          <div className="group/balance-view-actions relative">
+            {dashboardBalanceCacheInited && (
+              <BalanceView currentAccount={currentAccount} hideJumpButton />
             )}
+
+            <div className="absolute right-[12px] top-[10px] z-[1] flex items-center gap-[8px]">
+              <BalanceViewJumpButton
+                className="balance-view-jump-button-external group-hover/balance-view-actions:flex"
+                onClick={onClickOpenInDesktop}
+              />
+              {isGnosis ? (
+                <Queue
+                  // count={gnosisPendingCount || 0}
+                  count={0}
+                  className={clsx(
+                    'transition-all'
+                    // !false ? 'opacity-0 pointer-events-none' : 'opacity-100'
+                  )}
+                />
+              ) : (
+                <PendingTxs pendingTxCount={pendingTxCount} />
+              )}
+            </div>
           </div>
-        </div>
-      ) : (
-        dashboardBalanceCacheInited && (
-          <BalanceView currentAccount={currentAccount} />
-        )
-      )}
-      {dashboardBalanceCacheInited && <OfflineChainNotify />}
-      <SeedPhraseBackupAlert className="absolute left-0 right-0 bottom-0" />
+        ) : (
+          dashboardBalanceCacheInited && (
+            <BalanceView currentAccount={currentAccount} />
+          )
+        )}
+        {dashboardBalanceCacheInited && <OfflineChainNotify />}
+        <SeedPhraseBackupAlert className="absolute left-0 right-0 bottom-0" />
+      </div>
     </Container>
   );
 };
@@ -301,8 +291,8 @@ const FeedbackEntry = () => {
     <>
       <div
         className={clsx(
-          'p-[7px] rounded-full cursor-pointer text-r-neutral-title-2 shrink-0',
-          'bg-[rgba(255,255,255,0.07)] hover:bg-[rgba(255,255,255,0.12)]'
+          'p-[7px] rounded-full cursor-pointer text-r-neutral-title1 shrink-0',
+          'bg-r-neutral-card1 shadow-[var(--crb-shadow-card)] hover:bg-[var(--crb-sunken)]'
         )}
         onClick={handleClick}
       >
@@ -452,11 +442,11 @@ const GasAccountEntry = () => {
     >
       <div
         className={clsx(
-          'group h-[32px] min-w-[32px] max-w-[32px] hover:max-w-[100px] px-[6px] rounded-[5px]',
+          'group h-[34px] min-w-[34px] max-w-[34px] hover:max-w-[110px] px-[7px] rounded-full',
           'cursor-pointer overflow-hidden transition-all duration-200 shrink-0',
           'flex items-center gap-[2px]',
-          'bg-[rgba(255,255,255,0.07)] hover:bg-[rgba(255,255,255,0.12)]',
-          'text-r-neutral-title-2'
+          'bg-r-neutral-card1 shadow-[var(--crb-shadow-card)] hover:bg-[var(--crb-sunken)]',
+          'text-r-neutral-title1'
         )}
         onClick={handleClick}
       >

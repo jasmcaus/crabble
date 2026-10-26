@@ -31,6 +31,8 @@
   --crb-tooltip-bg: #1a1917;
   --crb-chip-ink: #1a1917;
   --crb-input-border: #e3e0da;
+  /* opaque card surface (card-1 is translucent in dark mode) */
+  --crb-card-solid: #ffffff;
 }
 
 html.dark {
@@ -52,6 +54,7 @@ html.dark {
   --crb-tooltip-bg: #2c2c30;
   --crb-chip-ink: #2c2c30;
   --crb-input-border: rgba(255, 255, 255, 0.1);
+  --crb-card-solid: #1a1a1c;
 }
 
 /*---------------------------------------------------------------
@@ -370,4 +373,134 @@ textarea.ant-input {
   .crabble-ink-surface();
   background-color: #141416 !important;
   box-shadow: 0 12px 28px -14px rgba(26, 25, 23, 0.55);
+}
+
+/*---------------------------------------------------------------
+  Typography
+  Instrument Serif carries titles and hero numbers; Inter does the
+  work everywhere else. Small labels are uppercase and tracked.
+---------------------------------------------------------------*/
+.crb-display {
+  font-family: 'Instrument Serif', ui-serif, Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  font-variant-numeric: lining-nums;
+}
+
+.crb-eyebrow {
+  font-size: 11px;
+  line-height: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--r-neutral-foot);
+}
+
+/* trailing cents read quieter than the integer part */
+.crb-cents {
+  opacity: 0.4;
+}
+
+/*---------------------------------------------------------------
+  Hero card: hairline-bordered surface with a faint contour texture
+---------------------------------------------------------------*/
+:root {
+  --crb-topo-ink: rgba(26, 25, 23, 0.07);
+  --crb-hero-glow: rgba(255, 143, 97, 0.14);
+}
+
+html.dark {
+  --crb-topo-ink: rgba(255, 255, 255, 0.06);
+  --crb-hero-glow: rgba(242, 107, 58, 0.12);
+}
+
+.crb-hero-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 20px;
+  background: var(--crb-card-solid);
+  box-shadow: var(--crb-shadow-card);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: var(--crb-topo-ink);
+    /* longhand on purpose: Less evaluates "pos / size" in the shorthand as division */
+    -webkit-mask-image: url('../assets/crabble/topo.svg');
+    mask-image: url('../assets/crabble/topo.svg');
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 720px auto;
+    mask-size: 720px auto;
+    -webkit-mask-position: right -120px top -90px;
+    mask-position: right -120px top -90px;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      80% 70% at 100% 0%,
+      var(--crb-hero-glow) 0%,
+      transparent 70%
+    );
+  }
+}
+
+/* change badge: +2.4% on a tint of its own color */
+.crb-delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+
+  &.is-up {
+    color: var(--r-green-default);
+    background: rgba(23, 166, 115, 0.12);
+  }
+
+  &.is-down {
+    color: var(--r-red-default);
+    background: rgba(215, 52, 79, 0.1);
+  }
+}
+
+html.dark .crb-delta {
+  &.is-up {
+    background: rgba(45, 196, 141, 0.14);
+  }
+  &.is-down {
+    background: rgba(242, 90, 114, 0.14);
+  }
+}
+
+/* inline SVGs drawn white for the old ink header follow the text color */
+.crb-recolor {
+  [stroke='white'],
+  [stroke='#fff'],
+  [stroke='#FFF'] {
+    stroke: currentColor;
+  }
+  [fill='white'],
+  [fill='#fff'],
+  [fill='#FFF'] {
+    fill: currentColor;
+  }
+}
+
+/* chart line glows in the dark */
+html.dark .crb-chart-glow .recharts-area-curve {
+  filter: drop-shadow(0 0 6px rgba(242, 107, 58, 0.55));
 }

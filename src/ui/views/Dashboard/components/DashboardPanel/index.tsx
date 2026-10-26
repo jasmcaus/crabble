@@ -252,7 +252,7 @@ const SortablePanelItem: React.FC<{
       style={style}
       {...attributes}
       {...listeners}
-      className="bg-r-neutral-bg-2"
+      className="rounded-[12px]"
     >
       {item.disabled ? (
         <Tooltip

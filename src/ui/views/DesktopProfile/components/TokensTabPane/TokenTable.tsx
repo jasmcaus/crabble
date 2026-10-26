@@ -32,7 +32,7 @@ export const TokenTable: React.FC<Props> = ({
       ) : (
         <Table className="w-full ml-0 mr-0">
           <THeader
-            className="w-full justify-between bg-rb-neutral-bg-1 rounded-[8px] py-8"
+            className="w-full justify-between py-[12px] border-0 border-b border-solid border-[var(--crb-hairline)]"
             rowClassName="px-8"
           >
             <THeadCell className="w-[352px] flex-1">

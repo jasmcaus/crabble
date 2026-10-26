@@ -86,7 +86,9 @@ const PageHeader = ({
           </div>
         )}
         <div className="header-content">
-          {children}
+          {children ? (
+            <span className="page-header-title">{children}</span>
+          ) : null}
           {isShowAccount && currentAccount ? (
             <AccountSwitchInner
               disableSwitch={disableSwitchAccount}

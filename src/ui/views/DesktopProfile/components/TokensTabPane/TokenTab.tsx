@@ -104,8 +104,8 @@ export const TokenTab = ({
     <>
       <div
         className={clsx(
-          'flex items-center justify-between py-[14px] px-[20px]',
-          'bg-rb-neutral-bg-1',
+          'flex items-center justify-between py-[16px] px-[20px]',
+          'bg-[var(--crb-card-solid)]',
           'sticky z-10'
         )}
         style={{ top: DESKTOP_NAV_HEIGHT + 57 }}

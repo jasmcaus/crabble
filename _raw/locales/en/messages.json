@@ -4446,6 +4446,12 @@
       }
     },
     "desktopProfile": {
+      "stats": {
+        "change": "24h change",
+        "high": "24h high",
+        "low": "24h low",
+        "updated": "Last updated"
+      },
       "CurveModal": {
         "appChainTips": "Hyperliquid & Polymarket Account not included",
         "netWorth": "Net Worth"

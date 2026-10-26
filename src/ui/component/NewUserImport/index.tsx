@@ -34,10 +34,12 @@ const StyledCard = styled.div`
     justify-content: center;
     color: var(--r-neutral-title1, #1a1917);
     text-align: center;
-    font-size: 20px;
+    font-family: 'Instrument Serif', ui-serif, Georgia, serif;
+    font-size: 28px;
     font-style: normal;
-    font-weight: 500;
-    line-height: normal;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: -0.01em;
     position: relative;
     min-height: 20px;
     .back-icon {

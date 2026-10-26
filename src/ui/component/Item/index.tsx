@@ -146,9 +146,11 @@ const BlueHeaderWrapper = styled.div<{ fixed?: boolean }>`
       : ''}
 
   .title {
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 23px;
+    font-family: 'Instrument Serif', ui-serif, Georgia, serif;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 28px;
+    letter-spacing: -0.01em;
     display: flex;
     justify-content: center;
     align-items: center;

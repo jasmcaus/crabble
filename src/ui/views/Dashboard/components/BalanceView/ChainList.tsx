@@ -15,7 +15,7 @@ export const ChainList: React.FC<{
       const gnosisNetwork = gnosisNetworks[0];
       return (
         <img
-          src={gnosisNetwork.whiteLogo || gnosisNetwork.logo}
+          src={gnosisNetwork.logo || gnosisNetwork.whiteLogo}
           className="w-[18px] h-[18px]"
         />
       );
@@ -26,14 +26,14 @@ export const ChainList: React.FC<{
             return (
               <img
                 key={gnosisNetwork.id}
-                src={gnosisNetwork.whiteLogo || gnosisNetwork.logo}
+                src={gnosisNetwork.logo || gnosisNetwork.whiteLogo}
                 className="w-[18px] h-[18px]"
               />
             );
           })}
           <div
             key="more"
-            className="text-[12px] leading-[14px] font-normal text-r-neutral-title2"
+            className="text-[12px] leading-[14px] font-normal text-r-neutral-foot"
           >
             +{gnosisNetworks.length - MAX_CHAINS + 1}
           </div>
@@ -46,7 +46,7 @@ export const ChainList: React.FC<{
             return (
               <img
                 key={gnosisNetwork.id}
-                src={gnosisNetwork.whiteLogo || gnosisNetwork.logo}
+                src={gnosisNetwork.logo || gnosisNetwork.whiteLogo}
                 className="w-[18px] h-[18px]"
               />
             );
@@ -59,7 +59,7 @@ export const ChainList: React.FC<{
     .sort(sortChainWithValueDesc)
     .map((item) => (
       <img
-        src={item.whiteLogo || item.logo_url}
+        src={item.logo_url || item.whiteLogo}
         className="w-[18px] h-[18px]"
         key={item.id}
         alt={`${item.name}: $${item.usd_value.toFixed(2)}`}
@@ -72,7 +72,7 @@ export const ChainList: React.FC<{
         {result.slice(0, MAX_CHAINS - 1).concat(
           <div
             key="more"
-            className="text-[12px] leading-[14px] font-normal text-r-neutral-title2"
+            className="text-[12px] leading-[14px] font-normal text-r-neutral-foot"
           >
             +{result.length - MAX_CHAINS + 1}
           </div>

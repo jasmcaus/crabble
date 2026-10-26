@@ -372,7 +372,7 @@ const Unlock = () => {
           />
           <h1
             className={clsx(
-              'text-[24px] font-semibold',
+              'crb-display text-[40px] leading-[44px]',
               'text-r-neutral-title1',
               'mt-12',
               'text-center'

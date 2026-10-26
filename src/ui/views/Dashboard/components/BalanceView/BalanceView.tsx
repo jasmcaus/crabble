@@ -55,14 +55,14 @@ export const BalanceViewJumpButton = ({
       type="button"
       className={clsx(
         'balance-view-jump-button hidden shrink-0 items-center justify-center cursor-pointer rounded-[4px] border-0',
-        'bg-[rgba(255,255,255,0.2)] p-[5px] opacity-60',
-        'hover:bg-[rgba(255,255,255,0.1)] hover:opacity-100',
+        'bg-[var(--crb-sunken)] p-[6px] opacity-70',
+        'hover:bg-[var(--crb-sunken-hover)] hover:opacity-100',
         className
       )}
       aria-label={t('page.dashboard.assets.openInTabV2')}
       onClick={onClick}
     >
-      <RcIconJumpCC className="h-[12px] w-[12px] text-r-neutral-title2" />
+      <RcIconJumpCC className="h-[12px] w-[12px] text-r-neutral-title1" />
     </button>
   );
 };
@@ -394,64 +394,80 @@ export const BalanceView = ({
     return <ZeroAssets />;
   }
 
+  const deltaArrow = (
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden>
+      <path
+        d={
+          currentIsLoss
+            ? 'M2 2.5L8 7.5M8 7.5H3.5M8 7.5V3'
+            : 'M2 7.5L8 2.5M8 2.5H3.5M8 2.5V7'
+        }
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+
   return (
     <div onMouseLeave={onMouseLeave} className={clsx('w-full')}>
       <div
         className={clsx(
-          'balance-view-card group/balance-card relative min-h-[132px] w-full cursor-pointer rounded-[12px]',
-          'bg-transparent hover:bg-[rgba(255,255,255,0.06)]',
-          '[&:has(.balance-view-jump-button:hover)]:bg-transparent'
+          'balance-view-card group/balance-card relative w-full cursor-pointer'
         )}
         onClick={onClickViewAssets}
       >
         {!hideJumpButton && (
           <BalanceViewJumpButton
-            className="absolute right-[8px] top-[8px] z-[1] group-hover/balance-card:flex"
+            className="absolute right-[12px] top-[12px] z-[1] group-hover/balance-card:flex"
             onClick={onClickOpenInDesktop}
           />
         )}
-        <div className="group flex w-full items-end pl-[12px] pr-[42px] pt-[10px]">
-          <div
-            className={clsx(
-              'text-r-neutral-title2 text-[30px] leading-[36px] font-bold max-w-full'
-            )}
-          >
+        <div className="px-[16px] pt-[14px]">
+          <div className="crb-eyebrow">
+            {t('page.desktopProfile.CurveModal.netWorth')}
+          </div>
+          <div className="group mt-[4px] pr-[40px] text-r-neutral-title1 max-w-full">
             {shouldShowBalanceLoading ? (
               <Skeleton.Input
                 active
-                className="w-[200px] h-[36px] rounded block"
+                className="w-[200px] h-[44px] rounded block"
               />
             ) : (
               <BalanceLabel
-                // isCache={balanceFromCache}
                 balanceUsd={currentBalance || 0}
                 currency={currency}
               />
             )}
           </div>
           <div
-            className="flex flex-end items-center gap-[8px] mb-[4px] ml-[8px] min-h-[20px] cursor-pointer"
+            className="group flex items-center gap-[8px] mt-[6px] min-h-[22px] cursor-pointer"
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
               handleClickRefresh();
             }}
           >
-            <div
+            <span
               className={clsx(
-                currentIsLoss ? 'text-r-red-default' : 'text-r-green-default',
-                'text-[15px] leading-[18px] font-medium truncate',
+                'crb-delta',
+                currentIsLoss ? 'is-down' : 'is-up',
                 {
                   hidden: shouldHidePercentChange,
                 }
               )}
             >
+              {deltaArrow}
               {currentIsLoss ? '-' : '+'}
               {currentChangePercent === '0%' ? '0.00%' : currentChangePercent}
-              {currentChangeValue ? (
-                <span className="ml-4">({currentChangeValue})</span>
-              ) : null}
-            </div>
+            </span>
+            {!shouldHidePercentChange && (
+              <span className="text-[12px] leading-[14px] text-r-neutral-foot tabular-nums">
+                {currentChangeValue ||
+                  t('page.signTx.BroadcastMode.lowGasDeadline.24h')}
+              </span>
+            )}
             {missingList?.length ? (
               <TooltipWithMagnetArrow
                 overlayClassName="rectangle font-normal whitespace-pre-wrap"
@@ -461,13 +477,16 @@ export const BalanceView = ({
                     t('page.dashboard.home.chainEnd'),
                 })}
               >
-                <div onClick={(evt) => evt.stopPropagation()}>
+                <div
+                  className="crb-recolor text-r-orange-default"
+                  onClick={(evt) => evt.stopPropagation()}
+                >
                   <WarningSVG />
                 </div>
               </TooltipWithMagnetArrow>
             ) : null}
             <div
-              className={clsx({
+              className={clsx('crb-recolor text-r-neutral-foot', {
                 'block animate-spin': shouldShowRefreshButton,
                 hidden: !shouldShowRefreshButton,
                 'group-hover:block': !hiddenBalance,
@@ -480,55 +499,9 @@ export const BalanceView = ({
         <div
           onMouseMove={onMouseMove}
           onMouseLeave={onMouseLeave}
-          className={clsx('mt-[2px]', 'relative cursor-pointer')}
+          className={clsx('mt-[4px]', 'relative cursor-pointer')}
         >
-          {/* <img
-            src={ArrowNextSVG}
-            className={clsx(
-              'absolute w-[20px] h-[20px] top-[8px] right-[10px]',
-              !currentHover && 'opacity-80'
-              // balanceFromCache
-              //   ? !currentHover && 'opacity-0'
-              //   : !currentHover && 'opacity-80'
-            )}
-          /> */}
-          {!shouldShowLoading && (
-            <div className={clsx('px-[12px] pointer-events-none')}>
-              {!loadBalanceSuccess ? null : chainBalancesWithValue.length >
-                0 ? (
-                <div
-                  className={clsx(
-                    'w-full flex items-center gap-[4px]',
-                    !currentHover && 'opacity-50'
-                  )}
-                >
-                  <ChainList
-                    isGnosis={isGnosis}
-                    matteredChainBalances={chainBalancesWithValue.slice(0)}
-                    gnosisNetworks={gnosisNetworks}
-                  />
-                  <RcIconArrowRightDashboardCC className="w-[18px] h-[18px] text-r-neutral-title2" />
-                </div>
-              ) : (
-                <div
-                  className={clsx(
-                    'w-full flex items-center gap-[4px]',
-                    !currentHover && 'opacity-50'
-                  )}
-                >
-                  <div
-                    className={clsx(
-                      'text-[12px] leading-[14px] text-r-neutral-title-2'
-                    )}
-                  >
-                    {t('page.dashboard.assets.noAssets')}
-                  </div>
-                  <RcIconArrowRightDashboardCC className="w-[18px] h-[18px] text-r-neutral-title2" />
-                </div>
-              )}
-            </div>
-          )}
-          <div className={clsx('h-[66px] w-full relative')}>
+          <div className={clsx('crb-chart-glow h-[72px] w-full relative')}>
             {!!shouldRenderCurve && !!curveChartData && (
               <CurveThumbnail
                 isHover={currentHover}
@@ -547,6 +520,27 @@ export const BalanceView = ({
               </div>
             )}
           </div>
+          {!shouldShowLoading && loadBalanceSuccess && (
+            <div className="px-[16px] pt-[6px] pb-[12px] pointer-events-none">
+              {chainBalancesWithValue.length > 0 ? (
+                <div className="w-full flex items-center gap-[4px]">
+                  <ChainList
+                    isGnosis={isGnosis}
+                    matteredChainBalances={chainBalancesWithValue.slice(0)}
+                    gnosisNetworks={gnosisNetworks}
+                  />
+                  <RcIconArrowRightDashboardCC className="w-[16px] h-[16px] text-r-neutral-foot" />
+                </div>
+              ) : (
+                <div className="w-full flex items-center gap-[4px]">
+                  <div className="text-[12px] leading-[14px] text-r-neutral-foot">
+                    {t('page.dashboard.assets.noAssets')}
+                  </div>
+                  <RcIconArrowRightDashboardCC className="w-[16px] h-[16px] text-r-neutral-foot" />
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>

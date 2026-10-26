@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 /* eslint "react-hooks/exhaustive-deps": ["error"] */
 /* eslint-enable react-hooks/exhaustive-deps */
 import type { Account } from '@/background/service/preference';
@@ -40,8 +41,10 @@ import {
   splitNumberByStep,
   useCommonPopupView,
   useWallet,
+  formatUsdValue,
 } from 'ui/utils';
-import { CurvePoint, CurveThumbnail } from './CurveThumbnail';
+import { CurvePoint } from './CurveThumbnail';
+import { PortfolioChart } from './PortfolioChart';
 import { CurveModal } from './CurveModal';
 import { useDebounce } from 'react-use';
 import { useCurrentAccount } from '@/ui/hooks/backgroundState/useAccount';
@@ -162,114 +165,166 @@ export const BalanceView: React.FC<{
     setCurvePoint(data);
   };
 
+  const stats = useMemo(() => {
+    const values = (curveChartData?.list || []).map((p) => p.value);
+    if (!values.length) {
+      return null;
+    }
+    const last = curveChartData?.list[curveChartData.list.length - 1];
+    return {
+      high: Math.max(...values),
+      low: Math.min(...values),
+      updatedAt: last ? dayjs(last.timestamp * 1000).format('HH:mm') : '-',
+    };
+  }, [curveChartData]);
+
+  const deltaArrow = (
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden>
+      <path
+        d={
+          currentIsLoss
+            ? 'M2 2.5L8 7.5M8 7.5H3.5M8 7.5V3'
+            : 'M2 7.5L8 2.5M8 2.5H3.5M8 2.5V7'
+        }
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+
   return (
     <>
       <Container onMouseLeave={onMouseLeave}>
-        <div className="balance-view-content">
-          <div>
-            <div className={clsx('group w-[100%] flex gap-[8px] items-end')}>
-              <div
-                className={clsx(
-                  'text-[48px] leading-[60px] min-h-[60px] font-bold text-r-neutral-title1 max-w-full'
-                )}
-              >
-                {isLoading ? (
-                  <Skeleton.Input
-                    active
-                    className="w-[200px] h-[53px] rounded block"
-                  />
-                ) : (
-                  <div>
-                    ${splitNumberByStep((currentBalance || 0).toFixed(2))}
-                  </div>
-                )}
-              </div>
-              <div
-                className="flex flex-end items-center gap-[8px] mb-[7px] min-h-[20px] relative"
-                onClick={(e) => {
-                  // e.preventDefault();
-                  // e.stopPropagation();
-                  // onRefresh({ isManual: true });
-                }}
-              >
-                <div
-                  className={clsx(
-                    currentIsLoss
-                      ? 'text-rb-red-default'
-                      : 'text-rb-green-default',
-                    'text-[20px] font-medium',
-                    {
-                      hidden: shouldHidePercentChange,
-                    }
-                  )}
-                >
-                  {currentIsLoss ? '-' : '+'}
-                  <span>
-                    {currentChangePercent === '0%'
-                      ? '0.00%'
-                      : currentChangePercent}
-                  </span>
-                  {currentChangeValue ? (
-                    <span>({currentChangeValue})</span>
-                  ) : null}
-                </div>
-                <div>
-                  <RcIconRefreshCC
-                    viewBox="0 0 16 16"
-                    className={clsx(
-                      'w-[24px] h-[24px] text-rb-neutral-foot cursor-pointer',
-                      'hover:text-r-blue-default',
-                      isRefreshing ? 'animate-spin' : ''
-                    )}
-                    onClick={onRefresh}
-                  />
-                </div>
-                {/* {missingList?.length ? (
-                  <Tooltip
-                    overlayClassName="rectangle font-normal whitespace-pre-wrap"
-                    title={t('page.dashboard.home.missingDataTooltip', {
-                      text:
-                        missingList.join(t('page.dashboard.home.chain')) +
-                        t('page.dashboard.home.chainEnd'),
-                    })}
-                  >
-                    <div onClick={(evt) => evt.stopPropagation()}>
-                      <WarningSVG />
-                    </div>
-                  </Tooltip>
-                ) : null} */}
-              </div>
-            </div>
+        <div className="px-[28px] pt-[24px]">
+          <div className="crb-eyebrow">
+            {t('page.desktopProfile.CurveModal.netWorth')}
           </div>
-          <div
-            className={clsx(
-              'w-[400px] h-[104px] absolute top-[12px] right-[20px]'
-            )}
-            onMouseMove={onMouseMove}
-            onMouseLeave={onMouseLeave}
-          >
-            {!!shouldRenderCurve && !!curveChartData && (
-              <CurveThumbnail
-                isHover={currentHover}
-                data={curveChartData}
-                showAppChainTips={showAppChainTips}
-                appChainIds={appChainIds}
-                onHover={handleHoverCurve}
-                width={400}
-                height={104}
+          <div className="mt-[6px] min-h-[68px] text-r-neutral-title1">
+            {isLoading ? (
+              <Skeleton.Input
+                active
+                className="w-[320px] h-[60px] rounded block"
               />
-            )}
-            {!!isLoading && (
-              <div className="flex mt-[14px]">
-                <Skeleton.Input
-                  active
-                  className="m-auto w-[400px] h-[104px] rounded block"
+            ) : (
+              <div className="crb-display text-[64px] leading-[68px]">
+                <SplitCents
+                  text={`$${splitNumberByStep(
+                    (currentBalance || 0).toFixed(2)
+                  )}`}
                 />
               </div>
             )}
           </div>
+          <div className="mt-[10px] flex items-center gap-[10px] min-h-[24px]">
+            <span
+              className={clsx(
+                'crb-delta',
+                currentIsLoss ? 'is-down' : 'is-up',
+                {
+                  hidden: shouldHidePercentChange,
+                }
+              )}
+            >
+              {deltaArrow}
+              {currentIsLoss ? '-' : '+'}
+              {currentChangePercent === '0%' ? '0.00%' : currentChangePercent}
+            </span>
+            {!shouldHidePercentChange && (
+              <span className="text-[13px] leading-[16px] text-r-neutral-foot tabular-nums">
+                {currentChangeValue
+                  ? `${currentIsLoss ? '-' : '+'}${currentChangeValue}`
+                  : t('page.signTx.BroadcastMode.lowGasDeadline.24h')}
+              </span>
+            )}
+            <RcIconRefreshCC
+              viewBox="0 0 16 16"
+              className={clsx(
+                'w-[18px] h-[18px] text-r-neutral-foot cursor-pointer',
+                'hover:text-r-neutral-title1',
+                isRefreshing ? 'animate-spin' : ''
+              )}
+              onClick={onRefresh}
+            />
+          </div>
+        </div>
+        <div
+          className="crb-chart-glow relative mt-[8px] h-[240px] pl-[8px]"
+          onMouseMove={onMouseMove}
+          onMouseLeave={onMouseLeave}
+        >
+          {!!shouldRenderCurve && !!curveChartData && (
+            <PortfolioChart data={curveChartData} onHover={handleHoverCurve} />
+          )}
+          {!!isLoading && (
+            <Skeleton.Input
+              active
+              className="mx-[20px] mt-[20px] w-[calc(100%-40px)] h-[200px] rounded block"
+            />
+          )}
+        </div>
+        <div className="mt-[8px] grid grid-cols-4 border-0 border-t border-solid border-[var(--crb-hairline)]">
+          {[
+            {
+              label: t('page.desktopProfile.stats.change'),
+              value: curveChartData
+                ? `${curveChartData.isLoss ? '-' : '+'}${curveChartData.change}`
+                : '-',
+              tone: curveChartData
+                ? curveChartData.isLoss
+                  ? 'text-r-red-default'
+                  : 'text-r-green-default'
+                : '',
+            },
+            {
+              label: t('page.desktopProfile.stats.high'),
+              value: stats ? formatUsdValue(stats.high) : '-',
+            },
+            {
+              label: t('page.desktopProfile.stats.low'),
+              value: stats ? formatUsdValue(stats.low) : '-',
+            },
+            {
+              label: t('page.desktopProfile.stats.updated'),
+              value: stats ? stats.updatedAt : '-',
+            },
+          ].map((item, idx) => (
+            <div
+              key={item.label}
+              className={clsx(
+                'px-[28px] py-[18px]',
+                idx > 0 &&
+                  'border-0 border-l border-solid border-[var(--crb-hairline)]'
+              )}
+            >
+              <div className="crb-eyebrow">{item.label}</div>
+              <div
+                className={clsx(
+                  'mt-[6px] text-[17px] leading-[22px] font-medium tabular-nums',
+                  item.tone || 'text-r-neutral-title1'
+                )}
+              >
+                {isLoading ? '-' : item.value}
+              </div>
+            </div>
+          ))}
         </div>
       </Container>
+    </>
+  );
+};
+
+/** "$1,234.56" with the trailing cents quieter, as on a statement. */
+const SplitCents: React.FC<{ text: string }> = ({ text }) => {
+  const match = /^(.*?)(\.\d{1,2})$/.exec(text);
+  if (!match) {
+    return <>{text}</>;
+  }
+  return (
+    <>
+      {match[1]}
+      <span className="crb-cents">{match[2]}</span>
     </>
   );
 };
