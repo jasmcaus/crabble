@@ -18,7 +18,7 @@ export const shareRabbyPointsTwitter = ({
 }) => {
   if (!snapshot) return;
 
-  const text = encodeURIComponent(`Even if you haven't used Rabby before, you can get points now!
+  const text = encodeURIComponent(`Even if you haven't used Crabble before, you can get points now!
 
 Rabby Points Season 2 is here with bigger rewards – 1 Billion points in total! 🎉 @Rabby_io
 

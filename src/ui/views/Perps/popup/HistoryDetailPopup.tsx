@@ -359,7 +359,7 @@ export const HistoryDetailPopup: React.FC<HistoryDetailPopupProps> = ({
               <div className="flex items-center gap-8">
                 <img src={IconRabby} className="w-20 h-20 rounded-full" />
                 <span className="text-13 text-r-neutral-title-1 font-medium">
-                  Rabby Wallet
+                  Crabble Wallet
                 </span>
               </div>
               <span className="text-13 text-r-neutral-title-1 font-medium">

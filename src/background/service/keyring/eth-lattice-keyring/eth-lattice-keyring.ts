@@ -30,7 +30,7 @@ let callStackCounter = 0;
 class LatticeKeyring extends OldLatticeKeyring {
   signingDiagnosticsProvider = 'gridplus';
   [x: string]: any;
-  appName = 'Rabby';
+  appName = 'Crabble';
   static type = keyringType;
   type = keyringType;
   pairingCredsRefreshed = false;

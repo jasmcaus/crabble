@@ -308,7 +308,7 @@ export const ScreenshotContextMenu = () => {
                 <img
                   className="w-full h-[254px] object-contain"
                   src={screenshot}
-                  alt="Rabby popup screenshot"
+                  alt="Crabble popup screenshot"
                 />
               </div>
             ) : null}
