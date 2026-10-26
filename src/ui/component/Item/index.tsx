@@ -124,7 +124,13 @@ export const Item = (props: PropsWithChildren<ItemProps>) => {
 const BlueHeaderWrapper = styled.div<{ fixed?: boolean }>`
   position: relative;
   height: 56px;
-  background: var(--r-blue-default, #f26b3a);
+  background-color: #141416;
+  background-image: radial-gradient(
+      60% 160% at 100% 0%,
+      rgba(255, 143, 97, 0.34) 0%,
+      rgba(255, 143, 97, 0) 70%
+    ),
+    linear-gradient(160deg, #26252a 0%, #141416 100%);
   display: flex;
   justify-content: center;
   align-items: center;
