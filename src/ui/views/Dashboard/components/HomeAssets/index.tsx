@@ -10,10 +10,13 @@ import {
 import { sortChainWithValueDesc } from '@/ui/views/CommonPopup/AssetList/ChainItem';
 import { Button } from 'antd';
 import { ArrowDownLeft, Wallet } from 'lucide-react';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import type { BalanceViewData } from '../BalanceView/BalanceView';
+import { CustomTestnetAssetList } from '@/ui/views/CommonPopup/AssetList/CustomTestnetAssetList';
+
+type HomeAssetsTab = AssetListTab | 'testnet';
 
 const compactUsd = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -38,7 +41,9 @@ export const HomeAssets: React.FC<{ data?: BalanceViewData }> = ({ data }) => {
   const history = useHistory();
   const { apps } = useCommonPopupView();
   const hiddenBalance = useRabbySelector((s) => s.preference.hiddenBalance);
-  const [tab, setTab] = useState<AssetListTab>('tokens');
+  const address = useRabbySelector((s) => s.account.currentAccount?.address);
+  const hasTestnets = useRabbySelector((s) => s.chains.testnetList.length > 0);
+  const [tab, setTab] = useState<HomeAssetsTab>('tokens');
   const [chainId, setChainId] = useState<string | null>(null);
   const [isEmptyAssets, setIsEmptyAssets] = useState(false);
 
@@ -49,13 +54,29 @@ export const HomeAssets: React.FC<{ data?: BalanceViewData }> = ({ data }) => {
     ].sort(sortChainWithValueDesc);
   }, [data?.matteredChainBalances, apps]);
 
-  const showChainChips = tab !== 'nft' && chains.length > 1 && !isEmptyAssets;
+  // a filter for another account's chain (or one that dropped out of the
+  // breakdown) would otherwise stick with no chip showing it as active
+  useEffect(() => {
+    setChainId(null);
+  }, [address]);
+  useEffect(() => {
+    if (chainId && !chains.some((chain) => chain.id === chainId)) {
+      setChainId(null);
+    }
+  }, [chainId, chains]);
+  useEffect(() => {
+    if (tab === 'testnet' && !hasTestnets) setTab('tokens');
+  }, [tab, hasTestnets]);
+
+  const isMainnetTab = tab !== 'testnet';
+  const showChainChips =
+    (tab === 'tokens' || tab === 'defi') && chains.length > 1 && !isEmptyAssets;
 
   return (
     <section className="pb-[20px]">
       <div className="sticky top-0 z-[5] px-[16px] pt-[4px] bg-[var(--r-neutral-bg-2)]">
         <div className="flex items-center justify-between border-b border-solid border-0 border-[var(--crb-hairline)]">
-          <Segmented<AssetListTab>
+          <Segmented<HomeAssetsTab>
             variant="tabs"
             size="sm"
             aria-label="Assets"
@@ -65,6 +86,14 @@ export const HomeAssets: React.FC<{ data?: BalanceViewData }> = ({ data }) => {
               { value: 'tokens', label: t('page.desktopProfile.tabs.tokens') },
               { value: 'defi', label: t('page.desktopProfile.tabs.defi') },
               { value: 'nft', label: t('page.nft.title') },
+              ...(hasTestnets
+                ? [
+                    {
+                      value: 'testnet' as const,
+                      label: t('component.PillsSwitch.NetSwitchTabs.testnet'),
+                    },
+                  ]
+                : []),
             ]}
           />
         </div>
@@ -101,7 +130,8 @@ export const HomeAssets: React.FC<{ data?: BalanceViewData }> = ({ data }) => {
       )}
 
       <div className="px-[12px] pt-[12px]">
-        {isEmptyAssets && (
+        {tab === 'testnet' && <CustomTestnetAssetList visible />}
+        {isMainnetTab && isEmptyAssets && (
           <div className="flex flex-col items-center text-center pt-[28px] pb-[12px]">
             <div className="w-[48px] h-[48px] rounded-[16px] bg-[var(--crb-raised)] shadow-[var(--crb-shadow-card)] flex items-center justify-center text-r-neutral-title1 mb-[14px]">
               <Wallet size={22} strokeWidth={1.75} />
@@ -119,9 +149,9 @@ export const HomeAssets: React.FC<{ data?: BalanceViewData }> = ({ data }) => {
             </Button>
           </div>
         )}
-        <div className={cn(isEmptyAssets && 'hidden')}>
+        <div className={cn((isEmptyAssets || !isMainnetTab) && 'hidden')}>
           <AssetListContainer
-            tab={tab}
+            tab={isMainnetTab ? tab : 'tokens'}
             selectChainId={tab === 'nft' ? null : chainId}
             visible
             onEmptyAssets={setIsEmptyAssets}

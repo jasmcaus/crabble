@@ -143,7 +143,14 @@ const LogPageView = () => {
  * to break fixed children, no persistent stacking context). */
 const useRouteFade = () => {
   const { pathname } = useLocation();
+  const isFirstRun = React.useRef(true);
   useEffect(() => {
+    // this chunk loads lazily, after the first screen may have painted;
+    // fading that in again would flicker
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
     const root = document.getElementById('root');
     if (!root) return;
     root.classList.remove('crb-route-enter');

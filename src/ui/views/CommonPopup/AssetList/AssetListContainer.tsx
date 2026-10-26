@@ -64,7 +64,8 @@ export const AssetListContainer: React.FC<Props> = ({
     isLoading: isNftLoading,
   } = useNFTCollections(currentAccount?.address, {
     preferCacheOnExists: true,
-    visible,
+    // the dashboard's inline tabs only need NFTs once that tab is open
+    visible: visible && showNft,
   });
 
   const { setApps } = useCommonPopupView();
@@ -201,11 +202,33 @@ export const AssetListContainer: React.FC<Props> = ({
     !!search &&
     !sortTokens.length &&
     !filteredPortfolios?.length;
+  // with tabs each section reports its own empty / no-match state
+  const isTokensNoResults =
+    tab === 'tokens'
+      ? !!search && !isSearching && !isTokensLoading && !sortTokens.length
+      : isNoResults;
+  const isTokensEmpty =
+    tab === 'tokens' &&
+    !search &&
+    !lpTokenMode &&
+    !isTokensLoading &&
+    !sortTokens.length;
+  const isDefiEmpty =
+    tab === 'defi' &&
+    !isPortfoliosLoading &&
+    !isAppPortfoliosLoading &&
+    !filteredPortfolios?.length;
 
   return (
     <div className={className}>
-      {showSearch && (showTokens || showDefi) && (
-        <div className="flex items-center justify-between gap-x-12 widget-has-ant-input">
+      {showSearch && (
+        <div
+          className={
+            tab === 'nft'
+              ? 'hidden'
+              : 'flex items-center justify-between gap-x-12 widget-has-ant-input'
+          }
+        >
           <div className="flex w-full items-center justify-between">
             <div className="relative w-[60%] leading-[1]">
               <TokenSearchInput
@@ -226,7 +249,7 @@ export const AssetListContainer: React.FC<Props> = ({
       )}
       <div
         className={
-          showSearch && (showTokens || showDefi)
+          showSearch && tab !== 'nft'
             ? 'flex flex-col gap-24 mt-12'
             : 'flex flex-col gap-24'
         }
@@ -237,12 +260,17 @@ export const AssetListContainer: React.FC<Props> = ({
           (lpTokenMode && isAllTokenLoading) ? (
             <TokenListSkeleton />
           ) : (
-            <HomeTokenList
-              list={sortTokens}
-              isSearch={!!search}
-              lpTokenMode={lpTokenMode}
-              isNoResults={isNoResults}
-            />
+            <>
+              <HomeTokenList
+                list={sortTokens}
+                isSearch={!!search}
+                lpTokenMode={lpTokenMode}
+                isNoResults={isTokensNoResults}
+              />
+              {isTokensEmpty ? (
+                <SectionEmpty text={t('page.dashboard.assets.noAssets')} />
+              ) : null}
+            </>
           ))}
 
         {showDefi && (
@@ -257,7 +285,10 @@ export const AssetListContainer: React.FC<Props> = ({
             ) : (
               <>
                 {visible && !search ? (
-                  <HomePerpsPositionList needFetchMarket />
+                  <HomePerpsPositionList
+                    needFetchMarket
+                    className="crb-perps-list"
+                  />
                 ) : null}
                 <ProtocolList
                   removeProtocol={removeProtocol}
@@ -266,12 +297,16 @@ export const AssetListContainer: React.FC<Props> = ({
                   list={filteredPortfolios}
                   className="mt-0"
                 />
-                {tab === 'defi' &&
-                !search &&
-                !isPortfoliosLoading &&
-                !isAppPortfoliosLoading &&
-                !filteredPortfolios?.length ? (
-                  <SectionEmpty text={t('page.dashboard.assets.noAssets')} />
+                {isDefiEmpty ? (
+                  // hidden by CSS when perps positions rendered above it
+                  <SectionEmpty
+                    className="crb-defi-empty"
+                    text={
+                      search
+                        ? t('page.dashboard.assets.table.noMatch')
+                        : t('page.dashboard.assets.noAssets')
+                    }
+                  />
                 ) : null}
               </>
             )}
@@ -281,7 +316,7 @@ export const AssetListContainer: React.FC<Props> = ({
           <div
             style={{
               display:
-                visible && !search && (!selectChainId || tab === 'nft')
+                visible && (tab === 'nft' || (!search && !selectChainId))
                   ? 'block'
                   : 'none',
             }}
@@ -302,8 +337,19 @@ export const AssetListContainer: React.FC<Props> = ({
   );
 };
 
-const SectionEmpty = ({ text }: { text: string }) => (
-  <div className="flex flex-col items-center justify-center py-[40px] text-center">
+const SectionEmpty = ({
+  text,
+  className,
+}: {
+  text: string;
+  className?: string;
+}) => (
+  <div
+    className={
+      'flex flex-col items-center justify-center py-[40px] text-center ' +
+      (className || '')
+    }
+  >
     <div className="w-[40px] h-[40px] rounded-[12px] bg-[var(--crb-sunken)] mb-[10px] flex items-center justify-center text-r-neutral-foot">
       <Inbox size={18} strokeWidth={2} />
     </div>

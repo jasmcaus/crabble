@@ -88,7 +88,7 @@ const AuthFormItemWrapper = styled.div<{ $hasError?: boolean }>`
     }
     &:focus,
     &:hover {
-      border-color: var(--crb-hairline-strong) !important;
+      border-color: var(--r-blue-default, #f26b3a) !important;
     }
     ${({ $hasError }) =>
       $hasError && 'border-color: var(--r-red-default) !important;'}

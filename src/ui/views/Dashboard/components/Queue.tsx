@@ -7,21 +7,22 @@ import { useTranslation } from 'react-i18next';
 const Wrapper = styled.div`
   box-sizing: border-box;
   min-width: 54px;
-  height: 22px;
-  padding: 4px 8px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-  opacity: 0.6;
+  height: 26px;
+  padding: 6px 10px;
+  background: var(--crb-raised);
+  box-shadow: var(--crb-shadow-card);
+  border-radius: 999px;
   cursor: pointer;
 
-  font-weight: 400;
+  font-weight: 600;
   font-size: 12px;
   line-height: 14px;
-  color: #ffffff;
+  color: var(--r-neutral-body);
+  transition: background-color 0.14s ease, color 0.14s ease;
 
   &:hover {
-    opacity: 1;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--crb-sunken);
+    color: var(--r-neutral-title-1);
   }
 `;
 

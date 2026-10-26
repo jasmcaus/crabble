@@ -138,6 +138,10 @@ const Dashboard = () => {
 
   const [settingVisible, setSettingVisible] = useState(false);
   const [homeBalanceData, setHomeBalanceData] = useState<BalanceViewData>();
+  useEffect(() => {
+    // don't show the previous account's chain breakdown while the new one loads
+    setHomeBalanceData(undefined);
+  }, [address]);
   const [updateClock, setUpdateClock] = useState(Date.now);
   const showUpdateBanner = useExtensionUpdateStore((s) =>
     selectExtensionUpdateBanner(s, updateClock)

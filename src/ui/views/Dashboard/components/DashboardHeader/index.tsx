@@ -150,7 +150,8 @@ export const DashboardHeader: React.FC<{
   };
 
   const onClickActivity = useMemoizedFn(() => {
-    history.push(pendingTxCount > 0 ? '/activities' : '/history');
+    // the pending count is global and isn't refreshed for Safe accounts
+    history.push(!isGnosis && pendingTxCount > 0 ? '/activities' : '/history');
   });
 
   return (
@@ -167,6 +168,8 @@ export const DashboardHeader: React.FC<{
             )}
             onClick={handleSwitchAddress}
             onKeyDown={(event) => {
+              // keys bubbling up from the copy button are the button's
+              if (event.target !== event.currentTarget) return;
               if (event.key === 'Enter' || event.key === ' ') {
                 event.preventDefault();
                 handleSwitchAddress();

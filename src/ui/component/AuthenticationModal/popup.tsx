@@ -28,7 +28,7 @@ const AuthFormItemWrapper = styled.div`
     }
     &:focus,
     &:hover {
-      border-color: var(--crb-hairline-strong) !important;
+      border-color: var(--r-blue-default, #f26b3a) !important;
     }
   }
 `;
