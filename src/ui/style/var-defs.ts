@@ -34,6 +34,7 @@ const LessPalette = {
   "@input-padding-vertical-lg": "15px",
   "@input-padding-horizontal-lg": "16px",
   "@error-color": "#d7344f",
+  "@font-family": "'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue',  Roboto, sans-serif",
   "@font-size-lg": "14px",
   "@outline-width": "0",
   "@switch-min-width": "32px",

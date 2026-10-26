@@ -146,6 +146,18 @@ module.exports = {
     },
     /** @notice configuration here would override the default config above */
     extend: {
+      fontFamily: {
+        // display: page titles and hero numbers; sans: everything else
+        display: ['"Instrument Serif"', 'ui-serif', 'Georgia', 'serif'],
+        sans: [
+          'Inter',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          '"Helvetica Neue"',
+          'Roboto',
+          'sans-serif',
+        ],
+      },
       fontWeight: {
         510: '510',
       },
