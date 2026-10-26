@@ -5151,25 +5151,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-presence@npm:1.1.11":
-  version: 1.1.11
-  resolution: "@radix-ui/react-presence@npm:1.1.11"
-  dependencies:
-    "@radix-ui/react-use-layout-effect": "npm:1.1.4"
-  peerDependencies:
-    "@types/react": "*"
-    "@types/react-dom": "*"
-    react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
-    react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-    "@types/react-dom":
-      optional: true
-  checksum: 10c0/480ab17f9a2a1d962d7a6b8f7d3ca0342fd4124a22c70d6dce4d4b54a0ffd60e5863ca3ad351a9132e565b4d6eeb479162f7449b5a42cdd7e294bf6b8247d9ba
-  languageName: node
-  linkType: hard
-
 "@radix-ui/react-primitive@npm:2.1.11":
   version: 2.1.11
   resolution: "@radix-ui/react-primitive@npm:2.1.11"
@@ -5230,32 +5211,6 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 10c0/a8c5be704183d4e388280191d6245458b45b059ea8530a523e8f87820b6eab407e06b749f63df5284204e66fc2ba5c8a934a74c61a17272f79ca98eae1403baa
-  languageName: node
-  linkType: hard
-
-"@radix-ui/react-tabs@npm:1.1.22":
-  version: 1.1.22
-  resolution: "@radix-ui/react-tabs@npm:1.1.22"
-  dependencies:
-    "@radix-ui/primitive": "npm:1.1.7"
-    "@radix-ui/react-context": "npm:1.2.2"
-    "@radix-ui/react-direction": "npm:1.1.5"
-    "@radix-ui/react-id": "npm:1.1.4"
-    "@radix-ui/react-presence": "npm:1.1.11"
-    "@radix-ui/react-primitive": "npm:2.1.11"
-    "@radix-ui/react-roving-focus": "npm:1.1.20"
-    "@radix-ui/react-use-controllable-state": "npm:1.2.6"
-  peerDependencies:
-    "@types/react": "*"
-    "@types/react-dom": "*"
-    react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
-    react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-    "@types/react-dom":
-      optional: true
-  checksum: 10c0/5cc3698ec307606bd0f5a2e6c0d273aaf958e344d6035f071566b0372cceae1ecd8827ea92745e4bd0a1f1264014ad3366cc72f094c161e0fdac20922826ea00
   languageName: node
   linkType: hard
 
@@ -11331,15 +11286,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"class-variance-authority@npm:0.7.1":
-  version: 0.7.1
-  resolution: "class-variance-authority@npm:0.7.1"
-  dependencies:
-    clsx: "npm:^2.1.1"
-  checksum: 10c0/0f438cea22131808b99272de0fa933c2532d5659773bfec0c583de7b3f038378996d3350683426b8e9c74a6286699382106d71fbec52f0dd5fbb191792cccb5b
-  languageName: node
-  linkType: hard
-
 "classnames@npm:2.x, classnames@npm:^2.2.1, classnames@npm:^2.2.3, classnames@npm:^2.2.5, classnames@npm:^2.2.6, classnames@npm:^2.3.1, classnames@npm:^2.3.2":
   version: 2.5.1
   resolution: "classnames@npm:2.5.1"
@@ -11443,13 +11389,6 @@ __metadata:
   version: 1.2.1
   resolution: "clsx@npm:1.2.1"
   checksum: 10c0/34dead8bee24f5e96f6e7937d711978380647e936a22e76380290e35486afd8634966ce300fc4b74a32f3762c7d4c0303f442c3e259f4ce02374eb0c82834f27
-  languageName: node
-  linkType: hard
-
-"clsx@npm:^2.1.1":
-  version: 2.1.1
-  resolution: "clsx@npm:2.1.1"
-  checksum: 10c0/c4c8eb865f8c82baab07e71bfa8897c73454881c4f99d6bc81585aecd7c441746c1399d08363dc096c550cceaf97bd4ce1e8854e1771e9998d9f94c4fe075839
   languageName: node
   linkType: hard
 
@@ -21018,7 +20957,6 @@ __metadata:
     "@rabby-wallet/rabby-security-engine": "npm:2.0.12"
     "@rabby-wallet/rabby-swap": "npm:0.0.90"
     "@rabby-wallet/staking-sdk": "npm:0.1.0"
-    "@radix-ui/react-tabs": "npm:1.1.22"
     "@radix-ui/react-toggle-group": "npm:1.1.20"
     "@safe-global/protocol-kit": "npm:5.0.3"
     "@safe-global/sdk-starter-kit": "npm:1.1.1"
@@ -21061,7 +20999,6 @@ __metadata:
     bignumber.js: "npm:9.0.1"
     browserify-zlib: "npm:0.2.0"
     buffer: "npm:6.0.3"
-    class-variance-authority: "npm:0.7.1"
     clipboard: "npm:2.0.8"
     clsx: "npm:1.1.1"
     code-inspector-plugin: "npm:1.4.3"
