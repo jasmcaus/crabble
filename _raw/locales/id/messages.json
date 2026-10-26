@@ -1541,6 +1541,12 @@
           "description": "Token yang dihapus akan disembunyikan dari Portofolio di semua alamat Anda, tetapi tetap disertakan dalam perhitungan saldo.",
           "loadFailed": "Gagal memuat token",
           "retry": "Coba lagi"
+        },
+        "appearance": {
+          "title": "Tampilan",
+          "light": "Terang",
+          "dark": "Gelap",
+          "system": "Sistem"
         }
       },
       "tokenDetail": {

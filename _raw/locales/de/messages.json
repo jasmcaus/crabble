@@ -1413,6 +1413,12 @@
           "description": "Entfernte Token werden für alle Ihre Adressen in Ihrem Portfolio ausgeblendet, aber weiterhin bei der Berechnung Ihres Guthabens berücksichtigt.",
           "loadFailed": "Token konnte nicht geladen werden",
           "retry": "Erneut versuchen"
+        },
+        "appearance": {
+          "title": "Erscheinungsbild",
+          "light": "Hell",
+          "dark": "Dunkel",
+          "system": "System"
         }
       },
       "tokenDetail": {

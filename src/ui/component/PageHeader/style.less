@@ -28,6 +28,7 @@
     .icon-back-container {
       position: absolute;
       top: 50%;
+      bottom: auto;
       transform: translateY(-50%);
     }
   }
@@ -50,11 +51,26 @@
     min-height: 64px;
   }
   .icon-back-container {
-    height: 20px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
     cursor: pointer;
     position: absolute;
-    left: 0;
-    bottom: 0;
+    left: -6px;
+    bottom: -6px;
+    z-index: 1;
+    transition: background-color 0.14s var(--crb-ease, ease);
+
+    &:hover {
+      background: var(--crb-hover);
+    }
+
+    &:active {
+      background: var(--crb-press);
+    }
   }
   .icon-back {
     width: 20px;
@@ -62,11 +78,18 @@
   }
   .icon-close {
     position: absolute;
-    width: 20px;
-    height: 20px;
-    bottom: 0;
-    right: 0;
+    width: 32px;
+    height: 32px;
+    padding: 6px;
+    border-radius: 10px;
+    bottom: -6px;
+    right: -6px;
     cursor: pointer;
+    transition: background-color 0.14s var(--crb-ease, ease);
+
+    &:hover {
+      background: var(--crb-hover);
+    }
   }
   .header-content {
     width: 100%;
@@ -79,13 +102,13 @@
 .page-header .page-header-title {
   font-family: 'Instrument Serif', ui-serif, Georgia, serif;
   font-weight: 400;
-  font-size: 28px;
-  line-height: 32px;
+  font-size: 26px;
+  line-height: 30px;
   letter-spacing: -0.01em;
 }
 
 .page-header.thin-header .page-header-title {
   display: block;
-  font-size: 26px;
-  line-height: 28px;
+  font-size: 24px;
+  line-height: 26px;
 }

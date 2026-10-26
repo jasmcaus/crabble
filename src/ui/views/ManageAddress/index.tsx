@@ -282,7 +282,7 @@ const ManageAddress = () => {
 
             <div className="flex-1 min-h-0 flex flex-col overflow-hidden">
               <div className="px-20 mb-8">
-                <div className="rounded-[8px] bg-r-neutral-card-1 flex flex-wrap p-[3px]">
+                <div className="rounded-[12px] bg-[var(--crb-sunken)] flex flex-wrap gap-[2px] p-[3px]">
                   {typedWalletIdList?.map((id, i) => {
                     const item = TypedWalletObj?.[id];
                     const list = item?.list;
@@ -306,7 +306,7 @@ const ManageAddress = () => {
 
                 {TypedWalletObj?.[activeIndex] ? (
                   <div className="flex items-center justify-between mt-20 ">
-                    <div className="text-[17px] text-r-neutral-title-1 font-medium">
+                    <div className="text-[15px] text-r-neutral-title-1 font-semibold tracking-[-0.01em]">
                       {TypedWalletObj?.[activeIndex]?.name}
                     </div>
                     <div className="flex items-center gap-16">

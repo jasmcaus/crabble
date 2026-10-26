@@ -1541,6 +1541,12 @@
           "description": "Token đã xóa sẽ bị ẩn khỏi danh mục đầu tư trên tất cả địa chỉ của bạn, nhưng vẫn được tính vào số dư.",
           "loadFailed": "Không thể tải token",
           "retry": "Thử lại"
+        },
+        "appearance": {
+          "title": "Giao diện",
+          "light": "Sáng",
+          "dark": "Tối",
+          "system": "Hệ thống"
         }
       },
       "tokenDetail": {

@@ -1,3 +1,8 @@
+/* Declared first so its !important rules outrank tailwind's (layered
+   !important declarations win in reverse layer order). Only state overrides
+   that must beat utility classes live there (see crabble-ui.less). */
+@layer crb-overrides;
+
 @config "../../../tailwind.config.js";
 @source "../";
 

@@ -368,13 +368,13 @@ const Unlock = () => {
           )}
           <img
             src={rabbyLogo}
-            className="crabble-brand-tile m-auto w-[88px] h-[88px]"
+            className="crabble-brand-tile m-auto w-[76px] h-[76px]"
           />
           <h1
             className={clsx(
               'crb-display text-[40px] leading-[44px]',
               'text-r-neutral-title1',
-              'mt-12',
+              'mt-[20px]',
               'text-center'
             )}
           >
@@ -384,7 +384,7 @@ const Unlock = () => {
             className={clsx(
               'text-[14px] font-normal leading-[20px]',
               'text-r-neutral-foot',
-              'mt-12 mx-[52px]',
+              'mt-[8px] mx-[52px]',
               'text-center'
             )}
           >
@@ -402,8 +402,8 @@ const Unlock = () => {
                 <Button
                   block
                   className={clsx(
-                    'w-full py-18 h-auto rounded-[12px] border-none',
-                    'text-[17px] leading-[20px] font-normal'
+                    'w-full h-[52px] rounded-[14px] border-none',
+                    'text-[16px] leading-[20px] font-semibold'
                   )}
                   htmlType="button"
                   type="primary"
@@ -433,10 +433,11 @@ const Unlock = () => {
               <Input
                 placeholder={t('page.unlock.password.placeholder')}
                 className={clsx(
-                  'bg-r-neutral-card1 hover:border-rabby-blue-default focus:border-rabby-blue-default placeholder-r-neutral-foot',
-                  'h-[56px]',
-                  'text-14',
-                  'rounded-[12px]'
+                  'bg-[var(--crb-input-bg)] border border-solid border-[var(--crb-input-border)]',
+                  'hover:border-[var(--crb-input-border-hover)] focus:border-rabby-blue-default placeholder-r-neutral-foot',
+                  'h-[52px] px-[16px]',
+                  'text-[15px]',
+                  'rounded-[14px] shadow-[var(--crb-shadow-xs)]'
                 )}
                 size="large"
                 type="password"
@@ -453,9 +454,9 @@ const Unlock = () => {
                 <Button
                   block
                   className={clsx(
-                    'w-full py-18 h-auto rounded-[12px] border-none',
-                    'text-[17px] leading-[20px]',
-                    'font-medium'
+                    'w-full h-[52px] rounded-[14px] border-none',
+                    'text-[16px] leading-[20px]',
+                    'font-semibold'
                   )}
                   htmlType="submit"
                   type="primary"
@@ -467,10 +468,11 @@ const Unlock = () => {
 
               {hasForgotPassword && (
                 <button
+                  type="button"
                   className={clsx(
-                    'text-r-neutral-body',
+                    'text-r-neutral-foot hover:text-r-neutral-title1 transition-colors',
                     'text-13 leading-[16px] font-medium',
-                    'hover:underline'
+                    'bg-transparent border-0 cursor-pointer'
                   )}
                   onClick={() => openInternalPageInTab('forgot-password')}
                 >

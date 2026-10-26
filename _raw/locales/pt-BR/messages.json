@@ -1413,6 +1413,12 @@
           "description": "Os tokens removidos ficarão ocultos no seu Portfólio em todos os seus endereços, mas continuarão incluídos no cálculo do seu saldo.",
           "loadFailed": "Não foi possível carregar o token",
           "retry": "Tentar novamente"
+        },
+        "appearance": {
+          "title": "Aparência",
+          "light": "Claro",
+          "dark": "Escuro",
+          "system": "Sistema"
         }
       },
       "tokenDetail": {

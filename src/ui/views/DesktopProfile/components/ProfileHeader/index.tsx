@@ -85,7 +85,7 @@ export const ProfileHeader: React.FC<{
           </div>
         </div>
       </div>
-      <div className="crb-hero-card">
+      <div className="crb-hero-card crb-card overflow-hidden">
         <BalanceView {...props} />
       </div>
     </>

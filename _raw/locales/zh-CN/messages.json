@@ -354,6 +354,12 @@
           "description": "移除的代币会从你所有地址的投资组合中隐藏，但仍计入余额。",
           "loadFailed": "加载代币失败",
           "retry": "重试"
+        },
+        "appearance": {
+          "title": "外观",
+          "light": "浅色",
+          "dark": "深色",
+          "system": "跟随系统"
         }
       },
       "tokenDetail": {

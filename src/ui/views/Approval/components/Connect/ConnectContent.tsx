@@ -197,18 +197,18 @@ const RuleDesc = [
 
 const SecurityLevelTipColor = {
   [Level.FORBIDDEN]: {
-    bg: '#EFCFCF',
-    text: '#AF160E',
+    bg: 'var(--r-red-light-2, #EFCFCF)',
+    text: 'var(--r-red-dark, #AF160E)',
     icon: SecurityEngineLevel[Level.FORBIDDEN].icon,
   },
   [Level.DANGER]: {
-    bg: '#FCDCDC',
-    text: '#EC5151',
+    bg: 'var(--r-red-light, #FCDCDC)',
+    text: 'var(--r-red-default, #EC5151)',
     icon: SecurityEngineLevel[Level.DANGER].icon,
   },
   [Level.WARNING]: {
-    bg: '#FFEFD2',
-    text: '#FFB020',
+    bg: 'var(--r-orange-light, #FFEFD2)',
+    text: 'var(--r-orange-default, #FFB020)',
     icon: SecurityEngineLevel[Level.WARNING].icon,
   },
 };

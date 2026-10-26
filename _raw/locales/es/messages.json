@@ -1413,6 +1413,12 @@
           "description": "Los tokens eliminados se ocultarán de tu Portafolio en todas tus direcciones, pero seguirán incluidos en el cálculo de tu saldo.",
           "loadFailed": "No se pudo cargar el token",
           "retry": "Reintentar"
+        },
+        "appearance": {
+          "title": "Apariencia",
+          "light": "Claro",
+          "dark": "Oscuro",
+          "system": "Sistema"
         }
       },
       "tokenDetail": {

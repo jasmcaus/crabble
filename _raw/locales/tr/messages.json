@@ -1413,6 +1413,12 @@
           "description": "Kaldırılan tokenlar, tüm adreslerinizde portföyünüzden gizlenir ancak bakiye hesaplamasına dahil edilmeye devam eder.",
           "loadFailed": "Token yüklenemedi",
           "retry": "Tekrar Dene"
+        },
+        "appearance": {
+          "title": "Görünüm",
+          "light": "Açık",
+          "dark": "Koyu",
+          "system": "Sistem"
         }
       },
       "tokenDetail": {

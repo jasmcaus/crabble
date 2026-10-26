@@ -198,15 +198,19 @@ button,
   }
 }
 
-.ant-btn-primary[disabled],
-.ant-btn-primary[disabled]:hover,
-.ant-btn-primary[disabled]:focus,
-.ant-btn-primary[disabled]:active {
-  background: var(--crb-disabled-bg) !important;
-  border-color: transparent !important;
-  color: var(--crb-disabled-fg) !important;
-  box-shadow: none !important;
-  text-shadow: none;
+/* disabled must win over feature classes like `text-white` or
+   `bg-r-blue-default`, which tailwind marks !important inside its layer */
+@layer crb-overrides {
+  .ant-btn-primary[disabled],
+  .ant-btn-primary[disabled]:hover,
+  .ant-btn-primary[disabled]:focus,
+  .ant-btn-primary[disabled]:active {
+    background: var(--crb-disabled-bg) !important;
+    border-color: transparent !important;
+    color: var(--crb-disabled-fg) !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
 }
 
 /* secondary: quiet outline (shadcn "outline").

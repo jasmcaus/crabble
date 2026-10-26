@@ -1133,6 +1133,12 @@
           "description": "Les tokens supprimés seront masqués dans votre Portefeuille pour toutes vos adresses, mais resteront inclus dans le calcul de votre solde.",
           "loadFailed": "Impossible de charger le token",
           "retry": "Réessayer"
+        },
+        "appearance": {
+          "title": "Apparence",
+          "light": "Clair",
+          "dark": "Sombre",
+          "system": "Système"
         }
       },
       "tokenDetail": {

@@ -60,7 +60,14 @@
     line-height: 14px;
     .tx-id {
       color: var(--r-neutral-foot, #b5b1aa);
-      text-decoration: underline;
+      font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      &:hover {
+        color: var(--r-neutral-title-1);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
       &-chain {
         color: var(--r-neutral-body, #d4d4d8);
         margin-right: 8px;

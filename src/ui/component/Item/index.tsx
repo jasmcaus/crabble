@@ -10,7 +10,7 @@ import styled, { css } from 'styled-components';
 import IconArrowRight, {
   ReactComponent as RcIconArrowRight,
 } from 'ui/assets/address/right-arrow.svg';
-import ArrowLeftWhiteBack from 'ui/assets/import/arrow-left-white.svg';
+import { ChevronLeft } from 'lucide-react';
 import ThemeIcon from '../ThemeMode/ThemeIcon';
 import { ThemeIconType } from '@/constant';
 
@@ -27,11 +27,13 @@ const ItemWrapper = styled.div<{
   width: 100%;
 
   background-color: ${(p) => p.bgColor};
-  border-radius: 8px;
+  border-radius: 14px;
+  box-shadow: var(--crb-shadow-card);
   cursor: pointer;
   display: flex;
   align-items: center;
   border: 1px solid transparent;
+  transition: background-color 0.14s ease, transform 0.12s ease;
   padding-top: ${({ py: y }) => (typeof y === 'number' ? y + 'px' : y)};
   padding-bottom: ${({ py: y }) => (typeof y === 'number' ? y + 'px' : y)};
   padding-left: ${({ px: x }) => (typeof x === 'number' ? x + 'px' : x)};
@@ -43,7 +45,9 @@ const ItemWrapper = styled.div<{
       ? css`
           &:hover {
             background-color: ${p.hoverBgColor};
-            border-color: var(--r-blue-default, #f26b3a);
+          }
+          &:active {
+            transform: scale(0.99);
           }
         `
       : ''}
@@ -84,7 +88,7 @@ export const Item = (props: PropsWithChildren<ItemProps>) => {
     px = 16,
     py = 15,
     bgColor = 'var(--r-neutral-card-1, #fff)',
-    hoverBgColor = 'var(--r-blue-light-2, #fdefe9)',
+    hoverBgColor = 'var(--crb-sunken, #f4f4f5)',
     className = '',
     leftIconClassName = '',
     rightIconClassName = '',
@@ -124,13 +128,7 @@ export const Item = (props: PropsWithChildren<ItemProps>) => {
 const BlueHeaderWrapper = styled.div<{ fixed?: boolean }>`
   position: relative;
   height: 56px;
-  background-color: #141416;
-  background-image: radial-gradient(
-      60% 160% at 100% 0%,
-      rgba(255, 143, 97, 0.34) 0%,
-      rgba(255, 143, 97, 0) 70%
-    ),
-    linear-gradient(160deg, #26252a 0%, #141416 100%);
+  background-color: var(--r-neutral-bg-2, #f6f6f7);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -154,22 +152,24 @@ const BlueHeaderWrapper = styled.div<{ fixed?: boolean }>`
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: var(--r-neutral-title-1, #09090b);
   }
 
   .back {
     position: absolute;
     top: 16px;
-    left: 20px;
-    width: 24px;
-    height: 24px;
+    left: 14px;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    & img {
-      width: 9px;
-      height: 16px;
+    color: var(--r-neutral-title-1, #09090b);
+    transition: background-color 0.14s ease;
+    &:hover {
+      background: var(--crb-hover);
     }
   }
 `;
@@ -212,7 +212,7 @@ export const BlueHeader = ({
             className={clsx('back top-1/2 -translate-y-2/4', leftIconClassName)}
             onClick={goBack}
           >
-            <img src={ArrowLeftWhiteBack} />
+            <ChevronLeft size={22} strokeWidth={2} />
           </div>
         )}
 
