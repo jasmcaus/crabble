@@ -73,6 +73,11 @@
     background-color: var(--r-blue-disable, rgba(243, 172, 148, 1));
     border-color: var(--r-blue-disable, rgba(243, 172, 148, 1));
     box-shadow: none;
+
+    /* dim coral reads as enabled in the dark; dim the label too */
+    html.dark & {
+      color: rgba(255, 255, 255, 0.45);
+    }
   }
 }
 /*---------------------
