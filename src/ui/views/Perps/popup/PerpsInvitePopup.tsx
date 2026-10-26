@@ -67,7 +67,7 @@ export const PerpsInvitePopup: React.FC<{
       height={'fit-content'}
       bodyStyle={{
         padding: 0,
-        background: 'var(--r-neutral-bg2, #F3F2EF)',
+        background: 'var(--r-neutral-bg2, #F4F4F5)',
         borderRadius: '16px 16px 0 0',
       }}
       closeIcon={

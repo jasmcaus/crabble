@@ -129,7 +129,7 @@ export const ImportHardwareList = () => {
             >
               <Item
                 key={item.type + index}
-                bgColor="var(--r-neutral-card2, #F3F2EF)"
+                bgColor="var(--r-neutral-card2, #F4F4F5)"
                 px={16}
                 py={13}
                 leftIcon={item.logo}

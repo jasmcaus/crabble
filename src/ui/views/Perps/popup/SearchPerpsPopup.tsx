@@ -23,7 +23,7 @@ const SearchInput = styled(Input)`
   height: 46px !important;
   border-radius: 8px !important;
   input::placeholder {
-    color: var(--r-neutral-foot, #827e77) !important;
+    color: var(--r-neutral-foot, #71717a) !important;
   }
   &:hover {
     border-color: var(--r-blue-default, #f26b3a) !important;

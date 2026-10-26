@@ -100,7 +100,7 @@ export const ImportWalletType = () => {
     >
       <div className="mt-24 flex flex-col items-center justify-center gap-16">
         <Item
-          bgColor="var(--r-neutral-card2, #F3F2EF)"
+          bgColor="var(--r-neutral-card2, #F4F4F5)"
           px={16}
           py={20}
           leftIconClassName="w-24 h-24 mr-12"
@@ -128,7 +128,7 @@ export const ImportWalletType = () => {
           </div>
         </Item>
         <Item
-          bgColor="var(--r-neutral-card2, #F3F2EF)"
+          bgColor="var(--r-neutral-card2, #F4F4F5)"
           px={16}
           py={20}
           leftIconClassName="w-24 h-24 mr-12"

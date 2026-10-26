@@ -2,59 +2,146 @@
    Loaded after antd and the inherited overrides, so component-level design
    decisions live here instead of being scattered through feature styles.
 
-   Principles:
-   - One accent. Coral is reserved for the primary action and the active
-     value; selection, tabs and secondary actions are expressed in ink.
-   - Edges, not fills. Surfaces are defined by a hairline and a soft shadow
-     rather than gray slabs or heavy dividers.
-   - One radius scale: 8 (controls) / 12 (fields, buttons, cards) /
-     20 (sheets, dialogs).
-   - Disabled is neutral, never a washed-out version of the brand. */
+   The system is modelled on shadcn/ui + Geist:
+   - Zinc neutrals, one accent. Coral is the primary action, the focus ring
+     and the chart; everything else is ink on zinc.
+   - Edges, not slabs. A surface is a 1px hairline plus a very soft shadow.
+   - One radius scale: 8 (small controls) / 10 (controls) / 12 (fields and
+     buttons) / 16 (cards) / 20 (sheets and dialogs) / full (chips).
+   - States are explicit: hover tints, active presses, focus-visible rings,
+     disabled is neutral (never a washed-out brand colour).
+   - Motion is short and eased (150–220ms, ease-out-quint). */
 
 :root {
-  --crb-hairline: rgba(26, 25, 23, 0.08);
-  --crb-hairline-strong: rgba(26, 25, 23, 0.14);
-  --crb-sunken: #eeece8;
-  --crb-sunken-hover: #e6e3de;
+  --crb-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --crb-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --crb-hairline: rgba(9, 9, 11, 0.07);
+  --crb-hairline-strong: rgba(9, 9, 11, 0.12);
+  --crb-sunken: #f4f4f5;
+  --crb-sunken-hover: #ececef;
+  --crb-hover: rgba(9, 9, 11, 0.04);
+  --crb-press: rgba(9, 9, 11, 0.07);
   --crb-thumb: #ffffff;
   --crb-raised: #ffffff;
-  --crb-shadow-thumb: 0 1px 2px rgba(26, 25, 23, 0.1),
-    0 0 0 0.5px rgba(26, 25, 23, 0.06);
-  --crb-shadow-card: 0 1px 2px rgba(26, 25, 23, 0.04),
-    0 0 0 1px rgba(26, 25, 23, 0.05);
-  --crb-shadow-pop: 0 18px 48px -12px rgba(26, 25, 23, 0.22),
-    0 0 0 1px rgba(26, 25, 23, 0.06);
-  --crb-ring: 0 0 0 3px rgba(232, 85, 42, 0.16);
-  --crb-disabled-bg: #ebe9e5;
-  --crb-disabled-fg: #aaa69f;
-  --crb-switch-off: #d9d5cf;
-  --crb-tooltip-bg: #1a1917;
-  --crb-chip-ink: #1a1917;
-  --crb-input-border: #e3e0da;
-  /* opaque card surface (card-1 is translucent in dark mode) */
   --crb-card-solid: #ffffff;
+  --crb-popover: #ffffff;
+
+  --crb-shadow-xs: 0 1px 2px rgba(9, 9, 11, 0.05);
+  --crb-shadow-thumb: 0 1px 2px rgba(9, 9, 11, 0.08),
+    0 0 0 0.5px rgba(9, 9, 11, 0.08);
+  --crb-shadow-card: 0 0 0 1px rgba(9, 9, 11, 0.06),
+    0 1px 2px rgba(9, 9, 11, 0.04);
+  --crb-shadow-raised: 0 0 0 1px rgba(9, 9, 11, 0.06),
+    0 2px 6px -1px rgba(9, 9, 11, 0.06), 0 8px 24px -8px rgba(9, 9, 11, 0.08);
+  --crb-shadow-pop: 0 0 0 1px rgba(9, 9, 11, 0.07),
+    0 12px 32px -8px rgba(9, 9, 11, 0.16), 0 4px 8px -4px rgba(9, 9, 11, 0.06);
+
+  --crb-ring-color: rgba(232, 85, 42, 0.28);
+  --crb-ring: 0 0 0 3px var(--crb-ring-color);
+  --crb-ring-ink: 0 0 0 2px var(--r-neutral-bg-1, #fff),
+    0 0 0 4px rgba(232, 85, 42, 0.55);
+
+  --crb-disabled-bg: #f0f0f2;
+  --crb-disabled-fg: #a1a1aa;
+  --crb-switch-off: #e4e4e7;
+  --crb-tooltip-bg: #18181b;
+  --crb-tooltip-fg: #fafafa;
+  --crb-chip-ink: #18181b;
+  --crb-input-bg: #ffffff;
+  --crb-input-border: #e4e4e7;
+  --crb-input-border-hover: #d4d4d8;
+
+  --crb-primary-hover: #d94b21;
+  --crb-primary-press: #c9441d;
+  --crb-primary-shadow: 0 1px 2px rgba(201, 68, 29, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
 html.dark {
   --crb-hairline: rgba(255, 255, 255, 0.07);
-  --crb-hairline-strong: rgba(255, 255, 255, 0.14);
+  --crb-hairline-strong: rgba(255, 255, 255, 0.12);
   --crb-sunken: rgba(255, 255, 255, 0.06);
-  --crb-sunken-hover: rgba(255, 255, 255, 0.1);
-  --crb-thumb: #2c2c30;
-  --crb-raised: #1c1c1f;
+  --crb-sunken-hover: rgba(255, 255, 255, 0.09);
+  --crb-hover: rgba(255, 255, 255, 0.05);
+  --crb-press: rgba(255, 255, 255, 0.08);
+  --crb-thumb: #3f3f46;
+  --crb-raised: #18181b;
+  --crb-card-solid: #141417;
+  --crb-popover: #18181b;
+
+  --crb-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
   --crb-shadow-thumb: 0 1px 2px rgba(0, 0, 0, 0.5),
-    inset 0 0.5px 0 rgba(255, 255, 255, 0.08);
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.1);
   --crb-shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.06);
-  --crb-shadow-pop: 0 24px 56px -12px rgba(0, 0, 0, 0.7),
-    0 0 0 1px rgba(255, 255, 255, 0.08);
-  --crb-ring: 0 0 0 3px rgba(242, 107, 58, 0.26);
+  --crb-shadow-raised: 0 0 0 1px rgba(255, 255, 255, 0.07),
+    0 8px 24px -8px rgba(0, 0, 0, 0.6);
+  --crb-shadow-pop: 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 16px 40px -8px rgba(0, 0, 0, 0.7);
+
+  --crb-ring-color: rgba(242, 107, 58, 0.32);
+  --crb-ring-ink: 0 0 0 2px var(--r-neutral-bg-1, #111113),
+    0 0 0 4px rgba(242, 107, 58, 0.6);
+
   --crb-disabled-bg: rgba(255, 255, 255, 0.06);
-  --crb-disabled-fg: rgba(255, 255, 255, 0.3);
-  --crb-switch-off: rgba(255, 255, 255, 0.16);
-  --crb-tooltip-bg: #2c2c30;
-  --crb-chip-ink: #2c2c30;
-  --crb-input-border: rgba(255, 255, 255, 0.1);
-  --crb-card-solid: #1a1a1c;
+  --crb-disabled-fg: rgba(255, 255, 255, 0.32);
+  --crb-switch-off: rgba(255, 255, 255, 0.14);
+  --crb-tooltip-bg: #27272a;
+  --crb-tooltip-fg: #fafafa;
+  --crb-chip-ink: #27272a;
+  --crb-input-bg: rgba(255, 255, 255, 0.035);
+  --crb-input-border: rgba(255, 255, 255, 0.09);
+  --crb-input-border-hover: rgba(255, 255, 255, 0.16);
+
+  --crb-primary-hover: #f47d50;
+  --crb-primary-press: #e25d2e;
+  --crb-primary-shadow: 0 1px 2px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+/*---------------------------------------------------------------
+  Base
+---------------------------------------------------------------*/
+html,
+body {
+  letter-spacing: -0.006em;
+}
+
+:focus-visible {
+  outline: none;
+}
+
+a,
+button,
+[role='button'],
+.ant-btn,
+.ant-switch {
+  -webkit-tap-highlight-color: transparent;
+
+  &:focus-visible {
+    box-shadow: var(--crb-ring-ink) !important;
+  }
+}
+
+/* thin, quiet scrollbars everywhere */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--crb-hairline-strong);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+
+  &:hover {
+    background-color: rgba(113, 113, 122, 0.5);
+  }
 }
 
 /*---------------------------------------------------------------
@@ -62,40 +149,51 @@ html.dark {
 ---------------------------------------------------------------*/
 .ant-btn {
   border-radius: 10px;
-  font-weight: 600;
-  letter-spacing: -0.005em;
-  transition: background-color 0.15s ease, border-color 0.15s ease,
-    color 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease,
-    transform 0.08s ease;
+  font-weight: 550;
+  letter-spacing: -0.01em;
+  transition: background-color 0.16s var(--crb-ease),
+    border-color 0.16s var(--crb-ease), color 0.16s var(--crb-ease),
+    box-shadow 0.16s var(--crb-ease), opacity 0.16s var(--crb-ease),
+    transform 0.12s var(--crb-ease);
 
-  /* the inherited gray hover veil muddies every fill; hover is handled per type */
+  /* the inherited gray hover veil muddies every fill; hover is per type */
   &::before {
     display: none !important;
   }
 
   &:not([disabled]):active {
-    transform: scale(0.985);
+    transform: scale(0.98);
   }
 }
 
 .ant-btn-lg {
   border-radius: 12px;
+  font-size: 15px;
 }
 
 .ant-btn-sm {
   border-radius: 8px;
+  font-size: 13px;
 }
 
-.ant-btn-primary:not(.ant-btn-background-ghost):not([disabled]) {
-  &:hover,
-  &:focus {
-    filter: brightness(0.94);
-  }
+/* primary: the one coral thing on the screen */
+.ant-btn-primary:not(.ant-btn-background-ghost):not(.ant-btn-dangerous) {
+  &:not([disabled]) {
+    background: var(--r-blue-default);
+    border-color: transparent;
+    color: #fff;
+    box-shadow: var(--crb-primary-shadow);
 
-  html.dark & {
     &:hover,
     &:focus {
-      filter: brightness(1.08);
+      background: var(--crb-primary-hover);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: var(--crb-primary-shadow);
+    }
+
+    &:active {
+      background: var(--crb-primary-press);
     }
   }
 }
@@ -111,21 +209,24 @@ html.dark {
   text-shadow: none;
 }
 
-/* Secondary: the outlined brand button becomes a quiet neutral one, so the
-   primary action is the only coral thing in a footer.
+/* secondary: quiet outline (shadcn "outline").
    Not !important: buttons a feature styled explicitly keep their look. */
 .ant-btn-primary.ant-btn-background-ghost:not([disabled]),
 .ant-btn-default:not([disabled]):not(.ant-btn-dangerous):not(.ant-btn-icon-only) {
   background: var(--crb-raised);
   border-color: var(--crb-hairline-strong);
   color: var(--r-neutral-title-1);
-  box-shadow: 0 1px 2px rgba(26, 25, 23, 0.04);
+  box-shadow: var(--crb-shadow-xs);
 
   &:hover,
   &:focus {
     background: var(--crb-sunken);
     border-color: var(--crb-hairline-strong);
     color: var(--r-neutral-title-1);
+  }
+
+  &:active {
+    background: var(--crb-sunken-hover);
   }
 }
 
@@ -134,11 +235,60 @@ html.dark {
   background: transparent;
   border-color: var(--crb-hairline);
   color: var(--crb-disabled-fg);
+  box-shadow: none;
 }
 
+/* ghost / text / link */
+.ant-btn-text:not([disabled]) {
+  color: var(--r-neutral-title-1);
+
+  &:hover,
+  &:focus {
+    background: var(--crb-hover);
+    color: var(--r-neutral-title-1);
+  }
+
+  &:active {
+    background: var(--crb-press);
+  }
+}
+
+.ant-btn-link:not([disabled]) {
+  color: var(--r-blue-default);
+
+  &:hover,
+  &:focus {
+    color: var(--crb-primary-hover);
+    background: transparent;
+  }
+}
+
+/* destructive */
 .ant-btn-dangerous.ant-btn-primary:not([disabled]) {
   background: var(--r-red-default) !important;
-  border-color: var(--r-red-default) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  box-shadow: 0 1px 2px rgba(185, 28, 28, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+
+  &:hover,
+  &:focus {
+    filter: brightness(0.95);
+  }
+}
+
+.ant-btn-dangerous.ant-btn-default:not([disabled]),
+.ant-btn-dangerous.ant-btn-background-ghost:not([disabled]) {
+  background: var(--crb-raised);
+  border-color: var(--crb-hairline-strong);
+  color: var(--r-red-default);
+
+  &:hover,
+  &:focus {
+    background: var(--r-red-light);
+    border-color: transparent;
+    color: var(--r-red-default);
+  }
 }
 
 /*---------------------------------------------------------------
@@ -149,14 +299,20 @@ html.dark {
 .ant-input-number,
 .ant-select:not(.ant-select-customize-input) .ant-select-selector {
   border-radius: 10px;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease,
-    background-color 0.15s ease;
+  transition: border-color 0.16s var(--crb-ease),
+    box-shadow 0.16s var(--crb-ease), background-color 0.16s var(--crb-ease);
 }
 
 .ant-input-lg,
 .ant-input-affix-wrapper-lg,
 textarea.ant-input {
   border-radius: 12px;
+}
+
+.ant-input::placeholder,
+.ant-input-number-input::placeholder,
+textarea::placeholder {
+  color: var(--rb-neutral-secondary, #a1a1aa);
 }
 
 /* the affix wrapper owns the border; the inner input stays flat */
@@ -180,6 +336,19 @@ textarea.ant-input {
   box-shadow: none;
 }
 
+.ant-input-borderless,
+.ant-input-borderless:focus,
+.ant-input-affix-wrapper-borderless,
+.ant-input-affix-wrapper-borderless.ant-input-affix-wrapper-focused {
+  box-shadow: none !important;
+}
+
+.ant-form-item-explain-error {
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 6px;
+}
+
 /*---------------------------------------------------------------
   Switch
 ---------------------------------------------------------------*/
@@ -188,16 +357,19 @@ textarea.ant-input {
   height: 20px;
   line-height: 20px;
   background: var(--crb-switch-off);
+  transition: background-color 0.2s var(--crb-ease);
 
   .ant-switch-handle {
     top: 2px;
     left: 2px;
     width: 16px;
     height: 16px;
+    transition: left 0.22s var(--crb-ease);
 
     &::before {
       border-radius: 50%;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 0 0 0.5px rgba(0, 0, 0, 0.04);
+      background: #fff;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16), 0 0 0 0.5px rgba(0, 0, 0, 0.04);
     }
   }
 
@@ -233,15 +405,18 @@ textarea.ant-input {
 }
 
 .ant-switch-disabled {
-  opacity: 0.5;
+  opacity: 0.45;
 }
 
 /*---------------------------------------------------------------
   Checkbox / radio
 ---------------------------------------------------------------*/
 .ant-checkbox .ant-checkbox-inner {
+  border-radius: 5px;
   border: 1.5px solid var(--crb-hairline-strong);
   background-color: transparent;
+  transition: background-color 0.15s var(--crb-ease),
+    border-color 0.15s var(--crb-ease);
 }
 
 .ant-checkbox-checked .ant-checkbox-inner {
@@ -249,13 +424,21 @@ textarea.ant-input {
   background-color: var(--r-blue-default);
 }
 
+.ant-checkbox-checked::after {
+  display: none;
+}
+
 .ant-radio-inner {
   border-width: 1.5px;
   border-color: var(--crb-hairline-strong);
 }
 
+.ant-radio-checked .ant-radio-inner {
+  border-color: var(--r-blue-default);
+}
+
 /*---------------------------------------------------------------
-  Tabs
+  Tabs: ink label and a 2px ink indicator
 ---------------------------------------------------------------*/
 .ant-tabs {
   > .ant-tabs-nav::before {
@@ -265,7 +448,7 @@ textarea.ant-input {
   .ant-tabs-tab {
     font-weight: 500;
     color: var(--r-neutral-foot);
-    transition: color 0.15s ease;
+    transition: color 0.16s var(--crb-ease);
 
     &:hover {
       color: var(--r-neutral-title-1);
@@ -289,17 +472,17 @@ textarea.ant-input {
   Dialogs, sheets and floating surfaces
 ---------------------------------------------------------------*/
 .ant-modal-content {
-  border: none;
+  border: none !important;
   border-radius: 20px;
   box-shadow: var(--crb-shadow-pop);
 }
 
 .ant-modal-title,
 .ant-modal-confirm-body .ant-modal-confirm-title {
-  font-size: 18px;
+  font-size: 17px;
   line-height: 24px;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 
 .ant-modal-confirm-body .ant-modal-confirm-content {
@@ -307,7 +490,7 @@ textarea.ant-input {
 }
 
 .ant-modal-confirm-body-wrapper .ant-modal-confirm-btns .ant-btn {
-  font-weight: 600;
+  font-weight: 550;
   border-radius: 12px;
 }
 
@@ -334,19 +517,90 @@ textarea.ant-input {
 .ant-dropdown-menu,
 .ant-select-dropdown {
   border-radius: 12px;
-  box-shadow: var(--crb-shadow-pop);
+  box-shadow: var(--crb-shadow-pop) !important;
+}
+
+.ant-dropdown-menu,
+.ant-select-dropdown {
+  padding: 4px;
+
+  .ant-dropdown-menu-item,
+  .ant-select-item {
+    border-radius: 8px;
+    transition: background-color 0.12s var(--crb-ease);
+  }
+
+  .ant-dropdown-menu-item:hover,
+  .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+    background: var(--crb-hover);
+  }
+
+  .ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+    background: var(--crb-sunken);
+    font-weight: 550;
+  }
 }
 
 .ant-tooltip:not(.disable-ant-overwrite) .ant-tooltip-inner {
   background-color: var(--crb-tooltip-bg);
+  color: var(--crb-tooltip-fg);
   border-radius: 8px;
   padding: 6px 10px;
+  font-size: 12px;
   line-height: 16px;
+  box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.3);
 }
 
 .ant-tooltip:not(.disable-ant-overwrite) .ant-tooltip-arrow-content {
   --antd-arrow-background-color: var(--crb-tooltip-bg);
   background-color: var(--crb-tooltip-bg);
+}
+
+/*---------------------------------------------------------------
+  Toasts (antd message), styled after Sonner
+---------------------------------------------------------------*/
+.ant-message-notice-content {
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #18181b;
+  color: #fafafa;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 12px 32px -8px rgba(0, 0, 0, 0.35);
+
+  .ant-message-success {
+    color: #4ade80;
+    font-size: 13px;
+  }
+}
+
+html.dark .ant-message-notice-content {
+  background: #27272a;
+}
+
+/*---------------------------------------------------------------
+  Skeletons: a soft shimmer on the muted surface
+---------------------------------------------------------------*/
+.ant-skeleton.ant-skeleton-active {
+  .ant-skeleton-input,
+  .ant-skeleton-button,
+  .ant-skeleton-avatar,
+  .ant-skeleton-title,
+  .ant-skeleton-paragraph > li {
+    background: linear-gradient(
+      90deg,
+      var(--crb-sunken) 25%,
+      var(--crb-sunken-hover) 37%,
+      var(--crb-sunken) 63%
+    ) !important;
+    background-size: 400% 100% !important;
+  }
+}
+
+.ant-skeleton-input,
+.ant-skeleton-button {
+  border-radius: 8px;
 }
 
 /*---------------------------------------------------------------
@@ -364,21 +618,20 @@ textarea.ant-input {
 /*---------------------------------------------------------------
   Selected / current surfaces
 ---------------------------------------------------------------*/
-/* the current account reads as the same ink card as the dashboard hero */
 .crabble-ink-header {
   .crabble-ink-surface();
 }
 
 .crabble-ink-card {
   .crabble-ink-surface();
-  background-color: #141416 !important;
-  box-shadow: 0 12px 28px -14px rgba(26, 25, 23, 0.55);
+  background-color: #18181b !important;
+  box-shadow: 0 12px 28px -14px rgba(9, 9, 11, 0.55);
 }
 
 /*---------------------------------------------------------------
   Typography
-  Instrument Serif carries titles and hero numbers; Inter does the
-  work everywhere else. Small labels are uppercase and tracked.
+  Instrument Serif carries titles and hero numbers; Geist does the work
+  everywhere else; Geist Mono sets addresses and hashes.
 ---------------------------------------------------------------*/
 .crb-display {
   font-family: 'Instrument Serif', ui-serif, Georgia, serif;
@@ -387,106 +640,63 @@ textarea.ant-input {
   font-variant-numeric: lining-nums;
 }
 
+.crb-mono {
+  font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  letter-spacing: -0.02em;
+}
+
 .crb-eyebrow {
-  font-size: 11px;
-  line-height: 14px;
+  font-size: 12px;
+  line-height: 16px;
   font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   color: var(--r-neutral-foot);
 }
 
 /* trailing cents read quieter than the integer part */
 .crb-cents {
-  opacity: 0.4;
+  opacity: 0.38;
 }
 
 /*---------------------------------------------------------------
-  Hero card: hairline-bordered surface with a faint contour texture
+  Surfaces
 ---------------------------------------------------------------*/
-:root {
-  --crb-topo-ink: rgba(26, 25, 23, 0.07);
-  --crb-hero-glow: rgba(255, 143, 97, 0.14);
-}
-
-html.dark {
-  --crb-topo-ink: rgba(255, 255, 255, 0.06);
-  --crb-hero-glow: rgba(242, 107, 58, 0.12);
+.crb-card {
+  border-radius: 16px;
+  background: var(--crb-card-solid);
+  box-shadow: var(--crb-shadow-card);
 }
 
 .crb-hero-card {
   position: relative;
-  overflow: hidden;
   isolation: isolate;
-  border-radius: 20px;
-  background: var(--crb-card-solid);
-  box-shadow: var(--crb-shadow-card);
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background: var(--crb-topo-ink);
-    /* longhand on purpose: Less evaluates "pos / size" in the shorthand as division */
-    -webkit-mask-image: url('../assets/crabble/topo.svg');
-    mask-image: url('../assets/crabble/topo.svg');
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    -webkit-mask-size: 720px auto;
-    mask-size: 720px auto;
-    -webkit-mask-position: right -120px top -90px;
-    mask-position: right -120px top -90px;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background: radial-gradient(
-      80% 70% at 100% 0%,
-      var(--crb-hero-glow) 0%,
-      transparent 70%
-    );
-  }
 }
 
-/* change badge: +2.4% on a tint of its own color */
+/* change badge: +2.4% on a tint of its own colour */
 .crb-delta {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 3px;
   height: 22px;
-  padding: 0 8px;
+  padding: 0 7px 0 6px;
   border-radius: 999px;
   font-size: 12px;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
 
   &.is-up {
     color: var(--r-green-default);
-    background: rgba(23, 166, 115, 0.12);
+    background: var(--rb-green-light-1);
   }
 
   &.is-down {
     color: var(--r-red-default);
-    background: rgba(215, 52, 79, 0.1);
+    background: var(--rb-red-light-1);
   }
 }
 
-html.dark .crb-delta {
-  &.is-up {
-    background: rgba(45, 196, 141, 0.14);
-  }
-  &.is-down {
-    background: rgba(242, 90, 114, 0.14);
-  }
-}
-
-/* inline SVGs drawn white for the old ink header follow the text color */
+/* inline SVGs drawn white for the old ink header follow the text colour */
 .crb-recolor {
   [stroke='white'],
   [stroke='#fff'],
@@ -500,7 +710,40 @@ html.dark .crb-delta {
   }
 }
 
-/* chart line glows in the dark */
-html.dark .crb-chart-glow .recharts-area-curve {
-  filter: drop-shadow(0 0 6px rgba(242, 107, 58, 0.55));
+/* icon buttons used in headers and toolbars */
+.crb-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  color: var(--r-neutral-body);
+  cursor: pointer;
+  transition: background-color 0.15s var(--crb-ease), color 0.15s var(--crb-ease),
+    transform 0.12s var(--crb-ease);
+
+  &:hover {
+    background: var(--crb-hover);
+    color: var(--r-neutral-title-1);
+  }
+
+  &:active {
+    background: var(--crb-press);
+    transform: scale(0.94);
+  }
+}
+
+/* list rows with a hover tint, used by settings and sheets */
+.crb-row {
+  transition: background-color 0.14s var(--crb-ease);
+
+  &:hover {
+    background: var(--crb-hover);
+  }
+
+  &:active {
+    background: var(--crb-press);
+  }
 }

@@ -77,7 +77,7 @@ const ItemWrapper = styled.div`
 
   &:not(.cex).inSufficient,
   &:not(.cex).disabled {
-    border: var(--quote--border-width) solid var(--r-neutral-line, #d9d5cf);
+    border: var(--quote--border-width) solid var(--r-neutral-line, #d4d4d8);
     box-shadow: none;
   }
 
@@ -137,7 +137,7 @@ const ItemWrapper = styled.div`
     text-overflow: ellipsis;
     white-space: nowrap;
     font-weight: 500;
-    color: var(--r-neutral-title-1, #1a1917);
+    color: var(--r-neutral-title-1, #09090b);
   }
 
   .percent {

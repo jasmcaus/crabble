@@ -19,7 +19,7 @@ export const OptionsWrapper = styled.div`
   }
   .connect-site-card {
     border-radius: 12px;
-    background: #f5f4f1;
+    background: #f4f4f5;
     display: inline-flex;
     padding: 28px 28px 32px 28px;
     width: 100%;

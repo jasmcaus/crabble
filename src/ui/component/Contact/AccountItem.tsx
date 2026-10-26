@@ -62,7 +62,7 @@ const AccountItemWrapper = styled.div`
       border-color: transparent;
     }
     &:not(.is-darkmode):hover {
-      background-color: #f5f4f1;
+      background-color: #f4f4f5;
     }
 
     & > *,

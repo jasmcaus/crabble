@@ -43,10 +43,10 @@ const EditRPCWrapped = styled.div`
     margin-left: auto;
     margin-right: auto;
     background: transparent !important;
-    border: 1px solid var(--r-neutral-line, #d9d5cf) !important;
+    border: 1px solid var(--r-neutral-line, #d4d4d8) !important;
     border-radius: 8px;
 
-    color: var(--r-neutral-title1, #1a1917) !important;
+    color: var(--r-neutral-title1, #09090b) !important;
     font-size: 15px;
     /* font-weight: 500; */
     &:focus {
@@ -56,7 +56,7 @@ const EditRPCWrapped = styled.div`
       border-color: #ec5151 !important;
     }
     &::placeholder {
-      color: var(--r-neutral-foot, #827e77) !important;
+      color: var(--r-neutral-foot, #71717a) !important;
     }
   }
 `;

@@ -321,16 +321,16 @@ const AddressWrapper = styled.div`
   display: flex;
   .address-box {
     padding: 3px 6px;
-    border: 0.5px solid var(--r-neutral-line, #d9d5cf);
+    border: 0.5px solid var(--r-neutral-line, #d4d4d8);
     cursor: pointer;
-    color: var(--r-neutral-title1, #1a1917);
+    color: var(--r-neutral-title1, #09090b);
     font-size: 14px;
     font-weight: 500;
     border-radius: 900px;
     display: flex;
     .icon-arrow-right {
       margin-left: 2px;
-      color: var(--r-neutral-foot, #827e77);
+      color: var(--r-neutral-foot, #71717a);
     }
     &:hover {
       border-color: var(--r-blue-default, #f26b3a);

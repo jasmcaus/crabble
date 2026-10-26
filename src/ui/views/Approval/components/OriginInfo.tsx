@@ -41,7 +41,7 @@ const RequestOrigin = styled.div`
   justify-content: center;
   position: relative;
   .origin {
-    color: var(--r-neutral-title-1, #faf9f7);
+    color: var(--r-neutral-title-1, #fafafa);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

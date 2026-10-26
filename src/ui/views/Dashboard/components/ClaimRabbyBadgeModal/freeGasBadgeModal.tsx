@@ -98,7 +98,7 @@ const Wrapper = styled.div<{
   .learn-more-tips {
     padding-left: 24px;
     padding-right: 20px;
-    color: var(--r-neutral-foot, #827e77);
+    color: var(--r-neutral-foot, #71717a);
     font-size: 13px;
     font-style: normal;
     font-weight: 400;
@@ -120,15 +120,15 @@ const Wrapper = styled.div<{
   .codeInput {
     width: 320px;
     padding: 12px;
-    color: var(--r-neutral-title1, #faf9f7);
+    color: var(--r-neutral-title1, #fafafa);
     font-size: 17px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    /* background: #f5f4f1; */
+    /* background: #f4f4f5; */
     border: 1px solid #dcdfe4;
     &::placeholder {
-      color: var(--r-neutral-foot, #827e77);
+      color: var(--r-neutral-foot, #71717a);
       font-size: 15px;
       font-style: normal;
       font-weight: 400;
@@ -171,7 +171,7 @@ const Wrapper = styled.div<{
       margin-top: 12px;
       position: absolute;
       border-radius: 4px;
-      background: var(--r-neutral-card2, #f3f2ef);
+      background: var(--r-neutral-card2, #f4f4f5);
       height: 72px;
       padding: 8px 12px;
       padding-left: 8px;
@@ -232,7 +232,7 @@ const Wrapper = styled.div<{
 
   .tips {
     margin-top: 16px;
-    color: var(--r-neutral-foot, #827e77);
+    color: var(--r-neutral-foot, #71717a);
     font-size: 13px;
     font-style: normal;
     font-weight: 400;
@@ -433,7 +433,7 @@ const ClaimSuccessWrapper = styled.div`
   }
 
   .title {
-    color: var(--r-neutral-title1, #1a1917);
+    color: var(--r-neutral-title1, #09090b);
   }
 
   .desc {

@@ -45,13 +45,13 @@ const RPCItemWrapper = styled.div`
         font-size: 13px;
         font-weight: 500;
         line-height: 18px;
-        color: var(--r-neutral-title-1, #faf9f7);
+        color: var(--r-neutral-title-1, #fafafa);
       }
       &:nth-child(2) {
         font-weight: 400;
         font-size: 13px;
         line-height: 15px;
-        color: var(--r-neutral-body, #d9d5cf);
+        color: var(--r-neutral-body, #d4d4d8);
       }
     }
   }

@@ -19,7 +19,7 @@ const MINIMUM_PASSWORD_LENGTH = 8;
 const Container = styled.div`
   .ant-form-item-label {
     & > label {
-      color: var(--r-neutral-title1, #1a1917);
+      color: var(--r-neutral-title1, #09090b);
       font-size: 15px;
       font-weight: 500;
       line-height: 18px;
@@ -47,7 +47,7 @@ const Container = styled.div`
 
   /* .ant-input {
     border-radius: 12px;
-    border: 1px solid var(--r-neutral-line, #eae7e2);
+    border: 1px solid var(--r-neutral-line, #e4e4e7);
   }
 
   .ant-input:focus,
@@ -69,7 +69,7 @@ const Container = styled.div`
       border: 1px solid var(--r-blue-default, #f26b3a);
     }
     border-radius: 12px;
-    border: 1px solid var(--r-neutral-line, #eae7e2);
+    border: 1px solid var(--r-neutral-line, #e4e4e7);
     .ant-input {
       border: none !important;
       border-radius: 0 !important;
@@ -81,7 +81,7 @@ const Container = styled.div`
       &::placeholder {
         font-size: 15px;
         line-height: 18px;
-        color: var(--r-neutral-foot, #827e77);
+        color: var(--r-neutral-foot, #71717a);
       }
     }
   }

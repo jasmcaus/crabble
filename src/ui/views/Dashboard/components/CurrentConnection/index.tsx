@@ -69,7 +69,7 @@ const Container = styled.div`
         font-weight: 400;
         font-size: 12px;
         line-height: 14px;
-        color: var(--r-neutral-foot, #827e77);
+        color: var(--r-neutral-foot, #71717a);
       }
     }
     & .site-status.active .site-status-icon {
@@ -101,14 +101,14 @@ const Container = styled.div`
       font-weight: 400;
       font-size: 13px;
       line-height: 15px;
-      color: var(--r-neutral-title-1, rgba(26, 25, 23, 1));
+      color: var(--r-neutral-title-1, rgba(9, 9, 11, 1));
       margin-bottom: 2px;
     }
     &-status {
       font-weight: 400;
       font-size: 11px;
       line-height: 13px;
-      color: var(--r-neutral-foot, #827e77);
+      color: var(--r-neutral-foot, #71717a);
       display: flex;
       align-items: center;
       &.active {
@@ -129,7 +129,7 @@ const Container = styled.div`
     height: 36px;
     border-radius: 12px;
     padding-left: 8px;
-    color: var(--r-neutral-title-1, rgba(26, 25, 23, 1));
+    color: var(--r-neutral-title-1, rgba(9, 9, 11, 1));
 
     .chain-logo {
       width: 20px;

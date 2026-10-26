@@ -19,7 +19,7 @@ import clsx from 'clsx';
 const TabsStyled = styled(Tabs)`
   .ant-tabs-tab {
     border-radius: 7px;
-    color: var(--r-neutral-foot, #827e77);
+    color: var(--r-neutral-foot, #71717a);
     font-size: 13px;
     transition: background-color 0.15s ease, color 0.15s ease;
     margin: 0 !important;
@@ -31,12 +31,12 @@ const TabsStyled = styled(Tabs)`
 
     &.ant-tabs-tab-active {
       background: var(--crb-thumb);
-      color: var(--r-neutral-title-1, #1a1917);
+      color: var(--r-neutral-title-1, #09090b);
       box-shadow: var(--crb-shadow-thumb);
     }
 
     &:hover {
-      color: var(--r-neutral-title-1, #1a1917);
+      color: var(--r-neutral-title-1, #09090b);
     }
   }
 

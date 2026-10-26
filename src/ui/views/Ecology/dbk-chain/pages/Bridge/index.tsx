@@ -37,7 +37,7 @@ const Warper = styled.div`
     background: transparent !important;
     font-size: 28px;
     line-height: 34px;
-    color: var(--r-neutral-title1, #1a1917);
+    color: var(--r-neutral-title1, #09090b);
     font-weight: 700;
     padding: 0;
   }

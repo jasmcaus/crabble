@@ -54,13 +54,13 @@ export const GasCardBody = styled.div<{
       text-align: center;
       font-size: 12px;
       line-height: 14px;
-      color: var(--r-neutral-body, #4b4844);
+      color: var(--r-neutral-body, #3f3f46);
       margin: 14px auto 0;
       font-weight: 500;
     }
 
     .cardTitle {
-      color: var(--r-neutral-title-1, #1a1917) !important;
+      color: var(--r-neutral-title-1, #09090b) !important;
       font-weight: 500;
       font-size: 15px !important;
       line-height: 18px;
@@ -74,7 +74,7 @@ export const GasCardBody = styled.div<{
     .cardTime {
       font-size: 12px;
       line-height: 14px;
-      color: var(--r-neutral-foot, #827e77);
+      color: var(--r-neutral-foot, #71717a);
       margin: 2px auto 0;
     }
 
@@ -90,7 +90,7 @@ export const GasCardBody = styled.div<{
       text-align: center !important;
       font-size: 15px !important;
       font-weight: 500;
-      color: var(--r-neutral-title-1, #1a1917);
+      color: var(--r-neutral-title-1, #09090b);
       padding-top: 0;
       transition: none;
 
@@ -109,7 +109,7 @@ export const GasCardBody = styled.div<{
 export const GasPriceDesc = styled.div`
   margin-top: 20px;
   font-size: 13px;
-  color: var(--r-neutral-body, #4b4844);
+  color: var(--r-neutral-body, #3f3f46);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -118,7 +118,7 @@ export const GasPriceDesc = styled.div`
 
 export const GasPriceBold = styled.span`
   font-weight: 500;
-  color: var(--r-neutral-title1, #1a1917);
+  color: var(--r-neutral-title1, #09090b);
   font-size: 13px;
 `;
 

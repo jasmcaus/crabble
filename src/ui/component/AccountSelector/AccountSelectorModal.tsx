@@ -32,7 +32,7 @@ const Warper = styled.div`
 
   .header.header {
     padding-bottom: 16px;
-    background: var(--r-neutral-bg2, #f3f2ef);
+    background: var(--r-neutral-bg2, #f4f4f5);
     flex-shrink: 0;
     .ant-input-affix-wrapper {
       border: 1px solid var(--r-neutral-line, rgba(255, 255, 255, 0.1));
@@ -42,7 +42,7 @@ const Warper = styled.div`
       border-width: 1px;
 
       input::placeholder {
-        color: var(--r-neutral-foot, #827e77);
+        color: var(--r-neutral-foot, #71717a);
       }
     }
 
@@ -263,7 +263,7 @@ export const AccountSelectorModal = ({
                   <div
                     style={{
                       borderBottom:
-                        '0.5px solid var(--r-neutral-line, #EAE7E2)',
+                        '0.5px solid var(--r-neutral-line, #E4E4E7)',
                       background: 'var(--r-neutral-card1, #FFF)',
                       ...(isGroupFirst
                         ? {

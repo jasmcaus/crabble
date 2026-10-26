@@ -26,7 +26,7 @@ const InputStyled = styled(Input)`
 
   input::placeholder {
     font-size: 12px;
-    color: var(--r-neutral-foot, #827e77);
+    color: var(--r-neutral-foot, #71717a);
   }
 `;
 

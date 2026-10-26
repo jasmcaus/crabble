@@ -81,10 +81,10 @@ const AuthFormItemWrapper = styled.div<{ $hasError?: boolean }>`
     }
   }
   .ant-input.ant-input-lg.popup-input {
-    border: 1px solid var(--r-neutral-line, #d9d5cf) !important;
+    border: 1px solid var(--r-neutral-line, #d4d4d8) !important;
     background: var(--r-neutral-card1, #ffffff) !important;
     &::placeholder {
-      color: var(--r-neutral-foot, #827e77) !important;
+      color: var(--r-neutral-foot, #71717a) !important;
     }
     &:focus,
     &:hover {

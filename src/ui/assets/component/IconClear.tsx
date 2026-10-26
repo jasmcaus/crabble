@@ -8,8 +8,8 @@ export const IconClearCC = ({
   onClick?: () => void;
 }) => {
   const { isDarkTheme } = useThemeMode();
-  const strokeColor = isDarkTheme ? '#b5b1aa' : '#827E77';
-  const fillColor = isDarkTheme ? '#FFFFFF0F' : '#F3F2EF';
+  const strokeColor = isDarkTheme ? '#b5b1aa' : '#71717A';
+  const fillColor = isDarkTheme ? '#FFFFFF0F' : '#F4F4F5';
   return (
     <svg
       width="20"

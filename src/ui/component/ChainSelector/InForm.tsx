@@ -36,7 +36,7 @@ const ChainGlobalStyle = createGlobalStyle`
       font-size: 14px;
       font-weight: 500;
       text-align: center;
-      color: var(--r-neutral-title1, #1a1917);
+      color: var(--r-neutral-title1, #09090b);
     }
     .ant-modal-confirm-btns {
       margin-top: 35px !important;
@@ -56,7 +56,7 @@ const ChainGlobalStyle = createGlobalStyle`
 `;
 const ChainWrapper = styled.div`
   /* height: 40px; */
-  background: var(--r-neutral-card-2, #f3f2ef);
+  background: var(--r-neutral-card-2, #f4f4f5);
   border-radius: 8px;
   padding: 12px 12px;
   width: 100%;
@@ -80,7 +80,7 @@ const ChainWrapper = styled.div`
         height: 14px;
       }
       .name {
-        color: var(--r-neutral-title-1, #1a1917);
+        color: var(--r-neutral-title-1, #09090b);
         line-height: normal;
         margin-left: 6px;
         margin-right: 4px;
@@ -97,7 +97,7 @@ const ChainWrapper = styled.div`
     position: relative;
 
     & > .name {
-      color: var(--r-neutral-title-1, #1a1917);
+      color: var(--r-neutral-title-1, #09090b);
       font-size: 15px;
     }
 
@@ -132,10 +132,10 @@ const ChainWrapper = styled.div`
       margin-left: auto;
       width: 20px;
       height: 20px;
-      color: var(--r-neutral-body, #4b4844);
+      color: var(--r-neutral-body, #3f3f46);
     }
     .name {
-      color: var(--r-neutral-title-1, #1a1917);
+      color: var(--r-neutral-title-1, #09090b);
       line-height: 15px;
     }
   }

@@ -106,7 +106,7 @@ const Wrapper = styled.div<{
       display: flex;
       align-items: center;
       gap: 4px;
-      color: var(--r-neutral-body, #d9d5cf);
+      color: var(--r-neutral-body, #d4d4d8);
       font-size: 15px;
       font-weight: 400;
     }
@@ -116,7 +116,7 @@ const Wrapper = styled.div<{
       display: flex;
       align-items: center;
       gap: 4px;
-      color: var(--r-neutral-title1, #faf9f7);
+      color: var(--r-neutral-title1, #fafafa);
       font-size: 13px;
       font-weight: 400;
     }
@@ -128,7 +128,7 @@ const Wrapper = styled.div<{
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0px 8px 24px 0px rgba(26, 25, 23, 0.2);
+      box-shadow: 0px 8px 24px 0px rgba(9, 9, 11, 0.2);
     }
 
     .faucetBox {

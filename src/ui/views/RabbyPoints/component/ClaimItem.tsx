@@ -9,7 +9,7 @@ import { ReactComponent as IconInputLoading } from 'ui/assets/rabby-points/loadi
 
 const Wrapper = styled.div`
   position: relative;
-  border: 0.5px solid var(--r-neutral-line, #d9d5cf);
+  border: 0.5px solid var(--r-neutral-line, #d4d4d8);
   border-radius: 12px;
   padding: 12px 0;
   padding-top: 14px;
@@ -84,7 +84,7 @@ export const ClaimItem = (props: ClaimItemProps) => {
                       borderRadius: '4px',
                       background:
                         'linear-gradient(91deg, #326CFF 1.88%, #AE2BFF 99.85%)',
-                      boxShadow: '0px 2px 8px 0px rgba(26, 25, 23, 0.16)',
+                      boxShadow: '0px 2px 8px 0px rgba(9, 9, 11, 0.16)',
                       border: 'none',
                     }
                   : {}

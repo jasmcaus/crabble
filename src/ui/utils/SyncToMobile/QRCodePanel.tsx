@@ -71,7 +71,7 @@ export const QRCodePanel: React.FC = () => {
         'py-[24px] px-[32px]'
       )}
       style={{
-        boxShadow: '0px 16px 32px 0px rgba(26, 25, 23, 0.22)',
+        boxShadow: '0px 16px 32px 0px rgba(9, 9, 11, 0.22)',
       }}
     >
       <div>

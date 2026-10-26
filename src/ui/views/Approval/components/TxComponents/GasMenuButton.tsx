@@ -25,12 +25,12 @@ export const MenuButtonStyled = styled.div`
   padding: 4px 8px;
   line-height: 16px;
   font-size: 14px;
-  color: var(--r-neutral-body, #4b4844);
+  color: var(--r-neutral-body, #3f3f46);
   font-weight: 500;
   border-width: 1px;
   /* border-width: 0.5px; */
   border-style: solid;
-  border-color: var(--r-neutral-line, #d9d5cf);
+  border-color: var(--r-neutral-line, #d4d4d8);
   cursor: pointer;
 
   &:hover {
@@ -69,27 +69,27 @@ const LevelTextWrapStyled = styled.div`
 const LevelTextStyled = styled.div`
   font-size: 13px;
   line-height: 16px;
-  color: var(--r-neutral-title1, #1a1917);
+  color: var(--r-neutral-title1, #09090b);
   font-weight: 500;
 `;
 
 const LevelPriceStyled = styled.div`
   font-size: 12px;
   line-height: 14px;
-  color: var(--r-neutral-foot, #827e77);
+  color: var(--r-neutral-foot, #71717a);
 `;
 
 const MenuStyled = styled(Menu)`
   border-radius: 12px;
   box-shadow: 0px 8px 12px 0px rgba(0, 0, 0, 0.2);
-  border: 0.5px solid var(--r-neutral-line, #d9d5cf);
+  border: 0.5px solid var(--r-neutral-line, #d4d4d8);
   background: var(--r-neutral-bg1, #fff);
   padding: 4px;
   margin-right: 10px;
 
   .ant-dropdown-menu-item-group-title {
     padding: 0;
-    color: var(--r-neutral-title1, #1a1917);
+    color: var(--r-neutral-title1, #09090b);
   }
 
   .ant-dropdown-menu-item-group-list {
@@ -101,7 +101,7 @@ const MenuStyled = styled(Menu)`
 
 const MenuTitleStyled = styled.div`
   padding: 8px 20px 12px;
-  color: var(--r-neutral-title1, #1a1917);
+  color: var(--r-neutral-title1, #09090b);
   text-align: center;
   font-size: 13px;
   font-style: normal;
@@ -119,7 +119,7 @@ const DivideStyled = styled(Divide)`
 `;
 
 const GweiStyled = styled.span`
-  color: var(--r-neutral-foot, #827e77);
+  color: var(--r-neutral-foot, #71717a);
   display: flex;
   align-items: center;
 
@@ -128,7 +128,7 @@ const GweiStyled = styled.span`
     width: 2px;
     height: 2px;
     border-radius: 50%;
-    background: var(--r-neutral-foot, #827e77);
+    background: var(--r-neutral-foot, #71717a);
     display: block;
     margin: 0 4px;
   }

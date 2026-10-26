@@ -164,7 +164,7 @@ const Wrapper = styled.div<{
     }
 
     .ant-input {
-      color: var(--r-neutral-title-1, #faf9f7);
+      color: var(--r-neutral-title-1, #fafafa);
       border-radius: 0;
     }
   }
@@ -182,7 +182,7 @@ const Wrapper = styled.div<{
     background: var(--r-neutral-card-2, rgba(255, 255, 255, 0.06));
     align-items: center;
     margin-bottom: 12px;
-    color: var(--r-neutral-title-1, #faf9f7);
+    color: var(--r-neutral-title-1, #fafafa);
     font-size: 14px;
     font-weight: 500;
     line-height: 16px;
@@ -223,7 +223,7 @@ const Wrapper = styled.div<{
 
   .currency-empty {
     text-align: center;
-    color: var(--r-neutral-foot, #827e77);
+    color: var(--r-neutral-foot, #71717a);
     font-size: 12px;
     line-height: 16px;
     padding: 16px 0;

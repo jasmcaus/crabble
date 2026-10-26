@@ -1,4 +1,22 @@
 /* Bundled, OFL-licensed fonts (see /fonts/*/OFL.txt). Served from the extension itself so no font request ever leaves the browser. */
+/* Geist Sans and Geist Mono (UI and figures). Inter stays declared below as the
+   fallback for the scripts Geist does not cover. */
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(/fonts/geist/geist-variable.woff2) format('woff2-variations');
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(/fonts/geist/geist-mono-variable.woff2) format('woff2-variations');
+}
+
 /* inter-cyrillic-ext-opsz-normal */
 @font-face {
   font-family: 'Inter';

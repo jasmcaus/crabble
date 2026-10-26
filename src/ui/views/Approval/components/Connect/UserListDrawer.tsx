@@ -10,7 +10,7 @@ const UserListDrawerWrapper = styled.div`
     font-weight: 500;
     font-size: 22px;
     line-height: 26px;
-    color: var(--r-neutral-title-1, #1a1917);
+    color: var(--r-neutral-title-1, #09090b);
     .logo {
       width: 24px;
       height: 24px;
@@ -20,7 +20,7 @@ const UserListDrawerWrapper = styled.div`
 `;
 
 const Footer = styled.div`
-  background: var(--r-neutral-card-2, #f3f2ef);
+  background: var(--r-neutral-card-2, #f4f4f5);
   border-radius: 8px;
   .item {
     display: flex;
@@ -31,7 +31,7 @@ const Footer = styled.div`
     font-weight: 500;
     font-size: 13px;
     line-height: 15px;
-    color: var(--r-neutral-title-1, #1a1917);
+    color: var(--r-neutral-title-1, #09090b);
     position: relative;
     border: 1px solid transparent;
     .rabby-checkbox__wrapper {

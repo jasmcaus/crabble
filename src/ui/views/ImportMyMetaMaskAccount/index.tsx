@@ -120,7 +120,7 @@ export const ImportMyMetaMaskAccount: React.FC<{
             fill="none"
           >
             <path
-              stroke="var(--r-neutral-line, #D9D5CF)"
+              stroke="var(--r-neutral-line, #D4D4D8)"
               strokeWidth={0.2}
               d="M0 1h360"
             />

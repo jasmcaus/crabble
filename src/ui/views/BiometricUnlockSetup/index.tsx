@@ -85,7 +85,7 @@ const Footer = styled.footer`
   width: 100%;
   flex-shrink: 0;
   padding: 18px 20px;
-  border-top: 0.5px solid var(--r-neutral-line, #eae7e2);
+  border-top: 0.5px solid var(--r-neutral-line, #e4e4e7);
   display: flex;
   gap: 16px;
 `;

@@ -20,9 +20,9 @@ const StyledCard = styled.div`
   min-height: 520px;
   border-radius: 20px;
   background-color: var(--r-neutral-bg1, #fff);
-  border: 1px solid var(--r-neutral-line, #eae7e2);
-  box-shadow: 0 1px 2px rgba(26, 25, 23, 0.04),
-    0 24px 64px -12px rgba(26, 25, 23, 0.14);
+  border: 1px solid var(--r-neutral-line, #e4e4e7);
+  box-shadow: 0 1px 2px rgba(9, 9, 11, 0.04),
+    0 24px 64px -12px rgba(9, 9, 11, 0.14);
 
   html.dark & {
     box-shadow: 0 24px 64px -12px rgba(0, 0, 0, 0.6);
@@ -32,7 +32,7 @@ const StyledCard = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--r-neutral-title1, #1a1917);
+    color: var(--r-neutral-title1, #09090b);
     text-align: center;
     font-family: 'Instrument Serif', ui-serif, Georgia, serif;
     font-size: 28px;
@@ -48,17 +48,17 @@ const StyledCard = styled.div`
       top: 50%;
       transform: translateY(-50%);
       cursor: pointer;
-      color: var(--r-neutral-body, #4b4844);
+      color: var(--r-neutral-body, #3f3f46);
       border-radius: 12px;
       padding: 6px;
     }
     .back-icon:hover {
-      background: var(--r-neutral-card2, #f3f2ef);
+      background: var(--r-neutral-card2, #f4f4f5);
     }
   }
 
   input.ant-input::placeholder {
-    color: var(--r-neutral-foot, #827e77);
+    color: var(--r-neutral-foot, #71717a);
   }
 
   button.ant-btn.ant-btn-primary.ant-btn-loading {

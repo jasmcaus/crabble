@@ -4,7 +4,7 @@ export const DesktopPageWrap = styled.div`
   height: 100%;
   width: 100%;
   overflow: auto;
-  background: var(--rb-neutral-bg-0, #f5f4f1);
+  background: var(--rb-neutral-bg-0, #f4f4f5);
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -30,7 +30,7 @@ export const DesktopPageWrap = styled.div`
 
   /* antd */
   .ant-tabs-tab {
-    color: var(--r-neutral-foot, #827e77);
+    color: var(--r-neutral-foot, #71717a);
     font-size: 15px;
     font-weight: 500;
 
@@ -38,14 +38,14 @@ export const DesktopPageWrap = styled.div`
     padding-bottom: 15px;
 
     &:hover {
-      color: var(--r-neutral-title-1, #1a1917);
+      color: var(--r-neutral-title-1, #09090b);
     }
   }
   .ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap {
     padding-left: 20px;
   }
   .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-    color: var(--r-neutral-title-1, #1a1917);
+    color: var(--r-neutral-title-1, #09090b);
     font-weight: 600;
     font-size: 15px;
     text-shadow: none;

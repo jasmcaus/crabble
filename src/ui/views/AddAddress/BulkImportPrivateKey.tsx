@@ -37,7 +37,7 @@ type ValidatedPrivateKeyResult = {
 
 const Page = styled.div`
   min-height: 100vh;
-  background: var(--r-neutral-bg-2, #f3f2ef);
+  background: var(--r-neutral-bg-2, #f4f4f5);
   overflow-y: auto;
 `;
 
@@ -54,17 +54,17 @@ const PasswordInput = styled(Input)`
   &.ant-input {
     height: 52px;
     border-radius: 12px;
-    border: 1px solid var(--r-neutral-line, #eae7e2);
+    border: 1px solid var(--r-neutral-line, #e4e4e7);
     background: var(--r-neutral-card-1, #fff);
     padding: 0 15px;
     font-size: 15px;
     line-height: 18px;
-    color: var(--r-neutral-title-1, #1a1917);
+    color: var(--r-neutral-title-1, #09090b);
     box-shadow: none;
   }
 
   &.ant-input::placeholder {
-    color: var(--r-neutral-foot, #827e77);
+    color: var(--r-neutral-foot, #71717a);
   }
 
   &.ant-input:focus,
@@ -89,7 +89,7 @@ const EmptyTextarea = styled.textarea`
   outline: none;
   background: transparent;
   padding: 0;
-  color: var(--r-neutral-title-1, #1a1917);
+  color: var(--r-neutral-title-1, #09090b);
   font-size: 13px;
   line-height: 16px;
   font-weight: 400;
@@ -98,7 +98,7 @@ const EmptyTextarea = styled.textarea`
   overflow-wrap: anywhere;
 
   &::placeholder {
-    color: var(--r-neutral-foot, #827e77);
+    color: var(--r-neutral-foot, #71717a);
   }
 `;
 
@@ -107,7 +107,7 @@ const HiddenRowInput = styled.input`
   background: transparent;
   border: 0;
   outline: none;
-  color: var(--r-neutral-title-1, #1a1917);
+  color: var(--r-neutral-title-1, #09090b);
   font-size: 13px;
   line-height: 16px;
   height: 16px;
@@ -134,7 +134,7 @@ const VisibleRowTextarea = styled.textarea`
   border: 0;
   outline: none;
   padding: 0;
-  color: var(--r-neutral-title-1, #1a1917);
+  color: var(--r-neutral-title-1, #09090b);
   font-size: 13px;
   line-height: 16px;
   min-height: 16px;
@@ -1122,7 +1122,7 @@ const BulkImportPrivateKey: React.FC = () => {
                                       style={{
                                         color: isInvalid
                                           ? 'var(--r-red-default, #e34935)'
-                                          : 'var(--r-neutral-title-1, #1a1917)',
+                                          : 'var(--r-neutral-title-1, #09090b)',
                                       }}
                                     />
                                   ) : (
@@ -1155,7 +1155,7 @@ const BulkImportPrivateKey: React.FC = () => {
                                         WebkitTextSecurity: 'disc',
                                         color: isInvalid
                                           ? 'var(--r-red-default, #e34935)'
-                                          : 'var(--r-neutral-title-1, #1a1917)',
+                                          : 'var(--r-neutral-title-1, #09090b)',
                                       }}
                                     />
                                   )}

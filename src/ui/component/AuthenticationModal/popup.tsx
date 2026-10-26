@@ -21,10 +21,10 @@ const AuthFormItemWrapper = styled.div`
     }
   }
   .ant-input.ant-input-lg.popup-input {
-    border: 1px solid var(--r-neutral-line, #d9d5cf) !important;
+    border: 1px solid var(--r-neutral-line, #d4d4d8) !important;
     background: var(--r-neutral-card1, #fff) !important;
     &::placeholder {
-      color: var(--r-neutral-foot, #827e77) !important;
+      color: var(--r-neutral-foot, #71717a) !important;
     }
     &:focus,
     &:hover {
@@ -55,7 +55,7 @@ const Description = styled.div`
   font-size: 14px;
   line-height: 16px;
   text-align: center;
-  color: var(--r-neutral-body, #d9d5cf);
+  color: var(--r-neutral-body, #d4d4d8);
 `;
 
 const FieldList = styled.div`
@@ -69,7 +69,7 @@ const FieldList = styled.div`
     font-weight: 400;
     font-size: 14px;
     line-height: 18px;
-    color: var(--r-neutral-title-1, #faf9f7);
+    color: var(--r-neutral-title-1, #fafafa);
     border: 1px solid transparent;
     margin-bottom: 8px;
 

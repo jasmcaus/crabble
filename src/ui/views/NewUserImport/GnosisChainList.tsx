@@ -9,7 +9,7 @@ const Container = styled.div`
     font-weight: 400;
     font-size: 13px;
     line-height: 15px;
-    color: var(--r-neutral-body, #4b4844);
+    color: var(--r-neutral-body, #3f3f46);
     margin-bottom: 12px;
   }
   .chain-list {
@@ -25,7 +25,7 @@ const Container = styled.div`
       font-weight: 500;
       font-size: 13px;
       line-height: 15px;
-      color: var(--r-neutral-title-1, #1a1917);
+      color: var(--r-neutral-title-1, #09090b);
 
       .chain-logo {
         width: 20px;

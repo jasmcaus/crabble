@@ -103,7 +103,7 @@ const GAS_ACCOUNT_PILL_STYLE: React.CSSProperties = {
   padding: '7px 8px',
   borderRadius: 6,
   background: 'var(--r-blue-default, #F26B3A)',
-  boxShadow: '0px 1px 4px 0px rgba(26, 25, 23, 0.33)',
+  boxShadow: '0px 1px 4px 0px rgba(9, 9, 11, 0.33)',
 };
 
 const EMPTY_STYLE: React.CSSProperties = {};
@@ -295,7 +295,7 @@ const LinearGradientAnimatedSpan = styled.span`
   background: linear-gradient(94deg, #60bcff 14.47%, #8154ff 93.83%);
   background-size: 150% 100%;
   background-repeat: repeat-x;
-  box-shadow: 0px 1px 4px 0px rgba(26, 25, 23, 0.33);
+  box-shadow: 0px 1px 4px 0px rgba(9, 9, 11, 0.33);
   animation: gradientLoading 3s ease infinite;
 
   @keyframes gradientLoading {

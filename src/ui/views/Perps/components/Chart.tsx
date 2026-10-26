@@ -248,7 +248,7 @@ const getThemeColors = (isDark: boolean) =>
     : {
         vertLineColor: 'rgba(46, 46, 46, 0.1)',
         horzLineColor: 'rgba(46, 46, 46, 0.1)',
-        textColor: 'rgba(26, 25, 23, 1)',
+        textColor: 'rgba(9, 9, 11, 1)',
         priceLineColor: 'rgba(14, 14, 16, 1)',
         crosshairVertLineColor: 'rgba(106, 117, 135, 1)',
         redLineColor: 'rgba(227, 73, 53, 1)',

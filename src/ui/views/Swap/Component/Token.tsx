@@ -50,7 +50,7 @@ const StyledInput = styled(Input)`
   }
 
   &:placeholder-shown {
-    color: var(--r-neutral-foot, #827e77);
+    color: var(--r-neutral-foot, #71717a);
   }
   &::-webkit-inner-spin-button,
   &::-webkit-outer-spin-button {

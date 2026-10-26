@@ -36,7 +36,7 @@ interface Props {
 const StyledInput = styled(Input)`
   .ant-input {
     background: transparent;
-    color: var(--rb-neutral-title-1, #1a1917);
+    color: var(--rb-neutral-title-1, #09090b);
   }
 `;
 

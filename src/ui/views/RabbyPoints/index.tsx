@@ -74,7 +74,7 @@ const Wrapper = styled.div`
       margin: 0;
     }
     .ant-tabs-tab-btn {
-      color: var(--r-neutral-body, #4b4844);
+      color: var(--r-neutral-body, #3f3f46);
       &:hover {
         color: var(--r-blue-default, #f26b3a);
       }
@@ -93,7 +93,7 @@ const Wrapper = styled.div`
     }
 
     .ant-tabs-nav::before {
-      border-bottom: 0.5px solid var(--r-neutral-line, #d9d5cf) !important;
+      border-bottom: 0.5px solid var(--r-neutral-line, #d4d4d8) !important;
     }
   }
 `;

@@ -11,7 +11,7 @@ import useSyncStaleValue from '@/ui/hooks/useDebounceValue';
 
 const StyledInput = styled(Input)`
   border-radius: 12px;
-  border: 1px solid var(--r-neutral-line, #d9d5cf);
+  border: 1px solid var(--r-neutral-line, #d4d4d8);
   height: 52px;
   font-size: 14px;
   font-weight: 510;
@@ -19,7 +19,7 @@ const StyledInput = styled(Input)`
   background: var(--r-neutral-bg1, #fff);
   & > input.ant-input {
     background: var(--r-neutral-bg1, #fff);
-    color: var(--r-neutral-title1, #1a1917);
+    color: var(--r-neutral-title1, #09090b);
   }
   &:hover,
   &.ant-input-affix-wrapper-focused {

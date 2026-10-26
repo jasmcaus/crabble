@@ -58,7 +58,7 @@ const CardTitleDiv = styled.div`
 `;
 
 const CardHeadlineDiv = styled.span`
-  color: var(--r-neutral-title1, #1a1917);
+  color: var(--r-neutral-title1, #09090b);
   font-size: 13px;
   font-weight: 500;
   line-height: 16px;

@@ -39,8 +39,8 @@ const Footer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
-  border-top: 1px solid var(--r-neutral-line, #eae7e2);
-  border-top: 0.5px solid var(--r-neutral-line, #eae7e2);
+  border-top: 1px solid var(--r-neutral-line, #e4e4e7);
+  border-top: 0.5px solid var(--r-neutral-line, #e4e4e7);
   width: 100%;
   background: var(--r-neutral-card-1, #fff);
   .ant-btn {

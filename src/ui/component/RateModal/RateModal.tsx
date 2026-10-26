@@ -119,7 +119,7 @@ export default function RateModal() {
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
-        background: 'var(--r-neutral-bg2, #F3F2EF)',
+        background: 'var(--r-neutral-bg2, #F4F4F5)',
         borderTopLeftRadius: '16px',
         borderTopRightRadius: '16px',
       }}

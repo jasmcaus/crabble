@@ -41,18 +41,18 @@ const StyledInput = styled(Input)`
   background: var(--r-neutral-bg1, #fff);
   &.ant-input-affix-wrapper {
     border-radius: 12px;
-    border: 1px solid var(--r-neutral-line, #d9d5cf);
+    border: 1px solid var(--r-neutral-line, #d4d4d8);
     & > input.ant-input {
       height: 44px;
       font-size: 15px;
       font-weight: 500;
       text-align: center;
       background: var(--r-neutral-bg1, #fff);
-      color: var(--r-neutral-title1, #1a1917);
+      color: var(--r-neutral-title1, #09090b);
       transition: none;
 
       &:placeholder-shown {
-        color: var(--r-neutral-foot, #827e77);
+        color: var(--r-neutral-foot, #71717a);
         font-size: 13px;
         font-weight: normal;
       }

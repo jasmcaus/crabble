@@ -50,7 +50,7 @@ const ScrollBarDiv = styled.div`
   }
   &::-webkit-scrollbar-thumb {
     border-radius: 90px;
-    background: var(--r-neutral-foot, #827e77);
+    background: var(--r-neutral-foot, #71717a);
   }
 `;
 

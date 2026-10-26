@@ -115,7 +115,7 @@ const Selector = ({
               !disabled && 'hover:border-blue-light',
               disabled && 'opacity-50 cursor-not-allowed'
             )}
-            bgColor="var(--r-neutral-card2, #F3F2EF)"
+            bgColor="var(--r-neutral-card2, #F4F4F5)"
             left={
               <div
                 className={clsx('flex items-center gap-[6px] ', [
@@ -167,7 +167,7 @@ const Selector = ({
               !disabled && 'hover:border-blue-light',
               disabled && 'opacity-50 cursor-not-allowed'
             )}
-            bgColor="var(--r-neutral-card2, #F3F2EF)"
+            bgColor="var(--r-neutral-card2, #F4F4F5)"
             left={<AddressRightAreaInItem account={account} />}
             right={
               <span className="text-r-neutral-body text-[14px] leading-[17px] font-medium">
@@ -502,7 +502,7 @@ const WithdrawContent = ({
           px={16}
           py={0}
           className="rounded-[8px] w-full h-[52px] mt-12 flex justify-between"
-          bgColor="var(--r-neutral-card2, #F3F2EF)"
+          bgColor="var(--r-neutral-card2, #F4F4F5)"
           left={
             <span className="text-14 text-r-neutral-body">
               {t('page.gasAccount.withdrawPopup.recipientAddress')}
@@ -545,7 +545,7 @@ const WithdrawContent = ({
           px={16}
           py={0}
           className="rounded-[8px] w-full h-[52px] mt-12 flex justify-between"
-          bgColor="var(--r-neutral-card2, #F3F2EF)"
+          bgColor="var(--r-neutral-card2, #F4F4F5)"
           hoverBorder={!loading}
           left={
             <span className="text-14 text-r-neutral-body">

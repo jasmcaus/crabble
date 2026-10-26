@@ -33,7 +33,7 @@ const Warper = styled.div`
     }
 
     &-content {
-      color: var(--r-neutral-title-1, #1a1917);
+      color: var(--r-neutral-title-1, #09090b);
       font-size: 13px;
       font-weight: 400;
       line-height: 18px; /* 138.462% */

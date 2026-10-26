@@ -126,7 +126,7 @@ export const useLoginDepositConfirm = (params: {
       borderRadius: '16px',
     },
     '& .ant-modal-confirm-title': {
-      color: 'var(--r-neutral-title1, #1a1917)',
+      color: 'var(--r-neutral-title1, #09090b)',
       textAlign: 'center',
       fontSize: '15px',
       fontStyle: 'normal',

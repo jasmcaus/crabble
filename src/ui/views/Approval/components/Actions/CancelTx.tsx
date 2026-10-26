@@ -51,7 +51,7 @@ const Wrapper = styled.div`
         font-size: 14px;
         line-height: 16px;
         &:nth-child(1) {
-          color: var(--r-neutral-title-1, #faf9f7);
+          color: var(--r-neutral-title-1, #fafafa);
         }
         &:nth-child(2) {
           color: var(--r-neutral-foot, #b5b1aa);

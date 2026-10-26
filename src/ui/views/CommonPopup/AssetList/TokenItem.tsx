@@ -87,7 +87,7 @@ const ActionBtn = styled.div`
 
   cursor: pointer;
   color: var(--r-neutral-title-1, #13141a);
-  background: var(--r-neutral-bg-2, #f5f4f1);
+  background: var(--r-neutral-bg-2, #f4f4f5);
   z-index: 11;
   flex-shrink: 0;
   flex: 0 0 auto;

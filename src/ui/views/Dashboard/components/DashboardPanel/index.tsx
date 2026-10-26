@@ -122,8 +122,8 @@ const GlobalStyle = createGlobalStyle`
         justify-content: center;
         padding: 5px;
 
-        color: var(--r-neutral-title1, #1a1917);
-        background: var(--r-neutral-card3, #faf9f7);
+        color: var(--r-neutral-title1, #09090b);
+        background: var(--r-neutral-card3, #fafafa);
         border: 0;
         border-radius: 4px;
         cursor: pointer;
@@ -143,7 +143,7 @@ const GlobalStyle = createGlobalStyle`
         height: 24px;
         justify-self: center;
         margin-bottom: 6px;
-        color: var(--r-neutral-title1, #1a1917);
+        color: var(--r-neutral-title1, #09090b);
 
         &.icon-spin {
           animation: icn-spin 1.5s linear infinite;
@@ -166,7 +166,7 @@ const GlobalStyle = createGlobalStyle`
         font-weight: 500;
         font-size: 13px;
         line-height: 16px;
-        color: var(--r-neutral-title-1, rgba(26, 25, 23, 1));
+        color: var(--r-neutral-title-1, rgba(9, 9, 11, 1));
         text-align: center;
       }
 

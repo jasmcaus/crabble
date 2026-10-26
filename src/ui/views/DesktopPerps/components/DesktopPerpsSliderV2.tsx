@@ -48,7 +48,7 @@ const StyledSlider = styled(Slider)<{ isDark: boolean }>`
       width: 12px;
       height: 12px;
       background-color: var(--rb-brand-default, #f26b3a);
-      border: 1.3px solid var(--r-neutral-body, #d9d5cf);
+      border: 1.3px solid var(--r-neutral-body, #d4d4d8);
       box-shadow: 0px 2px 4px rgba(242, 107, 58, 0.4);
     }
 
@@ -71,7 +71,7 @@ const StyledSlider = styled(Slider)<{ isDark: boolean }>`
   /* Active marks (passed, left of handle): 9px, brand fill + neutral-body ring */
   .ant-slider-dot-active,
   &:hover .ant-slider-dot-active {
-    border-color: var(--r-neutral-body, #d9d5cf);
+    border-color: var(--r-neutral-body, #d4d4d8);
     background-color: var(--rb-brand-default, #f26b3a);
   }
 `;

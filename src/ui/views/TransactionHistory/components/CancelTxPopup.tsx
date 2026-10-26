@@ -16,7 +16,7 @@ const OptionsList = styled.div`
     align-items: center;
 
     border-radius: 8px;
-    background: var(--r-neutral-card-2, #f3f2ef);
+    background: var(--r-neutral-card-2, #f4f4f5);
     padding: 12px 15px;
     border: 1px solid transparent;
     cursor: pointer;
@@ -41,7 +41,7 @@ const OptionsList = styled.div`
     }
 
     &-title {
-      color: var(--r-neutral-title-1, #1a1917);
+      color: var(--r-neutral-title-1, #09090b);
       font-size: 15px;
       font-weight: 500;
       line-height: 18px;
@@ -49,7 +49,7 @@ const OptionsList = styled.div`
     }
 
     &-desc {
-      color: var(--r-neutral-body, #4b4844);
+      color: var(--r-neutral-body, #3f3f46);
       font-size: 13px;
       font-weight: 400;
       line-height: 16px;

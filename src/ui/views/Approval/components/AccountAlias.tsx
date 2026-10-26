@@ -7,7 +7,7 @@ import { WALLET_BRAND_CONTENT, KEYRING_ICONS } from 'consts';
 const Wrapper = styled.div`
   display: flex;
   font-size: 13px;
-  color: var(--r-neutral-body, #4b4844);
+  color: var(--r-neutral-body, #3f3f46);
   .icon-account {
     width: 16px;
     margin-right: 4px;

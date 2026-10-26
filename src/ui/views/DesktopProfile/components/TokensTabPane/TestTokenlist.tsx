@@ -57,7 +57,7 @@ interface TableProps {
 }
 
 const TokenRowWrapper = styled(TRow)`
-  border-bottom: 1px solid var(--rb-neutral-bg-4, #f3f2ef);
+  border-bottom: 1px solid var(--rb-neutral-bg-4, #f4f4f5);
   height: 60px;
   padding-left: 12px;
   padding-right: 16px;
@@ -65,7 +65,7 @@ const TokenRowWrapper = styled(TRow)`
     display: none !important;
   }
   &:hover {
-    background-color: var(--rb-neutral-bg-2, #f3f2ef);
+    background-color: var(--rb-neutral-bg-2, #f4f4f5);
     .swap-action-btn {
       display: block !important;
     }

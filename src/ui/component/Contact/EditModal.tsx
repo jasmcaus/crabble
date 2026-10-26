@@ -94,7 +94,7 @@ const EditModal = ({
           autoFocus
           allowClear
           value={name}
-          // style={{ background: '#F5F4F1' }}
+          // style={{ background: '#F4F4F5' }}
           onChange={(e) => handleNameChange(e.target.value)}
           ref={inputRef}
         />

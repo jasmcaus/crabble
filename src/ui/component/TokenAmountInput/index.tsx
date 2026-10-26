@@ -85,7 +85,7 @@ const StyledInput = styled(Input)<{
   $fontSize: number;
   $hasDisplayText?: boolean;
 }>`
-  color: var(--r-neutral-title1, #1a1917);
+  color: var(--r-neutral-title1, #09090b);
   font-size: ${({ $fontSize }) => $fontSize}px !important;
   font-style: normal;
   font-weight: 700;
@@ -97,7 +97,7 @@ const StyledInput = styled(Input)<{
   padding-right: 0;
   &::placeholder {
     color: ${({ $hasDisplayText }) =>
-      $hasDisplayText ? 'transparent' : 'var(--r-neutral-foot, #827e77)'};
+      $hasDisplayText ? 'transparent' : 'var(--r-neutral-foot, #71717a)'};
     font-size: ${({ $fontSize }) => $fontSize}px !important;
     font-style: normal;
     font-weight: 700;

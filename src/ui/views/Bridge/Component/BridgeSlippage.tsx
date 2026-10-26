@@ -33,10 +33,10 @@ const SlippageItem = styled.div`
   background: var(--r-neutral-card-1, #fff);
   border-radius: 8px;
   overflow: hidden;
-  color: var(--r-neutral-title1, #1a1917);
+  color: var(--r-neutral-title1, #09090b);
 
   &.input-wrapper {
-    border: 1px solid var(--r-neutral-line, #eae7e2);
+    border: 1px solid var(--r-neutral-line, #e4e4e7);
     background: var(--r-neutral-card-1, #fff);
   }
 
@@ -437,7 +437,7 @@ export const BridgeSlippage = memo((props: BridgeSlippageProps) => {
         isSupportDarkMode
         getContainer={getContainer}
       >
-        <Wrapper className="widget-has-ant-input flex flex-col gap-24 rounded-t-[16px] bg-r-neutral-bg-2 p-20 shadow-[0_-12px_10px_rgba(26,25,23,0.1)]">
+        <Wrapper className="widget-has-ant-input flex flex-col gap-24 rounded-t-[16px] bg-r-neutral-bg-2 p-20 shadow-[0_-12px_10px_rgba(9, 9, 11,0.1)]">
           <div className="flex flex-col gap-12">
             <div className="flex items-center justify-between text-[16px] font-medium">
               <span className="text-r-neutral-title-1">

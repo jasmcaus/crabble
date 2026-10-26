@@ -44,7 +44,7 @@ const Wraper = styled.div`
   flex-direction: column;
 
   .ant-input-affix-wrapper {
-    color: var(--r-neutral-foot, #827e77);
+    color: var(--r-neutral-foot, #71717a);
     font-size: 13px;
     font-weight: 400;
     margin-bottom: 20px;
@@ -52,15 +52,15 @@ const Wraper = styled.div`
 
     border-radius: 8px;
     background: var(--r-neutral-card1, #fff);
-    border: 1px solid var(--r-neutral-line, #d9d5cf);
+    border: 1px solid var(--r-neutral-line, #d4d4d8);
 
     .ant-input {
       background-color: transparent;
-      color: var(--r-neutral-title1, #1a1917);
+      color: var(--r-neutral-title1, #09090b);
     }
 
     .anticon {
-      color: var(--r-neutral-foot, #827e77);
+      color: var(--r-neutral-foot, #71717a);
     }
   }
   .ant-input-affix-wrapper:focus,
@@ -74,7 +74,7 @@ const Wraper = styled.div`
     left: 16px;
     right: 16px;
     bottom: 0;
-    border-bottom: 0.5px solid var(--r-neutral-line, #d9d5cf);
+    border-bottom: 0.5px solid var(--r-neutral-line, #d4d4d8);
   }
 `;
 

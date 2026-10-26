@@ -94,7 +94,7 @@ export const QuoteListLoading = ({
 const DotsStyled = styled.span`
   span {
     display: inline-block;
-    color: var(--r-neutral-foot, #827e77);
+    color: var(--r-neutral-foot, #71717a);
   }
 
   .dot1 {

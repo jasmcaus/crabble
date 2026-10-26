@@ -106,12 +106,12 @@ const Wrapper = styled.div<{
   .codeInput {
     width: 320px;
     padding: 12px;
-    color: var(--r-neutral-title1, #faf9f7);
+    color: var(--r-neutral-title1, #fafafa);
     font-size: 17px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    /* background: #f5f4f1;
+    /* background: #f4f4f5;
     border: 1px solid #dcdfe4; */
     &::placeholder {
       color: #989aab;
@@ -156,7 +156,7 @@ const Wrapper = styled.div<{
       margin-top: 12px;
       position: absolute;
       border-radius: 4px;
-      background: #f3f2ef;
+      background: #f4f4f5;
       height: 52px;
       padding: 8px 12px;
       padding-left: 8px;

@@ -60,7 +60,7 @@ export const AssetAvatar: React.FC<AssetAvatarProps> = ({
           width: size,
           height: size,
           borderRadius: 100000,
-          backgroundColor: 'var(--r-neutral-bg-1, #f3f2ef)',
+          backgroundColor: 'var(--r-neutral-bg-1, #f4f4f5)',
           overflow: 'hidden',
           display: 'flex',
           alignItems: 'center',

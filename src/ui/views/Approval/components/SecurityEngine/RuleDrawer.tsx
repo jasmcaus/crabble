@@ -22,7 +22,7 @@ const RuleDrawerWrapper = styled.div`
     font-weight: 500;
     font-size: 13px;
     line-height: 16px;
-    color: var(--r-neutral-title-1, #faf9f7);
+    color: var(--r-neutral-title-1, #fafafa);
     display: flex;
     flex-direction: column;
     margin: 20px 16px 32px;
@@ -47,7 +47,7 @@ const RuleDrawerWrapper = styled.div`
 
   .rule-threshold-footer {
     padding: 18px 20px;
-    border-top: 0.5px solid var(--r-neutral-line, #d9d5cf);
+    border-top: 0.5px solid var(--r-neutral-line, #d4d4d8);
 
     .forbidden-tip {
       margin-bottom: 12px;
@@ -140,12 +140,12 @@ const RuleDrawerWrapper = styled.div`
   &.error {
     .main {
       background: transparent;
-      border: 0.5px solid var(--r-neutral-line, #d9d5cf);
+      border: 0.5px solid var(--r-neutral-line, #d4d4d8);
     }
   }
   &.proceed {
     .main {
-      background: var(--r-neutral-card-2, #f5f4f1);
+      background: var(--r-neutral-card-2, #f4f4f5);
       .level-text {
         color: var(--r-neutral-foot, #b5b1aa);
       }

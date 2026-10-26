@@ -85,7 +85,7 @@ const Container = styled.div`
     }
 
     .ant-input {
-      color: var(--r-neutral-title1, #1a1917);
+      color: var(--r-neutral-title1, #09090b);
       font-size: 13px;
       line-height: 16px;
       font-weight: 500;
@@ -99,7 +99,7 @@ const Container = styled.div`
     }
 
     .ant-input-suffix {
-      color: var(--r-neutral-foot, #827e77);
+      color: var(--r-neutral-foot, #71717a);
       font-size: 13px;
       line-height: 16px;
       font-weight: 500;
@@ -114,14 +114,14 @@ const Container = styled.div`
     }
     .ant-select-selector {
       border-radius: 12px;
-      border: 1px solid var(--r-neutral-line, #eae7e2);
+      border: 1px solid var(--r-neutral-line, #e4e4e7);
       width: 160px;
       height: 44px;
       background-color: transparent;
 
       .ant-select-selection-item {
         line-height: 44px;
-        color: var(--r-neutral-title1, #1a1917);
+        color: var(--r-neutral-title1, #09090b);
         font-size: 15px;
         font-weight: 500;
       }

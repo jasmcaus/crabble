@@ -57,7 +57,7 @@ const MatrixWrapper = styled.div.withConfig<{
     return !['rowCount'].includes(prop) && defaultValidatorFn(prop);
   },
 })`
-  background-color: var(--r-neutral-card-3, #faf9f7);
+  background-color: var(--r-neutral-card-3, #fafafa);
   display: flex;
   flex-wrap: wrap;
 
@@ -70,10 +70,10 @@ const MatrixWrapper = styled.div.withConfig<{
 
       .mnemonics-input {
         border-radius: 12px;
-        border: 1px solid var(--r-neutral-line, #eae7e2);
+        border: 1px solid var(--r-neutral-line, #e4e4e7);
         text-align: center;
         font-size: 22px;
-        color: var(--r-neutral-title-1, #1a1917);
+        color: var(--r-neutral-title-1, #09090b);
         &:hover {
           border-color: var(--r-blue-default, #f26b3a);
         }
@@ -92,7 +92,7 @@ const MatrixWrapper = styled.div.withConfig<{
       ${styid(NumberFlag)} {
         top: 6px;
         left: 8px;
-        color: var(--r-neutral-body, #4b4844);
+        color: var(--r-neutral-body, #3f3f46);
         font-size: 10px;
         line-height: 12px;
         font-style: normal;
@@ -120,16 +120,16 @@ const MatrixWrapper = styled.div.withConfig<{
       .mnemonics-input {
         padding: 0 12px 0 24px;
         border-radius: 12px;
-        border: 0.5px solid var(--r-neutral-line, #eae7e2);
+        border: 0.5px solid var(--r-neutral-line, #e4e4e7);
         background: var(--r-neutral-card-1, #fff);
         text-align: left;
         line-height: 51px;
         font-size: 15px;
         font-weight: 400;
-        color: var(--r-neutral-title-1, #1a1917);
+        color: var(--r-neutral-title-1, #09090b);
 
         &:hover {
-          border-color: var(--r-neutral-line, #eae7e2);
+          border-color: var(--r-neutral-line, #e4e4e7);
         }
 
         &:focus,
@@ -144,7 +144,7 @@ const MatrixWrapper = styled.div.withConfig<{
         top: 7px;
         left: 7px;
         height: 16px;
-        color: var(--r-neutral-foot, #827e77);
+        color: var(--r-neutral-foot, #71717a);
         font-size: 13px;
         line-height: 16px;
         font-weight: 500;
@@ -239,7 +239,7 @@ const MatrixWrapper = styled.div.withConfig<{
   /* for MnemonicsInputs :start */
   .mnemonics-input {
     background-color: transparent;
-    color: var(--r-neutral-title-1, #1a1917);
+    color: var(--r-neutral-title-1, #09090b);
     height: 100%;
     display: inline-block;
     line-height: ${ITEM_H}px;

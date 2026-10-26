@@ -15,14 +15,14 @@ import { GnosisChainList } from './GnosisChainList';
 const Container = styled.div`
   .ant-input {
     border-radius: 12px;
-    border: 1px solid var(--r-neutral-line, #eae7e2);
-    color: var(--r-neutral-title1, #1a1917);
+    border: 1px solid var(--r-neutral-line, #e4e4e7);
+    color: var(--r-neutral-title1, #09090b);
     font-size: 15px;
     font-weight: 500;
     line-height: 18px;
 
     &::placeholder {
-      color: var(--r-neutral-foot, #827e77);
+      color: var(--r-neutral-foot, #71717a);
       font-weight: 400;
     }
   }
@@ -51,7 +51,7 @@ const Container = styled.div`
     font-weight: 400;
     font-size: 13px;
     line-height: 15px;
-    color: var(--r-neutral-body, #4b4844);
+    color: var(--r-neutral-body, #3f3f46);
     display: flex;
     align-items: center;
     gap: 4px;

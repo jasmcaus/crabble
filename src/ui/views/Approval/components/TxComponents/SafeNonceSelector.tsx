@@ -32,7 +32,7 @@ const Wrapper = styled(Card)`
     padding: 0 16px 12px;
     margin-top: -4px;
     &-label {
-      color: var(--r-neutral-title-1, #1a1917);
+      color: var(--r-neutral-title-1, #09090b);
       font-size: 15px;
       font-weight: 500;
       line-height: 18px;
@@ -46,27 +46,27 @@ const Wrapper = styled(Card)`
     .nonce-input {
       height: 40px;
       border-radius: 8px;
-      border: 1px solid var(--r-neutral-line, #d9d5cf);
-      /* border: 0.5px solid var(--r-neutral-line, #d9d5cf); */
+      border: 1px solid var(--r-neutral-line, #d4d4d8);
+      /* border: 0.5px solid var(--r-neutral-line, #d4d4d8); */
 
-      background: var(--r-neutral-bg-3, #faf9f7);
+      background: var(--r-neutral-bg-3, #fafafa);
 
       .ant-input {
-        background: var(--r-neutral-bg-3, #faf9f7);
+        background: var(--r-neutral-bg-3, #fafafa);
         color: var(--r-neutral-title-1);
       }
     }
 
     &-option-list {
       border-radius: 8px;
-      background: var(--r-neutral-bg-3, #faf9f7);
+      background: var(--r-neutral-bg-3, #fafafa);
       margin-top: 8px;
     }
 
     &-option-group {
       &-title {
         padding: 4px 12px 8px 12px;
-        color: var(--r-neutral-body, #4b4844);
+        color: var(--r-neutral-body, #3f3f46);
         font-size: 12px;
         font-weight: 400;
         line-height: 14px;
@@ -77,7 +77,7 @@ const Wrapper = styled(Card)`
       display: flex;
       align-items: center;
 
-      color: var(--r-neutral-title-1, #1a1917);
+      color: var(--r-neutral-title-1, #09090b);
       font-size: 13px;
       font-weight: 500;
 
@@ -108,7 +108,7 @@ const Wrapper = styled(Card)`
         right: 12px;
         height: 1px;
         height: 0.5px;
-        background: var(--r-neutral-line, #d9d5cf);
+        background: var(--r-neutral-line, #d4d4d8);
       }
     }
   }
@@ -139,11 +139,11 @@ const Wrapper = styled(Card)`
     align-items: center;
     gap: 12px;
     border-radius: 8px;
-    background: var(--r-neutral-bg-3, #faf9f7);
+    background: var(--r-neutral-bg-3, #fafafa);
     margin-top: 8px;
 
     &-message {
-      color: var(--r-neutral-body, #4b4844);
+      color: var(--r-neutral-body, #3f3f46);
       text-align: center;
       font-size: 12px;
       font-style: normal;

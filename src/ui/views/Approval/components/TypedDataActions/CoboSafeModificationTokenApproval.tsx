@@ -53,7 +53,7 @@ const CoboSafeModificationTokenApproval = ({
                   fontWeight: 'normal',
                   fontSize: '13px',
                   lineHeight: '15px',
-                  color: 'var(--r-neutral-body, #4B4844)',
+                  color: 'var(--r-neutral-body, #3F3F46)',
                 }}
               />
             </SubRow>

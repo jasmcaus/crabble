@@ -35,7 +35,7 @@ const ChainGlobalStyle = createGlobalStyle`
       font-size: 14px;
       font-weight: 500;
       text-align: center;
-      color: var(--r-neutral-title1, #1a1917);
+      color: var(--r-neutral-title1, #09090b);
     }
     .ant-modal-confirm-btns {
       margin-top: 35px !important;

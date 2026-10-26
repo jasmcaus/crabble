@@ -270,7 +270,7 @@ const DesktopSmallSwapContent: React.FC = () => {
           <div className="shrink-0 flex items-center">
             <div
               className="w-[64px] h-[64px] rounded-full border border-rabby-neutral-line bg-r-neutral-card-1 flex items-center justify-center text-r-neutral-foot"
-              style={{ boxShadow: '0 12px 24px rgba(26, 25, 23, 0.08)' }}
+              style={{ boxShadow: '0 12px 24px rgba(9, 9, 11, 0.08)' }}
             >
               <RcIconArrowRightCC className="w-[26px] h-[26px]" />
             </div>

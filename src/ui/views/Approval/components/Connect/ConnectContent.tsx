@@ -48,7 +48,7 @@ const ConnectWrapper = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--r-neutral-bg2, #f3f2ef);
+  background-color: var(--r-neutral-bg2, #f4f4f5);
   .approval-connect {
     padding: 11px 20px 20px 26px;
     flex: 1;
@@ -57,13 +57,13 @@ const ConnectWrapper = styled.div`
       font-weight: 500;
       font-size: 18px;
       line-height: 21px;
-      color: var(--r-neutral-title-1, #1a1917);
+      color: var(--r-neutral-title-1, #09090b);
     }
     .chain-selector {
       height: 32px;
       border-radius: 12px;
-      background: var(--r-neutral-bg2, #f3f2ef);
-      color: var(--r-neutral-title-1, #1a1917);
+      background: var(--r-neutral-bg2, #f4f4f5);
+      color: var(--r-neutral-title-1, #09090b);
       font-size: 13px;
       border: 0.5px solid var(--r-neutral-line, rgba(255, 255, 255, 0.1));
       border: 1px solid var(--r-neutral-line, rgba(255, 255, 255, 0.1));
@@ -87,7 +87,7 @@ const ConnectWrapper = styled.div`
       flex-direction: column;
       align-items: center;
       position: relative;
-      border-bottom: 0.5px solid var(--r-neutral-line, #eae7e2);
+      border-bottom: 0.5px solid var(--r-neutral-line, #e4e4e7);
       .connect-origin {
         margin-top: 8px;
         margin-bottom: 0;
@@ -95,7 +95,7 @@ const ConnectWrapper = styled.div`
         font-size: 22px;
         line-height: 24px;
         text-align: center;
-        color: var(--r-neutral-title-1, #1a1917);
+        color: var(--r-neutral-title-1, #09090b);
         word-wrap: break-word;
         max-width: 100%;
       }
@@ -110,8 +110,8 @@ const Footer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
-  border-top: 1px solid var(--r-neutral-line, #eae7e2);
-  border-top: 0.5px solid var(--r-neutral-line, #eae7e2);
+  border-top: 1px solid var(--r-neutral-line, #e4e4e7);
+  border-top: 0.5px solid var(--r-neutral-line, #e4e4e7);
   width: 100%;
   background: var(--r-neutral-card-1, #fff);
   .ant-btn {

@@ -310,7 +310,7 @@ export const EditTpSlTag: React.FC<EditTpSlTagProps> = ({
         )}
         centered
         bodyStyle={{
-          background: 'var(--r-neutral-card-2, #F5F4F1)',
+          background: 'var(--r-neutral-card-2, #F4F4F5)',
         }}
         destroyOnClose
         closeIcon={

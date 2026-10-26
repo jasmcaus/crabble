@@ -31,13 +31,13 @@ const Wrapper = styled(Card)`
       align-items: center;
     }
     &-title {
-      color: var(--r-neutral-title-1, #1a1917);
+      color: var(--r-neutral-title-1, #09090b);
       font-size: 14px;
       font-weight: 500;
       line-height: 16px;
     }
     &-extra {
-      color: var(--r-neutral-body, #4b4844);
+      color: var(--r-neutral-body, #3f3f46);
       font-size: 14px;
       font-weight: 400;
       line-height: 16px;
@@ -52,7 +52,7 @@ const Wrapper = styled(Card)`
 
       svg {
         path {
-          stroke: var(--r-neutral-foot, #827e77);
+          stroke: var(--r-neutral-foot, #71717a);
         }
       }
     }
@@ -63,7 +63,7 @@ const Wrapper = styled(Card)`
         margin-top: 0px;
         margin-bottom: 0;
         font-size: 13px;
-        color: var(--r-neutral-body, #4b4844);
+        color: var(--r-neutral-body, #3f3f46);
 
         li {
           position: relative;
@@ -78,7 +78,7 @@ const Wrapper = styled(Card)`
             width: 4px;
             height: 4px;
             border-radius: 100%;
-            background-color: var(--r-neutral-body, #4b4844);
+            background-color: var(--r-neutral-body, #3f3f46);
             left: 0;
             top: 8px;
           }
@@ -94,10 +94,10 @@ const Wrapper = styled(Card)`
         &-option {
           padding: 2px 4px;
           border-radius: 2px;
-          background: var(--r-neutral-card-2, #f3f2ef);
+          background: var(--r-neutral-card-2, #f4f4f5);
           min-width: 40px;
 
-          color: var(--r-neutral-title-1, #1a1917);
+          color: var(--r-neutral-title-1, #09090b);
           text-align: center;
           font-size: 13px;
           line-height: 16px;
@@ -147,7 +147,7 @@ const OptionList = styled.div`
     }
 
     &-title {
-      color: var(--r-neutral-title-1, #1a1917);
+      color: var(--r-neutral-title-1, #09090b);
       font-size: 15px;
       font-weight: 500;
       line-height: 18px;
@@ -155,7 +155,7 @@ const OptionList = styled.div`
     }
 
     &-desc {
-      color: var(--r-neutral-body, #4b4844);
+      color: var(--r-neutral-body, #3f3f46);
       font-size: 13px;
       font-weight: 400;
       line-height: 16px;

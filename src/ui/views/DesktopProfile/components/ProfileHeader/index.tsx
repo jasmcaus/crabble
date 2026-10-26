@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
     }
     .ant-popover-inner {
       border-radius: 12px;
-      border: 1px solid var(--r-neutral-line, #EAE7E2);
+      border: 1px solid var(--r-neutral-line, #E4E4E7);
       box-shadow: none;
     }
     .ant-popover-inner-content {

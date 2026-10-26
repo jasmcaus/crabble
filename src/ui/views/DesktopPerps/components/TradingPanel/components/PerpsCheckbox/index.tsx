@@ -50,7 +50,7 @@ const CheckboxIcon = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <rect x="0.5" y="0.5" width="15" height="15" rx="3.5" stroke="#827E77" />
+      <rect x="0.5" y="0.5" width="15" height="15" rx="3.5" stroke="#71717A" />
     </svg>
   );
 
@@ -69,8 +69,8 @@ const RadioIcon = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="8" cy="8" r="7.5" stroke="var(--rb-neutral-foot, #827E77)" />
-      <circle cx="8" cy="8" r="4" fill="var(--rb-neutral-foot, #827E77)" />
+      <circle cx="8" cy="8" r="7.5" stroke="var(--rb-neutral-foot, #71717A)" />
+      <circle cx="8" cy="8" r="4" fill="var(--rb-neutral-foot, #71717A)" />
     </svg>
   ) : (
     <svg
@@ -84,7 +84,7 @@ const RadioIcon = ({
         cx="8"
         cy="8"
         r="7.5"
-        stroke="var(--rb-neutral-secondary, #827E77)"
+        stroke="var(--rb-neutral-secondary, #71717A)"
       />
     </svg>
   );
@@ -125,7 +125,7 @@ const RadioCheckIcon = ({
     >
       <path
         d="M8.0001 14.3996C11.5347 14.3996 14.4001 11.5342 14.4001 7.99961C14.4001 4.46499 11.5347 1.59961 8.0001 1.59961C4.46548 1.59961 1.6001 4.46499 1.6001 7.99961C1.6001 11.5342 4.46548 14.3996 8.0001 14.3996Z"
-        stroke="#D9D5CF"
+        stroke="#D4D4D8"
         strokeMiterlimit="10"
       />
     </svg>
