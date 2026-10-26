@@ -20,42 +20,37 @@ import { SortableContext, useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { Badge, Skeleton, Tooltip } from 'antd';
 import clsx from 'clsx';
-import React, {
-  createContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { createContext, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { useAsync } from 'react-use';
 import { createGlobalStyle } from 'styled-components';
 import IconAlertRed from 'ui/assets/alert-red.svg';
-import { ReactComponent as RcIconEco } from 'ui/assets/dashboard/icon-eco.svg';
-import { ReactComponent as RcIconGift } from 'ui/assets/gift-14.svg';
 import { RcIconJumpCC } from '@/ui/assets/dashboard';
 
 import {
-  RcIconApprovalsCC,
-  RcIconBridgeCC,
-  RcIconDappsCC,
-  RcIconManageCC,
-  RcIconMobileSyncCC,
-  RcIconPerpsCC,
-  RcIconPointsCC,
-  RcIconReceiveCC,
-  RcIconSearchCC,
-  RcIconSendCC,
-  RcIconSettingCC,
-  RcIconSwapCC,
-  RcIconTransactionsCC,
-  RcIconConvertDustCC,
-  RcIconStakingCC,
-} from 'ui/assets/dashboard/panel';
+  ArrowDownLeft,
+  ArrowLeftRight,
+  ArrowUpRight,
+  Blocks,
+  Bridge,
+  ChartCandlestick,
+  Globe,
+  History,
+  LayoutGrid,
+  Search,
+  Settings,
+  ShieldCheck,
+  Smartphone,
+  Sparkles,
+  Sprout,
+  Star,
+  Users,
+} from 'lucide-react';
+import { Popup } from 'ui/component';
 
 import { usePerpsDefaultAccount } from '@/ui/views/Perps/hooks/usePerpsDefaultAccount';
-import { useMemoizedFn, useMount, useScroll } from 'ahooks';
+import { useMemoizedFn, useMount } from 'ahooks';
 import { isEqual } from 'lodash';
 import {
   formatUsdValue,
@@ -72,39 +67,116 @@ import BigNumber from 'bignumber.js';
 
 export const DragOverlayContext = createContext(false);
 
-const SCROLLBAR_TRACK_HEIGHT = 80;
-const SCROLLBAR_THUMB_HEIGHT = 50;
-const SCROLLBAR_THUMB_MAX_OFFSET =
-  SCROLLBAR_TRACK_HEIGHT - SCROLLBAR_THUMB_HEIGHT;
-const SCROLLBAR_HIT_AREA_WIDTH = 13;
+const PRIMARY_PANEL_KEYS = ['send', 'receive', 'swap', 'bridge'] as const;
 
 const GlobalStyle = createGlobalStyle`
   .rabby-dashboard-panel-container {
+    .crb-quick-actions {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 2px;
+    }
+
+    .crb-quick-action {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 0 4px;
+      border: 0;
+      border-radius: 14px;
+      background: transparent;
+      cursor: pointer;
+      font-family: inherit;
+      color: var(--r-neutral-title-1);
+      transition: background-color 0.15s var(--crb-ease);
+
+      &:hover .crb-quick-action-icon {
+        background: var(--crb-sunken);
+        transform: translateY(-1px);
+      }
+
+      &:active .crb-quick-action-icon {
+        transform: scale(0.94);
+      }
+
+      &.is-primary .crb-quick-action-icon {
+        background: var(--r-blue-default);
+        color: #fff;
+        box-shadow: var(--crb-primary-shadow);
+      }
+
+      &.is-primary:hover .crb-quick-action-icon {
+        background: var(--crb-primary-hover);
+      }
+    }
+
+    .crb-quick-action-icon {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      background: var(--crb-raised);
+      box-shadow: var(--crb-shadow-card);
+      transition: background-color 0.15s var(--crb-ease),
+        transform 0.15s var(--crb-ease), box-shadow 0.15s var(--crb-ease);
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .crb-quick-action-label {
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 550;
+      letter-spacing: -0.01em;
+      color: var(--r-neutral-body);
+    }
+
+    .crb-quick-action-dot {
+      position: absolute;
+      top: 1px;
+      right: 1px;
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: var(--r-red-default);
+      box-shadow: 0 0 0 2px var(--r-neutral-bg-2);
+    }
+  }
+
+  .crb-panel-sheet {
     .dashboard-panel-grid {
       position: relative;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-
-      scroll-snap-align: end;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 4px;
     }
 
     .panel-item {
-      height: 88px;
+      height: 96px;
       width: 100%;
-
-      background: transparent;
-      border-radius: 12px;
-      transition: background-color 0.15s ease;
-
+      border-radius: 14px;
       position: relative;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      padding-top: 10px;
+      gap: 8px;
+      cursor: pointer;
+      transition: background-color 0.15s var(--crb-ease);
 
       &:hover {
-        background: var(--crb-sunken);
+        background: var(--crb-hover);
+      }
+
+      &:hover .panel-item-icon-wrap {
+        transform: translateY(-1px);
       }
 
       &:has(.panel-item-jump-button:hover) {
@@ -115,22 +187,24 @@ const GlobalStyle = createGlobalStyle`
         position: absolute;
         top: 4px;
         right: 4px;
-        z-index: 1;
+        z-index: 2;
 
         display: none;
         align-items: center;
         justify-content: center;
-        padding: 5px;
+        width: 22px;
+        height: 22px;
+        padding: 0;
 
-        color: var(--r-neutral-title1, #09090b);
-        background: var(--r-neutral-card3, #fafafa);
+        color: var(--r-neutral-foot);
+        background: var(--crb-raised);
+        box-shadow: var(--crb-shadow-card);
         border: 0;
-        border-radius: 4px;
+        border-radius: 7px;
         cursor: pointer;
 
         &:hover {
-          color: var(--r-blue-default, #e8552a);
-          background: var(--r-blue-light1, #fdefe9);
+          color: var(--r-blue-default);
         }
       }
 
@@ -138,36 +212,43 @@ const GlobalStyle = createGlobalStyle`
         display: flex;
       }
 
+      &-icon-wrap {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        color: var(--r-neutral-title-1);
+        background: var(--crb-raised);
+        box-shadow: var(--crb-shadow-card);
+        transition: transform 0.15s var(--crb-ease);
+      }
+
       &-icon {
-        width: 24px;
-        height: 24px;
-        justify-self: center;
-        margin-bottom: 6px;
-        color: var(--r-neutral-title1, #09090b);
+        width: 20px;
+        height: 20px;
+        color: currentColor;
 
         &.icon-spin {
           animation: icn-spin 1.5s linear infinite;
         }
-
-        &.icon-rabby-mobile {
-          width: 24px;
-          height: 24px;
-          margin-bottom: 4px;
-        }
-
-        &.icon-points {
-          width: 24px;
-          height: 24px;
-          margin-bottom: 4px;
-        }
       }
 
       &-label {
-        font-weight: 500;
-        font-size: 13px;
-        line-height: 16px;
-        color: var(--r-neutral-title-1, rgba(9, 9, 11, 1));
+        font-weight: 550;
+        font-size: 12px;
+        line-height: 15px;
+        letter-spacing: -0.01em;
+        color: var(--r-neutral-body);
         text-align: center;
+        padding: 0 2px;
+      }
+
+      &.is-dragging-overlay {
+        background: var(--crb-card-solid);
+        box-shadow: var(--crb-shadow-pop);
       }
 
       @keyframes icn-spin {
@@ -178,26 +259,26 @@ const GlobalStyle = createGlobalStyle`
 
       .icon-alert {
         position: absolute;
-        right: 33px;
-        top: 7px;
+        right: 18px;
+        top: 6px;
+        z-index: 1;
       }
     }
 
     .ant-badge {
       .ant-badge-count {
-        background-color: var(--r-blue-default, #f26b3a);
-        padding: 2px 6px;
-        font-size: 13px;
-        line-height: 1;
-        height: 18px;
-        border-radius: 90px;
-        box-shadow: none;
+        background-color: var(--r-blue-default);
+        padding: 0 5px;
+        font-size: 11px;
+        font-weight: 600;
+        line-height: 16px;
+        height: 16px;
+        min-width: 16px;
+        border-radius: 999px;
+        box-shadow: 0 0 0 2px var(--r-neutral-bg-2);
       }
       &.alert .ant-badge-count {
-        background-color: #ec5151;
-      }
-      &.round .ant-badge-count {
-        padding: 2px 4.5px !important;
+        background-color: var(--r-red-default);
       }
     }
   }
@@ -226,7 +307,8 @@ const SortablePanelItem: React.FC<{
   panelKey: string;
   item: IPanelItem;
   index: number;
-}> = ({ panelKey, item, index }) => {
+  onItemClick?: () => void;
+}> = ({ panelKey, item, index, onItemClick }) => {
   const { t } = useTranslation();
   const {
     attributes,
@@ -243,17 +325,11 @@ const SortablePanelItem: React.FC<{
     transform: CSS.Transform.toString(transform),
     transition,
     cursor: isDragging ? 'grabbing' : 'pointer',
-    opacity: isDragging ? 0.4 : 1,
+    opacity: isDragging ? 0.35 : 1,
   };
 
   return (
-    <div
-      ref={setNodeRef}
-      style={style}
-      {...attributes}
-      {...listeners}
-      className="rounded-[12px]"
-    >
+    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
       {item.disabled ? (
         <Tooltip
           {...(item.commingSoonBadge && { visible: false })}
@@ -261,9 +337,8 @@ const SortablePanelItem: React.FC<{
           overlayClassName="rectangle direction-tooltip"
           autoAdjustOverflow={false}
         >
-          <div key={index} className="disable-direction">
-            <ThemeIcon src={item.icon} className="images" />
-            <div className="panel-item-label">{item.content} </div>
+          <div key={index} className="panel-item opacity-40 cursor-not-allowed">
+            <PanelItemBody item={item} />
           </div>
         </Tooltip>
       ) : (
@@ -280,6 +355,7 @@ const SortablePanelItem: React.FC<{
               event_category: 'Dashboard',
             });
 
+            onItemClick?.();
             item?.onClick(evt);
           }}
           className="panel-item group"
@@ -302,46 +378,62 @@ const SortablePanelItem: React.FC<{
           {item.showAlert && (
             <ThemeIcon src={IconAlertRed} className="icon icon-alert" />
           )}
-          {item.badge ? (
-            <Badge
-              count={item.badge}
-              size="small"
-              className={clsx(
-                {
-                  alert: item.badgeAlert && !item.badgeClassName,
-                },
-                item.badgeClassName
-              )}
-            >
-              <ThemeIcon
-                src={item.icon}
-                className={clsx([
-                  item.iconSpin && 'icon-spin',
-                  'panel-item-icon',
-                ])}
-              />
-            </Badge>
-          ) : (
-            <ThemeIcon
-              src={item.icon}
-              className={clsx(['panel-item-icon', item.iconClassName])}
-            />
-          )}
-          <div className="panel-item-label">{item.content}</div>
-          {item.subContent}
-          {item.commingSoonBadge && (
-            <div className="coming-soon-badge">
-              {t('page.dashboard.home.soon')}
-            </div>
-          )}
-          {/* {item.isFullscreen && (
-            <div className="absolute top-[6px] right-[6px] opacity-50 text-r-neutral-foot hidden group-hover:block">
-              <RcIconExternal1CC />
-            </div>
-          )} */}
+          <PanelItemBody item={item} />
         </div>
       )}
     </div>
+  );
+};
+
+const PanelItemIcon: React.FC<{ item: IPanelItem }> = ({ item }) => {
+  const Icon = item.icon as React.ComponentType<{
+    className?: string;
+    strokeWidth?: number;
+  }>;
+  return (
+    <Icon
+      strokeWidth={2}
+      className={clsx(
+        'panel-item-icon',
+        item.iconSpin && 'icon-spin',
+        item.iconClassName
+      )}
+    />
+  );
+};
+
+const PanelItemBody: React.FC<{ item: IPanelItem }> = ({ item }) => {
+  const { t } = useTranslation();
+  const wrap = (
+    <div className="panel-item-icon-wrap">
+      <PanelItemIcon item={item} />
+    </div>
+  );
+  return (
+    <>
+      {item.badge ? (
+        <Badge
+          count={item.badge}
+          size="small"
+          offset={[-2, 2]}
+          className={clsx(
+            {
+              alert: item.badgeAlert && !item.badgeClassName,
+            },
+            item.badgeClassName
+          )}
+        >
+          {wrap}
+        </Badge>
+      ) : (
+        wrap
+      )}
+      <div className="panel-item-label">{item.content}</div>
+      {item.subContent}
+      {item.commingSoonBadge && (
+        <div className="coming-soon-badge">{t('page.dashboard.home.soon')}</div>
+      )}
+    </>
   );
 };
 
@@ -427,8 +519,6 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
     onOpenInDesktop?: () => void;
   };
 
-  const IconPerps = RcIconPerpsCC;
-
   const hiddenBalance = useRabbySelector((s) => s.preference.hiddenBalance);
 
   const {
@@ -495,7 +585,7 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
 
   const panelItems = {
     swap: {
-      icon: RcIconSwapCC,
+      icon: ArrowLeftRight as ThemeIconType,
       eventKey: 'Swap',
       content: t('page.dashboard.home.panel.swap'),
       onClick: () => {
@@ -506,7 +596,7 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
       },
     } as IPanelItem,
     send: {
-      icon: RcIconSendCC,
+      icon: ArrowUpRight as ThemeIconType,
       eventKey: 'Send',
       content: t('page.dashboard.home.panel.send'),
       onClick: () => {
@@ -517,7 +607,7 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
       },
     } as IPanelItem,
     bridge: {
-      icon: RcIconBridgeCC,
+      icon: Bridge as ThemeIconType,
       eventKey: 'Bridge',
       content: t('page.dashboard.home.panel.bridge'),
       onClick: () => {
@@ -530,7 +620,7 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
       },
     } as IPanelItem,
     receive: {
-      icon: RcIconReceiveCC,
+      icon: ArrowDownLeft as ThemeIconType,
       eventKey: 'Receive',
       content: t('page.dashboard.home.panel.receive'),
       onClick: () => {
@@ -538,7 +628,7 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
       },
     } as IPanelItem,
     // queue: {
-    //   icon: RcIconTransactionsCC,
+    //   icon: History as ThemeIconType,
     //   eventKey: 'Queue',
     //   content: t('page.dashboard.home.panel.queue'),
     //   badge: gnosisPendingCount,
@@ -547,7 +637,7 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
     //   },
     // } as IPanelItem,
     transactions: {
-      icon: RcIconTransactionsCC,
+      icon: History as ThemeIconType,
       eventKey: 'Transactions',
       content: t('page.dashboard.home.panel.transactions'),
       onClick: () => {
@@ -558,7 +648,7 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
       },
     } as IPanelItem,
     security: {
-      icon: RcIconApprovalsCC,
+      icon: ShieldCheck as ThemeIconType,
       eventKey: 'Approvals',
       content: t('page.dashboard.home.panel.approvals'),
       onClick: async (evt) => {
@@ -575,13 +665,13 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
       },
     } as IPanelItem,
     more: {
-      icon: RcIconSettingCC,
+      icon: Settings as ThemeIconType,
       eventKey: 'More',
       content: t('page.dashboard.home.panel.settings'),
       onClick: onSettingClick,
     } as IPanelItem,
     ecology: {
-      icon: RcIconEco,
+      icon: Globe as ThemeIconType,
       eventKey: 'Ecology',
       content: t('page.dashboard.home.panel.ecology'),
       onClick: () => {
@@ -590,7 +680,7 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
     } as IPanelItem,
 
     points: {
-      icon: RcIconPointsCC,
+      icon: Star as ThemeIconType,
       eventKey: 'Rabby Points',
       content: t('page.dashboard.home.panel.rabbyPoints'),
       onClick: () => {
@@ -598,7 +688,7 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
       },
     } as IPanelItem,
     mobile: {
-      icon: RcIconMobileSyncCC,
+      icon: Smartphone as ThemeIconType,
       eventKey: 'Rabby Mobile',
       content: t('page.dashboard.home.panel.mobile'),
       onClick: () => {
@@ -607,7 +697,7 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
       isFullscreen: true,
     } as IPanelItem,
     perps: {
-      icon: IconPerps,
+      icon: ChartCandlestick as ThemeIconType,
       eventKey: 'Perps',
       iconClassName: 'icon-perps',
       subContent: perpsSubContentNode,
@@ -623,7 +713,7 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
       // isFullscreen: true,
     } as IPanelItem,
     searchDapp: {
-      icon: RcIconSearchCC,
+      icon: Search as ThemeIconType,
       eventKey: 'Search Dapp',
       content: t('page.dashboard.home.panel.searchDapp'),
       onClick: () => {
@@ -632,7 +722,7 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
       isFullscreen: true,
     } as IPanelItem,
     dapps: {
-      icon: RcIconDappsCC,
+      icon: Blocks as ThemeIconType,
       eventKey: 'Dapps ',
       content: t('page.dashboard.home.panel.dapps'),
       onClick: () => {
@@ -640,7 +730,7 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
       },
     } as IPanelItem,
     manageAddress: {
-      icon: RcIconManageCC,
+      icon: Users as ThemeIconType,
       eventKey: 'Manage Address',
       content: t('page.dashboard.home.panel.manageAddress'),
       onClick: () => {
@@ -648,7 +738,7 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
       },
     } as IPanelItem,
     convertDust: {
-      icon: RcIconConvertDustCC,
+      icon: Sparkles as ThemeIconType,
       eventKey: 'Convert Dust',
       content: t('page.dashboard.home.panel.convertDust'),
       onClick: async () => {
@@ -659,7 +749,7 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
       isFullscreen: true,
     } as IPanelItem,
     staking: {
-      icon: RcIconStakingCC,
+      icon: Sprout as ThemeIconType,
       eventKey: 'Staking',
       content: t('page.dashboard.home.panel.staking'),
       onClick: () => {
@@ -701,10 +791,6 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
   const pickedPanelKeys = useMemo(() => {
     return getPanelKeys();
   }, [dashboardPanelOrder]);
-
-  const placeholderCount = useMemo(() => {
-    return (3 - (pickedPanelKeys.length % 3)) % 3;
-  }, [pickedPanelKeys.length]);
 
   const setPickedPanelKeys = useMemoizedFn(
     (keys: (keyof typeof panelItems)[]) => {
@@ -766,292 +852,145 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
       | undefined;
   }, [activeId, panelItems]);
 
-  const ref = useRef<HTMLDivElement | null>(null);
-  const scrollbarTrackRef = useRef<HTMLDivElement | null>(null);
-  const scrollbarThumbRef = useRef<HTMLDivElement | null>(null);
-  const scrollbarDragOffsetRef = useRef(SCROLLBAR_THUMB_HEIGHT / 2);
-  const isScrollbarDraggingRef = useRef(false);
-  const [isScrollbarDragging, setIsScrollbarDragging] = useState(false);
-  const scroll = useScroll(ref);
-  const scrollRatio = useMemo(() => {
-    const top = scroll?.top ?? 0;
-    const height = ref.current?.clientHeight ?? 0;
-    const scrollHeight = ref.current?.scrollHeight ?? 0;
-    const maxScrollTop = scrollHeight - height;
+  const [moreOpen, setMoreOpen] = useState(false);
 
-    if (maxScrollTop <= 0) {
-      return 0;
-    }
-
-    const ratio = top / maxScrollTop;
-    return Math.min(Math.max(ratio, 0), 1);
-  }, [scroll?.top]);
-
-  const scrollPanelFromScrollbar = useMemoizedFn((clientY: number) => {
-    const scrollContainer = ref.current;
-    const track = scrollbarTrackRef.current;
-
-    if (!scrollContainer || !track) {
-      return;
-    }
-
-    const maxScrollTop =
-      scrollContainer.scrollHeight - scrollContainer.clientHeight;
-
-    if (maxScrollTop <= 0 || SCROLLBAR_THUMB_MAX_OFFSET <= 0) {
-      return;
-    }
-
-    const trackTop = track.getBoundingClientRect().top;
-    const nextThumbOffset = Math.min(
-      Math.max(clientY - trackTop - scrollbarDragOffsetRef.current, 0),
-      SCROLLBAR_THUMB_MAX_OFFSET
+  const sheetPanelKeys = useMemo(() => {
+    return pickedPanelKeys.filter(
+      (key) => !(PRIMARY_PANEL_KEYS as readonly string[]).includes(key)
     );
+  }, [pickedPanelKeys]);
 
-    scrollContainer.scrollTop =
-      (nextThumbOffset / SCROLLBAR_THUMB_MAX_OFFSET) * maxScrollTop;
-  });
+  const sheetHasAlert = useMemo(() => {
+    return sheetPanelKeys.some((key) => {
+      const item = panelItems[key] as IPanelItem | undefined;
+      return !!item?.badgeAlert && !!item.badge;
+    });
+  }, [sheetPanelKeys, panelItems]);
 
-  const handleScrollbarPointerDown = useMemoizedFn(
-    (event: React.PointerEvent<HTMLDivElement>) => {
-      const scrollContainer = ref.current;
-      const track = scrollbarTrackRef.current;
+  const runPanelItem = useMemoizedFn(
+    (item: IPanelItem, evt: React.MouseEvent<HTMLElement>) => {
+      matomoRequestEvent({
+        category: 'Dashboard',
+        action: 'clickEntry',
+        label: item.eventKey,
+      });
 
-      event.preventDefault();
-      event.stopPropagation();
+      ga4.fireEvent(`Entry_${item.eventKey}`, {
+        event_category: 'Dashboard',
+      });
 
-      if (
-        !scrollContainer ||
-        !track ||
-        scrollContainer.scrollHeight <= scrollContainer.clientHeight
-      ) {
-        return;
-      }
-
-      const trackTop = track.getBoundingClientRect().top;
-      const isThumbTarget =
-        scrollbarThumbRef.current?.contains(event.target as Node) ?? false;
-
-      if (isThumbTarget) {
-        const currentThumbOffset = scrollRatio * SCROLLBAR_THUMB_MAX_OFFSET;
-        scrollbarDragOffsetRef.current = Math.min(
-          Math.max(event.clientY - trackTop - currentThumbOffset, 0),
-          SCROLLBAR_THUMB_HEIGHT
-        );
-      } else {
-        scrollbarDragOffsetRef.current = SCROLLBAR_THUMB_HEIGHT / 2;
-      }
-
-      isScrollbarDraggingRef.current = true;
-      setIsScrollbarDragging(true);
-      event.currentTarget.setPointerCapture(event.pointerId);
-      scrollPanelFromScrollbar(event.clientY);
-    }
-  );
-
-  const handleScrollbarPointerMove = useMemoizedFn(
-    (event: React.PointerEvent<HTMLDivElement>) => {
-      if (!isScrollbarDraggingRef.current) {
-        return;
-      }
-
-      event.preventDefault();
-      event.stopPropagation();
-      scrollPanelFromScrollbar(event.clientY);
-    }
-  );
-
-  const handleScrollbarPointerEnd = useMemoizedFn(
-    (event: React.PointerEvent<HTMLDivElement>) => {
-      if (!isScrollbarDraggingRef.current) {
-        return;
-      }
-
-      isScrollbarDraggingRef.current = false;
-      setIsScrollbarDragging(false);
-
-      if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-        event.currentTarget.releasePointerCapture(event.pointerId);
-      }
+      item.onClick(evt);
     }
   );
 
   return (
     <div
       className={clsx(
-        'relative px-[16px] pt-[14px] pb-[12px]',
+        'relative px-[12px] pt-[10px] pb-[6px]',
         'rabby-dashboard-panel-container'
       )}
     >
       <GlobalStyle />
-      <div
-        className="overflow-auto rounded-[16px] bg-r-neutral-card-1 p-[4px] shadow-[var(--crb-shadow-card)]"
-        style={{
-          height: 272,
-        }}
-        ref={ref}
+      <div className="crb-quick-actions">
+        {PRIMARY_PANEL_KEYS.map((key) => {
+          const item = panelItems[key] as IPanelItem;
+          const Icon = item.icon as React.ComponentType<{
+            strokeWidth?: number;
+          }>;
+          return (
+            <button
+              key={key}
+              type="button"
+              className="crb-quick-action"
+              onClick={(evt) => runPanelItem(item, evt)}
+            >
+              <span className="crb-quick-action-icon">
+                <Icon strokeWidth={2.1} />
+              </span>
+              <span className="crb-quick-action-label">{item.content}</span>
+            </button>
+          );
+        })}
+        <button
+          type="button"
+          className="crb-quick-action"
+          onClick={() => setMoreOpen(true)}
+        >
+          <span className="crb-quick-action-icon">
+            <LayoutGrid strokeWidth={2.1} />
+            {sheetHasAlert && <span className="crb-quick-action-dot" />}
+          </span>
+          <span className="crb-quick-action-label">
+            {t('page.dashboard.home.panel.more')}
+          </span>
+        </button>
+      </div>
+
+      <Popup
+        visible={moreOpen}
+        onClose={() => setMoreOpen(false)}
+        height="auto"
+        isNew
+        isSupportDarkMode
+        destroyOnClose={false}
+        className="crb-panel-sheet"
+        bodyStyle={{ padding: '28px 12px 16px' }}
       >
-        <div>
-          <DndContext
-            onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
-            onDragCancel={handleDragCancel}
-            measuring={{
-              droppable: { strategy: MeasuringStrategy.Always },
+        <DndContext
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+          onDragCancel={handleDragCancel}
+          measuring={{
+            droppable: { strategy: MeasuringStrategy.Always },
+          }}
+          sensors={sensors}
+          collisionDetection={closestCenter}
+        >
+          <SortableContext items={sheetPanelKeys}>
+            <div className="dashboard-panel-grid">
+              {sheetPanelKeys.map((panelKey, index) => {
+                const item = panelItems[panelKey] as IPanelItem;
+                if (!item) {
+                  return null;
+                }
+                return (
+                  <SortablePanelItem
+                    key={panelKey}
+                    panelKey={panelKey}
+                    item={item}
+                    index={index}
+                    onItemClick={() => setMoreOpen(false)}
+                  />
+                );
+              })}
+            </div>
+          </SortableContext>
+          <DragOverlay
+            dropAnimation={{
+              duration: 200,
+              easing: 'ease',
             }}
-            sensors={sensors}
-            collisionDetection={closestCenter}
-            autoScroll={{
-              threshold: {
-                x: 0.2,
-                y: 0.2,
-              },
-              acceleration: 10,
+            style={{
+              cursor: 'grabbing',
             }}
           >
-            <SortableContext items={pickedPanelKeys}>
-              <div className="dashboard-panel-grid">
-                {pickedPanelKeys.map((panelKey, index) => {
-                  const item = panelItems[panelKey] as IPanelItem;
-                  if (!item) {
-                    return null;
-                  }
-                  return (
-                    <SortablePanelItem
-                      key={panelKey}
-                      panelKey={panelKey}
-                      item={item}
-                      index={index}
-                    />
-                  );
-                })}
-                {Array.from({ length: placeholderCount }).map((_, index) => (
-                  <div
-                    key={`dashboard-panel-placeholder-${index}`}
-                    aria-hidden="true"
-                  >
-                    <div className="panel-item pointer-events-none" />
+            <>
+              {activeId && activeItem ? (
+                <div className="crb-panel-sheet">
+                  <div className="panel-item is-dragging-overlay">
+                    <DragOverlayContext.Provider value={true}>
+                      <PanelItemBody item={activeItem} />
+                    </DragOverlayContext.Provider>
                   </div>
-                ))}
-              </div>
-            </SortableContext>
-            <DragOverlay
-              dropAnimation={{
-                duration: 200,
-                easing: 'ease',
-              }}
-              style={{
-                cursor: 'grabbing',
-              }}
-            >
-              <>
-                {activeId && activeItem ? (
-                  <div>
-                    <div
-                      className={clsx(
-                        'panel-item group',
-                        'rounded-[12px] bg-r-blue-light1',
-                        'border border-rabby-blue-default'
-                      )}
-                      style={{
-                        boxShadow: '0 4px 16px 0 rgba(0, 0, 0, 0.13)',
-                      }}
-                    >
-                      {activeItem.showAlert && (
-                        <ThemeIcon
-                          src={IconAlertRed}
-                          className="icon icon-alert"
-                        />
-                      )}
-                      {activeItem.badge ? (
-                        <Badge
-                          count={activeItem.badge}
-                          size="small"
-                          className={clsx(
-                            {
-                              alert:
-                                activeItem.badgeAlert &&
-                                !activeItem.badgeClassName,
-                            },
-                            activeItem.badgeClassName
-                          )}
-                        >
-                          <ThemeIcon
-                            src={activeItem.icon}
-                            className={clsx([
-                              activeItem.iconSpin && 'icon-spin',
-                              'panel-item-icon',
-                            ])}
-                          />
-                        </Badge>
-                      ) : (
-                        <ThemeIcon
-                          src={activeItem.icon}
-                          className={clsx([
-                            'panel-item-icon',
-                            activeItem.iconClassName,
-                          ])}
-                        />
-                      )}
-                      <div className="panel-item-label">
-                        {activeItem.content}
-                      </div>
-                      <DragOverlayContext.Provider value={true}>
-                        {activeItem.subContent}
-                      </DragOverlayContext.Provider>
-                      {activeItem.commingSoonBadge && (
-                        <div className="coming-soon-badge">
-                          {t('page.dashboard.home.soon')}
-                        </div>
-                      )}
-                      {/* {{activeItem.isFullscreen && (
-                        <div className="absolute top-[6px] right-[6px] opacity-50 text-r-neutral-foot hidden group-hover:block">
-                          <RcIconExternal1CC />
-                        </div>
-                      )}} */}
-                    </div>
-                  </div>
-                ) : null}
-              </>
-            </DragOverlay>
-          </DndContext>
+                </div>
+              ) : null}
+            </>
+          </DragOverlay>
+        </DndContext>
+        <div className="mt-[10px] text-center text-[12px] leading-[16px] text-r-neutral-foot">
+          {t('page.dashboard.home.panel.dragTip')}
         </div>
-      </div>
-      <div className="absolute right-[3px] top-[50%] translate-y-[-50%] h-[92px] w-[13px]">
-        <div
-          ref={scrollbarTrackRef}
-          className={clsx(
-            'absolute right-0 top-[6px] h-[80px] cursor-pointer select-none',
-            isScrollbarDragging && 'cursor-grabbing'
-          )}
-          style={{
-            touchAction: 'none',
-            width: SCROLLBAR_HIT_AREA_WIDTH,
-          }}
-          onPointerDown={handleScrollbarPointerDown}
-          onPointerMove={handleScrollbarPointerMove}
-          onPointerUp={handleScrollbarPointerEnd}
-          onPointerCancel={handleScrollbarPointerEnd}
-          onLostPointerCapture={() => {
-            isScrollbarDraggingRef.current = false;
-            setIsScrollbarDragging(false);
-          }}
-        >
-          <div
-            ref={scrollbarThumbRef}
-            className={clsx(
-              'absolute right-[5px] top-0 z-10 h-[50px] w-[3px] rounded-full bg-r-neutral-foot opacity-60',
-              isScrollbarDragging ? 'cursor-grabbing' : 'cursor-grab'
-            )}
-            style={{
-              transform: `translateY(${
-                scrollRatio * SCROLLBAR_THUMB_MAX_OFFSET
-              }px)`,
-            }}
-          ></div>
-          <div className="absolute bottom-0 right-[5px] top-0 w-[3px] rounded-full bg-r-neutral-line"></div>
-        </div>
-      </div>
+      </Popup>
 
       <ClaimRabbyFreeGasBadgeModal
         visible={badgeModalVisible}

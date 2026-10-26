@@ -187,16 +187,16 @@
   }
 
   .setting-block + .setting-block {
-    margin-top: 16px;
+    margin-top: 20px;
   }
 
   .setting-block .setting-title {
     color: var(--r-neutral-foot, #71717a);
     font-size: 12px;
     font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    letter-spacing: 0.02em;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 0;
     padding-left: 4px;
 
     & + .setting-items {
@@ -205,11 +205,16 @@
   }
 
   /* inset grouped list: one raised card per group, rows split by an inset
-     hairline instead of sitting in a gray slab */
+     hairline */
   .setting-items {
-    background: var(--r-neutral-card-1, rgba(255, 255, 255, 0.06));
-    border-radius: @radius-value;
+    background: var(--crb-raised, #fff);
+    border-radius: 16px;
     box-shadow: var(--crb-shadow-card);
+    overflow: hidden;
+
+    &.setting-appearance {
+      padding: 14px 14px 12px;
+    }
   }
 
   .setting-items .field {
@@ -217,33 +222,69 @@
     border-radius: 0;
     background: transparent;
     position: relative;
+    border: 0;
+    min-height: 48px;
+    padding: 0 14px;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    transition: background-color 0.14s var(--crb-ease);
 
     & + .field::before {
       content: '';
       position: absolute;
       top: 0;
-      left: 48px;
-      right: 16px;
+      left: 46px;
+      right: 0;
       height: 1px;
       background: var(--crb-hairline);
     }
 
-    &:hover {
-      background: var(--crb-sunken);
+    &:hover,
+    &.checked {
+      background: var(--crb-hover);
+      border: 0;
+      border-radius: 0;
     }
 
-    &:first-child {
-      border-top-left-radius: @radius-value;
-      border-top-right-radius: @radius-value;
-    }
-
-    &:last-child {
-      border-bottom-left-radius: @radius-value;
-      border-bottom-right-radius: @radius-value;
+    &:active {
+      background: var(--crb-press);
     }
 
     & + .field {
       margin-top: 0;
+    }
+
+    .left-icon {
+      margin-right: 14px;
+      color: var(--r-neutral-body);
+
+      .icon {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    .right-icon {
+      color: var(--r-neutral-foot);
+
+      .icon-arrow-right {
+        width: 16px;
+        height: 16px;
+        color: var(--rb-neutral-secondary, #a1a1aa);
+      }
+    }
+
+    &.has-desc {
+      height: auto;
+      min-height: 60px;
+      align-items: center;
+      padding: 10px 14px;
+
+      .desc {
+        color: var(--r-neutral-foot);
+        white-space: normal;
+      }
     }
   }
 

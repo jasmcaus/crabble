@@ -1697,3 +1697,25 @@
     }
   }
 }
+
+/* the current dApp connection stays pinned under the scrolling portfolio */
+.dashboard-connection-bar {
+  position: relative;
+  z-index: 6;
+  padding: 8px 12px 10px;
+  background: var(--r-neutral-bg-2, #f6f6f7);
+  box-shadow: 0 -1px 0 var(--crb-hairline);
+
+  > div:first-child {
+    margin-top: 0;
+    height: 48px;
+    border-radius: 14px;
+    background: var(--crb-raised);
+    box-shadow: var(--crb-shadow-card);
+  }
+}
+
+/* nothing to show when the popup isn't opened over a site */
+.dashboard-connection-bar:has(.site.is-empty) {
+  display: none;
+}

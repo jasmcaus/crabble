@@ -747,3 +747,125 @@ html.dark .ant-message-notice-content {
     background: var(--crb-press);
   }
 }
+
+/*---------------------------------------------------------------
+  Segmented control (ui/Segmented)
+---------------------------------------------------------------*/
+.crb-segmented {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  isolation: isolate;
+
+  &.is-block {
+    display: flex;
+    width: 100%;
+
+    .crb-segmented-item {
+      flex: 1 1 0;
+    }
+  }
+
+  .crb-segmented-item {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    margin: 0;
+    background: transparent;
+    color: var(--r-neutral-foot);
+    font-family: inherit;
+    font-weight: 550;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color 0.16s var(--crb-ease);
+
+    &:hover:not([disabled]) {
+      color: var(--r-neutral-title-1);
+    }
+
+    &.is-active {
+      color: var(--r-neutral-title-1);
+    }
+
+    &[disabled] {
+      cursor: not-allowed;
+      opacity: 0.4;
+    }
+  }
+
+  .crb-segmented-label {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  .crb-segmented-thumb {
+    position: absolute;
+    z-index: 0;
+  }
+
+  /* pill: sunken track, raised thumb */
+  &.is-pill {
+    padding: 3px;
+    gap: 2px;
+    border-radius: 10px;
+    background: var(--crb-sunken);
+
+    .crb-segmented-item {
+      height: 28px;
+      padding: 0 12px;
+      border-radius: 8px;
+      font-size: 13px;
+    }
+
+    .crb-segmented-thumb {
+      inset: 0;
+      border-radius: 8px;
+      background: var(--crb-thumb);
+      box-shadow: var(--crb-shadow-thumb);
+    }
+
+    &.is-sm .crb-segmented-item {
+      height: 24px;
+      padding: 0 10px;
+      font-size: 12px;
+      border-radius: 7px;
+    }
+  }
+
+  /* tabs: bare labels with an ink underline */
+  &.is-tabs {
+    gap: 18px;
+
+    .crb-segmented-item {
+      height: 34px;
+      padding: 0;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+    }
+
+    .crb-segmented-thumb {
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--r-neutral-title-1);
+    }
+
+    &.is-sm .crb-segmented-item {
+      height: 30px;
+      font-size: 14px;
+    }
+  }
+}

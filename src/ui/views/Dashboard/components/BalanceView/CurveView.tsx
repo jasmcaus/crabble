@@ -83,6 +83,7 @@ export const CurveThumbnail = ({
   const displayList = useMemo(() => thinSeries(data?.list), [data?.list]);
   const divRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(66);
+  const [width, setWidth] = useState(376);
   const [showTips, setShowTips] = useState(false);
   const mousePositionRef = useRef({ x: 0, y: 0 });
   const mouseMoveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -144,6 +145,7 @@ export const CurveThumbnail = ({
   useEffect(() => {
     if (divRef.current) {
       setHeight(divRef.current.clientHeight);
+      setWidth(divRef.current.clientWidth || 376);
     }
   }, []);
 
@@ -155,10 +157,10 @@ export const CurveThumbnail = ({
       {isEmpty ? null : (
         <AreaChart
           data={displayList}
-          width={368}
+          width={width}
           height={height}
-          style={{ position: 'absolute', left: 0, cursor: 'pointer' }}
-          margin={{ top: 5, right: 0, left: 0, bottom: 5 }}
+          style={{ position: 'absolute', left: 0, cursor: 'crosshair' }}
+          margin={{ top: 6, right: 0, left: 0, bottom: 2 }}
           onMouseMove={(val, event) => {
             if (val?.activePayload) {
               onHover(val.activePayload[0].payload);
@@ -177,8 +179,8 @@ export const CurveThumbnail = ({
         >
           <defs>
             <linearGradient id="curveThumbnail" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={color} stopOpacity={0.22} />
-              <stop offset="70%" stopColor={color} stopOpacity={0.04} />
+              <stop offset="0%" stopColor={color} stopOpacity={0.18} />
+              <stop offset="75%" stopColor={color} stopOpacity={0.03} />
               <stop offset="100%" stopColor={color} stopOpacity={0} />
             </linearGradient>
           </defs>
@@ -196,12 +198,12 @@ export const CurveThumbnail = ({
             <Tooltip
               cursor={{
                 stroke: 'var(--r-neutral-foot)',
-                strokeDasharray: '2 3',
-                strokeWidth: 0.75,
+                strokeDasharray: '3 3',
+                strokeWidth: 1,
               }}
               content={({ label }) => {
                 return (
-                  <div className="px-[6px] py-[2px] rounded-[6px] bg-r-neutral-card1 shadow-[var(--crb-shadow-card)] text-[11px] leading-[14px] font-medium text-r-neutral-body tabular-nums">
+                  <div className="px-[6px] py-[2px] rounded-[6px] bg-[var(--crb-popover)] shadow-[var(--crb-shadow-pop)] text-[11px] leading-[14px] font-medium text-r-neutral-body tabular-nums">
                     {dayjs(label * 1000).format('HH:mm')}
                   </div>
                 );
@@ -213,10 +215,11 @@ export const CurveThumbnail = ({
             dataKey="value"
             stroke={color}
             strokeOpacity={1}
-            strokeWidth={1.75}
+            strokeWidth={2}
+            strokeLinecap="round"
             activeDot={{
-              r: 4,
-              fill: 'var(--r-neutral-card1)',
+              r: 4.5,
+              fill: 'var(--crb-card-solid)',
               stroke: color,
               strokeWidth: 2,
             }}

@@ -16,16 +16,32 @@ export interface Props {
 }
 
 const InputStyled = styled(Input)`
-  background-color: var(--r-neutral-card1, #fff) !important;
-  &.ant-input-affix-wrapper-focused {
-    border-color: var(--r-blue-default, #f26b3a) !important;
-  }
+  background-color: var(--crb-sunken, #f4f4f5) !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+
   &:hover {
-    border-color: var(--r-blue-default, #f26b3a) !important;
+    background-color: var(--crb-sunken-hover, #ececef) !important;
+  }
+  &.ant-input-affix-wrapper-focused {
+    background-color: var(--crb-raised, #fff) !important;
+    border-color: var(--r-blue-default, #e8552a) !important;
+    box-shadow: var(--crb-ring) !important;
+  }
+
+  .ant-input {
+    background: transparent !important;
+    font-size: 13px;
+  }
+
+  .ant-input-prefix {
+    margin-right: 6px;
+    color: var(--r-neutral-foot);
   }
 
   input::placeholder {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--r-neutral-foot, #71717a);
   }
 `;
@@ -62,8 +78,8 @@ export const TokenSearchInput = React.forwardRef<InputRef, Props>(
         onBlur={onBlur}
         allowClear
         className={clsx(
-          'text-12 text-black py-0 px-[9px] h-[32px]',
-          'rounded-[8px]',
+          'text-[13px] text-r-neutral-title1 py-0 px-[10px] h-[34px]',
+          'rounded-[10px]',
           'transform-none',
           className
         )}

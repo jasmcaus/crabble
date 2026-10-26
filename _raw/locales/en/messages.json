@@ -2878,7 +2878,13 @@
         "biometricUnlockSetupTitle": "Enable Biometric Unlock",
         "biometricUnlockPasswordPlaceholder": "Enter Password",
         "biometricUnlockSetupDesc": "Confirm your password to activate biometric unlock.",
-        "clearPendingCheckbox": "Also reset my local nonce data and signature record"
+        "clearPendingCheckbox": "Also reset my local nonce data and signature record",
+        "appearance": {
+          "title": "Appearance",
+          "light": "Light",
+          "dark": "Dark",
+          "system": "System"
+        }
       },
       "tokenDetail": {
         "removed": {
