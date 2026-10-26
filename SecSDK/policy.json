@@ -78701,6 +78701,362 @@
       "node_modules/lru-cache/node_modules/yallist/iterator.js"
     ]
   },
+  "node_modules/lucide-react/dist/esm/Icon.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/context.mjs",
+      "node_modules/lucide-react/dist/esm/shared/src/build/buildLucideIconForReact.mjs",
+      "node_modules/lucide-react/dist/esm/shared/src/utils/hasA11yProp.mjs",
+      "node_modules/lucide-react/dist/esm/shared/src/utils/mergeClasses.mjs",
+      "node_modules/react/index.js"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/context.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/react/index.js"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/createLucideIcon.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/Icon.mjs",
+      "node_modules/lucide-react/dist/esm/shared/src/utils/toLucideIconData.mjs",
+      "node_modules/lucide-react/dist/esm/shared/src/utils/toPascalCase.mjs",
+      "node_modules/react/index.js"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/activity.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/arrow-down-left.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/arrow-left-right.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/arrow-up-right.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/at-sign.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/blocks.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/boxes.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/bridge.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/chart-candlestick.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/check.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/chevron-down.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/chevron-left.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/chevron-right.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/circle-dollar-sign.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/code.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/copy.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/eraser.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/eye-off.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/fingerprint-pattern.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/flask-conical.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/git-fork.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/globe.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/inbox.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/info.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/key-round.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/languages.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/layout-grid.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/link-2.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/lock.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/maximize-2.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/message-circle.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/monitor.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/moon.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/network.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/plug.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/refresh-cw.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/rotate-ccw-clock.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/rotate-ccw.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/search.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/server.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/settings.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/shield-check.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/signature.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/smartphone.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/sparkles.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/sprout.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/star.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/sun.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/timer.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/users.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/icons/wallet.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/createLucideIcon.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/shared/src/build/buildLucideIconForReact.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/shared/src/build/buildLucideIconNode.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/shared/src/build/buildLucideIconNode.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/shared/src/build/defaultAttributes.mjs",
+      "node_modules/lucide-react/dist/esm/shared/src/utils/mergeClasses.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/shared/src/utils/toLucideIconData.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/shared/src/utils/toKebabCase.mjs"
+    ]
+  },
+  "node_modules/lucide-react/dist/esm/shared/src/utils/toPascalCase.mjs": {
+    "enable": true,
+    "require": [
+      "node_modules/lucide-react/dist/esm/shared/src/utils/toCamelCase.mjs"
+    ]
+  },
   "node_modules/math-intrinsics/sign.js": {
     "enable": true,
     "require": [
@@ -86257,6 +86613,15 @@
       "node_modules/recharts/es6/util/ShallowEqual.js",
       "node_modules/recharts/es6/util/types.js",
       "node_modules/recharts/node_modules/lodash/get.js",
+      "node_modules/recharts/node_modules/lodash/isFunction.js"
+    ]
+  },
+  "node_modules/recharts/es6/cartesian/CartesianGrid.js": {
+    "enable": true,
+    "require": [
+      "node_modules/react/index.js",
+      "node_modules/recharts/es6/util/DataUtils.js",
+      "node_modules/recharts/es6/util/ReactUtils.js",
       "node_modules/recharts/node_modules/lodash/isFunction.js"
     ]
   },
@@ -97054,15 +97419,6 @@
       "src/ui/assets/dashboard/arrow-right-cc.svg"
     ]
   },
-  "src/ui/assets/dashboard/panel/index.tsx": {
-    "enable": true,
-    "require": [
-      "node_modules/react/index.js",
-      "src/ui/assets/dashboard/panel/receive-cc.svg",
-      "src/ui/assets/dashboard/panel/send-cc.svg",
-      "src/ui/assets/dashboard/panel/swap-cc.svg"
-    ]
-  },
   "src/ui/assets/dashboard/panel/receive-cc.svg": {
     "enable": true,
     "require": [
@@ -97617,12 +97973,6 @@
       "node_modules/react/index.js"
     ]
   },
-  "src/ui/assets/tips-cc.svg": {
-    "enable": true,
-    "require": [
-      "node_modules/react/index.js"
-    ]
-  },
   "src/ui/assets/token-default.svg": {
     "enable": true,
     "require": [
@@ -97648,12 +97998,6 @@
     ]
   },
   "src/ui/assets/tokenDetail/IconNoFind.svg": {
-    "enable": true,
-    "require": [
-      "node_modules/react/index.js"
-    ]
-  },
-  "src/ui/assets/unlock/background.svg": {
     "enable": true,
     "require": [
       "node_modules/react/index.js"
@@ -99164,6 +99508,7 @@
       "node_modules/clipboard/dist/clipboard.js",
       "node_modules/clsx/dist/clsx.m.js",
       "node_modules/lodash/lodash.js",
+      "node_modules/lucide-react/dist/esm/icons/chevron-left.mjs",
       "node_modules/qrcode.react/lib/esm/index.js",
       "node_modules/react-i18next/dist/es/index.js",
       "node_modules/react-router/esm/react-router.js",
@@ -99555,8 +99900,6 @@
       "node_modules/ahooks/es/useMemoizedFn/index.js",
       "node_modules/ahooks/es/useMount/index.js",
       "node_modules/ahooks/es/useRequest/index.js",
-      "node_modules/ahooks/es/useScroll/index.js",
-      "node_modules/ahooks/es/useUnmount/index.js",
       "node_modules/antd-dayjs-webpack-plugin/src/antd-plugin.js",
       "node_modules/antd/es/badge/index.js",
       "node_modules/antd/es/button/index.js",
@@ -99584,6 +99927,55 @@
       "node_modules/i18next/dist/esm/i18next.js",
       "node_modules/lodash/lodash.js",
       "node_modules/lottie-react/build/index.umd.js",
+      "node_modules/lucide-react/dist/esm/icons/activity.mjs",
+      "node_modules/lucide-react/dist/esm/icons/arrow-down-left.mjs",
+      "node_modules/lucide-react/dist/esm/icons/arrow-left-right.mjs",
+      "node_modules/lucide-react/dist/esm/icons/arrow-up-right.mjs",
+      "node_modules/lucide-react/dist/esm/icons/at-sign.mjs",
+      "node_modules/lucide-react/dist/esm/icons/blocks.mjs",
+      "node_modules/lucide-react/dist/esm/icons/boxes.mjs",
+      "node_modules/lucide-react/dist/esm/icons/bridge.mjs",
+      "node_modules/lucide-react/dist/esm/icons/chart-candlestick.mjs",
+      "node_modules/lucide-react/dist/esm/icons/check.mjs",
+      "node_modules/lucide-react/dist/esm/icons/chevron-down.mjs",
+      "node_modules/lucide-react/dist/esm/icons/chevron-right.mjs",
+      "node_modules/lucide-react/dist/esm/icons/circle-dollar-sign.mjs",
+      "node_modules/lucide-react/dist/esm/icons/code.mjs",
+      "node_modules/lucide-react/dist/esm/icons/copy.mjs",
+      "node_modules/lucide-react/dist/esm/icons/eraser.mjs",
+      "node_modules/lucide-react/dist/esm/icons/eye-off.mjs",
+      "node_modules/lucide-react/dist/esm/icons/fingerprint-pattern.mjs",
+      "node_modules/lucide-react/dist/esm/icons/flask-conical.mjs",
+      "node_modules/lucide-react/dist/esm/icons/git-fork.mjs",
+      "node_modules/lucide-react/dist/esm/icons/globe.mjs",
+      "node_modules/lucide-react/dist/esm/icons/info.mjs",
+      "node_modules/lucide-react/dist/esm/icons/key-round.mjs",
+      "node_modules/lucide-react/dist/esm/icons/languages.mjs",
+      "node_modules/lucide-react/dist/esm/icons/layout-grid.mjs",
+      "node_modules/lucide-react/dist/esm/icons/link-2.mjs",
+      "node_modules/lucide-react/dist/esm/icons/lock.mjs",
+      "node_modules/lucide-react/dist/esm/icons/maximize-2.mjs",
+      "node_modules/lucide-react/dist/esm/icons/message-circle.mjs",
+      "node_modules/lucide-react/dist/esm/icons/monitor.mjs",
+      "node_modules/lucide-react/dist/esm/icons/moon.mjs",
+      "node_modules/lucide-react/dist/esm/icons/network.mjs",
+      "node_modules/lucide-react/dist/esm/icons/plug.mjs",
+      "node_modules/lucide-react/dist/esm/icons/refresh-cw.mjs",
+      "node_modules/lucide-react/dist/esm/icons/rotate-ccw-clock.mjs",
+      "node_modules/lucide-react/dist/esm/icons/rotate-ccw.mjs",
+      "node_modules/lucide-react/dist/esm/icons/search.mjs",
+      "node_modules/lucide-react/dist/esm/icons/server.mjs",
+      "node_modules/lucide-react/dist/esm/icons/settings.mjs",
+      "node_modules/lucide-react/dist/esm/icons/shield-check.mjs",
+      "node_modules/lucide-react/dist/esm/icons/signature.mjs",
+      "node_modules/lucide-react/dist/esm/icons/smartphone.mjs",
+      "node_modules/lucide-react/dist/esm/icons/sparkles.mjs",
+      "node_modules/lucide-react/dist/esm/icons/sprout.mjs",
+      "node_modules/lucide-react/dist/esm/icons/star.mjs",
+      "node_modules/lucide-react/dist/esm/icons/sun.mjs",
+      "node_modules/lucide-react/dist/esm/icons/timer.mjs",
+      "node_modules/lucide-react/dist/esm/icons/users.mjs",
+      "node_modules/lucide-react/dist/esm/icons/wallet.mjs",
       "node_modules/process/browser.js",
       "node_modules/qrcode.react/lib/esm/index.js",
       "node_modules/qs/lib/index.js",
@@ -99599,14 +99991,10 @@
       "node_modules/react-use/esm/useInterval.js",
       "node_modules/react-use/esm/useMount.js",
       "node_modules/react/index.js",
-      "node_modules/recharts/es6/cartesian/Area.js",
-      "node_modules/recharts/es6/cartesian/XAxis.js",
-      "node_modules/recharts/es6/cartesian/YAxis.js",
-      "node_modules/recharts/es6/chart/AreaChart.js",
-      "node_modules/recharts/es6/component/Tooltip.js",
       "node_modules/remark-gfm/index.js",
       "node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js",
       "node_modules/styled-components/dist/styled-components.browser.esm.js",
+      "node_modules/tailwind-merge/dist/bundle-mjs.mjs",
       "node_modules/webextension-polyfill/dist/browser-polyfill.js",
       "node_modules/zod/v4/classic/schemas.js",
       "node_modules/zustand/esm/react.mjs",
@@ -99624,7 +100012,6 @@
       "src/ui/assets/component/icon-copy.svg",
       "src/ui/assets/dapps.svg",
       "src/ui/assets/dashboard/index.tsx",
-      "src/ui/assets/dashboard/panel/index.tsx",
       "src/ui/assets/dashboard/settings/icon-right-arrow.svg",
       "src/ui/assets/desktop/common/index.tsx",
       "src/ui/assets/icon-back-cc.svg",
@@ -99637,9 +100024,7 @@
       "src/ui/assets/search.svg",
       "src/ui/assets/settings/update/glow.svg",
       "src/ui/assets/success.svg",
-      "src/ui/assets/tips-cc.svg",
       "src/ui/assets/token-default.svg",
-      "src/ui/assets/unlock/background.svg",
       "src/ui/assets/unlock/biometrics.svg",
       "src/ui/assets/unlock/rabby.svg",
       "src/ui/assets/waitcup.svg",
@@ -99699,7 +100084,10 @@
       "src/ui/utils/token.ts",
       "src/ui/utils/withAccountChange.tsx",
       "src/ui/views/Bridge/utils/historyCache.ts",
+      "src/ui/views/CommonPopup/AssetList/AssetListContainer.tsx",
       "src/ui/views/CommonPopup/AssetList/ChainItem.tsx",
+      "src/ui/views/CommonPopup/AssetList/CustomTestnetAssetList/index.tsx",
+      "src/ui/views/Dashboard/components/BalanceView/CurveView.tsx",
       "src/ui/views/Dashboard/components/BalanceView/useCurve.ts",
       "src/ui/views/Dashboard/components/BalanceView/useHomeBalanceView.ts",
       "src/ui/views/Dashboard/components/Feedback/style.less",
@@ -102061,6 +102449,60 @@
       "node_modules/css-loader/dist/runtime/api.js"
     ]
   },
+  "src/ui/views/CommonPopup/AssetList/AssetListContainer.tsx": {
+    "enable": true,
+    "require": [
+      "node_modules/ahooks/es/useRequest/index.js",
+      "node_modules/antd/es/message/index.js",
+      "node_modules/antd/es/skeleton/index.js",
+      "node_modules/antd/es/tooltip/index.js",
+      "node_modules/bignumber.js/bignumber.js",
+      "node_modules/clsx/dist/clsx.m.js",
+      "node_modules/dayjs/dayjs.min.js",
+      "node_modules/lodash/groupBy.js",
+      "node_modules/lodash/lodash.js",
+      "node_modules/lodash/omit.js",
+      "node_modules/lucide-react/dist/esm/icons/inbox.mjs",
+      "node_modules/react-i18next/dist/es/index.js",
+      "node_modules/react/index.js",
+      "node_modules/styled-components/dist/styled-components.browser.esm.js",
+      "src/stats.ts",
+      "src/ui/assets/info-cc.svg",
+      "src/ui/assets/token-default.svg",
+      "src/ui/assets/tokenDetail/IconJump.svg",
+      "src/ui/component/index.tsx",
+      "src/ui/component/MiniSignV2/state/SignatureManager.ts",
+      "src/ui/component/TokenWithChain/index.tsx",
+      "src/ui/component/Tooltip/TooltipWithMagnetArrow.tsx",
+      "src/ui/hooks/backgroundState/useAccount.ts",
+      "src/ui/hooks/useAppChain.ts",
+      "src/ui/hooks/useMiniApprovalDirectSign.tsx",
+      "src/ui/hooks/useNFTCollections.ts",
+      "src/ui/hooks/useRemovedTokens.ts",
+      "src/ui/hooks/useSearchToken.ts",
+      "src/ui/hooks/useSigner.tsx",
+      "src/ui/hooks/useSortTokens.ts",
+      "src/ui/store.ts",
+      "src/ui/utils/index.ts",
+      "src/ui/utils/number.ts",
+      "src/ui/utils/portfolio/expandList.ts",
+      "src/ui/utils/portfolio/index.ts",
+      "src/ui/utils/portfolio/project.ts",
+      "src/ui/utils/portfolio/tokenUtils.ts",
+      "src/ui/utils/token.ts",
+      "src/ui/views/CommonPopup/AssetList/components/DappActions/hook.ts",
+      "src/ui/views/CommonPopup/AssetList/components/TokenTable.tsx",
+      "src/ui/views/CommonPopup/AssetList/HomePerpsPositionList.tsx",
+      "src/ui/views/CommonPopup/AssetList/TokenListEmpty.tsx",
+      "src/ui/views/CommonPopup/AssetList/TokenListViewSkeleton.tsx",
+      "src/ui/views/CommonPopup/AssetList/TokenSearchInput.tsx",
+      "src/ui/views/Dashboard/components/NFT/NFTAvatar.tsx",
+      "src/ui/views/DesktopProfile/components/TokensTabPane/components/LpTokenSwitch.tsx",
+      "src/ui/views/Perps/constants.ts",
+      "src/ui/views/Perps/utils.ts",
+      "src/utils/string.ts"
+    ]
+  },
   "src/ui/views/CommonPopup/AssetList/ChainItem.tsx": {
     "enable": true,
     "require": [
@@ -102120,6 +102562,45 @@
       "src/utils/index.ts"
     ]
   },
+  "src/ui/views/CommonPopup/AssetList/CustomTestnetAssetList/index.tsx": {
+    "enable": true,
+    "require": [
+      "node_modules/ahooks/es/useMemoizedFn/index.js",
+      "node_modules/ahooks/es/useRequest/index.js",
+      "node_modules/antd/es/button/index.js",
+      "node_modules/antd/es/image/index.js",
+      "node_modules/antd/es/switch/index.js",
+      "node_modules/antd/es/tooltip/index.js",
+      "node_modules/clsx/dist/clsx.m.js",
+      "node_modules/react-i18next/dist/es/index.js",
+      "node_modules/react-router/esm/react-router.js",
+      "node_modules/react/index.js",
+      "node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js",
+      "node_modules/styled-components/dist/styled-components.browser.esm.js",
+      "src/ui/assets/dashboard/asset-empty.svg",
+      "src/ui/assets/dashboard/portfolio/cc-add.svg",
+      "src/ui/assets/icon-share-currentcolor.svg",
+      "src/ui/assets/token-default.svg",
+      "src/ui/assets/tokenDetail/IconNoFind.svg",
+      "src/ui/component/index.tsx",
+      "src/ui/component/ThemeMode/ThemeIcon.tsx",
+      "src/ui/component/Tooltip/TooltipWithMagnetArrow.tsx",
+      "src/ui/hooks/usePreference.ts",
+      "src/ui/store.ts",
+      "src/ui/utils/index.ts",
+      "src/ui/views/CommonPopup/AssetList/components/Table.tsx",
+      "src/ui/views/CommonPopup/AssetList/CustomTestnetAssetList/AddCustomTestnetTokenPopup.tsx",
+      "src/ui/views/CommonPopup/AssetList/CustomTestnetAssetList/CustomTestnetTokenItem.tsx",
+      "src/ui/views/CommonPopup/AssetList/CustomTestnetTokenDetailPopup/style.less",
+      "src/ui/views/CommonPopup/AssetList/TokenListEmpty.tsx",
+      "src/ui/views/CommonPopup/AssetList/TokenListViewSkeleton.tsx",
+      "src/ui/views/CommonPopup/AssetList/TokenSearchInput.tsx",
+      "src/ui/views/CustomTestnet/components/EditTestnetModal.tsx",
+      "src/utils/chain.ts",
+      "src/utils/index.ts",
+      "src/utils/matomo-request.ts"
+    ]
+  },
   "src/ui/views/CommonPopup/AssetList/CustomTestnetTokenDetailPopup/style.less": {
     "enable": true,
     "require": [
@@ -102150,11 +102631,32 @@
       "src/utils/ga4.ts"
     ]
   },
+  "src/ui/views/CommonPopup/AssetList/TokenListEmpty.tsx": {
+    "enable": true,
+    "require": [
+      "node_modules/clsx/dist/clsx.m.js",
+      "node_modules/react-i18next/dist/es/index.js",
+      "node_modules/react/index.js"
+    ]
+  },
   "src/ui/views/CommonPopup/AssetList/TokenListViewSkeleton.tsx": {
     "enable": true,
     "require": [
       "node_modules/antd/es/skeleton/index.js",
       "node_modules/react/index.js"
+    ]
+  },
+  "src/ui/views/CommonPopup/AssetList/TokenSearchInput.tsx": {
+    "enable": true,
+    "require": [
+      "node_modules/antd/es/input/index.js",
+      "node_modules/clsx/dist/clsx.m.js",
+      "node_modules/react-i18next/dist/es/index.js",
+      "node_modules/react-use/esm/useDebounce.js",
+      "node_modules/react/index.js",
+      "node_modules/styled-components/dist/styled-components.browser.esm.js",
+      "src/ui/assets/search.svg",
+      "src/ui/utils/index.ts"
     ]
   },
   "src/ui/views/CommonPopup/AssetList/components/DappActions/hook.ts": {
@@ -102182,6 +102684,32 @@
       "node_modules/tailwind-merge/dist/bundle-mjs.mjs"
     ]
   },
+  "src/ui/views/CommonPopup/AssetList/components/TokenTable.tsx": {
+    "enable": true,
+    "require": [
+      "node_modules/antd/es/image/index.js",
+      "node_modules/clsx/dist/clsx.m.js",
+      "node_modules/lodash/lodash.js",
+      "node_modules/react-i18next/dist/es/index.js",
+      "node_modules/react-router/esm/react-router.js",
+      "node_modules/react-window/dist/index.esm.js",
+      "node_modules/react/index.js",
+      "node_modules/styled-components/dist/styled-components.browser.esm.js",
+      "src/ui/assets/dashboard/panel/receive-cc.svg",
+      "src/ui/assets/dashboard/panel/send-cc.svg",
+      "src/ui/assets/dashboard/panel/swap-cc.svg",
+      "src/ui/assets/token-default.svg",
+      "src/ui/component/index.tsx",
+      "src/ui/component/Tooltip/TooltipWithMagnetArrow.tsx",
+      "src/ui/hooks/usePreference.ts",
+      "src/ui/utils/index.ts",
+      "src/ui/utils/portfolio/lpToken.ts",
+      "src/ui/views/CommonPopup/AssetList/components/Table.tsx",
+      "src/ui/views/Dashboard/components/TokenDetailPopup/index.tsx",
+      "src/ui/views/DesktopProfile/components/TokensTabPane/components/LpTokenTag.tsx",
+      "src/utils/chain.ts"
+    ]
+  },
   "src/ui/views/CommonPopup/Ledger.tsx": {
     "enable": true,
     "require": [
@@ -102207,99 +102735,51 @@
     "require": [
       "node_modules/@ant-design/icons/es/icons/Loading3QuartersOutlined.js",
       "node_modules/@debank/common/dist/index-rabby.js",
-      "node_modules/ahooks/es/useMemoizedFn/index.js",
       "node_modules/ahooks/es/useRequest/index.js",
       "node_modules/ahooks/es/useSetState/index.js",
       "node_modules/antd/es/button/index.js",
       "node_modules/antd/es/form/index.js",
-      "node_modules/antd/es/image/index.js",
       "node_modules/antd/es/input/index.js",
       "node_modules/antd/es/message/index.js",
       "node_modules/antd/es/skeleton/index.js",
-      "node_modules/antd/es/switch/index.js",
-      "node_modules/antd/es/tooltip/index.js",
       "node_modules/antd/lib/form/Form.js",
-      "node_modules/bignumber.js/bignumber.js",
       "node_modules/clsx/dist/clsx.m.js",
-      "node_modules/dayjs/dayjs.min.js",
-      "node_modules/lodash/groupBy.js",
       "node_modules/lodash/lodash.js",
-      "node_modules/lodash/omit.js",
       "node_modules/react-dom/index.js",
       "node_modules/react-i18next/dist/es/index.js",
       "node_modules/react-router/esm/react-router.js",
-      "node_modules/react-use/esm/useDebounce.js",
-      "node_modules/react-window/dist/index.esm.js",
       "node_modules/react/index.js",
-      "node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js",
       "node_modules/styled-components/dist/styled-components.browser.esm.js",
       "src/constant/index.ts",
       "src/eventBus.ts",
-      "src/stats.ts",
       "src/ui/assets/dashboard/asset-empty.svg",
       "src/ui/assets/dashboard/empty.svg",
       "src/ui/assets/dashboard/index.tsx",
-      "src/ui/assets/dashboard/panel/index.tsx",
-      "src/ui/assets/dashboard/portfolio/cc-add.svg",
       "src/ui/assets/dashboard/portfolio/cc-down.svg",
       "src/ui/assets/dashboard/settings/icon-right-arrow.svg",
-      "src/ui/assets/icon-share-currentcolor.svg",
-      "src/ui/assets/info-cc.svg",
-      "src/ui/assets/search.svg",
       "src/ui/assets/token-default.svg",
-      "src/ui/assets/tokenDetail/IconJump.svg",
-      "src/ui/assets/tokenDetail/IconNoFind.svg",
       "src/ui/component/ChainSelector/Modal.tsx",
       "src/ui/component/index.tsx",
-      "src/ui/component/MiniSignV2/state/SignatureManager.ts",
       "src/ui/component/PillsSwitch/NetSwitchTabs.tsx",
-      "src/ui/component/ThemeMode/ThemeIcon.tsx",
-      "src/ui/component/TokenWithChain/index.tsx",
       "src/ui/component/Tooltip/TooltipWithMagnetArrow.tsx",
       "src/ui/component/WalletConnect/useDisplayBrandName.ts",
       "src/ui/component/WalletConnect/useSessionStatus.ts",
-      "src/ui/hooks/backgroundState/useAccount.ts",
       "src/ui/hooks/useAppChain.ts",
-      "src/ui/hooks/useMiniApprovalDirectSign.tsx",
-      "src/ui/hooks/useNFTCollections.ts",
       "src/ui/hooks/usePreference.ts",
-      "src/ui/hooks/useRemovedTokens.ts",
       "src/ui/hooks/useSearchToken.ts",
-      "src/ui/hooks/useSigner.tsx",
       "src/ui/hooks/useSortTokens.ts",
       "src/ui/store.ts",
       "src/ui/utils/imKey.ts",
       "src/ui/utils/index.ts",
       "src/ui/utils/keystone.ts",
-      "src/ui/utils/number.ts",
-      "src/ui/utils/portfolio/expandList.ts",
-      "src/ui/utils/portfolio/index.ts",
-      "src/ui/utils/portfolio/lpToken.ts",
-      "src/ui/utils/portfolio/project.ts",
-      "src/ui/utils/portfolio/tokenUtils.ts",
-      "src/ui/utils/token.ts",
       "src/ui/views/Approval/components/WatchAddressWaiting/Scan.tsx",
       "src/ui/views/Approval/index.tsx",
+      "src/ui/views/CommonPopup/AssetList/AssetListContainer.tsx",
       "src/ui/views/CommonPopup/AssetList/ChainItem.tsx",
-      "src/ui/views/CommonPopup/AssetList/components/DappActions/hook.ts",
-      "src/ui/views/CommonPopup/AssetList/components/Table.tsx",
-      "src/ui/views/CommonPopup/AssetList/CustomTestnetAssetList/AddCustomTestnetTokenPopup.tsx",
-      "src/ui/views/CommonPopup/AssetList/CustomTestnetAssetList/CustomTestnetTokenItem.tsx",
-      "src/ui/views/CommonPopup/AssetList/CustomTestnetTokenDetailPopup/style.less",
-      "src/ui/views/CommonPopup/AssetList/HomePerpsPositionList.tsx",
-      "src/ui/views/CommonPopup/AssetList/TokenListViewSkeleton.tsx",
+      "src/ui/views/CommonPopup/AssetList/components/TokenTable.tsx",
+      "src/ui/views/CommonPopup/AssetList/CustomTestnetAssetList/index.tsx",
       "src/ui/views/CommonPopup/Ledger.tsx",
-      "src/ui/views/CustomTestnet/components/EditTestnetModal.tsx",
-      "src/ui/views/Dashboard/components/NFT/NFTAvatar.tsx",
-      "src/ui/views/Dashboard/components/TokenDetailPopup/index.tsx",
-      "src/ui/views/DesktopProfile/components/TokensTabPane/components/LpTokenSwitch.tsx",
-      "src/ui/views/DesktopProfile/components/TokensTabPane/components/LpTokenTag.tsx",
-      "src/ui/views/Perps/constants.ts",
-      "src/ui/views/Perps/utils.ts",
-      "src/utils/chain.ts",
-      "src/utils/index.ts",
-      "src/utils/matomo-request.ts",
-      "src/utils/string.ts"
+      "src/utils/chain.ts"
     ]
   },
   "src/ui/views/ConnectedSites/style.less": {
@@ -102410,6 +102890,21 @@
     "enable": true,
     "require": [
       "node_modules/css-loader/dist/runtime/api.js"
+    ]
+  },
+  "src/ui/views/Dashboard/components/BalanceView/CurveView.tsx": {
+    "enable": true,
+    "require": [
+      "node_modules/dayjs/dayjs.min.js",
+      "node_modules/react-i18next/dist/es/index.js",
+      "node_modules/react/index.js",
+      "node_modules/recharts/es6/cartesian/Area.js",
+      "node_modules/recharts/es6/cartesian/XAxis.js",
+      "node_modules/recharts/es6/cartesian/YAxis.js",
+      "node_modules/recharts/es6/chart/AreaChart.js",
+      "node_modules/recharts/es6/component/Tooltip.js",
+      "node_modules/styled-components/dist/styled-components.browser.esm.js",
+      "src/ui/hooks/useAppChain.ts"
     ]
   },
   "src/ui/views/Dashboard/components/BalanceView/useCurve.ts": {
@@ -102856,9 +103351,11 @@
       "node_modules/react-window/dist/index.esm.js",
       "node_modules/react/index.js",
       "node_modules/recharts/es6/cartesian/Area.js",
+      "node_modules/recharts/es6/cartesian/CartesianGrid.js",
       "node_modules/recharts/es6/cartesian/XAxis.js",
       "node_modules/recharts/es6/cartesian/YAxis.js",
       "node_modules/recharts/es6/chart/AreaChart.js",
+      "node_modules/recharts/es6/component/ResponsiveContainer.js",
       "node_modules/recharts/es6/component/Tooltip.js",
       "node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js",
       "node_modules/styled-components/dist/styled-components.browser.esm.js",
@@ -102910,7 +103407,6 @@
       "src/ui/assets/search.svg",
       "src/ui/assets/swap/history-cc.svg",
       "src/ui/assets/swap/modal-close.svg",
-      "src/ui/assets/tips-cc.svg",
       "src/ui/assets/token-default.svg",
       "src/ui/component/ChainIcon.tsx",
       "src/ui/component/ChainSelector/LargeModal.tsx",
@@ -102997,6 +103493,7 @@
       "src/ui/views/CommonPopup/index.tsx",
       "src/ui/views/CommonPopup/Ledger.tsx",
       "src/ui/views/CustomTestnet/index.tsx",
+      "src/ui/views/Dashboard/components/BalanceView/CurveView.tsx",
       "src/ui/views/Dashboard/components/BalanceView/useCurve.ts",
       "src/ui/views/Dashboard/components/BalanceView/useHomeBalanceView.ts",
       "src/ui/views/Dashboard/components/NFT/NFTAvatar.tsx",
@@ -103610,7 +104107,6 @@
       "node_modules/ahooks/es/useRequest/index.js",
       "node_modules/ahooks/es/useScroll/index.js",
       "node_modules/ahooks/es/useTitle/index.js",
-      "node_modules/ahooks/es/useUnmount/index.js",
       "node_modules/antd/es/button/index.js",
       "node_modules/antd/es/drawer/index.js",
       "node_modules/antd/es/dropdown/index.js",
@@ -103744,7 +104240,6 @@
       "src/ui/assets/swap/wallet-cc.svg",
       "src/ui/assets/token-default.svg",
       "src/ui/assets/tokenDetail/IconHelp.svg",
-      "src/ui/assets/unlock/background.svg",
       "src/ui/assets/unlock/biometrics.svg",
       "src/ui/assets/unlock/rabby.svg",
       "src/ui/assets/uploader.svg",

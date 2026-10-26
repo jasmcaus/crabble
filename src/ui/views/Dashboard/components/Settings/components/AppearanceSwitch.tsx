@@ -1,7 +1,7 @@
 import { DARK_MODE_TYPE } from '@/constant';
 import { cn } from '@/ui/component/ui/cn';
+import { handleRadioGroupKeyDown } from '@/ui/component/ui/radioKeys';
 import { useRabbyDispatch, useRabbySelector } from '@/ui/store';
-import * as ToggleGroup from '@radix-ui/react-toggle-group';
 import { Check, Monitor, Moon, Sun } from 'lucide-react';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -122,24 +122,30 @@ export const AppearanceSwitch: React.FC<{ className?: string }> = ({
     },
   ];
 
+  const select = (next: DARK_MODE_TYPE) => {
+    if (next !== themeMode) dispatch.preference.switchThemeMode(next);
+  };
+
   return (
-    <ToggleGroup.Root
-      type="single"
+    <div
+      role="radiogroup"
       aria-label={t('page.dashboard.settings.appearance.title')}
-      value={String(themeMode)}
-      onValueChange={(next) => {
-        if (!next) return;
-        dispatch.preference.switchThemeMode(Number(next) as DARK_MODE_TYPE);
-      }}
+      onKeyDown={(event) =>
+        handleRadioGroupKeyDown(event, options, themeMode, select)
+      }
       className={cn('grid grid-cols-3 gap-[10px]', className)}
     >
       {options.map((option) => {
         const active = themeMode === option.value;
         const Icon = option.icon;
         return (
-          <ToggleGroup.Item
+          <button
             key={option.value}
-            value={String(option.value)}
+            type="button"
+            role="radio"
+            aria-checked={active}
+            tabIndex={active ? 0 : -1}
+            onClick={() => select(option.value)}
             className={cn(
               'group flex flex-col items-stretch gap-[8px] p-0 border-0 bg-transparent cursor-pointer text-left'
             )}
@@ -169,9 +175,9 @@ export const AppearanceSwitch: React.FC<{ className?: string }> = ({
               <Icon size={13} strokeWidth={2.25} />
               {option.label}
             </span>
-          </ToggleGroup.Item>
+          </button>
         );
       })}
-    </ToggleGroup.Root>
+    </div>
   );
 };
