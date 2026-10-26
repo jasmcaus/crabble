@@ -108,7 +108,7 @@ export const AccountTypePanel: React.FC = () => {
             key={option.key}
             onClick={() => handleSelect(option)}
             className={clsx(
-              'px-[16px] py-[14px] rounded-[6px] bg-rb-neutral-bg-2',
+              'px-[16px] py-[14px] rounded-[8px] bg-rb-neutral-bg-2',
               'border border-solid',
               selected ? 'border-rb-blue-default' : 'border-rb-neutral-line',
               selected || pendingKey ? 'cursor-default' : 'cursor-pointer'

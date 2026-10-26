@@ -15,7 +15,7 @@ export const FavoriteTag: React.FC<{
 }> = ({ className }) => (
   <div
     className={clsx(
-      'absolute top-0 right-0 w-[36px] h-[15px] flex items-center justify-center rounded-bl-[8px] bg-r-orange-light',
+      'absolute top-0 right-0 w-[36px] h-[15px] flex items-center justify-center rounded-bl-[12px] bg-r-orange-light',
       className
     )}
   >
@@ -69,7 +69,7 @@ export const AssetItem: React.FC<{
         bg-r-neutral-card-1 relative
         flex items-center justify-between cursor-pointer
         hover:bg-r-blue-light-1 px-16 py-12
-        rounded-[8px]
+        rounded-[12px]
         border-[1px]
         border-solid
         border-transparent

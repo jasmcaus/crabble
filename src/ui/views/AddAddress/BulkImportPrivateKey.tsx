@@ -45,7 +45,7 @@ const Card = styled.div`
   width: 600px;
   min-height: 586px;
   margin: 0 auto;
-  border-radius: 8px;
+  border-radius: 12px;
   background: var(--r-neutral-card-1, #fff);
   padding: 32px 50px;
 `;
@@ -53,7 +53,7 @@ const Card = styled.div`
 const PasswordInput = styled(Input)`
   &.ant-input {
     height: 52px;
-    border-radius: 8px;
+    border-radius: 12px;
     border: 1px solid var(--r-neutral-line, #eae7e2);
     background: var(--r-neutral-card-1, #fff);
     padding: 0 15px;
@@ -1036,10 +1036,8 @@ const BulkImportPrivateKey: React.FC = () => {
                   label: t('page.newAddress.importKeystore'),
                 },
               ]}
-              className="flex bg-r-neutral-line w-full my-[0] h-[36px] p-[2px] rounded-[8px]"
-              itemClassname="w-[50%] py-[7px] text-[15px] leading-[18px] font-medium rounded-[6px] text-center transition-colors"
-              itemClassnameInActive="text-r-neutral-body"
-              itemClassnameActive="bg-r-neutral-card-1 text-r-blue-default"
+              className="flex bg-[var(--crb-sunken)] w-full my-[0] h-[36px] p-[2px] rounded-[12px]"
+              itemClassname="w-[50%] py-[7px] text-[15px] leading-[18px] font-medium rounded-[8px] text-center transition-colors"
             />
 
             <div className="mt-[20px] flex flex-1 flex-col">
@@ -1047,7 +1045,7 @@ const BulkImportPrivateKey: React.FC = () => {
                 <>
                   <div
                     className={clsx(
-                      'h-[280px] rounded-[8px] border bg-r-neutral-card-1',
+                      'h-[280px] rounded-[12px] border bg-r-neutral-card-1',
                       invalidRowIds.length || privateKeyError
                         ? 'border-r-red-default'
                         : 'border-rabby-neutral-line'
@@ -1249,7 +1247,7 @@ const BulkImportPrivateKey: React.FC = () => {
                 >
                   <div className="flex-1">
                     <div
-                      className="flex h-[180px] cursor-pointer flex-col items-center justify-center rounded-[8px] bg-r-neutral-card-2"
+                      className="flex h-[180px] cursor-pointer flex-col items-center justify-center rounded-[12px] bg-r-neutral-card-2"
                       onClick={() => fileInputRef.current?.click()}
                     >
                       <input
@@ -1307,7 +1305,7 @@ const BulkImportPrivateKey: React.FC = () => {
                 size="large"
                 loading={submitting}
                 disabled={disabledConfirm}
-                className="mt-auto h-[44px] w-full rounded-[6px] text-[15px] leading-[18px] font-medium"
+                className="mt-auto h-[44px] w-full rounded-[8px] text-[15px] leading-[18px] font-medium"
                 onClick={handleSubmit}
               >
                 {t('global.confirm')}

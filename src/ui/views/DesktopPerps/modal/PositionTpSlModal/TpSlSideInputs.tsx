@@ -15,7 +15,7 @@ import { TpSlSectionTitle } from './TpSlSectionTitle';
 
 // 11px padding + the 1px focus/error border = Figma's 12px text inset.
 const INPUT_BOX =
-  'h-[40px] rounded-[6px] border border-solid bg-rb-neutral-bg-5 px-[11px] hover:border-rb-brand-default focus-within:border-rb-brand-default';
+  'h-[40px] rounded-[8px] border border-solid bg-rb-neutral-bg-5 px-[11px] hover:border-rb-brand-default focus-within:border-rb-brand-default';
 
 interface TpSlSideInputsProps {
   kind: TpSlKind;

@@ -25,7 +25,7 @@ export const AddressInput: React.FC<Props> = ({
       <div
         className={clsx(
           'flex items-start',
-          'rounded-[6px] py-16 px-12',
+          'rounded-[8px] py-16 px-12',
           'bg-r-neutral-card-1',
           {
             'border-rabby-neutral-line': !error,

@@ -154,7 +154,7 @@ const Wrapper = styled.div<{
     padding: 14px 12px;
     margin-bottom: 12px;
     border: 1px solid var(--r-neutral-line, rgba(255, 255, 255, 0.12));
-    border-radius: 8px;
+    border-radius: 12px;
     background-color: var(--r-neutral-card-1) !important;
     font-size: 13px;
     line-height: 13px;
@@ -178,7 +178,7 @@ const Wrapper = styled.div<{
     display: flex;
     height: 52px;
     padding: 17px 15px;
-    border-radius: 6px;
+    border-radius: 8px;
     background: var(--r-neutral-card-2, rgba(255, 255, 255, 0.06));
     align-items: center;
     margin-bottom: 12px;

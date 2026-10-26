@@ -59,7 +59,7 @@ export const RiskLevelPopup: React.FC<RiskLevelPopupProps> = ({
         >
           {t('page.perps.riskLevel.distanceLabel')}
         </div>
-        <div className="bg-r-neutral-card-1 rounded-[8px]">
+        <div className="bg-r-neutral-card-1 rounded-[12px]">
           <div className="text-[13px] leading-[16px]  flex items-center justify-between p-16">
             <div className="text-r-neutral-body">
               {t('page.perps.riskLevel.currentPrice')}
@@ -79,7 +79,7 @@ export const RiskLevelPopup: React.FC<RiskLevelPopupProps> = ({
           <div className={'px-[16px] pt-[8px] pb-[12px]'}>
             <div
               className={clsx(
-                'bg-r-blue-light1 rounded-[6px] p-[10px]',
+                'bg-r-blue-light1 rounded-[8px] p-[10px]',
                 'text-center text-[13px] leading-[16px] font-medium text-r-blue-default'
               )}
             >

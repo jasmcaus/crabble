@@ -37,7 +37,7 @@ export const PerpsLoginContent = ({
           {t('page.perps.logInPerpsAccount')}
         </Button>
         <div
-          className="h-[48px] text-r-neutral-body text-15 font-medium mt-16 bg-r-neutral-card2 flex items-center justify-center w-full rounded-[6px]
+          className="h-[48px] text-r-neutral-body text-15 font-medium mt-16 bg-r-neutral-card2 flex items-center justify-center w-full rounded-[8px]
           border-transparent
           cursor-pointer
           border-[1px]

@@ -51,7 +51,7 @@ const InputWrap = styled.div`
   width: 100%;
 
   .biometric-pwd-input {
-    border-radius: 8px;
+    border-radius: 12px;
     background: var(--r-neutral-card1, #fff) !important;
     border: 1px solid var(--r-neutral-line) !important;
     height: 56px;
@@ -219,7 +219,7 @@ export const BiometricUnlockSetup = () => {
 
       <Footer>
         <Button
-          className="rabby-btn-ghost h-[48px] rounded-[8px] text-[16px]"
+          className="rabby-btn-ghost h-[48px] rounded-[12px] text-[16px]"
           type="primary"
           ghost
           block
@@ -232,7 +232,7 @@ export const BiometricUnlockSetup = () => {
           {t('global.Cancel')}
         </Button>
         <Button
-          className="h-[48px] rounded-[8px] text-[16px]"
+          className="h-[48px] rounded-[12px] text-[16px]"
           type="primary"
           block
           loading={loading}

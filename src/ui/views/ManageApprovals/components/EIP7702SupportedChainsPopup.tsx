@@ -42,13 +42,13 @@ export const EIP7702SupportedChainsPopup: React.FC<EIP7702SupportedChainsPopupPr
         </header>
 
         <div className="min-h-0 flex-1 overflow-y-auto pb-[20px]">
-          <div className="bg-r-neutral-card-1 rounded-[8px]">
+          <div className="bg-r-neutral-card-1 rounded-[12px]">
             {supportedChains.map((chainEnum) => {
               const chain = findChainByEnum(chainEnum);
               return (
                 <div
                   key={chainEnum}
-                  className="flex items-center gap-[8px] rounded-[8px] px-[16px] py-[10px]"
+                  className="flex items-center gap-[8px] rounded-[12px] px-[16px] py-[10px]"
                 >
                   {chain?.logo ? (
                     <img

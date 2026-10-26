@@ -37,7 +37,7 @@ const Warper = styled.div`
     .ant-input-affix-wrapper {
       border: 1px solid var(--r-neutral-line, rgba(255, 255, 255, 0.1));
       background: var(--r-neutral-card-1, rgba(255, 255, 255, 0.06));
-      border-radius: 6px;
+      border-radius: 8px;
       height: 44px;
       border-width: 1px;
 

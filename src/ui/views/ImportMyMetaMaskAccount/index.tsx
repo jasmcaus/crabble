@@ -65,7 +65,7 @@ export const ImportMyMetaMaskAccount: React.FC<{
             background:
               'linear-gradient(180deg, rgba(251, 140, 0, 0.12) 0%, rgba(251, 140, 0, 0.00) 30.37%), var(--r-neutral-card1, #FFF)',
           }}
-          className="relative rounded-[6px] px-[12px] py-[16px] my-20"
+          className="relative rounded-[8px] px-[12px] py-[16px] my-20"
         >
           <div className="flex items-center justify-center">
             <img
@@ -85,7 +85,7 @@ export const ImportMyMetaMaskAccount: React.FC<{
           </div>
         </div>
 
-        <div className="bg-r-neutral-card-1 rounded-[6px] ">
+        <div className="bg-r-neutral-card-1 rounded-[8px] ">
           <div className="flex flex-col items-center border-rabby-neutral-line py-[20px] px-[16px] pb-[24px]">
             <div className="flex items-center mb-16">
               <span className="text-[13px] font-medium text-r-blue-default mr-2">
@@ -102,7 +102,7 @@ export const ImportMyMetaMaskAccount: React.FC<{
                 'w-[210px] h-[44px] cursor-pointer mt-4',
                 'flex justify-center items-center gap-[6px]',
                 'text-[13px] font-medium text-r-neutral-body',
-                'rounded-[6px] bg-r-neutral-card-2'
+                'rounded-[8px] bg-r-neutral-card-2'
               )}
               onClick={() => {
                 openInTab('https://rabby.io/metamask-export');
@@ -142,7 +142,7 @@ export const ImportMyMetaMaskAccount: React.FC<{
                 'w-[210px] h-[44px] cursor-pointer mt-4',
                 'flex justify-center items-center gap-[6px]',
                 'text-[13px] font-medium text-r-neutral-body',
-                'rounded-[6px] bg-r-neutral-card-2'
+                'rounded-[8px] bg-r-neutral-card-2'
               )}
               onClick={() => {
                 openInternalPageInTab('import/mnemonics');
@@ -158,7 +158,7 @@ export const ImportMyMetaMaskAccount: React.FC<{
                 'w-[210px] h-[44px]  cursor-pointer mt-16',
                 'flex justify-center items-center gap-[6px]',
                 'text-[13px] font-medium text-r-neutral-body',
-                'rounded-[6px] bg-r-neutral-card-2'
+                'rounded-[8px] bg-r-neutral-card-2'
               )}
               onClick={() => {
                 if (UI_TYPE.isDesktop) {

@@ -154,7 +154,7 @@ export const GasAccountDepositTokenForm: React.FC<GasAccountDepositTokenFormProp
               </button>
             </div>
             <div className="px-20 pb-8 flex-1 overflow-y-auto">
-              <div className="bg-r-neutral-card1 rounded-[8px] px-20 py-20">
+              <div className="bg-r-neutral-card1 rounded-[12px] px-20 py-20">
                 <Skeleton active paragraph={{ rows: 4 }} title={false} />
               </div>
             </div>
@@ -1291,7 +1291,7 @@ const GasAccountDepositTokenFormInner: React.FC<
               </div>
             </div>
 
-            <div className="flex items-center bg-r-neutral-card1 rounded-[8px] px-16 h-[100px]">
+            <div className="flex items-center bg-r-neutral-card1 rounded-[12px] px-16 h-[100px]">
               <div className="flex items-center gap-8 w-full">
                 <div className="flex-1 flex flex-col min-w-0">
                   <input
@@ -1325,7 +1325,7 @@ const GasAccountDepositTokenFormInner: React.FC<
                   disabled={isSubmittingDeposit}
                   onClick={handleOpenTokenPicker}
                   className={clsx(
-                    'flex items-center gap-6 px-12 h-[40px] justify-center rounded-[8px]',
+                    'flex items-center gap-6 px-12 h-[40px] justify-center rounded-[12px]',
                     'bg-r-neutral-card-2 border-none',
                     isSubmittingDeposit
                       ? 'cursor-not-allowed'
@@ -1370,7 +1370,7 @@ const GasAccountDepositTokenFormInner: React.FC<
                       type="button"
                       disabled={isSubmittingDeposit}
                       className={clsx(
-                        'flex-1 h-[40px] flex items-center justify-center rounded-[8px] border border-solid text-13 font-medium',
+                        'flex-1 h-[40px] flex items-center justify-center rounded-[12px] border border-solid text-13 font-medium',
                         isSubmittingDeposit
                           ? 'border-transparent text-r-neutral-title-1 bg-r-neutral-card1'
                           : 'border-transparent text-r-neutral-title-1 bg-r-neutral-card1 hover:border-rabby-blue-default hover:bg-r-blue-light1 hover:text-r-blue-default',
@@ -1439,7 +1439,7 @@ const GasAccountDepositTokenFormInner: React.FC<
               disabled={!canSubmit}
               size="large"
               type="primary"
-              className="w-full h-[48px] rounded-[6px] text-[15px] font-medium"
+              className="w-full h-[48px] rounded-[8px] text-[15px] font-medium"
             >
               {t('page.gasAccount.depositPopup.title')}
             </Button>

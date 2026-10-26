@@ -7,7 +7,7 @@ import { Divide } from './Divide';
 const CardDiv = styled.div<{
   hasHover: boolean;
 }>`
-  border-radius: 8px;
+  border-radius: 12px;
   background: var(--r-neutral-card1, #fff);
   border: 1px solid transparent;
   ${({ hasHover }) =>

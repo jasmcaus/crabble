@@ -110,7 +110,7 @@ const Selector = ({
             px={16}
             py={0}
             className={clsx(
-              'rounded-[6px] w-full h-[56px] px-16',
+              'rounded-[8px] w-full h-[56px] px-16',
               'justify-between',
               !disabled && 'hover:border-blue-light',
               disabled && 'opacity-50 cursor-not-allowed'
@@ -162,7 +162,7 @@ const Selector = ({
             px={16}
             py={0}
             className={clsx(
-              'rounded-[6px] w-full h-[56px] px-16 mb-12',
+              'rounded-[8px] w-full h-[56px] px-16 mb-12',
               'justify-between',
               !disabled && 'hover:border-blue-light',
               disabled && 'opacity-50 cursor-not-allowed'
@@ -501,7 +501,7 @@ const WithdrawContent = ({
         <Item
           px={16}
           py={0}
-          className="rounded-[6px] w-full h-[52px] mt-12 flex justify-between"
+          className="rounded-[8px] w-full h-[52px] mt-12 flex justify-between"
           bgColor="var(--r-neutral-card2, #F3F2EF)"
           left={
             <span className="text-14 text-r-neutral-body">
@@ -544,7 +544,7 @@ const WithdrawContent = ({
         <Item
           px={16}
           py={0}
-          className="rounded-[6px] w-full h-[52px] mt-12 flex justify-between"
+          className="rounded-[8px] w-full h-[52px] mt-12 flex justify-between"
           bgColor="var(--r-neutral-card2, #F3F2EF)"
           hoverBorder={!loading}
           left={

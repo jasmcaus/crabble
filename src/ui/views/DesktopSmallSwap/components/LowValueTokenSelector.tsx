@@ -30,7 +30,7 @@ import { UnknownTag } from '@/ui/component';
 const Container = styled.section`
   .token-list {
     border: 0.5px solid var(--r-neutral-line, #d8e0ea);
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
 
     display: flex;
@@ -246,7 +246,7 @@ export const LowValueTokenSelector: React.FC<LowValueTokenSelectorProps> = ({
               disabled={disabled}
               onClick={() => handleThresholdChange(item.value)}
               className={clsx(
-                'h-[40px] min-w-[80px] rounded-[8px] px-[14px] border text-[15px] leading-[18px] font-medium transition-colors',
+                'h-[40px] min-w-[80px] rounded-[12px] px-[14px] border text-[15px] leading-[18px] font-medium transition-colors',
                 active
                   ? 'border-rabby-blue-default bg-rabby-blue-light1 text-rabby-blue-default'
                   : 'border-rabby-neutral-line bg-rabby-neutral-card-1 text-rabby-neutral-foot hover:border-rabby-blue-default hover:text-rabby-blue-default',

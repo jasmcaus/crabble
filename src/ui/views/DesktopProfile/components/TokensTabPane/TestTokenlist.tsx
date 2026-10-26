@@ -98,7 +98,7 @@ const CustomTestnetTokenTable: React.FC<TableProps> = ({
   return (
     <Table className="w-full ml-0 mr-0">
       <THeader
-        className="w-full justify-between bg-rb-neutral-bg-1 rounded-[6px] py-8"
+        className="w-full justify-between bg-rb-neutral-bg-1 rounded-[8px] py-8"
         rowClassName="px-8"
       >
         <THeadCell className="flex-1">
@@ -204,7 +204,7 @@ export const CustomTestnetAssetList: React.FC<Props> = ({
         <div className="flex items-center gap-x-[12px]">
           <div
             className={clsx(
-              'rounded-[6px] bg-r-neutral-card1 px-[9px] py-[10px] cursor-pointer min-w-[292px]',
+              'rounded-[8px] bg-r-neutral-card1 px-[9px] py-[10px] cursor-pointer min-w-[292px]',
               ' border border-rabby-blue-default min-w-[82px] text-center',
               'hover:border-rabby-blue-default hover:bg-r-blue-light1'
             )}
@@ -230,7 +230,7 @@ export const CustomTestnetAssetList: React.FC<Props> = ({
           </div>
           <div
             className={clsx(
-              'rounded-[6px] bg-r-neutral-card1 px-[9px] py-[10px] cursor-pointer min-w-[292px]',
+              'rounded-[8px] bg-r-neutral-card1 px-[9px] py-[10px] cursor-pointer min-w-[292px]',
               ' border border-rabby-blue-default min-w-[82px] text-center',
               'hover:border-rabby-blue-default hover:bg-r-blue-light1'
             )}

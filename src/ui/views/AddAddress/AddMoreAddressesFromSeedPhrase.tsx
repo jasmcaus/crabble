@@ -119,7 +119,7 @@ const SettingGlyph = () => {
 
 const PlaceholderRow = ({ index }: { index: number }) => {
   return (
-    <div className="relative h-[52px] rounded-[8px] bg-r-neutral-card-1">
+    <div className="relative h-[52px] rounded-[12px] bg-r-neutral-card-1">
       <span className="absolute left-[12px] top-1/2 -translate-y-1/2 text-[12px] leading-[14px] text-r-neutral-foot">
         {index}.
       </span>
@@ -147,7 +147,7 @@ const AddressRow = ({
     <button
       type="button"
       className={clsx(
-        'relative h-[52px] w-full rounded-[8px] bg-r-neutral-card-1 text-left',
+        'relative h-[52px] w-full rounded-[12px] bg-r-neutral-card-1 text-left',
         'flex items-center px-[16px] py-[10px]'
       )}
       onClick={onToggle}
@@ -232,7 +232,7 @@ const SettingsSheet = ({
                 key={option.type}
                 type="button"
                 className={clsx(
-                  'relative w-full rounded-[8px] bg-r-neutral-card-1 pl-[36px] pr-[12px] text-left',
+                  'relative w-full rounded-[12px] bg-r-neutral-card-1 pl-[36px] pr-[12px] text-left',
                   option.heightClassName
                 )}
                 onClick={() =>
@@ -272,7 +272,7 @@ const SettingsSheet = ({
                   startNo: Number.isFinite(value) && value > 0 ? value : 1,
                 }));
               }}
-              className="h-[44px] w-full rounded-[8px] border border-rabby-neutral-line bg-r-neutral-card-1 px-[11px] text-[13px] leading-[16px] text-r-neutral-title-1 outline-none"
+              className="h-[44px] w-full rounded-[12px] border border-rabby-neutral-line bg-r-neutral-card-1 px-[11px] text-[13px] leading-[16px] text-r-neutral-title-1 outline-none"
             />
             <div className="opacity-50 text-[12px] leading-[14px] text-r-neutral-foot">
               {t('page.newAddress.hd.manageAddressFrom', [
@@ -287,7 +287,7 @@ const SettingsSheet = ({
           <Button
             type="primary"
             size="large"
-            className="h-[44px] w-full rounded-[6px] text-[16px] leading-[19px] font-medium"
+            className="h-[44px] w-full rounded-[8px] text-[16px] leading-[19px] font-medium"
             onClick={() =>
               onConfirm({
                 ...draft,
@@ -665,7 +665,7 @@ export const AddMoreAddressesFromSeedPhrase: React.FC<{
             type="primary"
             size="large"
             disabled={!selectedAddresses.length || loading || submitting}
-            className="w-full h-[44px] rounded-[6px] text-[16px] leading-[19px] font-medium"
+            className="w-full h-[44px] rounded-[8px] text-[16px] leading-[19px] font-medium"
             onClick={handleConfirm}
           >
             {t('global.confirm')}

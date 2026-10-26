@@ -60,7 +60,7 @@ export const MarginModePopup: React.FC<MarginModePopupProps> = ({
         <div className="flex-1 px-20">
           <div
             className={clsx(
-              'flex items-start gap-12 p-16 rounded-[8px] cursor-pointer mb-12 border border-solid',
+              'flex items-start gap-12 p-16 rounded-[12px] cursor-pointer mb-12 border border-solid',
               pendingMode === 'cross'
                 ? 'border-rabby-blue-default bg-r-blue-light1'
                 : 'border-transparent bg-r-neutral-card1'
@@ -90,7 +90,7 @@ export const MarginModePopup: React.FC<MarginModePopupProps> = ({
           </div>
           <div
             className={clsx(
-              'flex items-start gap-12 p-16 rounded-[8px] cursor-pointer border border-solid',
+              'flex items-start gap-12 p-16 rounded-[12px] cursor-pointer border border-solid',
               pendingMode === 'isolated'
                 ? 'border-rabby-blue-default bg-r-blue-light1'
                 : 'border-transparent bg-r-neutral-card1'

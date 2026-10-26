@@ -51,12 +51,10 @@ export const ImportSeedOrKey = () => {
           onTabChange={(v) => {
             setSelectedTab(v);
           }}
-          className="flex bg-r-neutral-line w-full my-[0] h-[36px] p-[2px] rounded-[8px]"
+          className="flex bg-[var(--crb-sunken)] w-full my-[0] h-[36px] p-[2px] rounded-[12px]"
           itemClassname={clsx(
-            'w-[50%] py-[7px] text-[15px] leading-[18px] font-medium rounded-[6px]'
+            'w-[50%] py-[7px] text-[15px] leading-[18px] font-medium rounded-[8px]'
           )}
-          itemClassnameInActive={clsx('text-r-neutral-body')}
-          itemClassnameActive="bg-r-neutral-bg-1"
           options={options}
         />
       </div>

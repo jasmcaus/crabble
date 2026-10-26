@@ -111,7 +111,7 @@ const Wrapper = styled.div<{
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    /* background: #f5f6fa;
+    /* background: #f5f4f1;
     border: 1px solid #dcdfe4; */
     &::placeholder {
       color: #989aab;
@@ -183,7 +183,7 @@ const Wrapper = styled.div<{
     font-size: 15px;
     font-style: normal;
     font-weight: 500;
-    border-radius: 6px;
+    border-radius: 8px;
     &.ant-btn-primary[disabled] {
       background: rgba(242, 138, 99, 1);
       border-color: transparent;
@@ -414,7 +414,7 @@ const ClaimSuccessWrapper = styled.div`
     font-size: 15px;
     font-style: normal;
     font-weight: 500;
-    border-radius: 6px;
+    border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;

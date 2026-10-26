@@ -17,7 +17,7 @@ const ModalStyled = styled(Modal)`
 
   pre.json-viewer {
     padding: 8px 12px;
-    border-radius: 6px;
+    border-radius: 8px;
   }
 
   .data-block {

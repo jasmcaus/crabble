@@ -1,0 +1,373 @@
+/* Crabble UI layer.
+   Loaded after antd and the inherited overrides, so component-level design
+   decisions live here instead of being scattered through feature styles.
+
+   Principles:
+   - One accent. Coral is reserved for the primary action and the active
+     value; selection, tabs and secondary actions are expressed in ink.
+   - Edges, not fills. Surfaces are defined by a hairline and a soft shadow
+     rather than gray slabs or heavy dividers.
+   - One radius scale: 8 (controls) / 12 (fields, buttons, cards) /
+     20 (sheets, dialogs).
+   - Disabled is neutral, never a washed-out version of the brand. */
+
+:root {
+  --crb-hairline: rgba(26, 25, 23, 0.08);
+  --crb-hairline-strong: rgba(26, 25, 23, 0.14);
+  --crb-sunken: #eeece8;
+  --crb-sunken-hover: #e6e3de;
+  --crb-thumb: #ffffff;
+  --crb-raised: #ffffff;
+  --crb-shadow-thumb: 0 1px 2px rgba(26, 25, 23, 0.1),
+    0 0 0 0.5px rgba(26, 25, 23, 0.06);
+  --crb-shadow-card: 0 1px 2px rgba(26, 25, 23, 0.04),
+    0 0 0 1px rgba(26, 25, 23, 0.05);
+  --crb-shadow-pop: 0 18px 48px -12px rgba(26, 25, 23, 0.22),
+    0 0 0 1px rgba(26, 25, 23, 0.06);
+  --crb-ring: 0 0 0 3px rgba(232, 85, 42, 0.16);
+  --crb-disabled-bg: #ebe9e5;
+  --crb-disabled-fg: #aaa69f;
+  --crb-switch-off: #d9d5cf;
+  --crb-tooltip-bg: #1a1917;
+  --crb-chip-ink: #1a1917;
+  --crb-input-border: #e3e0da;
+}
+
+html.dark {
+  --crb-hairline: rgba(255, 255, 255, 0.07);
+  --crb-hairline-strong: rgba(255, 255, 255, 0.14);
+  --crb-sunken: rgba(255, 255, 255, 0.06);
+  --crb-sunken-hover: rgba(255, 255, 255, 0.1);
+  --crb-thumb: #2c2c30;
+  --crb-raised: #1c1c1f;
+  --crb-shadow-thumb: 0 1px 2px rgba(0, 0, 0, 0.5),
+    inset 0 0.5px 0 rgba(255, 255, 255, 0.08);
+  --crb-shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.06);
+  --crb-shadow-pop: 0 24px 56px -12px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  --crb-ring: 0 0 0 3px rgba(242, 107, 58, 0.26);
+  --crb-disabled-bg: rgba(255, 255, 255, 0.06);
+  --crb-disabled-fg: rgba(255, 255, 255, 0.3);
+  --crb-switch-off: rgba(255, 255, 255, 0.16);
+  --crb-tooltip-bg: #2c2c30;
+  --crb-chip-ink: #2c2c30;
+  --crb-input-border: rgba(255, 255, 255, 0.1);
+}
+
+/*---------------------------------------------------------------
+  Buttons
+---------------------------------------------------------------*/
+.ant-btn {
+  border-radius: 10px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+    color 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease,
+    transform 0.08s ease;
+
+  /* the inherited gray hover veil muddies every fill; hover is handled per type */
+  &::before {
+    display: none !important;
+  }
+
+  &:not([disabled]):active {
+    transform: scale(0.985);
+  }
+}
+
+.ant-btn-lg {
+  border-radius: 12px;
+}
+
+.ant-btn-sm {
+  border-radius: 8px;
+}
+
+.ant-btn-primary:not(.ant-btn-background-ghost):not([disabled]) {
+  &:hover,
+  &:focus {
+    filter: brightness(0.94);
+  }
+
+  html.dark & {
+    &:hover,
+    &:focus {
+      filter: brightness(1.08);
+    }
+  }
+}
+
+.ant-btn-primary[disabled],
+.ant-btn-primary[disabled]:hover,
+.ant-btn-primary[disabled]:focus,
+.ant-btn-primary[disabled]:active {
+  background: var(--crb-disabled-bg) !important;
+  border-color: transparent !important;
+  color: var(--crb-disabled-fg) !important;
+  box-shadow: none !important;
+  text-shadow: none;
+}
+
+/* Secondary: the outlined brand button becomes a quiet neutral one, so the
+   primary action is the only coral thing in a footer.
+   Not !important: buttons a feature styled explicitly keep their look. */
+.ant-btn-primary.ant-btn-background-ghost:not([disabled]),
+.ant-btn-default:not([disabled]):not(.ant-btn-dangerous):not(.ant-btn-icon-only) {
+  background: var(--crb-raised);
+  border-color: var(--crb-hairline-strong);
+  color: var(--r-neutral-title-1);
+  box-shadow: 0 1px 2px rgba(26, 25, 23, 0.04);
+
+  &:hover,
+  &:focus {
+    background: var(--crb-sunken);
+    border-color: var(--crb-hairline-strong);
+    color: var(--r-neutral-title-1);
+  }
+}
+
+.ant-btn-primary.ant-btn-background-ghost[disabled],
+.ant-btn-default[disabled] {
+  background: transparent;
+  border-color: var(--crb-hairline);
+  color: var(--crb-disabled-fg);
+}
+
+.ant-btn-dangerous.ant-btn-primary:not([disabled]) {
+  background: var(--r-red-default) !important;
+  border-color: var(--r-red-default) !important;
+}
+
+/*---------------------------------------------------------------
+  Text fields
+---------------------------------------------------------------*/
+.ant-input,
+.ant-input-affix-wrapper,
+.ant-input-number,
+.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  border-radius: 10px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.ant-input-lg,
+.ant-input-affix-wrapper-lg,
+textarea.ant-input {
+  border-radius: 12px;
+}
+
+/* the affix wrapper owns the border; the inner input stays flat */
+.ant-input-affix-wrapper > .ant-input {
+  border-radius: 0;
+}
+
+.ant-input:focus,
+.ant-input-focused,
+.ant-input-affix-wrapper:focus,
+.ant-input-affix-wrapper-focused,
+.ant-input-number-focused,
+.ant-select-focused:not(.ant-select-disabled):not(.ant-select-customize-input)
+  .ant-select-selector {
+  /* not !important: borderless/ghost fields that suppress focus keep doing so */
+  border-color: var(--r-blue-default);
+  box-shadow: var(--crb-ring);
+}
+
+.ant-input-affix-wrapper-focused > .ant-input:focus {
+  box-shadow: none;
+}
+
+/*---------------------------------------------------------------
+  Switch
+---------------------------------------------------------------*/
+.ant-switch {
+  min-width: 36px;
+  height: 20px;
+  line-height: 20px;
+  background: var(--crb-switch-off);
+
+  .ant-switch-handle {
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+
+    &::before {
+      border-radius: 50%;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18), 0 0 0 0.5px rgba(0, 0, 0, 0.04);
+    }
+  }
+
+  &.ant-switch-checked {
+    background: var(--r-blue-default);
+
+    .ant-switch-handle {
+      left: calc(100% - 16px - 2px);
+    }
+  }
+
+  &.ant-switch-small {
+    min-width: 28px;
+    height: 16px;
+    line-height: 16px;
+
+    .ant-switch-handle {
+      top: 2px;
+      left: 2px;
+      width: 12px;
+      height: 12px;
+    }
+
+    &.ant-switch-checked .ant-switch-handle {
+      left: calc(100% - 12px - 2px);
+    }
+  }
+
+  &:focus,
+  &:focus:hover {
+    box-shadow: none;
+  }
+}
+
+.ant-switch-disabled {
+  opacity: 0.5;
+}
+
+/*---------------------------------------------------------------
+  Checkbox / radio
+---------------------------------------------------------------*/
+.ant-checkbox .ant-checkbox-inner {
+  border: 1.5px solid var(--crb-hairline-strong);
+  background-color: transparent;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  border-color: var(--r-blue-default);
+  background-color: var(--r-blue-default);
+}
+
+.ant-radio-inner {
+  border-width: 1.5px;
+  border-color: var(--crb-hairline-strong);
+}
+
+/*---------------------------------------------------------------
+  Tabs
+---------------------------------------------------------------*/
+.ant-tabs {
+  > .ant-tabs-nav::before {
+    border-bottom-color: var(--crb-hairline) !important;
+  }
+
+  .ant-tabs-tab {
+    font-weight: 500;
+    color: var(--r-neutral-foot);
+    transition: color 0.15s ease;
+
+    &:hover {
+      color: var(--r-neutral-title-1);
+    }
+  }
+
+  .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: var(--r-neutral-title-1) !important;
+    font-weight: 600;
+    text-shadow: none;
+  }
+
+  .ant-tabs-ink-bar {
+    height: 2px !important;
+    border-radius: 2px !important;
+    background: var(--r-neutral-title-1) !important;
+  }
+}
+
+/*---------------------------------------------------------------
+  Dialogs, sheets and floating surfaces
+---------------------------------------------------------------*/
+.ant-modal-content {
+  border: none;
+  border-radius: 20px;
+  box-shadow: var(--crb-shadow-pop);
+}
+
+.ant-modal-title,
+.ant-modal-confirm-body .ant-modal-confirm-title {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.ant-modal-confirm-body .ant-modal-confirm-content {
+  border-radius: 12px;
+}
+
+.ant-modal-confirm-body-wrapper .ant-modal-confirm-btns .ant-btn {
+  font-weight: 600;
+  border-radius: 12px;
+}
+
+.ant-drawer-bottom .ant-drawer-content {
+  border-radius: 20px 20px 0 0;
+}
+
+/* a grabber reads as "this is a sheet" at a glance */
+.ant-drawer-bottom.custom-popup .ant-drawer-content::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 36px;
+  height: 4px;
+  margin-left: -18px;
+  border-radius: 2px;
+  background: var(--crb-hairline-strong);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ant-popover-inner,
+.ant-dropdown-menu,
+.ant-select-dropdown {
+  border-radius: 12px;
+  box-shadow: var(--crb-shadow-pop);
+}
+
+.ant-tooltip:not(.disable-ant-overwrite) .ant-tooltip-inner {
+  background-color: var(--crb-tooltip-bg);
+  border-radius: 8px;
+  padding: 6px 10px;
+  line-height: 16px;
+}
+
+.ant-tooltip:not(.disable-ant-overwrite) .ant-tooltip-arrow-content {
+  --antd-arrow-background-color: var(--crb-tooltip-bg);
+  background-color: var(--crb-tooltip-bg);
+}
+
+/*---------------------------------------------------------------
+  Numerals
+---------------------------------------------------------------*/
+/* amounts line up when they change */
+.ant-input,
+.amount,
+[class*='amount'],
+[class*='Amount'],
+[class*='balance'] {
+  font-variant-numeric: tabular-nums;
+}
+
+/*---------------------------------------------------------------
+  Selected / current surfaces
+---------------------------------------------------------------*/
+/* the current account reads as the same ink card as the dashboard hero */
+.crabble-ink-header {
+  .crabble-ink-surface();
+}
+
+.crabble-ink-card {
+  .crabble-ink-surface();
+  background-color: #141416 !important;
+  box-shadow: 0 12px 28px -14px rgba(26, 25, 23, 0.55);
+}

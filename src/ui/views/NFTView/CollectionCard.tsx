@@ -29,7 +29,7 @@ export const CollectionCard: React.FC<Props> = ({
   return (
     <div
       className={clsx(
-        'p-12 rounded-[6px] bg-r-neutral-card-1 relative',
+        'p-12 rounded-[8px] bg-r-neutral-card-1 relative',
         className
       )}
     >

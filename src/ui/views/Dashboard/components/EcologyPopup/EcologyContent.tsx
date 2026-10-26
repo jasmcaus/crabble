@@ -16,7 +16,7 @@ export const EcologyContent = () => {
             key={item.id}
             className={clsx(
               'flex items-center gap-[12px] p-[15px]',
-              'rounded-[6px] bg-r-neutral-card-2 cursor-pointer',
+              'rounded-[8px] bg-r-neutral-card-2 cursor-pointer',
               'border-[1px] border-transparent',
               'hover:border-rabby-blue-default hover:bg-r-blue-light1'
             )}

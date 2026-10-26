@@ -84,7 +84,7 @@ const PoolItem = ({
 
 const ProtocolItemWrapper = styled.div`
   background: var(--r-neutral-card-1, #f3f2ef);
-  border-radius: 8px;
+  border-radius: 12px;
 
   .title {
     display: flex;
@@ -219,7 +219,7 @@ export const ProtocolItem = ({
         <div
           className={clsx(
             'group flex items-center justify-start',
-            'title border border-solid bg-r-neutral-card1 border-transparent rounded-[8px] h-[48px] pr-14',
+            'title border border-solid bg-r-neutral-card1 border-transparent rounded-[12px] h-[48px] pr-14',
             'hover:bg-blue-light/10',
             'hover:border-blue-light'
           )}

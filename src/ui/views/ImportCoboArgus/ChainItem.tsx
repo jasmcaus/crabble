@@ -16,7 +16,7 @@ export const ChainItem: React.FC<Props> = ({ chain, checked, onChecked }) => {
       className={clsx(
         'flex justify-between bg-r-neutral-card-1 items-center',
         'py-12 px-16',
-        'rounded-[6px]',
+        'rounded-[8px]',
         'cursor-pointer',
         'hover:border-blue-light border',
         {

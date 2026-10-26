@@ -63,7 +63,7 @@ const FieldList = styled.div`
 
   .field {
     background: var(--r-neutral-card-2, rgba(255, 255, 255, 0.06));
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 16px 12px;
 
     font-weight: 400;

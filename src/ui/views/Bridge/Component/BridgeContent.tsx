@@ -1121,7 +1121,7 @@ export const BridgeContent = () => {
         />
 
         <div className="fixed z-10 w-full bottom-0 mt-auto px-20 pb-20">
-          <div className="w-full rounded-[8px] bg-r-neutral-bg-2">
+          <div className="w-full rounded-[12px] bg-r-neutral-bg-2">
             {showStickyInfo && (
               <BridgeShowMore
                 insufficient={inSufficient}
@@ -1162,7 +1162,7 @@ export const BridgeContent = () => {
             )}
             {(fromChain as string) === 'DBK' ? (
               <DbkButton
-                className="h-[48px] w-full text-[16px] font-medium bg-r-orange-DBK border-transparent rounded-[6px]"
+                className="h-[48px] w-full text-[16px] font-medium bg-r-orange-DBK border-transparent rounded-[8px]"
                 onClick={() => {
                   history.push(
                     `/ecology/${DBK_CHAIN_ID}/bridge?activeTab=withdraw`
@@ -1213,7 +1213,7 @@ export const BridgeContent = () => {
                         type="primary"
                         block
                         size="large"
-                        className="h-[48px] rounded-[6px] text-white text-[16px] font-medium"
+                        className="h-[48px] rounded-[8px] text-white text-[16px] font-medium"
                         onClick={() => {
                           if (
                             showExternalDappTips &&

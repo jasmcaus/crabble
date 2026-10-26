@@ -21,7 +21,7 @@ const UserListDrawerWrapper = styled.div`
 
 const Footer = styled.div`
   background: var(--r-neutral-card-2, #f3f2ef);
-  border-radius: 6px;
+  border-radius: 8px;
   .item {
     display: flex;
     cursor: pointer;
@@ -58,7 +58,7 @@ const Footer = styled.div`
     &:hover {
       background: var(--r-blue-light-1, #fdefe9);
       border: 1px solid var(--r-blue-default, #f26b3a);
-      border-radius: 6px;
+      border-radius: 8px;
     }
     &:nth-last-child(1) {
       &::after {

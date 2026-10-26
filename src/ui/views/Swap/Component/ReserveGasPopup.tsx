@@ -132,7 +132,7 @@ const ReserveGasContent = React.forwardRef<
               key={item.level}
               className={clsx(
                 'flex justify-between',
-                'py-[22px] px-16 rounded-[8px] ',
+                'py-[22px] px-16 rounded-[12px] ',
                 'bg-r-neutral-card-1 border border-solid  ',
                 checked ? 'border-rabby-blue-default' : 'border-transparent',
                 gasIsSufficient
@@ -304,28 +304,28 @@ export const SendReserveGasPopup = (
               style={{
                 height: 66,
               }}
-              className="h-[66px] rounded-[8px]"
+              className="h-[66px] rounded-[12px]"
             />
             <Skeleton.Input
               active
               style={{
                 height: 66,
               }}
-              className="h-[66px] rounded-[8px]"
+              className="h-[66px] rounded-[12px]"
             />
             <Skeleton.Input
               active
               style={{
                 height: 66,
               }}
-              className="h-[66px] rounded-[8px]"
+              className="h-[66px] rounded-[12px]"
             />
             <Skeleton.Input
               active
               style={{
                 height: 66,
               }}
-              className="h-[66px] rounded-[8px]"
+              className="h-[66px] rounded-[12px]"
             />
             <div
               className={clsx(

@@ -269,13 +269,13 @@ export const EditMarginModal: React.FC<EditMarginPopupProps> = ({
             </div>
             <div
               className={clsx(
-                'relative overflow-hidden rounded-[8px] bg-rb-neutral-bg-2',
+                'relative overflow-hidden rounded-[12px] bg-rb-neutral-bg-2',
                 hasMarginError ? 'h-[172px]' : 'h-[124px]'
               )}
             >
               <button
                 type="button"
-                className="absolute left-[16px] top-[29px] flex h-[26px] cursor-pointer items-center rounded-[8px] border-0 bg-rb-brand-light-1 px-[8px] text-[14px] font-bold leading-[18px] text-rb-brand-default"
+                className="absolute left-[16px] top-[29px] flex h-[26px] cursor-pointer items-center rounded-[12px] border-0 bg-rb-brand-light-1 px-[8px] text-[14px] font-bold leading-[18px] text-rb-brand-default"
                 onClick={() => setMargin(minMargin.toString())}
               >
                 Min
@@ -294,7 +294,7 @@ export const EditMarginModal: React.FC<EditMarginPopupProps> = ({
               />
               <button
                 type="button"
-                className="absolute right-[16px] top-[29px] flex h-[26px] cursor-pointer items-center rounded-[8px] border-0 bg-rb-brand-light-1 px-[8px] text-[14px] font-bold leading-[18px] text-rb-brand-default"
+                className="absolute right-[16px] top-[29px] flex h-[26px] cursor-pointer items-center rounded-[12px] border-0 bg-rb-brand-light-1 px-[8px] text-[14px] font-bold leading-[18px] text-rb-brand-default"
                 onClick={() => setMargin(maxMargin.toString())}
               >
                 MAX
@@ -324,7 +324,7 @@ export const EditMarginModal: React.FC<EditMarginPopupProps> = ({
                 />
               </div>
               {hasMarginError ? (
-                <div className="absolute left-[16px] right-[16px] top-[124px] flex h-[32px] items-center gap-[4px] rounded-[8px] bg-rb-orange-light-1 px-[12px] text-[12px] leading-[14px] text-rb-orange-default">
+                <div className="absolute left-[16px] right-[16px] top-[124px] flex h-[32px] items-center gap-[4px] rounded-[12px] bg-rb-orange-light-1 px-[12px] text-[12px] leading-[14px] text-rb-orange-default">
                   <RcIconInfoCC className="h-[16px] w-[16px] shrink-0" />
                   <span className="truncate">
                     {marginValidation.errorMessage}
@@ -379,7 +379,7 @@ export const EditMarginModal: React.FC<EditMarginPopupProps> = ({
               size="large"
               type="primary"
               loading={loading}
-              className="h-[48px] text-15 font-medium rounded-[6px]"
+              className="h-[48px] text-15 font-medium rounded-[8px]"
               disabled={!marginValidation.isValid || noChangeMargin}
               onClick={handleConfirm}
             >

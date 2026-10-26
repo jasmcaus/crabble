@@ -15,7 +15,7 @@ const OptionsList = styled.div`
     display: flex;
     align-items: center;
 
-    border-radius: 6px;
+    border-radius: 8px;
     background: var(--r-neutral-card-2, #f3f2ef);
     padding: 12px 15px;
     border: 1px solid transparent;

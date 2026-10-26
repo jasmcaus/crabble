@@ -44,7 +44,7 @@ const MenuItemStyled = styled(Menu.Item)`
   align-items: center;
   gap: 8px;
   padding: 6px 12px;
-  border-radius: 6px;
+  border-radius: 8px;
   border-width: 0.5px;
   border-style: solid;
   border-color: transparent;
@@ -80,7 +80,7 @@ const LevelPriceStyled = styled.div`
 `;
 
 const MenuStyled = styled(Menu)`
-  border-radius: 8px;
+  border-radius: 12px;
   box-shadow: 0px 8px 12px 0px rgba(0, 0, 0, 0.2);
   border: 0.5px solid var(--r-neutral-line, #d9d5cf);
   background: var(--r-neutral-bg1, #fff);

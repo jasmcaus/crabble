@@ -272,7 +272,7 @@ export const PerpsPortfolioChart: React.FC<{
         >
           <div
             className={clsx(
-              'rounded-[8px] px-[10px] py-[8px]',
+              'rounded-[12px] px-[10px] py-[8px]',
               'text-[12px] leading-[16px] whitespace-nowrap'
             )}
             style={{ background: BUBBLE_BG }}

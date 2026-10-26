@@ -56,7 +56,7 @@ export const ChainSelectPopup: React.FC<ChainSelectPopupProps> = ({
                 key={c.serverChain}
                 onClick={() => onSelect(c.serverChain)}
                 className={clsx(
-                  'flex items-center h-[48px] px-16 rounded-[6px] cursor-pointer border border-solid',
+                  'flex items-center h-[48px] px-16 rounded-[8px] cursor-pointer border border-solid',
                   'bg-rb-neutral-bg-5 text-13 text-rb-neutral-title-1 font-medium',
                   selected === c.serverChain
                     ? 'border-rabby-blue-default'

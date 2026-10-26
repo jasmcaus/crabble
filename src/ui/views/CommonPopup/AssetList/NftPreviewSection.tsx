@@ -47,7 +47,7 @@ export const NftPreviewSection: React.FC<Props> = ({
     <div className={className} onClick={handleOpenInTab}>
       <div
         className={clsx(
-          'bg-r-neutral-card1 rounded-[8px] p-[12px] overflow-hidden border border-transparent',
+          'bg-r-neutral-card1 rounded-[12px] p-[12px] overflow-hidden border border-transparent',
           'hover:border-blue-light cursor-pointer'
         )}
       >

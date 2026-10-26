@@ -139,7 +139,7 @@ export const InModalApprovalContractRow: React.FC<InModalApprovalContractRowProp
   return (
     <div
       className={clsx(
-        'flex items-center gap-[12px] rounded-[8px] p-[11px] cursor-pointer',
+        'flex items-center gap-[12px] rounded-[12px] p-[11px] cursor-pointer',
         'border-[1px] hover:border-rabby-blue-default',
         isSelected
           ? 'bg-r-blue-light1 border-rabby-blue-default'

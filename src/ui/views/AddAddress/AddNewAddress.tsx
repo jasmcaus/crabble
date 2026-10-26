@@ -138,7 +138,7 @@ const SeedPhraseCard = ({
   const totalBalance = formatUsdValue(group.totalBalance);
 
   return (
-    <div className="bg-r-neutral-card-1 rounded-[6px]">
+    <div className="bg-r-neutral-card-1 rounded-[8px]">
       <div
         className="w-full h-[50px] px-[16px] flex items-center cursor-pointer"
         onClick={onToggle}

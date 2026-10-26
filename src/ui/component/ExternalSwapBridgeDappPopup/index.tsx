@@ -22,7 +22,7 @@ export const ExternalSwapBridgeDappTips = ({
   return (
     <div
       className={clsx(
-        'relative h-[60px] rounded-[8px] bg-r-neutral-card-1 pl-[34px]',
+        'relative h-[60px] rounded-[12px] bg-r-neutral-card-1 pl-[34px]',
         'flex flex-col gap-2 justify-center'
       )}
     >
@@ -60,7 +60,7 @@ const Item = ({ name, url, logo }: SwapBridgeExternalDappInfo) => {
         'h-[60px] bg-r-neutral-card-1',
         'flex items-center cursor-pointer',
         'cursor-pointer',
-        'rounded-[6px] p-16 pt-12',
+        'rounded-[8px] p-16 pt-12',
         'border border-solid border-transparent',
         'hover:border-rabby-blue-default hover:bg-r-blue-light1'
       )}
@@ -92,7 +92,7 @@ const ItemLoading = () => {
         'h-[60px] bg-r-neutral-card-1',
         'flex items-center cursor-pointer',
         'cursor-pointer',
-        'rounded-[6px] p-16 pt-12',
+        'rounded-[8px] p-16 pt-12',
         'border border-solid border-transparent'
       )}
     >
@@ -124,7 +124,7 @@ const NoDapp = () => {
     <div
       className={clsx(
         'px-[21px] pt-[33px] pb-[37px]',
-        'bg-r-neutral-card-1 rounded-[6px]',
+        'bg-r-neutral-card-1 rounded-[8px]',
         'flex flex-col items-center gap-[6px]',
         'text-r-neutral-foot'
       )}

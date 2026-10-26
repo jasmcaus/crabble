@@ -229,7 +229,7 @@ export const OrderConfirmModal: React.FC<OrderConfirmModalProps> = ({
             type="primary"
             loading={loading}
             onClick={onConfirm}
-            className="h-[48px] rounded-[6px] text-[15px] font-medium"
+            className="h-[48px] rounded-[8px] text-[15px] font-medium"
           >
             {confirmText || t('global.confirm')}
           </Button>

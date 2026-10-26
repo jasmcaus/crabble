@@ -78,7 +78,7 @@ export const PositionTpSlPositionCard: React.FC<{
   return (
     <div
       className={clsx(
-        'flex flex-col rounded-[6px] bg-r-neutral-card3',
+        'flex flex-col rounded-[8px] bg-r-neutral-card3',
         variant === 'full' ? 'gap-[12px] p-[16px]' : 'gap-[8px] p-[16px]'
       )}
     >

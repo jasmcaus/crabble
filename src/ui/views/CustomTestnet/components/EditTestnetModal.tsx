@@ -158,7 +158,7 @@ export const EditCustomTestnetModal = ({
             <div
               className={clsx(
                 'flex items-center gap-[8px]',
-                'bg-r-blue-light1 p-[15px] cursor-pointer rounded-[6px]',
+                'bg-r-blue-light1 p-[15px] cursor-pointer rounded-[8px]',
                 'mb-[20px] border-[1px] border-transparent',
                 'hover:border-rabby-blue-default hover:bg-r-blue-light1'
               )}

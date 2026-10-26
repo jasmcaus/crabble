@@ -60,7 +60,7 @@ const Wrapper = styled.div`
     right: 0;
     background-color: var(--r-neutral-bg-1);
     padding: 16px;
-    border-radius: 0 0 8px 8px;
+    border-radius: 0 0 12px 12px;
 
     .btn {
       margin-top: 0;

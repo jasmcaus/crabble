@@ -116,17 +116,17 @@ export const DesktopPerps: React.FC<{ isActive?: boolean }> = ({
               storageKey={TOP_HEIGHT_KEY}
               defaultTopHeight={RIGHT_PANEL_HEIGHT}
               topClassName="flex gap-[6px] min-h-0"
-              bottomClassName="flex-1 min-h-0 rounded-[6px] overflow-hidden bg-rb-neutral-bg-1"
+              bottomClassName="flex-1 min-h-0 rounded-[8px] overflow-hidden bg-rb-neutral-bg-1"
               top={
                 <>
                   <div
-                    className="min-w-[560px] min-h-0 rounded-[6px] overflow-hidden bg-rb-neutral-bg-1"
+                    className="min-w-[560px] min-h-0 rounded-[8px] overflow-hidden bg-rb-neutral-bg-1"
                     style={{ flex: '1 1 0%' }}
                   >
                     <ChartArea />
                   </div>
                   <div
-                    className="min-h-0 rounded-[6px] overflow-hidden bg-rb-neutral-bg-1"
+                    className="min-h-0 rounded-[8px] overflow-hidden bg-rb-neutral-bg-1"
                     style={{
                       flexGrow: 0,
                       flexShrink: 0,
@@ -152,13 +152,13 @@ export const DesktopPerps: React.FC<{ isActive?: boolean }> = ({
               }}
             >
               <div
-                className="min-h-0 rounded-[6px] overflow-hidden bg-rb-neutral-bg-1"
+                className="min-h-0 rounded-[8px] overflow-hidden bg-rb-neutral-bg-1"
                 style={{ flex: `0 0 ${RIGHT_PANEL_HEIGHT}px` }}
               >
                 <TradingPanel />
               </div>
               <div
-                className="rounded-[6px] overflow-hidden bg-rb-neutral-bg-1"
+                className="rounded-[8px] overflow-hidden bg-rb-neutral-bg-1"
                 style={{ flex: '1 0 auto' }}
               >
                 <AccountInfo />

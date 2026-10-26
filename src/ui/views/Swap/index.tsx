@@ -28,7 +28,7 @@ const Swap = () => {
                 className={clsx(
                   'px-0 overflow-hidden bg-r-neutral-bg-2 h-full relative flex flex-col',
                   isTab
-                    ? 'rounded-[16px] shadow-[0px_40px_80px_0px_rgba(43,57,143,0.40)'
+                    ? 'rounded-[16px] shadow-[0px_24px_64px_-12px_rgba(26,25,23,0.18)'
                     : ''
                 )}
               >

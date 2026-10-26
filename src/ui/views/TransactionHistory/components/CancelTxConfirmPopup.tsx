@@ -41,7 +41,7 @@ export const CancelTxConfirmPopup = ({
           {t('page.activities.signedTx.CancelTxConfirmPopup.desc')}
         </p>
 
-        <div className="flex items-start gap-[4px] p-[10px] bg-r-red-light rounded-[6px] mt-[12px]">
+        <div className="flex items-start gap-[4px] p-[10px] bg-r-red-light rounded-[8px] mt-[12px]">
           <div className="text-r-red-default pt-[2px]">
             <RcIconWarning />
           </div>
@@ -65,7 +65,7 @@ export const CancelTxConfirmPopup = ({
             'w-[172px]',
             'text-blue-light',
             'border-blue-light',
-            'hover:bg-[#8697FF1A] active:bg-[#0000001A]',
+            'hover:bg-[var(--crb-sunken)] active:bg-[#0000001A]',
             'before:content-none'
           )}
         >

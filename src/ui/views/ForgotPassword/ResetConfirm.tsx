@@ -25,7 +25,9 @@ export const ResetConfirm: React.FC<{
       onBack={onBack}
       title={t('page.forgotPassword.reset.title')}
     >
-      <div className={clsx('bg-r-red-light rounded-[8px]', 'p-16 mt-24 mx-20')}>
+      <div
+        className={clsx('bg-r-red-light rounded-[12px]', 'p-16 mt-24 mx-20')}
+      >
         <div className="gap-6 flex items-center">
           <TrashSVG className="text-r-red-default" />
           <h1 className="text-15 font-medium text-r-red-default">
@@ -46,7 +48,7 @@ export const ResetConfirm: React.FC<{
 
       <div
         className={clsx(
-          'p-16 rounded-[8px] mt-12 mx-20',
+          'p-16 rounded-[12px] mt-12 mx-20',
           'border-[0.5px] border-solid border-rabby-neutral-line'
         )}
       >
@@ -99,7 +101,7 @@ export const ResetConfirm: React.FC<{
           value={input}
           placeholder="RESET"
           className={clsx(
-            'h-[52px] rounded-[8px]',
+            'h-[52px] rounded-[12px]',
             'border-rabby-neutral-line bg-r-neutral-bg1 hover:border-rabby-blue-default focus:border-rabby-blue-default',
             'text-r-neutral-title1 text-15 placeholder-r-neutral-foot/70'
           )}
@@ -121,7 +123,7 @@ export const ResetConfirm: React.FC<{
           type="primary"
           danger
           className={clsx(
-            'h-[48px] shadow-none rounded-[6px]',
+            'h-[48px] shadow-none rounded-[8px]',
             'text-[15px] font-medium',
             'disabled:text-white/40 disabled:bg-r-red-default disabled:opacity-50 border-transparent',
             'before:content-none'

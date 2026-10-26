@@ -157,7 +157,7 @@ const Content: React.FC<Props> = (props) => {
               // amount={nft?.amount}
               content={nft?.content}
               empty={
-                <div className="w-[340px] h-[340px] bg-r-neutral-line flex items-center justify-center rounded-[8px]">
+                <div className="w-[340px] h-[340px] bg-r-neutral-line flex items-center justify-center rounded-[12px]">
                   <div className="text-[40px] leading-[48px] font-semibold text-r-neutral-foot">
                     {t('page.desktopProfile.nft.detail.nft')}
                   </div>
@@ -179,7 +179,7 @@ const Content: React.FC<Props> = (props) => {
             ) : null}
           </div>
           <div className="flex-1 min-w-0">
-            <div className="border-[0.5px] border-solid border-rabby-neutral-line rounded-[8px]">
+            <div className="border-[0.5px] border-solid border-rabby-neutral-line rounded-[12px]">
               <div className="flex items-center justify-between gap-[16px] p-[16px]">
                 <div className="text-r-neutral-title1 text-[13px] leading-[16px]">
                   {t('page.desktopProfile.nft.detail.collection')}
@@ -335,7 +335,7 @@ const Content: React.FC<Props> = (props) => {
 
               <div
                 className={clsx(
-                  'py-[13px] px-[12px] rounded-[8px] h-[60px]',
+                  'py-[13px] px-[12px] rounded-[12px] h-[60px]',
                   'border-[0.5px] border-solid border-rabby-neutral-line'
                 )}
               >
@@ -428,7 +428,7 @@ const Content: React.FC<Props> = (props) => {
           {listingOffer ? (
             <div
               className={clsx(
-                'rounded-[8px] p-[15px] mt-[16px]',
+                'rounded-[12px] p-[15px] mt-[16px]',
                 'border-solid border-[1px] border-rabby-green-default'
               )}
             >
@@ -512,7 +512,7 @@ const Content: React.FC<Props> = (props) => {
                   <Button
                     block
                     type="primary"
-                    className="rounded-[8px] text-[13px] leading-[16px] font-medium h-[40px]"
+                    className="rounded-[12px] text-[13px] leading-[16px] font-medium h-[40px]"
                     disabled={!nftDetail || !collection?.is_tradable || loading}
                     onClick={() => {
                       if (!nftDetail) {
@@ -530,7 +530,7 @@ const Content: React.FC<Props> = (props) => {
                   <Button
                     block
                     type="primary"
-                    className="rounded-[8px] text-[13px] leading-[16px] font-medium h-[40px]"
+                    className="rounded-[12px] text-[13px] leading-[16px] font-medium h-[40px]"
                     disabled={!nftDetail || !collection?.is_tradable || loading}
                     onClick={() => {
                       if (!nftDetail) {
@@ -552,9 +552,9 @@ const Content: React.FC<Props> = (props) => {
                   ghost
                   disabled={!nftDetail || !collection?.is_tradable || loading}
                   className={clsx(
-                    'hover:before:hidden rounded-[8px] text-[13px] leading-[16px] font-medium h-[40px]',
-                    'border-blue-light text-blue-light hover:bg-[#8697FF1A] active:bg-[#0000001A] ',
-                    'rounded-[8px] before:content-none z-10'
+                    'hover:before:hidden rounded-[12px] text-[13px] leading-[16px] font-medium h-[40px]',
+                    'border-[var(--crb-hairline-strong)] text-r-neutral-title1 hover:bg-[var(--crb-sunken)] active:bg-[#0000001A] ',
+                    'rounded-[12px] before:content-none z-10'
                   )}
                   onClick={() => {
                     if (!nftDetail) {
@@ -573,7 +573,7 @@ const Content: React.FC<Props> = (props) => {
               <Button
                 block
                 type="primary"
-                className="rounded-[8px] text-[13px] leading-[16px] font-medium h-[40px]"
+                className="rounded-[12px] text-[13px] leading-[16px] font-medium h-[40px]"
                 disabled={!nftDetail || !collection?.is_tradable || loading}
                 onClick={() => {
                   if (!nftDetail) {
@@ -594,9 +594,9 @@ const Content: React.FC<Props> = (props) => {
               size="large"
               ghost
               className={clsx(
-                'hover:before:hidden rounded-[8px] text-[13px] leading-[16px] font-medium h-[40px]',
-                'border-blue-light text-blue-light hover:bg-[#8697FF1A] active:bg-[#0000001A] ',
-                'rounded-[8px] before:content-none z-10'
+                'hover:before:hidden rounded-[12px] text-[13px] leading-[16px] font-medium h-[40px]',
+                'border-[var(--crb-hairline-strong)] text-r-neutral-title1 hover:bg-[var(--crb-sunken)] active:bg-[#0000001A] ',
+                'rounded-[12px] before:content-none z-10'
               )}
               onClick={() => {
                 onSend?.();

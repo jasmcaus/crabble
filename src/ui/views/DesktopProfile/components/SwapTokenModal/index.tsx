@@ -48,7 +48,7 @@ export const SwapTokenModal: React.FC<
       <PopupContainer>
         <div className="js-rabby-desktop-swap-container bg-r-neutral-bg-2 rounded-[20px]">
           <div className="flex justify-center mt-12 mb-12 ">
-            <div className="inline-flex items-center bg-r-neutral-line rounded-[6px] border border-rabby-neutral-line">
+            <div className="inline-flex items-center bg-r-neutral-line rounded-[8px] border border-rabby-neutral-line">
               {tabs.map((tab) => {
                 const isActive = tab.key === action;
                 return (
@@ -56,7 +56,7 @@ export const SwapTokenModal: React.FC<
                     key={tab.key}
                     onClick={() => handleTabChange(tab.key)}
                     className={clsx(
-                      'cursor-pointer rounded-[6px]',
+                      'cursor-pointer rounded-[8px]',
                       'px-[28px] py-[8px] text-center',
                       'text-15 font-medium',
                       isActive

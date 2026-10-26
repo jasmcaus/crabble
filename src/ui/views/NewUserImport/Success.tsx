@@ -358,7 +358,7 @@ export const ImportOrCreatedSuccess = () => {
           block
           type="primary"
           className={clsx(
-            'mt-auto h-[52px] shadow-none rounded-[8px]',
+            'mt-auto h-[52px] shadow-none rounded-[12px]',
             'text-[15px] leading-[18px] font-medium'
           )}
         >
@@ -373,10 +373,10 @@ export const ImportOrCreatedSuccess = () => {
               onClick={handleBackup}
               className={clsx(
                 'mt-12',
-                'h-[52px] shadow-none rounded-[8px]',
+                'h-[52px] shadow-none rounded-[12px]',
                 'text-blue-light',
                 'border-blue-light',
-                'hover:bg-[#8697FF1A] active:bg-[#0000001A]',
+                'hover:bg-[var(--crb-sunken)] active:bg-[#0000001A]',
                 'before:content-none'
               )}
             >

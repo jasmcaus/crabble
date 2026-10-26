@@ -282,7 +282,7 @@ const DesktopProfileContent: React.FC<DesktopProfileProps> = ({
                             {isGnosis ? (
                               <div
                                 className={clsx(
-                                  'min-w-[88px] h-[32px] px-[10px] rounded-[8px]',
+                                  'min-w-[88px] h-[32px] px-[10px] rounded-[12px]',
                                   'flex items-center justify-center gap-[4px] cursor-pointer',
                                   'text-rb-brand-default text-[14px] leading-[16px] font-medium',
                                   'border-[0.5px] border-solid border-rb-brand-default',

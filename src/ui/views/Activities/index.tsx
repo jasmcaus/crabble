@@ -43,10 +43,8 @@ const Activities: React.FC<{
               onTabChange={(v) => {
                 setSelectedTab(v);
               }}
-              className="flex bg-r-neutral-line w-[228px] mx-[auto] my-[0] h-[32px] p-[2px] mb-[14px]"
+              className="flex bg-[var(--crb-sunken)] w-[228px] mx-[auto] my-[0] h-[32px] p-[2px] mb-[14px]"
               itemClassname={clsx('w-[112px] py-[7px] text-[12px]')}
-              itemClassnameInActive={clsx('text-r-neutral-body')}
-              itemClassnameActive="bg-r-neutral-bg-1"
               options={
                 [
                   {
@@ -79,10 +77,8 @@ const Activities: React.FC<{
               onTabChange={(v) => {
                 setSelectedTab(v);
               }}
-              className="flex bg-r-neutral-line w-[228px] mx-[auto] my-[0] h-[32px] p-[2px] mb-[14px]"
+              className="flex bg-[var(--crb-sunken)] w-[228px] mx-[auto] my-[0] h-[32px] p-[2px] mb-[14px]"
               itemClassname={clsx('w-[112px] py-[7px] text-[12px]')}
-              itemClassnameInActive={clsx('text-r-neutral-body')}
-              itemClassnameActive="bg-r-neutral-bg-1"
               options={
                 [
                   {

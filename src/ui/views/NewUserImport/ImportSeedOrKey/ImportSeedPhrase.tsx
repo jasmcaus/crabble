@@ -242,7 +242,7 @@ export const ImportSeedPhrase = () => {
             block
             type="primary"
             className={clsx(
-              'h-[52px] shadow-none rounded-[8px]',
+              'h-[52px] shadow-none rounded-[12px]',
               'text-[15px] leading-[18px] font-medium'
             )}
           >

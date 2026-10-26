@@ -90,7 +90,7 @@ export const MarginModeModal: React.FC<MarginModeModalProps> = ({
             <div
               onClick={() => handleModeSelect(MarginMode.CROSS)}
               className={clsx(
-                'p-[12px] rounded-[8px] border cursor-pointer bg-r-neutral-card1',
+                'p-[12px] rounded-[12px] border cursor-pointer bg-r-neutral-card1',
                 selectedMode === MarginMode.CROSS
                   ? 'border-rb-brand-default'
                   : 'border-rb-neutral-line'
@@ -118,7 +118,7 @@ export const MarginModeModal: React.FC<MarginModeModalProps> = ({
             <div
               onClick={() => handleModeSelect(MarginMode.ISOLATED)}
               className={clsx(
-                'p-[12px] rounded-[8px] border cursor-pointer bg-r-neutral-card1',
+                'p-[12px] rounded-[12px] border cursor-pointer bg-r-neutral-card1',
                 selectedMode === MarginMode.ISOLATED
                   ? 'border-rb-brand-default'
                   : 'border-rb-neutral-line'
@@ -151,7 +151,7 @@ export const MarginModeModal: React.FC<MarginModeModalProps> = ({
             size="large"
             type="primary"
             className={clsx(
-              'w-full h-[44px] rounded-[8px] text-[14px] font-medium'
+              'w-full h-[44px] rounded-[12px] text-[14px] font-medium'
             )}
           >
             {t('page.perpsPro.marginMode.confirm')}

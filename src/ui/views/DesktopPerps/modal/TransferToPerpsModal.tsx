@@ -258,7 +258,7 @@ export const TransferToPerpsModal: React.FC<TransferToPerpsModalProps> = ({
                 <div
                   className={clsx(
                     'inline-flex items-center justify-center gap-6 px-[12px] h-[42px]',
-                    'text-[18px] font-medium text-rb-neutral-title-1 border border-solid border-rabby-neutral-line rounded-[8px]'
+                    'text-[18px] font-medium text-rb-neutral-title-1 border border-solid border-rabby-neutral-line rounded-[12px]'
                   )}
                 >
                   <TokenWithChain
@@ -280,7 +280,7 @@ export const TransferToPerpsModal: React.FC<TransferToPerpsModalProps> = ({
                   type="button"
                   onClick={() => handlePercent(p)}
                   className={clsx(
-                    'flex-1 h-[36px] rounded-[8px] text-13 font-medium',
+                    'flex-1 h-[36px] rounded-[12px] text-13 font-medium',
                     'bg-rb-neutral-bg-2 border border-solid border-transparent',
                     'text-rb-neutral-foot',
                     'hover:border-rb-brand-default hover:text-rb-brand-default',
@@ -307,7 +307,7 @@ export const TransferToPerpsModal: React.FC<TransferToPerpsModalProps> = ({
               block
               size="large"
               type="primary"
-              className="h-[44px] rounded-[8px] text-15 font-medium"
+              className="h-[44px] rounded-[12px] text-15 font-medium"
               disabled={!canSubmit}
               loading={submitting}
               onClick={handleSubmit}

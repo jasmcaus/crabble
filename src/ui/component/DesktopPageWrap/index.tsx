@@ -28,15 +28,15 @@ export const DesktopPageWrap = styled.div`
     padding-bottom: 13px;
 
     &:hover {
-      color: var(--r-blue-default, #e8552a);
+      color: var(--r-neutral-title-1, #1a1917);
     }
   }
   .ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap {
     padding-left: 20px;
   }
   .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-    color: var(--r-blue-default, #e8552a);
-    font-weight: 700;
+    color: var(--r-neutral-title-1, #1a1917);
+    font-weight: 600;
     font-size: 18px;
     text-shadow: none;
   }

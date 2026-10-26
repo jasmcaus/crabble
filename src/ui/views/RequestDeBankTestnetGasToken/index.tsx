@@ -77,7 +77,7 @@ const Wrapper = styled.div<{
     align-items: center;
     height: 448px;
     flex-shrink: 0;
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 24px;
     margin-top: 40px;
 
@@ -94,8 +94,8 @@ const Wrapper = styled.div<{
         left: 0;
         bottom: 0;
         pointer-events: none;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
         background: var(--r-neutral-bg1, #1c1f2b);
         z-index: -1;
       }
@@ -128,7 +128,7 @@ const Wrapper = styled.div<{
       display: inline-flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0px 8px 24px 0px rgba(57, 75, 180, 0.2);
+      box-shadow: 0px 8px 24px 0px rgba(26, 25, 23, 0.2);
     }
 
     .faucetBox {
@@ -181,7 +181,7 @@ const Wrapper = styled.div<{
         margin-top: 32px;
         width: 184px;
         height: 42px;
-        border-radius: 6px;
+        border-radius: 8px;
         background: #ff6238;
         box-shadow: 0px 8px 16px 0px rgba(250, 91, 91, 0.16);
         display: inline-flex;

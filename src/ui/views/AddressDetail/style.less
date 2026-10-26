@@ -20,7 +20,8 @@
       cursor: pointer;
 
       &.is-active {
-        color: var(--r-blue-default, #f26b3a);
+        color: var(--r-neutral-title-1, #1a1917);
+        font-weight: 600;
         &::after {
           position: absolute;
           content: '';
@@ -28,7 +29,8 @@
           left: 0;
           right: 0;
           height: 2px;
-          background-color: var(--r-blue-default, #f26b3a);
+          border-radius: 2px;
+          background-color: var(--r-neutral-title-1, #1a1917);
         }
       }
     }
@@ -45,12 +47,12 @@
     }
   }
   .rabby-list {
-    border-radius: 6px;
+    border-radius: 8px;
     background-color: var(--r-neutral-card-1, #fff);
     margin-bottom: 20px;
     &-item {
       padding-left: 16px;
-      border-radius: 6px;
+      border-radius: 8px;
       border: 1px solid transparent;
 
       &:not(.no-hover):hover {

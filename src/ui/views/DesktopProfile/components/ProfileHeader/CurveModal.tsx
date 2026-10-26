@@ -38,7 +38,7 @@ const GlobalStyle = createGlobalStyle`
     padding-bottom: 0;
 
     .ant-modal-content {
-      border-radius: 8px;
+      border-radius: 12px;
       border: 2px solid var(--r-neutral-line, #EAE7E2);
       background: var(--r-neutral-bg2, #F3F2EF);
     }

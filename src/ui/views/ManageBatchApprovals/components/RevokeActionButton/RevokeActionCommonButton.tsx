@@ -56,7 +56,7 @@ export const RevokeActionCommonButton: React.FC<{
       size="large"
       type={footerButton.type}
       className={clsx(
-        'h-[44px] rounded-[8px] text-[15px] leading-[18px]',
+        'h-[44px] rounded-[12px] text-[15px] leading-[18px]',
         footerButton.className
       )}
       onClick={footerButton.onClick}

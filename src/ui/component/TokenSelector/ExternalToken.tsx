@@ -178,7 +178,7 @@ export const ExternalContent = ({
     <div
       className={clsx(
         'flex justify-between items-center mt-10 relative',
-        'px-8 py-6 mx-16 rounded-[6px]',
+        'px-8 py-6 mx-16 rounded-[8px]',
         'border-[0.5px] border-solid border-transparent',
         'text-12 font-medium text-r-neutral-foot',
         'hover:bg-r-blue-light2'
@@ -247,7 +247,7 @@ export const RiskTokenTips = ({
     <div
       className={clsx(
         'flex justify-between items-center relative',
-        'mt-10 py-6 mx-16 rounded-[6px]',
+        'mt-10 py-6 mx-16 rounded-[8px]',
         'text-12 font-medium',
         isDanger
           ? 'text-r-red-default bg-r-red-light'

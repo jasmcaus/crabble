@@ -107,7 +107,7 @@ export const WalletBrandGrid = ({
 
   return (
     <div
-      className={clsx('mx-[16px] bg-r-neutral-card-2 rounded-[6px]', className)}
+      className={clsx('mx-[16px] bg-r-neutral-card-2 rounded-[8px]', className)}
     >
       <div className="py-[8px] grid grid-cols-3 gap-x-0">
         {wallets.map((wallet) => (

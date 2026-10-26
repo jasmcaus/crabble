@@ -606,7 +606,7 @@ const SignTypedData = ({
                   modal.destroy();
                 }
               }}
-              className="text-[15px] h-[40px] rounded-[6px]"
+              className="text-[15px] h-[40px] rounded-[8px]"
             >
               {t('global.ok')}
             </Button>
@@ -1221,7 +1221,7 @@ const SignTypedData = ({
             className={clsx(
               'absolute top-[350px] right-[10px]',
               'px-[16px] py-[12px] rotate-[-23deg]',
-              'border-rabby-neutral-title1 border-[1px] rounded-[6px]',
+              'border-rabby-neutral-title1 border-[1px] rounded-[8px]',
               'text-r-neutral-title1 text-[20px] leading-[24px]',
               'opacity-30'
             )}

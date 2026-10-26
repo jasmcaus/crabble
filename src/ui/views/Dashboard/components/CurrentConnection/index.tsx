@@ -29,7 +29,7 @@ const Container = styled.div`
   margin-top: 12px;
   display: flex;
   align-items: center;
-  border-radius: 8px;
+  border-radius: 12px;
   background: var(--r-neutral-card1, #fff);
   padding: 10px 12px;
 
@@ -127,7 +127,7 @@ const Container = styled.div`
     margin-left: auto;
     background-color: transparent;
     height: 36px;
-    border-radius: 8px;
+    border-radius: 12px;
     padding-left: 8px;
     color: var(--r-neutral-title-1, rgba(26, 25, 23, 1));
 

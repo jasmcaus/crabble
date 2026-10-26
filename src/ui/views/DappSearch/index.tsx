@@ -38,7 +38,7 @@ const SearchWrapper = styled.div`
   }
 
   .ant-input-affix-wrapper {
-    border-radius: 8px 0 0 8px !important;
+    border-radius: 12px 0 0 12px !important;
     border: 1px solid var(--r-neutral-line, #d9d5cf);
     padding: 13px 15px;
     line-height: 24px !important;
@@ -68,7 +68,7 @@ const SearchWrapper = styled.div`
     }
   }
   .ant-input-group-addon {
-    border-radius: 0px 8px 8px 0px !important;
+    border-radius: 0px 12px 12px 0px !important;
   }
 
   .anticon-close-circle {
@@ -78,7 +78,7 @@ const SearchWrapper = styled.div`
   .ant-btn-primary {
     height: 52px;
     min-width: 120px;
-    border-radius: 0px 8px 8px 0px !important;
+    border-radius: 0px 12px 12px 0px !important;
 
     color: var(--r-neutral-title2, #fff);
     font-size: 17px;
@@ -270,7 +270,7 @@ export const DappSearchPage = () => {
                     <div
                       key={item}
                       className={clsx(
-                        'px-[15px] py-[7px] bg-r-neutral-card1 rounded-[8px] border-[1px] border-transparent',
+                        'px-[15px] py-[7px] bg-r-neutral-card1 rounded-[12px] border-[1px] border-transparent',
                         'hover:border-rabby-blue-default hover:bg-r-blue-light1 cursor-pointer',
                         'text-r-neutral-body text-[13px] leading-[16px]'
                       )}

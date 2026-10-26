@@ -24,7 +24,7 @@ export const PerpsPositionCard: React.FC<PerpsPositionCardProps> = ({
   const direction = position.direction;
 
   return (
-    <div className="flex items-center p-12 mb-12 h-[78px] bg-r-neutral-card1 rounded-[8px] gap-8 flex-col">
+    <div className="flex items-center p-12 mb-12 h-[78px] bg-r-neutral-card1 rounded-[12px] gap-8 flex-col">
       <div className="flex items-center justify-between w-full">
         <div className="flex items-center gap-6">
           <TokenImg logoUrl={marketData?.logoUrl} size={28} />

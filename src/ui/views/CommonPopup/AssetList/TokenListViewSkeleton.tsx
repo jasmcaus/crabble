@@ -3,7 +3,7 @@ import React from 'react';
 
 const TokenItemSkeleton: React.FC = () => {
   return (
-    <div className="flex justify-between bg-r-neutral-card-1 rounded-[8px] items-center py-10 pl-12 pr-16 h-[60px]">
+    <div className="flex justify-between bg-r-neutral-card-1 rounded-[12px] items-center py-10 pl-12 pr-16 h-[60px]">
       <div className="gap-x-12 flex items-center">
         <Skeleton.Input
           active
@@ -52,23 +52,23 @@ export const TokenListViewSkeleton: React.FC<{
       <div className="flex">
         <Skeleton.Input
           active
-          className="bg-r-neutral-card-2 rounded-[6px] w-[160px] h-[32px] mr-[auto]"
+          className="bg-r-neutral-card-2 rounded-[8px] w-[160px] h-[32px] mr-[auto]"
         />
         {isTestnet ? (
           <div className="flex gap-[12px] items-center">
             <Skeleton.Input
               active
-              className="bg-r-neutral-card-2 rounded-[6px] w-[82px] h-[32px] "
+              className="bg-r-neutral-card-2 rounded-[8px] w-[82px] h-[32px] "
             />
             <Skeleton.Input
               active
-              className="bg-r-neutral-card-2 rounded-[6px] w-[82px] h-[32px] "
+              className="bg-r-neutral-card-2 rounded-[8px] w-[82px] h-[32px] "
             />
           </div>
         ) : (
           <Skeleton.Input
             active
-            className="bg-r-neutral-card-2 rounded-[6px] w-[100px] h-[32px] "
+            className="bg-r-neutral-card-2 rounded-[8px] w-[100px] h-[32px] "
           />
         )}
       </div>

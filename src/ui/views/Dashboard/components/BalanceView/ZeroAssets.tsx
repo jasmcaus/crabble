@@ -30,7 +30,7 @@ export const ZeroAssets = () => {
       <button
         type="button"
         className={clsx(
-          'rounded-[8px] bg-light-rb-neutral-bg-2 py-[9px] px-[16px] min-w-[170px]',
+          'rounded-[12px] bg-light-rb-neutral-bg-2 py-[9px] px-[16px] min-w-[170px]',
           'text-[15px] leading-[18px] font-medium text-rb-brand-default',
           'hover:bg-light-r-blue-light-2 active:bg-light-r-blue-disable active:text-rb-brand-default-icon'
         )}

@@ -47,7 +47,7 @@ export const ToAddressCard = ({
   return (
     <header
       className={clsx(
-        'header rounded-[8px] px-[28px] py-[20px]',
+        'header rounded-[12px] px-[28px] py-[20px]',
         'flex flex-col items-center gap-[8px]',
         'border-[1px] border-[solid] border-transparent bg-r-neutral-card1',
         'hover:border-rabby-blue-default hover:bg-r-blue-light1'

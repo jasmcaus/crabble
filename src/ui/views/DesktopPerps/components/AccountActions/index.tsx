@@ -57,7 +57,7 @@ export const AccountActions: React.FC<AccountActionsProps> = ({
             'px-[12px] font-medium flex items-center justify-center border border-solid cursor-pointer',
             compact
               ? 'desktop-perps-topbar-deposit-button'
-              : 'ml-6 h-[32px] rounded-[8px] text-13 border-rb-brand-default text-rb-brand-default'
+              : 'ml-6 h-[32px] rounded-[12px] text-13 border-rb-brand-default text-rb-brand-default'
           )}
         >
           {t('page.perpsPro.accountActions.deposit')}
@@ -68,7 +68,7 @@ export const AccountActions: React.FC<AccountActionsProps> = ({
           <div
             onClick={handleDeposit}
             className={clsx(
-              'px-[12px] rounded-[6px] font-medium flex items-center gap-[8px] cursor-pointer justify-center',
+              'px-[12px] rounded-[8px] font-medium flex items-center gap-[8px] cursor-pointer justify-center',
               compact
                 ? 'desktop-perps-topbar-pending-button'
                 : 'h-[28px] text-[15px] leading-[18px]',

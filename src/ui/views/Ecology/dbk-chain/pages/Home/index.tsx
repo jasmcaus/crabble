@@ -13,7 +13,7 @@ export const DbkChainHome = () => {
   return (
     <div className="px-[20px] py-[40px] flex flex-col gap-[28px]">
       <div
-        className="rounded-[8px] bg-r-neutral-card1 p-[24px] relative cursor-pointer"
+        className="rounded-[12px] bg-r-neutral-card1 p-[24px] relative cursor-pointer"
         style={{ boxShadow: '0px 8px 24px 0px rgba(0, 0, 0, 0.08)' }}
         onClick={() => {
           history.push(`${url}/bridge`);
@@ -36,7 +36,7 @@ export const DbkChainHome = () => {
         />
       </div>
       <div
-        className="rounded-[8px] bg-r-neutral-card1 p-[24px] relative cursor-pointer"
+        className="rounded-[12px] bg-r-neutral-card1 p-[24px] relative cursor-pointer"
         style={{ boxShadow: '0px 8px 24px 0px rgba(0, 0, 0, 0.08)' }}
         onClick={() => {
           history.push(`${url}/mintNft`);

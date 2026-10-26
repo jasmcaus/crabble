@@ -159,7 +159,7 @@ export const ReceiveSummary: React.FC<ReceiveSummaryProps> = ({
                 // disabled={disableSubmit}
                 type="primary"
                 block
-                className="flex-1 h-[60px] rounded-[8px] text-[18px] leading-[20px]"
+                className="flex-1 h-[60px] rounded-[12px] text-[18px] leading-[20px]"
                 // onClick={onConfirm}
                 onClick={() => {
                   task.clear();
@@ -297,7 +297,7 @@ export const ReceiveSummary: React.FC<ReceiveSummaryProps> = ({
                     disabled={!task?.list?.length}
                     type="primary"
                     block
-                    className="flex-1 h-[60px] rounded-[8px] text-[18px] leading-[20px]"
+                    className="flex-1 h-[60px] rounded-[12px] text-[18px] leading-[20px]"
                     onClick={() => {
                       task?.start();
                     }}
@@ -315,7 +315,7 @@ export const ReceiveSummary: React.FC<ReceiveSummaryProps> = ({
                         disabled={true}
                         type="primary"
                         block
-                        className="h-[60px] rounded-[8px] text-[18px] leading-[20px]"
+                        className="h-[60px] rounded-[12px] text-[18px] leading-[20px]"
                       >
                         {t('page.desktopSmallSwap.startConvert')}
                       </Button>
@@ -326,7 +326,7 @@ export const ReceiveSummary: React.FC<ReceiveSummaryProps> = ({
                 <button
                   type="button"
                   className={clsx(
-                    'w-full h-[60px] rounded-[8px] transition-opacity',
+                    'w-full h-[60px] rounded-[12px] transition-opacity',
                     'text-[18px] leading-[20px] font-medium text-r-neutral-title2',
                     'bg-r-red-default'
                   )}

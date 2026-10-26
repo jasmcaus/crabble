@@ -44,7 +44,7 @@ const EditRPCWrapped = styled.div`
     margin-right: auto;
     background: transparent !important;
     border: 1px solid var(--r-neutral-line, #d9d5cf) !important;
-    border-radius: 6px;
+    border-radius: 8px;
 
     color: var(--r-neutral-title1, #1a1917) !important;
     font-size: 15px;

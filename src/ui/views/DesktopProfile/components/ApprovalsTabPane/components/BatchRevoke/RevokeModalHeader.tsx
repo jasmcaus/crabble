@@ -47,7 +47,7 @@ export const RevokeModalHeader: React.FC<Props> = ({
               type="primary"
               className={clsx(
                 'w-full h-[44px]',
-                'rounded-[6px]',
+                'rounded-[8px]',
                 'before:content-none'
               )}
               onClick={() => {

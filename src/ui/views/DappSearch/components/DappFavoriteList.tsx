@@ -8,7 +8,7 @@ import { DappCard } from './DappCard';
 const Empty = () => {
   const { t } = useTranslation();
   return (
-    <div className="rounded-[8px] pt-[22px] pb-[16px] text-center bg-r-neutral-card1">
+    <div className="rounded-[12px] pt-[22px] pb-[16px] text-center bg-r-neutral-card1">
       <ThemeIcon src={RcIconEmpty} className="mx-auto"></ThemeIcon>
       <div className="text-[12px] leading-[14px] text-r-neutral-foot mt-[8px]">
         {t('page.dappSearch.emptyFavorite')}

@@ -309,7 +309,7 @@ const DappAccountModal = ({
         <Button
           type="primary"
           block
-          className="h-[48px] rounded-[8px] text-[16px]"
+          className="h-[48px] rounded-[12px] text-[16px]"
           onClick={handleSubmit}
         >
           {t('page.dashboard.settings.DappAccount.button')}
@@ -381,7 +381,7 @@ const ResetAccountModal = ({
         <p className="reset-account-content">
           {t('page.dashboard.settings.clearPendingTip2')}
         </p>
-        <div className="flex items-start gap-[4px] p-[10px] bg-r-red-light rounded-[6px] mt-[20px]">
+        <div className="flex items-start gap-[4px] p-[10px] bg-r-red-light rounded-[8px] mt-[20px]">
           <div className="text-r-red-default pt-[2px]">
             <RcIconWarning />
           </div>

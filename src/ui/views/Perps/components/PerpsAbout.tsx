@@ -40,7 +40,7 @@ export const PerpsAbout: React.FC<PerpsAboutProps> = ({ coin, className }) => {
         <span className="w-[2px] h-[12px] bg-r-blue-default inline-block" />
         {t('page.perps.PerpsAbout.title')}
       </div>
-      <div className="bg-r-neutral-card-1 rounded-[8px] p-16 text-[12px] text-r-neutral-foot whitespace-pre-wrap">
+      <div className="bg-r-neutral-card-1 rounded-[12px] p-16 text-[12px] text-r-neutral-foot whitespace-pre-wrap">
         {description}
       </div>
     </div>

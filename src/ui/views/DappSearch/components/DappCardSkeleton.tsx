@@ -15,7 +15,7 @@ export const DappCardSkeleton = () => {
   return (
     <Wraper
       className={clsx(
-        'p-[16px] bg-r-neutral-card1 cursor-pointer rounded-[8px]'
+        'p-[16px] bg-r-neutral-card1 cursor-pointer rounded-[12px]'
       )}
     >
       <div className="flex items-center pb-[4px]">

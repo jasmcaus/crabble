@@ -30,7 +30,7 @@ const Container = styled.div`
   }
 
   .ant-input {
-    border-radius: 8px;
+    border-radius: 12px;
     color: var(--r-neutral-title1);
     font-size: 15px;
     line-height: 18px;
@@ -46,7 +46,7 @@ const Container = styled.div`
   }
 
   /* .ant-input {
-    border-radius: 8px;
+    border-radius: 12px;
     border: 1px solid var(--r-neutral-line, #eae7e2);
   }
 
@@ -68,7 +68,7 @@ const Container = styled.div`
     &-focused:hover {
       border: 1px solid var(--r-blue-default, #f26b3a);
     }
-    border-radius: 8px;
+    border-radius: 12px;
     border: 1px solid var(--r-neutral-line, #eae7e2);
     .ant-input {
       border: none !important;
@@ -361,7 +361,7 @@ export const PasswordCard: React.FC<Props> = ({ onSubmit, step, onBack }) => {
                     disabled={!agreeTerm || isDisabled}
                     type="primary"
                     className={clsx(
-                      'mt-[20px] h-[52px] shadow-none rounded-[8px]',
+                      'mt-[20px] h-[52px] shadow-none rounded-[12px]',
                       'text-[15px] leading-[18px] font-medium'
                     )}
                   >

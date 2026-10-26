@@ -111,7 +111,7 @@ const DisplayMnemonic = () => {
         block
         type="primary"
         className={clsx(
-          'h-[56px] shadow-none rounded-[8px]',
+          'h-[56px] shadow-none rounded-[12px]',
           'text-[17px] font-medium bg-r-blue-default'
         )}
       >

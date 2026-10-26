@@ -229,7 +229,7 @@ export const SelectAddressList = ({
             {range(0, 5).map((i) => {
               return (
                 <div
-                  className="flex justify-between items-center bg-r-neutral-card1 rounded-[6px] py-[13px] px-[16px]"
+                  className="flex justify-between items-center bg-r-neutral-card1 rounded-[8px] py-[13px] px-[16px]"
                   key={i}
                 >
                   <div className="gap-x-12 flex items-center">
@@ -352,7 +352,7 @@ function AccountItem(props: {
       py={0}
       right={RightArea}
       bgColor=" var(--r-neutral-card1, #FFF);"
-      className="h-[56px] rounded-[6px] mb-12"
+      className="h-[56px] rounded-[8px] mb-12"
       left={
         <img
           src={addressTypeIcon}

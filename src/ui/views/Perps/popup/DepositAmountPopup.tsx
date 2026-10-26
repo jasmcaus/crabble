@@ -392,7 +392,7 @@ export const PerpsDepositAmountPopup: React.FC<PerpsDepositAmountPopupProps> = (
           </div>
 
           {/* Input card */}
-          <div className="flex flex-col bg-r-neutral-card1 rounded-[8px] px-16 py-24">
+          <div className="flex flex-col bg-r-neutral-card1 rounded-[12px] px-16 py-24">
             <div className="flex items-center gap-8">
               <div className="flex-1 flex flex-col">
                 <input
@@ -435,7 +435,7 @@ export const PerpsDepositAmountPopup: React.FC<PerpsDepositAmountPopupProps> = (
               </div>
               <div
                 className={clsx(
-                  'flex items-center gap-6 px-12 h-[40px] justify-center rounded-[6px]',
+                  'flex items-center gap-6 px-12 h-[40px] justify-center rounded-[8px]',
                   'bg-r-neutral-card-2',
                   'border border-solid border-transparent',
                   'cursor-pointer hover:bg-r-blue-light1 hover:border-rabby-blue-default'
@@ -466,14 +466,14 @@ export const PerpsDepositAmountPopup: React.FC<PerpsDepositAmountPopupProps> = (
             {[25, 50, 75].map((pct) => (
               <div
                 key={pct}
-                className="flex-1 h-[40px] flex items-center justify-center rounded-[8px] border border-solid border-transparent text-13 text-r-neutral-title-1 cursor-pointer hover:border-rabby-blue-default font-medium hover:text-r-blue-default bg-r-neutral-card1"
+                className="flex-1 h-[40px] flex items-center justify-center rounded-[12px] border border-solid border-transparent text-13 text-r-neutral-title-1 cursor-pointer hover:border-rabby-blue-default font-medium hover:text-r-blue-default bg-r-neutral-card1"
                 onClick={() => handlePercentage(pct)}
               >
                 {pct}%
               </div>
             ))}
             <div
-              className="flex-1 h-[40px] flex items-center justify-center rounded-[8px] border border-solid border-transparent text-13 text-r-neutral-title-1 cursor-pointer hover:border-rabby-blue-default font-medium hover:text-r-blue-default bg-r-neutral-card1"
+              className="flex-1 h-[40px] flex items-center justify-center rounded-[12px] border border-solid border-transparent text-13 text-r-neutral-title-1 cursor-pointer hover:border-rabby-blue-default font-medium hover:text-r-blue-default bg-r-neutral-card1"
               onClick={handleMax}
             >
               Max

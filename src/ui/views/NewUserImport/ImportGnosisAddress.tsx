@@ -14,7 +14,7 @@ import { GnosisChainList } from './GnosisChainList';
 
 const Container = styled.div`
   .ant-input {
-    border-radius: 8px;
+    border-radius: 12px;
     border: 1px solid var(--r-neutral-line, #eae7e2);
     color: var(--r-neutral-title1, #1a1917);
     font-size: 15px;
@@ -208,7 +208,7 @@ export const NewUserImportGnosisAddress = () => {
           block
           type="primary"
           className={clsx(
-            'mt-[48px] h-[56px] shadow-none rounded-[8px]',
+            'mt-[48px] h-[56px] shadow-none rounded-[12px]',
             'text-[17px] font-medium'
           )}
         >

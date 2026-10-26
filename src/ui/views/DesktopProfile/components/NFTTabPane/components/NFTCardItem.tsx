@@ -17,7 +17,7 @@ export const NFTCardItem: React.FC<{
     <div
       onClick={onClick}
       className={clsx(
-        'rounded-[8px] border-[1px] border-solid border-rb-neutral-line p-[2px]',
+        'rounded-[12px] border-[1px] border-solid border-rb-neutral-line p-[2px]',
         'hover:border-rabby-blue-default cursor-pointer',
         'w-[204px]'
       )}

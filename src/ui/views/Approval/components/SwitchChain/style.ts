@@ -18,8 +18,8 @@ export const OptionsWrapper = styled.div`
     margin-bottom: 40px;
   }
   .connect-site-card {
-    border-radius: 8px;
-    background: #f5f6fa;
+    border-radius: 12px;
+    background: #f5f4f1;
     display: inline-flex;
     padding: 28px 28px 32px 28px;
     width: 100%;
@@ -51,7 +51,7 @@ export const OptionsWrapper = styled.div`
     justify-content: center;
     align-items: center;
     gap: 8px;
-    border-radius: 6px;
+    border-radius: 8px;
     border: 1px solid #e5e9ef;
 
     color: #13141a;

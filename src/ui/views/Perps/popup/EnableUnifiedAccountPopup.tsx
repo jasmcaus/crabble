@@ -43,7 +43,7 @@ const Content: React.FC<EnableUnifiedAccountContentProps> = ({
 
       <div
         className={clsx(
-          'mx-20 mt-16 mb-24 px-12 py-12 rounded-[8px] bg-r-neutral-card1'
+          'mx-20 mt-16 mb-24 px-12 py-12 rounded-[12px] bg-r-neutral-card1'
         )}
       >
         <div className="text-15 font-medium text-r-neutral-title-1 mb-4">
@@ -62,7 +62,7 @@ const Content: React.FC<EnableUnifiedAccountContentProps> = ({
           type="primary"
           loading={loading}
           onClick={handleConfirm}
-          className="h-[48px] text-15 font-medium rounded-[8px]"
+          className="h-[48px] text-15 font-medium rounded-[12px]"
         >
           {t('page.perps.EnableUnifiedAccount.confirm')}
         </Button>

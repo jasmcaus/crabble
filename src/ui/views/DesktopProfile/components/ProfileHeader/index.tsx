@@ -17,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
       display: none;
     }
     .ant-popover-inner {
-      border-radius: 8px;
+      border-radius: 12px;
       border: 1px solid var(--r-neutral-line, #EAE7E2);
       box-shadow: none;
     }
@@ -76,7 +76,7 @@ export const ProfileHeader: React.FC<{
                 <RcIconQrCodeCC />
               </div>
             </Popover>
-            <SeedPhraseBackupAlert className={clsx('rounded-[8px]')} />
+            <SeedPhraseBackupAlert className={clsx('rounded-[12px]')} />
           </div>
         </div>
 

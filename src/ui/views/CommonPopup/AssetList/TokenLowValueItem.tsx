@@ -34,7 +34,7 @@ export const TokenLowValueItem: React.FC<Props> = ({ className, list }) => {
   return (
     <div
       className={clsx(
-        'flex justify-between border border-transparent items-center mt-8 bg-r-neutral-card1 rounded-[8px] px-16',
+        'flex justify-between border border-transparent items-center mt-8 bg-r-neutral-card1 rounded-[12px] px-16',
         'hover:border-blue-light hover:bg-blue-light/10',
         'cursor-pointer',
         className

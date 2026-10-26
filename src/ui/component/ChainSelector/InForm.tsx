@@ -57,7 +57,7 @@ const ChainGlobalStyle = createGlobalStyle`
 const ChainWrapper = styled.div`
   /* height: 40px; */
   background: var(--r-neutral-card-2, #f3f2ef);
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 12px 12px;
   width: 100%;
   display: flex;
@@ -92,7 +92,7 @@ const ChainWrapper = styled.div`
     padding: 0 16px;
     border: 1px solid transparent;
     background: var(--r-neutral-card1, #fff);
-    border-radius: 8px 8px 0 0;
+    border-radius: 12px 12px 0 0;
     height: 52px;
     position: relative;
 
@@ -113,7 +113,7 @@ const ChainWrapper = styled.div`
   &.swap:hover {
     background: var(--r-blue-light1, #fdefe9);
     border: 1px solid var(--r-blue-default, #e8552a);
-    border-radius: 8px;
+    border-radius: 12px;
 
     & > .name {
       color: var(--r-blue-default, #e8552a);

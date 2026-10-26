@@ -27,7 +27,7 @@ const ItemWrapper = styled.div<{
   width: 100%;
 
   background-color: ${(p) => p.bgColor};
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   display: flex;
   align-items: center;

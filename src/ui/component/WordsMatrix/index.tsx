@@ -28,7 +28,7 @@ const CloseIcon = styled.img.attrs({
 
 const FocusingBox = styled.div`
   border: 1px solid var(--r-blue-default, #f26b3a);
-  border-radius: 6px;
+  border-radius: 8px;
 `;
 
 const ErrorBox = styled(FocusingBox)`
@@ -46,7 +46,7 @@ const MatrixWrapper = styled.div.withConfig<{
   flex-wrap: wrap;
   overflow: hidden;
 
-  border-radius: 6px;
+  border-radius: 8px;
   background: var(--r-neutral-card1, #fff);
 
   .matrix-word-item {
@@ -145,7 +145,7 @@ function WordsMatrix({
 
   return (
     <MatrixWrapper
-      className={clsx('rounded-[6px] text-center', className)}
+      className={clsx('rounded-[8px] text-center', className)}
       rowCount={rowCount}
     >
       {checkedWords.map((word, idx) => {

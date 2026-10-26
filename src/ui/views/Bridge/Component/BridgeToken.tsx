@@ -393,7 +393,7 @@ export const BridgeToken = ({
   ]);
 
   return (
-    <div className={clsx('h-[148px] bg-r-neutral-card1 rounded-[8px]')}>
+    <div className={clsx('h-[148px] bg-r-neutral-card1 rounded-[12px]')}>
       <div
         className={clsx(
           'flex items-center gap-8',

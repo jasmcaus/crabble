@@ -60,7 +60,7 @@ const UnlockMethodSwitch = styled.button`
   gap: 4px;
   padding: 7px 10.5px;
   border: 0;
-  border-radius: 8px;
+  border-radius: 12px;
   background: var(--r-blue-light-1);
   color: var(--r-blue-default);
   font-size: 13px;

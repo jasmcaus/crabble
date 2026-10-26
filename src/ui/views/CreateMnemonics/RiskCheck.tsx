@@ -66,7 +66,7 @@ const RiskCheck = () => {
         block
         type="primary"
         className={clsx(
-          'mt-[76px] h-[56px] shadow-none rounded-[8px]',
+          'mt-[76px] h-[56px] shadow-none rounded-[12px]',
           'text-[17px] font-medium bg-r-blue-default'
         )}
       >

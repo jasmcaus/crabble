@@ -51,7 +51,7 @@ const Group = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <div className="relative w-full p-[16px] bg-r-neutral-card-1 overflow-hidden rounded-[6px] pt-0">
+    <div className="relative w-full p-[16px] bg-r-neutral-card-1 overflow-hidden rounded-[8px] pt-0">
       <div className="h-[48px] flex items-center mb-14 text-r-neutral-title1 text-[15px] font-medium">
         Seed Phrase {(data.index || 0) + 1}
       </div>

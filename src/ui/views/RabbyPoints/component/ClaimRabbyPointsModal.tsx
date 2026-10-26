@@ -40,7 +40,7 @@ const StyledModal = styled(Modal)`
 const StyledInput = styled(Input)`
   background: var(--r-neutral-bg1, #fff);
   &.ant-input-affix-wrapper {
-    border-radius: 8px;
+    border-radius: 12px;
     border: 1px solid var(--r-neutral-line, #d9d5cf);
     & > input.ant-input {
       height: 44px;
@@ -271,7 +271,7 @@ const ClaimPoints = ({
     titleLoading;
 
   return (
-    <div className="relative w-[360px] bg-r-neutral-bg-1 p-[20px] pb-[24px] rounded-[8px] leading-[normal]">
+    <div className="relative w-[360px] bg-r-neutral-bg-1 p-[20px] pb-[24px] rounded-[12px] leading-[normal]">
       <div
         className="absolute w-full top-0 left-0 px-20 py-14 flex justify-between"
         style={{
@@ -332,7 +332,7 @@ const ClaimPoints = ({
         <span>{name}</span>
       </div>
 
-      <div className="rounded-[8px] bg-r-neutral-card-3 px-[12px] py-[16px]">
+      <div className="rounded-[12px] bg-r-neutral-card-3 px-[12px] py-[16px]">
         <div className="text-center text-[10px] text-[#7c86c8] mb-[12px]">
           {t('page.rabbyPoints.claimModal.snapshotTime', {
             time: snapshotTime,

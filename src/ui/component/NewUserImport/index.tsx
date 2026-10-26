@@ -47,7 +47,7 @@ const StyledCard = styled.div`
       transform: translateY(-50%);
       cursor: pointer;
       color: var(--r-neutral-body, #4b4844);
-      border-radius: 8px;
+      border-radius: 12px;
       padding: 6px;
     }
     .back-icon:hover {

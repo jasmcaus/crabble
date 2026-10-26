@@ -54,7 +54,7 @@ export const SignProcessButton: React.FC<
     return (
       <div
         className={clsx(
-          'bg-r-neutral-card-2 rounded-[6px] flex items-center gap-[6px] py-[13px] px-[18px]',
+          'bg-r-neutral-card-2 rounded-[8px] flex items-center gap-[6px] py-[13px] px-[18px]',
           'text-[15px] leading-[18px] font-medium text-r-neutral-title1 cursor-pointer'
         )}
       >

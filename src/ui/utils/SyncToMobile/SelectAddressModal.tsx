@@ -138,7 +138,7 @@ export const SelectAddressModal: React.FC<Props> = ({
       >
         <Button
           block
-          className="h-[56px] text-[17px] rounded-[8px]"
+          className="h-[56px] text-[17px] rounded-[12px]"
           type="primary"
           disabled={selected?.length === 0}
           onClick={() => onConfirm?.(selected)}

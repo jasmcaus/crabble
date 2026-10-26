@@ -253,9 +253,9 @@ export const RevokeApprovalModal = (props: {
           <div
             key={index}
             className={clsx(
-              'relative px-[16px] h-[56px] bg-r-neutral-card1 cursor-pointer border border-transparent  hover:border-rabby-blue-default  hover:bg-r-blue-light1/10 hover:rounded-[6px] hover:z-10',
-              isLastOne && 'rounded-b-[6px]',
-              'first:mt-0 first:rounded-t-[6px] dark:bg-[#292c37] dark:hover:bg-r-blue-light1'
+              'relative px-[16px] h-[56px] bg-r-neutral-card1 cursor-pointer border border-transparent  hover:border-rabby-blue-default  hover:bg-r-blue-light1/10 hover:rounded-[8px] hover:z-10',
+              isLastOne && 'rounded-b-[8px]',
+              'first:mt-0 first:rounded-t-[8px] dark:bg-[#292c37] dark:hover:bg-r-blue-light1'
             )}
             onClick={(e) => {
               if ((e.target as HTMLElement)?.id !== 'copyIcon') {
@@ -389,9 +389,9 @@ export const RevokeApprovalModal = (props: {
         <div
           key={spender.id}
           className={clsx(
-            'relative px-[16px] bg-r-neutral-card1 cursor-pointer border border-transparent hover:border-rabby-blue-default  hover:bg-r-blue-light1/10 hover:rounded-[6px] hover:z-10',
-            isLastOne && 'rounded-b-[6px]',
-            'first:rounded-t-[6px]',
+            'relative px-[16px] bg-r-neutral-card1 cursor-pointer border border-transparent hover:border-rabby-blue-default  hover:bg-r-blue-light1/10 hover:rounded-[8px] hover:z-10',
+            isLastOne && 'rounded-b-[8px]',
+            'first:rounded-t-[8px]',
             !risky ? 'h-[51px] ' : 'flex-col pt-[13px]'
           )}
           onClick={(e) => {

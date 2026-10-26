@@ -10,7 +10,7 @@ export const TpSlIntroCard: React.FC<{
   const isPartial = scope === 'partial';
 
   return (
-    <div className="flex flex-col gap-[12px] rounded-[6px] bg-rb-neutral-bg-5 px-[16px] py-[12px]">
+    <div className="flex flex-col gap-[12px] rounded-[8px] bg-rb-neutral-bg-5 px-[16px] py-[12px]">
       <div className="flex flex-col gap-[6px]">
         <div className="text-[12px] leading-[16px] font-medium text-rb-neutral-title-1">
           {isPartial
@@ -25,7 +25,7 @@ export const TpSlIntroCard: React.FC<{
       </div>
       <button
         type="button"
-        className="h-[32px] w-full rounded-[6px] border-0 bg-rb-neutral-bg-5 text-[12px] leading-[18px] font-medium text-rb-neutral-title-1 hover:opacity-80"
+        className="h-[32px] w-full rounded-[8px] border-0 bg-rb-neutral-bg-5 text-[12px] leading-[18px] font-medium text-rb-neutral-title-1 hover:opacity-80"
         onClick={onDismiss}
       >
         {t('page.perpsPro.positionTpSl.gotIt')}

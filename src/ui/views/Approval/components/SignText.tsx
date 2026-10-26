@@ -375,7 +375,7 @@ const SignText = ({
                       modal.destroy();
                       resolveApproval(res.safeMessage.preparedSignature);
                     }}
-                    className="text-[15px] h-[40px] rounded-[6px]"
+                    className="text-[15px] h-[40px] rounded-[8px]"
                   >
                     {t('global.ok')}
                   </Button>

@@ -241,7 +241,7 @@ export default function RateModal() {
                   background: 'var(--r-neutral-card-1, #FFFFFF) !important',
                 }}
                 className={clsx(
-                  'w-[100%] h-[180px] rounded-[8px] p-[12px]',
+                  'w-[100%] h-[180px] rounded-[12px] p-[12px]',
                   'text-[13px] text-[400] text-r-neutral-title-1',
                   'bg-r-neutral-card-1 border-rabby-blue-default border-[1px] border-solid',
                   feedbackOverLimit && 'border-rabby-red-default'

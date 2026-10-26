@@ -135,7 +135,7 @@ export const CustomTestnetTokenDetail = ({
           onOpen={() => addToken(token)}
           onClose={() => removeToken(token)}
         ></BlockedTopTips>
-        <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[8px]">
+        <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[12px]">
           <div className="balance-content overflow-hidden flex flex-col gap-8 px-16 py-12">
             <div className="flex flex-row justify-between w-full">
               <div className="balance-title text-r-neutral-body text-13">
@@ -160,25 +160,25 @@ export const CustomTestnetTokenDetail = ({
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[8px] gap-12 py-12">
+        <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[12px] gap-12 py-12">
           <div className="text-r-neutral-foot text-13 flex flex-row items-center justify-center w-full">
             <img src={IconNoFind} className="w-14 mr-4" />
             {t('page.dashboard.tokenDetail.noIssuer')}
           </div>
         </div>
-        <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[8px] gap-12 py-12">
+        <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[12px] gap-12 py-12">
           <div className="text-r-neutral-foot text-13 flex flex-row items-center justify-center w-full">
             <img src={IconNoFind} className="w-14 mr-4" />
             {t('page.dashboard.tokenDetail.NoListedBy')}
           </div>
         </div>
-        <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[8px] gap-12 py-12">
+        <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[12px] gap-12 py-12">
           <div className="text-r-neutral-foot text-13 flex flex-row items-center justify-center w-full">
             <img src={IconNoFind} className="w-14 mr-4" />
             {t('page.dashboard.tokenDetail.NoSupportedExchanges')}
           </div>
         </div>
-        <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[8px]">
+        <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[12px]">
           <div className="flex flex-row justify-between w-full px-16 py-12">
             <span className="text-r-neutral-body text-[13px] font-normal">
               {t('page.dashboard.tokenDetail.TokenName')}
@@ -234,7 +234,7 @@ export const CustomTestnetTokenDetail = ({
           </div>
         </div>
         <div className="token-txs-history flex flex-col">
-          <div className="token-txs-history__empty bg-r-neutral-card-1 rounded-[8px] pt-[30px] pb-[30px]">
+          <div className="token-txs-history__empty bg-r-neutral-card-1 rounded-[12px] pt-[30px] pb-[30px]">
             <img className="no-data" src="./images/nodata-tx.png" />
             <p className="text-14 text-gray-content mt-12">
               {t('page.dashboard.tokenDetail.noTransactions')}

@@ -61,7 +61,7 @@ const ConnectWrapper = styled.div`
     }
     .chain-selector {
       height: 32px;
-      border-radius: 8px;
+      border-radius: 12px;
       background: var(--r-neutral-bg2, #f3f2ef);
       color: var(--r-neutral-title-1, #1a1917);
       font-size: 13px;
@@ -695,7 +695,7 @@ export const ConnectContent = (
               account={selectedAccount}
             />
           </div>
-          <div className="rounded-[8px] bg-r-neutral-card1">
+          <div className="rounded-[12px] bg-r-neutral-card1">
             <div className="connect-card">
               <div className="relative">
                 <FallbackSiteLogo

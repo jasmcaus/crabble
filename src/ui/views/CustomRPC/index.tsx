@@ -21,7 +21,7 @@ import { useMemoizedFn } from 'ahooks';
 
 const RPCItemWrapper = styled.div`
   background: var(--r-neutral-card-1, rgba(255, 255, 255, 0.06));
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 12px;
   display: flex;
   margin-bottom: 8px;
@@ -80,7 +80,7 @@ const RPCItemWrapper = styled.div`
   &:hover {
     background: var(--r-blue-light-1, #fdefe9);
     border: 1px solid var(--r-blue-default, #f26b3a);
-    border-radius: 6px;
+    border-radius: 8px;
     .operation {
       opacity: 1;
     }

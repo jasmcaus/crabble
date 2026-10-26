@@ -741,7 +741,7 @@ export const StatusBar: React.FC<{ onOpenSettings?: () => void }> = ({
 
   return (
     <div className="fixed bottom-0 left-0 right-0 bg-rb-neutral-bg-page p-[6px] z-30">
-      <div className="h-[32px] rounded-[6px] bg-rb-neutral-bg-1 flex items-center overflow-hidden px-[12px] gap-[12px]">
+      <div className="h-[32px] rounded-[8px] bg-rb-neutral-bg-1 flex items-center overflow-hidden px-[12px] gap-[12px]">
         <div className="desktop-perps-status-side flex items-center">
           <OnlineStatus online={isConnected} />
         </div>

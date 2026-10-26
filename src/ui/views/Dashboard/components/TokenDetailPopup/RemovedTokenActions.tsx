@@ -60,7 +60,7 @@ export const RemovedTokenActions = ({
     <div className="relative flex items-center shrink-0 gap-8 px-20 py-14 border-t-[0.5px] border-r-neutral-line bg-r-neutral-bg-2">
       <Button
         type="primary"
-        className="flex-1 min-w-0 h-40 p-0 rounded-[8px] text-13 font-medium leading-16"
+        className="flex-1 min-w-0 h-40 p-0 rounded-[12px] text-13 font-medium leading-16"
         loading={restoring}
         disabled={restoring}
         onClick={handleRestore}
@@ -118,7 +118,7 @@ export const RemovedTokenActions = ({
         <button
           type="button"
           className={clsx(
-            'flex items-center justify-center shrink-0 w-40 h-40 p-0 border rounded-[8px] bg-r-neutral-bg-1 cursor-pointer',
+            'flex items-center justify-center shrink-0 w-40 h-40 p-0 border rounded-[12px] bg-r-neutral-bg-1 cursor-pointer',
             'hover:border-r-blue-default hover:text-r-blue-default active:border-r-blue-default active:bg-r-blue-light-2 active:text-r-blue-default',
             'focus-visible:outline-2 focus-visible:outline-r-blue-default focus-visible:outline-offset-2',
             'border-r-neutral-line text-r-neutral-body'

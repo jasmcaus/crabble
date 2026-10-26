@@ -151,8 +151,8 @@ export const DashboardHeader: React.FC<{ onSettingClick?(): void }> = ({
             <div
               className={clsx(
                 'flex-1 min-w-0 flex items-center justify-end',
-                'gap-[6px] pl-[12px] pr-[8px] py-[7px] rounded-[6px] cursor-pointer',
-                'bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.1)]'
+                'gap-[6px] pl-[12px] pr-[8px] py-[7px] rounded-full cursor-pointer',
+                'bg-[rgba(255,255,255,0.07)] hover:bg-[rgba(255,255,255,0.12)]'
               )}
               onClick={handleSwitchAddress}
             >
@@ -216,8 +216,8 @@ export const DashboardHeader: React.FC<{ onSettingClick?(): void }> = ({
 
             <div
               className={clsx(
-                'p-[6px] rounded-[5px] cursor-pointer text-r-neutral-title-2 shrink-0',
-                'bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.1)]'
+                'p-[7px] rounded-full cursor-pointer text-r-neutral-title-2 shrink-0',
+                'bg-[rgba(255,255,255,0.07)] hover:bg-[rgba(255,255,255,0.12)]'
               )}
               onClick={onSettingClick}
             >
@@ -301,8 +301,8 @@ const FeedbackEntry = () => {
     <>
       <div
         className={clsx(
-          'p-[6px] rounded-[5px] cursor-pointer text-r-neutral-title-2 shrink-0',
-          'bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.1)]'
+          'p-[7px] rounded-full cursor-pointer text-r-neutral-title-2 shrink-0',
+          'bg-[rgba(255,255,255,0.07)] hover:bg-[rgba(255,255,255,0.12)]'
         )}
         onClick={handleClick}
       >
@@ -455,7 +455,7 @@ const GasAccountEntry = () => {
           'group h-[32px] min-w-[32px] max-w-[32px] hover:max-w-[100px] px-[6px] rounded-[5px]',
           'cursor-pointer overflow-hidden transition-all duration-200 shrink-0',
           'flex items-center gap-[2px]',
-          'bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.1)]',
+          'bg-[rgba(255,255,255,0.07)] hover:bg-[rgba(255,255,255,0.12)]',
           'text-r-neutral-title-2'
         )}
         onClick={handleClick}

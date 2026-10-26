@@ -8,7 +8,7 @@ export const Loading = () => {
         style={{
           boxShadow: '0px 10px 10px 0px rgba(0, 0, 0, 0.2)',
         }}
-        className="w-[360px] h-[448px] mt-[40px] flex flex-col items-center relative bg-r-neutral-bg1 rounded-[8px]"
+        className="w-[360px] h-[448px] mt-[40px] flex flex-col items-center relative bg-r-neutral-bg1 rounded-[12px]"
       >
         <div className="mt-24">
           <Skeleton.Input

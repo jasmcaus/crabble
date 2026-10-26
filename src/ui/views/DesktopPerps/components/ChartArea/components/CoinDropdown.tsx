@@ -38,7 +38,7 @@ const SearchInput = styled(Input)`
     color: var(--rb-neutral-title-1, #1a1917) !important;
   }
   height: 46px !important;
-  border-radius: 6px !important;
+  border-radius: 8px !important;
   input::placeholder {
     color: var(--r-neutral-foot, #827e77) !important;
   }
@@ -438,7 +438,7 @@ export const CoinDropdown: React.FC<CoinDropdownProps> = ({
 
   const dropdownMenu = useMemo(
     () => (
-      <div className="bg-rb-neutral-bg-1 rounded-[8px] shadow-lg border border-solid border-rb-neutral-line w-[854px] h-[480px] overflow-hidden flex flex-col px-16 pt-16">
+      <div className="bg-rb-neutral-bg-1 rounded-[12px] shadow-lg border border-solid border-rb-neutral-line w-[854px] h-[480px] overflow-hidden flex flex-col px-16 pt-16">
         <SearchInput
           prefix={<RcIconSearch className="text-r-neutral-foot" />}
           placeholder={t('page.perpsPro.chatArea.searchMarkets')}
@@ -588,7 +588,7 @@ export const CoinDropdown: React.FC<CoinDropdownProps> = ({
         onVisibleChange={setDropdownVisible}
         placement="bottomLeft"
       >
-        <div className="flex items-center gap-[6px] cursor-pointer transition-colors rounded-[6px]">
+        <div className="flex items-center gap-[6px] cursor-pointer transition-colors rounded-[8px]">
           <TokenImg
             logoUrl={marketItem?.logoUrl || ''}
             withDirection={false}

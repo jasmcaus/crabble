@@ -59,7 +59,7 @@ export const ApprovalContractItem = ({
     <div
       ref={rowRef}
       className={clsx(
-        'bg-r-neutral-card1 mb-[12px] rounded-[6px] border border-transparent contract-approval-item',
+        'bg-r-neutral-card1 mb-[12px] rounded-[8px] border border-transparent contract-approval-item',
         onSelect &&
           'hover:border-blue-light hover:bg-blue-light/10 cursor-pointer'
       )}

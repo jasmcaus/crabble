@@ -50,7 +50,7 @@ const Wraper = styled.div`
     margin-bottom: 20px;
     height: 44px;
 
-    border-radius: 6px;
+    border-radius: 8px;
     background: var(--r-neutral-card1, #fff);
     border: 1px solid var(--r-neutral-line, #d9d5cf);
 
@@ -223,13 +223,13 @@ export const AddFromChainList = ({
 
       {isLoading ? (
         <div className="px-[20px]">
-          <div className="rounded-[6px] bg-r-neutral-card2">
+          <div className="rounded-[8px] bg-r-neutral-card2">
             <Loading />
           </div>
         </div>
       ) : isEmpty ? (
         <div className="h-full px-[20px]">
-          <div className="h-full rounded-[6px] bg-r-neutral-card2">
+          <div className="h-full rounded-[8px] bg-r-neutral-card2">
             <Emtpy
               description={t('page.customTestnet.AddFromChainList.empty')}
             />
@@ -297,7 +297,7 @@ const CustomTestnetList = ({
     }
   );
   return (
-    <div className="rounded-[6px] bg-r-neutral-card2">
+    <div className="rounded-[8px] bg-r-neutral-card2">
       {list?.map((item) => {
         const chain = findChain({ id: item.id });
 
@@ -337,14 +337,14 @@ const CustomTestnetList = ({
 const Loading = () => {
   return (
     <>
-      <div className="chain-list-item relative flex items-center px-[16px] py-[11px] gap-[12px] bg-r-neutral-card2 rounded-[6px]">
+      <div className="chain-list-item relative flex items-center px-[16px] py-[11px] gap-[12px] bg-r-neutral-card2 rounded-[8px]">
         <Skeleton.Avatar active />
         <div className="flex flex-col gap-[4px]">
           <Skeleton.Input active className="w-[80px] h-[16px]" />
           <Skeleton.Input active className="w-[145px] h-[14px]" />
         </div>
       </div>
-      <div className="chain-list-item relative flex items-center px-[16px] py-[11px] gap-[12px] bg-r-neutral-card2 rounded-[6px]">
+      <div className="chain-list-item relative flex items-center px-[16px] py-[11px] gap-[12px] bg-r-neutral-card2 rounded-[8px]">
         <Skeleton.Avatar active />
         <div className="flex flex-col gap-[4px]">
           <Skeleton.Input active className="w-[80px] h-[16px]" />

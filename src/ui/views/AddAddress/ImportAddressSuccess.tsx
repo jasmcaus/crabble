@@ -131,7 +131,7 @@ export const ImportAddressSuccess: React.FC<{
       <div className="mx-auto w-[600px] pt-[114px]">
         <RcRabbyLogo viewBox="0 0 152 44" className="h-[42px] w-[152px]" />
       </div>
-      <div className="mx-auto mt-[8px] flex h-[586px] w-[600px] flex-col rounded-[8px] bg-r-neutral-card-1 px-[120px] pb-[32px] pt-[32px]">
+      <div className="mx-auto mt-[8px] flex h-[586px] w-[600px] flex-col rounded-[12px] bg-r-neutral-card-1 px-[120px] pb-[32px] pt-[32px]">
         <div className="shrink-0 flex flex-col items-center">
           <RcCreateAddressSuccessIcon className="h-[40px] w-[40px]" />
           <div className="mt-[16px] text-center text-[24px] font-medium leading-[29px] text-r-neutral-title-1">
@@ -154,7 +154,7 @@ export const ImportAddressSuccess: React.FC<{
             type="primary"
             size="large"
             disabled={pendingAction}
-            className="h-[44px] w-full rounded-[8px] text-[15px] font-medium leading-[18px]"
+            className="h-[44px] w-full rounded-[12px] text-[15px] font-medium leading-[18px]"
             onClick={handleOpenWallet}
           >
             {t('page.newUserImport.successful.openWallet')}

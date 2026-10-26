@@ -64,14 +64,14 @@ export const CodeAndShare = ({
     <div className="flex items-center justify-between text-[13px] font-medium text-r-neutral-title1">
       <div
         onClick={copyInvitedCode}
-        className="border border-transparent hover:bg-rabby-blue-light1 hover:border hover:border-rabby-blue-default cursor-pointer rounded-[6px] w-[172px] h-[40px] flex items-center justify-center gap-[4px] bg-r-neutral-card2"
+        className="border border-transparent hover:bg-rabby-blue-light1 hover:border hover:border-rabby-blue-default cursor-pointer rounded-[8px] w-[172px] h-[40px] flex items-center justify-center gap-[4px] bg-r-neutral-card2"
       >
         <span>{invitedCode?.toUpperCase()}</span>
         <IconCopy className="w-[16px]" />
       </div>
       <div
         onClick={share}
-        className="border border-transparent hover:bg-rabby-blue-light1 hover:border hover:border-rabby-blue-default cursor-pointer rounded-[6px] w-[172px] h-[40px] flex items-center justify-center gap-[4px] bg-r-neutral-card2"
+        className="border border-transparent hover:bg-rabby-blue-light1 hover:border hover:border-rabby-blue-default cursor-pointer rounded-[8px] w-[172px] h-[40px] flex items-center justify-center gap-[4px] bg-r-neutral-card2"
       >
         <span>{t('page.rabbyPoints.share-on')}</span>
         <IconTwitter className="w-[16px]" />
@@ -84,14 +84,14 @@ const CodeAndShareLoading = () => {
   return (
     <div className="flex items-center justify-between">
       <Skeleton.Input
-        className="rounded-[6px]"
+        className="rounded-[8px]"
         style={{
           width: 172,
           height: 40,
         }}
       />
       <Skeleton.Input
-        className="rounded-[6px]"
+        className="rounded-[8px]"
         style={{
           width: 172,
           height: 40,

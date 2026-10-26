@@ -113,7 +113,7 @@ export const MiniCommonAction: React.FC<Props> = ({
         <>
           <div
             className={clsx(
-              'rounded-[6px] bg-r-green-light p-[14px] text-r-green-default text-[16px] leading-[20px] font-medium',
+              'rounded-[8px] bg-r-green-light p-[14px] text-r-green-default text-[16px] leading-[20px] font-medium',
               'flex items-center justify-center gap-[8px]'
             )}
           >
@@ -125,7 +125,7 @@ export const MiniCommonAction: React.FC<Props> = ({
           </div>
         </>
       ) : (
-        <div className="rounded-[6px] bg-r-neutral-card2 p-[14px] text-r-neutral-body text-[16px] leading-[20px] font-medium text-center">
+        <div className="rounded-[8px] bg-r-neutral-card2 p-[14px] text-r-neutral-body text-[16px] leading-[20px] font-medium text-center">
           {t('page.miniSignFooterBar.status.txSigned')}
           <Dots />
         </div>

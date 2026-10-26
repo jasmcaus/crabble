@@ -46,7 +46,7 @@ const PopupContainer = styled.div`
     }
   }
   .view-more-table {
-    border-radius: 8px;
+    border-radius: 12px;
     background: var(--r-neutral-card1, #fff);
     padding: 0px 16px;
     display: flex;

@@ -15,7 +15,7 @@ import { ellipsisAddress } from '@/ui/utils/address';
 
 const Container = styled.div`
   .ant-input {
-    border-radius: 8px;
+    border-radius: 12px;
     border: 1px solid var(--r-neutral-line, #eae7e2);
     font-size: 15px;
     line-height: 18px;
@@ -165,7 +165,7 @@ export const ImportPrivateKey = () => {
           type="primary"
           disabled={!!error || loading || !value}
           className={clsx(
-            'mt-auto h-[52px] shadow-none rounded-[8px]',
+            'mt-auto h-[52px] shadow-none rounded-[12px]',
             'text-[15px] leading-[18px] font-medium'
           )}
         >

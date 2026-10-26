@@ -36,7 +36,7 @@ export const LedgerBanner: React.FC<Props> = ({ className }) => {
               target="_blank"
               className={clsx(
                 'border border-r-neutral-title1',
-                'py-6 rounded-[6px] text-center',
+                'py-6 rounded-[8px] text-center',
                 'text-r-neutral-title1 text-12 font-medium',
                 'gap-4 flex items-center justify-center',
                 'w-[136px]'
@@ -49,7 +49,7 @@ export const LedgerBanner: React.FC<Props> = ({ className }) => {
               href="https://shop.ledger.com/?r=e801a108d26a"
               target="_blank"
               className={clsx(
-                'bg-r-neutral-black py-6 px-18 rounded-[6px]',
+                'bg-r-neutral-black py-6 px-18 rounded-[8px]',
                 'text-r-neutral-title2 text-12 font-medium',
                 'gap-4 flex items-center justify-center',
                 'w-[136px]'

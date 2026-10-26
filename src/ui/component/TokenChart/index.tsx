@@ -33,7 +33,7 @@ const DATE_FORMATTER = 'MMM DD, YYYY';
 const isRealTimeKey = (key: TabKey) => REAL_TIME_TAB_LIST.includes(key);
 
 const Wrapper = styled.div`
-  border-radius: 8px;
+  border-radius: 12px;
   background: var(--r-neutral-card1, #fff);
 `;
 
@@ -270,10 +270,10 @@ export const TokenCharts = ({ token: _token, className }: TokenChartsProps) => {
                 key={e.key}
                 className={clsx(
                   'pb-6 cursor-pointer',
-                  'hover:text-r-blue-default',
+                  'hover:text-r-neutral-title1',
                   'border-b-[2px] border-solid ',
                   priceType === e.key
-                    ? 'text-r-blue-default border-rabby-blue-default'
+                    ? 'text-r-neutral-title1 font-semibold border-r-neutral-title1'
                     : 'border-transparent'
                 )}
                 onClick={() => {

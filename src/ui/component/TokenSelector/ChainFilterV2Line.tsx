@@ -123,7 +123,7 @@ export function ChainFilterV2Line({
       {selectedChain ? (
         <div
           className={clsx(
-            'h-[32px] py-[4px] px-[8px] rounded-[8px] cursor-pointer',
+            'h-[32px] py-[4px] px-[8px] rounded-[12px] cursor-pointer',
             'flex items-center justify-start',
             'border-[1px] border-[solid] border-transparent bg-r-neutral-card1',
             'hover:border-rabby-blue-default hover:bg-r-blue-light1'
@@ -174,7 +174,7 @@ export function ChainFilterV2Line({
       ) : (
         <div
           className={clsx(
-            'h-[32px] py-[4px] px-[8px] rounded-[8px] cursor-pointer',
+            'h-[32px] py-[4px] px-[8px] rounded-[12px] cursor-pointer',
             'flex items-center justify-start',
             'border-[1px] border-[solid] border-transparent bg-r-neutral-card1',
             'hover:border-rabby-blue-default hover:bg-r-blue-light1'

@@ -63,7 +63,7 @@ export const CexListSelectModal = ({
         <div
           key={cex.id}
           className={`
-            h-[58px] bg-r-neutral-card1 rounded-[8px] w-full pl-[16px] pr-[18px] mb-[8px]
+            h-[58px] bg-r-neutral-card1 rounded-[12px] w-full pl-[16px] pr-[18px] mb-[8px]
             flex justify-between items-center cursor-pointer
             border-[1px] border-solid border-transparent
           hover:border-rabby-blue-default hover:bg-r-blue-light1

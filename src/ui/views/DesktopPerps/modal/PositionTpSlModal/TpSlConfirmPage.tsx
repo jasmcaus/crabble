@@ -136,7 +136,7 @@ export const TpSlConfirmPage: React.FC<TpSlConfirmPageProps> = ({
           size="large"
           type="primary"
           loading={submitting}
-          className="h-[48px] rounded-[6px] text-[15px] font-medium"
+          className="h-[48px] rounded-[8px] text-[15px] font-medium"
           onClick={() => onConfirm(dontShowAgain)}
         >
           {t('global.confirm')}

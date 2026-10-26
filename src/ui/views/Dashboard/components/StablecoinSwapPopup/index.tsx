@@ -146,7 +146,7 @@ export const StablecoinSwapPopup: React.FC = () => {
       <button
         type="button"
         onClick={onSwap}
-        className="absolute left-1/2 top-[126px] flex h-[36px] w-[240px] -translate-x-1/2 cursor-pointer items-center justify-center gap-[6px] rounded-[8px] border border-r-neutral-line bg-transparent text-[14px] leading-[18px] text-r-neutral-title1 hover:border-r-blue-default hover:bg-r-blue-light1 hover:text-r-blue-default active:border-r-blue-default active:bg-r-blue-light2 active:text-r-blue-default"
+        className="absolute left-1/2 top-[126px] flex h-[36px] w-[240px] -translate-x-1/2 cursor-pointer items-center justify-center gap-[6px] rounded-[12px] border border-r-neutral-line bg-transparent text-[14px] leading-[18px] text-r-neutral-title1 hover:border-r-blue-default hover:bg-r-blue-light1 hover:text-r-blue-default active:border-r-blue-default active:bg-r-blue-light2 active:text-r-blue-default"
       >
         <span>{t('page.dashboard.home.stablecoinSwapPopup.goToSwap')}</span>
         <RcArrowRight className="h-[14px] w-[14px]" />

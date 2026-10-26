@@ -119,7 +119,7 @@ export const EditMarketSlippage: React.FC<EditMarketSlippageProps> = ({
             {t('page.perpsPro.tradingPanel.slippagePage.title')}
           </h3>
 
-          <div className="text-[13px] text-rb-neutral-foot rounded-[8px] gap-16 flex flex-col px-20">
+          <div className="text-[13px] text-rb-neutral-foot rounded-[12px] gap-16 flex flex-col px-20">
             <div className="text-[13px] text-rb-neutral-foot">
               {t('page.perpsPro.tradingPanel.slippagePage.description')}
             </div>

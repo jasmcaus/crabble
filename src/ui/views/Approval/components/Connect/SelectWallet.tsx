@@ -42,7 +42,7 @@ export const SelectWallet: React.FC<Props> = ({
           <div
             className={clsx(
               'p-[20px] h-[100px] cursor-pointer',
-              'bg-r-neutral-card-1 rounded-[8px] border-[1px] border-transparent',
+              'bg-r-neutral-card-1 rounded-[12px] border-[1px] border-transparent',
               'flex flex-col items-center justify-center',
               'hover:bg-r-blue-light1 hover:border-rabby-blue-default'
             )}
@@ -67,7 +67,7 @@ export const SelectWallet: React.FC<Props> = ({
               <div
                 className={clsx(
                   'p-[20px] h-[100px] cursor-pointer',
-                  'bg-r-neutral-card-1 rounded-[8px] border-[1px] border-transparent',
+                  'bg-r-neutral-card-1 rounded-[12px] border-[1px] border-transparent',
                   'flex flex-col items-center justify-center',
                   'hover:bg-r-blue-light1 hover:border-rabby-blue-default'
                 )}

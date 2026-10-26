@@ -34,7 +34,7 @@ export const CustomTestnetItem = ({
     <div
       className={clsx(
         'flex items-center gap-[12px] px-[15px] py-[10px]',
-        'border-[1px] border-transparent rounded-[6px]',
+        'border-[1px] border-transparent rounded-[8px]',
         disabled
           ? 'opacity-50'
           : 'hover:border-rabby-blue-default hover:bg-r-blue-light1 cursor-pointer',

@@ -23,7 +23,7 @@ const Inner = styled.div`
   width: 360px;
   background: var(--r-neutral-bg-1);
   box-shadow: 0px 20px 20px rgba(45, 48, 51, 0.16);
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 40px 16px 24px;
   display: flex;
   flex-direction: column;

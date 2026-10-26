@@ -241,10 +241,8 @@ const OneKeyConnect = () => {
               ] as const
             }
             onTabChange={handleSwitchConnectType}
-            className="bg-r-neutral-line mt-[30px] mb-[8px]"
+            className="bg-[var(--crb-sunken)] mt-[30px] mb-[8px]"
             itemClassname="text-[15px] w-[148px] h-[40px]"
-            itemClassnameActive="bg-r-neutral-bg-1"
-            itemClassnameInActive={clsx('text-r-neutral-body')}
           />
           {connectType === ConnectType.QRCode ? (
             <p className="text-15 opacity-80 mt-16">

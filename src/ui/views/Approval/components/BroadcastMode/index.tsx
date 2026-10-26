@@ -124,7 +124,7 @@ const OptionList = styled.div`
   margin-bottom: -12px;
   .option {
     padding: 12px 16px;
-    border-radius: 8px;
+    border-radius: 12px;
     background: var(--r-neutral-card1, #fff);
     border: 1px solid transparent;
     cursor: pointer;

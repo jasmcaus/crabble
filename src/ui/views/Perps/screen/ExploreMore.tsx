@@ -29,8 +29,8 @@ const Row: React.FC<{
   const quote = quoteAsset || 'USDC';
   return (
     <div
-      className="flex items-center justify-between py-[12px] px-[16px] rounded-[8px] bg-r-neutral-card1 cursor-pointer
-        rounded-[8px]
+      className="flex items-center justify-between py-[12px] px-[16px] rounded-[12px] bg-r-neutral-card1 cursor-pointer
+        rounded-[12px]
         border-[1px]
         border-solid
         border-transparent

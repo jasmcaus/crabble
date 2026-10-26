@@ -167,7 +167,7 @@ export const DesktopNav: React.FC<{
                       'flex items-center justify-center gap-[8px] min-w-[152px] h-[40px] ',
                       'rounded-[16px]',
                       isActive
-                        ? 'text-r-blue-default  bg-rb-brand-light-1'
+                        ? 'text-r-neutral-title1 bg-[var(--crb-sunken-hover)]'
                         : 'text-rb-neutral-foot',
                       item.isSoon
                         ? 'cursor-not-allowed opacity-50'

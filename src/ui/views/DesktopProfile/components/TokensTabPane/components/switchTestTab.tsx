@@ -19,13 +19,13 @@ export default function MainnetTestnetSwitchTabs(props: SwitchTabProps) {
     <PillsSwitch
       {...props}
       className={clsx(
-        'flex h-[30px] p-[2px] rounded-[8px]',
+        'flex h-[30px] p-[2px] rounded-[12px]',
         ' bg-rb-neutral-bg-4'
       )}
       itemClassname={clsx(
         'px-[12px] py-[6px] text-[12px] leading-[14px] w-auto'
       )}
-      itemClassnameActive="bg-rb-neutral-bg-1 text-r-neutral-body rounded-[6px]"
+      itemClassnameActive="bg-rb-neutral-bg-1 text-r-neutral-body rounded-[8px]"
       itemClassnameInActive={clsx('text-rb-neutral-foot')}
       options={switchOptions}
     />

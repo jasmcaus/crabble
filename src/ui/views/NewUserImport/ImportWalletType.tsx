@@ -109,7 +109,7 @@ export const ImportWalletType = () => {
               pathname: '/new-user/import/seed-or-key',
             });
           }}
-          className="pl-[18px] rounded-[8px] text-[20px] leading-[24px] py-[21px] font-medium text-r-neutral-title1"
+          className="pl-[18px] rounded-[12px] text-[20px] leading-[24px] py-[21px] font-medium text-r-neutral-title1"
         >
           <div className="space-y-[12px]">
             <div>{t('page.newUserImport.importWalletType.seedOrKey')}</div>
@@ -137,7 +137,7 @@ export const ImportWalletType = () => {
               pathname: '/new-user/import-hardware-list',
             });
           }}
-          className="pl-[18px] rounded-[8px] text-[20px] leading-[24px] py-[21px] font-medium text-r-neutral-title1"
+          className="pl-[18px] rounded-[12px] text-[20px] leading-[24px] py-[21px] font-medium text-r-neutral-title1"
         >
           <div className="space-y-[12px]">
             <div>{t('page.newUserImport.importWalletType.hardwareWallet')}</div>

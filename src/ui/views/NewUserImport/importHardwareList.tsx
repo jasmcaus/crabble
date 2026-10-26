@@ -141,7 +141,7 @@ export const ImportHardwareList = () => {
                   }
                   gotoImport(item.type, item.brand);
                 }}
-                className="rounded-[8px] text-[15px] leading-[18px] font-medium text-r-neutral-title1"
+                className="rounded-[12px] text-[15px] leading-[18px] font-medium text-r-neutral-title1"
               >
                 {item.title || item.brand || BRAND_ALIAN_TYPE_TEXT[item.type]}
               </Item>

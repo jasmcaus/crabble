@@ -398,9 +398,9 @@ export const BalanceView = ({
     <div onMouseLeave={onMouseLeave} className={clsx('w-full')}>
       <div
         className={clsx(
-          'balance-view-card group/balance-card relative min-h-[132px] w-full cursor-pointer rounded-[8px]',
-          'bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.1)]',
-          '[&:has(.balance-view-jump-button:hover)]:bg-[rgba(255,255,255,0.05)]'
+          'balance-view-card group/balance-card relative min-h-[132px] w-full cursor-pointer rounded-[12px]',
+          'bg-transparent hover:bg-[rgba(255,255,255,0.06)]',
+          '[&:has(.balance-view-jump-button:hover)]:bg-transparent'
         )}
         onClick={onClickViewAssets}
       >

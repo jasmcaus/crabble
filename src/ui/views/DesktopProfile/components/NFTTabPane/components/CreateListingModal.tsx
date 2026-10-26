@@ -74,7 +74,7 @@ const Container = styled.div`
   }
 
   .custom-input {
-    border-radius: 8px;
+    border-radius: 12px;
     border: 1px solid var(--r-blue-default, #e8552a);
     height: 40px;
     width: 148px;
@@ -113,7 +113,7 @@ const Container = styled.div`
       }
     }
     .ant-select-selector {
-      border-radius: 8px;
+      border-radius: 12px;
       border: 1px solid var(--r-neutral-line, #eae7e2);
       width: 160px;
       height: 44px;

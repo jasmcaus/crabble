@@ -344,7 +344,7 @@ const SelectToAddress = () => {
         className={clsx(
           'send-token select-to-address-page relative overflow-y-scroll',
           isTab || isDesktop
-            ? 'w-full h-full overflow-auto min-h-0 rounded-[16px] shadow-[0px_40px_80px_0px_rgba(43,57,143,0.40)'
+            ? 'w-full h-full overflow-auto min-h-0 rounded-[16px] shadow-[0px_24px_64px_-12px_rgba(26,25,23,0.18)'
             : ''
         )}
       >

@@ -200,7 +200,7 @@ export const CreateAddressSuccess: React.FC<{
           type="primary"
           size="large"
           disabled={pendingAction !== null}
-          className="w-full h-[44px] rounded-[8px] text-[13px] leading-[16px] font-medium"
+          className="w-full h-[44px] rounded-[12px] text-[13px] leading-[16px] font-medium"
           onClick={
             state.primaryAction === 'open-wallet'
               ? handleOpenWallet
@@ -219,10 +219,10 @@ export const CreateAddressSuccess: React.FC<{
               type="ghost"
               className={clsx(
                 'mt-12',
-                'w-full h-[44px] rounded-[8px] text-[13px] leading-[16px] font-medium',
+                'w-full h-[44px] rounded-[12px] text-[13px] leading-[16px] font-medium',
                 'text-blue-light',
                 'border-blue-light',
-                'hover:bg-[#8697FF1A] active:bg-[#0000001A]',
+                'hover:bg-[var(--crb-sunken)] active:bg-[#0000001A]',
                 'before:content-none'
               )}
               onClick={handleBackupSeedPhrase}

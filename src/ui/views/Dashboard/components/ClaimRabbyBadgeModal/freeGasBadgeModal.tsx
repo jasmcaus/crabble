@@ -125,7 +125,7 @@ const Wrapper = styled.div<{
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    /* background: #f5f6fa; */
+    /* background: #f5f4f1; */
     border: 1px solid #dcdfe4;
     &::placeholder {
       color: var(--r-neutral-foot, #827e77);
@@ -198,7 +198,7 @@ const Wrapper = styled.div<{
     font-size: 15px;
     font-style: normal;
     font-weight: 500;
-    border-radius: 6px;
+    border-radius: 8px;
     background: #109d63;
     color: var(--r-neutral-title2, #fff);
     border-color: transparent;
@@ -456,7 +456,7 @@ const ClaimSuccessWrapper = styled.div`
     font-size: 15px;
     font-style: normal;
     font-weight: 500;
-    border-radius: 6px;
+    border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;

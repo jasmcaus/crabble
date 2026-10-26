@@ -6,7 +6,7 @@ import { TooltipWithMagnetArrow } from '@/ui/component/Tooltip/TooltipWithMagnet
 import { ReactComponent as IconTableArrow } from 'ui/assets/sign/table-arrow.svg';
 
 const SubTableWrapper = styled.div`
-  border-radius: 6px;
+  border-radius: 8px;
   background: var(--r-neutral-card3, #faf9f7);
   padding: 12px;
   row-gap: 12px;

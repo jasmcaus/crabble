@@ -47,7 +47,7 @@ export const AddressItem = ({
   return (
     <div
       className={clsx(
-        'flex items-center gap-[6px] p-[15px] rounded-[8px] border-[1px] border-transparent',
+        'flex items-center gap-[6px] p-[15px] rounded-[12px] border-[1px] border-transparent',
         'bg-r-neutral-card2',
         disabled
           ? 'cursor-not-allowed opacity-70'

@@ -41,7 +41,7 @@ export const BlockedTopTips = ({ onOpen, onClose, isAdded, token }: Props) => {
   }, [token, isAdded]);
 
   return isAdded ? (
-    <div className="flex flex-row bg-r-neutral-card-1 rounded-[8px] px-16 py-12 items-center justify-between gap-20">
+    <div className="flex flex-row bg-r-neutral-card-1 rounded-[12px] px-16 py-12 items-center justify-between gap-20">
       <div
         className="text-r-neutral-body text-13"
         style={{

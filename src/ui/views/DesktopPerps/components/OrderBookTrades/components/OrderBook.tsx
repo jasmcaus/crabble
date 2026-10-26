@@ -599,7 +599,7 @@ export const OrderBook: React.FC<{ latestTrade?: Trade }> = ({
               className={clsx(
                 'inline-flex items-center justify-between',
                 'px-[8px] py-[8px] flex-1 gap-[6px] h-24',
-                'border border-transparent rounded-[6px]',
+                'border border-transparent rounded-[8px]',
                 'hover:border-rb-brand-default border border-solid',
                 'text-[12px] leading-[14px] text-rb-neutral-title-1'
               )}
@@ -636,7 +636,7 @@ export const OrderBook: React.FC<{ latestTrade?: Trade }> = ({
               className={clsx(
                 'inline-flex items-center justify-between',
                 'px-[8px] py-[8px] flex-1 gap-[6px] h-24',
-                'border border-transparent rounded-[6px]',
+                'border border-transparent rounded-[8px]',
                 'hover:border-rb-brand-default border border-solid',
                 'text-[12px] leading-[14px] text-rb-neutral-title-1'
               )}

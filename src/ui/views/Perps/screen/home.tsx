@@ -510,7 +510,7 @@ export const Perps: React.FC = () => {
                     setOpenFromSource('searchPerps');
                   }}
                 />
-                <div className="rounded-[8px] flex flex-col gap-8">
+                <div className="rounded-[12px] flex flex-col gap-8">
                   {cat.items.map((item, i) => (
                     <AssetItem
                       key={`${cat.id}-${item.name}`}
@@ -534,7 +534,7 @@ export const Perps: React.FC = () => {
               type="button"
               className={clsx(
                 'w-full h-[48px] bg-r-blue-default text-r-neutral-title-2 text-15 font-medium',
-                'rounded-[6px]'
+                'rounded-[8px]'
                 // 'border-[1px] border-solid border-rabby-blue-default',
               )}
               onClick={() => {

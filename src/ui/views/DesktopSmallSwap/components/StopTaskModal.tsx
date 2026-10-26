@@ -51,7 +51,7 @@ export const StopTaskModal: React.FC<{
           <button
             type="button"
             className={clsx(
-              'flex-1 w-[50%]  h-[60px] rounded-[8px] bg-rb-neutral-bg-4',
+              'flex-1 w-[50%]  h-[60px] rounded-[12px] bg-rb-neutral-bg-4',
               'text-[18px] leading-[20px] font-medium text-r-neutral-title1'
             )}
             onClick={onContinue}
@@ -61,7 +61,7 @@ export const StopTaskModal: React.FC<{
           <button
             type="button"
             className={clsx(
-              'w-[50%] h-[60px] rounded-[8px] transition-opacity',
+              'w-[50%] h-[60px] rounded-[12px] transition-opacity',
               'text-[18px] leading-[20px] font-medium text-r-neutral-title2',
               'bg-r-red-default'
             )}

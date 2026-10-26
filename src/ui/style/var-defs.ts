@@ -30,7 +30,7 @@ const LessPalette = {
   "@btn-disable-color": "white",
   "@btn-disable-bg": "#eae7e2",
   "@btn-disable-border": "#eae7e2",
-  "@input-border-color": "white",
+  "@input-border-color": "var(--crb-input-border, #e3e0da)",
   "@input-padding-vertical-lg": "15px",
   "@input-padding-horizontal-lg": "16px",
   "@error-color": "#d7344f",

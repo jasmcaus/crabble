@@ -60,7 +60,7 @@ const BridgeOrNative = ({
 
   return tokenEntity ? (
     <>
-      <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[8px] gap-12 py-12">
+      <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[12px] gap-12 py-12">
         {tokenEntity?.domain_id ? (
           <>
             {isVerified && (
@@ -98,7 +98,7 @@ const BridgeOrNative = ({
               border border-transparent 
               bg-r-neutral-card-2
               hover:bg-blue-light/10 hover:border-rabby-blue-default
-              rounded-[6px] px-12 py-6"
+              rounded-[8px] px-12 py-6"
               >
                 <span className="text-r-neutral-title-1 text-13 font-medium truncate max-w-[170px]  text-ellipsis whitespace-nowrap">
                   {tokenEntity?.domain_id}
@@ -122,7 +122,7 @@ const BridgeOrNative = ({
               border border-transparent 
               bg-r-neutral-card-2
               hover:bg-blue-light/10 hover:border-rabby-blue-default
-              rounded-[6px] px-12 py-6"
+              rounded-[8px] px-12 py-6"
                   onClick={() => {
                     setVisible(true);
                   }}
@@ -191,7 +191,7 @@ const ChainAndName = ({
   });
 
   return (
-    <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[8px]">
+    <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[12px]">
       <div className="flex flex-row justify-between w-full px-16 py-12">
         <span className="text-r-neutral-body text-[13px] font-normal">
           {t('page.dashboard.tokenDetail.TokenName')}
@@ -358,7 +358,7 @@ const ListSiteAndCex = ({
 
   if (!siteArr?.length) {
     return (
-      <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[8px] gap-12 py-12">
+      <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[12px] gap-12 py-12">
         <div className="text-r-neutral-foot text-13 flex flex-row items-center justify-center w-full">
           <img src={IconNoFind} className="w-14 mr-4" />
           {noSiteString}
@@ -370,7 +370,7 @@ const ListSiteAndCex = ({
   return (
     <>
       <div
-        className="flex flex-row bg-r-neutral-card-1 rounded-[8px] 
+        className="flex flex-row bg-r-neutral-card-1 rounded-[12px] 
       px-16 py-14 items-center justify-between 
       border border-transparent
       hover:bg-blue-light/10 hover:border-rabby-blue-default
@@ -416,7 +416,7 @@ const ListSiteAndCex = ({
             <div
               key={index}
               className="w-full flex flex-row items-center justify-between px-16 py-16 
-              rounded-[6px]
+              rounded-[8px]
               border border-transparent 
               bg-r-neutral-card-1
               hover:bg-blue-light/10 hover:border-rabby-blue-default

@@ -14,7 +14,7 @@ import { pickKeyringThemeIcon } from '@/utils/account';
 import { useThemeMode } from '@/ui/hooks/usePreference';
 
 const CurrentAccountWrapper = styled.div`
-  border-radius: 6px;
+  border-radius: 8px;
   background: rgba(255, 255, 255, 0.13);
   display: inline-flex;
   justify-content: center;

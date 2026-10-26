@@ -60,7 +60,7 @@ const Wraper = styled.div`
     margin-right: auto;
     background: transparent;
     border: 1px solid var(--r-neutral-line, #d9d5cf);
-    border-radius: 6px;
+    border-radius: 8px;
 
     color: var(--r-neutral-title1, #1a1917);
     font-size: 15px;
@@ -285,7 +285,7 @@ export const AddCustomTokenPopup = ({ visible, onClose, onConfirm }: Props) => {
                 {!chain ? (
                   <div
                     className={clsx(
-                      'flex items-center bg-r-neutral-card2 rounded-[6px]',
+                      'flex items-center bg-r-neutral-card2 rounded-[8px]',
                       'px-[16px] py-[12px] min-h-[52px] cursor-pointer',
                       'border-[1px] border-transparent',
                       'hover:border-rabby-blue-default hover:bg-r-blue-light1'
@@ -301,7 +301,7 @@ export const AddCustomTokenPopup = ({ visible, onClose, onConfirm }: Props) => {
                 ) : (
                   <div
                     className={clsx(
-                      'flex items-center bg-r-neutral-card2 rounded-[6px]',
+                      'flex items-center bg-r-neutral-card2 rounded-[8px]',
                       'gap-[8px] px-[16px] py-[12px] min-h-[52px] cursor-pointer',
                       'border-[1px] border-transparent',
                       'hover:border-rabby-blue-default hover:bg-r-blue-light1'
@@ -349,7 +349,7 @@ export const AddCustomTokenPopup = ({ visible, onClose, onConfirm }: Props) => {
                   <Form.Item label="Found Token">
                     <div
                       className={clsx(
-                        'flex items-center gap-[12px] rounded-[6px]',
+                        'flex items-center gap-[12px] rounded-[8px]',
                         'bg-r-neutral-card2 min-h-[52px] px-[16px] py-[14px]'
                       )}
                     >

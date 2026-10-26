@@ -376,14 +376,14 @@ export const TokenSelectPopup: React.FC<TokenSelectPopupProps> = ({
                     <Skeleton.Avatar active={true} size={24} shape="circle" />
                     <Skeleton.Button
                       active={true}
-                      className="h-[16px] block rounded-[8px]"
+                      className="h-[16px] block rounded-[12px]"
                       style={{ width: 80 }}
                     />
                   </div>
                   <div className="flex flex-col gap-4 items-end">
                     <Skeleton.Button
                       active={true}
-                      className="h-[16px] block rounded-[8px]"
+                      className="h-[16px] block rounded-[12px]"
                       style={{ width: 80 }}
                     />
                   </div>

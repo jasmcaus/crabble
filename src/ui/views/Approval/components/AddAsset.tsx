@@ -479,7 +479,7 @@ const AddAsset = ({ params, account, approvalId }: AddAssetProps) => {
                 </div>
               </div>
               <TokenCharts token={token}></TokenCharts>
-              <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[8px]">
+              <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[12px]">
                 <div className="balance-content overflow-hidden flex flex-col gap-8 px-16 py-12">
                   <div className="flex flex-row justify-between w-full">
                     <div className="balance-title text-r-neutral-body text-13">
@@ -535,7 +535,7 @@ const AddAsset = ({ params, account, approvalId }: AddAssetProps) => {
               ></TokenChainAndContract>
               <div className="token-history flex flex-col">
                 {isTokenHistoryLoaded && tokenHistory.length <= 0 && (
-                  <div className="empty bg-r-neutral-card-1 rounded-[8px] pb-[30px] pt-[30px]">
+                  <div className="empty bg-r-neutral-card-1 rounded-[12px] pb-[30px] pt-[30px]">
                     <img className="no-data" src="./images/nodata-tx.png" />
                     <p className="text-[12px] text-r-neutral-body mt-[12px]">
                       {t('page.dashboard.tokenDetail.noTransactions')}
@@ -584,7 +584,7 @@ const AddAsset = ({ params, account, approvalId }: AddAssetProps) => {
               <TokenCharts
                 token={(customTestnetToken as any) as TokenItem}
               ></TokenCharts>
-              <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[8px]">
+              <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[12px]">
                 <div className="balance-content overflow-hidden flex flex-col gap-8 px-16 py-12">
                   <div className="flex flex-row justify-between w-full">
                     <div className="balance-title text-r-neutral-body text-13">
@@ -611,25 +611,25 @@ const AddAsset = ({ params, account, approvalId }: AddAssetProps) => {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[8px] gap-12 py-12">
+              <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[12px] gap-12 py-12">
                 <div className="text-r-neutral-foot text-13 flex flex-row items-center justify-center w-full">
                   <img src={IconNoFind} className="w-14 mr-4" />
                   {t('page.dashboard.tokenDetail.noIssuer')}
                 </div>
               </div>
-              <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[8px] gap-12 py-12">
+              <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[12px] gap-12 py-12">
                 <div className="text-r-neutral-foot text-13 flex flex-row items-center justify-center w-full">
                   <img src={IconNoFind} className="w-14 mr-4" />
                   {t('page.dashboard.tokenDetail.NoListedBy')}
                 </div>
               </div>
-              <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[8px] gap-12 py-12">
+              <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[12px] gap-12 py-12">
                 <div className="text-r-neutral-foot text-13 flex flex-row items-center justify-center w-full">
                   <img src={IconNoFind} className="w-14 mr-4" />
                   {t('page.dashboard.tokenDetail.NoSupportedExchanges')}
                 </div>
               </div>
-              <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[8px]">
+              <div className="flex flex-col gap-3 bg-r-neutral-card-1 rounded-[12px]">
                 <div className="flex flex-row justify-between w-full px-16 py-12">
                   <span className="text-r-neutral-body text-[13px] font-normal">
                     {t('page.dashboard.tokenDetail.TokenName')}
@@ -687,7 +687,7 @@ const AddAsset = ({ params, account, approvalId }: AddAssetProps) => {
               </div>
               <div className="token-history  flex flex-col">
                 {isTokenHistoryLoaded && tokenHistory.length <= 0 && (
-                  <div className="empty bg-r-neutral-card-1 rounded-[8px] pb-[30px] pt-[30px]">
+                  <div className="empty bg-r-neutral-card-1 rounded-[12px] pb-[30px] pt-[30px]">
                     <img className="no-data" src="./images/nodata-tx.png" />
                     <p className="text-[12px] text-r-neutral-body mt-[12px]">
                       {t('page.dashboard.tokenDetail.noTransactions')}
@@ -711,7 +711,7 @@ const AddAsset = ({ params, account, approvalId }: AddAssetProps) => {
           >
             <Button
               type="ghost"
-              className="w-[172px] h-[44px] border-blue-light text-blue-light hover:bg-[#8697FF1A] active:bg-[#0000001A] rounded-[8px]"
+              className="w-[172px] h-[44px] border-[var(--crb-hairline-strong)] text-r-neutral-title1 hover:bg-[var(--crb-sunken)] active:bg-[#0000001A] rounded-[12px]"
               onClick={() => rejectApproval('User rejected the request.')}
             >
               {t('global.cancelButton')}

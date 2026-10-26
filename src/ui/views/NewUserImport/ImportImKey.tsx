@@ -84,7 +84,7 @@ export const NewUserImportImKey = () => {
         loading={loading}
         type="primary"
         className={clsx(
-          'mt-[24px] h-[56px] shadow-none rounded-[8px]',
+          'mt-[24px] h-[56px] shadow-none rounded-[12px]',
           'text-[17px] font-medium'
         )}
       >

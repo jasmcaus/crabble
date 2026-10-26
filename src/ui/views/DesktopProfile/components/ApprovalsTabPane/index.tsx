@@ -1491,7 +1491,7 @@ export const ApprovalsTabPane = ({
                     className={clsx(
                       'bg-rb-neutral-bg-0 rounded-[10px] p-[2px] h-[30px]'
                     )}
-                    itemClassname="text-[12px] leading-[14px] font-medium px-[12px] py-[6px] w-auto rounded-[8px]"
+                    itemClassname="text-[12px] leading-[14px] font-medium px-[12px] py-[6px] w-auto rounded-[12px]"
                     itemClassnameActive={
                       'text-rb-neutral-InvertHighlight bg-rb-neutral-foot dark:bg-rb-neutral-bg-4'
                     }
@@ -1544,12 +1544,12 @@ export const ApprovalsTabPane = ({
                     }}
                     className={clsx(
                       isDesktop &&
-                        'bg-transparent p-2 rounded-[8px] border-[0.5px] border-solid border-rabby-neutral-line'
+                        'bg-transparent p-2 rounded-[12px] border-[0.5px] border-solid border-rabby-neutral-line'
                     )}
                     itemClassname="text-[15px] w-[128px] h-[40px]"
                     itemClassnameActive={
                       isDesktop
-                        ? 'bg-r-blue-light1 rounded-[6px]'
+                        ? 'bg-r-blue-light1 rounded-[8px]'
                         : 'bg-r-neutral-bg-1'
                     }
                     itemClassnameInActive={
@@ -1712,7 +1712,7 @@ export const ApprovalsTabPane = ({
             )}
           </>
         ) : (
-          <div className="mt-[20px] rounded-[8px] bg-r-neutral-card1 pt-[145px] pb-[175px] flex flex-col items-center w-full">
+          <div className="mt-[20px] rounded-[12px] bg-r-neutral-card1 pt-[145px] pb-[175px] flex flex-col items-center w-full">
             <RcIconEmpty />
             <div className="mt-[4px] text-r-neutral-foot text-[14px] leading-[20px]">
               {t('global.notSupportTesntnet')}

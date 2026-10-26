@@ -415,7 +415,7 @@ export default function TabWhitelist({
     <div className="h-full static">
       {isEnabledPwdForNonWhitelistedTx && (
         <div className="flex-1 overflow-y-auto px-[20px] mb-[12px]">
-          <div className="flex justify-between items-center px-[10px] py-[8px] bg-r-yellow-light rounded-[8px] bg-r-neutral-card1">
+          <div className="flex justify-between items-center px-[10px] py-[8px] bg-r-yellow-light rounded-[12px] bg-r-neutral-card1">
             <span className="text-[13px] font-normal text-r-neutral-title1">
               {t(
                 'page.selectToAddress.whitelist.PwdForNonWhitelistedTx.enabledHint'

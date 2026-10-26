@@ -41,7 +41,7 @@ export const GasCardBody = styled.div<{
   .card {
     width: 84px;
     height: 80px;
-    border-radius: 8px;
+    border-radius: 12px;
     background: var(--r-neutral-card1, #fff);
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
     display: flex;

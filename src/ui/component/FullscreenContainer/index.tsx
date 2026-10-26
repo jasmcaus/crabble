@@ -30,11 +30,11 @@ const Main = styled.div`
     position: absolute;
   }
   .ant-drawer-mask {
-    border-radius: 8px;
+    border-radius: 12px;
   }
   .custom-popup {
     .ant-drawer-content {
-      border-radius: 8px;
+      border-radius: 12px;
     }
   }
 `;

@@ -98,7 +98,7 @@ const Content: React.FC<SpotSwapContentProps> = ({
   );
 
   const coinPillClassName = clsx(
-    'inline-flex items-center gap-6 px-12 h-[36px] rounded-[8px]',
+    'inline-flex items-center gap-6 px-12 h-[36px] rounded-[12px]',
     'border border-solid border-rabby-neutral-line bg-transparent',
     'text-15 font-medium text-r-neutral-title-1',
     'hover:border-r-blue-default disabled:cursor-default'
@@ -208,7 +208,7 @@ const Content: React.FC<SpotSwapContentProps> = ({
             key={p}
             onClick={() => handlePercent(p)}
             className={clsx(
-              'flex-1 h-[36px] flex items-center justify-center rounded-[8px]',
+              'flex-1 h-[36px] flex items-center justify-center rounded-[12px]',
               'bg-r-neutral-card1 border border-solid border-transparent',
               'text-13 font-medium text-r-neutral-title-1 cursor-pointer',
               'hover:border-rabby-blue-default hover:text-r-blue-default'
@@ -246,7 +246,7 @@ const Content: React.FC<SpotSwapContentProps> = ({
           disabled={!canSubmit}
           loading={submitting}
           onClick={handleSwap}
-          className="h-[48px] text-15 font-medium rounded-[8px]"
+          className="h-[48px] text-15 font-medium rounded-[12px]"
         >
           {t('page.perps.PerpsSpotSwap.swapBtn')}
         </Button>

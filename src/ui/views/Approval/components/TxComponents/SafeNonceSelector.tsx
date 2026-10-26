@@ -45,7 +45,7 @@ const Wrapper = styled(Card)`
     }
     .nonce-input {
       height: 40px;
-      border-radius: 6px;
+      border-radius: 8px;
       border: 1px solid var(--r-neutral-line, #d9d5cf);
       /* border: 0.5px solid var(--r-neutral-line, #d9d5cf); */
 
@@ -58,7 +58,7 @@ const Wrapper = styled(Card)`
     }
 
     &-option-list {
-      border-radius: 6px;
+      border-radius: 8px;
       background: var(--r-neutral-bg-3, #faf9f7);
       margin-top: 8px;
     }
@@ -84,7 +84,7 @@ const Wrapper = styled(Card)`
       line-height: 16px;
 
       padding: 12px;
-      border-radius: 6px;
+      border-radius: 8px;
       position: relative;
       border: 1px solid transparent;
       cursor: pointer;
@@ -138,7 +138,7 @@ const Wrapper = styled(Card)`
     justify-content: flex-end;
     align-items: center;
     gap: 12px;
-    border-radius: 6px;
+    border-radius: 8px;
     background: var(--r-neutral-bg-3, #faf9f7);
     margin-top: 8px;
 

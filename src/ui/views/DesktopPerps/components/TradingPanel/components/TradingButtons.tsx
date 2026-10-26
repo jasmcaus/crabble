@@ -8,7 +8,7 @@ import { OrderSide } from '../../../types';
 import { usePerpsTradingGate } from '../hooks/usePerpsTradingGate';
 
 const PRIMARY_BTN_CLASS =
-  'w-full h-[40px] rounded-[6px] font-medium text-[15px] leading-[18px] border-transparent text-rb-neutral-InvertHighlight';
+  'w-full h-[40px] rounded-[8px] font-medium text-[15px] leading-[18px] border-transparent text-rb-neutral-InvertHighlight';
 
 const useTradingGate = ({
   error,
@@ -32,7 +32,7 @@ const useTradingGate = ({
 
   const bannerNode = useMemo(() => {
     const banner = (text: React.ReactNode) => (
-      <div className="bg-r-orange-light rounded-[6px] px-[12px] py-[8px] flex items-center gap-[4px]">
+      <div className="bg-r-orange-light rounded-[8px] px-[12px] py-[8px] flex items-center gap-[4px]">
         <RcIconInfoCC className="text-r-orange-default" />
         <div className="flex-1 text-left text-[12px] leading-[14px] text-r-orange-default">
           {text}
@@ -170,7 +170,7 @@ export const TradingButtons: React.FC<TradingButtonsProps> = ({
             onMouseEnter={() => setBuyHovered(true)}
             onMouseLeave={() => setBuyHovered(false)}
             className={clsx(
-              'flex-1 h-[40px] rounded-[6px] font-medium text-[15px] leading-[18px] border-transparent',
+              'flex-1 h-[40px] rounded-[8px] font-medium text-[15px] leading-[18px] border-transparent',
               'bg-rb-green-default text-rb-neutral-InvertHighlight',
               (buyDisabled || buyError || !hasPermission) &&
                 'cursor-not-allowed'
@@ -194,7 +194,7 @@ export const TradingButtons: React.FC<TradingButtonsProps> = ({
             onMouseEnter={() => setSellHovered(true)}
             onMouseLeave={() => setSellHovered(false)}
             className={clsx(
-              'flex-1 h-[40px] rounded-[6px] font-medium text-[15px] leading-[18px] border-transparent',
+              'flex-1 h-[40px] rounded-[8px] font-medium text-[15px] leading-[18px] border-transparent',
               'bg-rb-red-default text-rb-neutral-InvertHighlight',
               (sellDisabled || sellError || !hasPermission) &&
                 'cursor-not-allowed'
@@ -254,7 +254,7 @@ export const TradingButton: React.FC<TradingButtonProps> = ({
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
           className={clsx(
-            'w-full h-[40px] rounded-[6px] font-medium text-[15px] leading-[18px] border-transparent text-rb-neutral-InvertHighlight',
+            'w-full h-[40px] rounded-[8px] font-medium text-[15px] leading-[18px] border-transparent text-rb-neutral-InvertHighlight',
             !(isValid && !error && hasPermission) && 'cursor-not-allowed',
             orderSide === OrderSide.BUY
               ? 'bg-rb-green-default'

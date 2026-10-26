@@ -17,7 +17,7 @@ const Wrapper = styled.div`
     flex: 1;
     background: var(--r-blue-light-1, #fdefe9);
     border: 1px solid var(--r-blue-default, #f26b3a);
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 12px;
     // margin-top: 14px;
     margin-bottom: 12px;

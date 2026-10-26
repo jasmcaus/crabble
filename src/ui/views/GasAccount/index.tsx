@@ -313,7 +313,7 @@ const GasAccountInner = () => {
           block
           loading={emptyStateLoading}
           className={clsx(
-            'h-[44px] rounded-[8px] text-15 font-medium leading-normal text-r-neutral-title2',
+            'h-[44px] rounded-[12px] text-15 font-medium leading-normal text-r-neutral-title2',
             'flex items-center justify-center',
             primaryButtonClassName
           )}

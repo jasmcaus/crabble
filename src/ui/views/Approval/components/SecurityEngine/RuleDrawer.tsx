@@ -16,7 +16,7 @@ import { TooltipWithMagnetArrow } from '@/ui/component/Tooltip/TooltipWithMagnet
 
 const RuleDrawerWrapper = styled.div`
   .main {
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 20px 16px;
     position: relative;
     font-weight: 500;
@@ -145,7 +145,7 @@ const RuleDrawerWrapper = styled.div`
   }
   &.proceed {
     .main {
-      background: var(--r-neutral-card-2, #f5f6fa);
+      background: var(--r-neutral-card-2, #f5f4f1);
       .level-text {
         color: var(--r-neutral-foot, #b5b1aa);
       }

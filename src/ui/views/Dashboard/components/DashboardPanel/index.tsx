@@ -54,7 +54,6 @@ import {
   RcIconStakingCC,
 } from 'ui/assets/dashboard/panel';
 
-import { useThemeMode } from '@/ui/hooks/usePreference';
 import { usePerpsDefaultAccount } from '@/ui/views/Perps/hooks/usePerpsDefaultAccount';
 import { useMemoizedFn, useMount, useScroll } from 'ahooks';
 import { isEqual } from 'lodash';
@@ -85,7 +84,7 @@ const GlobalStyle = createGlobalStyle`
       position: relative;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
+      gap: 0;
 
       scroll-snap-align: end;
     }
@@ -94,7 +93,9 @@ const GlobalStyle = createGlobalStyle`
       height: 88px;
       width: 100%;
 
-      background: var(--r-neutral-card1, #fff);
+      background: transparent;
+      border-radius: 12px;
+      transition: background-color 0.15s ease;
 
       position: relative;
       display: flex;
@@ -103,11 +104,11 @@ const GlobalStyle = createGlobalStyle`
       align-items: center;
 
       &:hover {
-        background: var(--r-blue-light1, #fdefe9);
+        background: var(--crb-sunken);
       }
 
       &:has(.panel-item-jump-button:hover) {
-        background: var(--r-neutral-card1, #fff);
+        background: transparent;
       }
 
       &-jump-button {
@@ -875,8 +876,6 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
     }
   );
 
-  const { isDarkTheme } = useThemeMode();
-
   return (
     <div
       className={clsx(
@@ -886,17 +885,13 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
     >
       <GlobalStyle />
       <div
-        className="overflow-auto rounded-[8px] bg-r-neutral-card-2"
+        className="overflow-auto rounded-[16px] bg-r-neutral-card-1 p-[4px] shadow-[var(--crb-shadow-card)]"
         style={{
-          height: 264,
+          height: 272,
         }}
         ref={ref}
       >
-        <div
-          style={{
-            backgroundColor: isDarkTheme ? 'rgb(41,43,57)' : 'unset',
-          }}
-        >
+        <div>
           <DndContext
             onDragStart={handleDragStart}
             onDragEnd={handleDragEnd}
@@ -933,7 +928,6 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
                 {Array.from({ length: placeholderCount }).map((_, index) => (
                   <div
                     key={`dashboard-panel-placeholder-${index}`}
-                    className="bg-r-neutral-bg-2"
                     aria-hidden="true"
                   >
                     <div className="panel-item pointer-events-none" />
@@ -956,7 +950,7 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
                     <div
                       className={clsx(
                         'panel-item group',
-                        'rounded-[8px] bg-r-blue-light1',
+                        'rounded-[12px] bg-r-blue-light1',
                         'border border-rabby-blue-default'
                       )}
                       style={{
@@ -1046,7 +1040,7 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
           <div
             ref={scrollbarThumbRef}
             className={clsx(
-              'absolute right-[5px] top-0 z-10 h-[50px] w-[3px] rounded-full bg-r-blue-default',
+              'absolute right-[5px] top-0 z-10 h-[50px] w-[3px] rounded-full bg-r-neutral-foot opacity-60',
               isScrollbarDragging ? 'cursor-grabbing' : 'cursor-grab'
             )}
             style={{
@@ -1055,7 +1049,7 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
               }px)`,
             }}
           ></div>
-          <div className="absolute bottom-0 right-[5px] top-0 w-[3px] rounded-full bg-r-blue-disable opacity-50"></div>
+          <div className="absolute bottom-0 right-[5px] top-0 w-[3px] rounded-full bg-r-neutral-line"></div>
         </div>
       </div>
 

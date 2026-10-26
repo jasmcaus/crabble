@@ -49,8 +49,10 @@ export const GroupItem = ({
     <div
       onClick={onChange}
       className={clsx(
-        'w-[59px] h-[44px] rounded-[4px] flex items-center justify-center cursor-pointer',
-        active ? 'bg-blue-light/[0.15]' : 'hover:bg-blue-light/[0.08]'
+        'w-[59px] h-[44px] rounded-[8px] flex items-center justify-center cursor-pointer transition-colors',
+        active
+          ? 'bg-[var(--crb-sunken-hover)] shadow-[inset_0_0_0_1px_var(--crb-hairline-strong)]'
+          : 'hover:bg-[var(--crb-sunken)]'
       )}
     >
       <div className="relative flex items-center justify-center">

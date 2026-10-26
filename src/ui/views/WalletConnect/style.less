@@ -15,16 +15,16 @@
   width: 148px;
   height: 32px;
   margin: 32px auto 24px;
-  background: var(--r-neutral-line, #d9d5cf);
+  background: var(--crb-sunken);
   display: flex;
-  border-radius: 6px;
+  border-radius: 10px;
   div {
     width: 72px;
     height: 28px;
     margin: 2px;
     padding: 3px;
-    border-radius: 4px;
-    color: var(--r-neutral-body, #4b4844);
+    border-radius: 8px;
+    color: var(--r-neutral-foot, #827e77);
     text-align: center;
     font-size: 12px;
     display: flex;
@@ -32,8 +32,10 @@
     justify-content: center;
   }
   .active {
-    background: var(--r-neutral-bg-1, #fff);
-    color: var(--r-blue-default, #f26b3a);
+    background: var(--crb-thumb);
+    color: var(--r-neutral-title-1, #1a1917);
+    font-weight: 600;
+    box-shadow: var(--crb-shadow-thumb);
   }
 }
 .goback {
@@ -69,7 +71,7 @@
       left: 60px;
       top: 60px;
       background: rgba(0, 0, 0, 0.8);
-      border-radius: 8px;
+      border-radius: 12px;
       .qrcode-refresh {
         position: absolute;
         width: 80px;

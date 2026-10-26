@@ -10,7 +10,7 @@ const TokenRenderWrapper = styled.div`
   width: auto;
   height: 40px;
   background: var(--r-neutral-card2, #f3f2ef);
-  border-radius: 8px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   padding: 8px 12px;

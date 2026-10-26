@@ -489,7 +489,7 @@ export const TWAPTradingContainer: React.FC<TradingContainerProps> = () => {
               <div
                 key={preset.label}
                 className={clsx(
-                  'flex-1 h-[32px] flex items-center justify-center text-center text-[13px] rounded-[6px] border border-solid',
+                  'flex-1 h-[32px] flex items-center justify-center text-center text-[13px] rounded-[8px] border border-solid',
                   isActive
                     ? 'bg-rb-brand-light-1 text-rb-neutral-title-1 border-rb-brand-default cursor-pointer'
                     : isDisabled

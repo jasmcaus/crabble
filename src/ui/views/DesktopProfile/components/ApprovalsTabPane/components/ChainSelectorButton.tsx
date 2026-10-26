@@ -37,7 +37,7 @@ export const ChainSelectorButton: React.FC<Props> = ({
               'bg-r-neutral-card1',
               'flex items-center cursor-pointer',
               large
-                ? ['h-[48px] py-[2px] px-[2px] min-w-[128px]', 'rounded-[6px]']
+                ? ['h-[48px] py-[2px] px-[2px] min-w-[128px]', 'rounded-[8px]']
                 : [
                     'p-[2px]',
                     'rounded-[4px]',
@@ -91,7 +91,7 @@ export const ChainSelectorButton: React.FC<Props> = ({
                 ? [
                     'text-[15px] leading-[18px]',
                     'border border-solid border-transparent',
-                    'rounded-[6px] bg-r-neutral-card1',
+                    'rounded-[8px] bg-r-neutral-card1',
                     'h-[48px] px-[10px]',
                     'hover:border-rabby-blue-default hover:bg-r-blue-light1',
                   ]

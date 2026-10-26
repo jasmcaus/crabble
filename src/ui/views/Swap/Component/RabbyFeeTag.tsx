@@ -19,13 +19,13 @@ const PopoverStyle = createGlobalStyle`
       padding-bottom: calc(10px - 2px * 1.41421356237);
     }
     .ant-popover-content {
-      border-radius: 8px;
+      border-radius: 12px;
       backdrop-filter: blur(8.718px);
     }
     .ant-popover-inner {
       width: 240px;
       border: 0.5px solid var(--r-neutral-line);
-      border-radius: 8px;
+      border-radius: 12px;
       background: rgba(var(--r-neutral-bg-1-rgb), 0.9);
       box-shadow: 0 13px 15px rgba(0, 0, 0, 0.05),
         0 4px 6.5px rgba(0, 0, 0, 0.05);

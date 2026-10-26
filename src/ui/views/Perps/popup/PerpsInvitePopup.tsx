@@ -88,7 +88,7 @@ export const PerpsInvitePopup: React.FC<{
 
         <div
           className={clsx(
-            'border-[0.5px] border-rabby-neutral-line bg-r-neutral-card-1 rounded-[8px]',
+            'border-[0.5px] border-rabby-neutral-line bg-r-neutral-card-1 rounded-[12px]',
             'flex flex-col items-center',
             'px-[20px] pb-[20px]'
           )}
@@ -96,7 +96,7 @@ export const PerpsInvitePopup: React.FC<{
           <div
             className={clsx(
               'flex items-center justify-center gap-[8px] px-[12px] py-[5px]',
-              'rounded-b-[8px] bg-r-neutral-card-2',
+              'rounded-b-[12px] bg-r-neutral-card-2',
               'text-[12px] leading-[14px] text-r-neutral-body'
             )}
           >
@@ -133,7 +133,7 @@ export const PerpsInvitePopup: React.FC<{
           <Button
             type="primary"
             block
-            className="mt-[24px] h-[44px] text-[15px] font-medium rounded-[8px]"
+            className="mt-[24px] h-[44px] text-[15px] font-medium rounded-[12px]"
             onClick={handleActivate}
           >
             {t('page.perps.invitePopup.activateNow')}

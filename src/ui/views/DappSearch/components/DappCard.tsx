@@ -29,7 +29,7 @@ const GlobalStyle = createGlobalStyle`
   .dapp-search-card-tooltip {
     .ant-tooltip-inner {
       background-color: var(--r-neutral-black, #000) !important;
-      border-radius: 6px;
+      border-radius: 8px;
       padding: 12px !important;
     }
 
@@ -58,7 +58,7 @@ export const DappCard = ({
   return (
     <Wraper
       className={clsx(
-        'bg-r-neutral-card1 cursor-pointer rounded-[8px]',
+        'bg-r-neutral-card1 cursor-pointer rounded-[12px]',
         size === 'normal' && 'p-[15px]',
         size === 'small' && 'py-[13px] px-[16px]',
         className

@@ -83,14 +83,10 @@ export default function NetSwitchTabs(
     <PillsSwitch
       {...props}
       className={clsx(
-        'flex w-[260px] mx-[auto] my-[0] h-[32px] p-[2px] mb-[16px]',
-        props.isDesktop ? 'bg-transparent' : 'bg-r-neutral-line'
+        'flex w-[260px] mx-[auto] my-[0] h-[34px] mb-[16px]',
+        props.isDesktop ? 'bg-transparent' : 'bg-[var(--crb-sunken)]'
       )}
-      itemClassname={clsx('w-[128px] text-[12px]')}
-      itemClassnameActive="bg-r-neutral-bg-1"
-      itemClassnameInActive={clsx(
-        'text-r-neutral-body hover:text-r-blue-default'
-      )}
+      itemClassname={clsx('w-[128px] text-[13px]')}
       options={switchOptions}
     />
   );
@@ -103,12 +99,10 @@ NetSwitchTabs.ApprovalsPage = function ApprovalsPage(props: SwitchTabProps) {
     <PillsSwitch
       {...props}
       className={clsx(
-        'flex bg-r-neutral-line w-[228px] h-[32px] p-[2px]',
+        'flex bg-[var(--crb-sunken)] w-[228px] h-[32px]',
         props.className
       )}
       itemClassname={clsx('w-[112px]')}
-      itemClassnameActive="bg-r-neutral-bg-1"
-      itemClassnameInActive={clsx('text-r-neutral-body')}
       options={switchOptions}
     />
   );

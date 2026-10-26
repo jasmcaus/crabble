@@ -20,15 +20,15 @@ import { BatchSwapTaskType } from '../hooks/useBatchSwapTask';
 import { LoadingOutlined } from '@ant-design/icons';
 
 const buttonBaseClass = clsx(
-  'rounded-[6px] h-[48px] w-[252px]',
+  'rounded-[8px] h-[48px] w-[252px]',
   'before:content-none',
   'text-[16px]'
 );
 
 const buttonGhostClass = clsx(
   buttonBaseClass,
-  'border-blue-light text-blue-light',
-  'hover:bg-[#8697FF1A] active:bg-[#0000001A]'
+  'border-[var(--crb-hairline-strong)] text-r-neutral-title1',
+  'hover:bg-[var(--crb-sunken)] active:bg-[#0000001A]'
 );
 
 const ledgerButtonClass = clsx(
@@ -101,7 +101,7 @@ export const SwapActionLedgerButton: React.FC<{
             type="primary"
             onClick={task.start}
             block
-            className="flex-1 flex items-center justify-center gap-[8px] h-[60px] rounded-[8px] font-medium text-[18px] leading-[20px]"
+            className="flex-1 flex items-center justify-center gap-[8px] h-[60px] rounded-[12px] font-medium text-[18px] leading-[20px]"
           >
             <img src={LegerIcon} className="size-[24px]" />
             <div>{t('page.desktopSmallSwap.LedgerBtn.start')}</div>
@@ -112,7 +112,7 @@ export const SwapActionLedgerButton: React.FC<{
           <Button
             type="primary"
             block
-            className="flex-1 h-[60px] rounded-[8px] text-[18px] leading-[20px]"
+            className="flex-1 h-[60px] rounded-[12px] text-[18px] leading-[20px]"
             onClick={task.continue}
           >
             {t('page.desktopSmallSwap.LedgerBtn.continue')}
@@ -125,7 +125,7 @@ export const SwapActionLedgerButton: React.FC<{
           {task.txStatus === 'sended' ? (
             <div
               className={clsx(
-                'flex items-center justify-center gap-[8px] h-[60px] rounded-[8px] font-medium text-[18px] leading-[20px]',
+                'flex items-center justify-center gap-[8px] h-[60px] rounded-[12px] font-medium text-[18px] leading-[20px]',
                 'bg-r-blue-default text-r-neutral-title-2'
               )}
             >
@@ -141,7 +141,7 @@ export const SwapActionLedgerButton: React.FC<{
           ) : task.txStatus === 'signed' ? (
             <div
               className={clsx(
-                'flex items-center justify-center gap-[8px] h-[60px] rounded-[8px] font-medium text-[18px] leading-[20px]',
+                'flex items-center justify-center gap-[8px] h-[60px] rounded-[12px] font-medium text-[18px] leading-[20px]',
                 'bg-r-neutral-card-2',
                 'text-r-neutral-body'
               )}
@@ -158,7 +158,7 @@ export const SwapActionLedgerButton: React.FC<{
           ) : (
             <div
               className={clsx(
-                'flex items-center justify-center gap-[8px] h-[60px] rounded-[8px] font-medium text-[18px] leading-[20px]',
+                'flex items-center justify-center gap-[8px] h-[60px] rounded-[12px] font-medium text-[18px] leading-[20px]',
                 'bg-r-neutral-card-2',
                 'text-r-neutral-body'
               )}

@@ -359,7 +359,7 @@ export const BridgeShowMore = ({
   );
 
   return (
-    <InfoCardWrapper className="no-scrollbar overflow-y-auto rounded-t-[8px] bg-r-neutral-card-1 px-16 py-12">
+    <InfoCardWrapper className="no-scrollbar overflow-y-auto rounded-t-[12px] bg-r-neutral-card-1 px-16 py-12">
       <div className="space-y-12">
         {lostValueContentRender()}
 
@@ -1341,7 +1341,7 @@ export const RecommendFromToken = ({
     <div
       className={clsx(
         'flex items-center',
-        'h-[44px] pl-12 pr-10 rounded-[8px]',
+        'h-[44px] pl-12 pr-10 rounded-[12px]',
         'bg-r-neutral-card-1',
         className
       )}
@@ -1359,7 +1359,7 @@ export const RecommendFromToken = ({
               'flex items-center gap-6',
               'px-8 py-6 mx-6',
               'text-r-blue-default',
-              'bg-rabby-blue-light1 rounded-[6px]'
+              'bg-rabby-blue-light1 rounded-[8px]'
             )}
           >
             <TokenWithChain

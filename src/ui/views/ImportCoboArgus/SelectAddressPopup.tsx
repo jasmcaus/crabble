@@ -35,7 +35,7 @@ export const SelectAddressPopup: React.FC<Props> = ({
         className={clsx(
           'flex items-center gap-8',
           'py-16 px-12',
-          'rounded-[6px]',
+          'rounded-[8px]',
           'bg-r-neutral-card-2 text-r-neutral-body',
           'relative'
         )}

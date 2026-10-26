@@ -127,7 +127,7 @@ export const TokenSelectPopup: React.FC<TokenSelectPopupProps> = ({
           style={style}
           className={clsx(
             'flex justify-between items-center h-[48px] mb-6 border',
-            'bg-rb-neutral-bg-5 rounded-[6px] px-16',
+            'bg-rb-neutral-bg-5 rounded-[8px] px-16',
             'text-13 font-medium text-rb-neutral-title-1 cursor-pointer',
             selectedToken?.id === item.id && selectedToken?.chain === item.chain
               ? 'border-rabby-blue-default'
@@ -239,20 +239,20 @@ export const TokenSelectPopup: React.FC<TokenSelectPopupProps> = ({
               {new Array(7).fill(null).map((_, index) => (
                 <div
                   key={index}
-                  className="flex justify-between items-center h-[48px] mb-6 border border-transparent bg-rb-neutral-bg-5 rounded-[6px] px-16 w-full"
+                  className="flex justify-between items-center h-[48px] mb-6 border border-transparent bg-rb-neutral-bg-5 rounded-[8px] px-16 w-full"
                 >
                   <div className="flex items-center gap-12">
                     <Skeleton.Avatar active={true} size={24} shape="circle" />
                     <Skeleton.Button
                       active={true}
-                      className="h-[16px] block rounded-[8px]"
+                      className="h-[16px] block rounded-[12px]"
                       style={{ width: 80 }}
                     />
                   </div>
                   <div className="flex flex-col gap-4 items-end">
                     <Skeleton.Button
                       active={true}
-                      className="h-[16px] block rounded-[8px]"
+                      className="h-[16px] block rounded-[12px]"
                       style={{ width: 80 }}
                     />
                   </div>

@@ -399,7 +399,7 @@ const Transaction = forwardRef<HTMLDivElement, TransactionProps>(
     return (
       <div
         className={clsx(
-          'relative overflow-hidden rounded-[8px] border-2 border-solid border-white bg-r-neutral-bg1 text-r-neutral-body dark:bg-r-neutral-card-1 dark:shadow-none',
+          'relative overflow-hidden rounded-[12px] border-2 border-solid border-white bg-r-neutral-bg1 text-r-neutral-body dark:bg-r-neutral-card-1 dark:shadow-none',
           variant === 'detail'
             ? 'dark:border-r-neutral-card-1'
             : 'dark:border-transparent'
@@ -556,8 +556,8 @@ const HistoryList = () => {
         ))}
       {((loading && !txList) || loadingMore) && (
         <>
-          <SkeletonInput className="w-full h-[168px] rounded-[6px]" active />
-          <SkeletonInput className="w-full h-[168px] rounded-[6px]" active />
+          <SkeletonInput className="w-full h-[168px] rounded-[8px]" active />
+          <SkeletonInput className="w-full h-[168px] rounded-[8px]" active />
         </>
       )}
     </div>

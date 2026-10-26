@@ -310,7 +310,7 @@ export const EditTpSlTag: React.FC<EditTpSlTagProps> = ({
         )}
         centered
         bodyStyle={{
-          background: 'var(--r-neutral-card-2, #F5F6FA)',
+          background: 'var(--r-neutral-card-2, #F5F4F1)',
         }}
         destroyOnClose
         closeIcon={
@@ -353,7 +353,7 @@ export const EditTpSlTag: React.FC<EditTpSlTagProps> = ({
                 <div
                   key={option.value}
                   className={clsx(
-                    'flex-1 h-[40px] flex items-center justify-center rounded-[6px] cursor-pointer text-[14px] font-medium',
+                    'flex-1 h-[40px] flex items-center justify-center rounded-[8px] cursor-pointer text-[14px] font-medium',
                     'border border-solid',
                     'bg-r-neutral-line border-transparent text-r-neutral-body hover:border-rabby-blue-default'
                   )}
@@ -407,7 +407,7 @@ export const EditTpSlTag: React.FC<EditTpSlTagProps> = ({
             )}
 
             {/* PNL Card */}
-            <div className="bg-r-neutral-card1 rounded-[8px] p-16 mt-20 gap-12 flex flex-col">
+            <div className="bg-r-neutral-card1 rounded-[12px] p-16 mt-20 gap-12 flex flex-col">
               <div className="flex justify-between items-center">
                 <span className="text-14 font-medium text-r-neutral-body">
                   {gainOrLoss === 'gain'

@@ -445,7 +445,7 @@ export const PerpsOpenPositionPopup: React.FC<OpenPositionPopupProps> = ({
             coin: formatPerpsCoin(coin),
           })}
         </div>
-        <div className="flex mt-12 mb-12 bg-r-neutral-card1 rounded-[8px] p-4 h-[42px]">
+        <div className="flex mt-12 mb-12 bg-r-neutral-card1 rounded-[12px] p-4 h-[42px]">
           <div
             className={clsx(
               'flex-1 h-[34px] rounded-[4px] text-16 cursor-pointer flex items-center justify-center',
@@ -476,7 +476,7 @@ export const PerpsOpenPositionPopup: React.FC<OpenPositionPopupProps> = ({
           </div>
         </div>
 
-        <div className="mb-12 bg-r-neutral-card1 rounded-[8px]">
+        <div className="mb-12 bg-r-neutral-card1 rounded-[12px]">
           <MarginInput
             embedded
             title={t('page.perpsDetail.PerpsEditMarginPopup.margin')}
@@ -548,7 +548,7 @@ export const PerpsOpenPositionPopup: React.FC<OpenPositionPopupProps> = ({
           />
         </div>
 
-        <div className="mb-20 bg-r-neutral-card1 rounded-[8px] flex flex-col px-16 py-8">
+        <div className="mb-20 bg-r-neutral-card1 rounded-[12px] flex flex-col px-16 py-8">
           <div className="flex w-full py-8 justify-between items-center">
             <div className="text-14 text-r-neutral-foot">
               {t('page.perpsDetail.PerpsOpenPositionPopup.currentPrice')}
@@ -723,7 +723,7 @@ export const PerpsOpenPositionPopup: React.FC<OpenPositionPopupProps> = ({
 
       <div className="flex-1 px-20">
         {/* Order Details Section */}
-        <div className="bg-r-neutral-card1 rounded-[8px] py-12 px-16 mb-12">
+        <div className="bg-r-neutral-card1 rounded-[12px] py-12 px-16 mb-12">
           <div className="space-y-16">
             <div className="flex justify-between items-center">
               <div className="text-13 text-r-neutral-body">
@@ -807,7 +807,7 @@ export const PerpsOpenPositionPopup: React.FC<OpenPositionPopupProps> = ({
         </div>
 
         {/* Price and Fee Section */}
-        <div className="bg-r-neutral-card1 rounded-[8px] py-12 px-16 mb-12">
+        <div className="bg-r-neutral-card1 rounded-[12px] py-12 px-16 mb-12">
           <div className="space-y-16">
             <div className="flex justify-between items-center">
               <div className="text-13 text-r-neutral-body flex items-center gap-4">
@@ -856,7 +856,7 @@ export const PerpsOpenPositionPopup: React.FC<OpenPositionPopupProps> = ({
           slippageReady &&
           Number(tradeSize) > 0 &&
           shouldShowSlippage && (
-            <div className="bg-r-neutral-card1 rounded-[8px] py-12 px-16 mb-12">
+            <div className="bg-r-neutral-card1 rounded-[12px] py-12 px-16 mb-12">
               <MarketSlippage
                 slippage={slippage}
                 depthInsufficient={depthInsufficient}

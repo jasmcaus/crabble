@@ -69,7 +69,7 @@ const MatrixWrapper = styled.div.withConfig<{
       border-color: transparent;
 
       .mnemonics-input {
-        border-radius: 8px;
+        border-radius: 12px;
         border: 1px solid var(--r-neutral-line, #eae7e2);
         text-align: center;
         font-size: 22px;
@@ -119,7 +119,7 @@ const MatrixWrapper = styled.div.withConfig<{
 
       .mnemonics-input {
         padding: 0 12px 0 24px;
-        border-radius: 8px;
+        border-radius: 12px;
         border: 0.5px solid var(--r-neutral-line, #eae7e2);
         background: var(--r-neutral-card-1, #fff);
         text-align: left;
@@ -202,16 +202,16 @@ const MatrixWrapper = styled.div.withConfig<{
         }
 
         // &:nth-child(1) .mnemonics-input {
-        //   border-top-left-radius: 6px;
+        //   border-top-left-radius: 8px;
         // }
         // &:nth-child(${rowCount}) .mnemonics-input {
-        //   border-top-right-radius: 6px;
+        //   border-top-right-radius: 8px;
         // }
         // &:nth-child(${totalCount - rowCount + 1}) .mnemonics-input {
-        //   border-bottom-left-radius: 6px;
+        //   border-bottom-left-radius: 8px;
         // }
         // &:nth-child(${totalCount}) .mnemonics-input {
-        //   border-bottom-right-radius: 6px;
+        //   border-bottom-right-radius: 8px;
         // }
         // &:not(.invalid):nth-child(-n + ${rowCount}) .mnemonics-input:not(:focus) {
         //   border-top: 1px solid var(--r-neutral-line);
@@ -244,7 +244,7 @@ const MatrixWrapper = styled.div.withConfig<{
     display: inline-block;
     line-height: ${ITEM_H}px;
     border-color: transparent;
-    border-radius: 6px;
+    border-radius: 8px;
 
     &:focus,
     &.ant-input-focused {
@@ -575,7 +575,7 @@ function MnemonicsInputs({
           overlay={
             <Menu
               className={clsx(
-                'mnemonics-input-menu py-8px rounded-[8px] bg-r-neutral-bg-1',
+                'mnemonics-input-menu py-8px rounded-[12px] bg-r-neutral-bg-1',
                 UI_TYPE.isPop && 'max-h-[334px] overflow-y-auto'
               )}
             >
@@ -798,7 +798,7 @@ function MnemonicsInputs({
       </HeadToolbar>
       <MatrixWrapper
         className={clsx(
-          compact ? 'rounded-none text-center' : 'rounded-[6px] text-center',
+          compact ? 'rounded-none text-center' : 'rounded-[8px] text-center',
           !newUserImport &&
             !compact &&
             'border border-rabby-neutral-line border-solid',
@@ -836,7 +836,7 @@ function MnemonicsInputs({
                       className={clsx(
                         'w-[108px] h-[44px] flex items-center justify-center',
                         'text-[13px] leading-[16px] text-r-neutral-title-1 font-medium',
-                        'rounded-[6px] cursor-pointer',
+                        'rounded-[8px] cursor-pointer',
                         'hover:bg-r-blue-light1'
                       )}
                       onMouseDown={(e) => {

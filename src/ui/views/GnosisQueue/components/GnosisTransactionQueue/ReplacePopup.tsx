@@ -33,7 +33,7 @@ const Wrapper = styled.div`
     &-item {
       display: flex;
       align-items: center;
-      border-radius: 6px;
+      border-radius: 8px;
       background: var(--r-neutral-card-2, #f3f2ef);
       border: 1px solid transparent;
       padding: 15px;

@@ -225,12 +225,12 @@ export const GasAccountDepositTokenPicker: React.FC<GasAccountDepositTokenPicker
                   <div className="flex flex-col gap-6">
                     <Skeleton.Button
                       active
-                      className="h-[14px] rounded-[8px]"
+                      className="h-[14px] rounded-[12px]"
                       style={{ width: 80 }}
                     />
                     <Skeleton.Button
                       active
-                      className="h-[12px] rounded-[8px]"
+                      className="h-[12px] rounded-[12px]"
                       style={{ width: 110 }}
                     />
                   </div>
@@ -238,12 +238,12 @@ export const GasAccountDepositTokenPicker: React.FC<GasAccountDepositTokenPicker
                 <div className="flex flex-col items-end gap-6">
                   <Skeleton.Button
                     active
-                    className="h-[14px] rounded-[8px]"
+                    className="h-[14px] rounded-[12px]"
                     style={{ width: 70 }}
                   />
                   <Skeleton.Button
                     active
-                    className="h-[12px] rounded-[8px]"
+                    className="h-[12px] rounded-[12px]"
                     style={{ width: 50 }}
                   />
                 </div>

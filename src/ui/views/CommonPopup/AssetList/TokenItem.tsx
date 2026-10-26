@@ -83,11 +83,11 @@ const ActionBtn = styled.div`
 
   font-size: 12px;
   font-weight: 500;
-  border-radius: 6px;
+  border-radius: 8px;
 
   cursor: pointer;
   color: var(--r-neutral-title-1, #13141a);
-  background: var(--r-neutral-bg-2, #f5f6fa);
+  background: var(--r-neutral-bg-2, #f5f4f1);
   z-index: 11;
   flex-shrink: 0;
   flex: 0 0 auto;
@@ -312,7 +312,7 @@ export const TokenItem: React.FC<Props> = ({ item, style, onClick }) => {
       className={clsx(
         'group cursor-pointer',
         'h-[60px] mt-8 px-12 justify-between',
-        'rounded-[8px] border border-transparent',
+        'rounded-[12px] border border-transparent',
         'hover:border-blue-light'
       )}
     >

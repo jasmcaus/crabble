@@ -89,7 +89,7 @@ export const ApprovalsBottomBar: React.FC = () => {
         block
         loading={isSubmitting}
         disabled={isDisabled}
-        className="h-[44px] rounded-[8px] text-[15px] leading-[18px]"
+        className="h-[44px] rounded-[12px] text-[15px] leading-[18px]"
         onClick={handleClick}
       >
         {buttonTitle}
