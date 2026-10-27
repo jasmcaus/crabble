@@ -78,7 +78,6 @@ const create = async ({ url, ...rest }): Promise<number | undefined> => {
           ...rest,
           height: finalHeight,
         });
-      } else {
       }
     }
   }

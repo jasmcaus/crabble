@@ -179,12 +179,6 @@ export const usePerpsActions = () => {
             content: error?.message || failedTitle,
           });
         }
-        if (
-          !String(error?.message || '')
-            .toLowerCase()
-            .includes('cancel')
-        ) {
-        }
         return false;
       }
     }

@@ -1330,26 +1330,22 @@ class ProviderController extends BaseController {
     ) {
       return approvalRes;
     }
-    try {
-      const [string, from] = data.params;
-      const hex = isHexString(string) ? string : stringToHex(string);
-      const keyring = await this._checkAddress(from, req);
-      const result = await keyringService.signPersonalMessage(
-        keyring,
-        { data: hex, from },
-        approvalRes?.extra
-      );
+    const [string, from] = data.params;
+    const hex = isHexString(string) ? string : stringToHex(string);
+    const keyring = await this._checkAddress(from, req);
+    const result = await keyringService.signPersonalMessage(
+      keyring,
+      { data: hex, from },
+      approvalRes?.extra
+    );
 
-      signTextHistoryService.createHistory({
-        address: from,
-        text: string,
-        origin: session.origin,
-        type: 'personalSign',
-      });
-      return result;
-    } catch (e) {
-      throw e;
-    }
+    signTextHistoryService.createHistory({
+      address: from,
+      text: string,
+      origin: session.origin,
+      type: 'personalSign',
+    });
+    return result;
   };
 
   @Reflect.metadata('PRIVATE', true)
@@ -1399,26 +1395,22 @@ class ProviderController extends BaseController {
     ) {
       return approvalRes;
     }
-    try {
-      const result = await this._signTypedData(
-        {
-          from,
-          data,
-          version: 'V1',
-          extra: approvalRes?.extra,
-        },
-        req
-      );
-      signTextHistoryService.createHistory({
-        address: from,
-        text: data,
-        origin: session.origin,
-        type: 'ethSignTypedData',
-      });
-      return result;
-    } catch (e) {
-      throw e;
-    }
+    const result = await this._signTypedData(
+      {
+        from,
+        data,
+        version: 'V1',
+        extra: approvalRes?.extra,
+      },
+      req
+    );
+    signTextHistoryService.createHistory({
+      address: from,
+      text: data,
+      origin: session.origin,
+      type: 'ethSignTypedData',
+    });
+    return result;
   };
 
   @Reflect.metadata('APPROVAL', ['SignTypedData', v1SignTypedDataVlidation])
@@ -1439,26 +1431,22 @@ class ProviderController extends BaseController {
     ) {
       return approvalRes;
     }
-    try {
-      const result = await this._signTypedData(
-        {
-          from,
-          data,
-          version: 'V1',
-          extra: approvalRes?.extra,
-        },
-        req
-      );
-      signTextHistoryService.createHistory({
-        address: from,
-        text: data,
-        origin: session.origin,
-        type: 'ethSignTypedDataV1',
-      });
-      return result;
-    } catch (e) {
-      throw e;
-    }
+    const result = await this._signTypedData(
+      {
+        from,
+        data,
+        version: 'V1',
+        extra: approvalRes?.extra,
+      },
+      req
+    );
+    signTextHistoryService.createHistory({
+      address: from,
+      text: data,
+      origin: session.origin,
+      type: 'ethSignTypedDataV1',
+    });
+    return result;
   };
 
   @Reflect.metadata('APPROVAL', ['SignTypedData', signTypedDataVlidation])
@@ -1478,26 +1466,22 @@ class ProviderController extends BaseController {
     ) {
       return approvalRes;
     }
-    try {
-      const result = await this._signTypedData(
-        {
-          from,
-          data,
-          version: 'V3',
-          extra: approvalRes?.extra,
-        },
-        req
-      );
-      signTextHistoryService.createHistory({
-        address: from,
-        text: data,
-        origin: session.origin,
-        type: 'ethSignTypedDataV3',
-      });
-      return result;
-    } catch (e) {
-      throw e;
-    }
+    const result = await this._signTypedData(
+      {
+        from,
+        data,
+        version: 'V3',
+        extra: approvalRes?.extra,
+      },
+      req
+    );
+    signTextHistoryService.createHistory({
+      address: from,
+      text: data,
+      origin: session.origin,
+      type: 'ethSignTypedDataV3',
+    });
+    return result;
   };
 
   @Reflect.metadata('APPROVAL', ['SignTypedData', signTypedDataVlidation])
@@ -1517,26 +1501,22 @@ class ProviderController extends BaseController {
     ) {
       return approvalRes;
     }
-    try {
-      const result = await this._signTypedData(
-        {
-          from,
-          data,
-          version: 'V4',
-          extra: approvalRes?.extra,
-        },
-        req
-      );
-      signTextHistoryService.createHistory({
-        address: from,
-        text: data,
-        origin: session.origin,
-        type: 'ethSignTypedDataV4',
-      });
-      return result;
-    } catch (e) {
-      throw e;
-    }
+    const result = await this._signTypedData(
+      {
+        from,
+        data,
+        version: 'V4',
+        extra: approvalRes?.extra,
+      },
+      req
+    );
+    signTextHistoryService.createHistory({
+      address: from,
+      text: data,
+      origin: session.origin,
+      type: 'ethSignTypedDataV4',
+    });
+    return result;
   };
 
   @Reflect.metadata('APPROVAL', [

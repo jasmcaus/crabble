@@ -150,7 +150,7 @@ const ClosePositionModalContent: React.FC<Omit<Props, 'visible'>> = ({
         reduceOnly: true,
       });
     } else if (type === 'market') {
-      const res = await handleCloseWithMarketOrder({
+      await handleCloseWithMarketOrder({
         coin: position.coin,
         dex: marketData.dexId ?? '',
         isBuy,
@@ -158,10 +158,8 @@ const ClosePositionModalContent: React.FC<Omit<Props, 'visible'>> = ({
         midPx: marketPrice,
         reduceOnly: true,
       });
-      if (res) {
-      }
     } else if (type === 'reverse') {
-      const res = await handleCloseWithMarketOrder({
+      await handleCloseWithMarketOrder({
         coin: position.coin,
         dex: marketData.dexId ?? '',
         isBuy,
@@ -171,8 +169,6 @@ const ClosePositionModalContent: React.FC<Omit<Props, 'visible'>> = ({
         midPx: marketPrice,
         reduceOnly: false,
       });
-      if (res) {
-      }
     }
   });
 

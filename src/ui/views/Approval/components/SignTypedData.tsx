@@ -1005,11 +1005,6 @@ const SignTypedData = ({
     checkWachMode();
   }, []);
 
-  useEffect(() => {
-    if (!isLoading) {
-    }
-  }, [isLoading]);
-
   return (
     <SecurityEngineScopeProvider scope={actionSecurityGroups[0]?.scope}>
       <div className="approval-text relative">

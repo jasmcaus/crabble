@@ -1263,7 +1263,7 @@ export const PerpsSingleCoin = () => {
           } else {
             sizeStr = positionData?.size.toString() || '0';
           }
-          const res = await handleClosePosition({
+          await handleClosePosition({
             coin,
             dex: currentAssetCtx?.dexId ?? '',
             size: sizeStr,
@@ -1272,8 +1272,6 @@ export const PerpsSingleCoin = () => {
             orderType,
             limitPx,
           });
-          if (res) {
-          }
         }}
       />
 

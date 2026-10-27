@@ -592,7 +592,6 @@ export const usePerpsPosition = ({
         const okCount = statuses.filter(
           (item) => typeof item === 'string' && item === 'success'
         ).length;
-        const failCount = statuses.length - okCount;
 
         if (okCount > 0) {
           message.success({
@@ -604,8 +603,6 @@ export const usePerpsPosition = ({
                   })
                 : t('page.perps.toast.cancelLimitOrderSuccess'),
           });
-          if (failCount > 0) {
-          }
           const marketDataMap = usePerpsStore.getState().marketDataMap;
           dispatch.perps.fetchPositionOpenOrdersHttpForDexes({
             dexes: orders.map((o) => marketDataMap[o.coin]?.dexId ?? ''),

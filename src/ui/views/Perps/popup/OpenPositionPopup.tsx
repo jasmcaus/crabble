@@ -371,8 +371,6 @@ export const PerpsOpenPositionPopup: React.FC<OpenPositionPopupProps> = ({
       orderType,
       limitPx: orderType === 'limit' ? limitPx : undefined,
     });
-    if (res) {
-    }
     setLoading(false);
     onConfirm();
     return res;

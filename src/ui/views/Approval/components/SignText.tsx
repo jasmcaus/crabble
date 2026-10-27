@@ -491,11 +491,6 @@ const SignText = ({
     return;
   };
 
-  useEffect(() => {
-    if (!isLoading) {
-    }
-  }, [isLoading]);
-
   return (
     <>
       <div className="approval-text">
