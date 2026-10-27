@@ -7,20 +7,17 @@ import { Cex } from '@rabby-wallet/rabby-api/dist/types';
 
 import type { Account } from '@/background/service/preference';
 import { ellipsisAddress } from '@/ui/utils/address';
-import { useBrandIcon } from '@/ui/hooks/useBrandIcon';
 
-import { useThemeMode } from '@/ui/hooks/usePreference';
 import { getUiType, isSameAddress, useAlias } from '@/ui/utils';
 import { Tooltip } from 'antd';
-import ThemeIcon from '@/ui/component/ThemeMode/ThemeIcon';
+import { ChevronRight, UserRound } from 'lucide-react';
+import { AddressAvatar } from '@/ui/component/ui/AddressAvatar';
 import { useRabbyDispatch, useRabbySelector } from '@/ui/store';
 
-import { ReactComponent as RcAvatarCC } from '@/ui/views/SendToken/icons/avatar-cc.svg';
 import { ReactComponent as RcToSwitch } from '@/ui/views/SendToken/icons/to-address-switch.svg';
 import { ReactComponent as RcWhitelistGuardBordered } from '@/ui/assets/component/whitelist-guard-bordered.svg';
 import { ReactComponent as RcCheckRight } from '@/ui/assets/send-token/check-right.svg';
 
-import { ReactComponent as RcIconAddressEntry } from '@/ui/views/SendToken/icons/address-entry.svg';
 import { BRAND_ALIAN_TYPE_TEXT, KEYRING_CLASS } from '@/constant';
 import { AddressViewer } from '@/ui/component';
 import {
@@ -51,15 +48,6 @@ export function AddressInfoTo({
   onClick?: () => void;
 }) {
   const { t } = useTranslation();
-
-  const { isDarkTheme } = useThemeMode();
-
-  const addressTypeIcon = useBrandIcon({
-    address: toAccount?.address || '',
-    brandName: toAccount?.brandName || '',
-    type: toAccount?.type || '',
-    forceLight: false,
-  });
 
   const [aliasName] = useAlias(toAccount?.address || '');
 
@@ -102,13 +90,13 @@ export function AddressInfoTo({
     <div className={clsx(className, 'overflow-auto')}>
       <div className="section relative">
         <div className="section-title justify-between items-center flex">
-          <span className="section-title__to text-[17px]">
+          <span className="section-title__to">
             {titleText || t('page.sendToken.sectionTo.title')}
           </span>
 
           {toAddressPositiveTips?.hasPositiveTips && (
-            <div className="flex items-center justify-end font-medium text-[15px]">
-              <RcCheckRight width={18} height={18} className="mr-[3px]" />
+            <div className="flex items-center justify-end font-medium text-[13px]">
+              <RcCheckRight width={16} height={16} className="mr-[3px]" />
               {toAddressPositiveTips.inWhitelist ? (
                 <span className="text-r-green-default">
                   {t('page.selectToAddress.positiveTips.whitelistAddress')}
@@ -130,9 +118,9 @@ export function AddressInfoTo({
         <div className="mt-[12px]">
           <div
             className={clsx(
-              'h-[58px] w-[100%] flex items-center justify-between p-[16px] ',
-              isDarkTheme ? 'bg-r-neutral-card1' : 'bg-r-neutral-bg1',
-              'cursor-pointer border-[1px] border-rabby-neutral-line hover:border-[var(--crb-hairline-strong)] rounded-[12px] group'
+              'h-[60px] w-[100%] flex items-center justify-between pl-[14px] pr-[12px]',
+              'bg-[var(--crb-card-solid)] shadow-[var(--crb-shadow-card)] rounded-[14px] group',
+              'cursor-pointer transition-[box-shadow,background-color] hover:shadow-[var(--crb-shadow-raised)]'
             )}
             onClick={onClick}
           >
@@ -150,23 +138,22 @@ export function AddressInfoTo({
               >
                 <div className="relative">
                   {!toAccount?.address ? (
-                    <div
-                      className="w-[24px] h-[24px] flex justify-center items-center"
-                      style={{}}
-                    >
-                      <div className="w-[24px] h-[24px] rounded-[8px] flex justify-center items-center bg-r-neutral-line">
-                        <RcAvatarCC
-                          width={13}
-                          height={15}
-                          className="text-r-neutral-foot"
-                        />
-                      </div>
+                    <div className="w-[32px] h-[32px] rounded-[9px] flex justify-center items-center bg-[var(--crb-sunken)] text-r-neutral-foot">
+                      <UserRound size={16} strokeWidth={2} />
                     </div>
+                  ) : cexInfo?.logo_url ? (
+                    <img
+                      src={cexInfo.logo_url}
+                      className="w-[32px] h-[32px] rounded-[9px]"
+                    />
                   ) : (
-                    <ThemeIcon
-                      src={cexInfo?.logo_url || addressTypeIcon}
-                      className={'w-[24px] h-[24px]'}
-                      style={{ padding: 0 }}
+                    // the destination's identicon, so it can be checked by eye
+                    <AddressAvatar
+                      address={toAccount.address}
+                      type={toAccount.type}
+                      brandName={toAccount.brandName}
+                      size={32}
+                      signal={false}
                     />
                   )}
                   {toAddressPositiveTips?.inWhitelist && (
@@ -228,7 +215,7 @@ export function AddressInfoTo({
                     </div>
                   </Tooltip>
                 ) : (
-                  <span className="text-[16px] font-medium leading-[20px] text-r-neutral-foot group-hover:text-rabby-blue-default">
+                  <span className="text-[15px] font-medium leading-[20px] text-r-neutral-foot group-hover:text-r-neutral-title1 transition-colors">
                     {t('page.sendToken.sectionTo.placeholder')}
                   </span>
                 )}
@@ -240,7 +227,11 @@ export function AddressInfoTo({
             ) : (
               <RcIconAddressEntry width={20} height={20} />
             )} */}
-            <RcIconAddressEntry width={20} height={20} />
+            <ChevronRight
+              size={18}
+              strokeWidth={2.25}
+              className="text-r-neutral-foot shrink-0"
+            />
           </div>
         </div>
       </div>

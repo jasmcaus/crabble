@@ -8,7 +8,7 @@ import { DrawerProps, Input, InputRef } from 'antd';
 import styled from 'styled-components';
 import { formatLargeTokenAmount, formatUsdValue } from '@/ui/utils';
 import BigNumber from 'bignumber.js';
-import { ReactComponent as RcIconWalletCC } from '@/ui/assets/swap/wallet-cc.svg';
+import { Wallet } from 'lucide-react';
 import { tokenAmountBn } from '@/ui/utils/token';
 import clsx from 'clsx';
 import SkeletonInput from 'antd/lib/skeleton/Input';
@@ -203,7 +203,7 @@ export const SwapTokenItem = (props: SwapTokenItemProps) => {
               tooltipVisible={false}
               disabled={!token || disabled}
             />
-            <span className="absolute top-1/2 -right-12 transform -translate-y-1/2 w-[38px] text-13 text-r-blue-default font-medium">
+            <span className="absolute top-1/2 -right-12 transform -translate-y-1/2 w-[38px] text-13 text-r-neutral-body font-medium tabular-nums">
               {slider}%
             </span>
           </div>
@@ -314,8 +314,8 @@ export const SwapTokenItem = (props: SwapTokenItemProps) => {
               : 'text-rabby-neutral-foot'
           )}
         >
-          <RcIconWalletCC viewBox="0 0 16 16" className="w-16 h-16" />
-          <span className="text-13">{balance}</span>
+          <Wallet size={14} strokeWidth={2} />
+          <span className="text-13 tabular-nums">{balance}</span>
         </div>
         <div className="text-13 text-rabby-neutral-foot flex items-center gap-2 relative">
           {valueLoading && skeletonLoading ? (

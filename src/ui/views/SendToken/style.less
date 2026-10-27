@@ -20,7 +20,7 @@
     .section-title {
       display: flex;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 500;
       line-height: 18px;
       letter-spacing: -0.005em;
       color: var(--r-neutral-foot);
@@ -34,9 +34,12 @@
 
     .token-amount-input {
       margin-bottom: 0;
-      padding: 20px;
+      padding: 18px 16px 16px 18px;
       height: 106px;
       gap: 12px;
+      border-radius: 16px;
+      background: var(--crb-card-solid);
+      box-shadow: var(--crb-shadow-card);
 
       .token-amount-input__main-row {
         gap: 12px;
@@ -47,33 +50,36 @@
         min-height: 18px;
       }
 
+      /* same token pill as Swap and Bridge */
       .left {
         min-width: 96px;
         width: fit-content;
-        max-width: 136px;
-        height: 34px;
-        padding: 4px;
-        border-radius: 100px;
+        max-width: 140px;
+        height: 40px;
+        padding: 0 10px 0 6px;
+        border-radius: 999px;
         border-left: none;
         background: var(--crb-sunken, #f4f4f5);
+        box-shadow: inset 0 0 0 1px var(--crb-hairline);
         overflow: hidden;
-        transition: background-color 0.14s ease;
+        transition: background-color 0.15s var(--crb-ease);
       }
       .left:hover {
         background: var(--crb-sunken-hover, #ececef);
       }
       .left .token-input__symbol {
-        max-width: 50px;
-        margin-left: 6px;
+        max-width: 56px;
+        margin-left: 8px;
         color: var(--r-neutral-title1, #09090b);
         font-size: 16px;
-        font-weight: 700;
+        font-weight: 600;
         line-height: 20px;
+        letter-spacing: -0.01em;
       }
       .left > .text-r-neutral-foot {
-        margin-left: 2px !important;
-        width: 20px;
-        height: 20px;
+        margin-left: 4px !important;
+        width: 16px;
+        height: 16px;
         display: flex;
         align-items: center;
         justify-content: center;

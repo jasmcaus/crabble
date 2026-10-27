@@ -1213,7 +1213,7 @@ export const BridgeContent = () => {
                         type="primary"
                         block
                         size="large"
-                        className="h-[48px] rounded-[8px] text-white text-[16px] font-medium"
+                        className="h-[48px] text-[16px] font-medium"
                         onClick={() => {
                           if (
                             showExternalDappTips &&

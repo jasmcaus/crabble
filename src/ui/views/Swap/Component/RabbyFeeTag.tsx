@@ -103,7 +103,7 @@ export const RabbyFeeTag = ({
     return (
       <button
         type="button"
-        className="text-12 font-medium text-r-blue-default cursor-pointer"
+        className="text-12 font-medium text-r-neutral-title1 cursor-pointer underline decoration-dotted decoration-[var(--r-neutral-foot)] underline-offset-[3px] hover:decoration-solid"
         onClick={onOpenCompare}
       >
         {SWAP_FEE_RATE.DEFAULT}%

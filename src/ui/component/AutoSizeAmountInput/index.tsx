@@ -47,7 +47,9 @@ export const AutoSizeAmountInput = ({
   return (
     <div
       ref={containerRef}
-      className={className}
+      className={
+        className ? `crb-amount-field ${className}` : 'crb-amount-field'
+      }
       style={{
         position: 'relative',
         overflow: 'hidden',

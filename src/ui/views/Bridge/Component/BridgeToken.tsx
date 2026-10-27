@@ -24,7 +24,7 @@ import styled from 'styled-components';
 import BridgeToTokenSelect from './BridgeToTokenSelect';
 import { useRabbySelector } from '@/ui/store';
 import { useAsync } from 'react-use';
-import { ReactComponent as RcIconWalletCC } from '@/ui/assets/swap/wallet-cc.svg';
+import { Wallet } from 'lucide-react';
 import {
   convert18RawToTokenRaw,
   getGasTokenBalance,
@@ -520,7 +520,7 @@ export const BridgeToken = ({
                   : 'text-r-neutral-foot'
               )}
             >
-              <RcIconWalletCC viewBox="0 0 16 16" className="w-16 h-16" />
+              <Wallet size={14} strokeWidth={2} />
               <span className={clsx(valueLoading && 'opacity-50')}>
                 {token
                   ? formatLargeTokenAmount(tokenAmountBn(token).toString(10)) ||

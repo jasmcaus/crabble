@@ -347,6 +347,22 @@ textarea::placeholder {
   box-shadow: none !important;
 }
 
+/* big amount inputs (swap, bridge, send) are bare type on a card: the card
+   is the field, so the input never draws its own border or focus ring
+   (clipped by the auto-size wrapper, the ring showed as coral corners) */
+.crb-amount-field {
+  .ant-input,
+  .ant-input:hover,
+  .ant-input:focus,
+  .ant-input-affix-wrapper,
+  .ant-input-affix-wrapper:hover,
+  .ant-input-affix-wrapper-focused {
+    border-color: transparent !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+}
+
 .ant-form-item-explain-error {
   font-size: 12px;
   line-height: 16px;
