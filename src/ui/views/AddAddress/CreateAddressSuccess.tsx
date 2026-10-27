@@ -220,9 +220,6 @@ export const CreateAddressSuccess: React.FC<{
               className={clsx(
                 'mt-12',
                 'w-full h-[44px] rounded-[12px] text-[13px] leading-[16px] font-medium',
-                'text-blue-light',
-                'border-blue-light',
-                'hover:bg-[var(--crb-sunken)] active:bg-[#0000001A]',
                 'before:content-none'
               )}
               onClick={handleBackupSeedPhrase}

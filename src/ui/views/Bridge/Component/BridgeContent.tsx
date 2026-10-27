@@ -746,7 +746,7 @@ export const BridgeContent = () => {
 
   const twoStepApproveCn = useCss({
     '& .ant-modal-content': {
-      background: '#fff',
+      background: 'var(--r-neutral-bg-1)',
     },
     '& .ant-modal-body': {
       padding: '12px 8px 32px 16px',

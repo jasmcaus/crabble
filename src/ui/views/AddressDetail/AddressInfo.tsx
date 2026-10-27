@@ -115,13 +115,7 @@ const AddressInfo1 = ({ address, type, brandName, source }: Props) => {
                 size="large"
                 type="ghost"
                 onClick={() => destroy()}
-                className={clsx(
-                  'w-[200px]',
-                  'text-blue-light',
-                  'border-blue-light',
-                  'hover:bg-[var(--crb-sunken)] active:bg-[#0000001A]',
-                  'before:content-none'
-                )}
+                className={clsx('w-[200px]', 'before:content-none')}
               >
                 {t('global.Cancel')}
               </Button>

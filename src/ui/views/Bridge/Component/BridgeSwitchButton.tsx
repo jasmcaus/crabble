@@ -103,7 +103,7 @@ export const BridgeSwitchBtn = ({
         'w-[32px] h-[32px] rounded-[900px]',
         'bg-r-neutral-bg-1 text-rabby-neutral-foot',
         'border-[0.5px] border-solid border-rabby-neutral-line',
-        'hover:bg-[var(--crb-sunken)] hover:text-rabby-blue-default',
+        'hover:bg-[var(--crb-raised)] hover:shadow-[var(--crb-shadow-raised)] hover:text-r-neutral-title1',
         !refreshing && refreshCountdown
           ? 'hover:border-transparent'
           : 'hover:border-[var(--crb-hairline-strong)]',

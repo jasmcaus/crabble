@@ -1,27 +1,33 @@
 .rabby-empty {
   text-align: center;
 
+  /* same tile as the home empty state */
   &-image {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 16px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 14px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--r-neutral-title-1);
+    background: var(--crb-raised);
+    box-shadow: var(--crb-shadow-card);
   }
   &-content {
     text-align: center;
   }
   &-title {
-    font-weight: 500;
-    font-size: 17px;
+    font-weight: 600;
+    font-size: 15px;
     line-height: 20px;
-    color: var(--r-neutral-title-1, #FAFAFA);
+    color: var(--r-neutral-title-1, #fafafa);
     margin-bottom: 8px;
   }
   &-desc {
     font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
-    color: var(--r-neutral-body, #D4D4D8);
+    font-size: 13px;
+    line-height: 18px;
+    color: var(--r-neutral-foot, #71717a);
   }
 }

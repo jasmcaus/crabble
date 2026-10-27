@@ -256,7 +256,7 @@ const GasAccountInner = () => {
     ) : undefined;
   const primaryButtonClassName =
     showEmptyState && emptyStatePrimaryMode === 'claimGift'
-      ? 'bg-green border-green gap-6'
+      ? 'gap-6'
       : undefined;
   const primaryButtonContent = showEmptyState
     ? emptyStatePrimaryContent || t('page.gasAccount.depositNow')
@@ -289,9 +289,7 @@ const GasAccountInner = () => {
           />
         }
       >
-        <span className="text-20 font-medium text-r-neutral-title-1">
-          {t('page.gasAccount.title')}
-        </span>
+        {t('page.gasAccount.title')}
       </PageHeader>
 
       <div className="flex-1 min-h-0 overflow-y-auto px-20">

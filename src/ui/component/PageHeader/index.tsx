@@ -1,15 +1,13 @@
 import { Account } from '@/background/service/preference';
 import { useSceneAccountInfo } from '@/ui/hooks/backgroundState/useAccount';
 import { AddressAvatar } from '@/ui/component/ui/AddressAvatar';
-import { ChevronDown, Eye } from 'lucide-react';
+import { ChevronDown, ChevronLeft, Eye } from 'lucide-react';
 import { useRabbyDispatch } from '@/ui/store';
 import { getUiType, useAlias } from '@/ui/utils';
 import clsx from 'clsx';
 import React, { ReactNode, SVGProps, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
-import { ReactComponent as RcIconBackNew } from 'ui/assets/back-new.svg';
-import IconBack from 'ui/assets/back.svg';
 import { ReactComponent as RcIconClose } from 'ui/assets/component/close-cc.svg';
 import { AccountSelectorModal } from '../AccountSelector/AccountSelectorModal';
 import ThemeIcon from '../ThemeMode/ThemeIcon';
@@ -79,9 +77,14 @@ const PageHeader = ({
             className="icon-back-container hit-slop-8"
             onClick={onBack || (() => history.goBack())}
           >
-            <ThemeIcon
-              src={keepBackLightVersion ? IconBack : RcIconBackNew}
-              className={clsx('icon icon-back', invertBack && 'filter invert')}
+            <ChevronLeft
+              size={22}
+              strokeWidth={2}
+              className={clsx(
+                'icon icon-back',
+                keepBackLightVersion ? 'text-white' : 'text-r-neutral-title1',
+                invertBack && 'filter invert'
+              )}
             />
           </div>
         )}

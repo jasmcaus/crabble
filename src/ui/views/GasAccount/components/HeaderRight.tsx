@@ -3,7 +3,8 @@ import { Dropdown, Menu } from 'antd';
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
-import { ReactComponent as RcIconMore } from '@/ui/assets/gas-account/more.svg';
+import { Ellipsis } from 'lucide-react';
+import { IconButton } from '@/ui/component/ui/IconButton';
 import { ReactComponent as RcIconLogout } from '@/ui/assets/gas-account/logout.svg';
 import { ReactComponent as RcIconSwitchCC } from '@/ui/assets/gas-account/switch-cc.svg';
 import { ReactComponent as RcIconWithdrawCC } from '@/ui/assets/gas-account/withdraw-cc.svg';
@@ -90,9 +91,11 @@ export const GasAccountHeader: React.FC<{
   );
 
   return (
-    <div className="flex items-center gap-20 absolute bottom-0 right-0">
-      <Dropdown overlay={menu} mouseLeaveDelay={0.3}>
-        <RcIconMore viewBox="0 0 20 20" className="w-20 h-20 cursor-pointer" />
+    <div className="flex items-center absolute bottom-[-6px] right-[-6px]">
+      <Dropdown overlay={menu} trigger={['click']} placement="bottomRight">
+        <IconButton label={t('page.dashboard.home.panel.more')} tooltip={false}>
+          <Ellipsis size={18} strokeWidth={2} />
+        </IconButton>
       </Dropdown>
     </div>
   );

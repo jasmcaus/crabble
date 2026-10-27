@@ -242,6 +242,36 @@ button,
   box-shadow: none;
 }
 
+/* antd's ghost type is the old "cancel" button: give it the same quiet
+   outline. Only colours, never the background shorthand, and not the
+   signing footer's own ghost buttons (coral outline, gasless animation). */
+.ant-btn-ghost:not(.ant-btn-dangerous):not(.border-blue-light):not(.gasLess) {
+  &:not([disabled]) {
+    background-color: var(--crb-raised);
+    border-color: var(--crb-hairline-strong);
+    color: var(--r-neutral-title-1);
+    box-shadow: var(--crb-shadow-xs);
+
+    &:hover,
+    &:focus {
+      background-color: var(--crb-sunken);
+      border-color: var(--crb-hairline-strong);
+      color: var(--r-neutral-title-1);
+    }
+
+    &:active {
+      background-color: var(--crb-sunken-hover);
+    }
+  }
+
+  &[disabled] {
+    background-color: transparent;
+    border-color: var(--crb-hairline);
+    color: var(--crb-disabled-fg);
+    box-shadow: none;
+  }
+}
+
 /* ghost / text / link */
 .ant-btn-text:not([disabled]) {
   color: var(--r-neutral-title-1);

@@ -1,5 +1,7 @@
 /* eslint "react-hooks/exhaustive-deps": ["error"] */
 /* eslint-enable react-hooks/exhaustive-deps */
+import { SquareArrowOutUpRight } from 'lucide-react';
+import { IconButton } from '@/ui/component/ui/IconButton';
 import React, {
   useState,
   useEffect,
@@ -32,7 +34,6 @@ import './style.less';
 import { getKRCategoryByType } from '@/utils/transaction';
 import { filterRbiSource, useRbiSource } from '@/ui/utils/ga-event';
 import { ReactComponent as RcIconExternal } from 'ui/assets/icon-share-currentcolor.svg';
-import { RcIconJumpBoldCC } from '@/ui/assets/dashboard';
 import { useMiniSigner } from '@/ui/hooks/useSigner';
 import { MINI_SIGN_ERROR } from '@/ui/component/MiniSignV2/state/SignatureManager';
 
@@ -582,7 +583,7 @@ const SendNFT = () => {
         className={clsx(
           'transfer-nft overflow-y-scroll',
           isTab || isDesktop
-            ? 'w-full h-full overflow-auto min-h-0 rounded-[16px] shadow-[0px_24px_64px_-12px_rgba(9,9,11,0.18)'
+            ? 'w-full h-full overflow-auto min-h-0 rounded-[16px] shadow-[var(--crb-shadow-raised)]'
             : ''
         )}
       >
@@ -594,8 +595,9 @@ const SendNFT = () => {
           disableSwitchAccount
           rightSlot={
             isTab || isDesktop ? null : (
-              <div
-                className="text-r-neutral-title1 hover:text-r-blue-default absolute right-0 cursor-pointer top-1/2 -translate-y-1/2"
+              <IconButton
+                label={t('page.dashboard.assets.openInTabV2')}
+                className="absolute right-[-6px] top-1/2 -translate-y-1/2"
                 onClick={() => {
                   // openInternalPageInTab(`send-nft${history.location.search}`);
                   wallet.openInDesktop(
@@ -606,8 +608,8 @@ const SendNFT = () => {
                   window.close();
                 }}
               >
-                <RcIconJumpBoldCC />
-              </div>
+                <SquareArrowOutUpRight size={18} strokeWidth={2} />
+              </IconButton>
             )
           }
         >

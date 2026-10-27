@@ -851,7 +851,9 @@
       "receiveOn": "Receive {{token}} on",
       "receiveTitle": "Receive {{token}}",
       "addCustomNetwork": "Add custom network",
-      "supportedChain": "Supported chains"
+      "supportedChain": "Supported chains",
+      "hideAccount": "Hide account",
+      "showAccount": "Show account"
     },
     "sendToken": {
       "addressNotInContract": "Not on address list. <1></1><2>Add to contacts</2>",
@@ -4073,7 +4075,7 @@
     },
     "gasAccount": {
       "gasFee": "Gas fee",
-      "title": "GasAccount",
+      "title": "Gas Account",
       "gasDeposit": "Gas Deposit",
       "gasToken": "Gas Token",
       "deposit": "Deposit",

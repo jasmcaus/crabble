@@ -61,13 +61,7 @@ export const CancelTxConfirmPopup = ({
           type="ghost"
           size="large"
           onClick={onClose}
-          className={clsx(
-            'w-[172px]',
-            'text-blue-light',
-            'border-blue-light',
-            'hover:bg-[var(--crb-sunken)] active:bg-[#0000001A]',
-            'before:content-none'
-          )}
+          className={clsx('w-[172px]', 'before:content-none')}
         >
           {t('global.Cancel')}
         </Button>

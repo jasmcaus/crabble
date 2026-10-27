@@ -45,8 +45,8 @@ const ChainGlobalStyle = createGlobalStyle`
         font-weight: 500;
       }
       .ant-btn-ghost {
-        border-color: var(--r-blue-default);
-        color: var(--r-blue-default);
+        border-color: var(--crb-hairline-strong);
+        color: var(--r-neutral-title-1);
         &:hover {
           background: var(--crb-sunken) !important;
         }
@@ -91,8 +91,7 @@ const ChainWrapper = styled.div`
     gap: 8px;
     padding: 0 16px;
     border: 1px solid transparent;
-    background: var(--r-neutral-card1, #fff);
-    border-radius: 12px 12px 0 0;
+    border-radius: 16px 16px 0 0;
     height: 52px;
     position: relative;
 
@@ -107,25 +106,16 @@ const ChainWrapper = styled.div`
     }
   }
   &:hover {
-    background: var(--crb-sunken);
+    background: var(--crb-sunken-hover);
   }
 
+  /* the swap row is the top of the pay-token card: hover tints it in place */
+  &.swap {
+    background: var(--crb-card-solid);
+  }
   &.swap:hover {
-    background: var(--r-blue-light1, #fdefe9);
-    border: 1px solid var(--r-blue-default, #e8552a);
-    border-radius: 12px;
-
-    & > .name {
-      color: var(--r-blue-default, #e8552a);
-    }
-
-    & > .down {
-      color: var(--r-blue-default, #e8552a) !important;
-
-      path {
-        stroke: var(--r-blue-default, #e8552a) !important;
-      }
-    }
+    background: linear-gradient(var(--crb-press), var(--crb-press)),
+      var(--crb-card-solid);
   }
   & > {
     .down {

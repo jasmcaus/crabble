@@ -1,5 +1,7 @@
 /* eslint "react-hooks/exhaustive-deps": ["error"] */
 /* eslint-enable react-hooks/exhaustive-deps */
+import { SquareArrowOutUpRight } from 'lucide-react';
+import { IconButton } from '@/ui/component/ui/IconButton';
 import React, {
   useState,
   useCallback,
@@ -73,7 +75,6 @@ import {
   GasLevelType,
   SendReserveGasPopup,
 } from '../Swap/Component/ReserveGasPopup';
-import { RcIconJumpBoldCC } from '@/ui/assets/dashboard';
 import { withAccountChange } from '@/ui/utils/withAccountChange';
 import { useRequest } from 'ahooks';
 import { FullscreenContainer } from '@/ui/component/FullscreenContainer';
@@ -3128,7 +3129,7 @@ const SendToken = () => {
         className={clsx(
           'send-token',
           isTab || isDesktop
-            ? 'w-full h-full overflow-auto min-h-0 rounded-[16px] shadow-[0px_24px_64px_-12px_rgba(9,9,11,0.18)'
+            ? 'w-full h-full overflow-auto min-h-0 rounded-[16px] shadow-[var(--crb-shadow-raised)]'
             : ''
         )}
       >
@@ -3162,8 +3163,9 @@ const SendToken = () => {
           }}
           rightSlot={
             isTab || isDesktop ? null : (
-              <div
-                className="text-r-neutral-title1 hover:text-r-blue-default cursor-pointer absolute right-0 hit-slop-8"
+              <IconButton
+                label={t('page.dashboard.assets.openInTabV2')}
+                className="absolute right-[-6px] top-1/2 -translate-y-1/2"
                 onClick={() => {
                   // openInternalPageInTab(`send-token${history.location.search}`);
                   wallet.openInDesktop(
@@ -3174,8 +3176,8 @@ const SendToken = () => {
                   window.close();
                 }}
               >
-                <RcIconJumpBoldCC />
-              </div>
+                <SquareArrowOutUpRight size={18} strokeWidth={2} />
+              </IconButton>
             )
           }
         >
