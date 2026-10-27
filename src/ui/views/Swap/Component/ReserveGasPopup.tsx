@@ -206,7 +206,7 @@ const ReserveGasContent = React.forwardRef<
             type="primary"
             block
             disabled={isLoading}
-            className="h-[44px] text-15 text-r-neutral-title2"
+            className="h-[44px] text-15"
             onClick={() => {
               if (gasLevel) {
                 onGasChange(gasLevel);
@@ -338,7 +338,7 @@ export const SendReserveGasPopup = (
                 type="primary"
                 block
                 disabled
-                className="h-[44px] text-15 text-r-neutral-title2"
+                className="h-[44px] text-15"
               >
                 {t('global.Confirm')}
               </Button>

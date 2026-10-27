@@ -4,33 +4,37 @@ import styled from 'styled-components';
 import { TokenItem } from '@rabby-wallet/rabby-api/dist/types';
 import { getTokenSymbol } from '@/ui/utils/token';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as RcImgArrowDownCC } from '@/ui/assets/swap/arrow-down-cc.svg';
+import { ChevronDown } from 'lucide-react';
 
 const TokenRenderWrapper = styled.div`
   width: auto;
   height: 40px;
-  background: var(--r-neutral-card2, #f4f4f5);
-  border-radius: 12px;
   display: flex;
   align-items: center;
-  padding: 8px 12px;
-  font-weight: 500;
-  font-size: 18px;
-  color: #13141a;
-  border: 1px solid transparent;
+  padding: 0 10px 0 6px;
+  border-radius: 999px;
+  background: var(--crb-sunken);
+  box-shadow: inset 0 0 0 1px var(--crb-hairline);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.01em;
   cursor: pointer;
+  transition: background-color 0.15s var(--crb-ease);
   &:hover {
-    background: var(--crb-sunken);
+    background: var(--crb-sunken-hover);
+  }
+  &:active {
+    background: var(--crb-press);
   }
   .token {
     display: flex;
     flex: 1;
-    gap: 6px;
+    gap: 8px;
     align-items: center;
 
     .text {
-      color: var(--r-neutral-title-1, #fafafa);
-      max-width: 68px;
+      color: var(--r-neutral-title-1);
+      max-width: 72px;
       display: inline-block;
       white-space: nowrap;
       overflow: hidden;
@@ -38,9 +42,10 @@ const TokenRenderWrapper = styled.div`
     }
   }
   .select {
-    color: var(--r-neutral-title-1, #fafafa);
+    color: var(--r-neutral-title-1);
     flex: 1;
     gap: 6px;
+    padding-left: 6px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -48,10 +53,8 @@ const TokenRenderWrapper = styled.div`
   }
   .arrow {
     margin-left: auto;
-    font-size: 12px;
-    opacity: 0.8;
-    width: 18px;
-    height: 18px;
+    flex-shrink: 0;
+    color: var(--r-neutral-foot);
   }
 `;
 export const TokenRender = ({
@@ -70,8 +73,8 @@ export const TokenRender = ({
       {token ? (
         <div className="token">
           <TokenWithChain
-            width="24px"
-            height="24px"
+            width="28px"
+            height="28px"
             token={token}
             hideConer
             hideChainIcon
@@ -79,18 +82,12 @@ export const TokenRender = ({
           <span className="text" title={getTokenSymbol(token)}>
             {getTokenSymbol(token)}
           </span>
-          <RcImgArrowDownCC
-            viewBox="0 0 16 16"
-            className="arrow text-r-neutral-body w-16 h-16"
-          />
+          <ChevronDown size={16} strokeWidth={2.25} className="arrow" />
         </div>
       ) : (
         <div className="select">
           <span>{t('page.swap.select-token')}</span>
-          <RcImgArrowDownCC
-            viewBox="0 0 16 16"
-            className="arrow text-r-neutral-body w-16 h-16"
-          />
+          <ChevronDown size={16} strokeWidth={2.25} className="arrow" />
         </div>
       )}
     </TokenRenderWrapper>

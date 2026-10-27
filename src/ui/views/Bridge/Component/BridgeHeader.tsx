@@ -1,4 +1,5 @@
-import { ReactComponent as RcIconHistory } from '@/ui/assets/swap/history-cc.svg';
+import { History as HistoryIcon, SquareArrowOutUpRight } from 'lucide-react';
+import { IconButton } from '@/ui/component/ui/IconButton';
 import { ReactComponent as RcIconHistoryPending } from '@/ui/assets/bridge/IconHistoryPendingCC.svg';
 
 import { PageHeader } from '@/ui/component';
@@ -10,7 +11,6 @@ import { useRabbyDispatch } from '@/ui/store';
 import { RabbyFeePopup } from '../../Swap/Component/RabbyFeePopup';
 import { getUiType } from '@/ui/utils';
 import { useHistory } from 'react-router-dom';
-import { RcIconJumpBoldCC } from '@/ui/assets/dashboard';
 const isTab = getUiType().isTab;
 const isDesktop = getUiType().isDesktop;
 
@@ -67,27 +67,25 @@ export const Header = ({
           canBack={!isTab}
           isShowAccount
           rightSlot={
-            <div className="flex items-center gap-[16px] absolute top-[50%] translate-y-[-50%] right-0">
+            <div className="flex items-center gap-[2px] absolute top-[50%] translate-y-[-50%] right-[-6px]">
               {isTab ? null : (
-                <div
-                  className="text-r-neutral-title1 hover:text-r-blue-default cursor-pointer relative hit-slop-8"
-                  onClick={() => {
-                    onOpenInTab?.();
-                  }}
+                <IconButton
+                  label={t('page.dashboard.assets.openInTabV2')}
+                  onClick={() => onOpenInTab?.()}
                 >
-                  <RcIconJumpBoldCC />
-                </div>
+                  <SquareArrowOutUpRight size={18} strokeWidth={2} />
+                </IconButton>
               )}
-              <div
-                className="relative hit-slop-8 cursor-pointer text-r-neutral-title1 hover:text-r-blue-default"
+              <IconButton
+                label={t('page.dashboard.home.panel.transactions')}
                 onClick={openHistory}
               >
                 {showPending ? (
-                  <RcIconHistoryPending className="block [&_[data-pending-ring]]:animate-spin [&_[data-pending-ring]]:[animation-duration:1.5s]" />
+                  <RcIconHistoryPending className="block w-[20px] h-[20px] [&_[data-pending-ring]]:animate-spin [&_[data-pending-ring]]:[animation-duration:1.5s]" />
                 ) : (
-                  <RcIconHistory />
+                  <HistoryIcon size={18} strokeWidth={2} />
                 )}
-              </div>
+              </IconButton>
             </div>
           }
         >

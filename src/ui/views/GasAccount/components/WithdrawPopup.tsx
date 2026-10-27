@@ -619,9 +619,7 @@ const WithdrawContent = ({
         >
           <Button
             type="primary"
-            className={clsx(
-              'h-[48px] text-14 font-medium text-r-neutral-title-2'
-            )}
+            className={clsx('h-[48px] text-14 font-medium')}
             onClick={withdraw}
             block
             size="large"

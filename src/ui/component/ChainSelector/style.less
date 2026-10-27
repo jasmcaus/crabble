@@ -360,26 +360,31 @@
       align-items: center;
       justify-content: flex-start;
     }
+    /* the pin stays in the layout (faint) so it can be found without
+       hovering; it firms up on row hover and when pinned */
     &-star {
       margin-left: 8px;
-      display: none;
+      opacity: 0.35;
+      transition: opacity 0.15s var(--crb-ease);
+      &.is-active {
+        opacity: 1;
+      }
     }
     &-checked {
       margin-left: 16px;
     }
     &:not(.select-chain-item-disabled):hover {
-      background: var(--r-blue-light-1, #fdefe9);
-      border: 1px solid var(--r-blue-default, #f26b3a);
+      background: var(--crb-hover);
       &::after {
         display: none;
       }
       .select-chain-item-star {
-        display: block;
+        opacity: 1;
       }
     }
     &.select-chain-item-disabled:hover {
       .select-chain-item-star {
-        display: block;
+        opacity: 1;
       }
     }
     &:last-child::after {

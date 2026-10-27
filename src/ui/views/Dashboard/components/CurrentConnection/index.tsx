@@ -33,19 +33,15 @@ const Container = styled.div`
   background: var(--r-neutral-card1, #fff);
   padding: 10px 12px;
 
-  &.site-group:hover {
-    .site-icon-container.is-support {
-      cursor: pointer;
-      border: 1px solid var(--r-blue-default, #f26b3a);
-      background: var(--r-blue-light1, #fdefe9);
-    }
-    .global-account-selector:not(.is-disabled) {
-      border: 1px solid var(--r-blue-default, #f26b3a);
-      background: var(--r-blue-light1, #fdefe9);
-    }
-    .site-status-icon {
-      color: var(--r-red-default, #e34935) !important;
-    }
+  /* each control tints on its own hover; the disconnect icon only turns
+     red when it is the thing being pointed at */
+  .site-icon-container.is-support:hover,
+  .global-account-selector:not(.is-disabled):hover {
+    cursor: pointer;
+    background: var(--crb-hover);
+  }
+  .site-status-icon:hover {
+    color: var(--r-red-default, #e34935) !important;
   }
 
   .site {
@@ -112,7 +108,7 @@ const Container = styled.div`
       display: flex;
       align-items: center;
       &.active {
-        color: #27c193;
+        color: var(--r-green-default);
       }
       &-icon {
         display: none;

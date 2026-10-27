@@ -1,6 +1,8 @@
 import { CHAINS_ENUM } from '@/types/chain';
-import { ReactComponent as RcIconArrowRightCC } from '@/ui/assets/receive/right-cc.svg';
-import { Modal } from '@/ui/component';
+import { Modal, PageHeader } from '@/ui/component';
+import { AddressAvatar } from '@/ui/component/ui/AddressAvatar';
+import { IconButton } from '@/ui/component/ui/IconButton';
+import { ChevronRight, Copy, Eye, EyeOff } from 'lucide-react';
 import ChainSelectorModal from '@/ui/component/ChainSelector/Modal';
 import { SeedPhraseBackupAlert } from '@/ui/component/SeedPhraseBackupAlert';
 import ThemeIcon from '@/ui/component/ThemeMode/ThemeIcon';
@@ -14,19 +16,11 @@ import { useRequest } from 'ahooks';
 import { Button } from 'antd';
 import { Account } from 'background/service/preference';
 import clsx from 'clsx';
-import {
-  KEYRING_CLASS,
-  KEYRING_ICONS_WHITE,
-  WALLET_BRAND_CONTENT,
-} from 'consts';
+import { KEYRING_CLASS } from 'consts';
 import QRCode from 'qrcode.react';
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useHistory } from 'react-router-dom';
-import { ReactComponent as IconBack } from 'ui/assets/back.svg';
-import { ReactComponent as RcIconCopy } from 'ui/assets/icon-copy-1-cc.svg';
-import IconEyeHide from 'ui/assets/icon-eye-hide.svg';
-import IconEye from 'ui/assets/icon-eye.svg';
 import { ReactComponent as RcIconWarning } from 'ui/assets/icon-warning-large.svg';
 import { splitNumberByStep, useWallet } from 'ui/utils';
 import { query2obj } from 'ui/utils/url';
@@ -238,64 +232,56 @@ const Receive = () => {
   return (
     <>
       <div className="page-receive relative">
-        <div className="page-nav">
-          <div
-            className="page-nav-left pointer"
-            onClick={() => {
-              history.goBack();
-            }}
-          >
-            <IconBack className="icon-back"></IconBack>
-          </div>
-          {isShowAccount && (
-            <div className="page-nav-content">
-              <div className="account">
-                <img
-                  className="account-icon opacity-60"
-                  src={
-                    WALLET_BRAND_CONTENT[account.brandName as string]?.image ||
-                    KEYRING_ICONS_WHITE[account.type as string]
-                  }
-                />
-                <div className="account-content">
-                  <div className="row">
-                    <div className="account-name" title={account.name}>
-                      {account.name}
-                    </div>
-                    <div
-                      className="account-balance truncate"
-                      title={splitNumberByStep(
-                        (account.balance || 0).toFixed(2)
-                      )}
-                    >
-                      ${splitNumberByStep((account.balance || 0).toFixed(2))}
-                    </div>
-                  </div>
-                  {account.type === KEYRING_CLASS.WATCH && (
-                    <div className="account-type">
-                      {t('global.watchModeAddress')}
-                    </div>
-                  )}
-                </div>
+        <PageHeader
+          className="mb-[12px]"
+          forceShowBack
+          onBack={() => history.goBack()}
+          rightSlot={
+            <IconButton
+              label={
+                isShowAccount
+                  ? t('page.receive.hideAccount')
+                  : t('page.receive.showAccount')
+              }
+              className="absolute right-[-6px] top-1/2 -translate-y-1/2"
+              onClick={() => setIsShowAccount((v) => !v)}
+            >
+              {isShowAccount ? (
+                <Eye size={18} strokeWidth={2} />
+              ) : (
+                <EyeOff size={18} strokeWidth={2} />
+              )}
+            </IconButton>
+          }
+        >
+          {t('page.dashboard.home.panel.receive')}
+        </PageHeader>
+        {isShowAccount && account?.address && (
+          <div className="flex items-center gap-[10px] mb-[12px] px-[12px] py-[10px] rounded-[14px] bg-[var(--crb-card-solid)] shadow-[var(--crb-shadow-card)]">
+            <AddressAvatar
+              address={account.address}
+              type={account.type}
+              brandName={account.brandName}
+              size={32}
+              signal={false}
+            />
+            <div className="min-w-0 flex-1">
+              <div
+                className="text-[14px] leading-[18px] font-medium text-r-neutral-title1 truncate"
+                title={account.name}
+              >
+                {account.name}
+              </div>
+              <div className="text-[12px] leading-[16px] text-r-neutral-foot tabular-nums truncate">
+                ${splitNumberByStep((account.balance || 0).toFixed(2))}
+                {account.type === KEYRING_CLASS.WATCH &&
+                  ` · ${t('global.watchModeAddress')}`}
               </div>
             </div>
-          )}
-          <div
-            className="page-nav-right pointer"
-            onClick={() => {
-              setIsShowAccount((v) => !v);
-            }}
-          >
-            {isShowAccount ? <img src={IconEye} /> : <img src={IconEyeHide} />}
           </div>
-        </div>
+        )}
 
-        <SeedPhraseBackupAlert
-          className={clsx(
-            'text-r-red-default bg-r-red-light rounded-[12px]',
-            'mb-[8px] mt-[-12px]'
-          )}
-        />
+        <SeedPhraseBackupAlert className="mb-[8px] mt-[-12px]" />
         <OfflineChainNotify
           className="receive-offline-chain-notify w-full"
           itemClassName="rounded-[12px] mb-[8px]"
@@ -318,12 +304,14 @@ const Receive = () => {
             className="qr-card-btn"
             onClick={handleCopyAddress}
           >
-            <ThemeIcon src={RcIconCopy} className="icon-copy" />
+            <Copy size={15} strokeWidth={2} className="icon-copy" />
             {t('global.copyAddress')}
           </button>
           <div className="qr-card-divider" />
-          <div
+          <button
+            type="button"
             className="qr-card-chain gap-[16px]"
+            disabled={!isSafeSupportChainsReady}
             onClick={() => {
               if (isSafeSupportChainsReady) {
                 setIsShowReceiveModal(true);
@@ -368,10 +356,14 @@ const Receive = () => {
                 </>
               )}
               {isSafeSupportChainsReady && (
-                <RcIconArrowRightCC className="qr-card-chain-arrow shrink-0" />
+                <ChevronRight
+                  size={16}
+                  strokeWidth={2.25}
+                  className="qr-card-chain-arrow shrink-0"
+                />
               )}
             </div>
-          </div>
+          </button>
         </div>
         {qs.isZero ? (
           <footer className="flex justify-center items-center mt-[16px]">
@@ -381,9 +373,9 @@ const Receive = () => {
                 setIsShowAddTestnetModal(true);
               }}
               className={clsx(
-                'text-r-neutral-title-2 text-[13px] leading-[16px] underline underline-offset-auto',
+                'text-r-neutral-body text-[13px] leading-[16px] underline underline-offset-auto',
                 'py-[8px] px-[16px] rounded-[8px]',
-                'hover:bg-[rgba(255,255,255,0.12)] active:bg-[rgba(255,255,255,0.2)]'
+                'hover:bg-[var(--crb-hover)] active:bg-[var(--crb-press)]'
               )}
             >
               {t('page.receive.addCustomNetwork')}

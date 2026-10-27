@@ -25,7 +25,7 @@ const BridgeComponent = () => {
                 className={clsx(
                   'px-0 overflow-hidden bg-r-neutral-bg-2 h-full relative flex flex-col',
                   isTab
-                    ? 'rounded-[16px] shadow-[0px_24px_64px_-12px_rgba(9,9,11,0.18)'
+                    ? 'rounded-[16px] shadow-[var(--crb-shadow-raised)]'
                     : ''
                 )}
               >

@@ -246,9 +246,6 @@ const AccountSelectDrawer = ({
           onClick={onCancel}
           type="ghost"
           className={clsx(
-            'text-r-blue-default',
-            'border-blue-light',
-            'hover:bg-[var(--crb-sunken)] active:bg-[#0000001A]',
             'disabled:bg-transparent disabled:opacity-40 disabled:hover:bg-transparent',
             'before:content-none'
           )}

@@ -9,7 +9,6 @@ import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import { BalanceView } from './BalanceView';
 import { SeedPhraseBackupAlert } from '@/ui/component/SeedPhraseBackupAlert';
-import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
 const GlobalStyle = createGlobalStyle`
@@ -81,7 +80,7 @@ export const ProfileHeader: React.FC<{
                 <RcIconQrCodeCC />
               </div>
             </Popover>
-            <SeedPhraseBackupAlert className={clsx('rounded-[12px]')} />
+            <SeedPhraseBackupAlert compact className="ml-[4px]" />
           </div>
         </div>
       </div>

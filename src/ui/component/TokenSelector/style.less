@@ -39,8 +39,11 @@
           color: var(--r-neutral-foot, #71717a) !important;
         }
       }
-      &:hover,
-      &.active {
+      &:hover {
+        border-color: var(--crb-input-border-hover);
+      }
+      &.active,
+      &.ant-input-affix-wrapper-focused {
         border-color: var(--r-blue-default, #f26b3a);
       }
     }
@@ -203,13 +206,12 @@
         opacity: 0.5;
         cursor: default;
       }
+      /* hover is a neutral tint; coral means selected, not pointed at */
       &:not(.token-disabled):hover {
-        border: 1px solid var(--r-blue-default, #f26b3a);
-        background: var(--r-blue-light1, #fdefe9);
-
-        .symbol_click {
-          color: var(--r-blue-default, #f26b3a);
-        }
+        background: var(--crb-hover);
+      }
+      &:not(.token-disabled):active {
+        background: var(--crb-press);
       }
     }
     &.empty {

@@ -27,9 +27,10 @@ import IconCheck from 'ui/assets/check.svg';
 
 import { CopyChecked } from '@/ui/component/CopyChecked';
 import SkeletonInput from 'antd/lib/skeleton/Input';
-import { CommonSignal } from '@/ui/component/ConnectStatus/CommonSignal';
-import { useBrandIcon } from '@/ui/hooks/useBrandIcon';
+import { AddressAvatar } from '@/ui/component/ui/AddressAvatar';
 import { useHandleDeleteHdKeyringAndSimpleKeyringAccount } from '@/ui/hooks/useDeleteHdOrPrivateKeyringAddress';
+// ManageAddress renders these rows inside .page-address-management
+import './style.less';
 
 export interface AddressItemProps {
   balance: number;
@@ -150,13 +151,6 @@ const AddressItem = memo(
       };
     }, []);
 
-    const addressTypeIcon = useBrandIcon({
-      address,
-      brandName,
-      type,
-      forceLight: isCurrentAccount,
-    });
-
     return (
       <div className={clsx(className, 'rabby-address-item-container relative')}>
         {canFastDeleteAccount && (
@@ -205,19 +199,11 @@ const AddressItem = memo(
                 )}
               >
                 <div className="relative flex-none">
-                  <img
-                    src={addressTypeIcon}
-                    className={
-                      isCurrentAccount
-                        ? 'w-[32px] h-[32px]'
-                        : 'w-[24px] h-[24px]'
-                    }
-                  />
-                  <CommonSignal
+                  <AddressAvatar
+                    address={address}
                     type={type}
                     brandName={brandName}
-                    address={address}
-                    className={isCurrentAccount ? 'bottom-0 right-0' : ''}
+                    size={isCurrentAccount ? 36 : 32}
                   />
                 </div>
               </Tooltip>

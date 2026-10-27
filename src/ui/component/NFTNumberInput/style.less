@@ -1,10 +1,11 @@
 .number-input {
   display: flex;
   height: 24px;
-  input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
-  input[type="number"]{
+  input[type='number'] {
     -moz-appearance: textfield;
   }
   .ant-input {
@@ -12,12 +13,16 @@
     height: 100%;
     background: transparent;
     border-radius: 0;
-    border: 0.5px solid #B4BDCC;
-    &:hover, &:focus, .ant-input-focused {
-      border-right-width: 0.5px !important;
+    border: 1px solid var(--crb-input-border);
+    text-align: center;
+    &:hover,
+    &:focus,
+    .ant-input-focused {
+      border-right-width: 1px !important;
+      box-shadow: none;
     }
     &[disabled]:hover {
-      border-color: #B4BDCC;
+      border-color: var(--crb-input-border);
     }
   }
   .action {
@@ -26,21 +31,25 @@
     height: 24px;
     line-height: 24px;
     text-align: center;
-    color: #4B4D59;
-    border: 0.5px solid #B4BDCC;
+    color: var(--r-neutral-title-1);
+    border: 1px solid var(--crb-input-border);
     user-select: none;
     cursor: pointer;
+    transition: background-color 0.15s var(--crb-ease);
+    &:hover:not(.disabled) {
+      background: var(--crb-hover);
+    }
     &.disabled {
-      color: #B4BDCC;
+      color: var(--crb-disabled-fg);
       cursor: not-allowed;
     }
     &.left {
       border-right: none;
-      border-radius: 2px 0px 0px 2px;
+      border-radius: 8px 0px 0px 8px;
     }
     &.right {
       border-left: none;
-      border-radius: 0px 2px 2px 0px;
+      border-radius: 0px 8px 8px 0px;
     }
   }
 }

@@ -1,4 +1,5 @@
-import { ReactComponent as RcIconSwapHistory } from '@/ui/assets/swap/history-cc.svg';
+import { History as HistoryIcon, SquareArrowOutUpRight } from 'lucide-react';
+import { IconButton } from '@/ui/component/ui/IconButton';
 
 import { PageHeader } from '@/ui/component';
 import React, { useCallback, useState } from 'react';
@@ -9,7 +10,6 @@ import { useSwapStore } from '@/ui/state/swap';
 import { RabbyFeePopup } from './RabbyFeePopup';
 import { useHistory } from 'react-router-dom';
 import { getUiType } from '@/ui/utils';
-import { RcIconJumpBoldCC } from '@/ui/assets/dashboard';
 const isTab = getUiType().isTab;
 const isDesktop = getUiType().isDesktop;
 
@@ -59,23 +59,21 @@ export const Header = ({
           canBack={!isTab}
           isShowAccount
           rightSlot={
-            <div className="flex items-center gap-[16px] absolute top-[50%] translate-y-[-50%] right-0">
+            <div className="flex items-center gap-[2px] absolute top-[50%] translate-y-[-50%] right-[-6px]">
               {isTab ? null : (
-                <div
-                  className="text-r-neutral-title1 hover:text-r-blue-default cursor-pointer relative hit-slop-8"
-                  onClick={() => {
-                    onOpenInTab?.();
-                  }}
+                <IconButton
+                  label={t('page.dashboard.assets.openInTabV2')}
+                  onClick={() => onOpenInTab?.()}
                 >
-                  <RcIconJumpBoldCC />
-                </div>
+                  <SquareArrowOutUpRight size={18} strokeWidth={2} />
+                </IconButton>
               )}
-              <div
-                className="relative hit-slop-8 cursor-pointer text-r-neutral-title1 hover:text-r-blue-default"
+              <IconButton
+                label={t('page.swap.swap-history')}
                 onClick={openHistory}
               >
-                <RcIconSwapHistory />
-              </div>
+                <HistoryIcon size={18} strokeWidth={2} />
+              </IconButton>
             </div>
           }
         >

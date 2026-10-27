@@ -20,8 +20,8 @@ import { Trans, useTranslation } from 'react-i18next';
 
 import { CommonSignal } from '@/ui/component/ConnectStatus/CommonSignal';
 import { CopyChecked } from '@/ui/component/CopyChecked';
-import { useBrandIcon } from '@/ui/hooks/useBrandIcon';
-import IconCheck from 'ui/assets/check-3.svg';
+import { AddressAvatar } from '@/ui/component/ui/AddressAvatar';
+import { SelectedMark } from '@/ui/component/ui/SelectedMark';
 import { AddressViewer, Popup } from 'ui/component';
 import { splitNumberByStep, useAlias, useCexId } from 'ui/utils';
 import { ReactComponent as RcWhitelistGuardBordered } from '@/ui/assets/component/whitelist-guard-bordered.svg';
@@ -141,12 +141,6 @@ export const AccountItem = memo(
       };
     }, []);
 
-    const addressTypeIcon = useBrandIcon({
-      address,
-      brandName,
-      type,
-      forceLight: false,
-    });
     const cexLogo = useMemo(() => {
       if (type === KEYRING_CLASS.WATCH) {
         return cexInfo?.logo;
@@ -224,13 +218,7 @@ export const AccountItem = memo(
                   size="large"
                   type="ghost"
                   onClick={() => destroy()}
-                  className={clsx(
-                    'w-[200px]',
-                    'text-blue-light',
-                    'border-blue-light',
-                    'hover:bg-[var(--crb-sunken)] active:bg-[#0000001A]',
-                    'before:content-none'
-                  )}
+                  className={clsx('w-[200px]', 'before:content-none')}
                 >
                   {t('global.Cancel')}
                 </Button>
@@ -254,11 +242,11 @@ export const AccountItem = memo(
         hideBalance={hideBalance}
         className={clsx(
           className,
-          'relative flex items-center px-[15px] py-[11px] gap-[8px]',
+          'relative flex items-center px-[14px] py-[11px] gap-[12px]',
           'border-[1px] border-solid border-transparent rounded-[12px]',
           disabled
             ? 'cursor-default'
-            : 'cursor-pointer hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]'
+            : 'cursor-pointer hover:bg-[var(--crb-hover)]'
         )}
         style={style}
         onClick={handleClick}
@@ -276,10 +264,17 @@ export const AccountItem = memo(
           }
         >
           <div className="relative flex-none">
-            <img
-              src={cexLogo || addressTypeIcon}
-              className={clsx('w-[28px] h-[28px]')}
-            />
+            {cexLogo ? (
+              <img src={cexLogo} className={clsx('w-[32px] h-[32px]')} />
+            ) : (
+              <AddressAvatar
+                address={address}
+                type={type}
+                brandName={brandName}
+                size={32}
+                signal={false}
+              />
+            )}
             {showWhitelistIcon ? (
               <Tooltip
                 overlayClassName="rectangle addressType__tooltip"
@@ -353,7 +348,7 @@ export const AccountItem = memo(
         </div>
         {(!disabled && rightIcon) || isSelected ? (
           <div className="flex justify-center items-center ml-auto">
-            {rightIcon || <img src={IconCheck} className="w-[20px] h-[20px]" />}
+            {rightIcon || <SelectedMark />}
           </div>
         ) : null}
       </HoverShowEditPenWrapper>

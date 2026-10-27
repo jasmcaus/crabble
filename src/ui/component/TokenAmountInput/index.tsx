@@ -26,8 +26,7 @@ import './style.less';
 import { normalizeInputNumber } from '@/constant/regexp';
 import { SendMaxButton } from '@/ui/views/SendToken/components/MaxButton';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as RcIconWalletCC } from '@/ui/assets/swap/wallet-cc.svg';
-import { ReactComponent as RcArrowDown } from './icons/arrow-down.svg';
+import { ChevronDown, Wallet } from 'lucide-react';
 import { ReactComponent as RcIconAmountModeSwitch } from '@/ui/assets/send-token/amount-mode-switch.svg';
 import styled from 'styled-components';
 import { RiskWarningTitle } from '../RiskWarningTitle';
@@ -519,9 +518,8 @@ const TokenAmountInput = ({
               </span>
             </>
           )}
-          <div className="text-r-neutral-foot ml-[6px]">
-            {/* <RcIconDownCC width={16} height={16} /> */}
-            <RcArrowDown width={20} height={20} />
+          <div className="text-r-neutral-foot ml-[4px]">
+            <ChevronDown size={16} strokeWidth={2.25} />
           </div>
         </div>
       </div>
@@ -558,7 +556,7 @@ const TokenAmountInput = ({
                     : 'text-r-neutral-foot'
                 )}
               >
-                <RcIconWalletCC viewBox="0 0 16 16" className="w-16 h-16" />
+                <Wallet size={14} strokeWidth={2} />
                 <span
                   className={clsx(
                     'truncate max-w-[90px] text-[13px] font-normal text-r-neutral-foot'

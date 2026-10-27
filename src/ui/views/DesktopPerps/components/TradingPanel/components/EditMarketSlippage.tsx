@@ -161,12 +161,7 @@ export const EditMarketSlippage: React.FC<EditMarketSlippageProps> = ({
             size="large"
             type="ghost"
             onClick={onCancel}
-            className={clsx(
-              'h-[44px]',
-              'text-blue-light',
-              'border-blue-light',
-              'before:content-none'
-            )}
+            className={clsx('h-[44px]', 'before:content-none')}
           >
             {t('global.Cancel')}
           </Button>

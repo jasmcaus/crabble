@@ -4,9 +4,8 @@ import { useRabbyDispatch } from '@/ui/store';
 import React, { useCallback, useState } from 'react';
 import { IDisplayedAccountWithBalance } from '@/ui/state/accountToDisplay';
 import { ReactComponent as IconPlus } from '@/ui/assets/address/plus.svg';
-import { ReactComponent as RcIconShowSeedPhrase } from '@/ui/assets/address/show-seed-phrase.svg';
-import { ReactComponent as RcIconDelete } from '@/ui/assets/address/delete-current-color.svg';
-import { ReactComponent as RcIconPlusButton } from '@/ui/assets/import/plus.svg';
+import { FileKey, Plus, Trash2 } from 'lucide-react';
+import { IconButton } from '@/ui/component/ui/IconButton';
 
 import { openInternalPageInTab, useWallet } from '@/ui/utils';
 
@@ -309,16 +308,20 @@ const ManageAddress = () => {
                     <div className="text-[15px] text-r-neutral-title-1 font-semibold tracking-[-0.01em]">
                       {TypedWalletObj?.[activeIndex]?.name}
                     </div>
-                    <div className="flex items-center gap-16">
+                    <div className="flex items-center gap-[2px] mr-[-6px]">
                       {isSeedPhrase && (
-                        <RcIconPlusButton
+                        <IconButton
+                          size="sm"
+                          label={t('page.manageAddress.add-address')}
                           onClick={handleAddSeedPhraseAddress}
-                          className="cursor-pointer text-r-neutral-body"
-                        />
+                        >
+                          <Plus size={16} strokeWidth={2} />
+                        </IconButton>
                       )}
                       {isSeedPhrase && (
-                        <RcIconShowSeedPhrase
-                          className="cursor-pointer text-r-neutral-body"
+                        <IconButton
+                          size="sm"
+                          label={t('page.manageAddress.backup-seed-phrase')}
                           onClick={() => {
                             if (TypedWalletObj?.[activeIndex]?.publicKey) {
                               backup(
@@ -327,10 +330,18 @@ const ManageAddress = () => {
                               );
                             }
                           }}
-                        />
+                        >
+                          <FileKey size={16} strokeWidth={2} />
+                        </IconButton>
                       )}
-                      <RcIconDelete
-                        className="cursor-pointer text-r-neutral-body hover:text-red-forbidden"
+                      <IconButton
+                        size="sm"
+                        label={
+                          isSeedPhrase
+                            ? t('page.manageAddress.delete-seed-phrase')
+                            : t('page.addressDetail.delete-address')
+                        }
+                        className="hover:text-r-red-default"
                         onClick={() => {
                           if (
                             TypedWalletObj?.[activeIndex]?.type ===
@@ -343,7 +354,9 @@ const ManageAddress = () => {
                             TypedWalletObj?.[activeIndex]?.list
                           );
                         }}
-                      />
+                      >
+                        <Trash2 size={16} strokeWidth={2} />
+                      </IconButton>
                     </div>
                   </div>
                 ) : null}

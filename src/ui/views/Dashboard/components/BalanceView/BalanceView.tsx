@@ -23,11 +23,12 @@ import React, {
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDebounce } from 'react-use';
-import { useCommonPopupView, useWallet } from 'ui/utils';
+import { formatCurrency, useCommonPopupView, useWallet } from 'ui/utils';
+import { getAppChainNames } from '@/ui/hooks/useAppChain';
 import { useQueryProjects } from 'ui/utils/portfolio';
 import { BalanceLabel } from './BalanceLabel';
 import { CurvePoint, CurveThumbnail } from './CurveView';
-import { formChartData, useCurve } from './useCurve';
+import { formChartData, getCurveCoverage, useCurve } from './useCurve';
 import {
   useHomeBalanceView,
   useRefreshHomeBalanceView,
@@ -348,7 +349,17 @@ export const BalanceView = ({
 
   const currentHover = isDebounceHover;
 
-  const currentBalance = currentHover ? curvePoint?.value || balance : balance;
+  const coverage = getCurveCoverage(balance, evmBalance, appChainIds);
+  const appChainNames = coverage.isPartial
+    ? getAppChainNames(appChainIds)
+    : null;
+
+  // a partial (EVM-only) curve can't stand in for net worth, so the headline
+  // keeps the real total and the hovered value goes in the chart tooltip
+  const currentBalance =
+    currentHover && !coverage.isPartial
+      ? curvePoint?.value || balance
+      : balance;
   const currentChangePercent = currentHover
     ? curvePoint?.changePercent || curveChartData?.changePercent
     : curveChartData?.changePercent;
@@ -381,10 +392,6 @@ export const BalanceView = ({
 
   const shouldRenderCurve =
     !shouldShowLoading && !hiddenBalance && !!curveChartData;
-
-  const showAppChainTips = useMemo(() => {
-    return evmBalance !== balance;
-  }, [evmBalance, balance]);
 
   const onClickOpenInDesktop = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -506,6 +513,8 @@ export const BalanceView = ({
               <span className="text-[12px] leading-[16px] font-medium text-r-neutral-foot tabular-nums">
                 {currentChangeValue ||
                   t('page.signTx.BroadcastMode.lowGasDeadline.24h')}
+                {coverage.isPartial &&
+                  ` · ${t('page.dashboard.home.evmChainsOnly')}`}
               </span>
             )}
           </div>
@@ -520,8 +529,7 @@ export const BalanceView = ({
               <CurveThumbnail
                 isHover={currentHover}
                 data={curveChartData}
-                showAppChainTips={showAppChainTips}
-                appChainIds={appChainIds}
+                showValueInTooltip={coverage.isPartial}
                 onHover={handleHoverCurve}
               />
             )}
@@ -534,6 +542,14 @@ export const BalanceView = ({
               </div>
             )}
           </div>
+          {coverage.isPartial && shouldRenderCurve && (
+            <div className="px-[12px] mt-[2px] text-[11px] leading-[14px] text-r-neutral-foot truncate">
+              {t('page.dashboard.home.chartExcludes', {
+                names: appChainNames || t('page.dashboard.home.appChains'),
+                value: formatCurrency(coverage.excludedValue, { currency }),
+              })}
+            </div>
+          )}
         </div>
       </div>
     </div>

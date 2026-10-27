@@ -6,7 +6,7 @@ import { Tooltip } from 'antd';
 import clsx from 'clsx';
 import { useRabbySelector } from '@/ui/store';
 import ChainIcon from '../../ChainIcon';
-import IconCheck from 'ui/assets/check-2.svg';
+import { SelectedMark } from '@/ui/component/ui/SelectedMark';
 import IconPinned, {
   ReactComponent as RcIconPinned,
 } from 'ui/assets/icon-pinned.svg';
@@ -182,7 +182,7 @@ export const SelectChainItem = forwardRef(
               }}
             />
             {value === data.enum ? (
-              <img className="select-chain-item-checked" src={IconCheck}></img>
+              <SelectedMark className="select-chain-item-checked" />
             ) : null}
           </div>
           {!!shortReason && (

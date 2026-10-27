@@ -851,7 +851,9 @@
       "receiveOn": "Receive {{token}} on",
       "receiveTitle": "Receive {{token}}",
       "addCustomNetwork": "Add custom network",
-      "supportedChain": "Supported chains"
+      "supportedChain": "Supported chains",
+      "hideAccount": "Hide account",
+      "showAccount": "Show account"
     },
     "sendToken": {
       "addressNotInContract": "Not on address list. <1></1><2>Add to contacts</2>",
@@ -2595,6 +2597,13 @@
       "enterPassphraseTitle": "Enter Passphrase to Sign",
       "passphraseError": "Passphrase invalid",
       "addNewAddress": "Add New Address",
+      "accounts": "Accounts",
+      "totalAssets": "Total assets",
+      "watchingValue": "Watching {{value}}",
+      "accountDetails": "Account details",
+      "manage": "Manage",
+      "current": "Current",
+      "pinned": "Pinned",
       "CurrentDappAddress": {
         "desc": "Switch Dapp Address"
       }
@@ -2658,6 +2667,9 @@
         "chainEnd": " chain",
         "appChainTips": "Hyperliquid & Polymarket Account not included",
         "slotAppChainTips": "{{appChainNames}} Account not included",
+        "evmChainsOnly": "EVM chains",
+        "chartExcludes": "Chart excludes {{names}} · {{value}}",
+        "appChains": "app chains",
         "stablecoinSwapPopup": {
           "title": "0% Swap Fee For",
           "supportPrefix": "Support",
@@ -4063,7 +4075,7 @@
     },
     "gasAccount": {
       "gasFee": "Gas fee",
-      "title": "GasAccount",
+      "title": "Gas Account",
       "gasDeposit": "Gas Deposit",
       "gasToken": "Gas Token",
       "deposit": "Deposit",
@@ -4962,7 +4974,9 @@
       "description": "LP tokens are issued by the DeFi protocols where you've deposited your assets. They serve as the proof of those assets, but their value isn't included in your total balance"
     },
     "SeedPhraseBackupAlert": {
-      "message": "Wallet Not Backed Up. Start Backup."
+      "message": "Wallet Not Backed Up. Start Backup.",
+      "title": "Back up your seed phrase",
+      "desc": "It's the only way to recover this wallet"
     },
     "DesktopAccountSelector": {
       "selectAddress": "Select Address"

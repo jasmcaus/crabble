@@ -182,3 +182,5 @@ export const useCurve = (
     refresh,
   };
 };
+
+export { getCurveCoverage } from './curveCoverage';

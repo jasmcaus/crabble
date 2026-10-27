@@ -1098,7 +1098,7 @@ export const Main = () => {
 
   const twoStepApproveCn = useCss({
     '& .ant-modal-content': {
-      background: '#fff',
+      background: 'var(--r-neutral-bg-1)',
     },
     '& .ant-modal-body': {
       padding: '12px 8px 32px 16px',
@@ -1205,7 +1205,7 @@ export const Main = () => {
           canScrollContent ? 'overflow-auto' : 'overflow-hidden'
         )}
       >
-        <div className="mx-20 flex flex-col gap-2 overflow-hidden rounded-lg">
+        <div className="mx-20 flex flex-col gap-2 overflow-hidden rounded-[16px] shadow-[var(--crb-shadow-card)]">
           <ChainSelectorInForm
             swap
             value={chain}
@@ -1224,7 +1224,7 @@ export const Main = () => {
             zIndex={1111}
           />
 
-          <div className="relative rounded-b-lg bg-r-neutral-card-1">
+          <div className="relative bg-[var(--crb-card-solid)]">
             <SwapTokenItem
               inSufficient={inSufficient}
               slider={slider}
@@ -1469,7 +1469,7 @@ export const Main = () => {
                       type="primary"
                       block
                       size="large"
-                      className="h-[48px] rounded-md text-white text-[16px] font-medium"
+                      className="h-[48px] text-[16px] font-medium"
                       loading={isSubmitLoading}
                       onClick={() => {
                         if (!isSupportedChain && externalDapps.length > 0) {

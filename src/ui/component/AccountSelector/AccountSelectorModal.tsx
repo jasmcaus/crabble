@@ -7,7 +7,7 @@ import { useRabbyDispatch } from '@/ui/store';
 import { useWhitelistStore } from '@/ui/state/whitelist';
 import clsx from 'clsx';
 import { KEYRING_TYPE } from 'consts';
-import IconSearch from 'ui/assets/search.svg';
+import { Search } from 'lucide-react';
 
 import { Account } from '@/background/service/preference';
 import { useAccounts } from '@/ui/hooks/useAccounts';
@@ -31,24 +31,10 @@ const Warper = styled.div`
   flex-direction: column;
 
   .header.header {
-    padding-bottom: 16px;
-    background: var(--r-neutral-bg2, #f4f4f5);
+    padding-bottom: 12px;
     flex-shrink: 0;
     .ant-input-affix-wrapper {
-      border: 1px solid var(--r-neutral-line, rgba(255, 255, 255, 0.1));
-      background: var(--r-neutral-card-1, rgba(255, 255, 255, 0.06));
-      border-radius: 8px;
-      height: 44px;
-      border-width: 1px;
-
-      input::placeholder {
-        color: var(--r-neutral-foot, #71717a);
-      }
-    }
-
-    .ant-input-affix-wrapper:focus,
-    .ant-input-affix-wrapper-focused {
-      border-color: var(--r-blue-default);
+      height: 40px;
     }
   }
 
@@ -225,7 +211,13 @@ export const AccountSelectorModal = ({
         <Warper>
           <header className="header">
             <Input
-              prefix={<img src={IconSearch} />}
+              prefix={
+                <Search
+                  size={15}
+                  strokeWidth={2.25}
+                  className="text-r-neutral-foot"
+                />
+              }
               placeholder={t(
                 'component.AccountSelectorModal.searchPlaceholder'
               )}
@@ -245,11 +237,6 @@ export const AccountSelectorModal = ({
                 !prev ||
                 (prev?.type !== KEYRING_TYPE.WatchAddressKeyring &&
                   current?.type === KEYRING_TYPE.WatchAddressKeyring);
-              const isGroupLast =
-                !next ||
-                (current?.type !== KEYRING_TYPE.WatchAddressKeyring &&
-                  next?.type === KEYRING_TYPE.WatchAddressKeyring);
-
               const isFavorite = highlightedAddresses.some(
                 (highlighted) =>
                   item.address === highlighted.address &&
@@ -261,25 +248,13 @@ export const AccountSelectorModal = ({
               return (
                 <>
                   <div
-                    style={{
-                      borderBottom:
-                        '0.5px solid var(--r-neutral-line, #E4E4E7)',
-                      background: 'var(--r-neutral-card1, #FFF)',
-                      ...(isGroupFirst
-                        ? {
-                            borderTopLeftRadius: 12,
-                            borderTopRightRadius: 12,
-                          }
-                        : {}),
-                      ...(isGroupLast
-                        ? {
-                            borderBottomLeftRadius: 12,
-                            borderBottomRightRadius: 12,
-                            marginBottom: 16,
-                            borderBottom: 'none',
-                          }
-                        : {}),
-                    }}
+                    className={clsx(
+                      'rounded-[14px]',
+                      isGroupFirst && index > 0 && 'mt-[12px]',
+                      !!value &&
+                        isSameAccount(item, value) &&
+                        'bg-r-neutral-card1 shadow-[var(--crb-shadow-card)]'
+                    )}
                   >
                     <AccountItem
                       className="group"

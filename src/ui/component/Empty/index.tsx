@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { Inbox } from 'lucide-react';
 import React, { ReactNode } from 'react';
 import './style.less';
 
@@ -13,7 +14,9 @@ interface EmptyProps {
 const Empty = ({ className, style, children, title, desc }: EmptyProps) => {
   return (
     <div className={clsx('rabby-empty', className)} style={style}>
-      <img className="rabby-empty-image" src="./images/nodata-tx.png" />
+      <div className="rabby-empty-image" aria-hidden>
+        <Inbox size={22} strokeWidth={1.75} />
+      </div>
       <div className="rabby-empty-content">
         {title && <div className="rabby-empty-title">{title}</div>}
         <div className="rabby-empty-desc">{children ? children : desc}</div>

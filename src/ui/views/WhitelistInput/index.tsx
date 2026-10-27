@@ -51,7 +51,9 @@ const StyledInputWrapper = styled.div`
   .ant-input {
     font-size: 16px !important;
     background: var(--r-neutral-card1, #ffffff) !important;
-    &:hover,
+    &:hover {
+      border-color: var(--crb-input-border-hover) !important;
+    }
     &:focus {
       border-color: var(--r-blue-default) !important;
     }
@@ -331,7 +333,7 @@ const WhitelistInput = () => {
         className={clsx(
           'send-token',
           isDesktop || isTab
-            ? 'w-full h-full overflow-auto min-h-0 rounded-[12px] shadow-[0px_24px_64px_-12px_rgba(9,9,11,0.18)'
+            ? 'w-full h-full overflow-auto min-h-0 rounded-[12px] shadow-[var(--crb-shadow-raised)]'
             : ''
         )}
       >
