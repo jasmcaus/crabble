@@ -138,7 +138,7 @@ const AddressInfo1 = ({ address, type, brandName, source }: Props) => {
 
   return (
     <div className="rabby-list">
-      <div className="rabby-list-item">
+      <div className="rabby-list-item no-hover">
         <div className="rabby-list-item-content pr-11">
           <div className="rabby-list-item-label">
             {t('page.addressDetail.address')}
@@ -157,7 +157,7 @@ const AddressInfo1 = ({ address, type, brandName, source }: Props) => {
           <div className="rabby-list-item-arrow"></div>
         </div>
       </div>
-      <div className="rabby-list-item">
+      <div className="rabby-list-item no-hover">
         <div className="rabby-list-item-content">
           <div className="rabby-list-item-label">
             {t('page.addressDetail.address-note')}
@@ -173,7 +173,7 @@ const AddressInfo1 = ({ address, type, brandName, source }: Props) => {
           </div>
         </div>
       </div>
-      <div className="rabby-list-item">
+      <div className="rabby-list-item no-hover">
         <div className="rabby-list-item-content">
           <div className="rabby-list-item-label">
             {t('page.addressDetail.assets')}
@@ -186,7 +186,7 @@ const AddressInfo1 = ({ address, type, brandName, source }: Props) => {
           </div>
         </div>
       </div>
-      <div className="rabby-list-item">
+      <div className="rabby-list-item no-hover">
         <div className="rabby-list-item-content">
           <div className="rabby-list-item-label">
             {t('page.addressDetail.qr-code')}
@@ -210,7 +210,7 @@ const AddressInfo1 = ({ address, type, brandName, source }: Props) => {
           </div>
         </div>
       </div>
-      <div className="rabby-list-item">
+      <div className="rabby-list-item no-hover">
         <div className="rabby-list-item-content">
           <div className="rabby-list-item-label">
             {t('page.addressDetail.source')}
@@ -262,7 +262,7 @@ const AddressInfo1 = ({ address, type, brandName, source }: Props) => {
         )}
       </div>
       {accountInfo && (
-        <div className="rabby-list-item">
+        <div className="rabby-list-item no-hover">
           <div className="rabby-list-item-content">
             <div className="rabby-list-item-label">
               {t('page.addressDetail.hd-path')}

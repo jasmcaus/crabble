@@ -51,7 +51,9 @@ const StyledInputWrapper = styled.div`
   .ant-input {
     font-size: 16px !important;
     background: var(--r-neutral-card1, #ffffff) !important;
-    &:hover,
+    &:hover {
+      border-color: var(--crb-input-border-hover) !important;
+    }
     &:focus {
       border-color: var(--r-blue-default) !important;
     }

@@ -53,7 +53,7 @@ export const SeedPhraseDeleteModal = ({
               onClick={() => {
                 onSubmit(item.deleteSeedPhrase);
               }}
-              className="bg-r-neutral-card-2 text-r-neutral-title-1 border border-transparent hover:border-[var(--crb-hairline-strong)] hover:bg-blue-light/20"
+              className="bg-r-neutral-card-2 text-r-neutral-title-1 border border-transparent hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken-hover)]"
             >
               {item.title}
             </Field>
