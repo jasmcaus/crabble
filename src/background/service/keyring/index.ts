@@ -51,7 +51,6 @@ import {
   passwordClearKey,
   PersistType,
 } from 'background/utils/password';
-import uninstalledMetricService from '../uninstalled';
 import { isEmpty } from 'lodash';
 import { sanitizeUnencryptedKeyringData } from './sanitizeUnencryptedKeyringData';
 import { SigningAttempt, withSigningDiagnostics } from './signing-diagnostics';
@@ -286,9 +285,6 @@ export class KeyringService extends EventEmitter {
             name: alias,
           });
         }
-        uninstalledMetricService.setWalletByKeyringType(
-          KEYRING_TYPE.SimpleKeyring
-        );
         return this.persistAllKeyrings.bind(this);
       })
       .then(this.setUnlocked.bind(this))
@@ -360,7 +356,6 @@ export class KeyringService extends EventEmitter {
       })
     );
 
-    uninstalledMetricService.setWalletByKeyringType(KEYRING_TYPE.SimpleKeyring);
     await this.persistAllKeyrings();
     await this._updateMemStoreKeyrings();
     this.setUnlocked();
@@ -687,7 +682,6 @@ export class KeyringService extends EventEmitter {
     return selectedKeyring
       .addAccounts(1)
       .then(() => {
-        uninstalledMetricService.setWalletByKeyringType(selectedKeyring.type);
         if (selectedKeyring.getAccountsWithBrand) {
           return selectedKeyring.getAccountsWithBrand();
         } else {

@@ -19,7 +19,6 @@ export function onBroadcastToUI<T extends BROADCAST_TO_UI_EVENTS>(
 
 type AllBackgroundStores = PersistedStoreMap & {
   preference: import('@/background/service/preference').PreferenceStore;
-  feedback: import('@/background/service/feedback').FeedbackServiceStore;
 };
 
 export function onBackgroundStoreChanged<S extends keyof AllBackgroundStores>(

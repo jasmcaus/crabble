@@ -10,12 +10,6 @@ import type {
 import { CHAINS_ENUM, DARK_MODE_TYPE } from '@/constant';
 import { changeLanguage } from '@/i18n';
 import { wallet } from '@/ui/wallet';
-import {
-  getDefaultRateGuideLastExposure,
-  LAST_EXPOSURE_VERSIONED_KEY,
-  RateGuideLastExposure,
-  userCouldRated,
-} from '@/utils/rateGuidance';
 
 export interface PreferenceState {
   externalLinkAck: boolean;
@@ -46,7 +40,6 @@ export interface PreferenceState {
   biometricUnlockEncryptedPassword?: string;
   biometricUnlockIv?: string;
   unlockPreferredMethod?: UnlockPreferredMethod;
-  rateGuideLastExposure?: RateGuideLastExposure;
   dashboardPanelOrder?: string[];
 
   /** @deprecated */
@@ -108,9 +101,6 @@ export type PreferenceActions = {
     iv?: string;
   }) => Promise<void>;
   setUnlockPreferredMethod: (method: UnlockPreferredMethod) => Promise<void>;
-  setRateGuideLastExposure: (
-    lastExposure: Partial<RateGuideLastExposure>
-  ) => Promise<void>;
 };
 
 export type PreferenceStore = PreferenceState & PreferenceActions;
@@ -144,19 +134,12 @@ export const getDefaultPreferenceState = (): PreferenceState => ({
   biometricUnlockEncryptedPassword: '',
   biometricUnlockIv: '',
   unlockPreferredMethod: 'biometric',
-  rateGuideLastExposure: getDefaultRateGuideLastExposure(),
   desktopTokensAllMode: false,
   dashboardPanelOrder: [],
 });
 
 export const selectIsReserveGasOnSendToken = (state: PreferenceState) =>
   state.reserveGasOnSendToken;
-
-export const selectRateGuideLastExposureTimestamp = (state: PreferenceState) =>
-  state.rateGuideLastExposure?.[LAST_EXPOSURE_VERSIONED_KEY]?.time;
-
-export const selectUserViewedRate = (state: PreferenceState) =>
-  userCouldRated(state.rateGuideLastExposure);
 
 export const usePreferenceStore = create<PreferenceStore>()((set, get) => ({
   ...getDefaultPreferenceState(),
@@ -319,20 +302,6 @@ export const usePreferenceStore = create<PreferenceStore>()((set, get) => ({
   async setUnlockPreferredMethod(unlockPreferredMethod) {
     await wallet.setUnlockPreferredMethod(unlockPreferredMethod);
     set({ unlockPreferredMethod });
-  },
-  async setRateGuideLastExposure(lastExposure) {
-    await wallet.setRateGuideLastExposure(lastExposure);
-    set({
-      rateGuideLastExposure: {
-        ...getDefaultRateGuideLastExposure(),
-        ...lastExposure,
-        [LAST_EXPOSURE_VERSIONED_KEY]: {
-          time: -1,
-          userViewedRate: false,
-          ...lastExposure[LAST_EXPOSURE_VERSIONED_KEY],
-        },
-      },
-    });
   },
 }));
 

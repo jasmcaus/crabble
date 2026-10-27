@@ -45,7 +45,7 @@ import {
 import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { useScroll } from 'react-use';
-import { useSize, useDebounceFn, useRequest, useMemoizedFn } from 'ahooks';
+import { useSize, useRequest, useMemoizedFn } from 'ahooks';
 import IconGnosis from 'ui/assets/walletlogo/safe.svg';
 import {
   bindApproval,
@@ -62,10 +62,7 @@ import { FooterBar } from './FooterBar/FooterBar';
 import Actions from './Actions';
 import { useRabbySelector } from '@/ui/store';
 import RuleDrawer from './SecurityEngine/RuleDrawer';
-import {
-  ContextActionData,
-  defaultRules,
-} from '@rabby-wallet/rabby-security-engine/dist/rules';
+import { ContextActionData } from '@rabby-wallet/rabby-security-engine/dist/rules';
 import { TokenDetailPopup } from '@/ui/views/Dashboard/components/TokenDetailPopup';
 import { useSignStore } from '@/ui/state/sign';
 import {
@@ -2198,17 +2195,6 @@ const SignTx = ({
     securityEngine.closeRuleDrawer();
   };
 
-  const { run: reportLogId } = useDebounceFn(
-    (rules) => {
-      wallet.openapi.postActionLog({
-        id: logId.current,
-        type: 'tx',
-        rules,
-      });
-    },
-    { wait: 1000 }
-  );
-
   const checkBlockedAddress = useMemoizedFn(async () => {
     try {
       const isBlockedFromPromise = wallet.openapi.isBlockedAddress(tx.from);
@@ -2647,38 +2633,6 @@ const SignTx = ({
     },
     []
   );
-
-  useEffect(() => {
-    if (
-      logId.current &&
-      isReady &&
-      isSecurityReady &&
-      securityEngineCtx.current
-    ) {
-      try {
-        const keys = Object.keys(securityEngineCtx.current);
-        const key: any = keys[0];
-        const notTriggeredRules = defaultRules.filter((rule) => {
-          return (
-            rule.requires.includes(key) &&
-            !engineResults.some((item) => item.id === rule.id)
-          );
-        });
-        reportLogId([
-          ...notTriggeredRules.map((rule) => ({
-            id: rule.id,
-            level: null,
-          })),
-          ...engineResults.map((result) => ({
-            id: result.id,
-            level: result.level,
-          })),
-        ]);
-      } catch (e) {
-        // IGNORE
-      }
-    }
-  }, [isReady, isSecurityReady, engineResults]);
 
   useEffect(() => {
     if (scrollRef.current && scrollInfo && scrollRefSize) {

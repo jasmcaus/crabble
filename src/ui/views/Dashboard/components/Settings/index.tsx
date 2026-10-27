@@ -104,8 +104,6 @@ import { EcosystemBanner } from './components/EcosystemBanner';
 import { ExtensionUpdateCard } from './components/ExtensionUpdateCard';
 import { ExtensionUpdateDialog } from './components/ExtensionUpdateDialog';
 import { useMemoizedFn } from 'ahooks';
-import RateModalTriggerOnSettings from '@/ui/component/RateModal/RateModalTriggerOnSettings';
-import { useMakeMockDataForRateGuideExposure } from '@/ui/component/RateModal/hooks';
 import { PwdForNonWhitelistedTxModal } from '@/ui/component/Whitelist/Modal';
 import { useCurrency } from '@/ui/hooks/useCurrency';
 import { useExtensionUpdateSettingsCard } from '@/ui/hooks/useExtensionUpdateSettingsCard';
@@ -917,10 +915,6 @@ const SettingsInner = ({
     syncCurrencyList();
   }, [visible, syncCurrencyList]);
 
-  const {
-    mockExposureRateGuide,
-    resetExposureRateGuide,
-  } = useMakeMockDataForRateGuideExposure();
   const renderData = {
     features: {
       label: t('page.dashboard.settings.features.label'),
@@ -1238,42 +1232,6 @@ const SettingsInner = ({
           onClick: handleClickClearWatchMode,
         },
         {
-          leftIcon: RcIconSettingsCodeCC,
-          content: <div className="shrink-0">Mock Exposure Rate Guidance</div>,
-          rightIcon: (
-            <div className="flex items-center justify-end gap-8">
-              <Button
-                type="link"
-                danger
-                onClick={(evt) => {
-                  evt.preventDefault();
-                  mockExposureRateGuide();
-                  message.success({
-                    className: 'toast-message-2025',
-                    content: 'Mock exposure rate guide data',
-                  });
-                }}
-              >
-                Mock
-              </Button>
-              <Button
-                type="primary"
-                ghost
-                onClick={(evt) => {
-                  evt.preventDefault();
-                  resetExposureRateGuide();
-                  message.success({
-                    className: 'toast-message-2025',
-                    content: 'Reset exposure rate guide mock data',
-                  });
-                }}
-              >
-                Reset
-              </Button>
-            </div>
-          ),
-        },
-        {
           leftIcon: RcIconSettingsGitForkCC,
           content: <span>Git Build Hash</span>,
           rightIcon: (
@@ -1503,9 +1461,7 @@ const SettingsInner = ({
               onUpdate={reloadForUpdate}
               onClose={dismissSettingsCard}
             />
-          ) : (
-            <RateModalTriggerOnSettings className="mb-[16px]" />
-          )}
+          ) : null}
 
           <div className="setting-block">
             <div className="setting-title">

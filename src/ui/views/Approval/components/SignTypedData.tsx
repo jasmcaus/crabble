@@ -4,7 +4,7 @@ import { useAsyncRetry } from 'react-use';
 import { Result } from '@rabby-wallet/rabby-security-engine';
 import { Button, Drawer, Modal, Skeleton } from 'antd';
 import { useScroll } from 'react-use';
-import { useSize, useDebounceFn } from 'ahooks';
+import { useSize } from 'ahooks';
 import { cloneDeep } from 'lodash';
 import { useQuery } from '@tanstack/react-query';
 import { createQueryKey } from '@/ui/query/queryKey';
@@ -44,10 +44,7 @@ import {
   isDeepJSON,
   normalizeTypeData,
 } from './TypedDataActions/utils';
-import {
-  Level,
-  defaultRules,
-} from '@rabby-wallet/rabby-security-engine/dist/rules';
+import { Level } from '@rabby-wallet/rabby-security-engine/dist/rules';
 import { isTestnetChainId, findChain } from '@/utils/chain';
 import { TokenDetailPopup } from '@/ui/views/Dashboard/components/TokenDetailPopup';
 import { useSignStore } from '@/ui/state/sign';
@@ -170,7 +167,6 @@ const SignTypedData = ({
   const scrollRefSize = useSize(scrollRef);
   const scrollInfo = useScroll(scrollRef);
   const securityEngineCtx = useRef<any>(null);
-  const logId = useRef('');
   const [isWatch, setIsWatch] = useState(false);
   const [isLedger, setIsLedger] = useState(false);
   const [footerShowShadow, setFooterShowShadow] = useState(false);
@@ -780,17 +776,6 @@ const SignTypedData = ({
     securityEngine.closeRuleDrawer();
   };
 
-  const { run: reportLogId } = useDebounceFn(
-    (rules) => {
-      wallet.openapi.postActionLog({
-        id: logId.current,
-        type: 'typed_data',
-        rules,
-      });
-    },
-    { wait: 1000 }
-  );
-
   const handleDrawerCancel = () => {
     setDrawerVisible(false);
   };
@@ -905,7 +890,6 @@ const SignTypedData = ({
         });
         return;
       }
-      logId.current = typedDataActionData.log_id;
       actionType.current = typedDataActionData.action?.type || '';
       const multi = typedDataActionData.action?.type === 'multi_actions';
       const actionsToParse = multi
@@ -1005,33 +989,6 @@ const SignTypedData = ({
       }
     }
   }, [scrollInfo, scrollRefSize]);
-
-  useEffect(() => {
-    if (logId.current && evaluationReady && securityEngineCtx.current) {
-      try {
-        const keys = Object.keys(securityEngineCtx.current);
-        const key: any = keys[0];
-        const notTriggeredRules = defaultRules.filter((rule) => {
-          return (
-            rule.requires.includes(key) &&
-            !engineResults.some((item) => item.id === rule.id)
-          );
-        });
-        reportLogId([
-          ...notTriggeredRules.map((rule) => ({
-            id: rule.id,
-            level: null,
-          })),
-          ...engineResults.map((result) => ({
-            id: result.id,
-            level: result.level,
-          })),
-        ]);
-      } catch (e) {
-        // IGNORE
-      }
-    }
-  }, [evaluationReady, securityEvaluation]);
 
   useEffect(
     () => () => {

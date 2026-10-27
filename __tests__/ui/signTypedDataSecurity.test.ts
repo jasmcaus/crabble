@@ -115,7 +115,6 @@ describe('SignTypedData security lifecycle', () => {
       getConnectedSite: jest.fn().mockResolvedValue(null),
       openapi: {
         parseCommon: jest.fn().mockResolvedValue(response(['a', 'b'])),
-        postActionLog: jest.fn(),
       },
       ruleEnableStatusChange: jest.fn().mockResolvedValue(undefined),
       getApproval: jest.fn().mockResolvedValue({

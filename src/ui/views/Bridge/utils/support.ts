@@ -1,6 +1,6 @@
-import { SCREENSHOT_FEEDBACK_ENTRY_CLICKED } from '@/constant/screenshot';
+import { openInTab } from '@/ui/utils';
 
-/** 复用右键截图反馈，截取当前界面。 */
+/** Opens the same support page as Settings > Feedback. */
 export const openBridgeSupport = () => {
-  window.dispatchEvent(new Event(SCREENSHOT_FEEDBACK_ENTRY_CLICKED));
+  openInTab('https://support.rabby.io/en/');
 };

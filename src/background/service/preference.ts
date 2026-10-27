@@ -19,11 +19,6 @@ import dayjs from 'dayjs';
 import type { IExtractFromPromise } from '@/ui/utils/type';
 import { OpenApiService } from '@rabby-wallet/rabby-api';
 import { getFirstPreferredLangCode } from './i18n';
-import {
-  getDefaultRateGuideLastExposure,
-  LAST_EXPOSURE_VERSIONED_KEY,
-  RateGuideLastExposure,
-} from '@/utils/rateGuidance';
 import { findChain } from '@/utils/chain';
 
 const version = process.env.release || '0';
@@ -146,8 +141,6 @@ export interface PreferenceStore {
   biometricUnlockIv?: string;
   unlockPreferredMethod?: UnlockPreferredMethod;
 
-  rateGuideLastExposure?: RateGuideLastExposure;
-
   /** @deprecated use desktopTabIds instead */
   desktopTabId?: number;
 
@@ -248,7 +241,6 @@ class PreferenceService {
         biometricUnlockIv: '',
         unlockPreferredMethod: 'biometric',
         userDataTrackingOptOut: true,
-        rateGuideLastExposure: getDefaultRateGuideLastExposure(),
         desktopTabId: undefined,
         desktopTabIds: {},
         desktopTokensAllMode: false,
@@ -1035,25 +1027,6 @@ class PreferenceService {
   };
   setIsHideEcologyNoticeDict = (v: Record<string | number, boolean>) => {
     this.store.isHideEcologyNoticeDict = v;
-  };
-
-  getRateGuideLastExposure = () => {
-    return (
-      this.store.rateGuideLastExposure || getDefaultRateGuideLastExposure()
-    );
-  };
-
-  setRateGuideLastExposure = (exposure: Partial<RateGuideLastExposure>) => {
-    this.store.rateGuideLastExposure = {
-      txCount: 0,
-      ...this.store.rateGuideLastExposure,
-      ...exposure,
-      [LAST_EXPOSURE_VERSIONED_KEY]: {
-        time: -1,
-        ...this.store.rateGuideLastExposure?.[LAST_EXPOSURE_VERSIONED_KEY],
-        ...exposure[LAST_EXPOSURE_VERSIONED_KEY],
-      },
-    };
   };
 
   updateDashboardPanelOrder = (order: string[]) => {

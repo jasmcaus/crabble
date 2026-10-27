@@ -1,5 +1,4 @@
 import { Card } from '@/ui/component/NewUserImport';
-import { useHideScreenshotContextMenu } from '@/ui/hooks/useScreenshotContextMenuVisible';
 import { openInTab, useWallet } from '@/ui/utils';
 import { useMemoizedFn } from 'ahooks';
 import { Button, Form, Input } from 'antd';
@@ -153,7 +152,6 @@ export const PasswordCard: React.FC<Props> = ({ onSubmit, step, onBack }) => {
     openInTab('https://rabby.io/docs/privacy', false);
   });
 
-  useHideScreenshotContextMenu();
   return (
     <Container>
       <Card

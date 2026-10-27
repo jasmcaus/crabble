@@ -19,12 +19,6 @@ export const initializeUIStore = () => {
         }
         break;
       }
-      case 'rateGuideLastExposure': {
-        preferenceActions.setField({
-          rateGuideLastExposure: payload.partials.rateGuideLastExposure,
-        });
-        break;
-      }
       case 'isEnabledPwdForNonWhitelistedTx': {
         preferenceActions.setField({
           isEnabledPwdForNonWhitelistedTx:

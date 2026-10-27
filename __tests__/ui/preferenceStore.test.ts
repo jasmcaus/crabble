@@ -3,15 +3,9 @@ import { changeLanguage } from '@/i18n';
 import {
   getDefaultPreferenceState,
   selectIsReserveGasOnSendToken,
-  selectRateGuideLastExposureTimestamp,
-  selectUserViewedRate,
   usePreferenceStore,
 } from '@/ui/state/preference';
 import { wallet } from '@/ui/wallet';
-import {
-  getDefaultRateGuideLastExposure,
-  LAST_EXPOSURE_VERSIONED_KEY,
-} from '@/utils/rateGuidance';
 
 jest.mock('@/i18n', () => ({
   changeLanguage: jest.fn(),
@@ -37,7 +31,6 @@ jest.mock('@/ui/wallet', () => ({
     setIsShowTestnet: jest.fn(),
     setLocale: jest.fn(),
     setNFTApprovalChain: jest.fn(),
-    setRateGuideLastExposure: jest.fn(),
     setReserveGasOnSendToken: jest.fn(),
     setThemeMode: jest.fn(),
     setTokenApprovalChain: jest.fn(),
@@ -71,8 +64,6 @@ describe('preference store', () => {
       reserveGasOnSendToken: false,
     });
     expect(selectIsReserveGasOnSendToken(state)).toBe(false);
-    expect(selectRateGuideLastExposureTimestamp(state)).toBe(-1);
-    expect(selectUserViewedRate(state)).toBe(false);
     expect('persist' in usePreferenceStore).toBe(false);
   });
 
@@ -187,9 +178,8 @@ describe('preference store', () => {
     expect(wallet.setThemeMode).toHaveBeenCalledWith(DARK_MODE_TYPE.dark);
   });
 
-  test('updates biometric and rate-guide state after background writes', async () => {
+  test('updates biometric state after background writes', async () => {
     (wallet.setBiometricUnlock as jest.Mock).mockResolvedValue(undefined);
-    (wallet.setRateGuideLastExposure as jest.Mock).mockResolvedValue(undefined);
 
     await usePreferenceStore.getState().setBiometricUnlock({
       enabled: true,
@@ -203,20 +193,5 @@ describe('preference store', () => {
       biometricUnlockEncryptedPassword: 'encrypted',
       biometricUnlockIv: 'iv',
     });
-
-    const lastExposure = getDefaultRateGuideLastExposure({
-      time: Date.now() - 1,
-      userViewedRate: false,
-    });
-    await usePreferenceStore
-      .getState()
-      .setRateGuideLastExposure(lastExposure);
-
-    expect(
-      usePreferenceStore.getState().rateGuideLastExposure?.[
-        LAST_EXPOSURE_VERSIONED_KEY
-      ]
-    ).toEqual(lastExposure[LAST_EXPOSURE_VERSIONED_KEY]);
-    expect(selectUserViewedRate(usePreferenceStore.getState())).toBe(true);
   });
 });

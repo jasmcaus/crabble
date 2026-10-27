@@ -26,7 +26,6 @@ import { KEYRING_TYPE } from '@/constant';
 import { useEnterPassphraseModal } from '@/ui/hooks/useEnterPassphraseModal';
 import { repeat } from 'lodash';
 import { useCheckSeedPhraseBackup } from '@/ui/utils/useCheckSeedPhraseBackup';
-import { useHideScreenshotContextMenu } from '@/ui/hooks/useScreenshotContextMenuVisible';
 
 const placeholderMnemonics = repeat('****** ', 12).trim();
 
@@ -51,7 +50,6 @@ const AddressBackupMnemonics: React.FC<{
   const wallet = useWallet();
   const currentAccount = useCurrentAccount();
   const backupAddress = state?.address || currentAccount?.address;
-  useHideScreenshotContextMenu();
 
   const onCopyMnemonics = React.useCallback(() => {
     copyTextToClipboard(data).then(() => {

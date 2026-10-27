@@ -64,7 +64,6 @@ const AccountItem = ({
   const ref = useRef<InputRef>(null);
   const updateRef = useRef(null);
   const init = useRef(false);
-  const wallet = useWallet();
 
   const update = React.useCallback(() => {
     updateAlias(localName.trim() ? localName : defaultName);
@@ -88,10 +87,6 @@ const AccountItem = ({
       ref.current?.focus();
     }
   }, [autoFocus]);
-
-  useEffect(() => {
-    wallet.uninstalledSyncStatus();
-  }, [wallet]);
 
   return (
     <AccountItemWrapper>

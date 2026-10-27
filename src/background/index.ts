@@ -63,12 +63,10 @@ import {
   transactionBroadcastWatchService,
   transactionHistoryService,
   transactionWatchService,
-  uninstalledService,
   whitelistService,
   OfflineChainsService,
   perpsService,
   transactionsService,
-  feedbackService,
 } from './service';
 import { customTestnetService } from './service/customTestnet';
 import { GasAccountServiceStore } from './service/gasAccount';
@@ -97,7 +95,6 @@ import { storage } from './webapi';
 import { metamaskModeService } from './service/metamaskModeService';
 import { ALARMS_SYNC_DEFAULT_RPC } from './utils/alarms';
 
-import { subscribeTxCompleted } from './subscriptions/rateGuidance';
 import extensionUpdateService from './service/extensionUpdate';
 
 // Register synchronously so update events can wake the MV3 service worker.
@@ -190,13 +187,11 @@ async function restoreAppState() {
   await HDKeyRingLastAddAddrTimeService.init();
   await bridgeService.init();
   await gasAccountService.init();
-  await uninstalledService.init();
   await metamaskModeService.init();
   await OfflineChainsService.init();
   await syncChainService.init();
   await perpsService.init();
   await transactionsService.init();
-  await feedbackService.init();
 
   // WS is lazy — subscribes only after the first content-script port attaches
   perpsLive.boot();
@@ -266,7 +261,6 @@ async function restoreAppState() {
     };
   }
   await sendReadyMessageToTabs();
-  subscribeTxCompleted({ preferenceService });
 
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === 'getBackgroundReady') {
@@ -306,7 +300,12 @@ async function restoreAppState() {
     }
   });
 
-  uninstalledService.setUninstalled();
+  // Builds before tracking was removed set Rabby's uninstall survey page and
+  // stored analytics install IDs. Clear both.
+  browser.runtime.setUninstallURL('').catch(() => undefined);
+  browser.storage.local
+    .remove(['clientId', 'extensionId', 'UninstalledMetric'])
+    .catch(() => undefined);
 }
 
 restoreAppState().catch((e) => {
@@ -460,9 +459,6 @@ browser.runtime.onConnect.addListener((port) => {
       if (port.name === 'popup') {
         preferenceService.setPopupOpen(true);
       }
-      feedbackService.setScreenshotContextMenuVisible(true).catch(() => {
-        // Reset the native menu for newly opened extension pages.
-      });
       browser.runtime.sendMessage({ type: 'pageOpened' });
       pm.send('message', { event: BACKGROUND_READY_MESSAGE });
     };
