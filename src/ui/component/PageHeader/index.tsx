@@ -82,7 +82,10 @@ const PageHeader = ({
               strokeWidth={2}
               className={clsx(
                 'icon icon-back',
-                keepBackLightVersion ? 'text-white' : 'text-r-neutral-title1',
+                // the "light version" is the light theme's dark glyph
+                keepBackLightVersion
+                  ? 'text-[#18181b]'
+                  : 'text-r-neutral-title1',
                 invertBack && 'filter invert'
               )}
             />

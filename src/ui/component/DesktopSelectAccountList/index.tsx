@@ -9,7 +9,7 @@ import { RcIconCopyCC } from '@/ui/assets/desktop/common';
 import { RcIconAddWalletCC, RcIconMoreCC } from '@/ui/assets/desktop/profile';
 import { useCurrentAccount } from '@/ui/hooks/backgroundState/useAccount';
 import { useAccounts } from '@/ui/hooks/useAccounts';
-import { useBrandIcon } from '@/ui/hooks/useBrandIcon';
+import { AddressAvatar } from '@/ui/component/ui/AddressAvatar';
 import { useEventBusListener } from '@/ui/hooks/useEventBusListener';
 import { IDisplayedAccountWithBalance } from '@/ui/state/accountToDisplay';
 import { useDesktopProfileStore } from '@/ui/state/desktopProfile';
@@ -162,10 +162,6 @@ const AccountItem: React.FC<{
 }> = ({ item, onClick, isSelected, isShowApprovalCount, isPined }) => {
   const dispatch = useRabbyDispatch();
   const history = useHistory();
-  const addressTypeIcon = useBrandIcon({
-    ...item,
-  });
-
   return (
     <div className="pb-[12px] group">
       <div
@@ -179,10 +175,12 @@ const AccountItem: React.FC<{
         )}
         onClick={onClick}
       >
-        <img
-          src={addressTypeIcon}
-          className={clsx('w-[24px] h-[24px]')}
-          alt=""
+        <AddressAvatar
+          address={item.address}
+          type={item.type}
+          brandName={item.brandName}
+          size={32}
+          signal={false}
         />
         <div className="flex flex-1 flex-col gap-[2px] min-w-0 desktop-account-item-content">
           <div className="flex items-center gap-[4px]">

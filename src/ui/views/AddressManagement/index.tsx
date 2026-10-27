@@ -30,7 +30,7 @@ import { useCurrency } from '@/ui/hooks/useCurrency';
 import { useEnterPassphraseModal } from '@/ui/hooks/useEnterPassphraseModal';
 import { IDisplayedAccountWithBalance } from '@/ui/state/accountToDisplay';
 import { useRabbyDispatch, useRabbySelector } from '@/ui/store';
-import { formatCurrency, isSameAddress, useAlias, useWallet } from '@/ui/utils';
+import { formatCurrency, isSameAddress, useWallet } from '@/ui/utils';
 import { sortAccountsByBalance } from '@/ui/utils/account';
 import { copyAddress } from '@/ui/utils/clipboard';
 import { obj2query } from '@/ui/utils/url';
@@ -50,6 +50,7 @@ type AccountGroup = {
 };
 
 const SEARCH_THRESHOLD = 6;
+const NO_SEEDS: string[] = [];
 
 const groupKey = (account: Account) => {
   if (account.type === KEYRING_CLASS.MNEMONIC) {
@@ -77,7 +78,12 @@ const shortAddress = (address: string) => {
  * Accounts grouped by wallet the way the user created them: one group per
  * seed phrase, then private keys, hardware and other brands, then watch-only.
  */
-const useAccountGroups = (accounts: Account[], keyword: string) => {
+const useAccountGroups = (
+  accounts: Account[],
+  keyword: string,
+  /** seed phrase public keys in keyring (creation) order */
+  seedOrder: string[]
+) => {
   const { t } = useTranslation();
   const highlighted = useRabbySelector(
     (s) => s.addressManagement.highlightedAddresses
@@ -96,16 +102,21 @@ const useAccountGroups = (accounts: Account[], keyword: string) => {
       byKey.set(key, [...(byKey.get(key) || []), account]);
     });
 
-    const seedPhraseCount = [...byKey.keys()].filter((k) => k.startsWith('hd:'))
-      .length;
-    let seedPhraseIndex = 0;
+    // number seed phrases by when they were added, not by balance, so
+    // "Seed Phrase 2" stays the same wallet as balances move
+    const seedRank = (key: string) => {
+      const idx = seedOrder.indexOf(key.slice('hd:'.length));
+      return idx === -1 ? Number.MAX_SAFE_INTEGER : idx;
+    };
+    const seedKeys = [...byKey.keys()]
+      .filter((k) => k.startsWith('hd:'))
+      .sort((a, b) => seedRank(a) - seedRank(b));
 
     const groups: AccountGroup[] = [...byKey.entries()].map(([key, list]) => {
       const { type, brandName } = list[0];
       let name = getWalletTypeName(brandName || type);
-      if (key.startsWith('hd:') && seedPhraseCount > 1) {
-        seedPhraseIndex += 1;
-        name = `${name} ${seedPhraseIndex}`;
+      if (key.startsWith('hd:') && seedKeys.length > 1) {
+        name = `${name} ${seedKeys.indexOf(key) + 1}`;
       }
       if (type === KEYRING_CLASS.WATCH) {
         name = t('page.manageAddress.watch-address');
@@ -120,7 +131,10 @@ const useAccountGroups = (accounts: Account[], keyword: string) => {
     groups.sort((a, b) => {
       if (a.type === KEYRING_CLASS.WATCH) return 1;
       if (b.type === KEYRING_CLASS.WATCH) return -1;
-      return getWalletScore(a.accounts) - getWalletScore(b.accounts);
+      return (
+        getWalletScore(a.accounts) - getWalletScore(b.accounts) ||
+        seedKeys.indexOf(a.key) - seedKeys.indexOf(b.key)
+      );
     });
 
     const visible = groups
@@ -131,7 +145,7 @@ const useAccountGroups = (accounts: Account[], keyword: string) => {
       .filter((g) => g.accounts.length > 0);
 
     return { groups: visible, isPinned };
-  }, [accounts, keyword, highlighted, t]);
+  }, [accounts, keyword, highlighted, seedOrder, t]);
 };
 
 /** which seed phrase groups still need a backup, keyed by group */
@@ -178,7 +192,6 @@ const AccountRow = ({
   children?: React.ReactNode;
 }) => {
   const { t } = useTranslation();
-  const [alias] = useAlias(account.address);
   const { currency } = useCurrency();
   const hiddenBalance = useRabbySelector((s) => s.preference.hiddenBalance);
   const [copied, setCopied] = useState(false);
@@ -195,6 +208,13 @@ const AccountRow = ({
         'rounded-[14px]',
         isCurrent && 'bg-r-neutral-card1 shadow-[var(--crb-shadow-card)]'
       )}
+      // the list isn't virtualised; let the browser skip off-screen rows
+      // for wallets with hundreds of accounts
+      style={
+        isCurrent
+          ? undefined
+          : { contentVisibility: 'auto', containIntrinsicSize: 'auto 60px' }
+      }
     >
       <div
         role="button"
@@ -224,9 +244,9 @@ const AccountRow = ({
           <div className="flex items-center gap-[4px] min-w-0">
             <span
               className="text-[14px] leading-[18px] font-medium text-r-neutral-title1 truncate"
-              title={alias || account.alianName}
+              title={account.alianName}
             >
-              {alias || account.alianName}
+              {account.alianName}
             </span>
             {isPinned && (
               <Pin
@@ -351,7 +371,17 @@ const AccountSwitcher = () => {
     fetchAllAccounts();
   }, []);
 
-  const { groups, isPinned } = useAccountGroups(accountsList, keyword);
+  const { data: seedOrder = NO_SEEDS } = useRequest(async () => {
+    const keyrings = await wallet.getAllClassAccounts();
+    return (keyrings || [])
+      .filter((k) => k.type === KEYRING_CLASS.MNEMONIC && !!k.publicKey)
+      .map((k) => k.publicKey as string);
+  });
+  const { groups, isPinned } = useAccountGroups(
+    accountsList,
+    keyword,
+    seedOrder
+  );
   const needsBackup = useSeedPhraseBackupStatus(groups);
 
   const { ownedTotal, watchedTotal, hasWatched } = useMemo(() => {
@@ -415,7 +445,9 @@ const AccountSwitcher = () => {
       onFinished() {
         history.push({
           pathname: '/settings/address-backup/mneonics',
-          state: { data, goBack: true },
+          // without the address the backup page confirms the *current*
+          // account's seed phrase, which may be a different one
+          state: { data, address, goBack: true },
         });
       },
       onCancel() {

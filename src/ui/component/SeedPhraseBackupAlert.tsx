@@ -16,7 +16,9 @@ import browser from 'webextension-polyfill';
 export const SeedPhraseBackupAlert: React.FC<{
   style?: React.CSSProperties;
   className?: string;
-}> = ({ style, className }) => {
+  /** a one-line pill for inline rows (desktop profile) instead of a card */
+  compact?: boolean;
+}> = ({ style, className, compact }) => {
   const { t } = useTranslation();
   const history = useHistory();
   const wallet = useWallet();
@@ -93,6 +95,26 @@ export const SeedPhraseBackupAlert: React.FC<{
 
   if (hasBackup) {
     return null;
+  }
+
+  if (compact) {
+    return (
+      <button
+        type="button"
+        style={style}
+        className={cn(
+          'inline-flex items-center gap-[6px] h-[28px] pl-[8px] pr-[6px] rounded-full border-0 cursor-pointer',
+          'bg-r-orange-light text-[12px] leading-[16px] font-medium text-r-orange-default whitespace-nowrap',
+          'transition-[filter] hover:brightness-[0.97] outline-none focus-visible:shadow-[var(--crb-ring)]',
+          className
+        )}
+        onClick={handleBackup}
+      >
+        <ShieldAlert size={14} strokeWidth={2.25} />
+        {t('component.SeedPhraseBackupAlert.message')}
+        <ChevronRight size={14} strokeWidth={2.25} />
+      </button>
+    );
   }
 
   return (
