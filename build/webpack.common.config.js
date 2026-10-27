@@ -377,7 +377,6 @@ const config = {
       dexie$: paths.rootResolve(`node_modules/dexie/${DEXIE_IMPORT_WRAPPER}`),
       moment: require.resolve('dayjs'),
       '@debank/common': require.resolve('@debank/common/dist/index-rabby'),
-      '@sentry/minimal$': paths.rootResolve('build/stubs/sentry-minimal.js'),
     },
     plugins: [new TSConfigPathsPlugin()],
     fallback: {

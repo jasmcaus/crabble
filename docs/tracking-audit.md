@@ -18,9 +18,12 @@ and what to check when merging upstream.
 | Screenshot feedback (`feedback.ts`, `ScreenshotContextMenu`) | Captured page plus the user's first addresses | `api.rabby.io` (Rabby support) |
 | "Data analysis" setting | Opt-out toggle for the above; onboarding switched it on | — |
 
-The Ledger WebHID transport still imports `@sentry/minimal` v6; the webpack
-configs alias it to a no-op stub (`build/stubs/sentry-minimal.js`), so no
-Sentry code ships. Keep the alias if the Ledger SDK is upgraded.
+The Ledger WebHID transport still imports `@sentry/minimal` v6; a
+`package.json` resolution installs a no-op stub package in its place
+(`build/stubs/sentry-minimal`), so no Sentry code ships. It has to be a
+package in `node_modules`, not a webpack alias, because Warden rejects
+third-party modules importing first-party files. Keep the resolution if the
+Ledger SDK is upgraded.
 
 Startup clears what earlier builds left behind: the uninstall URL and the
 `clientId`, `extensionId` and `UninstalledMetric` storage keys. Migration 11
