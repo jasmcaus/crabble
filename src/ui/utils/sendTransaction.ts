@@ -564,13 +564,6 @@ export const sendTransaction = async ({
     }
   }
 
-  const handleSendAfter = async () => {
-    const statsData = await wallet.getStatsData();
-
-    if (statsData?.signed) {
-    }
-  };
-
   // submit tx
   let hash = '';
   try {
@@ -602,9 +595,7 @@ export const sendTransaction = async ({
       result: undefined,
       account: account!,
     });
-    await handleSendAfter();
   } catch (e) {
-    await handleSendAfter();
     const err = new Error(e.message);
     err.name = FailedCode.SubmitTxFailed;
     eventBus.emit(EVENTS.COMMON_HARDWARE.REJECTED, e.message);
@@ -875,13 +866,6 @@ export const sendTransactionByMiniSignV2 = async ({
 
   onProgress?.('builded');
 
-  const handleSendAfter = async () => {
-    const statsData = await wallet.getStatsData();
-
-    if (statsData?.signed) {
-    }
-  };
-
   // submit tx
   let hash = '';
   const account = currentAccount;
@@ -913,9 +897,7 @@ export const sendTransactionByMiniSignV2 = async ({
       result: undefined,
       account: account,
     });
-    await handleSendAfter();
   } catch (e) {
-    await handleSendAfter();
     const err = new Error(e.message);
     err.name = FailedCode.SubmitTxFailed;
     eventBus.emit(EVENTS.COMMON_HARDWARE.REJECTED, e.message);
