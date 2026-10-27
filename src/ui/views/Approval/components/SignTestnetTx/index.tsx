@@ -18,7 +18,6 @@ import {
   DEFAULT_GAS_LIMIT_RATIO,
   HARDWARE_KEYRING_TYPES,
   INTERNAL_REQUEST_ORIGIN,
-  KEYRING_CATEGORY_MAP,
   KEYRING_CLASS,
   KEYRING_TYPE,
   MINIMUM_GAS_LIMIT,
@@ -30,7 +29,6 @@ import { normalizeTxParams } from '../SignTx';
 import { isHexString, toChecksumAddress } from '@ethereumjs/util';
 import { WaitingSignComponent } from '../map';
 import IconGnosis from 'ui/assets/walletlogo/safe.svg';
-import { matomoRequestEvent } from '@/utils/matomo-request';
 import i18n from '@/i18n';
 import GasSelectorHeader, {
   GasSelectorResponse,
@@ -40,7 +38,6 @@ import { Card } from '../Card';
 import { SignAdvancedSettings } from '../SignAdvancedSettings';
 import clsx from 'clsx';
 import { Modal } from 'antd';
-import { ga4 } from '@/utils/ga4';
 import { TestnetActions } from './Actions';
 import {
   ActionRequireData,
@@ -394,15 +391,6 @@ export const SignTestnetTx = ({
         )
       );
 
-      matomoRequestEvent({
-        category: 'Transaction',
-        action: 'init',
-        label: chain?.isTestnet ? 'Custom Network' : 'Integrated Network',
-      });
-      ga4.fireEvent(`Init_${chain?.isTestnet ? 'Custom' : 'Integrated'}`, {
-        event_category: 'Transaction',
-      });
-
       if (currentAccount.type === KEYRING_TYPE.GnosisKeyring) {
         setIsGnosisAccount(true);
       }
@@ -479,18 +467,6 @@ export const SignTestnetTx = ({
         // no cache, use the fast level in gasMarket
         gas = gasList.find((item) => item.level === 'normal')!;
       }
-
-      wallet.reportStats('createTransaction', {
-        type: currentAccount.brandName,
-        category: KEYRING_CATEGORY_MAP[currentAccount.type],
-        chainId: chain?.serverId || '',
-        createdBy: params?.$ctx?.ga ? 'rabby' : 'dapp',
-        source: params?.$ctx?.ga?.source || '',
-        trigger: params?.$ctx?.ga?.trigger || '',
-        networkType: chain?.isTestnet ? 'Custom Network' : 'Integrated Network',
-        swapUseSlider: params?.$ctx?.ga?.swapUseSlider ?? '',
-        gasLevel: gas?.level || 'normal',
-      });
 
       setSelectedGas(gas);
       setTx({
@@ -743,7 +719,6 @@ export const SignTestnetTx = ({
   };
 
   const handleCancel = () => {
-    //  gaEvent('cancel');
     rejectApproval('User rejected the request.');
   };
 
@@ -818,31 +793,6 @@ export const SignTestnetTx = ({
 
       return;
     }
-    // if (isGnosisAccount || isCoboArugsAccount) {
-    //   setDrawerVisible(true);
-    //   return;
-    // }
-
-    await wallet.reportStats('signTransaction', {
-      type: currentAccount.brandName,
-      chainId: chain?.serverId || '',
-      category: KEYRING_CATEGORY_MAP[currentAccount.type],
-      preExecSuccess: true,
-      createdBy: params?.$ctx?.ga ? 'rabby' : 'dapp',
-      source: params?.$ctx?.ga?.source || '',
-      trigger: params?.$ctx?.ga?.trigger || '',
-      networkType: chain?.isTestnet ? 'Custom Network' : 'Integrated Network',
-    });
-
-    matomoRequestEvent({
-      category: 'Transaction',
-      action: 'Submit',
-      label: chain?.isTestnet ? 'Custom Network' : 'Integrated Network',
-    });
-
-    ga4.fireEvent(`Submit_${chain?.isTestnet ? 'Custom' : 'Integrated'}`, {
-      event_category: 'Transaction',
-    });
 
     resolveApproval({
       ...transaction,

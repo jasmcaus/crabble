@@ -1,4 +1,3 @@
-import { matomoRequestEvent } from '@/utils/matomo-request';
 import type { UserFeedbackItem } from '@rabby-wallet/rabby-api/dist/types';
 import { Button } from 'antd';
 import clsx from 'clsx';
@@ -11,8 +10,6 @@ import { useInterval } from 'react-use';
 import { Popup } from 'ui/component';
 import { useRabbySelector } from 'ui/store';
 import { formatUsdValue, useWallet } from 'ui/utils';
-
-import { getKRCategoryByType } from '@/utils/transaction';
 
 import { Check, ChevronDown, Copy, History, Settings } from 'lucide-react';
 import { AddressAvatar } from '@/ui/component/ui/AddressAvatar';
@@ -28,7 +25,6 @@ import {
   useGasAccountInfoV2,
   useGasAccountLogin,
 } from '@/ui/views/GasAccount/hooks';
-import { ga4 } from '@/utils/ga4';
 import { useMemoizedFn } from 'ahooks';
 import styled from 'styled-components';
 import {
@@ -96,16 +92,6 @@ export const DashboardHeader: React.FC<{
   );
 
   const handleSwitchAddress = useMemoizedFn(() => {
-    matomoRequestEvent({
-      category: 'Front Page Click',
-      action: 'Click',
-      label: 'Change Address',
-    });
-
-    ga4.fireEvent('Click_ChangeAddress', {
-      event_category: 'Front Page Click',
-    });
-
     history.push('/switch-address');
   });
 
@@ -114,18 +100,6 @@ export const DashboardHeader: React.FC<{
       event.stopPropagation();
       if (!currentAccount) return;
       copyAddress(currentAccount.address);
-      matomoRequestEvent({
-        category: 'AccountInfo',
-        action: 'headCopyAddress',
-        label: [
-          getKRCategoryByType(currentAccount?.type),
-          currentAccount?.brandName,
-        ].join('|'),
-      });
-
-      ga4.fireEvent('Click_CopyAddress', {
-        event_category: 'Front Page Click',
-      });
     }
   );
 
@@ -296,15 +270,6 @@ const FeedbackEntry = () => {
       if (!lastRepliedFeedback) return;
 
       startViewingFeedback(lastRepliedFeedback);
-
-      // matomoRequestEvent({
-      //   category: 'Click_Header',
-      //   action: 'Click_Setting',
-      // });
-
-      // ga4.fireEvent('Click_Setting', {
-      //   event_category: 'Click_Header',
-      // });
     },
     [lastRepliedFeedback, startViewingFeedback]
   );

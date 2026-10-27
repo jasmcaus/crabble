@@ -7,10 +7,6 @@ import {
   getBridgeQuoteStatsParams,
 } from '@/ui/views/Bridge/utils/submit';
 
-jest.mock('@/stats', () => ({
-  report: jest.fn(),
-}));
-
 jest.mock('@/utils/chain', () => ({
   findChain: ({ serverId }: { serverId: string }) =>
     serverId === 'eth' ? { id: 1 } : { id: 56 },

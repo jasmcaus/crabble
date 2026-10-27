@@ -4,8 +4,6 @@ import ThemeIcon from '@/ui/component/ThemeMode/ThemeIcon';
 import { useRabbyDispatch, useRabbySelector } from '@/ui/store';
 import { usePerpsHomePnl } from '@/ui/views/Perps/hooks/usePerpsHomePnl';
 import { appIsDev } from '@/utils/env';
-import { ga4 } from '@/utils/ga4';
-import { matomoRequestEvent } from '@/utils/matomo-request';
 import {
   closestCenter,
   DndContext,
@@ -345,16 +343,6 @@ const SortablePanelItem: React.FC<{
         <div
           key={index}
           onClick={(evt) => {
-            matomoRequestEvent({
-              category: 'Dashboard',
-              action: 'clickEntry',
-              label: item.eventKey,
-            });
-
-            ga4.fireEvent(`Entry_${item.eventKey}`, {
-              event_category: 'Dashboard',
-            });
-
             onItemClick?.();
             item?.onClick(evt);
           }}
@@ -869,16 +857,6 @@ export const DashboardPanel: React.FC<{ onSettingClick?(): void }> = ({
 
   const runPanelItem = useMemoizedFn(
     (item: IPanelItem, evt: React.MouseEvent<HTMLElement>) => {
-      matomoRequestEvent({
-        category: 'Dashboard',
-        action: 'clickEntry',
-        label: item.eventKey,
-      });
-
-      ga4.fireEvent(`Entry_${item.eventKey}`, {
-        event_category: 'Dashboard',
-      });
-
       item.onClick(evt);
     }
   );

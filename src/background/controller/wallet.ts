@@ -108,10 +108,7 @@ import {
   isSameAddress,
   setPopupIcon,
 } from 'background/utils';
-import {
-  handleGasAccountLoginSuccess as syncGasAccountLoginSuccess,
-  trackGasAccountActiveStatus as trackCurrentGasAccountActiveStatus,
-} from '../utils/gasAccountLogin';
+import { handleGasAccountLoginSuccess as syncGasAccountLoginSuccess } from '../utils/gasAccountLogin';
 import {
   discoverGasAccountRuntimeState,
   GAS_ACCOUNT_DISCOVERY_TOP_BALANCE_ACCOUNT_LIMIT,
@@ -125,7 +122,6 @@ import KeystoneKeyring, {
   MemStoreDataReady,
 } from '../service/keyring/eth-keystone-keyring';
 import WatchKeyring from '@rabby-wallet/eth-watch-keyring';
-import stats, { EventParams } from '@/stats';
 import {
   generateAliasName,
   isFullVersionAccountType,
@@ -189,7 +185,6 @@ import {
 } from '../service/customTestnet';
 import { getKeyringBridge, hasBridge } from '../service/keyring/bridge';
 import { syncChainService } from '../service/syncChain';
-import { matomoRequestEvent } from '@/utils/matomo-request';
 import { BALANCE_LOADING_CONFS } from '@/constant/timeout';
 import { IExtractFromPromise } from '@/ui/utils/type';
 import { Wallet, thirdparty } from '@ethereumjs/wallet';
@@ -224,7 +219,6 @@ import Browser, { Windows } from 'webextension-polyfill';
 import { hashSafeMessage } from '@safe-global/protocol-kit';
 import { userGuideService } from '../service/userGuide';
 import { metamaskModeService } from '../service/metamaskModeService';
-import { ga4 } from '@/utils/ga4';
 import { bgRetryTxMethods } from '../utils/errorTxRetry';
 import {
   BridgeTxHistoryItem,
@@ -737,24 +731,9 @@ export class WalletController extends BaseController {
       ...others
     } = params;
 
-    stats.report('gasTopUpConfirm', {
-      topUpChain: toChainId,
-      topUpAmount: fromUsdValue,
-      topUpToken: gasTokenSymbol,
-      paymentChain: others.chainServerId,
-      paymentToken: paymentTokenSymbol,
-    });
-
     const account = await preferenceService.getCurrentAccount();
     if (!account) throw new Error(t('background.error.noCurrentAccount'));
     const txId = await this.sendToken(others);
-
-    stats.report('gasTopUpTxFinished', {
-      topUpChain: toChainId,
-      topUpAmount: fromUsdValue,
-      paymentChain: others.chainServerId,
-      paymentToken: paymentTokenSymbol,
-    });
 
     const postGasStationOrder = async () =>
       await this.openapi.postGasStationOrder({
@@ -768,21 +747,11 @@ export class WalletController extends BaseController {
         fromUsdValue,
       });
 
-    const reportGasTopUpPostGasStationOrder = () =>
-      stats.report('gasTopUpPostGasStationOrder', {
-        topUpChain: toChainId,
-        topUpAmount: fromUsdValue,
-        paymentChain: others.chainServerId,
-        paymentToken: paymentTokenSymbol,
-      });
-
     try {
       await postGasStationOrder();
-      reportGasTopUpPostGasStationOrder();
     } catch (error) {
       try {
         await postGasStationOrder();
-        reportGasTopUpPostGasStationOrder();
       } catch (error) {
         Sentry.captureException(
           new Error(
@@ -2657,10 +2626,6 @@ export class WalletController extends BaseController {
     });
   };
 
-  updateGa4EventTime = (timestamp: number) => {
-    preferenceService.setPreferencePartials({ ga4EventTime: timestamp });
-  };
-
   getLastTimeSendToken = () => preferenceService.getLastTimeSendToken();
   setLastTimeSendToken = (token: TokenItem) =>
     preferenceService.setLastTimeSendToken(token);
@@ -2895,27 +2860,6 @@ export class WalletController extends BaseController {
     }
 
     return discoverGasAccountRuntimeState(accounts, options);
-  };
-  setGasAccountBalanceState = (accountId?: string, hasBalance?: boolean) => {
-    gasAccountService.setCurrentBalanceState(accountId, hasBalance);
-  };
-
-  trackGasAccountActiveStatus = async () => {
-    const { sig, accountId } = this.getGasAccountSig();
-    return trackCurrentGasAccountActiveStatus(sig, accountId);
-  };
-
-  trackGasAccountActiveStatusOncePerDay = async () => {
-    if (gasAccountService.hasTrackedGa4ActiveToday()) {
-      return false;
-    }
-
-    const tracked = await this.trackGasAccountActiveStatus();
-    if (tracked) {
-      gasAccountService.markGa4ActiveTracked();
-    }
-
-    return tracked;
   };
 
   handleGasAccountLoginSuccess = async (
@@ -5711,9 +5655,6 @@ export class WalletController extends BaseController {
 
   removeCollectionStarred = preferenceService.removeCollectionStarred;
 
-  reportStats = (name: string, params: EventParams) => {
-    stats.report(name, params);
-  };
   getNeedSwitchWalletCheck = preferenceService.getNeedSwitchWalletCheck;
 
   updateNeedSwitchWalletCheck = preferenceService.updateNeedSwitchWalletCheck;
@@ -6222,14 +6163,6 @@ export class WalletController extends BaseController {
     return await keyring.scanAccount();
   };
 
-  setStatsData = (data: any) => {
-    notificationService.setStatsData(data);
-  };
-
-  getStatsData = () => {
-    return notificationService.getStatsData();
-  };
-
   _currentCoinbaseStashId?: undefined | null | number;
 
   connectCoinbase = async () => {
@@ -6657,20 +6590,7 @@ export class WalletController extends BaseController {
       };
     }
   ) => {
-    const source = ctx?.ga?.source || 'setting';
-
     const res = await customTestnetService.add(chain);
-    if (!('error' in res)) {
-      matomoRequestEvent({
-        category: 'Custom Network',
-        action: 'Success Add Network',
-        label: `${source}_${String(chain.id)}`,
-      });
-
-      ga4.fireEvent('Add_CustomNetwork', {
-        event_category: 'Custom Network',
-      });
-    }
     return res;
   };
   updateCustomTestnet = customTestnetService.update;
@@ -7153,8 +7073,6 @@ export class WalletController extends BaseController {
   };
 
   setReportGasLevel = miscService.setCurrentGasLevel;
-  getReportGasLevel = miscService.getCurrentGasLevel;
-
   getPendingExtensionVersion = extensionUpdateService.getPendingVersion;
   requestExtensionUpdateCheck = extensionUpdateService.requestUpdateCheck;
   reloadExtensionForUpdate = extensionUpdateService.reloadForUpdate;

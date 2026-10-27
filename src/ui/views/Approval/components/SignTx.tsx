@@ -1,4 +1,3 @@
-import stats from '@/stats';
 import {
   BlockInfo,
   calcGasLimit,
@@ -9,7 +8,6 @@ import {
   explainGas,
   GasTokenInfo,
   getGasTokenBalance,
-  getKRCategoryByType,
   getPendingTxs,
   applySelectedGasToTx,
   is7702Tx,
@@ -41,12 +39,10 @@ import {
   KEYRING_CLASS,
   KEYRING_TYPE,
   SUPPORT_1559_KEYRING_TYPE,
-  KEYRING_CATEGORY_MAP,
   GAS_TOP_UP_ADDRESS,
   ALIAS_ADDRESS,
 } from 'consts';
 import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
-import { matomoRequestEvent } from '@/utils/matomo-request';
 import { useTranslation, Trans } from 'react-i18next';
 import { useScroll } from 'react-use';
 import { useSize, useDebounceFn, useRequest, useMemoizedFn } from 'ahooks';
@@ -111,7 +107,6 @@ import {
   ActionRequireData,
   ParsedTransactionActionData,
 } from '@rabby-wallet/rabby-action';
-import { ga4 } from '@/utils/ga4';
 import { EIP7702Warning } from './EIP7702Warning';
 import { getEIP7702MiniGasLimit } from '@/background/utils/7702';
 import { MultiActionProps } from './TypedDataActions';
@@ -566,59 +561,6 @@ const SignTx = ({
   const preparationGasReadyRef = useRef(false);
   const signTxPreparationId = params.signTxPreparationId;
 
-  const gaEvent = async (type: 'allow' | 'cancel') => {
-    const ga:
-      | {
-          category: 'Send' | 'Security';
-          source: 'sendNFT' | 'sendToken' | 'nftApproval' | 'tokenApproval';
-          trigger: string;
-        }
-      | undefined = params?.$ctx?.ga;
-    if (!ga) {
-      return;
-    }
-    const { category, source, trigger } = ga;
-
-    if (category === 'Send') {
-      matomoRequestEvent({
-        category,
-        action: type === 'cancel' ? 'cancelSignTx' : 'signTx',
-        label: [
-          chain.name,
-          getKRCategoryByType(currentAccount.type),
-          currentAccount.brandName,
-          source === 'sendNFT' ? 'nft' : 'token',
-          trigger,
-        ].join('|'),
-        transport: 'beacon',
-      });
-    } else if (category === 'Security') {
-      let action = '';
-      if (type === 'cancel') {
-        if (source === 'nftApproval') {
-          action = 'cancelSignDeclineNFTApproval';
-        } else {
-          action = 'cancelSignDeclineTokenApproval';
-        }
-      } else {
-        if (source === 'nftApproval') {
-          action = 'signDeclineNFTApproval';
-        } else {
-          action = 'signDeclineTokenApproval';
-        }
-      }
-      matomoRequestEvent({
-        category,
-        action,
-        label: [
-          chain.name,
-          getKRCategoryByType(currentAccount.type),
-          currentAccount.brandName,
-        ].join('|'),
-        transport: 'beacon',
-      });
-    }
-  };
   const customRPCErrorModalRef = useRef(false);
   const triggerCustomRPCErrorModal = () => {
     if (customRPCErrorModalRef.current) return;
@@ -1571,17 +1513,6 @@ const SignTx = ({
       await invokeEnterPassphrase(account.address);
     }
 
-    wallet.reportStats('signTransaction', {
-      type: KEYRING_TYPE.GnosisKeyring,
-      category: KEYRING_CATEGORY_MAP[KEYRING_CLASS.GNOSIS],
-      chainId: chain.serverId,
-      preExecSuccess:
-        checkErrors.length > 0 || !txDetail?.pre_exec.success ? false : true,
-      createdBy: params?.$ctx?.ga ? 'rabby' : 'dapp',
-      source: params?.$ctx?.ga?.source || '',
-      trigger: params?.$ctx?.ga?.trigger || '',
-      networkType: chain?.isTestnet ? 'Custom Network' : 'Integrated Network',
-    });
     if (!isViewGnosisSafe) {
       const params: any = {
         from: tx.from,
@@ -1680,18 +1611,6 @@ const SignTx = ({
 
   const handleCoboArugsConfirm = async (account: Account) => {
     if (!coboArgusInfo || !(await canSubmitCurrentApproval())) return;
-
-    wallet.reportStats('signTransaction', {
-      type: KEYRING_TYPE.CoboArgusKeyring,
-      category: KEYRING_CATEGORY_MAP[KEYRING_CLASS.CoboArgus],
-      chainId: chain.serverId,
-      preExecSuccess:
-        checkErrors.length > 0 || !txDetail?.pre_exec.success ? false : true,
-      createdBy: params?.$ctx?.ga ? 'rabby' : 'dapp',
-      source: params?.$ctx?.ga?.source || '',
-      trigger: params?.$ctx?.ga?.trigger || '',
-      networkType: chain?.isTestnet ? 'Custom Network' : 'Integrated Network',
-    });
 
     let newTx;
 
@@ -1871,7 +1790,6 @@ const SignTx = ({
       !isCurrentSecurityEvaluation()
     )
       return;
-    gaEvent('allow');
 
     approval.signingTxId &&
       (await wallet.updateSigningTx(approval.signingTxId, {
@@ -1920,28 +1838,6 @@ const SignTx = ({
       setDrawerVisible(true);
       return;
     }
-
-    await wallet.reportStats('signTransaction', {
-      type: currentAccount.brandName,
-      chainId: chain.serverId,
-      category: KEYRING_CATEGORY_MAP[currentAccount.type],
-      preExecSuccess:
-        checkErrors.length > 0 || !txDetail?.pre_exec.success ? false : true,
-      createdBy: params?.$ctx?.ga ? 'rabby' : 'dapp',
-      source: params?.$ctx?.ga?.source || '',
-      trigger: params?.$ctx?.ga?.trigger || '',
-      networkType: chain?.isTestnet ? 'Custom Network' : 'Integrated Network',
-    });
-
-    matomoRequestEvent({
-      category: 'Transaction',
-      action: 'Submit',
-      label: chain?.isTestnet ? 'Custom Network' : 'Integrated Network',
-    });
-
-    ga4.fireEvent(`Submit_${chain?.isTestnet ? 'Custom' : 'Integrated'}`, {
-      event_category: 'Transaction',
-    });
 
     resolveApproval({
       ...submitTransaction,
@@ -2060,7 +1956,6 @@ const SignTx = ({
   const handleCancel = () => {
     explainEpochRef.current += 1;
     invalidateSecurity();
-    gaEvent('cancel');
     rejectApproval('User rejected the request.');
   };
 
@@ -2509,16 +2404,6 @@ const SignTx = ({
       const accountInitResultPromise = settle(accountInitPromise);
       await Promise.all([syncDefaultRPCPromise, loadInitialGasTokenState()]);
 
-      matomoRequestEvent({
-        category: 'Transaction',
-        action: 'init',
-        label: chain?.isTestnet ? 'Custom Network' : 'Integrated Network',
-      });
-
-      ga4.fireEvent(`Init_${chain?.isTestnet ? 'Custom' : 'Integrated'}`, {
-        event_category: 'Transaction',
-      });
-
       const accountInitResult = await accountInitResultPromise;
       if ('error' in accountInitResult) {
         throw accountInitResult.error;
@@ -2535,18 +2420,6 @@ const SignTx = ({
       );
       const { gasList, gas, fee, tx: selectedTx } = initialGasSelection;
       setGasList(gasList);
-
-      wallet.reportStats('createTransaction', {
-        type: currentAccount.brandName,
-        category: KEYRING_CATEGORY_MAP[currentAccount.type],
-        chainId: chain.serverId,
-        createdBy: params?.$ctx?.ga ? 'rabby' : 'dapp',
-        source: params?.$ctx?.ga?.source || '',
-        trigger: params?.$ctx?.ga?.trigger || '',
-        networkType: chain?.isTestnet ? 'Custom Network' : 'Integrated Network',
-        swapUseSlider: params?.$ctx?.ga?.swapUseSlider ?? '',
-        gasLevel: gas?.level || 'normal',
-      });
 
       setMaxPriorityFee(fee);
 
@@ -2688,13 +2561,6 @@ const SignTx = ({
       if (scrollRef.current && scrollRef.current.scrollTop > 0) {
         scrollRef.current && (scrollRef.current.scrollTop = 0);
       }
-      const duration = Date.now() - renderStartAt.current;
-      stats.report('signPageRenderTime', {
-        type: 'transaction',
-        actionType: actionType.current,
-        chain: chain?.serverId || '',
-        duration,
-      });
       reportedRenderDuration.current = true;
     }
   }, [isReady]);

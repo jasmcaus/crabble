@@ -13,30 +13,12 @@ import {
   useRateModal,
   useTotalBalanceTextForRate,
 } from './hooks';
-import { ga4 } from '@/utils/ga4';
 
 const StarLayoutSizes = {
   size: 32,
   gap: 20,
   paddingHorizontal: 8 / 2,
 };
-
-function starToText(number: number) {
-  switch (number) {
-    case 1:
-      return 'One';
-    case 2:
-      return 'Two';
-    case 3:
-      return 'Three';
-    case 4:
-      return 'Four';
-    case 5:
-      return 'Five';
-    default:
-      return 'Unknown';
-  }
-}
 
 export default function RateModalTriggerOnSettings({
   className,
@@ -52,8 +34,6 @@ export default function RateModalTriggerOnSettings({
 
   useEffect(() => {
     if (!shouldShowRateGuideOnHome) return;
-
-    ga4.fireEvent('Rate_Show', { event_category: 'Rate Rabby' });
   }, [shouldShowRateGuideOnHome]);
 
   const {
@@ -118,10 +98,6 @@ export default function RateModalTriggerOnSettings({
               evt.stopPropagation();
               toggleShowRateModal(true, {
                 starCountOnOpen: index + 1,
-              });
-
-              ga4.fireEvent(`Rate_Star_${starToText(userSelectedStar)}`, {
-                event_category: 'Rate Rabby',
               });
             }}
           />

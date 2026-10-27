@@ -1,14 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { matomoRequestEvent } from '@/utils/matomo-request';
 import { Account } from 'background/service/preference';
-import {
-  CHAINS,
-  WALLETCONNECT_STATUS_MAP,
-  EVENTS,
-  KEYRING_CATEGORY_MAP,
-  CHAINS_ENUM,
-} from 'consts';
+import { CHAINS, WALLETCONNECT_STATUS_MAP, EVENTS, CHAINS_ENUM } from 'consts';
 import {
   bindApproval,
   useApproval,
@@ -21,9 +14,8 @@ import Scan from './Scan';
 import { message } from 'antd';
 import { useSessionStatus } from '@/ui/component/WalletConnect/useSessionStatus';
 import { adjustV } from '@/ui/utils/gnosis';
-import { findChain, findChainByEnum } from '@/utils/chain';
+import { findChain } from '@/utils/chain';
 import { emitSignComponentAmounted } from '@/utils/signEvent';
-import { ga4 } from '@/utils/ga4';
 
 interface ApprovalParams {
   address: string;
@@ -234,56 +226,11 @@ const WatchAddressWaiting = ({
           status !== WALLETCONNECT_STATUS_MAP.REJECTED
         ) {
           if (!isText && !isSignTriggered) {
-            const explain = explainRef.current;
-            const chainInfo = findChainByEnum(chain);
-
             // const tx = approval.data?.params;
-            if (explain || chainInfo?.isTestnet) {
-              // const { nonce, from, chainId } = tx;
-              // const explain = await wallet.getExplainCache({
-              //   nonce: Number(nonce),
-              //   address: from,
-              //   chainId: Number(chainId),
-              // });
-
-              wallet.reportStats('signTransaction', {
-                type: account.brandName,
-                chainId: chainInfo?.serverId || '',
-                category: KEYRING_CATEGORY_MAP[account.type],
-                preExecSuccess: explain
-                  ? explain?.calcSuccess && explain?.pre_exec.success
-                  : true,
-                createdBy: params?.$ctx?.ga ? 'rabby' : 'dapp',
-                source: params?.$ctx?.ga?.source || '',
-                trigger: params?.$ctx?.ga?.trigger || '',
-                networkType: chainInfo?.isTestnet
-                  ? 'Custom Network'
-                  : 'Integrated Network',
-              });
-            }
-            matomoRequestEvent({
-              category: 'Transaction',
-              action: 'Submit',
-              label: chainInfo?.isTestnet
-                ? 'Custom Network'
-                : 'Integrated Network',
-            });
-
-            ga4.fireEvent(
-              `Submit_${chainInfo?.isTestnet ? 'Custom' : 'Integrated'}`,
-              {
-                event_category: 'Transaction',
-              }
-            );
 
             isSignTriggered = true;
           }
           if (isText && !isSignTriggered) {
-            wallet.reportStats('startSignText', {
-              type: account.brandName,
-              category: KEYRING_CATEGORY_MAP[account.type],
-              method: params?.extra?.signTextMethod,
-            });
             isSignTriggered = true;
           }
         }
