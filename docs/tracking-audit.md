@@ -18,6 +18,10 @@ and what to check when merging upstream.
 | Screenshot feedback (`feedback.ts`, `ScreenshotContextMenu`) | Captured page plus the user's first addresses | `api.rabby.io` (Rabby support) |
 | "Data analysis" setting | Opt-out toggle for the above; onboarding switched it on | — |
 
+The Ledger WebHID transport still imports `@sentry/minimal` v6; the webpack
+configs alias it to a no-op stub (`build/stubs/sentry-minimal.js`), so no
+Sentry code ships. Keep the alias if the Ledger SDK is upgraded.
+
 Startup clears what earlier builds left behind: the uninstall URL and the
 `clientId`, `extensionId` and `UninstalledMetric` storage keys. Migration 11
 drops the old `userDataTrackingOptOut` preference.
