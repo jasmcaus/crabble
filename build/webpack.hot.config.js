@@ -92,6 +92,7 @@ const commonConfig = {
     alias: {
       moment: require.resolve('dayjs'),
       '@debank/common': require.resolve('@debank/common/dist/index-rabby'),
+      '@sentry/minimal$': paths.rootResolve('build/stubs/sentry-minimal.js'),
     },
     plugins: [new TSConfigPathsPlugin()],
     fallback: {
