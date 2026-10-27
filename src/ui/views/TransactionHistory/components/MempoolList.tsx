@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   padding: 16px;
 
   .title {
-    color: var(--r-neutral-title-1, #192945);
+    color: var(--r-neutral-title-1, #09090b);
     font-size: 13px;
     font-weight: 500;
   }
@@ -33,9 +33,9 @@ const Wrapper = styled.div`
     gap: 10px;
 
     border-radius: 2px;
-    background: var(--r-blue-light-1, #eef1ff);
+    background: var(--r-blue-light-1, #fdefe9);
 
-    color: var(--r-blue-default, #7084ff);
+    color: var(--r-blue-default, #f26b3a);
     font-size: 13px;
     font-weight: 500;
     border: 1px solid transparent;
@@ -43,9 +43,9 @@ const Wrapper = styled.div`
 
     &:hover,
     &:active {
-      border: 1px solid var(--r-blue-default, #7084ff);
-      border: 0.5px solid var(--r-blue-default, #7084ff);
-      background: var(--r-blue-light-2, #dee3fc);
+      border: 1px solid var(--r-blue-default, #f26b3a);
+      border: 0.5px solid var(--r-blue-default, #f26b3a);
+      background: var(--r-blue-light-2, #fbe3d9);
     }
 
     cursor: pointer;
@@ -60,7 +60,7 @@ const Wrapper = styled.div`
     right: 0;
     background-color: var(--r-neutral-bg-1);
     padding: 16px;
-    border-radius: 0 0 8px 8px;
+    border-radius: 0 0 12px 12px;
 
     .btn {
       margin-top: 0;

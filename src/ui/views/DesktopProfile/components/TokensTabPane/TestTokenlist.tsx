@@ -57,7 +57,7 @@ interface TableProps {
 }
 
 const TokenRowWrapper = styled(TRow)`
-  border-bottom: 1px solid var(--rb-neutral-bg-4, #f2f4f7);
+  border-bottom: 1px solid var(--rb-neutral-bg-4, #f4f4f5);
   height: 60px;
   padding-left: 12px;
   padding-right: 16px;
@@ -65,7 +65,7 @@ const TokenRowWrapper = styled(TRow)`
     display: none !important;
   }
   &:hover {
-    background-color: var(--rb-neutral-bg-2, #f2f4f7);
+    background-color: var(--rb-neutral-bg-2, #f4f4f5);
     .swap-action-btn {
       display: block !important;
     }
@@ -98,7 +98,7 @@ const CustomTestnetTokenTable: React.FC<TableProps> = ({
   return (
     <Table className="w-full ml-0 mr-0">
       <THeader
-        className="w-full justify-between bg-rb-neutral-bg-1 rounded-[6px] py-8"
+        className="w-full justify-between bg-rb-neutral-bg-1 rounded-[8px] py-8"
         rowClassName="px-8"
       >
         <THeadCell className="flex-1">
@@ -204,9 +204,9 @@ export const CustomTestnetAssetList: React.FC<Props> = ({
         <div className="flex items-center gap-x-[12px]">
           <div
             className={clsx(
-              'rounded-[6px] bg-r-neutral-card1 px-[9px] py-[10px] cursor-pointer min-w-[292px]',
+              'rounded-[8px] bg-r-neutral-card1 px-[9px] py-[10px] cursor-pointer min-w-[292px]',
               ' border border-rabby-blue-default min-w-[82px] text-center',
-              'hover:border-rabby-blue-default hover:bg-r-blue-light1'
+              'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]'
             )}
           >
             <div
@@ -230,9 +230,9 @@ export const CustomTestnetAssetList: React.FC<Props> = ({
           </div>
           <div
             className={clsx(
-              'rounded-[6px] bg-r-neutral-card1 px-[9px] py-[10px] cursor-pointer min-w-[292px]',
+              'rounded-[8px] bg-r-neutral-card1 px-[9px] py-[10px] cursor-pointer min-w-[292px]',
               ' border border-rabby-blue-default min-w-[82px] text-center',
-              'hover:border-rabby-blue-default hover:bg-r-blue-light1'
+              'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]'
             )}
           >
             <div

@@ -39,7 +39,7 @@ export const LimitOrderDetailPopup: React.FC<{
     height: 'fit-content' as const,
     bodyStyle: {
       padding: 0,
-      background: 'var(--r-neutral-bg2, #F2F4F7)',
+      background: 'var(--r-neutral-bg2, #F4F4F5)',
       borderRadius: '16px 16px 0 0',
     },
     closeIcon: (
@@ -73,7 +73,7 @@ export const LimitOrderDetailPopup: React.FC<{
             pair: `${base}/${quote}`,
           })}
         </div>
-        <div className="bg-r-neutral-card1 rounded-[8px] px-16">
+        <div className="bg-r-neutral-card1 rounded-[12px] px-16">
           <DetailRow
             label={t('page.perps.limitOrderDetail.time')}
             value={dayjs(order.timestamp).format('YYYY-MM-DD HH:mm')}
@@ -112,7 +112,7 @@ export const LimitOrderDetailPopup: React.FC<{
           block
           size="large"
           loading={loading}
-          className="mt-20 h-[48px] text-15 font-medium rounded-[8px]"
+          className="mt-20 h-[48px] text-15 font-medium rounded-[12px]"
           onClick={async () => {
             setLoading(true);
             try {

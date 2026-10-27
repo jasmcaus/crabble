@@ -328,9 +328,9 @@ const ChainSelectWrapper = styled.div`
   border: 1px solid transparent;
   border-bottom: 0.5px solid var(--r-neutral-line, rgba(255, 255, 255, 0.1));
   &:hover {
-    border: 1px solid var(--r-blue-default, #7084ff);
-    background-color: var(--r-blue-light-1, #eef1ff);
-    border-radius: 8px;
+    border: 1px solid var(--crb-hairline-strong);
+    background-color: var(--crb-sunken);
+    border-radius: 12px;
   }
 `;
 
@@ -3128,7 +3128,7 @@ const SendToken = () => {
         className={clsx(
           'send-token',
           isTab || isDesktop
-            ? 'w-full h-full overflow-auto min-h-0 rounded-[16px] shadow-[0px_40px_80px_0px_rgba(43,57,143,0.40)'
+            ? 'w-full h-full overflow-auto min-h-0 rounded-[16px] shadow-[0px_24px_64px_-12px_rgba(9,9,11,0.18)'
             : ''
         )}
       >
@@ -3320,7 +3320,7 @@ const SendToken = () => {
                 </div> */}
               </div>
               {currentAccount && chainItem && (
-                <div className="bg-r-neutral-card1 rounded-[8px]">
+                <div className="bg-r-neutral-card1 rounded-[12px]">
                   {/* <ChainSelectWrapper>
                     <ChainSelectorInForm
                       value={chain}
@@ -3339,7 +3339,7 @@ const SendToken = () => {
                   <Form.Item name="amount">
                     <TokenAmountInput
                       type="send"
-                      className="bg-r-neutral-card1 rounded-[8px]"
+                      className="bg-r-neutral-card1 rounded-[12px]"
                       token={currentToken}
                       onChange={handleAmountChange}
                       onTokenChange={handleCurrentTokenChange}

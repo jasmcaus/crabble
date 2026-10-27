@@ -39,7 +39,7 @@ export const HistoryTransferDetailPopup: React.FC<HistoryTransferDetailPopupProp
           {t('page.perps.historyDetail.transferDetailTitle')}
         </div>
         <div className="flex-1 px-20 pb-20 mt-4">
-          <div className="rounded-[8px] px-16 bg-r-neutral-card-1">
+          <div className="rounded-[12px] px-16 bg-r-neutral-card-1">
             <div className="flex justify-between items-center py-16">
               <span className="text-13 text-r-neutral-body">
                 {t('page.perps.historyDetail.action')}

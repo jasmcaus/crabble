@@ -133,7 +133,7 @@ export const HistoryDetailPopup: React.FC<HistoryDetailPopupProps> = ({
 
           {/* Content */}
           <div className="flex-1 px-20 pb-20 mt-4">
-            <div className="rounded-[8px] px-16 bg-r-neutral-card-1">
+            <div className="rounded-[12px] px-16 bg-r-neutral-card-1">
               {stableCoinSwap ? (
                 <>
                   {/* Action */}
@@ -343,7 +343,7 @@ export const HistoryDetailPopup: React.FC<HistoryDetailPopupProps> = ({
               }}
             />
           </div>
-          <div className="bg-r-neutral-card1 rounded-[8px]">
+          <div className="bg-r-neutral-card1 rounded-[12px]">
             <div className="flex justify-between items-center px-16 py-16 border-b border-rb-neutral-line">
               <div className="flex items-center gap-8">
                 <img src={IconHyperliquid} className="w-20 h-20 rounded-full" />
@@ -359,7 +359,7 @@ export const HistoryDetailPopup: React.FC<HistoryDetailPopupProps> = ({
               <div className="flex items-center gap-8">
                 <img src={IconRabby} className="w-20 h-20 rounded-full" />
                 <span className="text-13 text-r-neutral-title-1 font-medium">
-                  Rabby Wallet
+                  Crabble Wallet
                 </span>
               </div>
               <span className="text-13 text-r-neutral-title-1 font-medium">

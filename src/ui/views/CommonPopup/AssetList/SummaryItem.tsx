@@ -121,7 +121,7 @@ export const SummaryItem: React.FC<Props> = ({ item }) => {
   return (
     <TRow
       className={clsx(
-        'rounded-[6px] border border-transparent -my-1 px-[19px] first-of-type:my-0'
+        'rounded-[8px] border border-transparent -my-1 px-[19px] first-of-type:my-0'
       )}
     >
       <TokenItemAsset item={item} />

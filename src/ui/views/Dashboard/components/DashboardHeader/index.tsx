@@ -4,24 +4,25 @@ import { Button } from 'antd';
 import clsx from 'clsx';
 import {
   KEYRING_CLASS,
+  KEYRING_ICONS,
   KEYRING_ICONS_WHITE,
   KEYRING_TYPE,
   WALLET_BRAND_CONTENT,
 } from 'consts';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { useInterval } from 'react-use';
-import { ReactComponent as RcIconCopy } from 'ui/assets/icon-copy-1.svg';
 import WatchLogo from 'ui/assets/waitcup.svg';
 
-import { AddressViewer, Popup } from 'ui/component';
+import { Popup } from 'ui/component';
 import { useRabbySelector } from 'ui/store';
 import { formatUsdValue, useWallet } from 'ui/utils';
 
 import { getKRCategoryByType } from '@/utils/transaction';
 
-import { RcIconSettingCC } from '@/ui/assets/dashboard';
+import { Check, ChevronDown, Copy, History, Settings } from 'lucide-react';
+import { IconButton } from '@/ui/component/ui/IconButton';
 import { useExtensionUpdateBadge } from '@/ui/hooks/useExtensionUpdateSettingsCard';
 import { ReactComponent as RcIconGasFullCC } from '@/ui/assets/gas-full-cc.svg';
 import { ReactComponent as RcIconGasLowCC } from '@/ui/assets/gas-low-cc.svg';
@@ -29,6 +30,7 @@ import { CommonSignal } from '@/ui/component/ConnectStatus/CommonSignal';
 import { SeedPhraseBackupAlert } from '@/ui/component/SeedPhraseBackupAlert';
 import { useWalletConnectIcon } from '@/ui/component/WalletConnect/useWalletConnectIcon';
 import { useCurrentAccount } from '@/ui/hooks/backgroundState/useAccount';
+import { useThemeMode } from '@/ui/hooks/usePreference';
 import { copyAddress } from '@/ui/utils/clipboard';
 import {
   useGasAccountInfo,
@@ -38,11 +40,13 @@ import {
 import { ga4 } from '@/utils/ga4';
 import { useMemoizedFn } from 'ahooks';
 import styled from 'styled-components';
-import { ReactComponent as IconArrowRight } from 'ui/assets/dashboard/arrow-right.svg';
-import { BalanceView, BalanceViewJumpButton } from '../BalanceView/BalanceView';
+import {
+  BalanceView,
+  BalanceViewDataHandler,
+  BalanceViewJumpButton,
+} from '../BalanceView/BalanceView';
 import { useHomeBalanceViewOuterPrefetch } from '../BalanceView/useHomeBalanceView';
 import { OfflineChainNotify } from '../OfflineChainNotify';
-import PendingTxs from '../PendingTxs';
 import Queue from '../Queue';
 import Tooltip from 'antd/es/tooltip';
 import { LOW_GAS_ACCOUNT_BALANCE } from '@/constant/gas-account';
@@ -56,25 +60,20 @@ import {
 
 const Container = styled.div`
   width: 100%;
-  height: 196px;
-  background: linear-gradient(0deg, #2539b7 0%, #2539b7 100%), #2539b7;
   position: relative;
-  overflow: hidden;
-  padding: 12px 16px;
-
-  &:has(.balance-view-jump-button-external:hover) .balance-view-card {
-    background: rgba(255, 255, 255, 0.05);
-  }
+  padding: 10px 12px 0;
 `;
 
-export const DashboardHeader: React.FC<{ onSettingClick?(): void }> = ({
-  onSettingClick,
-}) => {
+export const DashboardHeader: React.FC<{
+  onSettingClick?(): void;
+  onBalanceData?: BalanceViewDataHandler;
+}> = ({ onSettingClick, onBalanceData }) => {
   const showUpdateBadge = useExtensionUpdateBadge();
   const history = useHistory();
   const wallet = useWallet();
 
   const currentAccount = useCurrentAccount();
+  const { isDarkTheme } = useThemeMode();
 
   const pendingTxCount = useTransactionsStore(
     (state) => state.pendingTransactionCount
@@ -120,10 +119,28 @@ export const DashboardHeader: React.FC<{ onSettingClick?(): void }> = ({
     history.push('/switch-address');
   });
 
+  const handleCopyAddress = useMemoizedFn(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      event.stopPropagation();
+      if (!currentAccount) return;
+      copyAddress(currentAccount.address);
+      matomoRequestEvent({
+        category: 'AccountInfo',
+        action: 'headCopyAddress',
+        label: [
+          getKRCategoryByType(currentAccount?.type),
+          currentAccount?.brandName,
+        ].join('|'),
+      });
+
+      ga4.fireEvent('Click_CopyAddress', {
+        event_category: 'Front Page Click',
+      });
+    }
+  );
+
   const brandIcon = useWalletConnectIcon(currentAccount);
   const { t } = useTranslation();
-
-  const hasTopRightAction = isGnosis || pendingTxCount > 0;
 
   const onClickOpenInDesktop = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -132,127 +149,168 @@ export const DashboardHeader: React.FC<{ onSettingClick?(): void }> = ({
     window.close();
   };
 
+  const onClickActivity = useMemoizedFn(() => {
+    // the pending count is global and isn't refreshed for Safe accounts
+    history.push(!isGnosis && pendingTxCount > 0 ? '/activities' : '/history');
+  });
+
   return (
     <Container>
       {currentAccount && (
-        <div className={clsx('flex mb-[8px] items-center gap-[24px] relative')}>
-          <div className="min-w-0 flex items-center gap-[4px]">
+        <div className="flex items-center gap-[8px] h-[44px]">
+          <div
+            role="button"
+            tabIndex={0}
+            className={clsx(
+              'group/account flex items-center gap-[10px] min-w-0 h-[44px]',
+              'pl-[4px] pr-[10px] rounded-[14px] cursor-pointer',
+              'crb-row'
+            )}
+            onClick={handleSwitchAddress}
+            onKeyDown={(event) => {
+              // keys bubbling up from the copy button are the button's
+              if (event.target !== event.currentTarget) return;
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                handleSwitchAddress();
+              }
+            }}
+          >
             <div
               className={clsx(
-                'flex-1 min-w-0 flex items-center justify-end',
-                'gap-[6px] pl-[12px] pr-[8px] py-[7px] rounded-[6px] cursor-pointer',
-                'bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.1)]'
+                'relative shrink-0 w-[34px] h-[34px] rounded-full',
+                'flex items-center justify-center',
+                'bg-[var(--crb-raised)] shadow-[var(--crb-shadow-card)]'
               )}
-              onClick={handleSwitchAddress}
             >
-              <div className="relative">
-                <img
-                  className={clsx('w-[16px] h-[16px] min-w-[16px]')}
-                  src={
-                    brandIcon ||
-                    WALLET_BRAND_CONTENT[currentAccount.brandName]?.image ||
-                    (currentAccount.type === KEYRING_CLASS.WATCH
+              <img
+                className="w-[18px] h-[18px]"
+                src={
+                  brandIcon ||
+                  WALLET_BRAND_CONTENT[currentAccount.brandName]?.image ||
+                  (isDarkTheme
+                    ? currentAccount.type === KEYRING_CLASS.WATCH
                       ? WatchLogo
-                      : KEYRING_ICONS_WHITE[currentAccount.type])
-                  }
-                />
-                <CommonSignal
-                  type={currentAccount.type}
-                  brandName={currentAccount.brandName}
-                  address={currentAccount.address}
-                />
-              </div>
-              <div
-                className="text-[15px] leading-[18px] font-medium text-r-neutral-title2 truncate max-w-[86px]"
-                title={displayName}
-              >
-                {displayName}
-              </div>
-              {currentAccount && (
-                <AddressViewer
-                  address={currentAccount.address}
-                  showArrow={false}
-                  className="text-[12px] leading-[14px] text-r-neutral-title2 opacity-60"
-                />
-              )}
-              <IconArrowRight className="shrink-0" />
+                      : KEYRING_ICONS_WHITE[currentAccount.type]
+                    : KEYRING_ICONS[currentAccount.type])
+                }
+              />
+              <CommonSignal
+                type={currentAccount.type}
+                brandName={currentAccount.brandName}
+                address={currentAccount.address}
+                className="bottom-[-1px] right-[-1px]"
+              />
             </div>
-
-            <RcIconCopy
-              viewBox="0 0 16 16"
-              className="w-[16px] h-[16px] cursor-pointer opacity-60 hover:opacity-80"
-              onClick={() => {
-                copyAddress(currentAccount.address);
-                matomoRequestEvent({
-                  category: 'AccountInfo',
-                  action: 'headCopyAddress',
-                  label: [
-                    getKRCategoryByType(currentAccount?.type),
-                    currentAccount?.brandName,
-                  ].join('|'),
-                });
-
-                ga4.fireEvent('Click_CopyAddress', {
-                  event_category: 'Front Page Click',
-                });
-              }}
-            />
+            <div className="min-w-0 flex flex-col">
+              <div className="flex items-center gap-[2px] min-w-0">
+                <span
+                  className="text-[14px] leading-[18px] font-semibold text-r-neutral-title1 truncate max-w-[150px]"
+                  title={displayName}
+                >
+                  {displayName}
+                </span>
+                <ChevronDown
+                  size={14}
+                  strokeWidth={2.25}
+                  className="shrink-0 text-r-neutral-foot transition-transform group-hover/account:translate-y-[1px]"
+                />
+              </div>
+              <div className="flex items-center gap-[4px] text-[12px] leading-[16px] text-r-neutral-foot">
+                <span className="crb-mono" title={currentAccount.address}>
+                  {shortAddress(currentAccount.address)}
+                </span>
+                <CopyButton
+                  label={t('global.copyAddress')}
+                  onCopy={handleCopyAddress}
+                />
+              </div>
+            </div>
           </div>
 
-          <div className="shrink-0 min-w-0 ml-auto flex items-center gap-[4px]">
+          <div className="shrink-0 ml-auto flex items-center gap-[2px]">
             <FeedbackEntry />
+            <IconButton
+              label={t('page.dashboard.home.panel.transactions')}
+              count={isGnosis ? 0 : pendingTxCount}
+              onClick={onClickActivity}
+            >
+              <History size={18} strokeWidth={2} />
+            </IconButton>
             <GasAccountEntry />
-
-            <div
-              className={clsx(
-                'p-[6px] rounded-[5px] cursor-pointer text-r-neutral-title-2 shrink-0',
-                'bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.1)]'
-              )}
+            <IconButton
+              label={t('page.dashboard.home.panel.settings')}
+              dot={showUpdateBadge ? 'danger' : false}
               onClick={onSettingClick}
             >
-              <div className="relative">
-                <RcIconSettingCC />
-                {showUpdateBadge && (
-                  <span className="absolute right-[1px] top-0 h-[5px] w-[5px] rounded-full bg-r-red-default" />
-                )}
-              </div>
-            </div>
+              <Settings size={18} strokeWidth={2} />
+            </IconButton>
           </div>
         </div>
       )}
-      {hasTopRightAction ? (
-        <div className="group/balance-view-actions relative">
-          {dashboardBalanceCacheInited && (
-            <BalanceView currentAccount={currentAccount} hideJumpButton />
-          )}
+      <div className="crb-hero-card mt-[6px] group/balance-view-actions">
+        {dashboardBalanceCacheInited && (
+          <BalanceView
+            currentAccount={currentAccount}
+            hideJumpButton
+            onDataChange={onBalanceData}
+          />
+        )}
 
-          <div className="absolute right-[12px] top-[10px] z-[1] flex items-center gap-[8px]">
-            <BalanceViewJumpButton
-              className="balance-view-jump-button-external group-hover/balance-view-actions:flex"
-              onClick={onClickOpenInDesktop}
-            />
-            {isGnosis ? (
-              <Queue
-                // count={gnosisPendingCount || 0}
-                count={0}
-                className={clsx(
-                  'transition-all'
-                  // !false ? 'opacity-0 pointer-events-none' : 'opacity-100'
-                )}
-              />
-            ) : (
-              <PendingTxs pendingTxCount={pendingTxCount} />
-            )}
-          </div>
+        <div className="absolute right-[4px] top-[2px] z-[1] flex items-center gap-[6px]">
+          <BalanceViewJumpButton
+            className="group-hover/balance-view-actions:flex"
+            onClick={onClickOpenInDesktop}
+          />
+          {isGnosis ? <Queue count={0} className="transition-all" /> : null}
         </div>
-      ) : (
-        dashboardBalanceCacheInited && (
-          <BalanceView currentAccount={currentAccount} />
-        )
-      )}
-      {dashboardBalanceCacheInited && <OfflineChainNotify />}
-      <SeedPhraseBackupAlert className="absolute left-0 right-0 bottom-0" />
+        {dashboardBalanceCacheInited && <OfflineChainNotify />}
+        <SeedPhraseBackupAlert className="absolute left-0 right-0 bottom-0" />
+      </div>
     </Container>
+  );
+};
+
+const shortAddress = (address: string) => {
+  const lower = address.toLowerCase();
+  return `${lower.slice(0, 6)}…${lower.slice(-4)}`;
+};
+
+const CopyButton = ({
+  label,
+  onCopy,
+}: {
+  label: string;
+  onCopy: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}) => {
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!copied) return;
+    const timer = setTimeout(() => setCopied(false), 1400);
+    return () => clearTimeout(timer);
+  }, [copied]);
+
+  return (
+    <button
+      type="button"
+      aria-label={label}
+      className={clsx(
+        'inline-flex items-center justify-center w-[18px] h-[18px] rounded-[5px] border-0 p-0',
+        'bg-transparent text-r-neutral-foot hover:text-r-neutral-title1 hover:bg-[var(--crb-hover)]',
+        'transition-colors'
+      )}
+      onClick={(event) => {
+        onCopy(event);
+        setCopied(true);
+      }}
+    >
+      {copied ? (
+        <Check size={12} strokeWidth={2.5} className="text-r-green-default" />
+      ) : (
+        <Copy size={12} strokeWidth={2.25} />
+      )}
+    </button>
   );
 };
 
@@ -262,7 +320,7 @@ const FeedbackEntry = () => {
   const { startViewingFeedback } = useViewingFeedback();
 
   const handleClick = useCallback(
-    (evt: React.MouseEvent<HTMLDivElement>) => {
+    (evt: React.MouseEvent<HTMLButtonElement>) => {
       evt.preventDefault();
       evt.stopPropagation();
 
@@ -288,15 +346,13 @@ const FeedbackEntry = () => {
 
   return (
     <>
-      <div
-        className={clsx(
-          'p-[6px] rounded-[5px] cursor-pointer text-r-neutral-title-2 shrink-0',
-          'bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.1)]'
-        )}
+      <IconButton
+        label={t('component.feedbackPopup.title')}
+        dot="brand"
         onClick={handleClick}
       >
-        <RcIconFeedbackCC className="w-[20px] h-[20px]" />
-      </div>
+        <RcIconFeedbackCC className="w-[18px] h-[18px]" />
+      </IconButton>
       <FeedbackResponsePopup lastRepliedFeedback={lastRepliedFeedback} />
     </>
   );
@@ -421,7 +477,7 @@ const GasAccountEntry = () => {
     visibleGasAccountBalance < LOW_GAS_ACCOUNT_BALANCE;
 
   const handleClick = useCallback(
-    (evt: React.MouseEvent<HTMLDivElement>) => {
+    (evt: React.MouseEvent<HTMLButtonElement>) => {
       evt.preventDefault();
       evt.stopPropagation();
       history.push('/gas-account');
@@ -439,31 +495,33 @@ const GasAccountEntry = () => {
         offset: [0, -6],
       }}
     >
-      <div
+      <button
+        type="button"
+        aria-label={t('page.gasAccount.title')}
         className={clsx(
-          'group h-[32px] min-w-[32px] max-w-[32px] hover:max-w-[100px] px-[6px] rounded-[5px]',
-          'cursor-pointer overflow-hidden transition-all duration-200 shrink-0',
-          'flex items-center gap-[2px]',
-          'bg-[rgba(255,255,255,0.05)] hover:bg-[rgba(255,255,255,0.1)]',
-          'text-r-neutral-title-2'
+          'group relative h-[32px] min-w-[32px] max-w-[32px] hover:max-w-[120px] px-[7px] rounded-[10px]',
+          'border-0 bg-transparent cursor-pointer overflow-hidden shrink-0',
+          'flex items-center gap-[4px]',
+          'transition-[max-width,background-color,color] duration-200 ease-out',
+          'text-r-neutral-body hover:text-r-neutral-title1 hover:bg-[var(--crb-hover)]'
         )}
         onClick={handleClick}
       >
         {isLowGasAccountBalance ? (
-          <RcIconGasLowCC className="shrink-0" />
+          <RcIconGasLowCC className="shrink-0 w-[18px] h-[18px]" />
         ) : (
-          <RcIconGasFullCC className="shrink-0" />
+          <RcIconGasFullCC className="shrink-0 w-[18px] h-[18px]" />
         )}
-        <div
+        <span
           className={clsx(
-            'max-w-0 opacity-0 overflow-hidden whitespace-nowrap truncate',
-            'text-[13px] leading-[16px] font-medium',
-            'transition-all duration-200 group-hover:max-w-[100px] group-hover:opacity-100'
+            'max-w-0 opacity-0 overflow-hidden whitespace-nowrap',
+            'text-[13px] leading-[16px] font-semibold tabular-nums',
+            'transition-all duration-200 group-hover:max-w-[90px] group-hover:opacity-100'
           )}
         >
           {formatUsdValue(visibleGasAccountBalance || 0)}
-        </div>
-      </div>
+        </span>
+      </button>
     </Tooltip>
   );
 };

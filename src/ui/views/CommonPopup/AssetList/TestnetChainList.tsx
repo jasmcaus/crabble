@@ -55,7 +55,7 @@ export const TestnetChainList = ({
   //   return (
   //     <Skeleton.Input
   //       active
-  //       className="block rounded-[6px] w-[360px] h-[68px] bg-r-neutral-card-2"
+  //       className="block rounded-[8px] w-[360px] h-[68px] bg-r-neutral-card-2"
   //     />
   //   );
   // }
@@ -68,7 +68,7 @@ export const TestnetChainList = ({
     <div
       ref={rootRef}
       className={clsx(
-        'bg-r-neutral-card-1 rounded-[8px] p-[12px]',
+        'bg-r-neutral-card-1 rounded-[12px] p-[12px]',
         'flex gap-12 flex-wrap'
       )}
     >

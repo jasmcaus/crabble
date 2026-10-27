@@ -91,7 +91,7 @@ const GasAccountDepositTokenPickerRow = ({
         className={clsx(
           'flex w-full justify-between items-center h-[68px] px-16 rounded-[12px] text-left',
           'bg-r-neutral-card1 border border-solid border-transparent',
-          'cursor-pointer hover:border-rabby-blue-default hover:bg-r-blue-light-1'
+          'cursor-pointer hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]'
         )}
         onClick={() => {
           data.onSelect?.(item);
@@ -225,12 +225,12 @@ export const GasAccountDepositTokenPicker: React.FC<GasAccountDepositTokenPicker
                   <div className="flex flex-col gap-6">
                     <Skeleton.Button
                       active
-                      className="h-[14px] rounded-[8px]"
+                      className="h-[14px] rounded-[12px]"
                       style={{ width: 80 }}
                     />
                     <Skeleton.Button
                       active
-                      className="h-[12px] rounded-[8px]"
+                      className="h-[12px] rounded-[12px]"
                       style={{ width: 110 }}
                     />
                   </div>
@@ -238,12 +238,12 @@ export const GasAccountDepositTokenPicker: React.FC<GasAccountDepositTokenPicker
                 <div className="flex flex-col items-end gap-6">
                   <Skeleton.Button
                     active
-                    className="h-[14px] rounded-[8px]"
+                    className="h-[14px] rounded-[12px]"
                     style={{ width: 70 }}
                   />
                   <Skeleton.Button
                     active
-                    className="h-[12px] rounded-[8px]"
+                    className="h-[12px] rounded-[12px]"
                     style={{ width: 50 }}
                   />
                 </div>

@@ -42,7 +42,7 @@ export const LangSelector: React.FC = () => {
               className={clsx(
                 'w-[50%] min-h-[44px]',
                 'flex items-center justify-between',
-                'pl-[16px] py-[12px] pr-[12px] cursor-pointer hover:bg-r-blue-light1',
+                'pl-[16px] py-[12px] pr-[12px] cursor-pointer hover:bg-[var(--crb-sunken)]',
                 'text-r-neutral-title1 text-[15px] leading-[18px] font-medium'
               )}
               onClick={() => handleLangChange(lang.code)}
@@ -61,9 +61,9 @@ export const LangSelector: React.FC = () => {
       <div
         className={clsx(
           'inline-flex items-center gap-[8px] justify-between min-w-[140px]',
-          'px-[16px] py-[13px] rounded-[8px] bg-r-neutral-card-1 cursor-pointer',
+          'px-[16px] py-[13px] rounded-[12px] bg-r-neutral-card-1 cursor-pointer',
           'text-r-neutral-title1 text-[15px] leading-[18px] font-medium',
-          'hover:bg-r-blue-light-1'
+          'hover:bg-[var(--crb-sunken)]'
         )}
       >
         <div>{currentLang?.name}</div>

@@ -43,8 +43,8 @@ const ActionButton = ({ text, onClick, className }: ActionButtonProps) => {
         cursor-pointer text-r-blue-default font-medium text-[12px] text-center
         px-[12px] w-min
         h-[24px] leading-[24px]
-        border-[0.5px] border-r-blue-default rounded-[6px]
-        hover:bg-r-blue-light1
+        border-[0.5px] border-r-blue-default rounded-[8px]
+        hover:bg-[var(--crb-sunken)]
         ${className}
       `}
       onClick={onClick}
@@ -83,7 +83,7 @@ const DappActionHeader = ({
         <div
           className={`
           text-[13px] font-medium text-r-blue-default text-center
-          px-[16px] py-[10px] mt-[16px] rounded-[8px] bg-r-blue-light1
+          px-[16px] py-[10px] mt-[16px] rounded-[12px] bg-r-blue-light1
         `}
         >
           {description}

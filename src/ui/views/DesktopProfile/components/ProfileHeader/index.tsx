@@ -10,6 +10,7 @@ import { createGlobalStyle } from 'styled-components';
 import { BalanceView } from './BalanceView';
 import { SeedPhraseBackupAlert } from '@/ui/component/SeedPhraseBackupAlert';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
 
 const GlobalStyle = createGlobalStyle`
   .global-qr-code-popover {
@@ -17,8 +18,8 @@ const GlobalStyle = createGlobalStyle`
       display: none;
     }
     .ant-popover-inner {
-      border-radius: 8px;
-      border: 1px solid var(--r-neutral-line, #E0E5EC);
+      border-radius: 12px;
+      border: 1px solid var(--r-neutral-line, #E4E4E7);
       box-shadow: none;
     }
     .ant-popover-inner-content {
@@ -37,6 +38,7 @@ export const ProfileHeader: React.FC<{
   onRefresh?(): void;
 }> = (props) => {
   const currentAccount = useCurrentAccount();
+  const { t } = useTranslation();
 
   if (!currentAccount) {
     return null;
@@ -45,20 +47,23 @@ export const ProfileHeader: React.FC<{
   return (
     <>
       <GlobalStyle />
-      <div className="px-[20px] pt-[24px] pb-[8px] relative">
-        <div className="mb-[20px] flex items-center gap-[8px]">
-          <div className="text-r-neutral-title1 text-[18px] leading-[21px] font-semibold">
+      <div className="px-[4px] pt-[20px] pb-[24px] relative">
+        <h1 className="crb-display m-0 text-[48px] leading-[52px] text-r-neutral-title1">
+          {t('component.DesktopNav.portfolio')}
+        </h1>
+        <div className="mt-[8px] flex items-center gap-[8px] text-[15px] leading-[20px]">
+          <span className="font-medium text-r-neutral-title1">
             {currentAccount.alianName}
-          </div>
-          <div className="text-rb-neutral-body text-[18px] leading-[21px]">
+          </span>
+          <span className="font-mono text-[13px] text-r-neutral-foot">
             {ellipsisAddress(currentAccount?.address || '')}
-          </div>
-          <div className="flex items-center gap-[8px]">
+          </span>
+          <div className="flex items-center gap-[4px]">
             <div
               onClick={() => {
                 copyAddress(currentAccount?.address);
               }}
-              className="cursor-pointer rounded-[4px] text-rb-neutral-foot hover:bg-rb-neutral-bg-0"
+              className="cursor-pointer rounded-[6px] p-[2px] text-r-neutral-foot hover:bg-[var(--crb-sunken)] hover:text-r-neutral-title1"
             >
               <RcIconCopyCC />
             </div>
@@ -72,14 +77,15 @@ export const ProfileHeader: React.FC<{
                 </div>
               }
             >
-              <div className="cursor-pointer rounded-[4px] text-rb-neutral-foot hover:bg-rb-neutral-bg-0">
+              <div className="cursor-pointer rounded-[6px] p-[2px] text-r-neutral-foot hover:bg-[var(--crb-sunken)] hover:text-r-neutral-title1">
                 <RcIconQrCodeCC />
               </div>
             </Popover>
-            <SeedPhraseBackupAlert className={clsx('rounded-[8px]')} />
+            <SeedPhraseBackupAlert className={clsx('rounded-[12px]')} />
           </div>
         </div>
-
+      </div>
+      <div className="crb-hero-card crb-card overflow-hidden">
         <BalanceView {...props} />
       </div>
     </>

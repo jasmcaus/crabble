@@ -123,11 +123,11 @@ const SwitchChain = ({
 
   return (
     <div className="h-[100vh] relative flex flex-col ">
-      <div className="p-[20px] text-center bg-r-blue-default text-r-neutral-title2 text-[20px] leading-[24px] font-medium">
+      <div className="crabble-ink-header p-[20px] text-center text-r-neutral-title2 text-[18px] leading-[24px] font-semibold">
         {t('page.switchChain.title')}
       </div>
       <div className="p-[20px] flex-1 overflow-auto">
-        <div className="text-center text-r-neutral-body text-[13px] leading-[16px]  p-[10px] bg-r-neutral-card2 rounded-[6px]">
+        <div className="text-center text-r-neutral-body text-[13px] leading-[16px]  p-[10px] bg-r-neutral-card2 rounded-[8px]">
           {t('page.switchChain.desc')}
         </div>
 

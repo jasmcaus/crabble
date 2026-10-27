@@ -32,41 +32,41 @@ const Wrapper = styled(Card)`
     padding: 0 16px 12px;
     margin-top: -4px;
     &-label {
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #09090b);
       font-size: 15px;
       font-weight: 500;
       line-height: 18px;
       margin-bottom: 8px;
     }
     .ant-input-affix-wrapper:not(.ant-input-affix-wrapper-disabled):hover {
-      border-color: var(--r-blue-default, #7084ff);
+      border-color: var(--crb-hairline-strong);
       border-right-width: 1px !important;
       z-index: 1;
     }
     .nonce-input {
       height: 40px;
-      border-radius: 6px;
-      border: 1px solid var(--r-neutral-line, #d3d8e0);
-      /* border: 0.5px solid var(--r-neutral-line, #d3d8e0); */
+      border-radius: 8px;
+      border: 1px solid var(--r-neutral-line, #d4d4d8);
+      /* border: 0.5px solid var(--r-neutral-line, #d4d4d8); */
 
-      background: var(--r-neutral-bg-3, #f7fafc);
+      background: var(--r-neutral-bg-3, #fafafa);
 
       .ant-input {
-        background: var(--r-neutral-bg-3, #f7fafc);
+        background: var(--r-neutral-bg-3, #fafafa);
         color: var(--r-neutral-title-1);
       }
     }
 
     &-option-list {
-      border-radius: 6px;
-      background: var(--r-neutral-bg-3, #f7fafc);
+      border-radius: 8px;
+      background: var(--r-neutral-bg-3, #fafafa);
       margin-top: 8px;
     }
 
     &-option-group {
       &-title {
         padding: 4px 12px 8px 12px;
-        color: var(--r-neutral-body, #3e495e);
+        color: var(--r-neutral-body, #3f3f46);
         font-size: 12px;
         font-weight: 400;
         line-height: 14px;
@@ -77,22 +77,22 @@ const Wrapper = styled(Card)`
       display: flex;
       align-items: center;
 
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #09090b);
       font-size: 13px;
       font-weight: 500;
 
       line-height: 16px;
 
       padding: 12px;
-      border-radius: 6px;
+      border-radius: 8px;
       position: relative;
       border: 1px solid transparent;
       cursor: pointer;
 
       &:hover,
       &.is-checked {
-        border: 1px solid var(--r-blue-default, #7084ff);
-        background: var(--r-blue-light-1, #eef1ff);
+        border: 1px solid var(--r-blue-default, #f26b3a);
+        background: var(--r-blue-light-1, #fdefe9);
       }
 
       img {
@@ -108,7 +108,7 @@ const Wrapper = styled(Card)`
         right: 12px;
         height: 1px;
         height: 0.5px;
-        background: var(--r-neutral-line, #d3d8e0);
+        background: var(--r-neutral-line, #d4d4d8);
       }
     }
   }
@@ -138,12 +138,12 @@ const Wrapper = styled(Card)`
     justify-content: flex-end;
     align-items: center;
     gap: 12px;
-    border-radius: 6px;
-    background: var(--r-neutral-bg-3, #f7fafc);
+    border-radius: 8px;
+    background: var(--r-neutral-bg-3, #fafafa);
     margin-top: 8px;
 
     &-message {
-      color: var(--r-neutral-body, #3e495e);
+      color: var(--r-neutral-body, #3f3f46);
       text-align: center;
       font-size: 12px;
       font-style: normal;

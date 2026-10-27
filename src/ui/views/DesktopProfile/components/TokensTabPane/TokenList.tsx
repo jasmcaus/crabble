@@ -29,10 +29,8 @@ export interface Props {
 }
 
 const ListContainer = styled.div`
-  background-color: var(--rb-neutral-bg-3, #f9f9f9);
-  border-radius: 16px;
-  padding: 16px;
-  margin: 0 20px 20px;
+  padding: 0 8px 8px;
+  margin: 0 12px 12px;
 `;
 
 export const TokenList = ({

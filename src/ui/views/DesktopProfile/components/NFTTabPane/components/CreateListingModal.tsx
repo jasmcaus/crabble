@@ -74,8 +74,8 @@ const Container = styled.div`
   }
 
   .custom-input {
-    border-radius: 8px;
-    border: 1px solid var(--r-blue-default, #4c65ff);
+    border-radius: 12px;
+    border: 1px solid var(--r-blue-default, #e8552a);
     height: 40px;
     width: 148px;
     background-color: transparent;
@@ -85,7 +85,7 @@ const Container = styled.div`
     }
 
     .ant-input {
-      color: var(--r-neutral-title1, #192945);
+      color: var(--r-neutral-title1, #09090b);
       font-size: 13px;
       line-height: 16px;
       font-weight: 500;
@@ -99,7 +99,7 @@ const Container = styled.div`
     }
 
     .ant-input-suffix {
-      color: var(--r-neutral-foot, #6a7587);
+      color: var(--r-neutral-foot, #71717a);
       font-size: 13px;
       line-height: 16px;
       font-weight: 500;
@@ -113,15 +113,15 @@ const Container = styled.div`
       }
     }
     .ant-select-selector {
-      border-radius: 8px;
-      border: 1px solid var(--r-neutral-line, #e0e5ec);
+      border-radius: 12px;
+      border: 1px solid var(--r-neutral-line, #e4e4e7);
       width: 160px;
       height: 44px;
       background-color: transparent;
 
       .ant-select-selection-item {
         line-height: 44px;
-        color: var(--r-neutral-title1, #192945);
+        color: var(--r-neutral-title1, #09090b);
         font-size: 15px;
         font-weight: 500;
       }
@@ -134,8 +134,8 @@ const Container = styled.div`
     }
     &.ant-select-focused {
       .ant-select-selector {
-        border: 1px solid var(--r-blue-default, #4c65ff);
-        background: var(--r-blue-light1, #edf0ff);
+        border: 1px solid var(--r-blue-default, #e8552a);
+        background: var(--r-blue-light1, #fdefe9);
       }
     }
   }

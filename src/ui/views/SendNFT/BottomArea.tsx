@@ -52,7 +52,7 @@ export default function BottomArea({
     <div className={clsx('footer px-[20px]', isTab ? 'rounded-b-[16px]' : '')}>
       {!!mostImportantRisks.length && (
         <div className="risks-wrapper mb-[8px]">
-          <div className="risks-alert bg-r-red-light p-[12px] rounded-[8px]">
+          <div className="risks-alert bg-r-red-light p-[12px] rounded-[12px]">
             {mostImportantRisks.map((risk) => (
               <div
                 key={risk.value}

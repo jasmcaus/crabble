@@ -86,7 +86,7 @@ export const ReceiveSummary: React.FC<ReceiveSummaryProps> = ({
           'shrink-0 py-[24px] px-[32px] flex flex-col'
         )}
         style={{
-          boxShadow: '0 16px 40px rgba(25, 41, 69, 0.06)',
+          boxShadow: '0 16px 40px rgba(9, 9, 11, 0.06)',
           transition: 'width 0.3s',
           width:
             task?.status === 'idle'
@@ -159,7 +159,7 @@ export const ReceiveSummary: React.FC<ReceiveSummaryProps> = ({
                 // disabled={disableSubmit}
                 type="primary"
                 block
-                className="flex-1 h-[60px] rounded-[8px] text-[18px] leading-[20px]"
+                className="flex-1 h-[60px] rounded-[12px] text-[18px] leading-[20px]"
                 // onClick={onConfirm}
                 onClick={() => {
                   task.clear();
@@ -297,7 +297,7 @@ export const ReceiveSummary: React.FC<ReceiveSummaryProps> = ({
                     disabled={!task?.list?.length}
                     type="primary"
                     block
-                    className="flex-1 h-[60px] rounded-[8px] text-[18px] leading-[20px]"
+                    className="flex-1 h-[60px] rounded-[12px] text-[18px] leading-[20px]"
                     onClick={() => {
                       task?.start();
                     }}
@@ -315,7 +315,7 @@ export const ReceiveSummary: React.FC<ReceiveSummaryProps> = ({
                         disabled={true}
                         type="primary"
                         block
-                        className="h-[60px] rounded-[8px] text-[18px] leading-[20px]"
+                        className="h-[60px] rounded-[12px] text-[18px] leading-[20px]"
                       >
                         {t('page.desktopSmallSwap.startConvert')}
                       </Button>
@@ -326,7 +326,7 @@ export const ReceiveSummary: React.FC<ReceiveSummaryProps> = ({
                 <button
                   type="button"
                   className={clsx(
-                    'w-full h-[60px] rounded-[8px] transition-opacity',
+                    'w-full h-[60px] rounded-[12px] transition-opacity',
                     'text-[18px] leading-[20px] font-medium text-r-neutral-title2',
                     'bg-r-red-default'
                   )}

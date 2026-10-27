@@ -101,7 +101,7 @@ export const MarginInput: React.FC<MarginInputProps> = ({
     <div
       className={clsx(
         'px-[16px] pt-[16px] pb-[20px]',
-        !embedded && 'bg-r-neutral-card1 rounded-[8px] mb-[12px]'
+        !embedded && 'bg-r-neutral-card1 rounded-[12px] mb-[12px]'
       )}
     >
       <div className="flex items-center">
@@ -163,7 +163,7 @@ export const MarginInput: React.FC<MarginInputProps> = ({
         showPercentage={false}
       />
       {errorMessage ? (
-        <div className="bg-r-orange-light rounded-[8px] px-[12px] py-[8px] flex items-center gap-[4px] mt-[14px]">
+        <div className="bg-r-orange-light rounded-[12px] px-[12px] py-[8px] flex items-center gap-[4px] mt-[14px]">
           <RcIconInfoCC className="text-r-orange-default" />
           <div className="text-center text-[12px] leading-[14px] text-r-orange-default">
             {errorMessage}

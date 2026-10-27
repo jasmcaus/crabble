@@ -6,8 +6,8 @@ import styled from 'styled-components';
 const Wraper = styled.div`
   border: 1px solid transparent;
   &:hover {
-    border: 1px solid var(--r-blue-default, #7084ff);
-    box-shadow: 0px 4px 4px 0px rgba(112, 132, 255, 0.12);
+    border: 1px solid var(--crb-hairline-strong);
+    box-shadow: 0px 4px 4px 0px rgba(242, 107, 58, 0.12);
   }
 `;
 
@@ -15,7 +15,7 @@ export const DappCardSkeleton = () => {
   return (
     <Wraper
       className={clsx(
-        'p-[16px] bg-r-neutral-card1 cursor-pointer rounded-[8px]'
+        'p-[16px] bg-r-neutral-card1 cursor-pointer rounded-[12px]'
       )}
     >
       <div className="flex items-center pb-[4px]">

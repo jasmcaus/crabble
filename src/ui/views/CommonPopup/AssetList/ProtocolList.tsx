@@ -83,28 +83,33 @@ const PoolItem = ({
 };
 
 const ProtocolItemWrapper = styled.div`
-  background: var(--r-neutral-card-1, #f2f4f7);
-  border-radius: 8px;
+  background: var(--crb-raised, #fff);
+  border-radius: 14px;
+  box-shadow: var(--crb-shadow-card);
+  overflow: hidden;
 
   .title {
     display: flex;
     align-items: center;
     padding: 12px;
     cursor: pointer;
+    transition: background-color 0.14s ease;
 
     .name {
       /* flex: 1; */
-      font-weight: 500;
-      font-size: 13px;
-      line-height: 15px;
-      color: var(--r-neutral-title-1, #192945);
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 18px;
+      letter-spacing: -0.01em;
+      color: var(--r-neutral-title-1, #09090b);
     }
     .net-worth {
-      font-weight: 500;
-      font-size: 13px;
-      line-height: 15px;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 18px;
       text-align: right;
-      color: var(--r-neutral-title-1, #192945);
+      font-variant-numeric: tabular-nums;
+      color: var(--r-neutral-title-1, #09090b);
     }
   }
 `;
@@ -219,24 +224,23 @@ export const ProtocolItem = ({
         <div
           className={clsx(
             'group flex items-center justify-start',
-            'title border border-solid bg-r-neutral-card1 border-transparent rounded-[8px] h-[48px] pr-14',
-            'hover:bg-blue-light/10',
-            'hover:border-blue-light'
+            'title h-[52px] pr-14',
+            'hover:bg-[var(--crb-hover)]'
           )}
           onClick={onClickTitle}
         >
           <IconWithChain
             iconUrl={protocol.logo}
             chainServerId={protocol.chain || 'eth'}
-            width="24px"
-            height="24px"
+            width="28px"
+            height="28px"
             noRound={isAppChain}
             isShowChainTooltip={true}
             hideChainIcon={isAppChain}
           />
           <div
             className={clsx(
-              'ml-[8px] flex items-center min-w-0',
+              'ml-[10px] flex items-center min-w-0',
               'border-b-[1px] border-b-solid border-transparent group-hover:border-b-rabby-neutral-foot'
             )}
             onClick={(evt) => {
@@ -277,8 +281,8 @@ export const ProtocolItem = ({
               {actions.map((action) => (
                 <div
                   className={clsx(
-                    'border border-rabby-blue-default px-[3px] py-[1px]',
-                    'text-r-blue-default text-[11px] leading-[13px] rounded-[4px]'
+                    'px-[6px] py-[2px] bg-r-blue-light1',
+                    'text-r-blue-default text-[11px] leading-[13px] font-semibold rounded-full'
                   )}
                   key={action}
                 >

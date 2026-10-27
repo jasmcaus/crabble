@@ -51,7 +51,7 @@ const Group = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <div className="relative w-full p-[16px] bg-r-neutral-card-1 overflow-hidden rounded-[6px] pt-0">
+    <div className="relative w-full p-[16px] bg-r-neutral-card-1 overflow-hidden rounded-[8px] pt-0">
       <div className="h-[48px] flex items-center mb-14 text-r-neutral-title1 text-[15px] font-medium">
         Seed Phrase {(data.index || 0) + 1}
       </div>
@@ -67,7 +67,7 @@ const Group = ({
         onClick={() => onAdd(data.publicKey!)}
         type="primary"
         className={clsx(
-          'bg-rabby-blue-light1 w-full shadow-none h-[40px] border-transparent hover:border-rabby-blue-default hover:bg-r-blue-light-2 hover:before:hidden',
+          'bg-rabby-blue-light1 w-full shadow-none h-[40px] border-transparent hover:bg-r-blue-light2 hover:before:hidden',
           data.list.length ? 'mt-[20px]' : 'mt-[6px]'
         )}
       >

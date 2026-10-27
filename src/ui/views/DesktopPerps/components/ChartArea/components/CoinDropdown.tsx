@@ -31,21 +31,21 @@ const CATEGORY_ALL_ID = 'all';
 const SearchInput = styled(Input)`
   background-color: var(--r-neutral-card1, #fff) !important;
   &.ant-input-affix-wrapper-focused {
-    border-color: var(--r-blue-default, #7084ff) !important;
+    border-color: var(--r-blue-default, #f26b3a) !important;
   }
   .ant-input {
     background-color: transparent !important;
-    color: var(--rb-neutral-title-1, #192945) !important;
+    color: var(--rb-neutral-title-1, #09090b) !important;
   }
   height: 46px !important;
-  border-radius: 6px !important;
+  border-radius: 8px !important;
   input::placeholder {
-    color: var(--r-neutral-foot, #6a7587) !important;
+    color: var(--r-neutral-foot, #71717a) !important;
   }
   &:hover {
-    border-color: var(--r-blue-default, #7084ff) !important;
+    border-color: var(--crb-hairline-strong) !important;
   }
-  border-color: var(--r-neutral-line, #d3d8e0) !important;
+  border-color: var(--r-neutral-line, #d4d4d8) !important;
 `;
 
 interface CoinDropdownProps {
@@ -438,7 +438,7 @@ export const CoinDropdown: React.FC<CoinDropdownProps> = ({
 
   const dropdownMenu = useMemo(
     () => (
-      <div className="bg-rb-neutral-bg-1 rounded-[8px] shadow-lg border border-solid border-rb-neutral-line w-[854px] h-[480px] overflow-hidden flex flex-col px-16 pt-16">
+      <div className="bg-rb-neutral-bg-1 rounded-[12px] shadow-lg border border-solid border-rb-neutral-line w-[854px] h-[480px] overflow-hidden flex flex-col px-16 pt-16">
         <SearchInput
           prefix={<RcIconSearch className="text-r-neutral-foot" />}
           placeholder={t('page.perpsPro.chatArea.searchMarkets')}
@@ -588,7 +588,7 @@ export const CoinDropdown: React.FC<CoinDropdownProps> = ({
         onVisibleChange={setDropdownVisible}
         placement="bottomLeft"
       >
-        <div className="flex items-center gap-[6px] cursor-pointer transition-colors rounded-[6px]">
+        <div className="flex items-center gap-[6px] cursor-pointer transition-colors rounded-[8px]">
           <TokenImg
             logoUrl={marketItem?.logoUrl || ''}
             withDirection={false}

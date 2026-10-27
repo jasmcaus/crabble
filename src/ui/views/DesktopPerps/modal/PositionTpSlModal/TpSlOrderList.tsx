@@ -26,10 +26,10 @@ import { TpSlSectionTitle } from './TpSlSectionTitle';
 const KINDS: TpSlKind[] = ['takeProfit', 'stopLoss'];
 
 const ACTION_BUTTON =
-  'flex h-[32px] items-center gap-[6px] rounded-[6px] border-0 bg-rb-neutral-bg-5 px-[12px] text-[14px] leading-[18px] text-rb-neutral-title-1 hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50';
+  'flex h-[32px] items-center gap-[6px] rounded-[8px] border-0 bg-rb-neutral-bg-5 px-[12px] text-[14px] leading-[18px] text-rb-neutral-title-1 hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50';
 
 const ROW_BUTTON =
-  'h-[32px] flex-1 rounded-[6px] border-0 bg-rb-neutral-bg-2 text-[14px] leading-[18px] text-rb-neutral-title-1 hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50';
+  'h-[32px] flex-1 rounded-[8px] border-0 bg-rb-neutral-bg-2 text-[14px] leading-[18px] text-rb-neutral-title-1 hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50';
 
 interface TpSlOrderListProps {
   scope: TpSlScope;
@@ -219,7 +219,7 @@ export const TpSlOrderList: React.FC<TpSlOrderListProps> = ({
               {orders.length === 0 && onAddSide ? (
                 <button
                   type="button"
-                  className="h-[32px] w-full rounded-[6px] border-0 bg-rb-neutral-bg-2 text-[14px] leading-[18px] font-medium text-rb-neutral-title-1 hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="h-[32px] w-full rounded-[8px] border-0 bg-rb-neutral-bg-2 text-[14px] leading-[18px] font-medium text-rb-neutral-title-1 hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50"
                   disabled={busy}
                   onClick={() => onAddSide(kind)}
                 >

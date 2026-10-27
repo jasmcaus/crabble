@@ -38,18 +38,18 @@ const SearchWrapper = styled.div`
   }
 
   .ant-input-affix-wrapper {
-    border-radius: 8px 0 0 8px !important;
-    border: 1px solid var(--r-neutral-line, #d3d8e0);
+    border-radius: 12px 0 0 12px !important;
+    border: 1px solid var(--r-neutral-line, #d4d4d8);
     padding: 13px 15px;
     line-height: 24px !important;
     background: var(--r-neutral-card1, #fff);
 
     input::placeholder {
-      color: var(--r-neutral-foot, #6a7587);
+      color: var(--r-neutral-foot, #71717a);
     }
 
     .ant-input-clear-icon {
-      color: var(--r-neutral-foot, #6a7587);
+      color: var(--r-neutral-foot, #71717a);
     }
 
     .ant-input-prefix {
@@ -57,18 +57,18 @@ const SearchWrapper = styled.div`
     }
     .ant-input {
       background-color: transparent;
-      color: var(--r-neutral-title1, #192945);
+      color: var(--r-neutral-title1, #09090b);
       &::placeholder {
-        color: var(--r-neutral-foot, #6a7587);
+        color: var(--r-neutral-foot, #71717a);
       }
     }
 
     &-focused {
-      border: 1px solid var(--r-blue-default, #7084ff);
+      border: 1px solid var(--r-blue-default, #f26b3a);
     }
   }
   .ant-input-group-addon {
-    border-radius: 0px 8px 8px 0px !important;
+    border-radius: 0px 12px 12px 0px !important;
   }
 
   .anticon-close-circle {
@@ -78,7 +78,7 @@ const SearchWrapper = styled.div`
   .ant-btn-primary {
     height: 52px;
     min-width: 120px;
-    border-radius: 0px 8px 8px 0px !important;
+    border-radius: 0px 12px 12px 0px !important;
 
     color: var(--r-neutral-title2, #fff);
     font-size: 17px;
@@ -88,7 +88,7 @@ const SearchWrapper = styled.div`
 `;
 
 export const DappSearchPage = () => {
-  useTitle('Dapp Search - Rabby Wallet');
+  useTitle('Dapp Search - Crabble Wallet');
   const [searchValue, setSearchValue] = React.useState<string>('');
   const [chain, setChain] = React.useState<CHAINS_ENUM>();
   const chainInfo = useMemo(() => {
@@ -270,8 +270,8 @@ export const DappSearchPage = () => {
                     <div
                       key={item}
                       className={clsx(
-                        'px-[15px] py-[7px] bg-r-neutral-card1 rounded-[8px] border-[1px] border-transparent',
-                        'hover:border-rabby-blue-default hover:bg-r-blue-light1 cursor-pointer',
+                        'px-[15px] py-[7px] bg-r-neutral-card1 rounded-[12px] border-[1px] border-transparent',
+                        'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)] cursor-pointer',
                         'text-r-neutral-body text-[13px] leading-[16px]'
                       )}
                       onMouseDown={() => {

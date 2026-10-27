@@ -237,7 +237,7 @@ const Receive = () => {
   }, [account?.type]);
   return (
     <>
-      <div className="page-receive bg-r-blue-default dark:bg-r-blue-disable relative">
+      <div className="page-receive relative">
         <div className="page-nav">
           <div
             className="page-nav-left pointer"
@@ -292,13 +292,13 @@ const Receive = () => {
 
         <SeedPhraseBackupAlert
           className={clsx(
-            'text-r-red-default bg-r-red-light rounded-[8px]',
+            'text-r-red-default bg-r-red-light rounded-[12px]',
             'mb-[8px] mt-[-12px]'
           )}
         />
         <OfflineChainNotify
           className="receive-offline-chain-notify w-full"
-          itemClassName="rounded-[8px] mb-[8px]"
+          itemClassName="rounded-[12px] mb-[8px]"
         />
 
         <div className="qr-card">
@@ -382,7 +382,7 @@ const Receive = () => {
               }}
               className={clsx(
                 'text-r-neutral-title-2 text-[13px] leading-[16px] underline underline-offset-auto',
-                'py-[8px] px-[16px] rounded-[6px]',
+                'py-[8px] px-[16px] rounded-[8px]',
                 'hover:bg-[rgba(255,255,255,0.12)] active:bg-[rgba(255,255,255,0.2)]'
               )}
             >

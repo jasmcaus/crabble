@@ -8,9 +8,39 @@ import {
   CUSTOM_RPC_ENABLED,
   LANGS,
   ThemeIconType,
-  ThemeModes,
 } from 'consts';
 import React, { useEffect, useMemo, useState } from 'react';
+import {
+  Activity,
+  AtSign,
+  Boxes,
+  ChartCandlestick,
+  ChevronRight,
+  CircleDollarSign,
+  Code,
+  Eraser,
+  EyeOff,
+  Fingerprint,
+  FlaskConical,
+  GitFork,
+  Globe,
+  Info,
+  KeyRound,
+  Languages,
+  Link2,
+  Lock,
+  LucideIcon,
+  MessageCircle,
+  Network,
+  Plug,
+  RotateCcw,
+  Search,
+  Server,
+  Signature,
+  Smartphone,
+  Timer,
+  Users,
+} from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { ReactComponent as RcIconActivities } from 'ui/assets/dashboard/activities.svg';
@@ -24,7 +54,6 @@ import { ReactComponent as RcIconAutoLock } from 'ui/assets/dashboard/settings/i
 import { ReactComponent as RcIconLockWallet } from 'ui/assets/dashboard/settings/lock.svg';
 import { ReactComponent as RcIconSwitchPwdForNonWhitelistedTx } from 'ui/assets/dashboard/settings/switch-password-non-whitelisted-tx.svg';
 import { ReactComponent as RcIconDappSwitchAddress } from 'ui/assets/dashboard/dapp-switch-address.svg';
-import { ReactComponent as RcIconThemeMode } from 'ui/assets/settings/theme-mode.svg';
 import { ReactComponent as RcIconCurrency } from 'ui/assets/settings/currency.svg';
 import { ReactComponent as RcIconEcosystemCC } from 'ui/assets/settings/echosystem-cc.svg';
 import { ReactComponent as RcIconRabbyMobileCC } from 'ui/assets/settings/IconMobileSync-cc.svg';
@@ -68,7 +97,7 @@ import IconIntro from 'ui/assets/dashboard/dapp-account-intro.png';
 import stats from '@/stats';
 import Contacts from '../Contacts';
 import RecentConnections from '../RecentConnections';
-import SwitchThemeModal from './components/SwitchThemeModal';
+import { AppearanceSwitch } from './components/AppearanceSwitch';
 import { CurrencyModal } from './components/CurrencyModal';
 import { useRemovedTokenPopup } from './components/RemovedTokenPopup';
 import ThemeIcon from '@/ui/component/ThemeMode/ThemeIcon';
@@ -309,7 +338,7 @@ const DappAccountModal = ({
         <Button
           type="primary"
           block
-          className="h-[48px] rounded-[8px] text-[16px]"
+          className="h-[48px] rounded-[12px] text-[16px]"
           onClick={handleSubmit}
         >
           {t('page.dashboard.settings.DappAccount.button')}
@@ -381,7 +410,7 @@ const ResetAccountModal = ({
         <p className="reset-account-content">
           {t('page.dashboard.settings.clearPendingTip2')}
         </p>
-        <div className="flex items-start gap-[4px] p-[10px] bg-r-red-light rounded-[6px] mt-[20px]">
+        <div className="flex items-start gap-[4px] p-[10px] bg-r-red-light rounded-[8px] mt-[20px]">
           <div className="text-r-red-default pt-[2px]">
             <RcIconWarning />
           </div>
@@ -608,6 +637,58 @@ const SwitchLangModal = ({
 //   );
 // };
 
+/* Settings rows use the lucide set (like the dashboard); anything unmapped
+   keeps its original asset. */
+const SETTING_LUCIDE_ICONS = new Map<ThemeIconType, LucideIcon>([
+  [RcIconLockWallet, Lock],
+  [RcIconActivities, Signature],
+  [RcIconAddresses, Users],
+  [RcIconEcosystemCC, Globe],
+  [RcIconRabbyMobileCC, Smartphone],
+  [RcIconSettingsSearchDapps, Search],
+  [RcIconSettingsFeatureConnectedDapps, Plug],
+  [RCIconBiometric, Fingerprint],
+  [RcIconPerps, ChartCandlestick],
+  [RcIconSwitchPwdForNonWhitelistedTx, KeyRound],
+  [RcIconDappSwitchAddress, Link2],
+  [RcIconDataAnalysisCC, Activity],
+  [RcIconCustomTestnet, FlaskConical],
+  [RcIconCustomRPC, Network],
+  [RcIconI18n, Languages],
+  [RcIconRemovedToken, EyeOff],
+  [RcIconCurrency, CircleDollarSign],
+  [RcIconAutoLock, Timer],
+  [RcIconClear, RotateCcw],
+  [RcIconFeedback, MessageCircle],
+  [RcIconSettingsAboutVersion, Info],
+  [RcIconSettingsAboutSupporetedChains, Boxes],
+  [RcIconSettingsAboutFollowUs, AtSign],
+  [RcIconServerCC, Server],
+  [RcIconClearCC, Eraser],
+  [RcIconSettingsCodeCC, Code],
+  [RcIconSettingsGitForkCC, GitFork],
+]);
+
+const SettingLeftIcon: React.FC<{
+  src: ThemeIconType;
+  className?: string;
+  style?: React.CSSProperties;
+}> = ({ src, className, style }) => {
+  const Lucide = SETTING_LUCIDE_ICONS.get(src);
+  if (Lucide) {
+    return (
+      <Lucide
+        className={clsx('icon', className)}
+        style={style}
+        strokeWidth={1.9}
+      />
+    );
+  }
+  return (
+    <ThemeIcon src={src} className={clsx('icon', className)} style={style} />
+  );
+};
+
 type SettingItem = {
   leftIcon: ThemeIconType;
   leftIconClassName?: string;
@@ -639,7 +720,6 @@ const SettingsInner = ({
     removedTokenPopup,
   } = useRemovedTokenPopup();
   const [isShowCurrencyModal, setIsShowCurrencyModal] = useState(false);
-  const [isShowThemeModeModal, setIsShowThemeModeModal] = useState(false);
   const [contactsVisible, setContactsVisible] = useState(false);
   const [connectedDappsVisible, setConnectedDappsVisible] = useState(false);
   const [feedbackVisible, setFeedbackVisible] = useState(false);
@@ -683,7 +763,6 @@ const SettingsInner = ({
   const userDataTrackingOptOut = useRabbySelector(
     (state) => state.preference.userDataTrackingOptOut
   );
-  const themeMode = useRabbySelector((state) => state.preference.themeMode);
 
   const openapiStore = useOpenapiStore();
 
@@ -1197,39 +1276,6 @@ const SettingsInner = ({
           ),
         },
         {
-          leftIcon: RcIconThemeMode,
-          content: t('page.dashboard.settings.settings.toggleThemeMode'),
-          onClick: () => {
-            matomoRequestEvent({
-              category: 'Setting',
-              action: 'clickToUse',
-              label: 'Theme Mode',
-            });
-
-            ga4.fireEvent('More_ThemeMode', {
-              event_category: 'Click More',
-            });
-
-            reportSettings('Theme Mode');
-            setIsShowThemeModeModal(true);
-          },
-          rightIcon: (
-            <>
-              <span
-                className="text-14 mr-[8px] text-r-neutral-foot"
-                role="button"
-              >
-                {ThemeModes.find((item) => item.code === themeMode)?.name ||
-                  '-'}
-              </span>
-              <ThemeIcon
-                src={RcIconArrowRight}
-                className="icon icon-arrow-right"
-              />
-            </>
-          ),
-        },
-        {
           leftIcon: RcIconPreferMetamask,
           content: (
             <div className="text-[13px]">
@@ -1659,7 +1705,7 @@ const SettingsInner = ({
     <div className="popup-settings">
       <div
         className={
-          'absolute top-0 right-0 bottom-0 left-0 overflow-auto px-[20px] pt-[20px]'
+          'absolute top-0 right-0 bottom-0 left-0 overflow-auto px-[16px] pt-[24px]'
         }
       >
         <div className={clsx('content')}>
@@ -1676,6 +1722,15 @@ const SettingsInner = ({
             <RateModalTriggerOnSettings className="mb-[16px]" />
           )}
 
+          <div className="setting-block">
+            <div className="setting-title">
+              {t('page.dashboard.settings.appearance.title')}
+            </div>
+            <div className="setting-items setting-appearance">
+              <AppearanceSwitch />
+            </div>
+          </div>
+
           {Object.values(renderData).map((group, idxl1) => {
             return (
               <div key={`g-${idxl1}`} className="setting-block">
@@ -1685,17 +1740,17 @@ const SettingsInner = ({
                     <Field
                       key={`g-${idxl1}-item-${idxl2}`}
                       leftIcon={
-                        <ThemeIcon
+                        <SettingLeftIcon
                           src={data.leftIcon}
-                          className={clsx('icon', data.leftIconClassName)}
+                          className={data.leftIconClassName}
                           style={data.leftIconStyle}
                         />
                       }
                       rightIcon={
                         data.rightIcon || (
-                          <ThemeIcon
-                            src={RcIconArrowRight}
+                          <ChevronRight
                             className="icon icon-arrow-right"
+                            strokeWidth={2}
                           />
                         )
                       }
@@ -1717,7 +1772,7 @@ const SettingsInner = ({
           })}
         </div>
         <footer className="footer">
-          <div className="px-8 py-2 rounded hover:bg-r-blue-light-1 inline-block">
+          <div className="px-8 py-2 rounded hover:bg-[var(--crb-sunken)] inline-block">
             <img
               className="inline-block cursor-pointer"
               src={LogoRabby}
@@ -1785,11 +1840,6 @@ const SettingsInner = ({
         onCancel={() => setIsShowCurrencyModal(false)}
       />
       {removedTokenPopup}
-      <SwitchThemeModal
-        visible={isShowThemeModeModal}
-        onFinish={() => setIsShowThemeModeModal(false)}
-        onCancel={() => setIsShowThemeModeModal(false)}
-      />
       <RecentConnections
         canBack={true}
         visible={connectedDappsVisible}
@@ -1836,9 +1886,9 @@ const Settings = (props: SettingsProps) => {
       <Popup
         visible={visible}
         onClose={onClose}
-        height={488}
+        height={540}
         push={false}
-        bodyStyle={{ height: '100%', padding: '20px 20px 0 20px' }}
+        bodyStyle={{ height: '100%', padding: '20px 16px 0 16px' }}
         destroyOnClose
         className="settings-popup-wrapper"
         isSupportDarkMode

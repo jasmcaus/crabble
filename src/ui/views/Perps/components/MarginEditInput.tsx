@@ -65,7 +65,7 @@ export const MarginEditInput: React.FC<MarginEditInputProps> = ({
   };
 
   return (
-    <div className="bg-r-neutral-card1 rounded-[8px] mb-[12px] px-[16px] py-[16px]">
+    <div className="bg-r-neutral-card1 rounded-[12px] mb-[12px] px-[16px] py-[16px]">
       <div className="text-[16px] leading-[19px] font-medium text-r-blue-default">
         {title}
       </div>
@@ -74,7 +74,7 @@ export const MarginEditInput: React.FC<MarginEditInputProps> = ({
           <div
             className={clsx(
               'text-[14px] leading-[18px] font-bold text-rb-brand-default',
-              'px-[8px] py-[4px] rounded-[8px] bg-rb-brand-light-1',
+              'px-[8px] py-[4px] rounded-[12px] bg-rb-brand-light-1',
               'cursor-pointer'
             )}
             onClick={() => {
@@ -108,7 +108,7 @@ export const MarginEditInput: React.FC<MarginEditInputProps> = ({
           <div
             className={clsx(
               'text-[14px] leading-[18px] font-bold text-rb-brand-default',
-              'px-[8px] py-[4px] rounded-[8px] bg-rb-brand-light-1',
+              'px-[8px] py-[4px] rounded-[12px] bg-rb-brand-light-1',
               'cursor-pointer'
             )}
             onClick={() => {
@@ -133,7 +133,7 @@ export const MarginEditInput: React.FC<MarginEditInputProps> = ({
         step={0.01}
       />
       {errorMessage ? (
-        <div className="bg-r-orange-light rounded-[8px] px-[12px] py-[8px] flex items-center gap-[4px] mt-[14px]">
+        <div className="bg-r-orange-light rounded-[12px] px-[12px] py-[8px] flex items-center gap-[4px] mt-[14px]">
           <RcIconInfoCC className="text-r-orange-default" />
           <div className="text-center text-[12px] leading-[14px] text-r-orange-default">
             {errorMessage}

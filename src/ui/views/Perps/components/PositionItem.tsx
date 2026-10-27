@@ -103,10 +103,10 @@ export const PositionItem: React.FC<{
   return (
     <div
       className={clsx(
-        'w-full bg-r-neutral-card1 rounded-[8px] flex flex-col cursor-pointer',
+        'w-full bg-r-neutral-card1 rounded-[12px] flex flex-col cursor-pointer',
         'border-[1px]',
         'border-solid border-transparent',
-        'hover:bg-r-blue-light1 hover:border-rabby-blue-default',
+        'hover:bg-[var(--crb-sunken)] hover:border-[var(--crb-hairline-strong)]',
         (hasTakeProfit || hasStopLoss) && 'pb-2'
       )}
       onClick={handleNavigate}

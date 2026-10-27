@@ -1,10 +1,13 @@
 @import '@/ui/style/var.less';
 
+/* Segmented control: a sunken track with a raised thumb. The active label is
+   ink, not brand; coral is kept for actions. */
 .pills-switch {
-  background-color: var(--r-neutral-line);
+  background-color: var(--crb-sunken);
   height: 100%;
-  padding: 4px;
-  border-radius: 6px;
+  padding: 3px;
+  border-radius: 10px;
+  gap: 2px;
 
   display: inline-flex;
   align-items: center;
@@ -12,28 +15,31 @@
 }
 
 .pills-switch__item {
-  color: var(--r-neutral-body);
-  font-size: 12px;
+  color: var(--r-neutral-foot);
+  font-size: 13px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 550;
   line-height: normal;
   width: 148px;
   height: 100%;
-  // height: 28px;
-  // line-height: 28px;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  border-radius: 8px;
+  transition: color 0.15s ease, background-color 0.15s ease,
+    box-shadow 0.15s ease;
 
   &.is-active {
-    border-radius: 4px;
-    background: #fff;
-    color: var(--r-blue-default, #7084ff);
+    border-radius: 8px;
+    background: var(--crb-thumb);
+    color: var(--r-neutral-title-1);
+    font-weight: 550;
+    box-shadow: var(--crb-shadow-thumb);
   }
 
   &:hover {
-    color: var(--r-blue-default, #7084ff);
+    color: var(--r-neutral-title-1);
   }
 }

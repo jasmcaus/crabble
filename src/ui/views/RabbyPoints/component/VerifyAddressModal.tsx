@@ -51,7 +51,7 @@ const Inner = ({
   const { t } = useTranslation();
 
   return (
-    <div className="w-[360px] bg-r-neutral-bg-1 p-[20px] pb-[24px] rounded-[8px] leading-[normal]">
+    <div className="w-[360px] bg-r-neutral-bg-1 p-[20px] pb-[24px] rounded-[12px] leading-[normal]">
       <div className="text-r-neutral-title1 text-[20px] font-medium text-center">
         {t('page.rabbyPoints.referralCode.verifyAddressModal.verify-address')}
       </div>
@@ -66,7 +66,7 @@ const Inner = ({
           onClick={onCancel}
           className={clsx(
             'flex-1 h-[44px] text-[15px] font-medium border-blue-light text-r-blue-default',
-            'hover:bg-[#8697FF1A] active:bg-[#0000001A]',
+            'hover:bg-[var(--crb-sunken)] active:bg-[#0000001A]',
             'before:content-none'
           )}
         >

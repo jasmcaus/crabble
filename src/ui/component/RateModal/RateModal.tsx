@@ -29,7 +29,7 @@ const DASHED_LINE_STYLE = {
   opacity: 0.5,
   height: 0,
   width: '100%',
-  borderBottom: '1px dashed var(--r-blue-default, #7084FF)',
+  borderBottom: '1px dashed var(--r-blue-default, #F26B3A)',
 };
 
 function useForceDisableRateGuideOnLaunch(modalShow: boolean) {
@@ -119,7 +119,7 @@ export default function RateModal() {
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
-        background: 'var(--r-neutral-bg2, #F2F4F7)',
+        background: 'var(--r-neutral-bg2, #F4F4F5)',
         borderTopLeftRadius: '16px',
         borderTopRightRadius: '16px',
       }}
@@ -241,7 +241,7 @@ export default function RateModal() {
                   background: 'var(--r-neutral-card-1, #FFFFFF) !important',
                 }}
                 className={clsx(
-                  'w-[100%] h-[180px] rounded-[8px] p-[12px]',
+                  'w-[100%] h-[180px] rounded-[12px] p-[12px]',
                   'text-[13px] text-[400] text-r-neutral-title-1',
                   'bg-r-neutral-card-1 border-rabby-blue-default border-[1px] border-solid',
                   feedbackOverLimit && 'border-rabby-red-default'

@@ -47,7 +47,7 @@ export const AccountList = ({
           <div>
             <div
               style={{
-                borderBottom: '0.5px solid var(--r-neutral-line, #E0E5EC)',
+                borderBottom: '0.5px solid var(--r-neutral-line, #E4E4E7)',
                 background: 'var(--r-neutral-card1, #FFF)',
                 ...(isGroupFirst
                   ? {

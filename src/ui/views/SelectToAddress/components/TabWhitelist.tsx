@@ -82,13 +82,13 @@ const WhitelistItemWrapper = styled.div`
 
   &.is-whitelist-item-drag-overlay {
     box-sizing: border-box;
-    border: 1px solid var(--r-blue-default, #7084ff);
-    background-color: var(--r-blue-light1, #eef1ff);
+    border: 1px solid var(--r-blue-default, #f26b3a);
+    background-color: var(--r-blue-light1, #fdefe9);
     box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.13);
 
     .whitelist-item {
       border-color: transparent !important;
-      background-color: var(--r-blue-light1, #eef1ff) !important;
+      background-color: var(--r-blue-light1, #fdefe9) !important;
     }
   }
 `;
@@ -415,7 +415,7 @@ export default function TabWhitelist({
     <div className="h-full static">
       {isEnabledPwdForNonWhitelistedTx && (
         <div className="flex-1 overflow-y-auto px-[20px] mb-[12px]">
-          <div className="flex justify-between items-center px-[10px] py-[8px] bg-r-yellow-light rounded-[8px] bg-r-neutral-card1">
+          <div className="flex justify-between items-center px-[10px] py-[8px] bg-r-yellow-light rounded-[12px] bg-r-neutral-card1">
             <span className="text-[13px] font-normal text-r-neutral-title1">
               {t(
                 'page.selectToAddress.whitelist.PwdForNonWhitelistedTx.enabledHint'

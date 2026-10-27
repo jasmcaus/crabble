@@ -275,8 +275,8 @@ export const PendingTxItem = forwardRef<
       <div>
         <div
           className={clsx(
-            'flex items-center justify-between cursor-pointer rounded-[8px] px-[16px] py-[14px]',
-            'hover:bg-blue-light/10 hover:border-rabby-blue-default border border-transparent',
+            'flex items-center justify-between cursor-pointer rounded-[12px] px-[16px] py-[14px]',
+            'hover:bg-[var(--crb-sunken)] hover:border-[var(--crb-hairline-strong)] border border-transparent',
             'bg-r-neutral-card-1'
           )}
           onClick={handlePress}

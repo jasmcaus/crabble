@@ -110,7 +110,7 @@ const AuthenticationModal: React.FC<AuthenticationModalProps> = ({
             spellCheck={false}
             autoFocus
             type="password"
-            className="bg-r-neutral-card1 border-rabby-blue-default placeholder-r-neutral-foot h-[56px] text-15 rounded-[8px]"
+            className="bg-r-neutral-card1 border-rabby-blue-default placeholder-r-neutral-foot h-[56px] text-15 rounded-[12px]"
             placeholder={t('component.AuthenticationModal.passwordPlaceholder')}
           />
         </PasswordFormItem>

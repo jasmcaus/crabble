@@ -171,8 +171,8 @@ function AccountItem(props: {
       }}
       px={16}
       py={0}
-      bgColor="var(--r-neutral-card1, #F2F4F7);"
-      className="h-[56px] rounded-[6px] mb-12"
+      bgColor="var(--r-neutral-card1, #F4F4F5);"
+      className="h-[56px] rounded-[8px] mb-12"
       left={<img src={addressTypeIcon} className={'w-[24px] h-[24px]'} />}
       right={
         <div className="ml-auto">

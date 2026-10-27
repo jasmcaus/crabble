@@ -283,8 +283,8 @@ export const TokenSelectPopup: React.FC<TokenSelectPopupProps> = ({
             'flex justify-between items-center cursor-pointer h-[56px] mb-8 border border-transparent',
             'bg-r-neutral-card1 rounded-[12px] p-16',
             'text-13 font-medium text-r-neutral-title-1',
-            'hover:border-rabby-blue-default',
-            'hover:bg-r-blue-light-1'
+            'hover:border-[var(--crb-hairline-strong)]',
+            'hover:bg-[var(--crb-sunken)]'
           )}
           onClick={(e) => handleClickToken(item)}
         >
@@ -376,14 +376,14 @@ export const TokenSelectPopup: React.FC<TokenSelectPopupProps> = ({
                     <Skeleton.Avatar active={true} size={24} shape="circle" />
                     <Skeleton.Button
                       active={true}
-                      className="h-[16px] block rounded-[8px]"
+                      className="h-[16px] block rounded-[12px]"
                       style={{ width: 80 }}
                     />
                   </div>
                   <div className="flex flex-col gap-4 items-end">
                     <Skeleton.Button
                       active={true}
-                      className="h-[16px] block rounded-[8px]"
+                      className="h-[16px] block rounded-[12px]"
                       style={{ width: 80 }}
                     />
                   </div>

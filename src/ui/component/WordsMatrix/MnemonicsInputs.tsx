@@ -57,7 +57,7 @@ const MatrixWrapper = styled.div.withConfig<{
     return !['rowCount'].includes(prop) && defaultValidatorFn(prop);
   },
 })`
-  background-color: var(--r-neutral-card-3, #f7fafc);
+  background-color: var(--r-neutral-card-3, #fafafa);
   display: flex;
   flex-wrap: wrap;
 
@@ -69,13 +69,13 @@ const MatrixWrapper = styled.div.withConfig<{
       border-color: transparent;
 
       .mnemonics-input {
-        border-radius: 8px;
-        border: 1px solid var(--r-neutral-line, #e0e5ec);
+        border-radius: 12px;
+        border: 1px solid var(--r-neutral-line, #e4e4e7);
         text-align: center;
         font-size: 22px;
-        color: var(--r-neutral-title-1, #192945);
+        color: var(--r-neutral-title-1, #09090b);
         &:hover {
-          border-color: var(--r-blue-default, #7084ff);
+          border-color: var(--crb-hairline-strong);
         }
         &:focus,
         &.ant-input-focused {
@@ -85,14 +85,14 @@ const MatrixWrapper = styled.div.withConfig<{
 
       &:not(.invalid) {
         .mnemonics-input:hover {
-          border-color: var(--r-blue-default, #7084ff);
+          border-color: var(--crb-hairline-strong);
         }
       }
 
       ${styid(NumberFlag)} {
         top: 6px;
         left: 8px;
-        color: var(--r-neutral-body, #3e495e);
+        color: var(--r-neutral-body, #3f3f46);
         font-size: 10px;
         line-height: 12px;
         font-style: normal;
@@ -119,22 +119,22 @@ const MatrixWrapper = styled.div.withConfig<{
 
       .mnemonics-input {
         padding: 0 12px 0 24px;
-        border-radius: 8px;
-        border: 0.5px solid var(--r-neutral-line, #e0e5ec);
+        border-radius: 12px;
+        border: 0.5px solid var(--r-neutral-line, #e4e4e7);
         background: var(--r-neutral-card-1, #fff);
         text-align: left;
         line-height: 51px;
         font-size: 15px;
         font-weight: 400;
-        color: var(--r-neutral-title-1, #192945);
+        color: var(--r-neutral-title-1, #09090b);
 
         &:hover {
-          border-color: var(--r-neutral-line, #e0e5ec);
+          border-color: var(--r-neutral-line, #e4e4e7);
         }
 
         &:focus,
         &.ant-input-focused {
-          border-color: var(--r-blue-default, #4c65ff);
+          border-color: var(--r-blue-default, #e8552a);
           background: var(--r-neutral-card-1, #fff);
           box-shadow: none;
         }
@@ -144,7 +144,7 @@ const MatrixWrapper = styled.div.withConfig<{
         top: 7px;
         left: 7px;
         height: 16px;
-        color: var(--r-neutral-foot, #6a7587);
+        color: var(--r-neutral-foot, #71717a);
         font-size: 13px;
         line-height: 16px;
         font-weight: 500;
@@ -153,7 +153,7 @@ const MatrixWrapper = styled.div.withConfig<{
 
     .matrix-word-item.compact-focused {
       ${styid(NumberFlag)} {
-        color: var(--r-blue-default, #4c65ff);
+        color: var(--r-blue-default, #e8552a);
       }
     }
 
@@ -202,16 +202,16 @@ const MatrixWrapper = styled.div.withConfig<{
         }
 
         // &:nth-child(1) .mnemonics-input {
-        //   border-top-left-radius: 6px;
+        //   border-top-left-radius: 8px;
         // }
         // &:nth-child(${rowCount}) .mnemonics-input {
-        //   border-top-right-radius: 6px;
+        //   border-top-right-radius: 8px;
         // }
         // &:nth-child(${totalCount - rowCount + 1}) .mnemonics-input {
-        //   border-bottom-left-radius: 6px;
+        //   border-bottom-left-radius: 8px;
         // }
         // &:nth-child(${totalCount}) .mnemonics-input {
-        //   border-bottom-right-radius: 6px;
+        //   border-bottom-right-radius: 8px;
         // }
         // &:not(.invalid):nth-child(-n + ${rowCount}) .mnemonics-input:not(:focus) {
         //   border-top: 1px solid var(--r-neutral-line);
@@ -239,16 +239,16 @@ const MatrixWrapper = styled.div.withConfig<{
   /* for MnemonicsInputs :start */
   .mnemonics-input {
     background-color: transparent;
-    color: var(--r-neutral-title-1, #192945);
+    color: var(--r-neutral-title-1, #09090b);
     height: 100%;
     display: inline-block;
     line-height: ${ITEM_H}px;
     border-color: transparent;
-    border-radius: 6px;
+    border-radius: 8px;
 
     &:focus,
     &.ant-input-focused {
-      border-color: var(--r-blue-default, #7084ff);
+      border-color: var(--r-blue-default, #f26b3a);
       background-color: var(--r-neutral-bg-1, #fff);
       box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.24);
     }
@@ -575,7 +575,7 @@ function MnemonicsInputs({
           overlay={
             <Menu
               className={clsx(
-                'mnemonics-input-menu py-8px rounded-[8px] bg-r-neutral-bg-1',
+                'mnemonics-input-menu py-8px rounded-[12px] bg-r-neutral-bg-1',
                 UI_TYPE.isPop && 'max-h-[334px] overflow-y-auto'
               )}
             >
@@ -600,7 +600,7 @@ function MnemonicsInputs({
                         My seed phrase has
                         <b
                           style={{
-                            color: 'var(--r-blue-default, #7084ff)',
+                            color: 'var(--r-blue-default, #f26b3a)',
                           }}
                         >
                           {{ count } as any}
@@ -635,7 +635,7 @@ function MnemonicsInputs({
                             My seed phrase has
                             <b
                               style={{
-                                color: 'var(--r-blue-default, #7084ff)',
+                                color: 'var(--r-blue-default, #f26b3a)',
                               }}
                             >
                               {{ count } as any}
@@ -670,7 +670,7 @@ function MnemonicsInputs({
                               My seed phrase is
                               <b
                                 style={{
-                                  color: 'var(--r-blue-default, #7084ff)',
+                                  color: 'var(--r-blue-default, #f26b3a)',
                                 }}
                               ></b>
                               with password
@@ -684,7 +684,7 @@ function MnemonicsInputs({
                               My seed phrase is
                               <b
                                 style={{
-                                  color: 'var(--r-blue-default, #7084ff)',
+                                  color: 'var(--r-blue-default, #f26b3a)',
                                 }}
                               ></b>
                             </Trans>
@@ -737,7 +737,7 @@ function MnemonicsInputs({
                   I have a
                   <b
                     style={{
-                      color: 'var(--r-blue-default, #7084ff)',
+                      color: 'var(--r-blue-default, #f26b3a)',
                     }}
                   >
                     {{ mnemonicsCount } as any}
@@ -757,7 +757,7 @@ function MnemonicsInputs({
                   My seed phrase is
                   <b
                     style={{
-                      color: 'var(--r-blue-default, #7084ff)',
+                      color: 'var(--r-blue-default, #f26b3a)',
                     }}
                   />
                 </Trans>
@@ -798,7 +798,7 @@ function MnemonicsInputs({
       </HeadToolbar>
       <MatrixWrapper
         className={clsx(
-          compact ? 'rounded-none text-center' : 'rounded-[6px] text-center',
+          compact ? 'rounded-none text-center' : 'rounded-[8px] text-center',
           !newUserImport &&
             !compact &&
             'border border-rabby-neutral-line border-solid',
@@ -836,8 +836,8 @@ function MnemonicsInputs({
                       className={clsx(
                         'w-[108px] h-[44px] flex items-center justify-center',
                         'text-[13px] leading-[16px] text-r-neutral-title-1 font-medium',
-                        'rounded-[6px] cursor-pointer',
-                        'hover:bg-r-blue-light1'
+                        'rounded-[8px] cursor-pointer',
+                        'hover:bg-[var(--crb-sunken)]'
                       )}
                       onMouseDown={(e) => {
                         // 阻止默认行为，防止触发 input 的 blur 事件

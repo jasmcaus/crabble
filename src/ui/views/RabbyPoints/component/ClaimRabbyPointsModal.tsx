@@ -40,19 +40,19 @@ const StyledModal = styled(Modal)`
 const StyledInput = styled(Input)`
   background: var(--r-neutral-bg1, #fff);
   &.ant-input-affix-wrapper {
-    border-radius: 8px;
-    border: 1px solid var(--r-neutral-line, #d3d8e0);
+    border-radius: 12px;
+    border: 1px solid var(--r-neutral-line, #d4d4d8);
     & > input.ant-input {
       height: 44px;
       font-size: 15px;
       font-weight: 500;
       text-align: center;
       background: var(--r-neutral-bg1, #fff);
-      color: var(--r-neutral-title1, #192945);
+      color: var(--r-neutral-title1, #09090b);
       transition: none;
 
       &:placeholder-shown {
-        color: var(--r-neutral-foot, #6a7587);
+        color: var(--r-neutral-foot, #71717a);
         font-size: 13px;
         font-weight: normal;
       }
@@ -60,7 +60,7 @@ const StyledInput = styled(Input)`
   }
   &:hover,
   &.ant-input-affix-wrapper-focused {
-    border: 1px solid var(--r-blue-default, #7084ff);
+    border: 1px solid var(--r-blue-default, #f26b3a);
   }
 `;
 
@@ -271,7 +271,7 @@ const ClaimPoints = ({
     titleLoading;
 
   return (
-    <div className="relative w-[360px] bg-r-neutral-bg-1 p-[20px] pb-[24px] rounded-[8px] leading-[normal]">
+    <div className="relative w-[360px] bg-r-neutral-bg-1 p-[20px] pb-[24px] rounded-[12px] leading-[normal]">
       <div
         className="absolute w-full top-0 left-0 px-20 py-14 flex justify-between"
         style={{
@@ -332,7 +332,7 @@ const ClaimPoints = ({
         <span>{name}</span>
       </div>
 
-      <div className="rounded-[8px] bg-r-neutral-card-3 px-[12px] py-[16px]">
+      <div className="rounded-[12px] bg-r-neutral-card-3 px-[12px] py-[16px]">
         <div className="text-center text-[10px] text-[#7c86c8] mb-[12px]">
           {t('page.rabbyPoints.claimModal.snapshotTime', {
             time: snapshotTime,

@@ -18,8 +18,8 @@ export const OptionsWrapper = styled.div`
     margin-bottom: 40px;
   }
   .connect-site-card {
-    border-radius: 8px;
-    background: #f5f6fa;
+    border-radius: 12px;
+    background: #f4f4f5;
     display: inline-flex;
     padding: 28px 28px 32px 28px;
     width: 100%;
@@ -51,7 +51,7 @@ export const OptionsWrapper = styled.div`
     justify-content: center;
     align-items: center;
     gap: 8px;
-    border-radius: 6px;
+    border-radius: 8px;
     border: 1px solid #e5e9ef;
 
     color: #13141a;
@@ -80,7 +80,7 @@ export const Footer = styled.div`
   .ant-btn-primary[disabled]:hover,
   .ant-btn-primary[disabled]:focus,
   .ant-btn-primary[disabled]:active {
-    background-color: rgba(112, 132, 255, 0.4);
+    background-color: rgba(242, 107, 58, 0.4);
     border: none;
     &:before {
       display: none;

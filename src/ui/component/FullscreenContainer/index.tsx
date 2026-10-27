@@ -14,8 +14,8 @@ const Container = styled.div<{ $isDarkTheme?: boolean }>`
   align-items: center;
   background: ${(props) =>
     props.$isDarkTheme
-      ? 'linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%), var(--r-blue-default, #7084FF)'
-      : 'var(--r-blue-default, #7084FF)'};
+      ? 'linear-gradient(0deg, rgba(0, 0, 0, 0.50) 0%, rgba(0, 0, 0, 0.50) 100%), var(--r-blue-default, #F26B3A)'
+      : 'var(--r-blue-default, #F26B3A)'};
 `;
 
 const Main = styled.div`
@@ -30,11 +30,11 @@ const Main = styled.div`
     position: absolute;
   }
   .ant-drawer-mask {
-    border-radius: 8px;
+    border-radius: 12px;
   }
   .custom-popup {
     .ant-drawer-content {
-      border-radius: 8px;
+      border-radius: 12px;
     }
   }
 `;

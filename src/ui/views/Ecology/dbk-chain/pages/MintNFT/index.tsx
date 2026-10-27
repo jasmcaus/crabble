@@ -10,7 +10,7 @@ export const DbkChainMintNFT: React.FC = () => {
 
   return (
     <div className="p-[20px] " style={{ fontFamily: "'Lato', sans-serif" }}>
-      <div className="bg-r-neutral-card1 flex flex-col items-center rounded-[8px]">
+      <div className="bg-r-neutral-card1 flex flex-col items-center rounded-[12px]">
         <div className="flex flex-col pt-[32px] pb-[30px] items-center text-center">
           <img className="block w-[200px] h-[200px]" src={MintNFTIcon} alt="" />
           <div className="mt-[20px] text-gradient text-[24px] leading-[28.8px] font-bold">

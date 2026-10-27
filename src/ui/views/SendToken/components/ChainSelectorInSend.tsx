@@ -35,7 +35,7 @@ const ChainGlobalStyle = createGlobalStyle`
       font-size: 14px;
       font-weight: 500;
       text-align: center;
-      color: var(--r-neutral-title1, #192945);
+      color: var(--r-neutral-title1, #09090b);
     }
     .ant-modal-confirm-btns {
       margin-top: 35px !important;
@@ -47,7 +47,7 @@ const ChainGlobalStyle = createGlobalStyle`
         border-color: var(--r-blue-default);
         color: var(--r-blue-default);
         &:hover {
-          background: var(--r-blue-light1, #eef1ff) !important;
+          background: var(--crb-sunken) !important;
         }
       }
     }

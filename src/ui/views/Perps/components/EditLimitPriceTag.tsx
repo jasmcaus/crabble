@@ -206,9 +206,9 @@ export const EditLimitPriceTag: React.FC<EditLimitPriceTagProps> = ({
               <div
                 key={option.label}
                 className={clsx(
-                  'flex-1 h-[32px] flex items-center justify-center rounded-[8px] cursor-pointer text-13px',
+                  'flex-1 h-[32px] flex items-center justify-center rounded-[12px] cursor-pointer text-13px',
                   'border border-solid',
-                  'bg-r-neutral-card2 border-transparent text-r-neutral-body hover:border-rabby-blue-default'
+                  'bg-r-neutral-card2 border-transparent text-r-neutral-body hover:border-[var(--crb-hairline-strong)]'
                 )}
                 onClick={() => handleQuickOption(option.pct)}
               >
@@ -223,7 +223,7 @@ export const EditLimitPriceTag: React.FC<EditLimitPriceTagProps> = ({
             block
             size="large"
             disabled={priceEmpty}
-            className="h-[48px] text-15 font-medium rounded-[8px]"
+            className="h-[48px] text-15 font-medium rounded-[12px]"
             onClick={handleSet}
           >
             {t('page.perpsDetail.PerpEditLimitPriceTag.set')}

@@ -28,7 +28,7 @@ export const THeadCell: React.FC<React.HTMLProps<HTMLTableCellElement>> = (
     <div
       {...attrs}
       className={clsx(
-        'uppercase text-r-neutral-foot text-12 font-normal block',
+        'uppercase text-r-neutral-foot text-[11px] leading-[14px] font-medium tracking-[0.08em] block',
         attrs.className
       )}
     />

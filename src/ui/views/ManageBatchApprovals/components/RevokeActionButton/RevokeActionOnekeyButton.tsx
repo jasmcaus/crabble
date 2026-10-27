@@ -13,15 +13,15 @@ import { Popup } from '@/ui/component';
 import { BatchRevokeTaskType } from '../../hooks/useBatchRevokeTask';
 
 const buttonBaseClass = clsx(
-  'rounded-[6px] h-[48px] w-[252px]',
+  'rounded-[8px] h-[48px] w-[252px]',
   'before:content-none',
   'text-[16px]'
 );
 
 const buttonGhostClass = clsx(
   buttonBaseClass,
-  'border-blue-light text-blue-light',
-  'hover:bg-[#8697FF1A] active:bg-[#0000001A]'
+  'border-[var(--crb-hairline-strong)] text-r-neutral-title1',
+  'hover:bg-[var(--crb-sunken)] active:bg-[#0000001A]'
 );
 
 const ledgerButtonClass = clsx(
@@ -99,7 +99,7 @@ export const RevokeActionOnekeyButton: React.FC<{
         {task.status === 'idle' && (
           <Button
             type="primary"
-            className="h-[44px] rounded-[8px] text-[15px] leading-[18px]"
+            className="h-[44px] rounded-[12px] text-[15px] leading-[18px]"
             onClick={async () => {
               const isReady = await checkStatus();
               if (isReady) {
@@ -126,7 +126,7 @@ export const RevokeActionOnekeyButton: React.FC<{
           <Button
             type="primary"
             block
-            className="h-[44px] rounded-[8px] text-[15px] leading-[18px]"
+            className="h-[44px] rounded-[12px] text-[15px] leading-[18px]"
             onClick={onDone}
           >
             {t('page.approvals.revokeModal.done')}
@@ -137,7 +137,7 @@ export const RevokeActionOnekeyButton: React.FC<{
           <Button
             type="primary"
             block
-            className="h-[44px] rounded-[8px] text-[15px] leading-[18px]"
+            className="h-[44px] rounded-[12px] text-[15px] leading-[18px]"
             onClick={task.continue}
           >
             {t('page.approvals.revokeModal.resume')}

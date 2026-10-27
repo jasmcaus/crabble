@@ -22,7 +22,7 @@ const PreviewCard = styled.div`
     width: 100%;
     height: 306px;
     border-color: var(--r-neutral-line);
-    border-radius: 6px;
+    border-radius: 8px;
     background-color: var(--r-neutral-bg1);
   }
 

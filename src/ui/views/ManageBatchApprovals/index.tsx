@@ -29,7 +29,7 @@ const GlobalStyle = createGlobalStyle`
   .ant-modal-content {
     border-radius: 12px !important;
     border: none !important;
-    background-color: var(--r-neutral-bg-2, #f5f6fa) !important;
+    background-color: var(--r-neutral-bg-2, #f4f4f5) !important;
   }
 
   .ant-modal-confirm-btns {
@@ -38,7 +38,7 @@ const GlobalStyle = createGlobalStyle`
 
   .ant-modal-confirm-content {
     padding: 0 !important;
-    background-color: var(--r-neutral-bg-2, #f5f6fa) !important;
+    background-color: var(--r-neutral-bg-2, #f4f4f5) !important;
   }
 }
 `;
@@ -148,7 +148,7 @@ export const ManageBatchRevokeApprovals: React.FC = () => {
                   continueNavigation();
                 }, 400);
               }}
-              className="w-1/2 flex-1 h-[44px] text-[15px] leading-[18px] rounded-[8px]"
+              className="w-1/2 flex-1 h-[44px] text-[15px] leading-[18px] rounded-[12px]"
             >
               {t('global.Yes')}
             </Button>
@@ -185,7 +185,7 @@ export const ManageBatchRevokeApprovals: React.FC = () => {
           {t('page.manageBatchApprovals.title')}
         </PageHeader>
         <div className="flex-1 min-h-0 overflow-auto pb-[20px]">
-          <div className="mx-auto rounded-[8px] bg-r-neutral-card1 py-[8px]">
+          <div className="mx-auto rounded-[12px] bg-r-neutral-card1 py-[8px]">
             <ListHeader />
 
             <div>

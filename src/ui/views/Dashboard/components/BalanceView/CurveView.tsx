@@ -58,6 +58,16 @@ const AppChainTips = styled.div`
   pointer-events: none;
 `;
 
+const MAX_CURVE_POINTS = 48;
+
+export function thinSeries<T>(list?: T[], max = MAX_CURVE_POINTS): T[] {
+  if (!list || list.length <= max) {
+    return list || [];
+  }
+  const step = (list.length - 1) / (max - 1);
+  return Array.from({ length: max }, (_, i) => list[Math.round(i * step)]);
+}
+
 export const CurveThumbnail = ({
   data,
   className,
@@ -66,11 +76,14 @@ export const CurveThumbnail = ({
   appChainIds,
   showAppChainTips = false,
 }: CurveThumbnailProps) => {
-  const color = useMemo(() => {
-    return `var(--color-curve-${data?.isLoss ? 'red' : 'green'})`;
-  }, [data]);
+  // one brand line regardless of direction; the delta badge carries up/down
+  const color = 'var(--r-blue-default)';
+  // the raw 24h series is minute-level noise; draw ~48 real samples so the
+  // curve reads as a trend (hover still lands on actual data points)
+  const displayList = useMemo(() => thinSeries(data?.list), [data?.list]);
   const divRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(66);
+  const [width, setWidth] = useState(376);
   const [showTips, setShowTips] = useState(false);
   const mousePositionRef = useRef({ x: 0, y: 0 });
   const mouseMoveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -132,6 +145,7 @@ export const CurveThumbnail = ({
   useEffect(() => {
     if (divRef.current) {
       setHeight(divRef.current.clientHeight);
+      setWidth(divRef.current.clientWidth || 376);
     }
   }, []);
 
@@ -142,11 +156,11 @@ export const CurveThumbnail = ({
       <CurveGlobalStyle />
       {isEmpty ? null : (
         <AreaChart
-          data={data?.list}
-          width={368}
+          data={displayList}
+          width={width}
           height={height}
-          style={{ position: 'absolute', left: 0, cursor: 'pointer' }}
-          margin={{ top: 5, right: 0, left: 0, bottom: 5 }}
+          style={{ position: 'absolute', left: 0, cursor: 'crosshair' }}
+          margin={{ top: 6, right: 0, left: 0, bottom: 2 }}
           onMouseMove={(val, event) => {
             if (val?.activePayload) {
               onHover(val.activePayload[0].payload);
@@ -165,7 +179,8 @@ export const CurveThumbnail = ({
         >
           <defs>
             <linearGradient id="curveThumbnail" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={color} stopOpacity={0.2} />
+              <stop offset="0%" stopColor={color} stopOpacity={0.18} />
+              <stop offset="75%" stopColor={color} stopOpacity={0.03} />
               <stop offset="100%" stopColor={color} stopOpacity={0} />
             </linearGradient>
           </defs>
@@ -177,14 +192,18 @@ export const CurveThumbnail = ({
           />
           <YAxis
             hide
-            domain={[(dataMin) => dataMin * 0.98, (dataMax) => dataMax * 1.005]}
+            domain={[(dataMin) => dataMin * 0.985, (dataMax) => dataMax * 1.01]}
           />
           {isHover && (
             <Tooltip
-              cursor={{ strokeDasharray: '2 2', strokeWidth: 0.6 }}
+              cursor={{
+                stroke: 'var(--r-neutral-foot)',
+                strokeDasharray: '3 3',
+                strokeWidth: 1,
+              }}
               content={({ label }) => {
                 return (
-                  <div className="text-[13px] leading-[16px] font-medium text-r-neutral-title2">
+                  <div className="px-[6px] py-[2px] rounded-[6px] bg-[var(--crb-popover)] shadow-[var(--crb-shadow-pop)] text-[11px] leading-[14px] font-medium text-r-neutral-body tabular-nums">
                     {dayjs(label * 1000).format('HH:mm')}
                   </div>
                 );
@@ -192,14 +211,21 @@ export const CurveThumbnail = ({
             />
           )}
           <Area
-            type="linear"
+            type="monotone"
             dataKey="value"
             stroke={color}
-            strokeOpacity={isHover ? 1 : 0.7}
+            strokeOpacity={1}
             strokeWidth={2}
+            strokeLinecap="round"
+            activeDot={{
+              r: 4.5,
+              fill: 'var(--crb-card-solid)',
+              stroke: color,
+              strokeWidth: 2,
+            }}
             fill="url(#curveThumbnail)"
             animationDuration={0}
-            fillOpacity={0.8}
+            fillOpacity={1}
           />
         </AreaChart>
       )}

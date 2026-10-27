@@ -29,14 +29,14 @@ const ProjectOverviewItemWrapper = styled.div`
       font-weight: 500;
       font-size: 13px;
       line-height: 15px;
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #09090b);
     }
     .net-worth {
       font-weight: 500;
       font-size: 13px;
       line-height: 15px;
       text-align: right;
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #09090b);
     }
   }
 `;
@@ -57,7 +57,7 @@ const ProjectOverviewItem = ({
       onClick={handleGotoProject}
       className={clsx(
         'border-[1px] border-solid border-transparent',
-        'hover:bg-r-blue-light1 hover:border-rabby-blue-default'
+        'hover:bg-[var(--crb-sunken)] hover:border-[var(--crb-hairline-strong)]'
       )}
     >
       {isTokenWallet ? (

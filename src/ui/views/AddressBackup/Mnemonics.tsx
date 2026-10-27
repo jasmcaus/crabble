@@ -220,7 +220,7 @@ const AddressBackupMnemonics: React.FC<{
             </div>
           </div>
           <div
-            className="rounded-[6px] flex items-center w-full"
+            className="rounded-[8px] flex items-center w-full"
             style={masked ? { filter: 'blur(3px)' } : {}}
           >
             {isSlip39 ? (

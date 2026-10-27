@@ -253,10 +253,10 @@ export const TopModeStatus: React.FC<TopModeStatusProps> = ({
               ref={marginBoxRef}
               onClick={handleMarginModeClick}
               className={clsx(
-                'h-[28px] flex-1 rounded-[6px] flex items-center justify-center text-12 border border-solid bg-rb-neutral-bg-5',
+                'h-[28px] flex-1 rounded-[8px] flex items-center justify-center text-12 border border-solid bg-rb-neutral-bg-5',
                 marginModeDisabledReason
                   ? 'text-rb-neutral-foot border-transparent cursor-not-allowed opacity-60'
-                  : 'text-rb-neutral-title-1 border-transparent cursor-pointer hover:border-rb-brand-default'
+                  : 'text-rb-neutral-title-1 border-transparent cursor-pointer hover:border-[var(--crb-hairline-strong)]'
               )}
             >
               {marginMode === MarginMode.ISOLATED
@@ -268,7 +268,7 @@ export const TopModeStatus: React.FC<TopModeStatusProps> = ({
           <div
             ref={leverageBoxRef}
             onClick={handleLeverageClick}
-            className="h-[28px] flex-1 flex items-center justify-center rounded-[6px] text-12 text-rb-neutral-title-1 border border-solid border-transparent cursor-pointer hover:border-rb-brand-default bg-rb-neutral-bg-5"
+            className="h-[28px] flex-1 flex items-center justify-center rounded-[8px] text-12 text-rb-neutral-title-1 border border-solid border-transparent cursor-pointer hover:border-[var(--crb-hairline-strong)] bg-rb-neutral-bg-5"
           >
             {leverage}x
           </div>

@@ -53,7 +53,7 @@ const TokenListWrapper = styled.div`
     .td {
       font-size: 12px;
       line-height: 14px;
-      color: var(--r-neutral-foot, #6a7587);
+      color: var(--r-neutral-foot, #71717a);
       text-align: left;
       width: 120px;
       margin-bottom: 12px;
@@ -72,7 +72,7 @@ const TokenListWrapper = styled.div`
       width: 120px;
       font-size: 13px;
       line-height: 15px;
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #09090b);
       text-align: left;
       &:nth-last-child(1) {
         text-align: right;
@@ -232,8 +232,8 @@ const SupplementsWrapper = styled.div`
   width: calc(100% + 20px);
   background: linear-gradient(
     90deg,
-    var(--r-blue-light-1, #eef1ff) 0%,
-    rgba(134, 151, 255, 0) 100%
+    var(--r-blue-light-1, #fdefe9) 0%,
+    rgba(242, 138, 99, 0) 100%
   );
   row-gap: 8px;
   .item {
@@ -241,10 +241,10 @@ const SupplementsWrapper = styled.div`
     font-size: 12px;
     line-height: 14px;
     .label {
-      color: var(--r-neutral-body, #babec5);
+      color: var(--r-neutral-body, #b5b1aa);
     }
     .content {
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #09090b);
       margin-left: 4px;
     }
   }

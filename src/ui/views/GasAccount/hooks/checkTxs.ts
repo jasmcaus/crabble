@@ -126,7 +126,7 @@ export const useLoginDepositConfirm = (params: {
       borderRadius: '16px',
     },
     '& .ant-modal-confirm-title': {
-      color: 'var(--r-neutral-title1, #192945)',
+      color: 'var(--r-neutral-title1, #09090b)',
       textAlign: 'center',
       fontSize: '15px',
       fontStyle: 'normal',
@@ -169,8 +169,8 @@ export const useLoginDepositConfirm = (params: {
           ghost: true,
           className: clsx(
             'h-[40px] border-blue-light text-blue-light',
-            'hover:bg-r-blue-light1 active:bg-[#0000001A]',
-            'rounded-[6px]',
+            'hover:bg-[var(--crb-sunken)] active:bg-[#0000001A]',
+            'rounded-[8px]',
             'before:content-none',
             'flex items-center justify-center'
           ),

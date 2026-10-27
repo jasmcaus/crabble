@@ -33,14 +33,15 @@
     align-items: center;
     flex-shrink: 0;
     padding: 12px;
-    border-radius: 6px;
-    background: var(--r-neutral-card-1, #fff);
+    border-radius: 14px;
+    background: var(--crb-raised, #fff);
+    box-shadow: var(--crb-shadow-card);
     gap: 16px;
     width: 100%;
     margin-bottom: 12px;
     cursor: pointer;
 
-    color: var(--r-neutral-body, #3e495e);
+    color: var(--r-neutral-body, #3f3f46);
     font-size: 13px;
     line-height: 16px;
     font-weight: 500;
@@ -48,7 +49,7 @@
   }
 
   .filter-scam-loading-text {
-    color: var(--r-neutral-body, #3e495e);
+    color: var(--r-neutral-body, #3f3f46);
     text-align: center;
     font-size: 12px;
     font-weight: 400;
@@ -62,10 +63,11 @@
 
   &-card {
     position: relative;
-    background: var(--r-neutral-card-1, rgba(255, 255, 255, 0.06));
-    border-radius: 6px;
-    padding: 0 12px;
-    margin-bottom: 12px;
+    background: var(--crb-raised, rgba(255, 255, 255, 0.06));
+    border-radius: 14px;
+    box-shadow: var(--crb-shadow-card);
+    padding: 0 14px;
+    margin-bottom: 10px;
 
     &.is-gray {
       opacity: 0.5;
@@ -86,7 +88,7 @@
         white-space: nowrap;
       }
       .time {
-        color: var(--r-neutral-foot, #babec5);
+        color: var(--r-neutral-foot, #b5b1aa);
       }
     }
     &-body {
@@ -101,7 +103,7 @@
       border-top: 0.5px solid var(--r-neutral-line, rgba(255, 255, 255, 0.1));
       padding: 12px 0;
       display: flex;
-      color: var(--r-neutral-foot, #babec5);
+      color: var(--r-neutral-foot, #b5b1aa);
       .tx-status {
         margin-left: auto;
         &.is-failed {
@@ -114,16 +116,23 @@
     font-weight: 400;
     font-size: 12px;
     line-height: 14px;
-    color: var(--r-neutral-foot, #babec5);
-    padding: 3px 6px;
-    background: var(--r-neutral-line, rgba(255, 255, 255, 0.1));
-    border-radius: 2px;
+    color: var(--r-neutral-foot, #b5b1aa);
+    padding: 2px 6px;
+    background: var(--crb-sunken, rgba(255, 255, 255, 0.1));
+    border-radius: 999px;
   }
   .tx-id {
-    color: var(--r-neutral-foot, #babec5);
-    text-decoration: underline;
+    color: var(--r-neutral-foot, #b5b1aa);
+    font-family: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    &:hover {
+      color: var(--r-neutral-title-1);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
     &-chain {
-      color: var(--r-neutral-body, #d3d8e0);
+      color: var(--r-neutral-body, #d4d4d8);
       margin-right: 8px;
     }
     &-container {
@@ -152,7 +161,7 @@
 
   &-loading {
     background-color: var(--r-neutral-card-1, rgba(255, 255, 255, 0.06));
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 8px 14px 16px;
     .ant-skeleton-input {
       background-color: var(--r-neutral-card-1, rgba(255, 255, 255, 0.06));
@@ -165,7 +174,7 @@
 
 .J_tipInputData .ant-tooltip-inner {
   padding: 8px 6px !important;
-  background-color: var(--r-neutral-title-1, #192945) !important;
+  background-color: var(--r-neutral-title-1, #09090b) !important;
 }
 
 .view-tx-message-modal {
@@ -186,7 +195,7 @@
 
   .ant-modal-title {
     text-align: center;
-    color: var(--r-neutral-title-1, #192945);
+    color: var(--r-neutral-title-1, #09090b);
   }
 
   .ant-modal-body {
@@ -197,7 +206,7 @@
   }
 
   .parsed-content {
-    color: var(--r-neutral-body, #3e495e);
+    color: var(--r-neutral-body, #3f3f46);
     font-size: 13px;
     font-weight: 400;
     line-height: 16px;

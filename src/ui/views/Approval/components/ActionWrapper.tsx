@@ -8,9 +8,9 @@ export const DIV = styled.div`
     justify-content: space-between;
     padding: 12px 16px;
     align-items: center;
-    color: var(--r-neutral-title1, #192945);
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    color: var(--r-neutral-title1, #09090b);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
 
     .left {
       font-weight: 500;
@@ -42,13 +42,13 @@ export const DIV = styled.div`
         padding: 0;
         font-size: 13px;
         font-weight: 500;
-        color: var(--r-neutral-body, #3e495e);
-        border-radius: 6px;
+        color: var(--r-neutral-body, #3f3f46);
+        border-radius: 8px;
       }
     }
     &.is-unknown {
       .left {
-        color: var(--r-neutral-foot, #6a7587);
+        color: var(--r-neutral-foot, #71717a);
       }
     }
   }

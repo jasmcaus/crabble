@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
 import { PrivateRoute } from 'ui/component';
 import Welcome from './Welcome';
 import NoAddress from './NoAddress';
@@ -138,8 +138,37 @@ const LogPageView = () => {
   return null;
 };
 
+/** Replays a short fade on #root whenever the route changes. Opacity only
+ * and no fill mode, so nothing lingers after the animation (no transform
+ * to break fixed children, no persistent stacking context). */
+const useRouteFade = () => {
+  const { pathname } = useLocation();
+  const isFirstRun = React.useRef(true);
+  useEffect(() => {
+    // this chunk loads lazily, after the first screen may have painted;
+    // fading that in again would flicker
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
+    const root = document.getElementById('root');
+    if (!root) return;
+    root.classList.remove('crb-route-enter');
+    // force a reflow so re-adding the class restarts the animation
+    void root.offsetWidth;
+    root.classList.add('crb-route-enter');
+    // child animations bubble here too; only our own ending counts
+    const clear = (event: AnimationEvent) => {
+      if (event.target === root) root.classList.remove('crb-route-enter');
+    };
+    root.addEventListener('animationend', clear);
+    return () => root.removeEventListener('animationend', clear);
+  }, [pathname]);
+};
+
 const Main = () => {
   const wallet = useWallet();
+  useRouteFade();
 
   useEffect(() => {
     (async () => {

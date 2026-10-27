@@ -101,7 +101,7 @@ export const ReadyToUse = () => {
           block
           type="primary"
           className={clsx(
-            'mt-auto h-[56px] shadow-none rounded-[8px]',
+            'mt-auto h-[56px] shadow-none rounded-[12px]',
             'text-[17px] font-medium'
           )}
         >

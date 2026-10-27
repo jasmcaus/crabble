@@ -231,10 +231,8 @@ export const NewUserImportOneKey = () => {
                 },
               ]}
               onTabChange={setConnectType}
-              className="bg-r-neutral-line p-[2px]"
+              className="bg-[var(--crb-sunken)] p-[2px]"
               itemClassname="text-[13px] leading-[16px] w-[100px] h-[28px]"
-              itemClassnameActive="bg-r-neutral-card-1"
-              itemClassnameInActive={clsx('text-r-neutral-body')}
             />
           </div>
           {connectType === ConnectType.USB ? (
@@ -265,7 +263,7 @@ export const NewUserImportOneKey = () => {
                 block
                 type="primary"
                 className={clsx(
-                  'mt-[32px] h-[56px] shadow-none rounded-[8px]',
+                  'mt-[32px] h-[56px] shadow-none rounded-[12px]',
                   'text-[17px] font-medium'
                 )}
               >
@@ -283,7 +281,7 @@ export const NewUserImportOneKey = () => {
                 <div className="relative flex justify-center">
                   <div
                     className={clsx(
-                      'm-auto rounded-[6px] p-[6px] bg-transparent',
+                      'm-auto rounded-[8px] p-[6px] bg-transparent',
                       'w-[200px] h-[200px]',
                       'border border-rabby-neutral-line'
                     )}

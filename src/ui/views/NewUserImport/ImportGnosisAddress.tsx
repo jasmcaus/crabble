@@ -14,22 +14,22 @@ import { GnosisChainList } from './GnosisChainList';
 
 const Container = styled.div`
   .ant-input {
-    border-radius: 8px;
-    border: 1px solid var(--r-neutral-line, #e0e5ec);
-    color: var(--r-neutral-title1, #192945);
+    border-radius: 12px;
+    border: 1px solid var(--r-neutral-line, #e4e4e7);
+    color: var(--r-neutral-title1, #09090b);
     font-size: 15px;
     font-weight: 500;
     line-height: 18px;
 
     &::placeholder {
-      color: var(--r-neutral-foot, #6a7587);
+      color: var(--r-neutral-foot, #71717a);
       font-weight: 400;
     }
   }
 
   .ant-input:focus,
   .ant-input-focused {
-    border-color: var(--r-blue-default, #7084ff);
+    border-color: var(--r-blue-default, #f26b3a);
   }
 
   .ant-form-item-has-error .ant-input {
@@ -51,7 +51,7 @@ const Container = styled.div`
     font-weight: 400;
     font-size: 13px;
     line-height: 15px;
-    color: var(--r-neutral-body, #3e495e);
+    color: var(--r-neutral-body, #3f3f46);
     display: flex;
     align-items: center;
     gap: 4px;
@@ -208,7 +208,7 @@ export const NewUserImportGnosisAddress = () => {
           block
           type="primary"
           className={clsx(
-            'mt-[48px] h-[56px] shadow-none rounded-[8px]',
+            'mt-[48px] h-[56px] shadow-none rounded-[12px]',
             'text-[17px] font-medium'
           )}
         >

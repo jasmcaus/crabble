@@ -22,17 +22,14 @@ export const BalanceLabel: React.FC<Props> = ({ balanceUsd, currency }) => {
 
   return (
     <div
-      className={clsx(
-        'cursor-pointer transition-opacity truncate'
-        // isCache && 'opacity-80'
-      )}
+      className={clsx('cursor-pointer transition-opacity truncate')}
       onClick={handleClick}
     >
       {hiddenBalance ? (
         <div
           className={clsx(
-            'font-bold text-[30px] leading-[36px] tracking-[16px]',
-            'mr-[-16px] ml-4'
+            'crb-display text-[44px] leading-[48px] tracking-[12px]',
+            'mr-[-12px]'
           )}
         >
           *****
@@ -40,26 +37,26 @@ export const BalanceLabel: React.FC<Props> = ({ balanceUsd, currency }) => {
       ) : formattedBalance.isPrefix ? (
         <div
           className={clsx(
-            'font-bold text-[28px] leading-[33px] truncate max-w-full'
+            'crb-display text-[44px] leading-[48px] truncate max-w-full'
           )}
         >
-          {formattedBalance.text}
+          <SplitCents text={formattedBalance.text} />
         </div>
       ) : (
         <div
           className={clsx(
-            'inline-flex items-end gap-[4px] max-w-full overflow-hidden',
-            'font-bold text-[28px] leading-[33px]'
+            'inline-flex items-end gap-[6px] max-w-full overflow-hidden',
+            'crb-display text-[44px] leading-[48px]'
           )}
         >
           <span className="min-w-0 truncate">
             {formattedBalance.sign}
             {formattedBalance.isLessThan ? '<' : ''}
-            {formattedBalance.amount}
+            <SplitCents text={formattedBalance.amount} />
           </span>
           <span
             className={clsx(
-              'shrink-0 pb-[4px] text-[16px] leading-[19px] font-medium'
+              'shrink-0 pb-[7px] font-sans text-[15px] leading-[18px] font-medium text-r-neutral-foot'
             )}
           >
             {formattedBalance.symbol}
@@ -67,5 +64,19 @@ export const BalanceLabel: React.FC<Props> = ({ balanceUsd, currency }) => {
         </div>
       )}
     </div>
+  );
+};
+
+/** Renders "1,234.56" with the trailing ".56" quieter, the way statements do. */
+const SplitCents: React.FC<{ text: string }> = ({ text }) => {
+  const match = /^(.*?)([.,]\d{1,2})$/.exec(text);
+  if (!match) {
+    return <>{text}</>;
+  }
+  return (
+    <>
+      {match[1]}
+      <span className="crb-cents">{match[2]}</span>
+    </>
   );
 };

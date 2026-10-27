@@ -81,14 +81,14 @@ const AuthFormItemWrapper = styled.div<{ $hasError?: boolean }>`
     }
   }
   .ant-input.ant-input-lg.popup-input {
-    border: 1px solid var(--r-neutral-line, #d3d8e0) !important;
+    border: 1px solid var(--r-neutral-line, #d4d4d8) !important;
     background: var(--r-neutral-card1, #ffffff) !important;
     &::placeholder {
-      color: var(--r-neutral-foot, #6a7587) !important;
+      color: var(--r-neutral-foot, #71717a) !important;
     }
     &:focus,
     &:hover {
-      border-color: var(--r-blue-default, #7084ff) !important;
+      border-color: var(--r-blue-default, #f26b3a) !important;
     }
     ${({ $hasError }) =>
       $hasError && 'border-color: var(--r-red-default) !important;'}
@@ -210,7 +210,7 @@ export const AddressTypeCard = ({
                   'w-[200px]',
                   'text-blue-light',
                   'border-blue-light',
-                  'hover:bg-[#8697FF1A] active:bg-[#0000001A]',
+                  'hover:bg-[var(--crb-sunken)] active:bg-[#0000001A]',
                   'before:content-none'
                 )}
               >
@@ -236,7 +236,7 @@ export const AddressTypeCard = ({
       <StyledTooltipGlobalStyle />
       <div
         className={clsx(
-          'rounded-[8px] px-[12px] h-[32px] flex items-center gap-[6px]',
+          'rounded-[12px] px-[12px] h-[32px] flex items-center gap-[6px]',
           className
         )}
       >
@@ -312,7 +312,7 @@ export const AddressTypeCard = ({
       {showSideDesc && (
         <div
           className={`
-            text-r-blue-default rounded-[8px] bg-r-blue-light1 
+            text-r-blue-default rounded-[12px] bg-r-blue-light1 
               px-[12px] h-[32px] text-[13px] font-medium flex items-center
               whitespace-nowrap overflow-hidden text-ellipsis
           `}
@@ -474,7 +474,7 @@ export const AddressRiskAlert = ({
       <div className="flex flex-col h-full">
         <header
           className={clsx(
-            'header bg-r-neutral-card1 rounded-[8px] px-[28px] py-[20px]',
+            'header bg-r-neutral-card1 rounded-[12px] px-[28px] py-[20px]',
             'flex flex-col items-center gap-[8px]',
             {
               'pb-0': riskInfos.hasNotRisk,
@@ -482,7 +482,7 @@ export const AddressRiskAlert = ({
           )}
         >
           {riskInfos.loadingAddrDesc ? (
-            <Skeleton.Input className="w-full h-[44px] rounded-[8px]" active />
+            <Skeleton.Input className="w-full h-[44px] rounded-[12px]" active />
           ) : (
             <div className="text-[16px] w-full text-center break-all">
               <AddressText>{addressSplit[0]}</AddressText>
@@ -492,7 +492,7 @@ export const AddressRiskAlert = ({
           )}
           {riskInfos.loadingAddrDesc ? (
             <Skeleton.Input
-              className="w-[100px] h-[32px] rounded-[8px] mt-[3px]"
+              className="w-[100px] h-[32px] rounded-[12px] mt-[3px]"
               active
             />
           ) : (
@@ -553,7 +553,7 @@ export const AddressRiskAlert = ({
         </header>
         {riskInfos.loadingHasTransfer ? (
           <div className="flex-1">
-            <div className="flex gap-[8px] mt-[30px] items-center bg-r-neutral-card1 rounded-[8px] py-[14px] px-[16px]">
+            <div className="flex gap-[8px] mt-[30px] items-center bg-r-neutral-card1 rounded-[12px] py-[14px] px-[16px]">
               <Skeleton.Avatar
                 size={16}
                 className="w-[16px] h-[16px] rounded-full"

@@ -155,13 +155,13 @@ const Wrapper = styled.div<{ $rowHeight?: number }>`
 
       /* Hover state */
       &:hover {
-        color: var(--rb-neutral-title-1, #192945);
+        color: var(--rb-neutral-title-1, #09090b);
         background-color: transparent;
       }
 
       /* Active (sorted) state */
       &.ant-table-column-sort {
-        color: var(--rb-neutral-title-1, #192945);
+        color: var(--rb-neutral-title-1, #09090b);
       }
     }
 
@@ -226,10 +226,10 @@ const Wrapper = styled.div<{ $rowHeight?: number }>`
 
   .ant-table-tbody > tr > td.ant-table-cell-row-hover {
     /* background-color: transparent; */
-    background-color: var(--rb-neutral-bg-3, #e0e5ec);
+    background-color: var(--rb-neutral-bg-3, #e4e4e7);
   }
   .ant-table-tbody > tr.ant-table-row:hover > td {
-    background-color: var(--rb-neutral-bg-3, #e0e5ec);
+    background-color: var(--rb-neutral-bg-3, #e4e4e7);
   }
 
   .ant-table-tbody {
@@ -290,12 +290,12 @@ const VirtualWrapper = styled.div<{ isDarkTheme: boolean }>`
         }
 
         &:hover {
-          color: var(--rb-neutral-title-1, #192945);
+          color: var(--rb-neutral-title-1, #09090b);
           background-color: transparent;
         }
 
         &.ant-table-column-sort {
-          color: var(--rb-neutral-title-1, #192945);
+          color: var(--rb-neutral-title-1, #09090b);
         }
       }
 

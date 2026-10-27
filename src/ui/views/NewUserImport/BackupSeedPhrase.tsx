@@ -98,8 +98,8 @@ export const BackupSeedPhrase = () => {
               'h-[36px] px-[16px] cursor-pointer',
               'inline-flex justify-center items-center gap-[4px]',
               'text-13 font-medium text-r-neutral-body',
-              'bg-rabby-neutral-card-2 rounded-[8px]',
-              'hover:bg-r-blue-light-1 hover:text-rabby-blue-default'
+              'bg-rabby-neutral-card-2 rounded-[12px]',
+              'hover:bg-[var(--crb-sunken)] hover:text-rabby-blue-default'
             )}
             onClick={onCopyMnemonics}
           >
@@ -112,7 +112,7 @@ export const BackupSeedPhrase = () => {
           block
           type="primary"
           className={clsx(
-            'h-[52px] shadow-none rounded-[8px] mt-auto',
+            'h-[52px] shadow-none rounded-[12px] mt-auto',
             'text-[15px] leading-[18px] font-medium bg-r-blue-default'
           )}
         >

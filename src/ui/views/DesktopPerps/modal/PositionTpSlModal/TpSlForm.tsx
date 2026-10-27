@@ -452,7 +452,7 @@ export const TpSlForm: React.FC<TpSlFormProps> = ({
           block
           size="large"
           type="primary"
-          className="desktop-perps-tpsl-confirm h-[48px] rounded-[6px] text-[15px] font-medium"
+          className="desktop-perps-tpsl-confirm h-[48px] rounded-[8px] text-[15px] font-medium"
           disabled={!canSubmit}
           loading={submitting}
           onClick={() =>

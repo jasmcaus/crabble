@@ -42,7 +42,7 @@ import { Account } from '@rabby-wallet/eth-walletconnect-keyring/type';
 const OuterInput = styled.div`
   border: 1px solid var(--r-neutral-line);
   &:hover {
-    border: 1px solid var(--r-blue-default, #7084ff);
+    border: 1px solid var(--crb-hairline-strong);
     cursor: text;
   }
 `;
@@ -344,7 +344,7 @@ const SelectToAddress = () => {
         className={clsx(
           'send-token select-to-address-page relative overflow-y-scroll',
           isTab || isDesktop
-            ? 'w-full h-full overflow-auto min-h-0 rounded-[16px] shadow-[0px_40px_80px_0px_rgba(43,57,143,0.40)'
+            ? 'w-full h-full overflow-auto min-h-0 rounded-[16px] shadow-[0px_24px_64px_-12px_rgba(9,9,11,0.18)'
             : ''
         )}
       >
@@ -378,7 +378,7 @@ const SelectToAddress = () => {
                 border border-r-neutral-line rounded-[12px] bg-r-neutral-card1
                 text-r-neutral-foot text-[15px] 
                 h-[52px] leading-[52px] px-[15px] justify-center items-center
-                hover:cursor-text hover:border-r-blue-default
+                hover:cursor-text hover:border-[var(--crb-hairline-strong)]
               `}
               onClick={() => setInputingAddress(true)}
             >

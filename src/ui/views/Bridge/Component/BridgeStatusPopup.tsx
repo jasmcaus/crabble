@@ -129,7 +129,7 @@ const StepCard = ({
   const amountTone = status === 'queued' ? 'opacity-40' : '';
 
   return (
-    <div className="flex w-full flex-col overflow-hidden rounded-[8px] bg-r-neutral-card-1">
+    <div className="flex w-full flex-col overflow-hidden rounded-[12px] bg-r-neutral-card-1">
       <div className="flex h-[44px] items-center justify-between border-b-[0.5px] border-solid border-rabby-neutral-line pl-[12px] pr-[10px]">
         <div className={clsx('flex items-center gap-[6px]', headerTone)}>
           <span className="text-20 font-bold leading-[24px]">{index}</span>
@@ -385,7 +385,7 @@ const PopupButton = ({
     <button
       type="button"
       disabled={disabled}
-      className="h-[48px] w-full rounded-[6px] bg-r-blue-default text-[16px] font-medium text-r-neutral-title-2 disabled:opacity-40"
+      className="h-[48px] w-full rounded-[8px] bg-r-blue-default text-[16px] font-medium text-r-neutral-title-2 disabled:opacity-40"
       onClick={onClick}
     >
       {label}

@@ -44,57 +44,41 @@ const LpContainer = styled.div`
 const ActionBtnWrapper = styled.div<{ isDark?: boolean }>`
   position: relative;
   width: min-content;
-
-  &::after {
-    content: '';
-    position: absolute;
-    z-index: 0;
-    top: -8px;
-    bottom: -8px;
-    width: 28px;
-    right: -8px;
-    height: 44px;
-    background: ${({ isDark }) =>
-      isDark
-        ? 'linear-gradient(90deg, rgba(27, 29, 44, 1) 0%, rgba(27, 29, 44, 0) 100%)'
-        : 'linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 1) 100%)'};
-    pointer-events: none;
-  }
 `;
 
 const StyledTRow = styled(TRow)`
-  background-color: var(--r-neutral-card1, #ffffff);
+  background-color: transparent;
+  transition: background-color 0.14s var(--crb-ease, ease);
 
   &:hover {
-    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.04);
+    background-color: var(--crb-hover);
   }
   &:active:not(:has(.token-action-btn:active)) {
-    background-color: var(--r-blue-light1, #edf0ff) !important;
-    ${ActionBtnWrapper}::after {
-      display: none;
-    }
+    background-color: var(--crb-press) !important;
   }
 `;
 
 const ActionBtn = styled.div`
   height: 28px;
-  padding-left: 8px;
-  padding-right: 8px;
+  padding-left: 10px;
+  padding-right: 10px;
 
   font-size: 12px;
-  font-weight: 500;
-  border-radius: 6px;
+  font-weight: 600;
+  border-radius: 999px;
 
   cursor: pointer;
-  color: var(--r-neutral-title-1, #13141a);
-  background: var(--r-neutral-bg-2, #f5f6fa);
+  color: var(--r-neutral-title-1, #09090b);
+  background: var(--crb-raised);
+  box-shadow: var(--crb-shadow-card);
   z-index: 11;
   flex-shrink: 0;
   flex: 0 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
+  transition: background-color 0.14s ease, color 0.14s ease;
 
   & > span {
     white-space: nowrap;
@@ -106,7 +90,7 @@ const ActionBtn = styled.div`
   }
 
   &:hover {
-    color: var(--r-blue-default, #7084ff);
+    color: var(--r-blue-default, #e8552a);
   }
 `;
 
@@ -147,10 +131,10 @@ const TokenItemAsset: React.FC<TokenItemAssetProps> = ({
   );
 
   return (
-    <TCell className="py-8 flex gap-10 items-center shrink-1 flex-1">
-      <div className="relative h-[32px]">
+    <TCell className="py-8 flex gap-12 items-center shrink-1 flex-1 min-w-0">
+      <div className="relative h-[36px] shrink-0">
         <Image
-          className="w-32 h-32 rounded-full"
+          className="w-[36px] h-[36px] rounded-full"
           src={item.logo_url || IconUnknown}
           alt={item.symbol}
           fallback={IconUnknown}
@@ -161,7 +145,7 @@ const TokenItemAsset: React.FC<TokenItemAssetProps> = ({
           className="rectangle w-[max-content]"
         >
           <img
-            className="w-16 h-16 absolute right-[-2px] bottom-[-2px] rounded-full"
+            className="w-[15px] h-[15px] absolute right-[-3px] bottom-[-2px] rounded-full ring-2 ring-[var(--r-neutral-bg-2)]"
             src={chain?.logo || IconUnknown}
             alt={item.chain}
           />
@@ -180,7 +164,7 @@ const TokenItemAsset: React.FC<TokenItemAssetProps> = ({
           )}
         >
           <LpContainer>
-            <span className="text-r-neutral-title-1 font-medium text-15 leading-[18px] whitespace-nowrap text-ellipsis overflow-hidden inner-symbol">
+            <span className="text-r-neutral-title-1 font-semibold text-[15px] leading-[20px] tracking-[-0.01em] whitespace-nowrap text-ellipsis overflow-hidden inner-symbol">
               {item.symbol}
             </span>
             {isUnknownToken(item) && <UnknownTag className="ml-2" />}
@@ -195,7 +179,7 @@ const TokenItemAsset: React.FC<TokenItemAssetProps> = ({
               </span>
             )}
           </LpContainer>
-          <span className="text-r-neutral-foot text-13 leading-[16px] truncate whitespace-nowrap text-ellipsis overflow-hidden max-w-[180px]">
+          <span className="text-r-neutral-foot text-[13px] leading-[16px] tabular-nums truncate whitespace-nowrap text-ellipsis overflow-hidden max-w-[180px]">
             {item._amountStr}
           </span>
         </div>
@@ -268,24 +252,24 @@ const TokenItemUSDValue: React.FC<Props> = ({ item }) => {
 
 const TokenItemMarketInfo: React.FC<Props> = ({ item }) => {
   return (
-    <TCell className={clsx('flex flex-col gap-2')}>
-      <div className="text-r-neutral-title-1 font-medium text-15 leading-[18px] text-right truncate">
+    <TCell className={clsx('flex flex-col gap-2 shrink-0 pl-8')}>
+      <div className="text-r-neutral-title-1 font-semibold text-[15px] leading-[20px] tracking-[-0.01em] tabular-nums text-right truncate">
         {item._usdValueStr || '<$0.01'}
       </div>
-      <div className="flex flex-row gap-4 items-center justify-end">
-        <div className="text-r-neutral-foot text-13 leading-[16px]">
+      <div className="flex flex-row gap-6 items-center justify-end tabular-nums">
+        <div className="text-r-neutral-foot text-[12px] leading-[16px]">
           ${item._priceStr}
         </div>
         {isNumber(item.price_24h_change) && (
           <div
-            className={clsx('font-normal text-13 leading-[16px]', {
-              'text-green': item.price_24h_change > 0,
-              'text-red-forbidden': item.price_24h_change < 0,
+            className={clsx('font-medium text-[12px] leading-[16px]', {
+              'text-r-green-default': item.price_24h_change > 0,
+              'text-r-red-default': item.price_24h_change < 0,
               'text-r-neutral-foot': !item.price_24h_change,
             })}
           >
-            ({item.price_24h_change > 0 ? '+' : ''}
-            {(item.price_24h_change * 100).toFixed(2)}%)
+            {item.price_24h_change > 0 ? '+' : ''}
+            {(item.price_24h_change * 100).toFixed(2)}%
           </div>
         )}
       </div>
@@ -311,9 +295,8 @@ export const TokenItem: React.FC<Props> = ({ item, style, onClick }) => {
       onMouseLeave={handleRowMouseLeave}
       className={clsx(
         'group cursor-pointer',
-        'h-[60px] mt-8 px-12 justify-between',
-        'rounded-[8px] border border-transparent',
-        'hover:border-blue-light'
+        'h-[60px] px-[10px] justify-between',
+        'rounded-[14px]'
       )}
     >
       <TokenItemAsset item={item} showButtons={showButtons} />

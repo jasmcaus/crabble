@@ -915,7 +915,7 @@ export const SignTestnetTx = ({
               'w-[186px]',
               'ml-auto',
               'px-[16px] py-[12px] rotate-[-23deg]',
-              'border-rabby-neutral-title1 border-[1px] rounded-[6px]',
+              'border-rabby-neutral-title1 border-[1px] rounded-[8px]',
               'text-r-neutral-title1 text-[20px] leading-[24px]',
               'opacity-30',
               'absolute bottom-[210px] right-[16px] pointer-events-none'

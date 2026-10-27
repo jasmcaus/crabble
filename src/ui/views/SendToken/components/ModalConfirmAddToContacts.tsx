@@ -42,7 +42,7 @@ const FormInputItem = styled(Form.Item)`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    color: var(--r-neutral-foot, #babec5);
+    color: var(--r-neutral-foot, #b5b1aa);
     height: initial;
 
     &::before {

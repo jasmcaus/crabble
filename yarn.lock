@@ -17780,6 +17780,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lucide-react@npm:1.55.0":
+  version: 1.55.0
+  resolution: "lucide-react@npm:1.55.0"
+  peerDependencies:
+    "@types/react": "*"
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 10c0/0618af0eb06e0ea71a7c66b39b89158ff357093714fff5f4bfc1b4851af890ffc49092956b08daf89f38c7ff48f783bb14e7b52756aae4f6bed06da4cf297821
+  languageName: node
+  linkType: hard
+
 "lz-string@npm:^1.5.0":
   version: 1.5.0
   resolution: "lz-string@npm:1.5.0"
@@ -20716,6 +20729,7 @@ __metadata:
     loglevel: "npm:1.7.1"
     lottie-react: "npm:2.4.0"
     lru-cache: "npm:6.0.0"
+    lucide-react: "npm:1.55.0"
     multiformats: "npm:13.3.2"
     nanoid: "npm:3.3.6"
     p-queue: "npm:7.3.0"

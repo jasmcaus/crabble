@@ -41,8 +41,8 @@ export const ProtocolLowValueItem: React.FC<Props> = ({
   return (
     <div
       className={clsx(
-        'flex justify-between border border-transparent items-center bg-r-neutral-card1 rounded-[8px] px-16',
-        'hover:border-blue-light hover:bg-blue-light/10',
+        'flex justify-between items-center rounded-[14px] px-16',
+        'bg-transparent hover:bg-[var(--crb-hover)] transition-colors',
         'cursor-pointer',
         className
       )}

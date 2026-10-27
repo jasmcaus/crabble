@@ -223,7 +223,7 @@ export const ChainSelectorLargeModal = ({
             onChange={(e) => setSearch(e.target.value)}
             value={search}
             allowClear
-            className="bg-r-neutral-card-1 hover:border-rabby-blue-default"
+            className="bg-r-neutral-card-1 hover:border-[var(--crb-hairline-strong)]"
           />
         </header>
         {isLoading ? (

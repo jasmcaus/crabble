@@ -72,7 +72,7 @@ export const CodeAndShare = ({
             openExternalWebsiteInTab('https://airdrop.soniclabs.com/referral');
           }
         }}
-        className={`bg-rabby-sonic-card text-rabby-sonic-card-foreground rounded-[8px] px-[12px] py-[8px] flex w-full items-center justify-center gap-[10px] font-bold border border-rabby-sonic-card-border transition-all duration-200 ${
+        className={`bg-rabby-sonic-card text-rabby-sonic-card-foreground rounded-[12px] px-[12px] py-[8px] flex w-full items-center justify-center gap-[10px] font-bold border border-rabby-sonic-card-border transition-all duration-200 ${
           hasCopied ? 'scale-[1.02] shadow' : 'hover:scale-[1.02] hover:shadow'
         } ${
           loading ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''
@@ -92,7 +92,7 @@ export const CodeAndShare = ({
       {(referralCode || loading) && (
         <button
           disabled={loading}
-          className={`bg-rabby-sonic-card text-rabby-sonic-card-foreground rounded-[8px] px-[12px] py-[8px] flex w-full items-center justify-center gap-[10px] font-bold border border-rabby-sonic-card-border transition-all duration-200 hover:scale-[1.02] hover:shadow ${
+          className={`bg-rabby-sonic-card text-rabby-sonic-card-foreground rounded-[12px] px-[12px] py-[8px] flex w-full items-center justify-center gap-[10px] font-bold border border-rabby-sonic-card-border transition-all duration-200 hover:scale-[1.02] hover:shadow ${
             loading ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''
           }`}
           onClick={() => shareSonicPointsX({ referralCode })}

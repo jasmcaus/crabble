@@ -86,7 +86,9 @@ const PageHeader = ({
           </div>
         )}
         <div className="header-content">
-          {children}
+          {children ? (
+            <span className="page-header-title">{children}</span>
+          ) : null}
           {isShowAccount && currentAccount ? (
             <AccountSwitchInner
               disableSwitch={disableSwitchAccount}
@@ -163,8 +165,8 @@ const AccountSwitchInner = ({
       <div className="flex justify-center mt-[-1px]">
         <div
           className={clsx(
-            'flex items-center justify-center px-[8px] py-[3px] rounded-[4px] group',
-            !disableSwitch && 'hover:bg-r-neutral-line cursor-pointer'
+            'flex items-center justify-center gap-[2px] pl-[6px] pr-[4px] py-[3px] rounded-full group transition-colors',
+            !disableSwitch && 'hover:bg-[var(--crb-hover)] cursor-pointer'
           )}
           onClick={() => {
             if (disableSwitch) {
@@ -180,7 +182,7 @@ const AccountSwitchInner = ({
           <img className="w-[16px] h-[16px] mr-[4px]" src={addressTypeIcon} />
           <div
             className={clsx(
-              'text-r-neutral-body text-[13px] leading-[16px] font-medium',
+              'text-r-neutral-body text-[13px] leading-[16px] font-semibold',
               'max-w-[220px] truncate'
             )}
           >

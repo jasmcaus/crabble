@@ -21,19 +21,19 @@ export const GasCardBody = styled.div<{
             cursor: pointer;
 
             &:hover {
-              border: 1px solid var(--r-blue-default, #7084ff);
+              border: 1px solid var(--crb-hairline-strong);
             }
 
             &.active {
-              background: var(--r-blue-light-1, #eef1ff);
-              border: 1px solid var(--r-blue-default, #7084ff);
+              background: var(--r-blue-light-1, #fdefe9);
+              border: 1px solid var(--r-blue-default, #f26b3a);
               box-shadow: none;
             }
           }
 
           .cardTitle {
             &.active {
-              color: var(--r-blue-default, #7084ff) !important;
+              color: var(--r-blue-default, #f26b3a) !important;
             }
           }
         `}
@@ -41,7 +41,7 @@ export const GasCardBody = styled.div<{
   .card {
     width: 84px;
     height: 80px;
-    border-radius: 8px;
+    border-radius: 12px;
     background: var(--r-neutral-card1, #fff);
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -54,13 +54,13 @@ export const GasCardBody = styled.div<{
       text-align: center;
       font-size: 12px;
       line-height: 14px;
-      color: var(--r-neutral-body, #3e495e);
+      color: var(--r-neutral-body, #3f3f46);
       margin: 14px auto 0;
       font-weight: 500;
     }
 
     .cardTitle {
-      color: var(--r-neutral-title-1, #192945) !important;
+      color: var(--r-neutral-title-1, #09090b) !important;
       font-weight: 500;
       font-size: 15px !important;
       line-height: 18px;
@@ -74,7 +74,7 @@ export const GasCardBody = styled.div<{
     .cardTime {
       font-size: 12px;
       line-height: 14px;
-      color: var(--r-neutral-foot, #6a7587);
+      color: var(--r-neutral-foot, #71717a);
       margin: 2px auto 0;
     }
 
@@ -90,12 +90,12 @@ export const GasCardBody = styled.div<{
       text-align: center !important;
       font-size: 15px !important;
       font-weight: 500;
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #09090b);
       padding-top: 0;
       transition: none;
 
       &.active {
-        color: var(--r-blue-default, #7084ff) !important;
+        color: var(--r-blue-default, #f26b3a) !important;
       }
     }
 
@@ -109,7 +109,7 @@ export const GasCardBody = styled.div<{
 export const GasPriceDesc = styled.div`
   margin-top: 20px;
   font-size: 13px;
-  color: var(--r-neutral-body, #3e495e);
+  color: var(--r-neutral-body, #3f3f46);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -118,7 +118,7 @@ export const GasPriceDesc = styled.div`
 
 export const GasPriceBold = styled.span`
   font-weight: 500;
-  color: var(--r-neutral-title1, #192945);
+  color: var(--r-neutral-title1, #09090b);
   font-size: 13px;
 `;
 

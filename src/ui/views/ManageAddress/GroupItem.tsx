@@ -49,19 +49,21 @@ export const GroupItem = ({
     <div
       onClick={onChange}
       className={clsx(
-        'w-[59px] h-[44px] rounded-[4px] flex items-center justify-center cursor-pointer',
-        active ? 'bg-blue-light/[0.15]' : 'hover:bg-blue-light/[0.08]'
+        'w-[56px] h-[40px] rounded-[9px] flex items-center justify-center cursor-pointer transition-[background-color,box-shadow] duration-150',
+        active
+          ? 'bg-[var(--crb-thumb)] shadow-[var(--crb-shadow-thumb)]'
+          : 'hover:bg-[var(--crb-hover)]'
       )}
     >
       <div className="relative flex items-center justify-center">
         <ThemeIcon
           src={addressTypeIcon}
           className={clsx(
-            'w-24 h-24',
+            'w-[22px] h-[22px]',
             type !== KEYRING_CLASS.MNEMONIC && 'rounded-full'
           )}
         />
-        <div className="absolute -top-6 -right-6 text-12 text-r-neutral-body bg-r-neutral-bg-2 border-white h-14 px-[4px] border-width-[0.5px] rounded-[90px]">
+        <div className="absolute -top-[7px] -right-[10px] min-w-[16px] h-[16px] px-[4px] rounded-full bg-r-neutral-title1 text-r-neutral-bg1 text-[10px] leading-[16px] font-semibold text-center tabular-nums">
           {count}
         </div>
       </div>

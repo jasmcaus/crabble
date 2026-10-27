@@ -58,7 +58,7 @@ export const InstitutionalWallets: React.FC<{
               px={16}
               py={0}
               bgColor="var(--r-neutral-card-1, #fff)"
-              className="h-[52px] rounded-[8px]"
+              className="h-[52px] rounded-[12px]"
               left={
                 <div className="mr-[12px] flex h-[24px] w-[24px] shrink-0 items-center justify-center">
                   <img

@@ -33,14 +33,14 @@ const FormInputItem = styled(Form.Item)`
     margin-bottom: 0;
   }
   .ant-input.ant-input-lg.popup-input {
-    border: 1px solid var(--r-neutral-line, #d3d8e0) !important;
+    border: 1px solid var(--r-neutral-line, #d4d4d8) !important;
     background: transparent !important;
     &::placeholder {
-      color: var(--r-neutral-foot, #6a7587) !important;
+      color: var(--r-neutral-foot, #71717a) !important;
     }
     &:focus,
     &:hover {
-      border-color: var(--r-blue-default, #7084ff) !important;
+      border-color: var(--r-blue-default, #f26b3a) !important;
     }
   }
 `;

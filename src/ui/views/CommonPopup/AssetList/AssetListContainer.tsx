@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
+import { Inbox } from 'lucide-react';
 import { TokenSearchInput } from './TokenSearchInput';
 import { useRabbySelector } from '@/ui/store';
 import { HomeTokenList } from './TokenList';
@@ -25,11 +26,17 @@ import type { NftPreviewItem } from './NftPreviewSection';
 import { useNFTCollections } from '@/ui/hooks/useNFTCollections';
 import { usePortfolioDisplayTokens } from '@/ui/hooks/useRemovedTokens';
 
+export type AssetListTab = 'tokens' | 'defi' | 'nft';
+
 interface Props {
   className?: string;
   selectChainId: string | null;
   visible: boolean;
   onEmptyAssets: (isEmpty: boolean) => void;
+  /** render one section only (the dashboard's inline tabs); all when unset */
+  tab?: AssetListTab;
+  /** show the token search and LP switch row (default true) */
+  showSearch?: boolean;
 }
 
 export const AssetListContainer: React.FC<Props> = ({
@@ -37,7 +44,12 @@ export const AssetListContainer: React.FC<Props> = ({
   selectChainId,
   visible,
   onEmptyAssets,
+  tab,
+  showSearch = true,
 }) => {
+  const showTokens = !tab || tab === 'tokens';
+  const showDefi = !tab || tab === 'defi';
+  const showNft = !tab || tab === 'nft';
   const { t } = useTranslation();
   const [search, setSearch] = React.useState<string>('');
   const [lpTokenMode, setLpTokenMode] = React.useState(false);
@@ -52,7 +64,8 @@ export const AssetListContainer: React.FC<Props> = ({
     isLoading: isNftLoading,
   } = useNFTCollections(currentAccount?.address, {
     preferCacheOnExists: true,
-    visible,
+    // the dashboard's inline tabs only need NFTs once that tab is open
+    visible: visible && showNft,
   });
 
   const { setApps } = useCommonPopupView();
@@ -189,74 +202,157 @@ export const AssetListContainer: React.FC<Props> = ({
     !!search &&
     !sortTokens.length &&
     !filteredPortfolios?.length;
+  // with tabs each section reports its own empty / no-match state
+  const isTokensNoResults =
+    tab === 'tokens'
+      ? !!search && !isSearching && !isTokensLoading && !sortTokens.length
+      : isNoResults;
+  const isTokensEmpty =
+    tab === 'tokens' &&
+    !search &&
+    !lpTokenMode &&
+    !isTokensLoading &&
+    !sortTokens.length;
+  const isDefiEmpty =
+    tab === 'defi' &&
+    !isPortfoliosLoading &&
+    !isAppPortfoliosLoading &&
+    !filteredPortfolios?.length;
 
   return (
     <div className={className}>
-      <div className="flex items-center justify-between gap-x-12 widget-has-ant-input">
-        <div className="flex w-full items-center justify-between">
-          <div className="relative w-[60%] leading-[1]">
-            <TokenSearchInput
-              ref={inputRef}
-              placeholder={t('page.dashboard.assets.searchTokenPlaceholder')}
-              onSearch={handleOnSearch}
-              className="w-full"
-            />
-          </div>
-          <LpTokenSwitch
-            lpTokenMode={lpTokenMode}
-            onLpTokenModeChange={setLpTokenMode}
-          />
-        </div>
-      </div>
-      <div className="flex flex-col gap-24 mt-12">
-        {isTokensLoading ||
-        isSearching ||
-        (lpTokenMode && isAllTokenLoading) ? (
-          <TokenListSkeleton />
-        ) : (
-          <HomeTokenList
-            list={sortTokens}
-            isSearch={!!search}
-            lpTokenMode={lpTokenMode}
-            isNoResults={isNoResults}
-          />
-        )}
-
+      {showSearch && (
         <div
-          className="empty:hidden"
-          style={{
-            display: visible ? 'block' : 'none',
-          }}
+          className={
+            tab === 'nft'
+              ? 'hidden'
+              : 'flex items-center justify-between gap-x-12 widget-has-ant-input'
+          }
         >
-          {isPortfoliosLoading && isAppPortfoliosLoading ? (
+          <div className="flex w-full items-center justify-between">
+            <div className="relative w-[60%] leading-[1]">
+              <TokenSearchInput
+                ref={inputRef}
+                placeholder={t('page.dashboard.assets.searchTokenPlaceholder')}
+                onSearch={handleOnSearch}
+                className="w-full"
+              />
+            </div>
+            {showTokens && (
+              <LpTokenSwitch
+                lpTokenMode={lpTokenMode}
+                onLpTokenModeChange={setLpTokenMode}
+              />
+            )}
+          </div>
+        </div>
+      )}
+      <div
+        className={
+          showSearch && tab !== 'nft'
+            ? 'flex flex-col gap-24 mt-12'
+            : 'flex flex-col gap-24'
+        }
+      >
+        {showTokens &&
+          (isTokensLoading ||
+          isSearching ||
+          (lpTokenMode && isAllTokenLoading) ? (
             <TokenListSkeleton />
           ) : (
             <>
-              {visible && !search ? (
-                <HomePerpsPositionList needFetchMarket />
-              ) : null}
-              <ProtocolList
-                removeProtocol={removeProtocol}
-                appIds={appIds}
+              <HomeTokenList
+                list={sortTokens}
                 isSearch={!!search}
-                list={filteredPortfolios}
-                className="mt-0"
+                lpTokenMode={lpTokenMode}
+                isNoResults={isTokensNoResults}
               />
+              {isTokensEmpty ? (
+                <SectionEmpty text={t('page.dashboard.assets.noAssets')} />
+              ) : null}
             </>
-          )}
-        </div>
-        <div
-          style={{
-            display: visible && !search && !selectChainId ? 'block' : 'none',
-          }}
-        >
-          <NftPreviewSection
-            className="cursor-pointer"
-            isLoading={isNftLoading}
-            list={nftPreviewList}
-          />
-        </div>
+          ))}
+
+        {showDefi && (
+          <div
+            className="empty:hidden"
+            style={{
+              display: visible ? 'block' : 'none',
+            }}
+          >
+            {isPortfoliosLoading && isAppPortfoliosLoading ? (
+              <TokenListSkeleton />
+            ) : (
+              <>
+                {visible && !search ? (
+                  <HomePerpsPositionList
+                    needFetchMarket
+                    className="crb-perps-list"
+                  />
+                ) : null}
+                <ProtocolList
+                  removeProtocol={removeProtocol}
+                  appIds={appIds}
+                  isSearch={!!search}
+                  list={filteredPortfolios}
+                  className="mt-0"
+                />
+                {isDefiEmpty ? (
+                  // hidden by CSS when perps positions rendered above it
+                  <SectionEmpty
+                    className="crb-defi-empty"
+                    text={
+                      search
+                        ? t('page.dashboard.assets.table.noMatch')
+                        : t('page.dashboard.assets.noAssets')
+                    }
+                  />
+                ) : null}
+              </>
+            )}
+          </div>
+        )}
+        {showNft && (
+          <div
+            style={{
+              display:
+                visible && (tab === 'nft' || (!search && !selectChainId))
+                  ? 'block'
+                  : 'none',
+            }}
+          >
+            <NftPreviewSection
+              className="cursor-pointer"
+              isLoading={isNftLoading}
+              list={nftPreviewList}
+              variant={tab === 'nft' ? 'grid' : 'strip'}
+            />
+            {tab === 'nft' && !isNftLoading && !nftPreviewList.length ? (
+              <SectionEmpty text={t('page.dashboard.assets.noAssets')} />
+            ) : null}
+          </div>
+        )}
       </div>
     </div>
   );
 };
+
+const SectionEmpty = ({
+  text,
+  className,
+}: {
+  text: string;
+  className?: string;
+}) => (
+  <div
+    className={
+      'flex flex-col items-center justify-center py-[40px] text-center ' +
+      (className || '')
+    }
+  >
+    <div className="w-[40px] h-[40px] rounded-[12px] bg-[var(--crb-sunken)] mb-[10px] flex items-center justify-center text-r-neutral-foot">
+      <Inbox size={18} strokeWidth={2} />
+    </div>
+    <div className="text-[13px] leading-[18px] text-r-neutral-foot">{text}</div>
+  </div>
+);

@@ -56,7 +56,7 @@ export function AddressInfoFrom({
             className={clsx(
               'h-[58px] w-[100%] flex items-center justify-between p-[16px] ',
               isDarkTheme ? 'bg-r-neutral-card1' : 'bg-r-neutral-bg1',
-              'cursor-pointer border-[1px] border-rabby-neutral-line hover:border-rabby-blue-default hover:bg-r-blue-light1 rounded-[12px]'
+              'cursor-pointer border-[1px] border-rabby-neutral-line hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)] rounded-[12px]'
             )}
             onClick={() => {
               setIsShowModal(true);

@@ -43,7 +43,7 @@ const Container = styled.div`
     .ant-tabs-nav {
       margin-bottom: 0;
       &::before {
-        border-bottom: 0.5px solid var(--r-neutral-line, #e0e5ec);
+        border-bottom: 0.5px solid var(--r-neutral-line, #e4e4e7);
       }
 
       .ant-tabs-nav-list {
@@ -67,7 +67,7 @@ const Container = styled.div`
     }
 
     .ant-tabs-tab {
-      color: var(--r-neutral-body, #3e495e);
+      color: var(--r-neutral-body, #3f3f46);
       font-size: 13px;
       font-weight: 500;
       line-height: 16px;

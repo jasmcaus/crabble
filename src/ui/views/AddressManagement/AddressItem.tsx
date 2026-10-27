@@ -170,13 +170,13 @@ const AddressItem = memo(
         )}
         <div
           className={clsx({
-            'bg-blue-light rounded-[8px] overflow-hidden': isCurrentAccount,
+            'crabble-ink-card rounded-[16px] overflow-hidden': isCurrentAccount,
           })}
         >
           <div
             className={clsx(
               'rabby-address-item relative',
-              isCurrentAccount ? 'is-current bg-blue-light pr-0' : 'group',
+              isCurrentAccount ? 'is-current bg-transparent pr-0' : 'group',
               !isCurrentAccount && (enableSwitch ? 'is-switch' : 'is-detail')
             )}
             onClick={enableSwitch ? onSwitchCurrentAccount : onClick}

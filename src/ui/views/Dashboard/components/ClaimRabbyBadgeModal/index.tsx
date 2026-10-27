@@ -43,7 +43,7 @@ const Wrapper = styled.div<{
   border-radius: 16px;
   border-radius: 16px;
   background: var(--r-neutral-bg1, #1c1f2b);
-  color: var(--r-neutral-foot, #babec5);
+  color: var(--r-neutral-foot, #b5b1aa);
   box-shadow: 0px 24px 40px 0px rgba(19, 20, 26, 0.16);
   ${(props) => {
     if (props.isDarkMode) {
@@ -106,12 +106,12 @@ const Wrapper = styled.div<{
   .codeInput {
     width: 320px;
     padding: 12px;
-    color: var(--r-neutral-title1, #f7fafc);
+    color: var(--r-neutral-title1, #fafafa);
     font-size: 17px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    /* background: #f5f6fa;
+    /* background: #f4f4f5;
     border: 1px solid #dcdfe4; */
     &::placeholder {
       color: #989aab;
@@ -122,7 +122,7 @@ const Wrapper = styled.div<{
     }
     &:hover,
     &:focus {
-      border-color: var(--r-blue-default, #7084ff);
+      border-color: var(--r-blue-default, #f26b3a);
     }
 
     &.red,
@@ -156,7 +156,7 @@ const Wrapper = styled.div<{
       margin-top: 12px;
       position: absolute;
       border-radius: 4px;
-      background: #f2f4f7;
+      background: #f4f4f5;
       height: 52px;
       padding: 8px 12px;
       padding-left: 8px;
@@ -170,7 +170,7 @@ const Wrapper = styled.div<{
 
       .toSwap {
         cursor: pointer;
-        color: #7084ff;
+        color: #f26b3a;
         text-decoration-line: underline;
       }
     }
@@ -183,9 +183,9 @@ const Wrapper = styled.div<{
     font-size: 15px;
     font-style: normal;
     font-weight: 500;
-    border-radius: 6px;
+    border-radius: 8px;
     &.ant-btn-primary[disabled] {
-      background: rgba(134, 151, 255, 1);
+      background: rgba(242, 138, 99, 1);
       border-color: transparent;
       opacity: 0.4;
     }
@@ -414,7 +414,7 @@ const ClaimSuccessWrapper = styled.div`
     font-size: 15px;
     font-style: normal;
     font-weight: 500;
-    border-radius: 6px;
+    border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;

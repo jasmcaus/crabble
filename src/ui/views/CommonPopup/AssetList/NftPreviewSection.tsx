@@ -22,6 +22,8 @@ interface Props {
   isLoading: boolean;
   list: NftPreviewItem[];
   onOpenInTab?(): void;
+  /** "strip" is the one-row preview card; "grid" is the dashboard NFT tab */
+  variant?: 'strip' | 'grid';
 }
 
 export const NftPreviewSection: React.FC<Props> = ({
@@ -29,6 +31,7 @@ export const NftPreviewSection: React.FC<Props> = ({
   isLoading,
   list,
   onOpenInTab,
+  variant = 'strip',
 }) => {
   const wallet = useWallet();
   const { t } = useTranslation();
@@ -43,12 +46,71 @@ export const NftPreviewSection: React.FC<Props> = ({
     window.close();
   };
 
+  if (variant === 'grid') {
+    if (!isLoading && !list.length) return null;
+    return (
+      <div className={className}>
+        <div className="grid grid-cols-3 gap-[8px]">
+          {isLoading
+            ? Array.from({ length: 6 }).map((_, index) => (
+                <Skeleton.Input
+                  key={index}
+                  className="block w-full h-auto aspect-square rounded-[14px]"
+                  active
+                />
+              ))
+            : list.slice(0, 12).map((item) => (
+                <button
+                  type="button"
+                  key={`${item.collection.chain}-${item.collection.id}-${item.nft.id}`}
+                  onClick={handleOpenInTab}
+                  className={clsx(
+                    'group relative aspect-square w-full p-0 border-0 rounded-[14px] overflow-hidden cursor-pointer',
+                    'bg-[var(--crb-sunken)] shadow-[var(--crb-shadow-card)]'
+                  )}
+                  title={item.nft?.name || item.collection?.name}
+                >
+                  <NFTAvatar
+                    className="w-full h-full transition-transform duration-300 group-hover:scale-[1.04]"
+                    type={item.nft?.content_type}
+                    content={item.nft?.content}
+                    empty={
+                      <div className="w-full h-full flex items-center justify-center text-[12px] font-semibold text-r-neutral-foot">
+                        NFT
+                      </div>
+                    }
+                  />
+                  <span className="pointer-events-none absolute inset-x-0 bottom-0 px-[8px] pb-[6px] pt-[16px] text-left text-[11px] leading-[14px] font-medium text-white truncate opacity-0 group-hover:opacity-100 transition-opacity bg-[linear-gradient(to_top,rgba(0,0,0,0.6),transparent)]">
+                    {item.collection?.name}
+                  </span>
+                </button>
+              ))}
+        </div>
+        {!isLoading && list.length > 0 && (
+          <button
+            type="button"
+            onClick={handleOpenInTab}
+            className={clsx(
+              'mt-[12px] w-full h-[36px] rounded-[10px] border-0 cursor-pointer',
+              'bg-[var(--crb-sunken)] hover:bg-[var(--crb-sunken-hover)]',
+              'text-[13px] font-semibold text-r-neutral-title1 transition-colors',
+              'flex items-center justify-center gap-[6px]'
+            )}
+          >
+            {t('page.dashboard.assets.openInTabV2')}
+            <RcIconJump className="w-[12px] h-[12px]" />
+          </button>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div className={className} onClick={handleOpenInTab}>
       <div
         className={clsx(
-          'bg-r-neutral-card1 rounded-[8px] p-[12px] overflow-hidden border border-transparent',
-          'hover:border-blue-light cursor-pointer'
+          'bg-r-neutral-card1 rounded-[14px] p-[12px] overflow-hidden shadow-[var(--crb-shadow-card)]',
+          'hover:bg-[var(--crb-sunken)] transition-colors cursor-pointer'
         )}
       >
         <div className="flex items-center justify-between">

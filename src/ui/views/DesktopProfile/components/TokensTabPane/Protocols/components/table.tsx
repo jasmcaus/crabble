@@ -114,7 +114,7 @@ const Header = (props: { headers: ReactNode[]; className?: string }) => {
       <Row
         header
         className={cx(
-          'p-8 bg-rb-neutral-bg-1 rounded-[6px]',
+          'p-8 bg-rb-neutral-bg-1 rounded-[8px]',
           props.className ?? ''
         )}
       >

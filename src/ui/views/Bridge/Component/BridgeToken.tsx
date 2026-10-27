@@ -33,7 +33,7 @@ import { isTempoChain } from '@/utils/tempo';
 import { AutoSizeAmountInput } from '@/ui/component/AutoSizeAmountInput';
 
 const StyledInput = styled(Input)`
-  color: var(--r-neutral-title1, #192945);
+  color: var(--r-neutral-title1, #09090b);
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -42,7 +42,7 @@ const StyledInput = styled(Input)`
   padding-left: 0;
   padding-right: 0;
   & > .ant-input {
-    color: var(--r-neutral-title1, #192945);
+    color: var(--r-neutral-title1, #09090b);
     font-size: 24px;
     font-style: normal;
     font-weight: 500;
@@ -52,7 +52,7 @@ const StyledInput = styled(Input)`
   }
 
   &::placeholder {
-    color: var(--r-neutral-foot, #6a7587);
+    color: var(--r-neutral-foot, #71717a);
   }
 
   &::-webkit-inner-spin-button,
@@ -393,7 +393,7 @@ export const BridgeToken = ({
   ]);
 
   return (
-    <div className={clsx('h-[148px] bg-r-neutral-card1 rounded-[8px]')}>
+    <div className={clsx('h-[148px] bg-r-neutral-card1 rounded-[12px]')}>
       <div
         className={clsx(
           'flex items-center gap-8',

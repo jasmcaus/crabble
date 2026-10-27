@@ -21,7 +21,7 @@ import { useMemoizedFn } from 'ahooks';
 
 const RPCItemWrapper = styled.div`
   background: var(--r-neutral-card-1, rgba(255, 255, 255, 0.06));
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 12px;
   display: flex;
   margin-bottom: 8px;
@@ -45,13 +45,13 @@ const RPCItemWrapper = styled.div`
         font-size: 13px;
         font-weight: 500;
         line-height: 18px;
-        color: var(--r-neutral-title-1, #f7fafc);
+        color: var(--r-neutral-title-1, #fafafa);
       }
       &:nth-child(2) {
         font-weight: 400;
         font-size: 13px;
         line-height: 15px;
-        color: var(--r-neutral-body, #d3d8e0);
+        color: var(--r-neutral-body, #d4d4d8);
       }
     }
   }
@@ -78,9 +78,9 @@ const RPCItemWrapper = styled.div`
     }
   }
   &:hover {
-    background: var(--r-blue-light-1, #eef1ff);
-    border: 1px solid var(--r-blue-default, #7084ff);
-    border-radius: 6px;
+    background: var(--r-blue-light-1, #fdefe9);
+    border: 1px solid var(--r-blue-default, #f26b3a);
+    border-radius: 8px;
     .operation {
       opacity: 1;
     }

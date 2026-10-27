@@ -94,7 +94,7 @@ const EditModal = ({
           autoFocus
           allowClear
           value={name}
-          // style={{ background: '#F5F6FA' }}
+          // style={{ background: '#F4F4F5' }}
           onChange={(e) => handleNameChange(e.target.value)}
           ref={inputRef}
         />
@@ -109,7 +109,7 @@ const EditModal = ({
             'w-[200px]',
             'text-blue-light',
             'border-blue-light',
-            'hover:bg-[#8697FF1A] active:bg-[#0000001A]',
+            'hover:bg-[var(--crb-sunken)] active:bg-[#0000001A]',
             'before:content-none'
           )}
         >

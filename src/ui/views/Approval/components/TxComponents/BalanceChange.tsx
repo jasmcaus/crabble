@@ -27,7 +27,7 @@ export const HeadlineStyled = styled.div`
   margin-bottom: 8px;
   display: flex;
   align-items: center;
-  color: var(--r-neutral-title-1, #f7fafc);
+  color: var(--r-neutral-title-1, #fafafa);
 `;
 
 const NFTBalanceChange = ({

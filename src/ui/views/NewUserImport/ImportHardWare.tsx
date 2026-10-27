@@ -172,7 +172,7 @@ export const NewUserImportHardware = () => {
         type="primary"
         loading={loading}
         className={clsx(
-          'mt-[auto] h-[56px] shadow-none rounded-[8px]',
+          'mt-[auto] h-[56px] shadow-none rounded-[12px]',
           'text-[17px] font-medium'
         )}
       >

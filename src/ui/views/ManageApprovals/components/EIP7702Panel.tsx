@@ -79,7 +79,7 @@ export const EIP7702Panel: React.FC<EIP7702PanelProps> = ({
         {!isAllowed ? (
           <div
             className={clsx(
-              'border-[0.5px] border-rabby-orange-default rounded-[8px]',
+              'border-[0.5px] border-rabby-orange-default rounded-[12px]',
               'flex items-start gap-[4px] p-[12px] mb-[16px]',
               'bg-r-orange-light'
             )}
@@ -100,8 +100,8 @@ export const EIP7702Panel: React.FC<EIP7702PanelProps> = ({
         <div
           className={clsx(
             'flex items-center justify-between mb-[16px]',
-            'p-[11px] bg-r-neutral-card-1 rounded-[8px]',
-            'border border-transparent hover:border-rabby-blue-default cursor-pointer'
+            'p-[11px] bg-r-neutral-card-1 rounded-[12px]',
+            'border border-transparent hover:border-[var(--crb-hairline-strong)] cursor-pointer'
           )}
           onClick={() => setSupportedChainsOpen(true)}
         >
@@ -160,8 +160,8 @@ export const EIP7702Panel: React.FC<EIP7702PanelProps> = ({
                   key={`${item.chain}-${item.delegatedAddress}`}
                   onClick={() => toggleSelected(item)}
                   className={clsx(
-                    'flex px-[11px] py-[13px] cursor-pointer items-center gap-[12px] rounded-[8px]',
-                    'border-solid border-[1px]  hover:border-rabby-blue-default',
+                    'flex px-[11px] py-[13px] cursor-pointer items-center gap-[12px] rounded-[12px]',
+                    'border-solid border-[1px]  hover:border-[var(--crb-hairline-strong)]',
                     checked
                       ? 'bg-r-blue-light1 border-rabby-blue-default'
                       : 'bg-r-neutral-card1 border-transparent',

@@ -652,7 +652,7 @@ export const PerpsSingleCoin = () => {
               {formatUsdValue(availableBalance, BigNumber.ROUND_DOWN)}
             </span>
             <div
-              className="text-r-blue-default text-13 cursor-pointer px-16 py-10 rounded-[8px] bg-r-blue-light-1"
+              className="text-r-blue-default text-13 cursor-pointer px-16 py-10 rounded-[12px] bg-r-blue-light-1"
               onClick={() => {
                 if (!needDepositFirst && !gateUnifiedForNonDefaultDex()) {
                   return;
@@ -763,7 +763,7 @@ export const PerpsSingleCoin = () => {
                   </span>
                 </div>
                 {!currentTpOrSl.slPrice && (
-                  <div className="text-12 font-medium text-r-neutral-body rounded-[6px] bg-r-blue-light-1 text-r-blue-default py-[10px] flex items-baseline justify-center">
+                  <div className="text-12 font-medium text-r-neutral-body rounded-[8px] bg-r-blue-light-1 text-r-blue-default py-[10px] flex items-baseline justify-center">
                     <Trans
                       i18nKey={
                         positionData?.direction === 'Long'
@@ -793,7 +793,7 @@ export const PerpsSingleCoin = () => {
                 </span>
                 {positionData?.type === 'isolated' ? (
                   <div
-                    className="flex items-center justify-center gap-6 rounded-[8px] px-6 h-[26px] cursor-pointer"
+                    className="flex items-center justify-center gap-6 rounded-[12px] px-6 h-[26px] cursor-pointer"
                     onClick={async () => {
                       await handleActionApproveStatus();
                       setEditMarginVisible(true);
@@ -881,7 +881,7 @@ export const PerpsSingleCoin = () => {
                 </div>
 
                 {tpPrice && takeProfitExpectedPnl !== null && (
-                  <div className="relative bg-r-neutral-card-2 rounded-[6px] mt-[-6px]">
+                  <div className="relative bg-r-neutral-card-2 rounded-[8px] mt-[-6px]">
                     <div className="absolute right-[28px] top-[-6px]">
                       <RcIconArrow className="text-r-neutral-card-2" />
                     </div>
@@ -969,7 +969,7 @@ export const PerpsSingleCoin = () => {
                   />
                 </div>
                 {slPrice && stopLossExpectedPnl !== null && (
-                  <div className="relative bg-r-neutral-card-2 rounded-[6px] mt-[-6px]">
+                  <div className="relative bg-r-neutral-card-2 rounded-[8px] mt-[-6px]">
                     <div className="absolute right-[28px] top-[-6px]">
                       <RcIconArrow className="text-r-neutral-card-2" />
                     </div>
@@ -1145,7 +1145,7 @@ export const PerpsSingleCoin = () => {
                       block
                       size="large"
                       className={clsx(
-                        'h-[48px] text-15 font-medium rounded-[8px] ',
+                        'h-[48px] text-15 font-medium rounded-[12px] ',
                         'flex-1 bg-transparent text-r-blue-default border border-rabby-blue-default',
                         'before:content-none'
                       )}
@@ -1160,7 +1160,7 @@ export const PerpsSingleCoin = () => {
                       block
                       type="primary"
                       size="large"
-                      className="flex-1 h-[48px] bg-blue-500 border-blue-500 text-white text-15 font-medium rounded-[8px]"
+                      className="flex-1 h-[48px] bg-blue-500 border-blue-500 text-white text-15 font-medium rounded-[12px]"
                       onClick={async () => {
                         await handleActionApproveStatus();
                         setClosePositionVisible(true);
@@ -1174,7 +1174,7 @@ export const PerpsSingleCoin = () => {
                     block
                     type="primary"
                     size="large"
-                    className="h-[48px] bg-blue-500 border-blue-500 text-white text-15 font-medium rounded-[8px]"
+                    className="h-[48px] bg-blue-500 border-blue-500 text-white text-15 font-medium rounded-[12px]"
                     onClick={async () => {
                       await handleActionApproveStatus();
                       setClosePositionVisible(true);
@@ -1188,7 +1188,7 @@ export const PerpsSingleCoin = () => {
                   <Button
                     size="large"
                     type="primary"
-                    className="h-[48px] border-none text-15 font-medium rounded-[8px] flex-1 bg-r-green-default text-r-neutral-title-2"
+                    className="h-[48px] border-none text-15 font-medium rounded-[12px] flex-1 bg-r-green-default text-r-neutral-title-2"
                     onClick={async () => {
                       if (needDepositFirst) {
                         message.error(t('page.perpsDetail.needDepositFirst'));
@@ -1209,7 +1209,7 @@ export const PerpsSingleCoin = () => {
                   <Button
                     size="large"
                     type="primary"
-                    className="h-[48px] border-none text-15 font-medium rounded-[8px] flex-1 bg-r-red-default text-r-neutral-title-2 "
+                    className="h-[48px] border-none text-15 font-medium rounded-[12px] flex-1 bg-r-red-default text-r-neutral-title-2 "
                     onClick={async () => {
                       if (needDepositFirst) {
                         message.error(t('page.perpsDetail.needDepositFirst'));
@@ -1228,7 +1228,7 @@ export const PerpsSingleCoin = () => {
                   </Button>
                 </div>
               ) : (
-                <div className="flex gap-12 items-center text-13 justify-center text-r-neutral-body font-medium bg-r-neutral-line rounded-[8px] h-[48px]">
+                <div className="flex gap-12 items-center text-13 justify-center text-r-neutral-body font-medium bg-r-neutral-line rounded-[12px] h-[48px]">
                   {t('page.perps.permissionTips')}
                 </div>
               )}

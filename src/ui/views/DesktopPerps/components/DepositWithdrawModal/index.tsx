@@ -258,8 +258,8 @@ export const DepositWithdrawModal: React.FC<DepositWithdrawModalProps> = ({
                 <div
                   onClick={() => setChainSelectVisible(true)}
                   className={clsx(
-                    'bg-rb-neutral-bg-2 rounded-[6px] w-full flex items-center justify-between px-16 h-[56px] border border-solid border-transparent mb-24',
-                    'hover:border-rabby-blue-default cursor-pointer'
+                    'bg-rb-neutral-bg-2 rounded-[8px] w-full flex items-center justify-between px-16 h-[56px] border border-solid border-transparent mb-24',
+                    'hover:border-[var(--crb-hairline-strong)] cursor-pointer'
                   )}
                 >
                   <div className="flex items-center gap-8">
@@ -312,7 +312,7 @@ export const DepositWithdrawModal: React.FC<DepositWithdrawModalProps> = ({
                 </div>
 
                 {/* Amount input + token pill */}
-                <div className="bg-rb-neutral-bg-2 rounded-[6px] px-16 py-24 mb-6">
+                <div className="bg-rb-neutral-bg-2 rounded-[8px] px-16 py-24 mb-6">
                   <div className="flex items-center gap-12">
                     <ThousandsNativeInput
                       ref={inputRef}
@@ -334,9 +334,9 @@ export const DepositWithdrawModal: React.FC<DepositWithdrawModalProps> = ({
                     <div
                       onClick={() => setTokenSelectVisible(true)}
                       className={clsx(
-                        'flex items-center justify-center gap-6 pl-6 pr-8 h-32 rounded-[6px] border border-solid border-transparent',
+                        'flex items-center justify-center gap-6 pl-6 pr-8 h-32 rounded-[8px] border border-solid border-transparent',
                         'bg-r-neutral-card-2 cursor-pointer shrink-0',
-                        'hover:border-rabby-blue-default hover:text-rb-brand-default'
+                        'hover:border-[var(--crb-hairline-strong)] hover:text-rb-brand-default'
                       )}
                     >
                       <TokenWithChain
@@ -361,9 +361,9 @@ export const DepositWithdrawModal: React.FC<DepositWithdrawModalProps> = ({
                       key={option.value}
                       onClick={() => handlePercentageClick(option.value)}
                       className={clsx(
-                        'flex-1 h-[36px] flex items-center justify-center rounded-[6px] text-13 font-medium',
+                        'flex-1 h-[36px] flex items-center justify-center rounded-[8px] text-13 font-medium',
                         'bg-rb-neutral-bg-2 border border-solid border-transparent text-rb-neutral-foot',
-                        'hover:border-rabby-blue-default hover:text-rb-brand-default'
+                        'hover:border-[var(--crb-hairline-strong)] hover:text-rb-brand-default'
                       )}
                     >
                       {option.label}
@@ -379,7 +379,7 @@ export const DepositWithdrawModal: React.FC<DepositWithdrawModalProps> = ({
               </>
             ) : (
               <>
-                <div className="bg-rb-neutral-bg-2 rounded-[6px] px-20 py-20 mb-12">
+                <div className="bg-rb-neutral-bg-2 rounded-[8px] px-20 py-20 mb-12">
                   <div className="flex flex-col items-center justify-center">
                     <ThousandsNativeInput
                       ref={inputRef}
@@ -417,9 +417,9 @@ export const DepositWithdrawModal: React.FC<DepositWithdrawModalProps> = ({
                         key={option.value}
                         onClick={() => handlePercentageClick(option.value)}
                         className={clsx(
-                          'px-20 h-[36px] flex items-center justify-center rounded-[6px] text-13',
+                          'px-20 h-[36px] flex items-center justify-center rounded-[8px] text-13',
                           'border border-solid border-transparent',
-                          'hover:bg-rb-brand-light-1 hover:text-rb-brand-default hover:border-rb-brand-default',
+                          'hover:bg-[var(--crb-sunken)] hover:text-rb-brand-default hover:border-[var(--crb-hairline-strong)]',
                           'bg-rb-neutral-bg-5 text-rb-neutral-foot'
                         )}
                       >
@@ -440,8 +440,8 @@ export const DepositWithdrawModal: React.FC<DepositWithdrawModalProps> = ({
                     setTokenSelectVisible(true);
                   }}
                   className={clsx(
-                    'bg-rb-neutral-bg-2 rounded-[6px] w-full flex items-center justify-between text-13 px-16 h-[48px] border border-solid border-transparent',
-                    'hover:border-rabby-blue-default cursor-pointer'
+                    'bg-rb-neutral-bg-2 rounded-[8px] w-full flex items-center justify-between text-13 px-16 h-[48px] border border-solid border-transparent',
+                    'hover:border-[var(--crb-hairline-strong)] cursor-pointer'
                   )}
                 >
                   <div className="text-rb-neutral-body text-13">
@@ -588,7 +588,7 @@ export const DepositWithdrawModal: React.FC<DepositWithdrawModalProps> = ({
               }
               size="large"
               type="primary"
-              className="w-full h-[44px] rounded-[6px] text-[14px] font-medium"
+              className="w-full h-[44px] rounded-[8px] text-[14px] font-medium"
             >
               {type === 'deposit'
                 ? shouldTwoStep && twoStepIsApprove

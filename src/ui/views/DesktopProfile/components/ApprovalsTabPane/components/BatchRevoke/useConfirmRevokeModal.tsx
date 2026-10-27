@@ -48,7 +48,7 @@ export const useConfirmRevokeModal = (props: {
               type="primary"
               className={clsx(
                 'w-[260px] h-[44px]',
-                'rounded-[8px]',
+                'rounded-[12px]',
                 'before:content-none'
               )}
               onClick={() => {
@@ -61,9 +61,9 @@ export const useConfirmRevokeModal = (props: {
             <Button
               type="ghost"
               className={clsx(
-                'w-[260px] h-[44px] border-blue-light text-blue-light',
-                'hover:bg-[#8697FF1A] active:bg-[#0000001A]',
-                'rounded-[8px]',
+                'w-[260px] h-[44px] border-[var(--crb-hairline-strong)] text-r-neutral-title1',
+                'hover:bg-[var(--crb-sunken)] active:bg-[#0000001A]',
+                'rounded-[12px]',
                 'before:content-none'
               )}
               onClick={() => {

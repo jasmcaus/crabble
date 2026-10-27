@@ -24,6 +24,9 @@ const config = {
     minimize: true,
     minimizer: [
       new TerserPlugin({
+        // Each Terser worker holds its own copy of the bundle; on GitHub's
+        // 16 GB runners the default (cpus - 1) gets the job OOM-killed.
+        parallel: process.env.CI ? 1 : true,
         terserOptions: {
           compress: {
             pure_funcs: ['console.log', 'console.debug', 'console.info'],

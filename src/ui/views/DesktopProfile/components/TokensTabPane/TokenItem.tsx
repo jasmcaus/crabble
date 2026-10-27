@@ -51,9 +51,9 @@ const ActionBottom = ({
       className={`
         swap-action-btn
         px-10 h-[24px] leading-[24px] 
-        text-r-blue-default text-12 font-medium rounded-[6px] 
+        text-r-blue-default text-12 font-medium rounded-[8px] 
         border-[0.5px] border-r-blue-default w-min whitespace-nowrap cursor-pointer 
-        hover:bg-r-blue-light1
+        hover:bg-[var(--crb-sunken)]
       `}
     >
       {text}
@@ -122,7 +122,7 @@ export const TokenItemAsset: React.FC<Props> = ({
             isNft={false}
             textClassName={`
               cursor-pointer no-underline
-              text-r-neutral-title1 text-14 whitespace-nowrap text-ellipsis overflow-hidden
+              text-r-neutral-title1 text-14 font-medium whitespace-nowrap text-ellipsis overflow-hidden
               hover:text-r-blue-default hover:underline 
             `}
           />
@@ -231,7 +231,7 @@ export const TestnetTokenItemAsset: React.FC<TestnetTokenItemProps> = ({
 const TokenItemAmount: React.FC<Props> = ({ item }) => {
   return (
     <TCell
-      className="py-8 text-r-neutral-title1 text-14 truncate flex-1"
+      className="py-8 text-r-neutral-title1 text-14 tabular-nums truncate flex-1"
       style={{
         width: MAINNET_WIDTH_MAP['amount'],
       }}
@@ -253,7 +253,7 @@ const TokenItemAmount: React.FC<Props> = ({ item }) => {
 const TokenItemPrice: React.FC<Props> = ({ item }) => {
   return (
     <TCell
-      className="text-r-neutral-title1 text-14  truncate flex items-center gap-4 flex-1"
+      className="text-r-neutral-title1 text-14 tabular-nums truncate flex items-center gap-4 flex-1"
       style={{
         width: MAINNET_WIDTH_MAP['price'],
       }}
@@ -277,7 +277,7 @@ const TokenItemPrice: React.FC<Props> = ({ item }) => {
 const TokenItemUSDValue: React.FC<Props> = ({ item }) => {
   return (
     <TCell
-      className="py-8 text-r-neutral-title1 text-14 text-right truncate"
+      className="py-8 text-r-neutral-title1 text-14 font-semibold tabular-nums text-right truncate"
       style={{
         width: MAINNET_WIDTH_MAP['usdValue'],
       }}
@@ -288,15 +288,17 @@ const TokenItemUSDValue: React.FC<Props> = ({ item }) => {
 };
 
 const TokenRowWrapper = styled(TRow)`
-  border-bottom: 1px solid var(--rb-neutral-bg-4, #ebedf0);
-  height: 60px;
+  border-bottom: 1px solid var(--crb-hairline);
+  height: 64px;
+  border-radius: 12px;
+  transition: background-color 0.15s ease;
   padding-left: 8px !important;
   padding-right: 8px !important;
   .swap-action-btn {
     display: none !important;
   }
   &:hover {
-    background-color: var(--rb-neutral-bg-2, #f2f4f7);
+    background-color: var(--crb-sunken);
     .swap-action-btn {
       display: block !important;
     }

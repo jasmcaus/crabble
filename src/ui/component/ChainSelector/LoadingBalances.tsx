@@ -43,11 +43,11 @@ export function LoadingBalances({ loading }: LoadingProps) {
   if (!loading) return null;
 
   return (
-    <div className="bg-r-neutral-card2 rounded-[6px] overflow-hidden">
+    <div className="bg-r-neutral-card2 rounded-[8px] overflow-hidden">
       {Array.from({ length: 3 }).map((_, index) => (
         <div
           key={`loading-${index}`}
-          className="bg-r-neutral-card2 rounded-[6px] h-[56px] flex items-center justify-start px-[16px]"
+          className="bg-r-neutral-card2 rounded-[8px] h-[56px] flex items-center justify-start px-[16px]"
         >
           <Skeleton.Avatar
             active

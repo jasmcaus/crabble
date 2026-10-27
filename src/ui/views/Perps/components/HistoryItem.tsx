@@ -97,7 +97,7 @@ export const HistoryAccountItem: React.FC<HistoryAccountItemProps> = ({
       className={clsx(
         'w-full bg-r-neutral-card1 rounded-[12px] px-16 py-12 flex items-center justify-between mb-8 h-[60px]',
         isTransfer &&
-          'border border-transparent hover:bg-r-blue-light1 hover:border-rabby-blue-default cursor-pointer'
+          'border border-transparent hover:bg-[var(--crb-sunken)] hover:border-[var(--crb-hairline-strong)] cursor-pointer'
       )}
       onClick={isTransfer ? () => onClick?.(data) : undefined}
     >
@@ -238,8 +238,8 @@ export const HistoryItem: React.FC<HistoryItemProps> = ({
       className={clsx(
         'w-full bg-r-neutral-card1 rounded-[12px] px-16 py-12 flex items-center justify-between mb-8 h-[60px]',
         'border border-transparent',
-        'hover:bg-r-blue-light1',
-        'hover:border-rabby-blue-default cursor-pointer'
+        'hover:bg-[var(--crb-sunken)]',
+        'hover:border-[var(--crb-hairline-strong)] cursor-pointer'
       )}
       onClick={() => onClick?.(fill)}
     >

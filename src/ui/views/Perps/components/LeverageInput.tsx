@@ -52,7 +52,7 @@ export const LeverageInput: React.FC<LeverageInputProps> = ({
     <div
       className={clsx(
         'px-[16px] pb-[16px] pt-[20px]',
-        !embedded && 'bg-r-neutral-card1 rounded-[8px] mb-[12px]'
+        !embedded && 'bg-r-neutral-card1 rounded-[12px] mb-[12px]'
       )}
     >
       <div className="text-17 font-bold text-r-neutral-title-1">{title}</div>
@@ -115,7 +115,7 @@ export const LeverageInput: React.FC<LeverageInputProps> = ({
         max={max}
       />
       {errorMessage ? (
-        <div className="bg-r-orange-light rounded-[8px] px-[12px] py-[8px] flex items-center gap-[4px] mt-[14px]">
+        <div className="bg-r-orange-light rounded-[12px] px-[12px] py-[8px] flex items-center gap-[4px] mt-[14px]">
           <RcIconInfoCC className="text-r-orange-default" />
           <div className="text-center text-[12px] leading-[14px] text-r-orange-default">
             {errorMessage}

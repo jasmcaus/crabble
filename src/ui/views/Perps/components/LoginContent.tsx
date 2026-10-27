@@ -37,12 +37,12 @@ export const PerpsLoginContent = ({
           {t('page.perps.logInPerpsAccount')}
         </Button>
         <div
-          className="h-[48px] text-r-neutral-body text-15 font-medium mt-16 bg-r-neutral-card2 flex items-center justify-center w-full rounded-[6px]
+          className="h-[48px] text-r-neutral-body text-15 font-medium mt-16 bg-r-neutral-card2 flex items-center justify-center w-full rounded-[8px]
           border-transparent
           cursor-pointer
           border-[1px]
           border-solid
-          hover:bg-r-blue-light1 hover:border-rabby-blue-default"
+          hover:bg-[var(--crb-sunken)] hover:border-[var(--crb-hairline-strong)]"
           style={{
             height: 48,
           }}

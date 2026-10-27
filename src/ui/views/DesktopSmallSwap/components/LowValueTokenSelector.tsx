@@ -30,7 +30,7 @@ import { UnknownTag } from '@/ui/component';
 const Container = styled.section`
   .token-list {
     border: 0.5px solid var(--r-neutral-line, #d8e0ea);
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
 
     display: flex;
@@ -41,8 +41,8 @@ const Container = styled.section`
 
   .token-list-header {
     height: 40px;
-    background-color: var(--r-neutral-bg2, #f2f4f7);
-    color: var(--r-neutral-body, #3e495e);
+    background-color: var(--r-neutral-bg2, #f4f4f5);
+    color: var(--r-neutral-body, #3f3f46);
     font-size: 14px;
     font-weight: 500;
     line-height: 17px;
@@ -64,7 +64,7 @@ const Container = styled.section`
   .token-list-cell {
     height: 48px;
     padding: 0 16px;
-    color: var(--r-neutral-title1, #192945);
+    color: var(--r-neutral-title1, #09090b);
     font-size: 14px;
     line-height: 17px;
   }
@@ -85,7 +85,7 @@ const Container = styled.section`
   }
 
   .token-list-row:not(.is-disabled):hover {
-    background: rgba(112, 132, 255, 0.04);
+    background: var(--crb-sunken);
   }
 
   .token-list-row + .token-list-row {
@@ -224,7 +224,7 @@ export const LowValueTokenSelector: React.FC<LowValueTokenSelectorProps> = ({
         'min-w-0 flex flex-col rounded-[16px] bg-r-neutral-card-1 px-[32px] py-[24px]'
       )}
       style={{
-        boxShadow: '0 16px 40px rgba(25, 41, 69, 0.06)',
+        boxShadow: '0 16px 40px rgba(9, 9, 11, 0.06)',
         transition: 'width 0.3s',
         width:
           task?.status === 'idle'
@@ -246,10 +246,10 @@ export const LowValueTokenSelector: React.FC<LowValueTokenSelectorProps> = ({
               disabled={disabled}
               onClick={() => handleThresholdChange(item.value)}
               className={clsx(
-                'h-[40px] min-w-[80px] rounded-[8px] px-[14px] border text-[15px] leading-[18px] font-medium transition-colors',
+                'h-[40px] min-w-[80px] rounded-[12px] px-[14px] border text-[15px] leading-[18px] font-medium transition-colors',
                 active
                   ? 'border-rabby-blue-default bg-rabby-blue-light1 text-rabby-blue-default'
-                  : 'border-rabby-neutral-line bg-rabby-neutral-card-1 text-rabby-neutral-foot hover:border-rabby-blue-default hover:text-rabby-blue-default',
+                  : 'border-rabby-neutral-line bg-rabby-neutral-card-1 text-rabby-neutral-foot hover:border-[var(--crb-hairline-strong)] hover:text-rabby-blue-default',
                 disabled ? 'cursor-not-allowed' : ''
               )}
             >

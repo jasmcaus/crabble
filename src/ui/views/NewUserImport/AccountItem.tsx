@@ -5,7 +5,7 @@ export const AccountItemWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 0;
 `;
 
@@ -20,7 +20,7 @@ export const AccountItemInput = styled(Input)`
     width: 100%;
     height: 56px;
     border: none;
-    border-radius: 6px;
+    border-radius: 8px;
     background: var(--r-neutral-card2);
     padding: 18px 12px;
     color: var(--r-neutral-title-1);

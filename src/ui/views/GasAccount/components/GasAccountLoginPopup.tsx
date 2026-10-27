@@ -40,7 +40,7 @@ export const GasAccountCurrentAddress = ({
 
   if (twoColumn) {
     return (
-      <div className="mb-[20px] h-[56px] px-16 rounded-[6px] flex gap-10 items-center bg-r-neutral-card-2">
+      <div className="mb-[20px] h-[56px] px-16 rounded-[8px] flex gap-10 items-center bg-r-neutral-card-2">
         <img src={addressTypeIcon} className="w-24 h-24" />
         <div className="flex flex-col overflow-hidden">
           <span className="text-13 font-medium text-r-neutral-title-1 truncate">
@@ -65,7 +65,7 @@ export const GasAccountCurrentAddress = ({
     );
   }
   return (
-    <div className="max-w-[calc(100%-40px)] mb-[20px] py-12 px-16 rounded-[6px] flex items-center bg-r-neutral-card-2 overflow-hidden">
+    <div className="max-w-[calc(100%-40px)] mb-[20px] py-12 px-16 rounded-[8px] flex items-center bg-r-neutral-card-2 overflow-hidden">
       <img src={addressTypeIcon} className="w-24 h-24" />
       <span className="ml-[8px] mr-4 text-15 font-medium text-r-neutral-title-1 truncate">
         {alias}

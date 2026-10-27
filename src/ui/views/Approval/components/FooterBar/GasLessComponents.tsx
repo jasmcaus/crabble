@@ -102,8 +102,8 @@ const GAS_ACCOUNT_PILL_STYLE: React.CSSProperties = {
   cursor: 'pointer',
   padding: '7px 8px',
   borderRadius: 6,
-  background: 'var(--r-blue-default, #7084FF)',
-  boxShadow: '0px 1px 4px 0px rgba(65, 89, 188, 0.33)',
+  background: 'var(--r-blue-default, #F26B3A)',
+  boxShadow: '0px 1px 4px 0px rgba(9, 9, 11, 0.33)',
 };
 
 const EMPTY_STYLE: React.CSSProperties = {};
@@ -268,7 +268,7 @@ export function GasLessNotEnough({
           type="primary"
           className={clsx(
             'h-[28px] min-w-[72px] px-10 flex justify-center items-center text-[12px] font-medium',
-            showApprovalUiStyle && 'rounded-[6px] shadow-none'
+            showApprovalUiStyle && 'rounded-[8px] shadow-none'
           )}
           onClick={action.onClick}
         >
@@ -291,11 +291,11 @@ export function GasLessNotEnough({
 
 const LinearGradientAnimatedSpan = styled.span`
   font-size: 12px;
-  border-radius: 6px;
+  border-radius: 8px;
   background: linear-gradient(94deg, #60bcff 14.47%, #8154ff 93.83%);
   background-size: 150% 100%;
   background-repeat: repeat-x;
-  box-shadow: 0px 1px 4px 0px rgba(65, 89, 188, 0.33);
+  box-shadow: 0px 1px 4px 0px rgba(9, 9, 11, 0.33);
   animation: gradientLoading 3s ease infinite;
 
   @keyframes gradientLoading {
@@ -410,7 +410,7 @@ function FreeGasReady({
       <span
         className="flex-1"
         style={{
-          color: color || 'var(--r-blue-default, #7084FF)',
+          color: color || 'var(--r-blue-default, #F26B3A)',
           fontSize: '13px',
           fontWeight: '500',
         }}
@@ -432,7 +432,7 @@ export function GasLessActivityToSign({
 
   const themeColor = gasLessConfig
     ? (isDarkTheme ? gasLessConfig.dark_color : gasLessConfig.theme_color) ||
-      'var(--r-blue-default, #7084FF)'
+      'var(--r-blue-default, #F26B3A)'
     : undefined;
 
   return (
@@ -461,7 +461,7 @@ export function GasLessActivityToSign({
           'gas-to-sign security-level-tip  items-center ',
           !directSubmit && 'pr-6',
           directSubmit
-            ? 'mt-8 rounded-[8px] border border-solid bg-r-red-light border-rabby-red-default'
+            ? 'mt-8 rounded-[12px] border border-solid bg-r-red-light border-rabby-red-default'
             : themeColor
             ? 'bg-transparent text-transparent'
             : 'bg-r-neutral-card2 text-r-neutral-card2'
@@ -515,8 +515,8 @@ export const GasLessAnimatedWrapper = styled.div`
     background-color: var(--r-blue-disable);
     background-image: url(${LogoImage}),
       linear-gradient(
-        var(--r-blue-default, #7084ff),
-        var(--r-blue-default, #7084ff)
+        var(--r-blue-default, #f26b3a),
+        var(--r-blue-default, #f26b3a)
       );
     background-repeat: no-repeat;
     background-size: 10%, 200%;
@@ -721,7 +721,7 @@ export function GasAccountTips({
           type="primary"
           className={clsx(
             'h-[28px] min-w-[72px] px-10 flex justify-center items-center text-[12px] font-medium',
-            showApprovalUiStyle && 'rounded-[6px] shadow-none'
+            showApprovalUiStyle && 'rounded-[8px] shadow-none'
           )}
           onClick={action.onClick}
         >

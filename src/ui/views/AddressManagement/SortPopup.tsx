@@ -75,7 +75,7 @@ export const AddressSortPopup = ({
           <Item
             key={e.key}
             py={13}
-            bgColor="var(--r-neutral-card-2, #F2F4F7)"
+            bgColor="var(--r-neutral-card-2, #F4F4F5)"
             leftIcon={AddressSortImgMapping[e.key]}
             onClick={handleChange(e.key)}
             className="text-14 text-r-neutral-title-1 font-normal"

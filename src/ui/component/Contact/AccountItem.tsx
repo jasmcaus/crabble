@@ -19,7 +19,7 @@ import { pickKeyringThemeIcon } from '@/utils/account';
 const AccountItemWrapper = styled.div`
   padding: 10px 16px;
   background: var(--r-neutral-card-2, rgba(255, 255, 255, 0.06));
-  border-radius: 6px;
+  border-radius: 8px;
   margin-bottom: 8px;
   display: flex;
   align-items: center;
@@ -27,8 +27,8 @@ const AccountItemWrapper = styled.div`
   border: 1px solid transparent;
 
   &:hover {
-    background-color: var(--r-blue-light-1, #eef1ff);
-    border-color: var(--r-blue-default, #7084ff);
+    background-color: var(--crb-sunken);
+    border-color: var(--crb-hairline-strong);
   }
   .name {
     font-weight: 500;
@@ -62,7 +62,7 @@ const AccountItemWrapper = styled.div`
       border-color: transparent;
     }
     &:not(.is-darkmode):hover {
-      background-color: #f5f6fa;
+      background-color: #f4f4f5;
     }
 
     & > *,

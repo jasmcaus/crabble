@@ -54,7 +54,7 @@ export const MarketSlippage: React.FC<MarketSlippageProps> = ({
         </div>
       </div>
       {overThreshold && onSwitchToLimit && (
-        <div className="mt-8 flex items-center justify-between gap-8 rounded-[8px] bg-r-orange-light px-12 py-8">
+        <div className="mt-8 flex items-center justify-between gap-8 rounded-[12px] bg-r-orange-light px-12 py-8">
           <div className="text-12 leading-[16px] text-r-orange-default">
             {t('page.perps.lowLiquiditySwitchLimit')}
           </div>

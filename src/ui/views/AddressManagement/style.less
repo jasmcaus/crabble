@@ -29,20 +29,20 @@
     &.row-group:nth-child(n + 2) {
       .rabby-address-item-container .rabby-address-item {
         position: relative;
-        border-top: 0.5px solid var(--r-neutral-line, #d3d8e0);
+        border-top: 0.5px solid var(--r-neutral-line, #d4d4d8);
       }
     }
 
     &.row-group:nth-child(1) {
       .rabby-address-item-container .rabby-address-item {
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
       }
     }
     &.row-group:nth-last-child(1) {
       .rabby-address-item-container .rabby-address-item {
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
       }
     }
     &:nth-last-child(1) {
@@ -55,7 +55,7 @@
   }
 
   .rabby-address-item {
-    border-radius: 8px;
+    border-radius: 12px;
     background-color: var(--r-neutral-card-1, #fff);
     border: 1px solid transparent;
     cursor: pointer;
@@ -67,7 +67,7 @@
       .icon-delete-container {
         display: flex;
         opacity: 0;
-        color: var(--r-neutral-foot, #6a7587);
+        color: var(--r-neutral-foot, #71717a);
       }
       &:hover {
         .icon-delete-container {
@@ -85,7 +85,7 @@
     }
 
     &.is-detail:hover {
-      border-color: var(--r-blue-default, #7084ff);
+      border-color: var(--r-blue-default, #f26b3a);
       background: var(--r-neutral-card-1, #fff);
       .icon-star {
         opacity: 1;
@@ -93,8 +93,8 @@
     }
 
     &.is-detail:active {
-      border-color: var(--r-blue-default, #7084ff);
-      background: var(--r-blue-light-2, #dbe0ff);
+      border-color: var(--r-blue-default, #f26b3a);
+      background: var(--r-blue-light-2, #faddd1);
       .icon-star {
         opacity: 1;
       }
@@ -125,7 +125,7 @@
       font-weight: 500;
       font-size: 15px;
       line-height: 18px;
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #09090b);
       margin-bottom: 2px;
 
       display: flex;
@@ -142,7 +142,7 @@
       padding-left: 2px;
 
       &:focus {
-        border-color: #b0bdff;
+        border-color: #f8bfa9;
       }
     }
     &-alias {
@@ -165,29 +165,29 @@
       border: none;
       .rabby-address-item-left {
         padding-right: 0;
-        border-top-left-radius: 6px;
-        border-bottom-left-radius: 6px;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
         border: 1px solid transparent;
         &:hover {
-          border-color: var(--r-blue-default, #7084ff);
+          border-color: var(--crb-hairline-strong);
           background: var(--r-neutral-card-1, #fff);
         }
         &:active {
-          border-color: var(--r-blue-default, #7084ff);
-          background: var(--r-blue-light-2, #dbe0ff);
+          border-color: var(--r-blue-default, #f26b3a);
+          background: var(--r-blue-light-2, #faddd1);
         }
       }
       .rabby-address-item-arrow {
         border: 1px solid transparent;
-        border-top-right-radius: 6px;
-        border-bottom-right-radius: 6px;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
         &:hover {
-          border-color: var(--r-blue-default, #7084ff);
+          border-color: var(--crb-hairline-strong);
           background: var(--r-neutral-card-1, #fff);
         }
         &:active {
-          border-color: var(--r-blue-default, #7084ff);
-          background: var(--r-blue-light-2, #dbe0ff);
+          border-color: var(--r-blue-default, #f26b3a);
+          background: var(--r-blue-light-2, #faddd1);
         }
       }
       &:hover {
@@ -207,7 +207,7 @@
 
   .create-address {
     display: flex;
-    color: var(--r-blue-default, #7084ff);
+    color: var(--r-blue-default, #f26b3a);
     font-size: 15px;
     line-height: 18px;
     font-weight: 500;
@@ -233,8 +233,8 @@
       padding: 13px;
       margin-top: 100px;
       text-align: center;
-      background-color: rgba(134, 151, 255, 0.2);
-      color: var(--r-blue-default, #7084ff);
+      background-color: rgba(242, 138, 99, 0.2);
+      color: var(--r-blue-default, #f26b3a);
       align-items: center;
       justify-content: center;
       .icon-plus {
@@ -272,13 +272,13 @@
       line-height: 16px;
       text-shadow: none;
 
-      background-color: rgba(134, 151, 255, 0.15);
+      background-color: rgba(242, 138, 99, 0.15);
       border: none;
       box-shadow: none;
 
       color: #667bff;
       &:hover {
-        background-color: rgba(134, 151, 255, 0.2);
+        background-color: rgba(242, 138, 99, 0.2);
         &::before {
           display: none;
         }
@@ -288,13 +288,13 @@
 
   .search-address-wrapper .ant-input-affix-wrapper {
     width: 160px;
-    border-radius: 6px;
-    border: 0.5px solid var(--r-neutral-line, #d3d8e0);
+    border-radius: 8px;
+    border: 0.5px solid var(--r-neutral-line, #d4d4d8);
   }
 
   .search-address-wrapper .ant-input-affix-wrapper:hover,
   .search-address-wrapper .ant-input-affix-wrapper:focus {
-    border: 0.5px solid var(--r-blue-default, #7084ff);
+    border: 0.5px solid var(--r-blue-default, #f26b3a);
   }
 
   .no-matched-address {
@@ -313,7 +313,7 @@
 
   .address-header-add {
     border: 1px solid transparent;
-    color: var(--r-neutral-title-1, #192945);
+    color: var(--r-neutral-title-1, #09090b);
 
     svg path {
       stroke: currentColor;
@@ -322,18 +322,18 @@
     &:hover {
       border-color: transparent;
       background: var(--r-neutral-card-1, #fff);
-      color: var(--r-blue-default, #7084ff);
+      color: var(--r-blue-default, #f26b3a);
     }
 
     &:active {
       border-color: transparent;
-      background: var(--r-blue-light-2, #dbe0ff);
-      color: var(--r-blue-default, #7084ff);
+      background: var(--r-blue-light-2, #faddd1);
+      color: var(--r-blue-default, #f26b3a);
     }
   }
 
   .address-add-button {
-    color: var(--r-neutral-title-1, #192945);
+    color: var(--r-neutral-title-1, #09090b);
     border: 1px solid transparent;
     background: var(--r-neutral-card-1, #fff);
 
@@ -342,16 +342,16 @@
     }
 
     &:hover:not(:active) {
-      color: var(--r-blue-default, #7084ff);
-      border-color: var(--r-blue-default, #7084ff);
+      color: var(--r-blue-default, #f26b3a);
+      border-color: var(--r-blue-default, #f26b3a);
       background: var(--r-neutral-card-1, #fff);
     }
 
     &:active,
     &:has(:active) {
-      color: var(--r-blue-default, #7084ff);
-      border-color: var(--r-blue-default, #7084ff);
-      background: var(--r-blue-light-2, #dbe0ff);
+      color: var(--r-blue-default, #f26b3a);
+      border-color: var(--r-blue-default, #f26b3a);
+      background: var(--r-blue-light-2, #faddd1);
     }
   }
 
@@ -359,7 +359,7 @@
 
 .custom-private-popup {
   .private-field {
-    border-radius: 6px;
+    border-radius: 8px;
     background-color: @color-bg;
     padding: 12px;
     font-size: 14px;
@@ -372,8 +372,8 @@
 
 .sort-input {
   display: inline-flex;
-  border-radius: 8px;
-  border: 0.5px solid var(--r-neutral-line, #d3d8e0);
+  border-radius: 12px;
+  border: 0.5px solid var(--r-neutral-line, #d4d4d8);
   background: var(--r-neutral-card-1, #fff);
   width: 160px;
   height: 32px;
@@ -390,7 +390,7 @@
   &:has(> .search-input:hover),
   &:has(> .search-input.ant-input-affix-wrapper-focused) {
     width: 200px;
-    border-color: var(--r-blue-default, #7084ff);
+    border-color: var(--r-blue-default, #f26b3a);
     .ant-input-suffix {
       opacity: 1;
     }
@@ -402,10 +402,10 @@
     padding: 8px;
     cursor: pointer;
     color: var(--r-neutral-foot);
-    border-right: 0.5px solid var(--r-neutral-line, #d3d8e0);
+    border-right: 0.5px solid var(--r-neutral-line, #d4d4d8);
 
     &:hover {
-      color: var(--r-blue-default, #7084ff);
+      color: var(--r-blue-default, #f26b3a);
     }
 
     .icon {

@@ -48,7 +48,7 @@ const ConnectWrapper = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--r-neutral-bg2, #f2f4f7);
+  background-color: var(--r-neutral-bg2, #f4f4f5);
   .approval-connect {
     padding: 11px 20px 20px 26px;
     flex: 1;
@@ -57,13 +57,13 @@ const ConnectWrapper = styled.div`
       font-weight: 500;
       font-size: 18px;
       line-height: 21px;
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #09090b);
     }
     .chain-selector {
       height: 32px;
-      border-radius: 8px;
-      background: var(--r-neutral-bg2, #f2f4f7);
-      color: var(--r-neutral-title-1, #192945);
+      border-radius: 12px;
+      background: var(--r-neutral-bg2, #f4f4f5);
+      color: var(--r-neutral-title-1, #09090b);
       font-size: 13px;
       border: 0.5px solid var(--r-neutral-line, rgba(255, 255, 255, 0.1));
       border: 1px solid var(--r-neutral-line, rgba(255, 255, 255, 0.1));
@@ -77,8 +77,8 @@ const ConnectWrapper = styled.div`
         }
       }
       &.hover {
-        border: 1px solid var(--r-blue-default, #7084ff);
-        background: var(--r-blue-light1, #eef1ff);
+        border: 1px solid var(--r-blue-default, #f26b3a);
+        background: var(--r-blue-light1, #fdefe9);
       }
     }
     .connect-card {
@@ -87,7 +87,7 @@ const ConnectWrapper = styled.div`
       flex-direction: column;
       align-items: center;
       position: relative;
-      border-bottom: 0.5px solid var(--r-neutral-line, #e0e5ec);
+      border-bottom: 0.5px solid var(--r-neutral-line, #e4e4e7);
       .connect-origin {
         margin-top: 8px;
         margin-bottom: 0;
@@ -95,7 +95,7 @@ const ConnectWrapper = styled.div`
         font-size: 22px;
         line-height: 24px;
         text-align: center;
-        color: var(--r-neutral-title-1, #192945);
+        color: var(--r-neutral-title-1, #09090b);
         word-wrap: break-word;
         max-width: 100%;
       }
@@ -110,8 +110,8 @@ const Footer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
-  border-top: 1px solid var(--r-neutral-line, #e0e5ec);
-  border-top: 0.5px solid var(--r-neutral-line, #e0e5ec);
+  border-top: 1px solid var(--r-neutral-line, #e4e4e7);
+  border-top: 0.5px solid var(--r-neutral-line, #e4e4e7);
   width: 100%;
   background: var(--r-neutral-card-1, #fff);
   .ant-btn {
@@ -197,18 +197,18 @@ const RuleDesc = [
 
 const SecurityLevelTipColor = {
   [Level.FORBIDDEN]: {
-    bg: '#EFCFCF',
-    text: '#AF160E',
+    bg: 'var(--r-red-light-2, #EFCFCF)',
+    text: 'var(--r-red-dark, #AF160E)',
     icon: SecurityEngineLevel[Level.FORBIDDEN].icon,
   },
   [Level.DANGER]: {
-    bg: '#FCDCDC',
-    text: '#EC5151',
+    bg: 'var(--r-red-light, #FCDCDC)',
+    text: 'var(--r-red-default, #EC5151)',
     icon: SecurityEngineLevel[Level.DANGER].icon,
   },
   [Level.WARNING]: {
-    bg: '#FFEFD2',
-    text: '#FFB020',
+    bg: 'var(--r-orange-light, #FFEFD2)',
+    text: 'var(--r-orange-default, #FFB020)',
     icon: SecurityEngineLevel[Level.WARNING].icon,
   },
 };
@@ -695,7 +695,7 @@ export const ConnectContent = (
               account={selectedAccount}
             />
           </div>
-          <div className="rounded-[8px] bg-r-neutral-card1">
+          <div className="rounded-[12px] bg-r-neutral-card1">
             <div className="connect-card">
               <div className="relative">
                 <FallbackSiteLogo

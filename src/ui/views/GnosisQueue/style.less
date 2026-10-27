@@ -29,7 +29,7 @@
     gap: 10px 10px;
     flex-wrap: wrap;
     &-container {
-      background-color: var(--r-neutral-bg-2, #f5f6fa);
+      background-color: var(--r-neutral-bg-2, #f4f4f5);
       position: sticky;
       top: 64px;
       padding-bottom: 20px;
@@ -46,7 +46,8 @@
       cursor: pointer;
 
       &.is-active {
-        color: var(--r-blue-default, #7084ff);
+        color: var(--r-neutral-title-1, #09090b);
+        font-weight: 600;
         &::after {
           position: absolute;
           content: '';
@@ -54,14 +55,15 @@
           left: 0;
           right: 0;
           height: 2px;
-          background-color: var(--r-blue-default, #7084ff);
+          border-radius: 2px;
+          background-color: var(--r-neutral-title-1, #09090b);
         }
       }
     }
   }
   .queue-item {
     background-color: var(--r-neutral-card-1);
-    border-radius: 6px;
+    border-radius: 8px;
     padding: 12px;
     padding-bottom: 20px;
     &__time {
@@ -119,7 +121,7 @@
       .ant-btn-primary[disabled]:hover,
       .ant-btn-primary[disabled]:focus,
       .ant-btn-primary[disabled]:active {
-        background-color: rgba(112, 132, 255, 0.4);
+        background-color: rgba(242, 107, 58, 0.4);
         border: none;
         &:before {
           display: none;
@@ -142,7 +144,7 @@
           &::before {
             display: none;
           }
-          background-color: #8697ff1a !important;
+          background-color: var(--crb-sunken) !important;
           box-shadow: none;
           color: var(--r-blue-default) !important;
         }
@@ -197,14 +199,14 @@
         display: none;
       }
       .tx-explain__view {
-        background-color: rgba(134, 151, 255, 0.2);
-        color: var(--r-blue-default, #7084ff);
+        background-color: rgba(242, 138, 99, 0.2);
+        color: var(--r-blue-default, #f26b3a);
         border-color: transparent;
         text-shadow: none;
         &:hover {
-          background: rgba(134, 151, 255, 0.2) !important;
-          background-color: rgba(134, 151, 255, 0.2) !important;
-          color: var(--r-blue-default, #7084ff) !important;
+          background: var(--crb-sunken) !important;
+          background-color: var(--crb-sunken) !important;
+          color: var(--r-blue-default, #f26b3a) !important;
         }
         &::before {
           display: none;
@@ -214,15 +216,15 @@
   }
   .queue-group {
     background-color: var(--r-neutral-card-1);
-    border: 1px solid var(--r-blue-default, #7084ff);
-    border-radius: 6px;
+    border: 1px solid var(--r-blue-default, #f26b3a);
+    border-radius: 8px;
     &__header {
       display: flex;
       font-weight: 500;
       font-size: 12px;
       line-height: 16px;
-      color: var(--r-blue-default, #7084ff);
-      border-bottom: 1px solid var(--r-blue-default, #7084ff);
+      color: var(--r-blue-default, #f26b3a);
+      border-bottom: 1px solid var(--r-blue-default, #f26b3a);
       padding: 14px 12px;
       .icon-information {
         width: 12px;
@@ -232,7 +234,7 @@
       }
     }
     .queue-item {
-      border-bottom: 1px solid var(--r-blue-default, #7084ff);
+      border-bottom: 1px solid var(--r-blue-default, #f26b3a);
       border-radius: 0;
       margin-bottom: 0;
       background-color: transparent;

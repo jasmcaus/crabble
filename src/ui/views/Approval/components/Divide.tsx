@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Div = styled.div`
   height: 1px;
   height: 0.5px;
-  background-color: var(--r-neutral-card2, #f2f4f7);
+  background-color: var(--r-neutral-card2, #f4f4f5);
   width: 100%;
 `;
 

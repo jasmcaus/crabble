@@ -9,7 +9,7 @@ export const PerpsLoading = ({ active = true }: PerpsLoadingProps) => {
   return (
     <div className="mx-20">
       {/* 登录后的账户余额卡片骨架 */}
-      <div className="bg-r-neutral-card1 rounded-[8px] px-16 py-16 flex justify-between items-center">
+      <div className="bg-r-neutral-card1 rounded-[12px] px-16 py-16 flex justify-between items-center">
         <div className="flex flex-col gap-8">
           <Skeleton.Button
             active={active}
@@ -24,21 +24,21 @@ export const PerpsLoading = ({ active = true }: PerpsLoadingProps) => {
         </div>
         <Skeleton.Button
           active={active}
-          className="h-[40px] block rounded-[8px]"
+          className="h-[40px] block rounded-[12px]"
           style={{ width: 120 }}
         />
       </div>
 
       <Skeleton.Button
         active={active}
-        className="h-[32px] w-full mt-12 block rounded-[8px]"
+        className="h-[32px] w-full mt-12 block rounded-[12px]"
       />
 
       {/* 持仓列表骨架 */}
       <div className="mt-20">
         <Skeleton.Button
           active={active}
-          className="h-[18px] mb-8 block rounded-[8px]"
+          className="h-[18px] mb-8 block rounded-[12px]"
           style={{ width: 80 }}
         />
         <div className="flex flex-col gap-8">
@@ -52,12 +52,12 @@ export const PerpsLoading = ({ active = true }: PerpsLoadingProps) => {
                 <div className="flex flex-col gap-4">
                   <Skeleton.Button
                     active={active}
-                    className="h-[16px] block rounded-[8px]"
+                    className="h-[16px] block rounded-[12px]"
                     style={{ width: 60 }}
                   />
                   <Skeleton.Button
                     active={active}
-                    className="h-[14px] block rounded-[8px]"
+                    className="h-[14px] block rounded-[12px]"
                     style={{ width: 80 }}
                   />
                 </div>
@@ -65,12 +65,12 @@ export const PerpsLoading = ({ active = true }: PerpsLoadingProps) => {
               <div className="flex flex-col gap-4 items-end">
                 <Skeleton.Button
                   active={active}
-                  className="h-[16px] block rounded-[8px]"
+                  className="h-[16px] block rounded-[12px]"
                   style={{ width: 80 }}
                 />
                 <Skeleton.Button
                   active={active}
-                  className="h-[14px] block rounded-[8px]"
+                  className="h-[14px] block rounded-[12px]"
                   style={{ width: 60 }}
                 />
               </div>
@@ -84,12 +84,12 @@ export const PerpsLoading = ({ active = true }: PerpsLoadingProps) => {
         <div className="flex justify-between mb-8">
           <Skeleton.Button
             active={active}
-            className="h-[18px] block rounded-[8px]"
+            className="h-[18px] block rounded-[12px]"
             style={{ width: 60 }}
           />
           <Skeleton.Button
             active={active}
-            className="h-[18px] block rounded-[8px]"
+            className="h-[18px] block rounded-[12px]"
             style={{ width: 60 }}
           />
         </div>
@@ -102,12 +102,12 @@ export const PerpsLoading = ({ active = true }: PerpsLoadingProps) => {
                   <div className="flex flex-col gap-4">
                     <Skeleton.Button
                       active={active}
-                      className="h-[16px] block rounded-[8px]"
+                      className="h-[16px] block rounded-[12px]"
                       style={{ width: 80 }}
                     />
                     <Skeleton.Button
                       active={active}
-                      className="h-[14px] block rounded-[8px]"
+                      className="h-[14px] block rounded-[12px]"
                       style={{ width: 60 }}
                     />
                   </div>
@@ -115,12 +115,12 @@ export const PerpsLoading = ({ active = true }: PerpsLoadingProps) => {
                 <div className="flex flex-col gap-4 items-end">
                   <Skeleton.Button
                     active={active}
-                    className="h-[16px] block rounded-[8px]"
+                    className="h-[16px] block rounded-[12px]"
                     style={{ width: 80 }}
                   />
                   <Skeleton.Button
                     active={active}
-                    className="h-[14px] block rounded-[8px]"
+                    className="h-[14px] block rounded-[12px]"
                     style={{ width: 60 }}
                   />
                 </div>

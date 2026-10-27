@@ -15,10 +15,10 @@ export const CancelItem: React.FC<Props> = ({ children, onClick }) => {
         'px-16 py-[15px]',
         'flex items-start justify-between',
         'text-r-neutral-title-1 text-14 font-medium',
-        'border rounded-[8px] border-transparent',
+        'border rounded-[12px] border-transparent',
         'bg-r-neutral-card-1  cursor-pointer',
-        'hover:bg-r-blue-light-1',
-        'hover:border-rabby-blue-default'
+        'hover:bg-[var(--crb-sunken)]',
+        'hover:border-[var(--crb-hairline-strong)]'
       )}
     >
       <span>{children}</span>

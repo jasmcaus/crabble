@@ -23,7 +23,7 @@ const LogoutCurrentAddress = ({ account }: { account: Account }) => {
   });
 
   return (
-    <div className="max-w-[calc(100%-40px)] mb-[20px] py-12 px-16 rounded-[6px] flex items-center bg-r-neutral-card-1 overflow-hidden">
+    <div className="max-w-[calc(100%-40px)] mb-[20px] py-12 px-16 rounded-[8px] flex items-center bg-r-neutral-card-1 overflow-hidden">
       <img src={addressTypeIcon} className="w-24 h-24" />
       <span className="ml-[8px] mr-4 text-15 font-medium text-r-neutral-title-1 truncate">
         {alias}

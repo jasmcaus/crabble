@@ -41,7 +41,7 @@ const RequestOrigin = styled.div`
   justify-content: center;
   position: relative;
   .origin {
-    color: var(--r-neutral-title-1, #f7fafc);
+    color: var(--r-neutral-title-1, #fafafa);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -89,7 +89,7 @@ export const OriginInfo: React.FC<Props> = ({
 
   const displayOrigin = useMemo(() => {
     if (origin === INTERNAL_REQUEST_ORIGIN) {
-      return 'Rabby Wallet';
+      return 'Crabble Wallet';
     }
     return origin;
   }, [origin]);

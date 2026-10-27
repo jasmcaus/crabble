@@ -244,7 +244,7 @@ export const AddPositionPopup: React.FC<AddPositionPopupProps> = ({
         />
 
         <div className="flex-1 mt-12 px-20 overflow-y-auto pb-24">
-          <div className="flex items-center justify-between p-12 mb-12 h-[78px] bg-r-neutral-card1 rounded-[8px]">
+          <div className="flex items-center justify-between p-12 mb-12 h-[78px] bg-r-neutral-card1 rounded-[12px]">
             <div className="flex flex-col gap-8">
               <div className="flex items-center gap-6">
                 <TokenImg logoUrl={currentAssetCtx?.logoUrl} size={28} />
@@ -339,7 +339,7 @@ export const AddPositionPopup: React.FC<AddPositionPopupProps> = ({
             }
           />
 
-          <div className="rounded-[8px] bg-r-neutral-card-1">
+          <div className="rounded-[12px] bg-r-neutral-card-1">
             <div className="flex items-center justify-between px-[16px] py-[12px] min-[48px]">
               <span className="text-r-neutral-body text-[13px] leading-[16px]">
                 {t('page.perpsDetail.PerpsAddPositionPopup.addSize')}

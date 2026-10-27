@@ -37,7 +37,7 @@ type ValidatedPrivateKeyResult = {
 
 const Page = styled.div`
   min-height: 100vh;
-  background: var(--r-neutral-bg-2, #f2f4f7);
+  background: var(--r-neutral-bg-2, #f4f4f5);
   overflow-y: auto;
 `;
 
@@ -45,7 +45,7 @@ const Card = styled.div`
   width: 600px;
   min-height: 586px;
   margin: 0 auto;
-  border-radius: 8px;
+  border-radius: 12px;
   background: var(--r-neutral-card-1, #fff);
   padding: 32px 50px;
 `;
@@ -53,23 +53,23 @@ const Card = styled.div`
 const PasswordInput = styled(Input)`
   &.ant-input {
     height: 52px;
-    border-radius: 8px;
-    border: 1px solid var(--r-neutral-line, #e0e5ec);
+    border-radius: 12px;
+    border: 1px solid var(--r-neutral-line, #e4e4e7);
     background: var(--r-neutral-card-1, #fff);
     padding: 0 15px;
     font-size: 15px;
     line-height: 18px;
-    color: var(--r-neutral-title-1, #192945);
+    color: var(--r-neutral-title-1, #09090b);
     box-shadow: none;
   }
 
   &.ant-input::placeholder {
-    color: var(--r-neutral-foot, #6a7587);
+    color: var(--r-neutral-foot, #71717a);
   }
 
   &.ant-input:focus,
   &.ant-input-focused {
-    border-color: var(--r-blue-default, #4c65ff);
+    border-color: var(--r-blue-default, #e8552a);
     box-shadow: none;
   }
   &.ant-input-status-error:not(.ant-input-disabled):not(.ant-input-borderless).ant-input,
@@ -89,7 +89,7 @@ const EmptyTextarea = styled.textarea`
   outline: none;
   background: transparent;
   padding: 0;
-  color: var(--r-neutral-title-1, #192945);
+  color: var(--r-neutral-title-1, #09090b);
   font-size: 13px;
   line-height: 16px;
   font-weight: 400;
@@ -98,7 +98,7 @@ const EmptyTextarea = styled.textarea`
   overflow-wrap: anywhere;
 
   &::placeholder {
-    color: var(--r-neutral-foot, #6a7587);
+    color: var(--r-neutral-foot, #71717a);
   }
 `;
 
@@ -107,7 +107,7 @@ const HiddenRowInput = styled.input`
   background: transparent;
   border: 0;
   outline: none;
-  color: var(--r-neutral-title-1, #192945);
+  color: var(--r-neutral-title-1, #09090b);
   font-size: 13px;
   line-height: 16px;
   height: 16px;
@@ -134,7 +134,7 @@ const VisibleRowTextarea = styled.textarea`
   border: 0;
   outline: none;
   padding: 0;
-  color: var(--r-neutral-title-1, #192945);
+  color: var(--r-neutral-title-1, #09090b);
   font-size: 13px;
   line-height: 16px;
   min-height: 16px;
@@ -1036,10 +1036,8 @@ const BulkImportPrivateKey: React.FC = () => {
                   label: t('page.newAddress.importKeystore'),
                 },
               ]}
-              className="flex bg-r-neutral-line w-full my-[0] h-[36px] p-[2px] rounded-[8px]"
-              itemClassname="w-[50%] py-[7px] text-[15px] leading-[18px] font-medium rounded-[6px] text-center transition-colors"
-              itemClassnameInActive="text-r-neutral-body"
-              itemClassnameActive="bg-r-neutral-card-1 text-r-blue-default"
+              className="flex bg-[var(--crb-sunken)] w-full my-[0] h-[36px] p-[2px] rounded-[12px]"
+              itemClassname="w-[50%] py-[7px] text-[15px] leading-[18px] font-medium rounded-[8px] text-center transition-colors"
             />
 
             <div className="mt-[20px] flex flex-1 flex-col">
@@ -1047,7 +1045,7 @@ const BulkImportPrivateKey: React.FC = () => {
                 <>
                   <div
                     className={clsx(
-                      'h-[280px] rounded-[8px] border bg-r-neutral-card-1',
+                      'h-[280px] rounded-[12px] border bg-r-neutral-card-1',
                       invalidRowIds.length || privateKeyError
                         ? 'border-r-red-default'
                         : 'border-rabby-neutral-line'
@@ -1124,7 +1122,7 @@ const BulkImportPrivateKey: React.FC = () => {
                                       style={{
                                         color: isInvalid
                                           ? 'var(--r-red-default, #e34935)'
-                                          : 'var(--r-neutral-title-1, #192945)',
+                                          : 'var(--r-neutral-title-1, #09090b)',
                                       }}
                                     />
                                   ) : (
@@ -1157,7 +1155,7 @@ const BulkImportPrivateKey: React.FC = () => {
                                         WebkitTextSecurity: 'disc',
                                         color: isInvalid
                                           ? 'var(--r-red-default, #e34935)'
-                                          : 'var(--r-neutral-title-1, #192945)',
+                                          : 'var(--r-neutral-title-1, #09090b)',
                                       }}
                                     />
                                   )}
@@ -1249,7 +1247,7 @@ const BulkImportPrivateKey: React.FC = () => {
                 >
                   <div className="flex-1">
                     <div
-                      className="flex h-[180px] cursor-pointer flex-col items-center justify-center rounded-[8px] bg-r-neutral-card-2"
+                      className="flex h-[180px] cursor-pointer flex-col items-center justify-center rounded-[12px] bg-r-neutral-card-2"
                       onClick={() => fileInputRef.current?.click()}
                     >
                       <input
@@ -1307,7 +1305,7 @@ const BulkImportPrivateKey: React.FC = () => {
                 size="large"
                 loading={submitting}
                 disabled={disabledConfirm}
-                className="mt-auto h-[44px] w-full rounded-[6px] text-[15px] leading-[18px] font-medium"
+                className="mt-auto h-[44px] w-full rounded-[8px] text-[15px] leading-[18px] font-medium"
                 onClick={handleSubmit}
               >
                 {t('global.confirm')}

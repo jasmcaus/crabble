@@ -75,7 +75,7 @@ export const ToConfirmBtn = (props: {
   return (
     <div
       className={clsx(
-        'h-[48px] p-0 w-full rounded-[8px]',
+        'h-[48px] p-0 w-full rounded-[12px]',
         'flex items-center justify-center',
         toConfirm ? 'bg-r-blue-default' : '',
         'text-r-neutral-title-2 text-[15px] font-medium',
@@ -94,14 +94,14 @@ export const ToConfirmBtn = (props: {
           disabled={props.disabled}
           block
           className={clsx(
-            'h-[48px] rounded-[8px]',
-            props.loading && 'border-[#3646d9] bg-[#3646d9]',
+            'h-[48px] rounded-[12px]',
+            props.loading && 'border-[#c94a24] bg-[#c94a24]',
             props.buttonClassName
           )}
           style={
             props.loading
               ? {
-                  boxShadow: '0px 8px 16px rgba(134, 151, 255, 0.3)',
+                  boxShadow: '0px 8px 16px rgba(242, 138, 99, 0.3)',
                 }
               : {}
           }
@@ -121,7 +121,7 @@ export const ToConfirmBtn = (props: {
           <Button
             type="primary"
             className={clsx(
-              'relative flex-1 h-full flex items-center justify-center rounded-l-[8px] rounded-r-none',
+              'relative flex-1 h-full flex items-center justify-center rounded-l-[12px] rounded-r-none',
               'bg-transparent',
               'hover:bg-[rgba(0,0,0,0.2)]'
             )}
@@ -142,7 +142,7 @@ export const ToConfirmBtn = (props: {
             htmlType={'button'}
             type="primary"
             className={clsx(
-              'w-[56px] h-full flex items-center justify-center bg-transparent rounded-l-none rounded-r-[8px]'
+              'w-[56px] h-full flex items-center justify-center bg-transparent rounded-l-none rounded-r-[12px]'
             )}
             onClick={cancel}
           >
@@ -222,7 +222,7 @@ export const RiskTipsWrapper = ({
                     width="14"
                     height="14"
                     rx="2"
-                    fill="var(--r-blue-default, #4c65ff)"
+                    fill="var(--r-blue-default, #e8552a)"
                   />
                   <path
                     d="M3 7L5.66667 10L11 4"

@@ -67,7 +67,7 @@ export default function RateModalTriggerOnSettings({
       style={{ height: '90px' }}
       className={clsx(
         'flex items-center justify-center flex-col',
-        'max-w-[360px] w-[100%] bg-r-blue-light-1 rounded-[6px]',
+        'max-w-[360px] w-[100%] bg-r-blue-light-1 rounded-[8px]',
         'relative',
         className
       )}

@@ -674,7 +674,7 @@ export const Twap: React.FC = () => {
       <div className="flex items-center gap-[6px] ml-12 my-6 font-medium">
         <div
           className={clsx(
-            'px-[12px] py-[6px] text-12 rounded-[6px] cursor-pointer',
+            'px-[12px] py-[6px] text-12 rounded-[8px] cursor-pointer',
             activeTab === 'active'
               ? 'text-rb-neutral-body bg-rb-neutral-bg-2'
               : 'text-rb-neutral-foot hover:text-rb-neutral-body'
@@ -685,7 +685,7 @@ export const Twap: React.FC = () => {
         </div>
         <div
           className={clsx(
-            'px-[12px] py-[6px] text-12 rounded-[6px] cursor-pointer',
+            'px-[12px] py-[6px] text-12 rounded-[8px] cursor-pointer',
             activeTab === 'history'
               ? 'text-rb-neutral-body bg-rb-neutral-bg-2'
               : 'text-rb-neutral-foot hover:text-rb-neutral-body'
@@ -696,7 +696,7 @@ export const Twap: React.FC = () => {
         </div>
         <div
           className={clsx(
-            'px-[12px] py-[6px] text-12 rounded-[6px] cursor-pointer',
+            'px-[12px] py-[6px] text-12 rounded-[8px] cursor-pointer',
             activeTab === 'filled'
               ? 'text-rb-neutral-body bg-rb-neutral-bg-2'
               : 'text-rb-neutral-foot hover:text-rb-neutral-body'

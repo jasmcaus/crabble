@@ -772,7 +772,7 @@ const MiniSignTxV2 = ({ isDesktop }: { isDesktop?: boolean }) => {
                           {title}
 
                           {showSimulateChange ? (
-                            <div className="bg-r-neutral-card-2 px-16 py-12 rounded-[8px]">
+                            <div className="bg-r-neutral-card-2 px-16 py-12 rounded-[12px]">
                               {txsResult?.[txsResult?.length - 1]
                                 ?.preExecResult ? (
                                 <BalanceChange
@@ -1049,7 +1049,7 @@ const MiniSignTxV2 = ({ isDesktop }: { isDesktop?: boolean }) => {
                   {title}
 
                   {showSimulateChange ? (
-                    <div className="bg-r-neutral-card-2 px-16 py-12 rounded-[8px] max-h-[260px] overflow-y-auto">
+                    <div className="bg-r-neutral-card-2 px-16 py-12 rounded-[12px] max-h-[260px] overflow-y-auto">
                       {txsResult?.[txsResult?.length - 1]?.preExecResult ? (
                         <BalanceChange
                           version={

@@ -36,7 +36,7 @@ export const TokenLabel: React.FC<Props> = ({
           setVisible(true);
         }}
         className={clsx('ml-2', 'truncate', {
-          'underline cursor-pointer': canClickToken,
+          'cursor-pointer hover:underline underline-offset-2': canClickToken,
         })}
       >
         {name}

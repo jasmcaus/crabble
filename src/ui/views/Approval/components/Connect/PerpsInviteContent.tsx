@@ -39,8 +39,8 @@ const Footer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
-  border-top: 1px solid var(--r-neutral-line, #e0e5ec);
-  border-top: 0.5px solid var(--r-neutral-line, #e0e5ec);
+  border-top: 1px solid var(--r-neutral-line, #e4e4e7);
+  border-top: 0.5px solid var(--r-neutral-line, #e4e4e7);
   width: 100%;
   background: var(--r-neutral-card-1, #fff);
   .ant-btn {
@@ -266,7 +266,7 @@ export const PerpsInviteContent = (props: ConnectProps) => {
   return (
     <div className="h-full flex flex-col overflow-auto bg-r-neutral-bg-4">
       <div className="flex-1 px-[20px] pt-[24px]">
-        <div className="rounded-[8px] bg-r-neutral-card1 flex flex-col items-center py-[24px]">
+        <div className="rounded-[12px] bg-r-neutral-card1 flex flex-col items-center py-[24px]">
           <div className="relative">
             <FallbackSiteLogo
               url={icon}
@@ -293,7 +293,7 @@ export const PerpsInviteContent = (props: ConnectProps) => {
 
         <div
           className={clsx(
-            'border-[0.5px] border-rabby-neutral-line bg-r-neutral-card-1 rounded-[8px]',
+            'border-[0.5px] border-rabby-neutral-line bg-r-neutral-card-1 rounded-[12px]',
             'flex flex-col items-center',
             'px-[20px] pb-[90px] mt-[18px]',
             'relative'
@@ -303,7 +303,7 @@ export const PerpsInviteContent = (props: ConnectProps) => {
             <div
               className={clsx(
                 'flex items-center justify-center gap-[8px] px-[12px] py-[5px]',
-                'rounded-b-[8px] bg-r-neutral-card-2',
+                'rounded-b-[12px] bg-r-neutral-card-2',
                 'text-[12px] leading-[14px] text-r-neutral-body'
               )}
             >
@@ -325,7 +325,7 @@ export const PerpsInviteContent = (props: ConnectProps) => {
                   className="w-[14px] h-[14px]"
                   alt=""
                 />
-                Rabby Wallet
+                Crabble Wallet
               </div>
             </div>
             <div className="mt-[75px] text-[13px] leading-[16px] text-r-neutral-foot">
@@ -360,7 +360,7 @@ export const PerpsInviteContent = (props: ConnectProps) => {
         {isSuccess ? (
           <div
             className={clsx(
-              'mt-[18px] rounded-[8px] border-[0.5px] border-rabby-neutral-line',
+              'mt-[18px] rounded-[12px] border-[0.5px] border-rabby-neutral-line',
               'px-[24px] py-[16px] bg-r-neutral-card-1',
               'flex items-center gap-[10px]'
             )}
@@ -382,7 +382,7 @@ export const PerpsInviteContent = (props: ConnectProps) => {
             <Button
               type="primary"
               block
-              className="h-[48px] text-[15px] font-medium rounded-[8px]"
+              className="h-[48px] text-[15px] font-medium rounded-[12px]"
               onClick={handleClose}
             >
               {t('global.Done')}

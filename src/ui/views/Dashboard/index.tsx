@@ -14,6 +14,8 @@ import { DashboardHeader } from './components/DashboardHeader';
 import { DashboardPanel } from './components/DashboardPanel';
 import { useCurrentAccount } from '@/ui/hooks/backgroundState/useAccount';
 import { GasPriceBar } from './components/GasPriceBar';
+import { HomeAssets } from './components/HomeAssets';
+import type { BalanceViewData } from './components/BalanceView/BalanceView';
 import { CHAINS_ENUM, KEYRING_CLASS } from '@/constant';
 import Settings from './components/Settings';
 import { useMemoizedFn, useMount } from 'ahooks';
@@ -135,6 +137,11 @@ const Dashboard = () => {
   );
 
   const [settingVisible, setSettingVisible] = useState(false);
+  const [homeBalanceData, setHomeBalanceData] = useState<BalanceViewData>();
+  useEffect(() => {
+    // don't show the previous account's chain breakdown while the new one loads
+    setHomeBalanceData(undefined);
+  }, [address]);
   const [updateClock, setUpdateClock] = useState(Date.now);
   const showUpdateBanner = useExtensionUpdateStore((s) =>
     selectExtensionUpdateBanner(s, updateClock)
@@ -224,16 +231,22 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="relative h-full overflow-hidden">
-        <div className="dashboard h-full overflow-y-auto">
-          <DashboardHeader onSettingClick={toggleShowMoreSettings} />
+      <div className="relative h-full overflow-hidden flex flex-col">
+        <div className="dashboard flex-1 min-h-0 overflow-y-auto">
+          <DashboardHeader
+            onSettingClick={toggleShowMoreSettings}
+            onBalanceData={setHomeBalanceData}
+          />
           <DashboardPanel onSettingClick={toggleShowMoreSettings} />
-          <div className="px-[16px] pb-[13px]">
+          <HomeAssets data={homeBalanceData} />
+          <div className="px-[12px] pb-[12px]">
             <GasPriceBar
               currentConnectedSiteChain={currentConnectedSiteChain}
             />
-            <CurrentConnection onChainChange={setCurrentConnectedSiteChain} />
           </div>
+        </div>
+        <div className="dashboard-connection-bar shrink-0">
+          <CurrentConnection onChainChange={setCurrentConnectedSiteChain} />
         </div>
         <StablecoinSwapPopup />
         <ExtensionUpdateBanner

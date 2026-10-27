@@ -1,26 +1,26 @@
 /* @import!! this file should be ONLY put pure variables definition, never put mixin/classes here */
 
-/* @deprecated, use var(--r-blue-default, #7084ff) directly */
-@primary-color: #4c65ff;
-/* @deprecated, use var(--r-blue-default, #7084ff) directly */
-@primary-text-color: #4c65ff;
-@light-purple: #826fff;
-@primary-linear: linear-gradient(97.59deg, #8ba8ff 0%, #8c96ff 99.49%);
+/* @deprecated, use var(--r-blue-default, #f26b3a) directly */
+@primary-color: #e8552a;
+/* @deprecated, use var(--r-blue-default, #f26b3a) directly */
+@primary-text-color: #e8552a;
+@light-purple: #f28a63;
+@primary-linear: linear-gradient(97.59deg, #ff8f61 0%, #e8461f 99.49%);
 
-@color-green: #27c193;
-@color-orange: #ffb020;
-@color-red: #ec5151;
-@color-403: #af160e;
+@color-green: #12a163;
+@color-orange: #f59e0b;
+@color-red: #e5484d;
+@color-403: #a51e36;
 @color-white: #fff;
 @color-black: #000;
 
-@color-title: #13141a;
-@color-body: #4b4d59;
-@color-comment: #707280;
+@color-title: #09090b;
+@color-body: #3f3f46;
+@color-comment: #71717a;
 @color-comment-1: @color-comment;
-@color-comment-2: #b4bdcc;
-@color-bg: #f5f6fa;
-@color-border: #e5e9ef;
+@color-comment-2: #d4d4d8;
+@color-bg: #f4f4f5;
+@color-border: #e4e4e7;
 
 /* button */
 @btn-shadow: none;
@@ -39,13 +39,21 @@
 @btn-disable-border: @color-border;
 
 /* input */
-@input-border-color: white;
+/* a visible resting edge; white borders made fields vanish on white cards */
+@input-border-color: var(--crb-input-border, #e4e4e7);
 @input-padding-vertical-lg: 15px;
 @input-padding-horizontal-lg: 16px;
-@error-color: #f24822;
+@error-color: #e5484d;
 
 /* font */
+@font-family: 'Geist', 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
+  Roboto, sans-serif;
 @font-size-lg: 14px;
+/* antd puts tabular figures ('tnum') on everything, which also widens the
+   hyphen to figure width ("Watch - only"). Proportional by default; numeric
+   contexts opt back in (crabble-ui.less, `tabular-nums`). */
+@font-variant-base: normal;
+@font-feature-settings-base: normal;
 
 @outline-width: 0;
 

@@ -34,15 +34,15 @@ export const TokenLowValueItem: React.FC<Props> = ({ className, list }) => {
   return (
     <div
       className={clsx(
-        'flex justify-between border border-transparent items-center mt-8 bg-r-neutral-card1 rounded-[8px] px-16',
-        'hover:border-blue-light hover:bg-blue-light/10',
+        'flex justify-between items-center mt-4 rounded-[14px] px-[12px]',
+        'bg-transparent hover:bg-[var(--crb-hover)] transition-colors',
         'cursor-pointer',
         className
       )}
       onClick={() => setVisible(true)}
     >
       <div className={clsx('text-r-neutral-foot text-13', 'flex items-center')}>
-        <LowValueSVG className="mr-12" />
+        <LowValueSVG className="mr-[14px] ml-[6px]" />
         <div className="text-r-neutral-foot">
           {t('page.dashboard.assets.table.lowValueAssets', {
             count: list?.length,
@@ -55,7 +55,7 @@ export const TokenLowValueItem: React.FC<Props> = ({ className, list }) => {
 
       <Popup
         title={
-          <div className="font-medium text-20">
+          <div className="font-semibold text-[17px]">
             {t('page.dashboard.assets.table.lowValueAssets', {
               count: list?.length,
             })}

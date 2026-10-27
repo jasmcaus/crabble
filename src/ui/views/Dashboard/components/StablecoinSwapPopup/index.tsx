@@ -2,7 +2,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ReactComponent as RcArrowRight } from '@/ui/assets/dashboard/stablecoin-swap-popup/arrow-right.svg';
-import BackgroundEffect from '@/ui/assets/dashboard/stablecoin-swap-popup/background-effect.svg';
 import { ReactComponent as RcClose } from '@/ui/assets/dashboard/stablecoin-swap-popup/close.svg';
 import { ReactComponent as RcMoreDot } from '@/ui/assets/dashboard/stablecoin-swap-popup/more-dot.svg';
 import { ReactComponent as RcTokenSwitch } from '@/ui/assets/dashboard/stablecoin-swap-popup/token-switch.svg';
@@ -74,26 +73,20 @@ export const StablecoinSwapPopup: React.FC = () => {
       role="dialog"
       aria-label={t('page.dashboard.home.stablecoinSwapPopup.title')}
       onMouseEnter={onHover}
-      className="group absolute bottom-[-118px] left-0 z-20 h-[182px] w-full overflow-hidden rounded-t-[16px] border border-r-neutral-line bg-r-neutral-bg1 shadow-[0_-2px_10px_rgba(0,0,0,0.1)] transition-[bottom] duration-300 ease-out hover:bottom-0"
+      className="group absolute bottom-[-118px] left-0 z-20 h-[182px] w-full overflow-hidden rounded-t-[20px] bg-[var(--crb-popover)] shadow-[var(--crb-shadow-pop)] transition-[bottom] duration-300 ease-out hover:bottom-0"
     >
-      <div className="pointer-events-none absolute left-[-92px] top-[106px] h-[211px] w-[186px]">
-        <img
-          src={BackgroundEffect}
-          alt=""
-          className="absolute left-[-500px] top-[-500px] h-[1211px] w-[1186px] max-w-none"
-        />
-      </div>
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[80px] bg-[radial-gradient(60%_100%_at_50%_0%,var(--r-blue-light1),transparent)]" />
 
       <button
         type="button"
         onClick={onClose}
         aria-label={t('page.dashboard.home.stablecoinSwapPopup.close')}
-        className="absolute right-[12px] top-[10px] flex h-[24px] w-[24px] items-center justify-center"
+        className="absolute right-[10px] top-[10px] flex h-[26px] w-[26px] items-center justify-center rounded-full border-0 bg-transparent hover:bg-[var(--crb-hover)] transition-colors"
       >
-        <RcClose className="h-[14px] w-[14px] text-[#C5C5CF]" />
+        <RcClose className="h-[12px] w-[12px] text-r-neutral-foot" />
       </button>
 
-      <div className="absolute left-1/2 top-[16px] flex -translate-x-1/2 items-center gap-[12px] whitespace-nowrap text-[16px] leading-[20px] text-r-neutral-title1">
+      <div className="absolute left-1/2 top-[16px] flex -translate-x-1/2 items-center gap-[12px] whitespace-nowrap text-[15px] leading-[20px] font-semibold tracking-[-0.01em] text-r-neutral-title1">
         <span>{t('page.dashboard.home.stablecoinSwapPopup.title')}</span>
         <AnimatedToken
           token={payToken}
@@ -146,7 +139,7 @@ export const StablecoinSwapPopup: React.FC = () => {
       <button
         type="button"
         onClick={onSwap}
-        className="absolute left-1/2 top-[126px] flex h-[36px] w-[240px] -translate-x-1/2 cursor-pointer items-center justify-center gap-[6px] rounded-[8px] border border-r-neutral-line bg-transparent text-[14px] leading-[18px] text-r-neutral-title1 hover:border-r-blue-default hover:bg-r-blue-light1 hover:text-r-blue-default active:border-r-blue-default active:bg-r-blue-light2 active:text-r-blue-default"
+        className="absolute left-1/2 top-[126px] flex h-[38px] w-[240px] -translate-x-1/2 cursor-pointer items-center justify-center gap-[6px] rounded-[12px] border-0 bg-r-neutral-title1 text-[14px] leading-[18px] font-semibold text-r-neutral-bg1 hover:opacity-90 active:scale-[0.98] transition-[opacity,transform]"
       >
         <span>{t('page.dashboard.home.stablecoinSwapPopup.goToSwap')}</span>
         <RcArrowRight className="h-[14px] w-[14px]" />

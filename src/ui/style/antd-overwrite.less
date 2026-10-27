@@ -8,7 +8,7 @@
 }
 
 .ant-input {
-  border-radius: 6px;
+  border-radius: 12px;
   &[type='password'] {
     letter-spacing: 4px;
     &::placeholder {
@@ -22,7 +22,7 @@
 ---------------------*/
 
 .ant-btn {
-  border-radius: 6px;
+  border-radius: 12px;
 
   & > .ant-btn-loading-icon .anticon {
     display: block;
@@ -52,13 +52,17 @@
 }
 
 .ant-btn-primary {
-  background-color: var(--r-blue-default, #7084ff);
+  background-color: var(--r-blue-default, #e8552a);
   border-color: var(--r-blue-default);
+  /* a hairline top highlight gives the flat coral a little depth */
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 1px 2px rgba(9, 9, 11, 0.12);
   &:hover,
   &:focus {
-    background-color: var(--r-blue-default, #7084ff);
-    border-color: var(--r-blue-default, #7084ff);
-    box-shadow: 0px 8px 16px rgba(134, 151, 255, 0.3);
+    background-color: var(--r-blue-default, #e8552a);
+    border-color: var(--r-blue-default, #e8552a);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16),
+      0 8px 20px -6px rgba(232, 85, 42, 0.55);
   }
 
   &[disabled],
@@ -66,8 +70,14 @@
   &[disabled]:focus,
   &[disabled]:active {
     color: var(--r-neutral-title-2, #fff);
-    background-color: var(--r-blue-disable, rgba(219, 224, 255, 1));
-    border-color: var(--r-blue-disable, rgba(219, 224, 255, 1));
+    background-color: var(--r-blue-disable, rgba(243, 172, 148, 1));
+    border-color: var(--r-blue-disable, rgba(243, 172, 148, 1));
+    box-shadow: none;
+
+    /* dim coral reads as enabled in the dark; dim the label too */
+    html.dark & {
+      color: rgba(255, 255, 255, 0.45);
+    }
   }
 }
 /*---------------------
@@ -94,8 +104,8 @@
 }
 .ant-message-notice-content {
   padding: 8px 12px;
-  background: rgba(45, 48, 51, 0.95);
-  border-radius: 2px;
+  background: rgba(9, 9, 11, 0.94);
+  border-radius: 12px;
   .ant-message-custom-content {
     display: flex;
     align-items: center;
@@ -183,17 +193,17 @@
   .ant-modal-confirm-title,
   .ant-modal-confirm-body .ant-modal-confirm-title,
   .ant-modal-confirm-body .ant-modal-confirm-content {
-    color: var(--r-neutral-title-1, #f7fafc);
+    color: var(--r-neutral-title-1, #fafafa);
   }
 
   .ant-modal-close-x .anticon-close svg {
-    color: var(--r-neutral-foot, #6a7587);
+    color: var(--r-neutral-foot, #71717a);
   }
 }
 
 .ant-modal-content {
   border: 1.5px solid var(--r-neutral-line);
-  border-radius: 6px;
+  border-radius: 8px;
   overflow: hidden;
 
   .ant-modal-close-x {
@@ -232,7 +242,7 @@
     color: var(--r-neutral-body);
     background-color: var(--r-neutral-bg-1);
     padding: 18px 12px;
-    border-radius: 6px;
+    border-radius: 8px;
     margin-left: 0 !important;
     white-space: pre-wrap;
   }
@@ -354,10 +364,10 @@
 
 .ant-checkbox-checked {
   .ant-checkbox-inner {
-    background-color: var(--r-blue-default, #7084ff);
+    background-color: var(--r-blue-default, #f26b3a);
   }
   &::after {
-    border-color: var(--r-blue-default, #7084ff);
+    border-color: var(--r-blue-default, #f26b3a);
   }
 }
 
@@ -384,7 +394,7 @@ textarea {
       Popover
 ---------------------*/
 .ant-popover-inner {
-  border-radius: 6px;
+  border-radius: 8px;
 }
 
 .ant-popover-arrow {
@@ -441,7 +451,7 @@ textarea {
       background-color: var(--r-neutral-bg-1);
       color: inherit;
       border: 1px solid var(--r-neutral-line);
-      border-radius: 8px;
+      border-radius: 12px;
       padding: 12px;
       box-shadow: 0 4px 6.5px rgba(0, 0, 0, 0.05),
         0 13px 15px rgba(0, 0, 0, 0.05);
@@ -537,7 +547,7 @@ html.dark
       Dropdown
 ---------------------*/
 .ant-dropdown-menu-root {
-  border-radius: 6px;
+  border-radius: 8px;
 }
 
 .ant-skeleton-element {
@@ -549,8 +559,8 @@ html.dark
   border-radius: 2px;
   // background: linear-gradient(
   //   90deg,
-  //   rgba(216, 223, 235, 0.55) 0%,
-  //   rgba(216, 223, 235, 0.6) 95.31%
+  //   rgba(9, 9, 11, 0.55) 0%,
+  //   rgba(9, 9, 11, 0.6) 95.31%
   // );
 
   min-width: initial;
@@ -610,7 +620,7 @@ html.dark
     .ant-slider-handle,
     .ant-slider-handle:not(.ant-tooltip-open) {
       border-color: #b4bdcc;
-      box-shadow: 0px 2px 6px rgba(28, 31, 53, 0.2);
+      box-shadow: 0px 2px 6px rgba(9, 9, 11, 0.2);
     }
     .ant-slider-rail {
       background-color: #e5e9ef;
@@ -623,7 +633,7 @@ html.dark
 
 .field.field-outlined {
   background: @color-bg;
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 16px 12px;
 
   font-weight: 400;
@@ -633,8 +643,8 @@ html.dark
   border: 1px solid transparent;
 
   &:hover {
-    background-color: rgba(134, 151, 255, 0.2);
-    border: 1px solid var(--r-blue-default, #7084ff);
+    background-color: var(--crb-sunken);
+    border: 1px solid var(--crb-hairline-strong);
   }
 }
 
@@ -647,13 +657,13 @@ html.dark
 .perps-close-all-position-modal.perps-bridge-swap-modal {
   .ant-modal-content {
     border: none !important;
-    background-color: var(--rb-neutral-bg-0, #f5f6fa) !important;
+    background-color: var(--rb-neutral-bg-0, #f4f4f5) !important;
   }
   .ant-modal-body {
-    background-color: var(--rb-neutral-bg-0, #f5f6fa) !important;
+    background-color: var(--rb-neutral-bg-0, #f4f4f5) !important;
   }
   .ant-modal-confirm-content {
-    background-color: var(--rb-neutral-bg-0, #f5f6fa) !important;
+    background-color: var(--rb-neutral-bg-0, #f4f4f5) !important;
   }
 }
 
@@ -661,7 +671,7 @@ html.dark
   .ant-modal-body {
     // border: transparent !important;
     border-radius: 16px;
-    background-color: var(--r-neutral-bg-2, #f5f6fa) !important;
+    background-color: var(--r-neutral-bg-2, #f4f4f5) !important;
   }
 
   .ant-modal-confirm-btns {
@@ -670,7 +680,7 @@ html.dark
 
   .ant-modal-confirm-content {
     padding: 0 !important;
-    background-color: var(--r-neutral-bg-2, #f5f6fa) !important;
+    background-color: var(--r-neutral-bg-2, #f4f4f5) !important;
   }
 }
 
@@ -702,7 +712,7 @@ html.dark
     }
   }
   .ant-modal-content {
-    border-radius: 8px;
+    border-radius: 12px;
     border-radius: 20px;
     overflow: visible;
   }
@@ -718,11 +728,11 @@ html.dark
       position: absolute;
     }
     .ant-drawer-mask {
-      border-radius: 8px;
+      border-radius: 12px;
     }
     .custom-popup {
       .ant-drawer-content {
-        border-radius: 8px;
+        border-radius: 12px;
       }
     }
   }
@@ -760,7 +770,7 @@ html.perps-pro-theme {
 
 html[desktop] {
   .ant-switch {
-    background: var(--rb-neutral-line, #e0e5ec);
+    background: var(--rb-neutral-line, #e4e4e7);
 
     &:focus {
       box-shadow: none !important;
@@ -773,12 +783,12 @@ html[desktop] {
 
   .ant-select {
     .ant-select-selector {
-      border-radius: 6px;
+      border-radius: 8px;
       background-color: var(--rb-neutral-bg-1 #fff);
-      border-color: var(--rb-neutral-line, #e0e5ec);
+      border-color: var(--rb-neutral-line, #e4e4e7);
     }
     .ant-select-arrow {
-      color: var(--rb-neutral-foot, #6a7587);
+      color: var(--rb-neutral-foot, #71717a);
     }
   }
 

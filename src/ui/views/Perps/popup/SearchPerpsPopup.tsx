@@ -18,15 +18,15 @@ import { SvgIconCross } from 'ui/assets';
 const SearchInput = styled(Input)`
   background-color: var(--r-neutral-card1, #fff) !important;
   &.ant-input-affix-wrapper-focused {
-    border-color: var(--r-blue-default, #7084ff) !important;
+    border-color: var(--r-blue-default, #f26b3a) !important;
   }
   height: 46px !important;
-  border-radius: 6px !important;
+  border-radius: 8px !important;
   input::placeholder {
-    color: var(--r-neutral-foot, #6a7587) !important;
+    color: var(--r-neutral-foot, #71717a) !important;
   }
   &:hover {
-    border-color: var(--r-blue-default, #7084ff) !important;
+    border-color: var(--crb-hairline-strong) !important;
   }
 `;
 
@@ -240,7 +240,7 @@ export const SearchPerpsPopup: React.FC<SearchPerpsPopupProps> = ({
                     className={clsx(
                       'flex flex-col items-center cursor-pointer whitespace-nowrap mr-12 text-[16px] font-medium',
                       isActive
-                        ? 'text-r-blue-default'
+                        ? 'text-r-neutral-title1'
                         : 'text-rb-neutral-secondary'
                     )}
                   >
@@ -260,8 +260,8 @@ export const SearchPerpsPopup: React.FC<SearchPerpsPopupProps> = ({
                     </div>
                     <span
                       className={clsx(
-                        'mt-4 h-[3px] w-full rounded-full',
-                        isActive ? 'bg-r-blue-default' : 'bg-transparent'
+                        'mt-4 h-[2px] w-full rounded-full',
+                        isActive ? 'bg-r-neutral-title1' : 'bg-transparent'
                       )}
                     />
                   </div>

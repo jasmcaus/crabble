@@ -288,8 +288,8 @@ export const PerpsWithdrawPopup: React.FC<PerpsWithdrawPopupProps> = ({
           <div
             onClick={() => setChainSelectVisible(true)}
             className={clsx(
-              'flex items-center justify-between bg-r-neutral-card1 rounded-[8px] px-16 h-[48px] mb-12 cursor-pointer',
-              'border border-solid border-transparent hover:border-rabby-blue-default'
+              'flex items-center justify-between bg-r-neutral-card1 rounded-[12px] px-16 h-[48px] mb-12 cursor-pointer',
+              'border border-solid border-transparent hover:border-[var(--crb-hairline-strong)]'
             )}
           >
             <div className="flex items-center gap-8">
@@ -343,7 +343,7 @@ export const PerpsWithdrawPopup: React.FC<PerpsWithdrawPopupProps> = ({
           </div>
 
           {/* Amount input card */}
-          <div className="flex flex-col bg-r-neutral-card1 rounded-[8px] px-16 py-16">
+          <div className="flex flex-col bg-r-neutral-card1 rounded-[12px] px-16 py-16">
             <div className="flex items-center gap-8">
               <input
                 ref={inputRef}
@@ -369,9 +369,9 @@ export const PerpsWithdrawPopup: React.FC<PerpsWithdrawPopupProps> = ({
               />
               <div
                 className={clsx(
-                  'flex items-center gap-6 px-12 h-[36px] rounded-[6px]',
+                  'flex items-center gap-6 px-12 h-[36px] rounded-[8px]',
                   'bg-r-neutral-card-2 border border-solid border-transparent',
-                  'cursor-pointer hover:bg-r-blue-light1 hover:border-rabby-blue-default'
+                  'cursor-pointer hover:bg-[var(--crb-sunken)] hover:border-[var(--crb-hairline-strong)]'
                 )}
                 onClick={() => setTokenVisible(true)}
               >
@@ -398,10 +398,10 @@ export const PerpsWithdrawPopup: React.FC<PerpsWithdrawPopupProps> = ({
               <div
                 key={pct}
                 className={clsx(
-                  'flex-1 h-[36px] flex items-center justify-center rounded-[8px]',
+                  'flex-1 h-[36px] flex items-center justify-center rounded-[12px]',
                   'bg-r-neutral-card1 border border-solid border-transparent',
                   'text-13 font-medium text-r-neutral-title-1 cursor-pointer',
-                  'hover:border-rabby-blue-default hover:text-r-blue-default'
+                  'hover:border-[var(--crb-hairline-strong)] hover:text-r-blue-default'
                 )}
                 onClick={() => handlePercent(pct)}
               >
@@ -410,10 +410,10 @@ export const PerpsWithdrawPopup: React.FC<PerpsWithdrawPopupProps> = ({
             ))}
             <div
               className={clsx(
-                'flex-1 h-[36px] flex items-center justify-center rounded-[8px]',
+                'flex-1 h-[36px] flex items-center justify-center rounded-[12px]',
                 'bg-r-neutral-card1 border border-solid border-transparent',
                 'text-13 font-medium text-r-neutral-title-1 cursor-pointer',
-                'hover:border-rabby-blue-default hover:text-r-blue-default'
+                'hover:border-[var(--crb-hairline-strong)] hover:text-r-blue-default'
               )}
               onClick={handleMax}
             >
@@ -490,7 +490,7 @@ export const PerpsWithdrawPopup: React.FC<PerpsWithdrawPopupProps> = ({
             size="large"
             type="primary"
             loading={isLoading}
-            className="h-[48px] text-15 font-medium rounded-[8px]"
+            className="h-[48px] text-15 font-medium rounded-[12px]"
             style={{ height: 48 }}
             onClick={handleSubmit}
           >
@@ -529,11 +529,11 @@ export const PerpsWithdrawPopup: React.FC<PerpsWithdrawPopupProps> = ({
                     setTimeout(() => inputRef.current?.focus(), 50);
                   }}
                   className={clsx(
-                    'flex items-center justify-between bg-r-neutral-card1 rounded-[8px] px-16 h-[56px] cursor-pointer',
+                    'flex items-center justify-between bg-r-neutral-card1 rounded-[12px] px-16 h-[56px] cursor-pointer',
                     'border border-solid',
                     selected
                       ? 'border-rabby-blue-default'
-                      : 'border-transparent hover:border-rabby-blue-default'
+                      : 'border-transparent hover:border-[var(--crb-hairline-strong)]'
                   )}
                 >
                   <div className="flex items-center gap-12">
@@ -583,11 +583,11 @@ export const PerpsWithdrawPopup: React.FC<PerpsWithdrawPopupProps> = ({
                   key={c.serverChain}
                   onClick={() => handleChainSelect(c.serverChain)}
                   className={clsx(
-                    'flex items-center bg-r-neutral-card1 rounded-[8px] px-16 h-[56px] cursor-pointer',
+                    'flex items-center bg-r-neutral-card1 rounded-[12px] px-16 h-[56px] cursor-pointer',
                     'border border-solid',
                     selected
                       ? 'border-rabby-blue-default'
-                      : 'border-transparent hover:border-rabby-blue-default'
+                      : 'border-transparent hover:border-[var(--crb-hairline-strong)]'
                   )}
                 >
                   {chain?.logo ? (

@@ -47,28 +47,6 @@ import { useHomeBalanceViewOuterPrefetch } from '../Dashboard/components/Balance
 
 const DESKTOP_NAV_HEIGHT = 0;
 
-const StickyBorderTop = () => (
-  <div className="sticky h-0 z-50" style={{ top: DESKTOP_NAV_HEIGHT }}>
-    <div
-      className={clsx(
-        'overflow-hidden absolute w-full h-[40px] pointer-events-none',
-        'flex justify-between'
-      )}
-    >
-      <div className="relative left-[-10px] w-20 h-20 bg-rb-neutral-bg-1" />
-      <div className="relative right-[-10px] w-20 h-20 bg-rb-neutral-bg-1" />
-      <div
-        className={clsx(
-          'absolute top-0 left-0 border border-b-0 border-solid border-rb-neutral-line bg-transparent ',
-          'w-full',
-          'h-[100px]  rounded-b-none ',
-          'rounded-[20px]'
-        )}
-      />
-    </div>
-  </div>
-);
-
 type DesktopProfileProps = {
   isActive?: boolean;
   style?: React.CSSProperties;
@@ -228,7 +206,7 @@ const DesktopProfileContent: React.FC<DesktopProfileProps> = ({
   return (
     <>
       <DesktopPageWrap
-        className="w-full h-full bg-rb-neutral-bg-1 js-scroll-element px-[20px] mt-[18px] no-scrollbar"
+        className="w-full h-full js-scroll-element px-[24px] pt-[18px] no-scrollbar"
         ref={scrollContainerRef}
         style={style}
       >
@@ -247,16 +225,9 @@ const DesktopProfileContent: React.FC<DesktopProfileProps> = ({
                 <TopShortcut projects={cacheProjectOverviewList || []} />
               )}
             </div>
-            <StickyBorderTop />
             <div className="flex items-start gap-[20px]">
               <main className="flex-1" id={PORTFOLIO_LIST_ID}>
-                <div
-                  key={refreshKey}
-                  className={clsx(
-                    'border border-t-0 border-solid border-rb-neutral-line',
-                    'rounded-[20px] rounded-t-none'
-                  )}
-                >
+                <div key={refreshKey}>
                   <ProfileHeader
                     balance={balance}
                     evmBalance={evmBalance}
@@ -271,7 +242,7 @@ const DesktopProfileContent: React.FC<DesktopProfileProps> = ({
                       position: 'sticky',
                       top: DESKTOP_NAV_HEIGHT,
                     }}
-                    className="overflow-visible"
+                    className="overflow-visible crb-tabs-card mt-[20px]"
                     defaultActiveKey={activeTab}
                     activeKey={activeTab}
                     onChange={handleTabChange}
@@ -282,11 +253,11 @@ const DesktopProfileContent: React.FC<DesktopProfileProps> = ({
                             {isGnosis ? (
                               <div
                                 className={clsx(
-                                  'min-w-[88px] h-[32px] px-[10px] rounded-[8px]',
+                                  'min-w-[88px] h-[32px] px-[10px] rounded-[12px]',
                                   'flex items-center justify-center gap-[4px] cursor-pointer',
                                   'text-rb-brand-default text-[14px] leading-[16px] font-medium',
                                   'border-[0.5px] border-solid border-rb-brand-default',
-                                  'hover:bg-r-blue-light-1'
+                                  'hover:bg-[var(--crb-sunken)]'
                                 )}
                                 onClick={() => {
                                   history.replace(

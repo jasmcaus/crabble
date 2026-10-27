@@ -154,8 +154,8 @@ export const CustomTestnetTokenItem: React.FC<Props> = ({
       }}
       className={clsx(
         'cursor-pointer',
-        'rounded-[8px] border border-transparent bg-r-neutral-card1 h-[60px] mt-8 px-12',
-        'hover:border-blue-light hover:bg-blue-light/10'
+        'rounded-[12px] border border-transparent bg-r-neutral-card1 h-[60px] mt-8 px-12',
+        'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]'
       )}
     >
       <TokenItemAsset item={item} />

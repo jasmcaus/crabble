@@ -100,7 +100,7 @@ export const ImportWalletType = () => {
     >
       <div className="mt-24 flex flex-col items-center justify-center gap-16">
         <Item
-          bgColor="var(--r-neutral-card2, #F2F4F7)"
+          bgColor="var(--r-neutral-card2, #F4F4F5)"
           px={16}
           py={20}
           leftIconClassName="w-24 h-24 mr-12"
@@ -109,7 +109,7 @@ export const ImportWalletType = () => {
               pathname: '/new-user/import/seed-or-key',
             });
           }}
-          className="pl-[18px] rounded-[8px] text-[20px] leading-[24px] py-[21px] font-medium text-r-neutral-title1"
+          className="pl-[18px] rounded-[12px] text-[20px] leading-[24px] py-[21px] font-medium text-r-neutral-title1"
         >
           <div className="space-y-[12px]">
             <div>{t('page.newUserImport.importWalletType.seedOrKey')}</div>
@@ -128,7 +128,7 @@ export const ImportWalletType = () => {
           </div>
         </Item>
         <Item
-          bgColor="var(--r-neutral-card2, #F2F4F7)"
+          bgColor="var(--r-neutral-card2, #F4F4F5)"
           px={16}
           py={20}
           leftIconClassName="w-24 h-24 mr-12"
@@ -137,7 +137,7 @@ export const ImportWalletType = () => {
               pathname: '/new-user/import-hardware-list',
             });
           }}
-          className="pl-[18px] rounded-[8px] text-[20px] leading-[24px] py-[21px] font-medium text-r-neutral-title1"
+          className="pl-[18px] rounded-[12px] text-[20px] leading-[24px] py-[21px] font-medium text-r-neutral-title1"
         >
           <div className="space-y-[12px]">
             <div>{t('page.newUserImport.importWalletType.hardwareWallet')}</div>

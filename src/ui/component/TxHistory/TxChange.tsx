@@ -78,7 +78,11 @@ export const TokenChange = ({
                 isNft={isNft}
                 token={token}
                 onClose={onClose}
-                textClassName={clsx(isNft || !canClickToken ? '' : 'underline')}
+                textClassName={clsx(
+                  isNft || !canClickToken
+                    ? ''
+                    : 'hover:underline underline-offset-2'
+                )}
                 canClickToken={isNft ? false : canClickToken}
               />
             ) : (
@@ -140,7 +144,11 @@ export const TokenChange = ({
                 isNft={isNft}
                 token={token}
                 onClose={onClose}
-                textClassName={clsx(isNft || !canClickToken ? '' : 'underline')}
+                textClassName={clsx(
+                  isNft || !canClickToken
+                    ? ''
+                    : 'hover:underline underline-offset-2'
+                )}
                 canClickToken={isNft ? false : canClickToken}
               />
             ) : (

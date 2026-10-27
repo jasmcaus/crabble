@@ -9,8 +9,8 @@ import { ReactComponent as RcImgArrowDownCC } from '@/ui/assets/swap/arrow-down-
 const TokenRenderWrapper = styled.div`
   width: auto;
   height: 40px;
-  background: var(--r-neutral-card2, #f2f4f7);
-  border-radius: 8px;
+  background: var(--r-neutral-card2, #f4f4f5);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   padding: 8px 12px;
@@ -20,7 +20,7 @@ const TokenRenderWrapper = styled.div`
   border: 1px solid transparent;
   cursor: pointer;
   &:hover {
-    background: var(--r-blue-light2, #eef1ff);
+    background: var(--crb-sunken);
   }
   .token {
     display: flex;
@@ -29,7 +29,7 @@ const TokenRenderWrapper = styled.div`
     align-items: center;
 
     .text {
-      color: var(--r-neutral-title-1, #f7fafc);
+      color: var(--r-neutral-title-1, #fafafa);
       max-width: 68px;
       display: inline-block;
       white-space: nowrap;
@@ -38,7 +38,7 @@ const TokenRenderWrapper = styled.div`
     }
   }
   .select {
-    color: var(--r-neutral-title-1, #f7fafc);
+    color: var(--r-neutral-title-1, #fafafa);
     flex: 1;
     gap: 6px;
     display: flex;

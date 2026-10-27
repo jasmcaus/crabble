@@ -50,7 +50,7 @@ const PoolListContainer = styled.div`
 
 const ProtocolItemWrapper = styled.div`
   margin-bottom: 28px;
-  border-radius: 8px;
+  border-radius: 12px;
 
   .title {
     display: flex;
@@ -63,14 +63,14 @@ const ProtocolItemWrapper = styled.div`
       font-weight: 500;
       font-size: 13px;
       line-height: 15px;
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #09090b);
     }
     .net-worth {
       font-weight: 500;
       font-size: 13px;
       line-height: 15px;
       text-align: right;
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #09090b);
     }
   }
 `;
@@ -184,7 +184,7 @@ const ProtocolItem = ({
         <div
           className={clsx(
             'flex items-center justify-start mx-[20px]',
-            'title border border-solid border-transparent rounded-[8px] h-[48px] px-0'
+            'title border border-solid border-transparent rounded-[12px] h-[48px] px-0'
           )}
         >
           <IconWithChain

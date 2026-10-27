@@ -37,7 +37,7 @@ const Warper = styled.div`
     background: transparent !important;
     font-size: 28px;
     line-height: 34px;
-    color: var(--r-neutral-title1, #192945);
+    color: var(--r-neutral-title1, #09090b);
     font-weight: 700;
     padding: 0;
   }
@@ -137,7 +137,7 @@ export const DbkChainBridge = () => {
   return (
     <Warper className="bg-r-neutral-bg2">
       <div className="p-[20px]">
-        <div className="rounded-[8px] bg-r-neutral-card1 px-[16px] pt-[20px] pb-[16px]">
+        <div className="rounded-[12px] bg-r-neutral-card1 px-[16px] pt-[20px] pb-[16px]">
           <div className="flex justify-center mb-[16px] relative">
             <div className="inline-flex items-center bg-r-neutral-card2 rounded-full p-[2px]">
               {tabs.map((item) => {
@@ -180,7 +180,7 @@ export const DbkChainBridge = () => {
               )}
             </div>
           </div>
-          <div className="rounded-[8px] border-[0.5px] border-rabby-neutral-line p-[12px] flex items-center justify-between mb-[16px]">
+          <div className="rounded-[12px] border-[0.5px] border-rabby-neutral-line p-[12px] flex items-center justify-between mb-[16px]">
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-[8px]">
                 <img
@@ -221,7 +221,7 @@ export const DbkChainBridge = () => {
           </div>
           <div
             className={clsx(
-              'rounded-[8px] bg-r-neutral-card-2 p-[12px] mb-[16px]',
+              'rounded-[12px] bg-r-neutral-card-2 p-[12px] mb-[16px]',
               'border-[1px] border-transparent',
               'hover:border-rabby-orange-DBK',
               'focus-within:border-rabby-orange-DBK'
@@ -297,7 +297,7 @@ export const DbkChainBridge = () => {
               </div>
             </div>
           </div>
-          <div className="rounded-[8px] border-[0.5px] border-rabby-neutral-line p-[12px]">
+          <div className="rounded-[12px] border-[0.5px] border-rabby-neutral-line p-[12px]">
             <div className="flex flex-col gap-[12px]">
               <div className="flex items-center gap-[12px]">
                 <div className="text-[13px] text-r-neutral-body leading-[16px] shrink-0">

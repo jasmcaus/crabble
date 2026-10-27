@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { BatchRevokeTaskType } from './useBatchRevokeTask';
 
 const buttonBaseClass = clsx(
-  'rounded-[6px] h-[48px] w-[252px]',
+  'rounded-[8px] h-[48px] w-[252px]',
   'before:content-none',
   'text-[16px]'
 );
@@ -45,8 +45,8 @@ export const RevokeActionButton: React.FC<{
           type="ghost"
           className={clsx(
             buttonBaseClass,
-            'border-blue-light text-blue-light',
-            'hover:bg-[#8697FF1A] active:bg-[#0000001A]'
+            'border-[var(--crb-hairline-strong)] text-r-neutral-title1',
+            'hover:bg-[var(--crb-sunken)] active:bg-[#0000001A]'
           )}
           onClick={task.pause}
         >

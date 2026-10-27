@@ -140,7 +140,7 @@ const Transaction = forwardRef<HTMLDivElement, TransactionProps>(
     return (
       <div
         className={clsx(
-          'bg-r-neutral-card-1 rounded-[6px] p-12 relative text-12 text-r-neutral-body'
+          'bg-r-neutral-card-1 rounded-[8px] p-12 relative text-12 text-r-neutral-body'
         )}
         ref={ref}
       >
@@ -289,8 +289,8 @@ const HistoryList = () => {
         ))}
       {((loading && !txList) || loadingMore) && (
         <>
-          <SkeletonInput className="w-full h-[168px] rounded-[6px]" active />
-          <SkeletonInput className="w-full h-[168px] rounded-[6px]" active />
+          <SkeletonInput className="w-full h-[168px] rounded-[8px]" active />
+          <SkeletonInput className="w-full h-[168px] rounded-[8px]" active />
         </>
       )}
     </div>

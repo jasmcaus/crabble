@@ -29,13 +29,12 @@ Sentry.init(getSentryConfig());
 function initAppMeta() {
   const head = document.querySelector('head');
   const icon = document.createElement('link');
-  icon.href =
-    'https://static-assets.debank.com/files/10eaa959-f65a-4488-8b5a-976aa189bcc4.png';
+  icon.href = '/images/favicon-latest.png';
   icon.rel = 'icon';
   head?.appendChild(icon);
   const name = document.createElement('meta');
   name.name = 'name';
-  name.content = 'Rabby';
+  name.content = 'Crabble';
   head?.appendChild(name);
   const description = document.createElement('meta');
   description.name = 'description';
@@ -252,7 +251,7 @@ const BootstrapTimeoutFallback = () => {
   return (
     <div className="fixed inset-0 flex flex-col items-center justify-center gap-[16px] bg-rb-neutral-bg-2">
       <div className="p-[20px] flex flex-col items-center gap-[16px] max-w-full text-center">
-        <h2 className="text-r-neutral-title-1">Rabby failed to start</h2>
+        <h2 className="text-r-neutral-title-1">Crabble failed to start</h2>
         <p className="text-r-neutral-body">
           The extension background is not responding. Please reload the
           extension and try again.

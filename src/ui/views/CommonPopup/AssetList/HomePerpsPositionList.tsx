@@ -159,11 +159,11 @@ const PositionItem: React.FC<{
   return (
     <div
       className={clsx(
-        'w-full rounded-[8px] flex flex-col cursor-pointer',
+        'w-full rounded-[12px] flex flex-col cursor-pointer',
         'border-[1px]',
         !isDesktop ? 'bg-r-neutral-card1' : 'bg-rb-neutral-bg-3',
         'border-solid border-transparent',
-        'hover:bg-r-blue-light1 hover:border-rabby-blue-default'
+        'hover:bg-[var(--crb-sunken)] hover:border-[var(--crb-hairline-strong)]'
       )}
       onClick={handleNavigate}
     >
@@ -248,8 +248,8 @@ const PositionItem: React.FC<{
             'cursor-pointer text-r-blue-default font-medium text-[12px] text-center',
             'px-[12px]',
             'h-[24px] leading-[24px]',
-            'border-[0.5px] border-r-blue-default rounded-[6px]',
-            'hover:bg-r-blue-light1'
+            'border-[0.5px] border-r-blue-default rounded-[8px]',
+            'hover:bg-[var(--crb-sunken)]'
           )}
         >
           {t('component.DappActions.manage')}

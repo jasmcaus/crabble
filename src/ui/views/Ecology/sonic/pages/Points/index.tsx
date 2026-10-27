@@ -36,7 +36,7 @@ const SonicPointsLink = ({
   cta: { text: string; onClick: () => void };
 }) => {
   return (
-    <SonicCard className="flex items-center justify-between w-full gap-[8px] p-[12px] rounded-[8px] bg-rabby-sonic-card text-rabby-sonic-card-foreground">
+    <SonicCard className="flex items-center justify-between w-full gap-[8px] p-[12px] rounded-[12px] bg-rabby-sonic-card text-rabby-sonic-card-foreground">
       <div className="text-[14px] font-bold">{title}</div>
       <SonicButton rounded onClick={cta.onClick}>
         {cta.text}

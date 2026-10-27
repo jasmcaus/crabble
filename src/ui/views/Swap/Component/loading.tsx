@@ -23,7 +23,7 @@ export const QuoteLoading = ({
   return (
     <div
       className={clsx(
-        'h-[88px] flex items-center px-16 rounded-[6px]',
+        'h-[88px] flex items-center px-16 rounded-[8px]',
         'border-solid border border-rabby-neutral-line'
       )}
     >
@@ -94,7 +94,7 @@ export const QuoteListLoading = ({
 const DotsStyled = styled.span`
   span {
     display: inline-block;
-    color: var(--r-neutral-foot, #6a7587);
+    color: var(--r-neutral-foot, #71717a);
   }
 
   .dot1 {

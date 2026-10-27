@@ -12,7 +12,7 @@ const NoActionAlertStyled = styled.div`
   display: flex;
   flex-direction: column;
   background: var(--r-neutral-card-1);
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 15px;
   font-weight: 500;
   font-size: 13px;

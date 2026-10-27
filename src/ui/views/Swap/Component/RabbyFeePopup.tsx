@@ -21,7 +21,7 @@ const swapFee = [
     rate: '0.85%',
   },
   {
-    name: 'Rabby Wallet',
+    name: 'Crabble Wallet',
     logo: ImgRabbyWallet,
     rate: '0.25%',
   },
@@ -34,7 +34,7 @@ const bridgeList = [
     rate: '0.875%',
   },
   {
-    name: 'Rabby Wallet',
+    name: 'Crabble Wallet',
     logo: ImgRabbyWallet,
     rate: '0.25%',
   },
@@ -116,7 +116,7 @@ export const RabbyFeePopup = ({
         <span>{t('page.swap.rabbyFee.wallet')}</span>
         <span>{t('page.swap.rabbyFee.rate')}</span>
       </div>
-      <div className="border-[1px] border-rabby-neutral-line rounded-[6px]">
+      <div className="border-[1px] border-rabby-neutral-line rounded-[8px]">
         {fee[type].map((item, idx, list) => (
           <div
             key={item.name}

@@ -39,7 +39,7 @@ export const HomeTokenList = ({ list, isSearch, isNoResults, lpTokenMode }) => {
   }
   if (lpTokenMode && !list?.length) {
     return (
-      <div className="no-token w-full flex flex-col items-center justify-center h-[154px] bg-r-neutral-card1 rounded-[8px]">
+      <div className="no-token w-full flex flex-col items-center justify-center h-[154px] bg-r-neutral-card1 rounded-[12px]">
         <img
           className="w-[72px] h-[72px]"
           src="/images/nodata-tx.png"

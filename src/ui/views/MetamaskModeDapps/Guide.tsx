@@ -75,7 +75,7 @@ export const MetamaskModeDappsGuide = () => {
         <div className="text-[16px] leading-[22px] font-medium text-r-neutral-title1 mb-[20px]">
           {t('page.metamaskModeDappsGuide.alert')}
         </div>
-        <div className="bg-r-neutral-card-1 rounded-[8px] p-[12px]">
+        <div className="bg-r-neutral-card-1 rounded-[12px] p-[12px]">
           <div className="mb-[8px]">
             <div className="text-r-neutral-title1 text-[15px] leading-[18px] font-medium mb-[6px]">
               {t('page.metamaskModeDappsGuide.step1')}
@@ -87,7 +87,7 @@ export const MetamaskModeDappsGuide = () => {
               <div
                 className={clsx(
                   'flex items-center gap-[8px]',
-                  'px-[16px] py-[12px] mt-[12px] mb-[16px] rounded-[6px]',
+                  'px-[16px] py-[12px] mt-[12px] mb-[16px] rounded-[8px]',
                   'bg-r-neutral-card-2'
                 )}
               >
@@ -113,7 +113,7 @@ export const MetamaskModeDappsGuide = () => {
               <div
                 className={clsx(
                   'flex items-center gap-[8px] h-[56px]',
-                  'px-[16px] py-[12px] mt-[12px] mb-[16px] rounded-[6px]',
+                  'px-[16px] py-[12px] mt-[12px] mb-[16px] rounded-[8px]',
                   'bg-r-neutral-card-2'
                 )}
               >

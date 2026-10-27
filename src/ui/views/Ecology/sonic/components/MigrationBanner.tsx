@@ -20,7 +20,7 @@ export const MigrationBanner = () => {
       style={{
         background: isDarkTheme ? darkGradient : lightGradient,
       }}
-      className="p-[2px] rounded-[8px]"
+      className="p-[2px] rounded-[12px]"
     >
       <div
         style={{

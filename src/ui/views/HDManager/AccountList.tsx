@@ -259,7 +259,7 @@ export const AccountList: React.FC<Props> = ({
       {isEmptySeedPhraseAccount && (
         <>
           <div className="flex justify-center items-center">
-            <div className="flex justify-center items-center gap-4 px-18 py-10 bg-r-neutral-card-1 rounded-[8px] text-r-neutral-body text-13 font-medium mb-[26px]">
+            <div className="flex justify-center items-center gap-4 px-18 py-10 bg-r-neutral-card-1 rounded-[12px] text-r-neutral-body text-13 font-medium mb-[26px]">
               <IconInfoCC
                 className="text-r-neutral-body w-14 h-14"
                 viewBox="0 0 14 14"

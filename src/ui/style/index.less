@@ -2,27 +2,37 @@
 @import '~antd/dist/antd.less';
 @import './var.less';
 @import './antd-overwrite.less';
+@import './crabble-ui.less';
 
 html,
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Roboto,
-    sans-serif;
+  font-family: 'Geist', 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
+    Roboto, sans-serif;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--r-blue-light-2);
+  color: var(--r-neutral-title-1);
 }
 
 [lang='zh-CN'],
 [lang='zh-HK'] {
   html&,
   html& body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Roboto,
-      'PingFang SC', 'Microsoft Yahei', sans-serif;
+    font-family: 'Geist', 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
+      Roboto, 'PingFang SC', 'Microsoft Yahei', sans-serif;
   }
 }
 
 [lang='ja'] {
   html&,
   html& body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Roboto,
-      'Noto Sans JP', sans-serif;
+    font-family: 'Geist', 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue',
+      Roboto, 'Noto Sans JP', sans-serif;
   }
 }
 
@@ -55,7 +65,7 @@ button:focus {
 
 .create-new-header {
   position: relative;
-  background: var(--r-blue-default, #7084ff);
+  .crabble-ink-surface();
   padding: 32px 20px;
 
   .unlock-logo {
@@ -101,7 +111,7 @@ button:focus {
 
 @media (min-width: 401px) {
   .rabby-stray-page {
-    background-color: var(--r-neutral-bg-2, #f2f4f7);
+    background-color: var(--r-neutral-bg-2, #f4f4f5);
     height: 100%;
 
     .footer {
@@ -123,7 +133,7 @@ button:focus {
 .stray-page {
   .stray-footer-nav {
     background-color: var(--r-neutral-card-1, #fff);
-    border-top: 0.5px solid var(--r-neutral-line, #d3d8e0);
+    border-top: 0.5px solid var(--r-neutral-line, #d4d4d8);
 
     .ant-btn {
       height: 42px !important;
@@ -173,10 +183,10 @@ button:focus {
 
 .import-watchmode {
   min-height: 100%;
-  // background-color: #f5f6fa;
+  // background-color: #f4f4f5;
   &__header {
     height: 180px;
-    background: var(--r-blue-default, #4c65ff);
+    background: var(--r-blue-default, #e8552a);
   }
   &__header-inner {
     position: relative;
@@ -250,9 +260,9 @@ button:focus {
     padding: 11px 0;
     font-size: 12px;
     line-height: 14px;
-    color: var(--r-neutral-title-1, #192945);
+    color: var(--r-neutral-title-1, #09090b);
     background: var(--r-neutral-card-1, #fff);
-    border-radius: 6px;
+    border-radius: 8px;
     cursor: pointer;
     user-select: none;
     .icon {
@@ -264,8 +274,8 @@ button:focus {
   .ens-search {
     position: absolute;
     padding: 4px;
-    border-radius: 6px;
-    background-color: var(--r-blue-light-2, #dbe0ff);
+    border-radius: 8px;
+    background-color: var(--r-blue-light-2, #faddd1);
     width: 360px;
     top: calc(100% + 8px);
     left: 50%;
@@ -273,7 +283,7 @@ button:focus {
     cursor: pointer;
     user-select: none;
     &__inner {
-      background-color: var(--r-blue-light-2, #dbe0ff);
+      background-color: var(--r-blue-light-2, #faddd1);
       border-radius: 4px;
       height: 40px;
       display: flex;
@@ -282,7 +292,7 @@ button:focus {
       justify-content: space-between;
       font-size: 12px;
       line-height: 14px;
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #09090b);
     }
   }
   .icon-checked {
@@ -291,7 +301,7 @@ button:focus {
   }
   .ant-input-affix-wrapper {
     line-height: 1;
-    border-radius: 6px;
+    border-radius: 8px;
     .ant-input {
       border-radius: 0;
     }
@@ -307,7 +317,7 @@ button:focus {
     padding-top: 32px;
   }
   .guide {
-    color: var(--r-neutral-title-1, #192945);
+    color: var(--r-neutral-title-1, #09090b);
     font-weight: 500;
     font-size: 15px;
     line-height: 18px;
@@ -341,7 +351,7 @@ button:focus {
     video {
       margin: 0;
       object-fit: cover;
-      border-radius: 8px;
+      border-radius: 12px;
       background-color: @color-comment-2;
     }
   }
@@ -357,7 +367,7 @@ button:focus {
   border-width: 1px;
   transition: border 0.2s;
   &:hover {
-    border-color: #b0bdff;
+    border-color: #f8bfa9;
   }
 }
 
@@ -378,7 +388,7 @@ button:focus {
 .welcome {
   .ant-btn {
     &:hover {
-      box-shadow: 0px 16px 20px rgba(37, 51, 137, 0.12);
+      box-shadow: 0px 16px 20px rgba(9, 9, 11, 0.12);
     }
   }
 }
@@ -392,7 +402,7 @@ button:focus {
 
 @media (min-width: 401px) {
   html.page-notification {
-    background: var(--r-neutral-bg-3, #f7fafc);
+    background: var(--r-neutral-bg-3, #fafafa);
     overflow: hidden;
     body {
       max-width: 400px;
@@ -415,15 +425,15 @@ button:focus {
 
 .rabby-btn-ghost.ant-btn-primary.ant-btn-background-ghost:hover {
   // background: #f3f5fe !important;
-  background: var(--r-blue-light-2, #eef1ff) !important;
-  color: var(--r-blue-default, #7084ff);
+  background: var(--r-blue-light-2, #fdefe9) !important;
+  color: var(--r-blue-default, #f26b3a);
   box-shadow: none;
   &::before {
     opacity: 0;
   }
 }
 .rabby-btn-ghost.ant-btn-primary.ant-btn-background-ghost:disabled {
-  color: var(--r-blue-default, #7084ff) !important;
+  color: var(--r-blue-default, #f26b3a) !important;
 }
 
 .input-password-popup {
@@ -535,4 +545,42 @@ button:focus {
 
 .no-transitions * {
   transition: none !important;
+}
+
+/* Crabble atmosphere: the page colour with a faint dot grid that fades out
+   below the fold and a soft coral glow from the top edge.
+   Used behind onboarding, unlock and other full-bleed brand screens. */
+.crabble-atmosphere {
+  --crb-atm-bg: #fafafa;
+  --crb-atm-dot: rgba(9, 9, 11, 0.08);
+  --crb-atm-glow: rgba(232, 85, 42, 0.14);
+  background-color: var(--crb-atm-bg);
+  background-image: radial-gradient(
+      70% 42% at 50% -6%,
+      var(--crb-atm-glow) 0%,
+      rgba(232, 85, 42, 0) 70%
+    ),
+    linear-gradient(to bottom, rgba(250, 250, 250, 0) 0%, var(--crb-atm-bg) 72%),
+    radial-gradient(circle at 1px 1px, var(--crb-atm-dot) 1px, transparent 0);
+  background-size: 100% 100%, 100% 100%, 16px 16px;
+  background-repeat: no-repeat, no-repeat, repeat;
+
+  html.dark & {
+    --crb-atm-bg: #09090b;
+    --crb-atm-dot: rgba(255, 255, 255, 0.07);
+    --crb-atm-glow: rgba(242, 107, 58, 0.16);
+    background-image: radial-gradient(
+        70% 42% at 50% -6%,
+        var(--crb-atm-glow) 0%,
+        rgba(242, 107, 58, 0) 70%
+      ),
+      linear-gradient(to bottom, rgba(9, 9, 11, 0) 0%, var(--crb-atm-bg) 72%),
+      radial-gradient(circle at 1px 1px, var(--crb-atm-dot) 1px, transparent 0);
+  }
+}
+
+/* App-icon lift used for the brand tile on hero screens. */
+.crabble-brand-tile {
+  filter: drop-shadow(0 14px 28px rgba(232, 85, 42, 0.32))
+    drop-shadow(0 2px 4px rgba(9, 9, 11, 0.12));
 }

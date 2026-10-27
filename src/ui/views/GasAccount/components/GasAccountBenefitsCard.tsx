@@ -16,7 +16,7 @@ const GasAccountCapabilityItem = ({
   description: string;
 }) => {
   return (
-    <div className="flex h-[52px] items-center gap-6 rounded-[8px] bg-r-neutral-card2 px-12">
+    <div className="flex h-[52px] items-center gap-6 rounded-[12px] bg-r-neutral-card2 px-12">
       <div className="flex h-[28px] w-[28px] shrink-0 items-center justify-center text-r-neutral-title-1">
         {icon}
       </div>
@@ -60,7 +60,7 @@ export const GasAccountBenefitsCard: React.FC = () => {
   ];
 
   return (
-    <GasAccountWrapperBg className="flex h-[366px] w-full flex-col rounded-[8px] bg-r-neutral-card1 px-20 pt-24 pb-20">
+    <GasAccountWrapperBg className="flex h-[366px] w-full flex-col rounded-[12px] bg-r-neutral-card1 px-20 pt-24 pb-20">
       <RcIconGasAccountBlue className="mx-auto h-[66px] w-[92px]" />
       <div className="mt-16 text-center text-[20px] font-semibold leading-[24px] text-r-neutral-title-1">
         {t('page.gasAccount.benefitCard.title')}

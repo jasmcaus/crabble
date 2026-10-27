@@ -5,7 +5,7 @@ const Bookmark = styled.div`
   position: relative;
   left: 0px;
   background: var(--rb-neutral-secondary);
-  border-radius: 0 6px 6px 0;
+  border-radius: 0 8px 8px 0;
 
   font-size: 12px;
   font-weight: 500;

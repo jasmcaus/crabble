@@ -10,8 +10,8 @@ import { useTranslation } from 'react-i18next';
 import useSyncStaleValue from '@/ui/hooks/useDebounceValue';
 
 const StyledInput = styled(Input)`
-  border-radius: 8px;
-  border: 1px solid var(--r-neutral-line, #d3d8e0);
+  border-radius: 12px;
+  border: 1px solid var(--r-neutral-line, #d4d4d8);
   height: 52px;
   font-size: 14px;
   font-weight: 510;
@@ -19,11 +19,11 @@ const StyledInput = styled(Input)`
   background: var(--r-neutral-bg1, #fff);
   & > input.ant-input {
     background: var(--r-neutral-bg1, #fff);
-    color: var(--r-neutral-title1, #192945);
+    color: var(--r-neutral-title1, #09090b);
   }
   &:hover,
   &.ant-input-affix-wrapper-focused {
-    border: 1px solid var(--r-blue-default, #7084ff);
+    border: 1px solid var(--r-blue-default, #f26b3a);
   }
 `;
 
@@ -129,7 +129,7 @@ export const SetReferralCode = ({
   }, [visible]);
 
   return (
-    <div className="bg-r-blue-light1 rounded-[8px] px-[16px] py-[12px] flex items-center justify-between ">
+    <div className="bg-r-blue-light1 rounded-[12px] px-[16px] py-[12px] flex items-center justify-between ">
       <div className="flex flex-col gap-[2px] text-r-blue-default">
         <span className="text-[15px] font-medium">
           {t('page.rabbyPoints.referralCode.my-referral-code')}
@@ -171,7 +171,7 @@ export const SetReferralCode = ({
               isValidCode && 'border-rabby-blue-default'
             )}
             suffix={
-              <div className="rounded group w-[32px] h-[32px] flex items-center justify-center bg-transparent hover:bg-r-blue-light-1 cursor-pointer text-r-neutral-foot hover:text-r-blue-default">
+              <div className="rounded group w-[32px] h-[32px] flex items-center justify-center bg-transparent hover:bg-[var(--crb-sunken)] cursor-pointer text-r-neutral-foot hover:text-r-blue-default">
                 <IconDice
                   className="w-[24px] h-[24px]"
                   onClick={getDiceReferralCode}
@@ -190,7 +190,7 @@ export const SetReferralCode = ({
               {desc}
             </div>
           )}
-          <ol className="mb-[22px] list-outside list-decimal bg-r-neutral-card-3 rounded-[8px] h-[87px] p-[12px] pl-[26px] text-[13px] leading-[20px] text-r-neutral-body">
+          <ol className="mb-[22px] list-outside list-decimal bg-r-neutral-card-3 rounded-[12px] h-[87px] p-[12px] pl-[26px] text-[13px] leading-[20px] text-r-neutral-body">
             <li>
               {t(
                 'page.rabbyPoints.referralCode.once-set-this-referral-code-is-permanent-and-cannot-change'

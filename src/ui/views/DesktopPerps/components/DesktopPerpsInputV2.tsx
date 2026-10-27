@@ -12,7 +12,7 @@ const StyledInput = styled(Input)`
 
   /* With prefix/suffix (affix wrapper) */
   &.ant-input-affix-wrapper {
-    border-radius: 6px;
+    border-radius: 8px;
     border: none;
     background: var(--rb-neutral-bg-5, #fff);
     height: 44px;
@@ -22,7 +22,7 @@ const StyledInput = styled(Input)`
     &:hover,
     &.ant-input-affix-wrapper-focused,
     &.slider-active {
-      border-color: var(--rb-brand-default, #7084ff);
+      border-color: var(--rb-brand-default, #f26b3a);
     }
 
     .ant-input {
@@ -46,7 +46,7 @@ const StyledInput = styled(Input)`
 
   /* Without prefix/suffix (plain input) */
   &.ant-input {
-    border-radius: 6px;
+    border-radius: 8px;
     border: none;
     background: var(--rb-neutral-bg-5, #fff);
     height: 44px;
@@ -58,7 +58,7 @@ const StyledInput = styled(Input)`
     &:hover,
     &:focus,
     &.slider-active {
-      border-color: var(--rb-brand-default, #7084ff);
+      border-color: var(--rb-brand-default, #f26b3a);
       box-shadow: none;
     }
 

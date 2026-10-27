@@ -132,7 +132,7 @@ export function AddressInfoTo({
             className={clsx(
               'h-[58px] w-[100%] flex items-center justify-between p-[16px] ',
               isDarkTheme ? 'bg-r-neutral-card1' : 'bg-r-neutral-bg1',
-              'cursor-pointer border-[1px] border-rabby-neutral-line hover:border-rabby-blue-default rounded-[12px] group'
+              'cursor-pointer border-[1px] border-rabby-neutral-line hover:border-[var(--crb-hairline-strong)] rounded-[12px] group'
             )}
             onClick={onClick}
           >
@@ -154,7 +154,7 @@ export function AddressInfoTo({
                       className="w-[24px] h-[24px] flex justify-center items-center"
                       style={{}}
                     >
-                      <div className="w-[24px] h-[24px] rounded-[6px] flex justify-center items-center bg-r-neutral-line">
+                      <div className="w-[24px] h-[24px] rounded-[8px] flex justify-center items-center bg-r-neutral-line">
                         <RcAvatarCC
                           width={13}
                           height={15}
@@ -191,7 +191,7 @@ export function AddressInfoTo({
                           <div
                             className={clsx(
                               'flex items-center justify-center',
-                              'rounded-[8px] bg-r-blue-light1',
+                              'rounded-[12px] bg-r-blue-light1',
                               'px-[12px] h-[32px]',
                               'text-[13px] font-medium text-r-blue-default whitespace-nowrap overflow-hidden text-ellipsis'
                             )}

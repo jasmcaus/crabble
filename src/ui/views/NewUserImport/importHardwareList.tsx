@@ -129,7 +129,7 @@ export const ImportHardwareList = () => {
             >
               <Item
                 key={item.type + index}
-                bgColor="var(--r-neutral-card2, #F2F4F7)"
+                bgColor="var(--r-neutral-card2, #F4F4F5)"
                 px={16}
                 py={13}
                 leftIcon={item.logo}
@@ -141,7 +141,7 @@ export const ImportHardwareList = () => {
                   }
                   gotoImport(item.type, item.brand);
                 }}
-                className="rounded-[8px] text-[15px] leading-[18px] font-medium text-r-neutral-title1"
+                className="rounded-[12px] text-[15px] leading-[18px] font-medium text-r-neutral-title1"
               >
                 {item.title || item.brand || BRAND_ALIAN_TYPE_TEXT[item.type]}
               </Item>

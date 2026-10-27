@@ -10,7 +10,7 @@ const VResizeHandle = styled.div`
   position: relative;
   flex-shrink: 0;
   height: ${HANDLE_HEIGHT}px;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: row-resize;
   /* Stops touch drags from scrolling the page instead of resizing. */
   touch-action: none;
@@ -24,7 +24,7 @@ const VResizeHandle = styled.div`
     top: 50%;
     height: 2px;
     transform: translateY(-50%);
-    border-radius: 6px;
+    border-radius: 8px;
     background-color: transparent;
     transition: background-color 0.2s ease;
   }

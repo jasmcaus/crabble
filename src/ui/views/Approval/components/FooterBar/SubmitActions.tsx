@@ -13,7 +13,7 @@ import { useDebounce } from 'react-use';
 
 const ButtonStyled = styled(Button)`
   &:hover {
-    box-shadow: 0px 6px 8px 0px rgba(112, 132, 255, 0.25);
+    box-shadow: 0px 6px 8px 0px rgba(242, 107, 58, 0.25);
   }
 `;
 
@@ -55,7 +55,7 @@ export const SubmitActions: React.FC<Props> = ({
           className={clsx(
             'bg-blue-light w-[246px]',
             'text-white',
-            'rounded-[8px] h-[48px]',
+            'rounded-[12px] h-[48px]',
             'flex items-center',
             'relative',
             'before:absolute before:right-[60px]',
@@ -108,8 +108,8 @@ export const SubmitActions: React.FC<Props> = ({
               className={clsx(
                 gasLess && 'gasLess',
                 gasLessThemeColor && 'gasLessConfig',
-                'w-[246px] h-[48px] rounded-[8px]',
-                'disabled:text-white/40 disabled:bg-blue-light/40 border-transparent',
+                'w-[246px] h-[48px] rounded-[12px]',
+                'disabled:text-[var(--crb-disabled-fg)] disabled:bg-[var(--crb-disabled-bg)] border-transparent',
                 'before:content-none'
               )}
               style={
@@ -117,8 +117,8 @@ export const SubmitActions: React.FC<Props> = ({
                   ? {
                       '--gas-theme-color': gasLessThemeColor,
                       '--gas-bg-color': isGasNotEnough
-                        ? 'rgba(112, 132, 255,0.4)'
-                        : 'var(--r-blue-default, #7084ff)',
+                        ? 'rgba(242, 107, 58,0.4)'
+                        : 'var(--r-blue-default, #f26b3a)',
                     }
                   : {}
               }

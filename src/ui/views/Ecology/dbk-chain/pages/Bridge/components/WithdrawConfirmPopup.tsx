@@ -70,7 +70,7 @@ export const WithdrawConfirmPopup = ({
       <div className="text-r-neutral-body text-[13px] leading-[16px] text-center mb-[12px]">
         {t('page.ecology.dbk.bridge.WithdrawConfirmPopup.tips')}
       </div>
-      <div className="rounded-[8px] border-[0.5px] border-rabby-neutral-line p-[16px] space-y-[16px] mb-[12px]">
+      <div className="rounded-[12px] border-[0.5px] border-rabby-neutral-line p-[16px] space-y-[16px] mb-[12px]">
         <div className="flex items-center justify-between text-r-neutral-title-1 text-[13px] leading-[16px] font-semibold">
           <div>{t('page.ecology.dbk.bridge.WithdrawConfirmPopup.step1')}</div>
           <div>
@@ -110,7 +110,7 @@ export const WithdrawConfirmPopup = ({
             <div
               className={clsx(
                 'flex items-center gap-[12px] px-[15px] py-[10px] ',
-                'rounded-[8px] bg-r-neutral-card-2 cursor-pointer',
+                'rounded-[12px] bg-r-neutral-card-2 cursor-pointer',
                 'border-transparent border-[1px] hover:border-rabby-orange-DBK',
                 isChecked && 'border-rabby-orange-DBK'
               )}

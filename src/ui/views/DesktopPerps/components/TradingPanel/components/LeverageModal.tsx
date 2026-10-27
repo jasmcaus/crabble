@@ -137,7 +137,7 @@ export const LeverageModal: React.FC<LeverageModalProps> = ({
             size="large"
             type="primary"
             className={clsx(
-              'w-full h-[44px] rounded-[8px] text-[14px] font-medium'
+              'w-full h-[44px] rounded-[12px] text-[14px] font-medium'
             )}
           >
             {t('page.perpsPro.marginMode.confirm')}

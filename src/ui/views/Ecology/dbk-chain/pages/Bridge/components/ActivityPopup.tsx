@@ -336,7 +336,7 @@ const ActivityItem = ({
   return (
     <div
       className={clsx(
-        'mb-[20px] p-[16px] rounded-[8px] border-[0.5px]',
+        'mb-[20px] p-[16px] rounded-[12px] border-[0.5px]',
         status && status !== 'finalized'
           ? 'border-rabby-orange-DBK'
           : 'border-rabby-neutral-line'

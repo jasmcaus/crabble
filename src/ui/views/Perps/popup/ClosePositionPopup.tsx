@@ -203,7 +203,7 @@ export const ClosePositionPopup: React.FC<ClosePositionPopupProps> = ({
         {/* Bottom padding clears the fixed footer — limit mode overflows. */}
         <div className="flex-1 px-20 overflow-y-auto pb-[80px]">
           {/* Amount Section */}
-          <div className="bg-r-neutral-card1 rounded-[8px] p-16 mb-12">
+          <div className="bg-r-neutral-card1 rounded-[12px] p-16 mb-12">
             <div className="flex justify-between items-center mb-12">
               <div className="text-[17px] font-bold text-r-neutral-title-1 leading-[20px]">
                 {t('page.perpsDetail.PerpsClosePositionPopup.amount')}
@@ -241,7 +241,7 @@ export const ClosePositionPopup: React.FC<ClosePositionPopupProps> = ({
           </div>
 
           {/* PNL Card */}
-          <div className="bg-r-neutral-card1 rounded-[8px] p-16 mb-12">
+          <div className="bg-r-neutral-card1 rounded-[12px] p-16 mb-12">
             <div className="flex flex-col gap-12">
               <div className="flex justify-between items-center">
                 <span className="text-14 font-medium text-rb-neutral-body leading-[18px]">

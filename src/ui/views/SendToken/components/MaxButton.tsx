@@ -17,7 +17,7 @@ export const SendMaxButton = styled.div`
   color: var(--r-blue-default);
   border-radius: 10px;
   &:hover {
-    background-color: var(--r-blue-light2);
+    background-color: var(--crb-sunken);
   }
 `;
 
@@ -33,6 +33,6 @@ export const MaxButton = styled.div`
   color: var(--r-blue-default);
   border-radius: 2px;
   &:hover {
-    background-color: var(--r-blue-light2);
+    background-color: var(--crb-sunken);
   }
 `;

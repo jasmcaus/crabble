@@ -47,7 +47,7 @@ export const CommonConfirmCard: React.FC<{
             block
             type="primary"
             className={clsx(
-              'h-[48px] shadow-none rounded-[6px]',
+              'h-[48px] shadow-none rounded-[8px]',
               'text-[15px] font-medium'
             )}
           >

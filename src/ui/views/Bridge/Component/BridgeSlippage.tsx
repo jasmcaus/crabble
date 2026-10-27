@@ -25,26 +25,26 @@ const SlippageItem = styled.div`
   align-items: center;
   border: 1px solid transparent;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 8px;
   width: 72px;
   height: 32px;
   font-weight: 500;
   font-size: 13px;
   background: var(--r-neutral-card-1, #fff);
-  border-radius: 6px;
+  border-radius: 8px;
   overflow: hidden;
-  color: var(--r-neutral-title1, #192945);
+  color: var(--r-neutral-title1, #09090b);
 
   &.input-wrapper {
-    border: 1px solid var(--r-neutral-line, #e0e5ec);
+    border: 1px solid var(--r-neutral-line, #e4e4e7);
     background: var(--r-neutral-card-1, #fff);
   }
 
   &:hover,
   &.active {
-    color: var(--r-blue-default, #7084ff);
-    background: var(--r-blue-light1, #eef1ff);
-    border: 1px solid var(--r-blue-default, #7084ff);
+    color: var(--r-blue-default, #f26b3a);
+    background: var(--r-blue-light1, #fdefe9);
+    border: 1px solid var(--r-blue-default, #f26b3a);
   }
 
   &.error,
@@ -437,7 +437,7 @@ export const BridgeSlippage = memo((props: BridgeSlippageProps) => {
         isSupportDarkMode
         getContainer={getContainer}
       >
-        <Wrapper className="widget-has-ant-input flex flex-col gap-24 rounded-t-[16px] bg-r-neutral-bg-2 p-20 shadow-[0_-12px_10px_rgba(35,47,129,0.1)]">
+        <Wrapper className="widget-has-ant-input flex flex-col gap-24 rounded-t-[16px] bg-r-neutral-bg-2 p-20 shadow-[0_-12px_10px_rgba(9,9,11,0.1)]">
           <div className="flex flex-col gap-12">
             <div className="flex items-center justify-between text-[16px] font-medium">
               <span className="text-r-neutral-title-1">
@@ -538,7 +538,7 @@ export const BridgeSlippage = memo((props: BridgeSlippageProps) => {
           <Button
             type="primary"
             block
-            className="h-[40px] rounded-[6px] text-[16px] font-medium"
+            className="h-[40px] rounded-[8px] text-[16px] font-medium"
             onClick={closePopup}
           >
             {t('global.confirm')}

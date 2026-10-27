@@ -30,7 +30,7 @@ const Wraper = styled.div`
     margin-bottom: 16px;
   }
   .ant-form-item-label > label {
-    color: var(--r-neutral-body, #3e495e);
+    color: var(--r-neutral-body, #3f3f46);
     font-size: 13px;
     line-height: 16px;
   }
@@ -41,15 +41,15 @@ const Wraper = styled.div`
     margin-left: auto;
     margin-right: auto;
     background: transparent;
-    border: 1px solid var(--r-neutral-line, #d3d8e0);
-    border-radius: 6px;
+    border: 1px solid var(--r-neutral-line, #d4d4d8);
+    border-radius: 8px;
 
-    color: var(--r-neutral-title1, #192945);
+    color: var(--r-neutral-title1, #09090b);
     font-size: 15px;
     font-weight: 500;
 
     &:focus {
-      border-color: var(--r-blue-default, #7084ff);
+      border-color: var(--r-blue-default, #f26b3a);
     }
 
     &::placeholder {
@@ -58,7 +58,7 @@ const Wraper = styled.div`
     }
   }
   .ant-input[disabled] {
-    background: var(--r-neutral-card2, #f2f4f7);
+    background: var(--r-neutral-card2, #f4f4f5);
     border-color: transparent;
     &:hover {
       border-color: transparent;
@@ -210,10 +210,10 @@ export const AddCustomTestnetTokenContent = ({
               {!chain ? (
                 <div
                   className={clsx(
-                    'flex items-center bg-r-neutral-card2 rounded-[6px]',
+                    'flex items-center bg-r-neutral-card2 rounded-[8px]',
                     'px-[16px] py-[12px] min-h-[52px] cursor-pointer',
                     'border-[1px] border-transparent',
-                    'hover:border-rabby-blue-default hover:bg-r-blue-light1',
+                    'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]',
                     inModal ? 'bg-rb-neutral-card-1' : ''
                   )}
                 >
@@ -227,10 +227,10 @@ export const AddCustomTestnetTokenContent = ({
               ) : (
                 <div
                   className={clsx(
-                    'flex items-center bg-r-neutral-card2 rounded-[6px]',
+                    'flex items-center bg-r-neutral-card2 rounded-[8px]',
                     'gap-[8px] px-[16px] py-[12px] min-h-[52px] cursor-pointer',
                     'border-[1px] border-transparent',
-                    'hover:border-rabby-blue-default hover:bg-r-blue-light1',
+                    'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]',
                     inModal ? 'bg-rb-neutral-card-1' : ''
                   )}
                 >
@@ -279,7 +279,7 @@ export const AddCustomTestnetTokenContent = ({
                 <Form.Item label="Found Token">
                   <div
                     className={clsx(
-                      'flex items-center gap-[12px] rounded-[6px]',
+                      'flex items-center gap-[12px] rounded-[8px]',
                       'bg-r-neutral-card2 min-h-[52px] px-[16px] py-[14px]'
                     )}
                   >

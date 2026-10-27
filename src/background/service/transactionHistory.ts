@@ -658,7 +658,7 @@ class TxHistory {
       const site = {
         origin: INTERNAL_REQUEST_ORIGIN,
         icon: '',
-        name: 'Rabby Wallet',
+        name: 'Crabble Wallet',
         chain: CHAINS_ENUM.ETH,
         isSigned: false,
         isTop: false,
@@ -734,7 +734,7 @@ class TxHistory {
       const site = {
         origin: INTERNAL_REQUEST_ORIGIN,
         icon: '',
-        name: 'Rabby Wallet',
+        name: 'Crabble Wallet',
         chain: CHAINS_ENUM.ETH,
         isSigned: false,
         isTop: false,

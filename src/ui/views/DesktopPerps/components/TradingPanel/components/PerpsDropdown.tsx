@@ -38,7 +38,7 @@ export const PerpsDropdown: React.FC<PerpsDropdownProps> = ({
         >
           {options.map((option) => (
             <Menu.Item
-              className="text-r-neutral-title1 hover:bg-r-blue-light1"
+              className="text-r-neutral-title1 hover:bg-[var(--crb-sunken)]"
               key={option.key}
             >
               {option.title ? (

@@ -13,22 +13,22 @@ const Container = styled.div`
   width: 100%;
   min-height: 56px;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 12px;
   border: 1px solid transparent;
   background: var(--r-neutral-card1, #fff);
 
   &.is-danger {
-    border-radius: 8px;
+    border-radius: 12px;
     border-color: var(--r-red-default, #e34935);
     background: var(--r-red-light, #fff2f0);
   }
 
   &:not(.is-danger).is-selected {
-    border-color: var(--r-blue-default, #4c65ff);
-    background: var(--r-blue-light1, #edf0ff);
+    border-color: var(--r-blue-default, #e8552a);
+    background: var(--r-blue-light1, #fdefe9);
   }
   &:not(.is-danger):hover {
-    border-color: var(--r-blue-default, #4c65ff);
+    border-color: var(--crb-hairline-strong);
   }
 `;
 

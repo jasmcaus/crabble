@@ -10,7 +10,7 @@ const UserListDrawerWrapper = styled.div`
     font-weight: 500;
     font-size: 22px;
     line-height: 26px;
-    color: var(--r-neutral-title-1, #192945);
+    color: var(--r-neutral-title-1, #09090b);
     .logo {
       width: 24px;
       height: 24px;
@@ -20,8 +20,8 @@ const UserListDrawerWrapper = styled.div`
 `;
 
 const Footer = styled.div`
-  background: var(--r-neutral-card-2, #f2f4f7);
-  border-radius: 6px;
+  background: var(--r-neutral-card-2, #f4f4f5);
+  border-radius: 8px;
   .item {
     display: flex;
     cursor: pointer;
@@ -31,7 +31,7 @@ const Footer = styled.div`
     font-weight: 500;
     font-size: 13px;
     line-height: 15px;
-    color: var(--r-neutral-title-1, #192945);
+    color: var(--r-neutral-title-1, #09090b);
     position: relative;
     border: 1px solid transparent;
     .rabby-checkbox__wrapper {
@@ -41,7 +41,7 @@ const Footer = styled.div`
       }
       &.checked {
         .rabby-checkbox {
-          background-color: var(--r-blue-default, #7084ff) !important;
+          background-color: var(--r-blue-default, #f26b3a) !important;
           border: none;
         }
       }
@@ -56,9 +56,9 @@ const Footer = styled.div`
       background-color: var(--r-neutral-line, #e5e9ef);
     }
     &:hover {
-      background: var(--r-blue-light-1, #eef1ff);
-      border: 1px solid var(--r-blue-default, #7084ff);
-      border-radius: 6px;
+      background: var(--crb-sunken);
+      border: 1px solid var(--crb-hairline-strong);
+      border-radius: 8px;
     }
     &:nth-last-child(1) {
       &::after {

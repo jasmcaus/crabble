@@ -110,12 +110,12 @@ const Selector = ({
             px={16}
             py={0}
             className={clsx(
-              'rounded-[6px] w-full h-[56px] px-16',
+              'rounded-[8px] w-full h-[56px] px-16',
               'justify-between',
-              !disabled && 'hover:border-blue-light',
+              !disabled && 'hover:border-[var(--crb-hairline-strong)]',
               disabled && 'opacity-50 cursor-not-allowed'
             )}
-            bgColor="var(--r-neutral-card2, #F2F4F7)"
+            bgColor="var(--r-neutral-card2, #F4F4F5)"
             left={
               <div
                 className={clsx('flex items-center gap-[6px] ', [
@@ -162,12 +162,12 @@ const Selector = ({
             px={16}
             py={0}
             className={clsx(
-              'rounded-[6px] w-full h-[56px] px-16 mb-12',
+              'rounded-[8px] w-full h-[56px] px-16 mb-12',
               'justify-between',
-              !disabled && 'hover:border-blue-light',
+              !disabled && 'hover:border-[var(--crb-hairline-strong)]',
               disabled && 'opacity-50 cursor-not-allowed'
             )}
-            bgColor="var(--r-neutral-card2, #F2F4F7)"
+            bgColor="var(--r-neutral-card2, #F4F4F5)"
             left={<AddressRightAreaInItem account={account} />}
             right={
               <span className="text-r-neutral-body text-[14px] leading-[17px] font-medium">
@@ -501,8 +501,8 @@ const WithdrawContent = ({
         <Item
           px={16}
           py={0}
-          className="rounded-[6px] w-full h-[52px] mt-12 flex justify-between"
-          bgColor="var(--r-neutral-card2, #F2F4F7)"
+          className="rounded-[8px] w-full h-[52px] mt-12 flex justify-between"
+          bgColor="var(--r-neutral-card2, #F4F4F5)"
           left={
             <span className="text-14 text-r-neutral-body">
               {t('page.gasAccount.withdrawPopup.recipientAddress')}
@@ -544,8 +544,8 @@ const WithdrawContent = ({
         <Item
           px={16}
           py={0}
-          className="rounded-[6px] w-full h-[52px] mt-12 flex justify-between"
-          bgColor="var(--r-neutral-card2, #F2F4F7)"
+          className="rounded-[8px] w-full h-[52px] mt-12 flex justify-between"
+          bgColor="var(--r-neutral-card2, #F4F4F5)"
           hoverBorder={!loading}
           left={
             <span className="text-14 text-r-neutral-body">

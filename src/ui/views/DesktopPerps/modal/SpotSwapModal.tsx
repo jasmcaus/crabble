@@ -95,11 +95,11 @@ const CoinSelectPopup: React.FC<{
                 onClick={() => onSelect(c)}
                 className={clsx(
                   'flex justify-between items-center h-[48px] mb-6 border',
-                  'bg-rb-neutral-bg-5 rounded-[6px] px-16',
+                  'bg-rb-neutral-bg-5 rounded-[8px] px-16',
                   'text-13 font-medium text-rb-neutral-title-1 cursor-pointer',
                   selected
                     ? 'border-rabby-blue-default'
-                    : 'border-transparent hover:border-rabby-blue-default'
+                    : 'border-transparent hover:border-[var(--crb-hairline-strong)]'
                 )}
               >
                 <CoinOption coin={c} />
@@ -201,9 +201,10 @@ export const SpotSwapModal: React.FC<SpotSwapModalProps> = ({
           disabled={locked || submitting}
           className={clsx(
             'w-full flex items-center justify-between',
-            'bg-rb-neutral-bg-2 rounded-[6px] px-16 py-[12px]',
+            'bg-rb-neutral-bg-2 rounded-[8px] px-16 py-[12px]',
             'border border-solid border-transparent',
-            !(locked || submitting) && 'hover:border-rb-brand-default',
+            !(locked || submitting) &&
+              'hover:border-[var(--crb-hairline-strong)]',
             'disabled:cursor-default'
           )}
         >
@@ -226,9 +227,10 @@ export const SpotSwapModal: React.FC<SpotSwapModalProps> = ({
         disabled={locked || submitting}
         className={clsx(
           'shrink-0 flex items-center gap-6',
-          'bg-r-neutral-card-2 rounded-[6px] p-[6px]',
+          'bg-r-neutral-card-2 rounded-[8px] p-[6px]',
           'border border-solid border-transparent',
-          !(locked || submitting) && 'hover:border-rb-brand-default',
+          !(locked || submitting) &&
+            'hover:border-[var(--crb-hairline-strong)]',
           'disabled:cursor-default'
         )}
       >
@@ -316,7 +318,7 @@ export const SpotSwapModal: React.FC<SpotSwapModalProps> = ({
                 </div>
               </div>
 
-              <div className="bg-rb-neutral-bg-2 rounded-[6px] px-[18px] py-[24px] flex items-center justify-between gap-8">
+              <div className="bg-rb-neutral-bg-2 rounded-[8px] px-[18px] py-[24px] flex items-center justify-between gap-8">
                 <ThousandsInput
                   bordered={false}
                   size="large"
@@ -340,10 +342,10 @@ export const SpotSwapModal: React.FC<SpotSwapModalProps> = ({
                     key={p}
                     onClick={() => handlePercent(p)}
                     className={clsx(
-                      'flex-1 h-[36px] rounded-[6px] text-13',
+                      'flex-1 h-[36px] rounded-[8px] text-13',
                       'bg-rb-neutral-bg-2 border border-solid border-transparent',
                       'text-rb-neutral-body',
-                      'hover:border-rb-brand-default hover:text-rb-brand-default',
+                      'hover:border-[var(--crb-hairline-strong)] hover:text-rb-brand-default',
                       'disabled:opacity-60 disabled:cursor-not-allowed'
                     )}
                     disabled={submitting}
@@ -388,7 +390,7 @@ export const SpotSwapModal: React.FC<SpotSwapModalProps> = ({
               block
               size="large"
               type="primary"
-              className="h-[48px] rounded-[6px] text-15 font-medium"
+              className="h-[48px] rounded-[8px] text-15 font-medium"
               disabled={!canSubmit}
               loading={submitting}
               onClick={handleSwap}

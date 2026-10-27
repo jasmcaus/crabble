@@ -20,8 +20,8 @@ const Wraper = styled.div`
   border: 1px solid transparent;
   position: relative;
   &:hover {
-    border: 1px solid var(--r-blue-default, #7084ff);
-    box-shadow: 0px 4px 4px 0px rgba(112, 132, 255, 0.12);
+    border: 1px solid var(--crb-hairline-strong);
+    box-shadow: 0px 4px 4px 0px rgba(242, 107, 58, 0.12);
   }
 `;
 
@@ -29,7 +29,7 @@ const GlobalStyle = createGlobalStyle`
   .dapp-search-card-tooltip {
     .ant-tooltip-inner {
       background-color: var(--r-neutral-black, #000) !important;
-      border-radius: 6px;
+      border-radius: 8px;
       padding: 12px !important;
     }
 
@@ -58,7 +58,7 @@ export const DappCard = ({
   return (
     <Wraper
       className={clsx(
-        'bg-r-neutral-card1 cursor-pointer rounded-[8px]',
+        'bg-r-neutral-card1 cursor-pointer rounded-[12px]',
         size === 'normal' && 'p-[15px]',
         size === 'small' && 'py-[13px] px-[16px]',
         className

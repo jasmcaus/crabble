@@ -13,8 +13,8 @@ import IconCopy from 'ui/assets/component/icon-copy.svg';
 
 const ContactItemWrapper = styled.div`
   padding: 11px 16px;
-  background-color: #f5f6fa;
-  border-radius: 6px;
+  background-color: #f4f4f5;
+  border-radius: 8px;
   margin-bottom: 8px;
   .name {
     font-weight: 500;

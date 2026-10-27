@@ -49,7 +49,7 @@ export const SpeedUpCancelHeader = ({
           className={clsx(
             'mt-16',
             'flex items-center justify-center text-13 font-medium text-r-green-default gap-2',
-            'min-h-[52px] px-[12px] py-[18px] rounded-[8px] bg-r-green-light'
+            'min-h-[52px] px-[12px] py-[18px] rounded-[12px] bg-r-green-light'
           )}
         >
           <RcIconSpeedUp viewBox="0 0 10 16" className="w-16 h-16" />

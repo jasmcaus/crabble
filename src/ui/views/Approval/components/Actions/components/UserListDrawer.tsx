@@ -19,10 +19,10 @@ const Footer = styled.div`
     font-weight: 500;
     font-size: 15px;
     line-height: 18px;
-    color: var(--r-neutral-title1, #192945);
+    color: var(--r-neutral-title1, #09090b);
     position: relative;
     border: 1px solid transparent;
-    border-radius: 8px;
+    border-radius: 12px;
     background: var(--r-neutral-card1, #fff);
     .rabby-checkbox__wrapper {
       .rabby-checkbox {
@@ -33,8 +33,8 @@ const Footer = styled.div`
       }
     }
     &:hover {
-      background: var(--r-blue-light-1, #eef1ff);
-      border: 1px solid var(--r-blue-default, #7084ff);
+      background: var(--crb-sunken);
+      border: 1px solid var(--crb-hairline-strong);
     }
   }
 `;

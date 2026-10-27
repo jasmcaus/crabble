@@ -405,10 +405,8 @@ const ImportKeyOrSeed: React.FC<{
               value={selectedTab}
               onTabChange={(key) => syncTab(key as ImportTab)}
               options={tabOptions}
-              className="flex bg-r-neutral-line w-full my-[0] h-[36px] p-[2px] rounded-[8px]"
-              itemClassname="w-[50%] py-[7px] text-[15px] leading-[18px] font-medium rounded-[6px] text-center transition-colors"
-              itemClassnameInActive="text-r-neutral-body"
-              itemClassnameActive="bg-r-neutral-card-1 text-r-blue-default"
+              className="flex bg-[var(--crb-sunken)] w-full my-[0] h-[36px] p-[2px] rounded-[12px]"
+              itemClassname="w-[50%] py-[7px] text-[15px] leading-[18px] font-medium rounded-[8px] text-center transition-colors"
             />
           </div>
 
@@ -457,7 +455,7 @@ const ImportKeyOrSeed: React.FC<{
                       autoFocus
                       spellCheck={false}
                       autoSize={false}
-                      className="h-[128px] resize-none rounded-[8px] border-r-blue-default bg-r-neutral-card-1 px-[15px] py-[18px] text-[15px] leading-[20px] text-r-neutral-title-1 placeholder:text-r-neutral-foot"
+                      className="h-[128px] resize-none rounded-[12px] border-r-blue-default bg-r-neutral-card-1 px-[15px] py-[18px] text-[15px] leading-[20px] text-r-neutral-title-1 placeholder:text-r-neutral-foot"
                       placeholder={getTabPlaceholder(selectedTab, t)}
                       onPaste={() => {
                         clearClipboard();
@@ -549,7 +547,7 @@ const ImportKeyOrSeed: React.FC<{
                 type="primary"
                 size="large"
                 disabled={disabledButton}
-                className="h-[44px] w-full rounded-[6px] text-[15px] leading-[18px] font-medium"
+                className="h-[44px] w-full rounded-[8px] text-[15px] leading-[18px] font-medium"
                 // onClick={handleSubmit}
               >
                 {t('global.confirm')}

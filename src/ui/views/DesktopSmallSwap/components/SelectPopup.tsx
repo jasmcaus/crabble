@@ -57,9 +57,9 @@ export const SelectPopup = ({
               key={item.value}
               className={clsx(
                 'w-[25%] text-center py-[10px] px-[4px]',
-                'border rounded-[6px]',
+                'border rounded-[8px]',
                 'text-[14px] leading-[18px]',
-                'hover:border-rabby-blue-default hover:bg-r-blue-light1 hover:text-r-blue-default cursor-pointer',
+                'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)] hover:text-r-blue-default cursor-pointer',
                 isActive
                   ? 'border-rabby-blue-default bg-r-blue-light1 text-r-blue-default'
                   : 'border-rabby-neutral-line text-r-neutral-title1'
@@ -77,7 +77,7 @@ export const SelectPopup = ({
         <button
           type="button"
           className={clsx(
-            'flex-1 block h-[60px] rounded-[8px] bg-rb-neutral-bg-4',
+            'flex-1 block h-[60px] rounded-[12px] bg-rb-neutral-bg-4',
             'text-[18px] leading-[20px] font-medium text-r-neutral-title1'
           )}
           onClick={onCancel}
@@ -88,7 +88,7 @@ export const SelectPopup = ({
           // disabled={disableSubmit}
           type="primary"
           block
-          className="flex-1 h-[60px] rounded-[8px] text-[18px] leading-[20px]"
+          className="flex-1 h-[60px] rounded-[12px] text-[18px] leading-[20px]"
           onClick={() => onConfirm?.(inputValue)}
         >
           {t('global.Confirm')}

@@ -167,7 +167,7 @@ export const PwdForNonWhitelistedTxModal = ({
             type="primary"
             ghost
             block
-            className="rabby-btn-ghost h-[48px] rounded-[8px] text-[16px]"
+            className="rabby-btn-ghost h-[48px] rounded-[12px] text-[16px]"
             onClick={handleCancel}
           >
             {t('global.Cancel')}
@@ -176,7 +176,7 @@ export const PwdForNonWhitelistedTxModal = ({
             disabled={disableSubmit}
             type="primary"
             block
-            className="h-[48px] rounded-[8px] text-[16px]"
+            className="h-[48px] rounded-[12px] text-[16px]"
             onClick={handleSubmit}
           >
             {t('global.Confirm')}
@@ -308,7 +308,7 @@ export const VerifyPwdForNonWhitelisted = ({
             type="primary"
             ghost
             block
-            className="rabby-btn-ghost h-[48px] rounded-[8px] text-[16px]"
+            className="rabby-btn-ghost h-[48px] rounded-[12px] text-[16px]"
             onClick={handleCancel}
           >
             {t('global.Cancel')}
@@ -317,7 +317,7 @@ export const VerifyPwdForNonWhitelisted = ({
             disabled={disableSubmit}
             type="primary"
             block
-            className="h-[48px] rounded-[8px] text-[16px]"
+            className="h-[48px] rounded-[12px] text-[16px]"
             onClick={handleSubmit}
           >
             {t('global.Confirm')}

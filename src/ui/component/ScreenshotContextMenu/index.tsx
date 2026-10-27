@@ -304,11 +304,11 @@ export const ScreenshotContextMenu = () => {
           </header>
           <main className="min-h-0 flex-1 px-[20px] flex flex-col pb-[16px]">
             {screenshot ? (
-              <div className="rounded-[8px] border-[1px] border-rabby-neutral-line mb-[16px]">
+              <div className="rounded-[12px] border-[1px] border-rabby-neutral-line mb-[16px]">
                 <img
                   className="w-full h-[254px] object-contain"
                   src={screenshot}
-                  alt="Rabby popup screenshot"
+                  alt="Crabble popup screenshot"
                 />
               </div>
             ) : null}
@@ -332,8 +332,8 @@ export const ScreenshotContextMenu = () => {
               type="button"
               className={clsx(
                 'w-1/2 h-[48px] border-[1px] border-r-blue-default text-r-blue-default',
-                'hover:bg-[#8697FF1A] active:bg-[#0000001A]',
-                'rounded-[8px]',
+                'hover:bg-[var(--crb-sunken)] active:bg-[#0000001A]',
+                'rounded-[12px]',
                 'before:content-none',
                 'z-10',
                 'flex items-center justify-center gap-2'

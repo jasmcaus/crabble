@@ -580,13 +580,13 @@ export const OrderBook: React.FC<{ latestTrade?: Trade }> = ({
                 }
               >
                 <Menu.Item
-                  className="text-r-neutral-title1 hover:bg-r-blue-light1"
+                  className="text-r-neutral-title1 hover:bg-[var(--crb-sunken)]"
                   key="base"
                 >
                   {formatPerpsCoin(selectedCoin)}
                 </Menu.Item>
                 <Menu.Item
-                  className="text-r-neutral-title1 hover:bg-r-blue-light1"
+                  className="text-r-neutral-title1 hover:bg-[var(--crb-sunken)]"
                   key="usd"
                 >
                   {quoteAsset}
@@ -599,8 +599,8 @@ export const OrderBook: React.FC<{ latestTrade?: Trade }> = ({
               className={clsx(
                 'inline-flex items-center justify-between',
                 'px-[8px] py-[8px] flex-1 gap-[6px] h-24',
-                'border border-transparent rounded-[6px]',
-                'hover:border-rb-brand-default border border-solid',
+                'border border-transparent rounded-[8px]',
+                'hover:border-[var(--crb-hairline-strong)] border border-solid',
                 'text-[12px] leading-[14px] text-rb-neutral-title-1'
               )}
             >
@@ -622,7 +622,7 @@ export const OrderBook: React.FC<{ latestTrade?: Trade }> = ({
               >
                 {aggregationLevels.map((level, index) => (
                   <Menu.Item
-                    className="text-r-neutral-title1 hover:bg-r-blue-light1"
+                    className="text-r-neutral-title1 hover:bg-[var(--crb-sunken)]"
                     key={index}
                   >
                     {level.label}
@@ -636,8 +636,8 @@ export const OrderBook: React.FC<{ latestTrade?: Trade }> = ({
               className={clsx(
                 'inline-flex items-center justify-between',
                 'px-[8px] py-[8px] flex-1 gap-[6px] h-24',
-                'border border-transparent rounded-[6px]',
-                'hover:border-rb-brand-default border border-solid',
+                'border border-transparent rounded-[8px]',
+                'hover:border-[var(--crb-hairline-strong)] border border-solid',
                 'text-[12px] leading-[14px] text-rb-neutral-title-1'
               )}
             >

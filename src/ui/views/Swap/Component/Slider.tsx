@@ -4,16 +4,16 @@ import styled from 'styled-components';
 
 const StyledSlider = styled(Slider)`
   .ant-slider-rail {
-    background-color: var(--r-blue-light-1, #eef1ff);
+    background-color: var(--r-blue-light-1, #fdefe9);
   }
 
   &:hover .ant-slider-rail {
-    background-color: var(--r-blue-light-2);
+    background-color: var(--crb-sunken);
   }
 
   .ant-slider-track,
   &:hover .ant-slider-track {
-    background: var(--r-blue-default, #7084ff);
+    background: var(--r-blue-default, #f26b3a);
   }
 
   &:hover > .ant-slider-handle {
@@ -41,12 +41,12 @@ const StyledSlider = styled(Slider)`
       width: 16px;
       height: 16px;
       background-color: white;
-      filter: drop-shadow(0px 2px 4px rgba(112, 132, 255, 0.4));
+      filter: drop-shadow(0px 2px 4px rgba(242, 107, 58, 0.4));
     }
     &::after {
       width: 12px;
       height: 12px;
-      background-color: var(--r-blue-default, #7084ff);
+      background-color: var(--r-blue-default, #f26b3a);
     }
 
     &:hover {

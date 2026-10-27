@@ -246,7 +246,7 @@ export const SignMainnetSwapGasQuotePopup = ({
       <div
         key={gas.level}
         className={clsx(
-          'flex h-[106px] min-w-0 flex-1 flex-col items-center justify-center gap-12 rounded-[8px] border border-solid py-12',
+          'flex h-[106px] min-w-0 flex-1 flex-col items-center justify-center gap-12 rounded-[12px] border border-solid py-12',
           gasInteractionDisabled
             ? 'cursor-not-allowed opacity-50'
             : 'cursor-pointer',
@@ -323,7 +323,7 @@ export const SignMainnetSwapGasQuotePopup = ({
         className="z-[999]"
         getContainer={getContainer}
       >
-        <div className="flex h-full flex-col gap-24 overflow-hidden rounded-t-[16px] bg-r-neutral-bg-2 p-20 pb-0 shadow-[0_-12px_10px_rgba(35,47,129,0.1)]">
+        <div className="flex h-full flex-col gap-24 overflow-hidden rounded-t-[16px] bg-r-neutral-bg-2 p-20 pb-0 shadow-[0_-12px_10px_rgba(9,9,11,0.1)]">
           <div className="flex shrink-0 flex-col gap-12">
             <div className="flex items-center justify-between">
               <span className="text-[16px] font-medium text-r-neutral-title-1">
@@ -350,7 +350,7 @@ export const SignMainnetSwapGasQuotePopup = ({
             {showTempoGasTokenSelector && currentGasMethod !== 'gasAccount' ? (
               <div
                 className={clsx(
-                  'flex h-[32px] items-center justify-between rounded-[6px] bg-r-neutral-card-1 px-8',
+                  'flex h-[32px] items-center justify-between rounded-[8px] bg-r-neutral-card-1 px-8',
                   gasInteractionDisabled
                     ? 'cursor-not-allowed opacity-50'
                     : 'cursor-pointer'
@@ -445,10 +445,10 @@ export const SignMainnetSwapGasQuotePopup = ({
                 <div
                   key={item.id}
                   className={clsx(
-                    'mb-8 flex h-[52px] items-center justify-between rounded-[8px] border border-transparent bg-r-neutral-card-1 px-10',
+                    'mb-8 flex h-[52px] items-center justify-between rounded-[12px] border border-transparent bg-r-neutral-card-1 px-10',
                     isDisabled
                       ? 'cursor-not-allowed opacity-50'
-                      : 'cursor-pointer hover:border-r-blue-default hover:bg-r-blue-light1'
+                      : 'cursor-pointer hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]'
                   )}
                   onClick={() => {
                     if (isDisabled) return;

@@ -34,10 +34,10 @@ export const ProcessActions: React.FC<Props> = ({
               gasLessThemeColor && 'gasLessConfig',
               !gasLess && 'text-blue-light',
               'border-blue-light',
-              'hover:bg-[#8697FF1A] active:bg-[#0000001A]',
+              'hover:bg-[var(--crb-sunken)] active:bg-[#0000001A]',
               'w-[246px] h-[48px]',
               'disabled:bg-transparent disabled:opacity-40 disabled:hover:bg-transparent',
-              'rounded-[8px]',
+              'rounded-[12px]',
               'before:content-none'
             )}
             style={
@@ -46,7 +46,7 @@ export const ProcessActions: React.FC<Props> = ({
                     '--gas-theme-color': gasLessThemeColor,
                     '--gas-bg-color': isGasNotEnough
                       ? 'var(--r-blue-disable)'
-                      : 'var(--r-blue-default, #7084ff)',
+                      : 'var(--r-blue-default, #f26b3a)',
                   }
                 : {}
             }

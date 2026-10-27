@@ -19,12 +19,12 @@ const Container = styled.div`
   width: 100%;
   min-height: 56px;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 12px;
   border: 1px solid transparent;
   background: var(--r-neutral-card1, #fff);
 
   &.is-danger {
-    border-radius: 8px;
+    border-radius: 12px;
     border-color: var(--r-red-default, #e34935);
     background: var(--r-red-light, #fff2f0);
   }
@@ -51,7 +51,7 @@ export const ApprovalCardContract: React.FC<ApprovalCardContractProps> = ({
 
   return (
     <Container
-      className={clsx('shrink-0 rounded-[8px] p-[16px]', {
+      className={clsx('shrink-0 rounded-[12px] p-[16px]', {
         'is-danger': isRisky,
       })}
     >

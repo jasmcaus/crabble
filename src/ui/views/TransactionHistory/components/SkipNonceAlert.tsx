@@ -22,7 +22,7 @@ const Warper = styled.div`
     display: flex;
     align-items: start;
     padding: 8px 12px 8px 8px;
-    border-radius: 6px;
+    border-radius: 8px;
     border: 0.5px solid var(--r-orange-default, #ffb020);
     border: 1px solid var(--r-orange-default, #ffb020);
     background: var(--r-orange-light, rgba(255, 176, 32, 0.15));
@@ -33,13 +33,13 @@ const Warper = styled.div`
     }
 
     &-content {
-      color: var(--r-neutral-title-1, #192945);
+      color: var(--r-neutral-title-1, #09090b);
       font-size: 13px;
       font-weight: 400;
       line-height: 18px; /* 138.462% */
 
       .link {
-        color: var(--r-blue-default, #7084ff);
+        color: var(--r-blue-default, #f26b3a);
         text-decoration-line: underline;
         cursor: pointer;
       }

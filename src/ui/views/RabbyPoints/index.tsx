@@ -74,9 +74,9 @@ const Wrapper = styled.div`
       margin: 0;
     }
     .ant-tabs-tab-btn {
-      color: var(--r-neutral-body, #3e495e);
+      color: var(--r-neutral-body, #3f3f46);
       &:hover {
-        color: var(--r-blue-default, #7084ff);
+        color: var(--r-blue-default, #f26b3a);
       }
     }
     .ant-tabs-nav-list {
@@ -89,11 +89,11 @@ const Wrapper = styled.div`
       }
     }
     .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-      color: var(--r-blue-default, #7084ff);
+      color: var(--r-blue-default, #f26b3a);
     }
 
     .ant-tabs-nav::before {
-      border-bottom: 0.5px solid var(--r-neutral-line, #d3d8e0) !important;
+      border-bottom: 0.5px solid var(--r-neutral-line, #d4d4d8) !important;
     }
   }
 `;
@@ -487,7 +487,7 @@ const RabbyPoints = () => {
             key={'1'}
           >
             {ended && (
-              <div className="mx-20 mt-20 mb-4 flex justify-center rounded-[6px] bg-r-neutral-card-2 py-12 text-13 text-r-neutral-title-1 font-medium">
+              <div className="mx-20 mt-20 mb-4 flex justify-center rounded-[8px] bg-r-neutral-card-2 py-12 text-13 text-r-neutral-title-1 font-medium">
                 {t('page.rabbyPoints.secondRoundEnded')}
               </div>
             )}

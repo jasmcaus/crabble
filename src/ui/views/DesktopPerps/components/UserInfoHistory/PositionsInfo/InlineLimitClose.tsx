@@ -582,7 +582,7 @@ export const InlineLimitClose: React.FC<InlineLimitCloseProps> = ({
               ? 'border-rb-red-default'
               : priceFocused
               ? 'border-rb-brand-default'
-              : 'border-rb-neutral-line hover:border-rb-brand-default'
+              : 'border-rb-neutral-line hover:border-[var(--crb-hairline-strong)]'
           )}
           placeholder="Price"
           value={limitPrice}
@@ -643,7 +643,7 @@ export const InlineLimitClose: React.FC<InlineLimitCloseProps> = ({
                 ? 'border-rb-red-default'
                 : sizeFocused
                 ? 'border-rb-brand-default'
-                : 'border-rb-neutral-line hover:border-rb-brand-default'
+                : 'border-rb-neutral-line hover:border-[var(--crb-hairline-strong)]'
             )}
             placeholder="Size"
             value={sizeInput}

@@ -51,7 +51,7 @@ export const HardwareWallets: React.FC<{
                 py={0}
                 bgColor="var(--r-neutral-card-1, #fff)"
                 className={clsx(
-                  'h-[52px] rounded-[8px]',
+                  'h-[52px] rounded-[12px]',
                   wallet.preventClick
                     ? 'cursor-not-allowed opacity-60'
                     : 'cursor-pointer'

@@ -67,24 +67,26 @@
     }
     .ant-tabs-nav-list {
       margin: auto;
-      background: var(--r-neutral-line);
-      border-radius: 8px;
-      padding: 4px;
+      background: var(--crb-sunken);
+      border-radius: 12px;
+      padding: 3px;
     }
     .ant-tabs-ink-bar {
       display: none;
     }
     .ant-tabs-tab {
       padding: 7px 34px;
-      border-radius: 6px;
-      color: var(--r-neutral-body);
+      border-radius: 9px;
+      color: var(--r-neutral-foot);
       font-size: 15px;
       transition: all 0.3s ease-in-out;
       margin: 0;
       &.ant-tabs-tab-active {
-        background: var(--r-neutral-bg-1);
+        background: var(--crb-thumb);
+        box-shadow: var(--crb-shadow-thumb);
         .ant-tabs-tab-btn {
-          color: var(--r-blue-default);
+          color: var(--r-neutral-title-1);
+          font-weight: 600;
         }
       }
     }
@@ -107,12 +109,12 @@
     border-bottom: 1px solid var(--r-neutral-bg-2);
   }
   .ant-table-header {
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
   }
   .ant-table-body {
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
   }
   &.is-win32 .ant-table-body {
     .chromelike-scrollbar();
@@ -158,7 +160,7 @@
     }
   }
   .ant-table-tbody > tr.ant-table-row:hover > td {
-    background-color: var(--r-blue-light-1);
+    background-color: var(--crb-sunken);
   }
   .ant-table-cell-scrollbar {
     box-shadow: none;
@@ -293,7 +295,7 @@
     }
 
     .ant-input-number {
-      border-radius: 6px;
+      border-radius: 8px;
     }
 
     .tip {
@@ -361,7 +363,7 @@
 
 .HDPathTypeButton {
   background: var(--r-neutral-card-2);
-  border-radius: 6px;
+  border-radius: 8px;
   color: var(--r-neutral-title-1);
   font-size: 15px;
   font-weight: 500;
@@ -409,16 +411,16 @@
     top: 2px;
 
     path {
-      stroke: var(--r-blue-default, #7084ff);
+      stroke: var(--r-blue-default, #f26b3a);
     }
   }
   &.ant-switch-checked {
-    background-color: var(--r-blue-default, #7084ff);
+    background-color: var(--r-blue-default, #f26b3a);
     .ant-switch-handle {
       left: calc(100% - 22px);
       &::before {
-        border-color: rgba(134, 151, 255, 0.2);
-        box-shadow: 0px 1px 2px rgba(29, 40, 109, 0.1);
+        border-color: rgba(242, 138, 99, 0.2);
+        box-shadow: 0px 1px 2px rgba(9, 9, 11, 0.1);
       }
     }
   }
@@ -430,7 +432,7 @@
     &::before {
       border-radius: 50%;
       border: 1px solid #D9DEE5;
-      box-shadow: 0px 1px 2px rgba(29, 40, 109, 0.1);
+      box-shadow: 0px 1px 2px rgba(9, 9, 11, 0.1);
     }
   }
 }

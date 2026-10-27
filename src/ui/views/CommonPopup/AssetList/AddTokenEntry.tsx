@@ -44,8 +44,8 @@ const AddTokenEntry = React.forwardRef<AddTokenEntryInst, Props>(
           className={clsx(
             'flex flex-row justify-start items-center',
             'border-[1px] border-transparent',
-            'hover:border-rabby-blue-default hover:bg-r-blue-light1',
-            'h-[32px] px-[14px] py-[8px] bg-r-neutral-card1 rounded-[6px] cursor-pointer',
+            'hover:border-[var(--crb-hairline-strong)] hover:bg-[var(--crb-sunken)]',
+            'h-[32px] px-[14px] py-[8px] bg-r-neutral-card1 rounded-[8px] cursor-pointer',
             'text-r-neutral-body text-[13px] text-center',
             'whitespace-nowrap'
           )}

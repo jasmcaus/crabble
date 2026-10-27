@@ -25,12 +25,12 @@ const ItemWrapper = styled.div`
 
   &.bridge-quote-compact {
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     background: var(--r-neutral-card-1, #fff);
     box-shadow: none;
 
     &::after {
-      border-radius: 8px;
+      border-radius: 12px;
     }
 
     &:hover:not(.active)::after,
@@ -38,7 +38,7 @@ const ItemWrapper = styled.div`
       position: absolute;
       z-index: 2;
       content: '';
-      border: var(--quote-border-width) solid var(--r-blue-default, #7084ff);
+      border: var(--quote-border-width) solid var(--r-blue-default, #f26b3a);
       pointer-events: none;
     }
 
@@ -48,7 +48,7 @@ const ItemWrapper = styled.div`
 
     &.active {
       border: var(--quote-border-width) solid transparent;
-      background: var(--r-blue-light-1, #eef1ff);
+      background: var(--r-blue-light-1, #fdefe9);
 
       &::after {
         inset: calc(0px - var(--quote-border-width));
@@ -286,7 +286,7 @@ export const BridgeQuoteItem = (props: QuoteItemProps) => {
               'absolute left-0 top-0 flex h-16 w-60 items-center justify-center px-8 py-1 text-12 font-medium leading-normal',
               props.isBestQuote
                 ? 'rounded-br-[4px] rounded-tl-[4px]'
-                : 'rounded-br-[8px] rounded-tl-[8px]',
+                : 'rounded-br-[12px] rounded-tl-[12px]',
               props.isBestQuote
                 ? 'text-r-blue-default bg-r-blue-light2'
                 : isTopAmount

@@ -11,7 +11,6 @@ import {
   isSameAddress,
 } from 'ui/utils';
 import rabbyLogo from '@/ui/assets/unlock/rabby.svg';
-import unlockBackground from '@/ui/assets/unlock/background.svg';
 import { ReactComponent as BiometricsSVG } from '@/ui/assets/unlock/biometrics.svg';
 import { ReactComponent as PasswordSwitchSVG } from '@/ui/assets/dashboard/settings/password.svg';
 import { ReactComponent as BiometricSwitchSVG } from '@/ui/assets/dashboard/settings/biometric.svg';
@@ -25,8 +24,7 @@ import {
   decryptBiometricUnlockPassword,
   isBiometricUnlockSupported,
 } from '@/ui/utils/biometric';
-import { useMemoizedFn, useUnmount } from 'ahooks';
-import { useThemeMode } from '@/ui/hooks/usePreference';
+import { useMemoizedFn } from 'ahooks';
 import { useEventBusListener } from '@/ui/hooks/useEventBusListener';
 import { EVENTS } from '@/constant';
 import { ga4 } from '@/utils/ga4';
@@ -50,15 +48,8 @@ const BiometricsImage = styled.div`
 `;
 
 const UnlockPage = styled.div`
-  background-color: #ecf3ff;
-  background-image: url(${unlockBackground});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-
-  html.dark & {
-    background-color: var(--r-neutral-bg-1);
-    background-image: none;
+  h1 {
+    letter-spacing: -0.02em;
   }
 `;
 
@@ -69,22 +60,14 @@ const UnlockMethodSwitch = styled.button`
   gap: 4px;
   padding: 7px 10.5px;
   border: 0;
-  border-radius: 8px;
-  background: #ccd2ff;
+  border-radius: 12px;
+  background: var(--r-blue-light-1);
   color: var(--r-blue-default);
   font-size: 13px;
   font-weight: 500;
 
   &:hover {
-    background: #b8c1ff;
-  }
-
-  html.dark & {
-    background: #232b4e;
-  }
-
-  html.dark &:hover {
-    background: #2a3770;
+    background: var(--crb-sunken);
   }
 `;
 
@@ -358,23 +341,9 @@ const Unlock = () => {
     wallet.savedUnencryptedKeyringData().then(setHasForgotPassword);
   }, []);
 
-  useEffect(() => {
-    if (UiType.isTab || UiType.isDesktop) {
-      document.documentElement.classList.remove('dark');
-    }
-  }, []);
-
-  const { isDarkTheme } = useThemeMode();
-
-  useUnmount(() => {
-    if (isDarkTheme && !document.documentElement.classList.contains('dark')) {
-      document.documentElement.classList.add('dark');
-    }
-  });
-
   return (
     <FullscreenContainer isUnlock>
-      <UnlockPage className="unlock page-has-ant-input relative h-full min-h-[550px]">
+      <UnlockPage className="unlock crabble-atmosphere page-has-ant-input relative h-full min-h-[550px]">
         <div className="pt-[124px]">
           {showBiometricSwitch && (
             <div className="w-full absolute top-32 left-0 right-0 flex justify-center z-10">
@@ -397,12 +366,15 @@ const Unlock = () => {
               )}
             </div>
           )}
-          <img src={rabbyLogo} className="m-auto w-[100px] h-[100px]" />
+          <img
+            src={rabbyLogo}
+            className="crabble-brand-tile m-auto w-[76px] h-[76px]"
+          />
           <h1
             className={clsx(
-              'text-[24px] font-semibold',
+              'crb-display text-[40px] leading-[44px]',
               'text-r-neutral-title1',
-              'mt-12',
+              'mt-[20px]',
               'text-center'
             )}
           >
@@ -412,7 +384,7 @@ const Unlock = () => {
             className={clsx(
               'text-[14px] font-normal leading-[20px]',
               'text-r-neutral-foot',
-              'mt-12 mx-[52px]',
+              'mt-[8px] mx-[52px]',
               'text-center'
             )}
           >
@@ -430,8 +402,8 @@ const Unlock = () => {
                 <Button
                   block
                   className={clsx(
-                    'w-full py-18 h-auto rounded-[12px] border-none',
-                    'text-[17px] leading-[20px] font-normal'
+                    'w-full h-[52px] rounded-[14px] border-none',
+                    'text-[16px] leading-[20px] font-semibold'
                   )}
                   htmlType="button"
                   type="primary"
@@ -461,10 +433,11 @@ const Unlock = () => {
               <Input
                 placeholder={t('page.unlock.password.placeholder')}
                 className={clsx(
-                  'bg-r-neutral-card1 hover:border-rabby-blue-default focus:border-rabby-blue-default placeholder-r-neutral-foot',
-                  'h-[56px]',
-                  'text-13',
-                  'rounded-[8px]'
+                  'bg-[var(--crb-input-bg)] border border-solid border-[var(--crb-input-border)]',
+                  'hover:border-[var(--crb-input-border-hover)] focus:border-rabby-blue-default placeholder-r-neutral-foot',
+                  'h-[52px] px-[16px]',
+                  'text-[15px]',
+                  'rounded-[14px] shadow-[var(--crb-shadow-xs)]'
                 )}
                 size="large"
                 type="password"
@@ -481,9 +454,9 @@ const Unlock = () => {
                 <Button
                   block
                   className={clsx(
-                    'w-full py-18 h-auto rounded-[8px] border-none',
-                    'text-[17px] leading-[20px]',
-                    'font-medium'
+                    'w-full h-[52px] rounded-[14px] border-none',
+                    'text-[16px] leading-[20px]',
+                    'font-semibold'
                   )}
                   htmlType="submit"
                   type="primary"
@@ -495,10 +468,11 @@ const Unlock = () => {
 
               {hasForgotPassword && (
                 <button
+                  type="button"
                   className={clsx(
-                    'text-r-neutral-body',
+                    'text-r-neutral-foot hover:text-r-neutral-title1 transition-colors',
                     'text-13 leading-[16px] font-medium',
-                    'hover:underline'
+                    'bg-transparent border-0 cursor-pointer'
                   )}
                   onClick={() => openInternalPageInTab('forgot-password')}
                 >

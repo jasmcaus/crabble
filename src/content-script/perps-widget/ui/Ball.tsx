@@ -58,7 +58,7 @@ const RabbyBadge: React.FC = () => (
         y2="7.62689"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stopColor="#8797FF" />
+        <stop stopColor="#F28A63" />
         <stop offset="1" stopColor="#AAA8FF" />
       </linearGradient>
       <linearGradient
@@ -69,8 +69,8 @@ const RabbyBadge: React.FC = () => (
         y2="1.24447"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stopColor="#3B22A0" />
-        <stop offset="1" stopColor="#5156D8" stopOpacity="0" />
+        <stop stopColor="#A8361A" />
+        <stop offset="1" stopColor="#CF4A26" stopOpacity="0" />
       </linearGradient>
       <linearGradient
         id="rabby-perps-badge-p2"
@@ -80,8 +80,8 @@ const RabbyBadge: React.FC = () => (
         y2="5.77841"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stopColor="#3B1E8F" />
-        <stop offset="1" stopColor="#6A6FFB" stopOpacity="0" />
+        <stop stopColor="#98301A" />
+        <stop offset="1" stopColor="#F06A3C" stopOpacity="0" />
       </linearGradient>
       <linearGradient
         id="rabby-perps-badge-p3"
@@ -91,8 +91,8 @@ const RabbyBadge: React.FC = () => (
         y2="9.51895"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stopColor="#8898FF" />
-        <stop offset="0.983895" stopColor="#5F47F1" />
+        <stop stopColor="#F28A63" />
+        <stop offset="0.983895" stopColor="#E2532A" />
       </linearGradient>
       <clipPath id="rabby-perps-badge-clip">
         <rect width="12" height="12" fill="white" />

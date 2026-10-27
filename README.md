@@ -1,46 +1,24 @@
-# Rabby Wallet
+<p align="center">
+  <img src="docs/brand/crabble-app-icon.png" width="96" alt="Crabble" />
+</p>
 
-Rabby Wallet is an open-source browser plugin for the DeFi ecosystem, providing users with a better-to-use and more secure multi-chain experience.
+# Crabble
 
-Cloned at commit `f3fa88953363307d51fec897caf26001781add20` (release 0.94.13) on Oct 26 00:05 PST
+Crabble is a privacy-focused fork of [Rabby Wallet](https://github.com/RabbyHub/Rabby), the open-source browser extension wallet for Ethereum and EVM chains.
+
+Forked from Rabby at commit `f3fa88953363307d51fec897caf26001781add20` (release 0.94.13) on Oct 26 00:05 PST.
+
+![Crabble in light and dark mode](docs/screenshots/popup-light.png)
 
 ## Install
 
-You can download the latest Rabby [here](https://github.com/RabbyHub/Rabby/releases/latest).
+Crabble is not published to an extension store. Build it from source (see [Development](#development)) and load the `dist` folder as an unpacked extension from `chrome://extensions`.
 
-## Guideline for Integrating Rabby Wallet
+Crabble uses its own extension ID, so it can be installed alongside Rabby.
 
-To help dapp developers support and integrate Rabby Wallet more easily, we recommend using our integration solution that has almost NO development cost and does not introduce any uncertainty:
+## dApp compatibility
 
-### Problem
-
-When a dapp connects to an extension wallet, it usually works in this way:
-
-1. The extension wallet will integrate an "Ethereum" object into the dapp page while it's loading.
-2. The dapp will look for this "Ethereum" object to determine if an extension wallet is installed.
-3. If the "Ethereum" object is detected, all following interactions between the dapp and the extension wallet are realized by this "Ethereum" object.
-4. If the "Ethereum" object is not detected, the dapp will ask users to download a new extension wallet.
-
-The problem is that many dapps will wrongly display this detected "Ethereum" object as "MetaMask" and display a "connect to MetaMask" button by default, which brings a lot of confusion to the users since any Web3 wallet can inject this "Ethereum" object.
-
-### Solution
-
-We recommend solving the above problem with simple modifications as follows:
-
-1. On your connection page, display both connection buttons for "MetaMask" and "Rabby Wallet" when the "Ethereum" object is detected. These two buttons basically have the same function. Users can click either of them to interact with the "Ethereum" object and perform the connection operation. These two buttons are only used to display both brands' logos to help users understand their operation path.
-2. If the "Ethereum" object is not detected, then suggest that users download the extension wallet and provide download links for both "MetaMask" and "Rabby Wallet."
-
-This solution does not involve any changes to your actual business logic and is just simple UI adjustments. It does not introduce any uncertainty and is rather low cost.
-
-You can refer to [debank.com](https://debank.com) for the final display effect.
-
-### Potential Issues
-
-According to the above solution, if a user is using the "Rabby Wallet" and clicks the "connect to MetaMask" button, they will still interact with the "Rabby Wallet" and vice versa, which might be a bit weird.
-
-However, this issue is a very rare scenario and very unlikely to happen because users are not likely to click and interact with an extension wallet they haven't installed. Even if it happens, it's not a real problem from the user's perspective.
-
-Please don't hesitate to reach out if you have any doubts.
+Crabble announces itself over EIP-6963 as "Crabble" (`local.crabble`). For compatibility with dApps that look for Rabby, it still sets `window.ethereum.isRabby`.
 
 ## Contribution
 
@@ -114,8 +92,9 @@ Used by 3 pages which share the same JS code, but the HTML template is different
 
 ## Thanks
 
-Thanks to contributions from the MetaMask team to the browser extension wallet community, Rabby uses (or forks) them to make Rabby better.
+Crabble is built on [Rabby Wallet](https://github.com/RabbyHub/Rabby) by DeBank. Rabby, in turn, uses (or forks) work from the MetaMask team; thanks to both for their contributions to the browser extension wallet community.
 
 ## Other Docs
 
-- [How to add a new translation to Rabby](/docs/translation.md)
+- [How to add a new translation](/docs/translation.md)
+- [Brand assets](/docs/brand/)

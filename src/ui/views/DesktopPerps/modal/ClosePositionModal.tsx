@@ -487,7 +487,7 @@ const ClosePositionModalContent: React.FC<Omit<Props, 'visible'>> = ({
   const renderReversePositionCard = (direction: 'Long' | 'Short') => {
     const isLong = direction === 'Long';
     return (
-      <div className="rounded-[6px] border border-solid border-rb-neutral-line p-[12px]">
+      <div className="rounded-[8px] border border-solid border-rb-neutral-line p-[12px]">
         <div className="mb-[18px] flex h-[20px] items-center gap-[4px]">
           {renderReverseMarketName()}
           {renderReverseTag(reverseMarginModeLabel, 'neutral')}
@@ -578,7 +578,7 @@ const ClosePositionModalContent: React.FC<Omit<Props, 'visible'>> = ({
             block
             size="large"
             type="primary"
-            className="h-[48px] text-15 font-medium rounded-[6px]"
+            className="h-[48px] text-15 font-medium rounded-[8px]"
             loading={loading}
             disabled={!validation.isValid}
             onClick={runSubmit}
@@ -634,8 +634,8 @@ const ClosePositionModalContent: React.FC<Omit<Props, 'visible'>> = ({
                 <div
                   className={clsx(
                     'cursor-pointer w-[88px] py-[12px]',
-                    'rounded-[8px] bg-rb-neutral-bg-1',
-                    'text-center text-[13px] leading-[16px] font-medium text-rb-neutral-title-1 hover:border-rb-brand-default border border-solid border-transparent'
+                    'rounded-[12px] bg-rb-neutral-bg-1',
+                    'text-center text-[13px] leading-[16px] font-medium text-rb-neutral-title-1 hover:border-[var(--crb-hairline-strong)] border border-solid border-transparent'
                   )}
                   onClick={handleMidClick}
                 >
@@ -726,7 +726,7 @@ const ClosePositionModalContent: React.FC<Omit<Props, 'visible'>> = ({
               'h-[44px]',
               'text-blue-light',
               'border-blue-light',
-              'hover:bg-[#8697FF1A] active:bg-[#0000001A]',
+              'hover:bg-[var(--crb-sunken)] active:bg-[#0000001A]',
               'before:content-none'
             )}
           >

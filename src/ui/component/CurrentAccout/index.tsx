@@ -14,7 +14,7 @@ import { pickKeyringThemeIcon } from '@/utils/account';
 import { useThemeMode } from '@/ui/hooks/usePreference';
 
 const CurrentAccountWrapper = styled.div`
-  border-radius: 6px;
+  border-radius: 8px;
   background: rgba(255, 255, 255, 0.13);
   display: inline-flex;
   justify-content: center;
@@ -40,10 +40,10 @@ const CurrentAccountWrapper = styled.div`
   &.success {
     background: var(--r-neutral-card2, rgba(255, 255, 255, 0.06));
     .name {
-      color: var(--r-neutral-title1, #f7fafc);
+      color: var(--r-neutral-title1, #fafafa);
     }
     .addr {
-      color: var(--r-neutral-body, #d3d8e0);
+      color: var(--r-neutral-body, #d4d4d8);
     }
   }
 `;

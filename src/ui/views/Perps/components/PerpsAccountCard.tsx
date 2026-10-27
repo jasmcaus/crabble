@@ -265,7 +265,7 @@ export const PerpsAccountCard: React.FC<PerpsAccountCardProps> = ({
         // 2px stroke per Figma: pure white in light; mobile's 8% white in
         // dark, where a solid white ring would glare.
         className={clsx(
-          'bg-r-neutral-card1 rounded-[8px]',
+          'bg-r-neutral-card1 rounded-[12px]',
           'border-2 border-solid border-white dark:border-[rgba(255,255,255,0.08)]'
         )}
       >
@@ -357,7 +357,7 @@ export const PerpsAccountCard: React.FC<PerpsAccountCardProps> = ({
           className={clsx(
             'bg-r-neutral-card3 px-16 py-8',
             // Inner radius = card radius − 2px stroke.
-            'rounded-b-[6px]',
+            'rounded-b-[8px]',
             'flex items-center justify-between',
             // Light mode splits the rows by card1 vs card3 alone (no line in
             // the Figma). card1/card3 are the same color in dark mode, so a
@@ -383,7 +383,7 @@ export const PerpsAccountCard: React.FC<PerpsAccountCardProps> = ({
           </div>
           {hasNoBalance ? (
             <div
-              className="h-[36px] rounded-[8px] bg-r-blue-light1 text-r-blue-default
+              className="h-[36px] rounded-[12px] bg-r-blue-light1 text-r-blue-default
                         flex items-center justify-center gap-4 px-[16px] cursor-pointer
                         text-[14px] font-medium"
               onClick={handleDeposit}
@@ -395,14 +395,14 @@ export const PerpsAccountCard: React.FC<PerpsAccountCardProps> = ({
             // 16px frame holding the Figma 12.6px / 1.8 stroke glyph.
             <div className="flex items-center gap-8">
               <div
-                className="w-[36px] h-[36px] rounded-[8px] bg-r-blue-light1 text-r-blue-default
+                className="w-[36px] h-[36px] rounded-[12px] bg-r-blue-light1 text-r-blue-default
                           flex items-center justify-center cursor-pointer"
                 onClick={handleDeposit}
               >
                 <RcIconBalanceAdd className="w-[16px] h-[16px]" />
               </div>
               <div
-                className="w-[36px] h-[36px] rounded-[8px] bg-r-blue-light1 text-r-blue-default
+                className="w-[36px] h-[36px] rounded-[12px] bg-r-blue-light1 text-r-blue-default
                           flex items-center justify-center cursor-pointer"
                 onClick={handleWithdraw}
               >
@@ -414,7 +414,7 @@ export const PerpsAccountCard: React.FC<PerpsAccountCardProps> = ({
       </div>
       {showNewUserGuide && (
         <div
-          className="bg-r-neutral-card1 rounded-[8px] px-16 py-18 mt-12 relative overflow-hidden cursor-pointer"
+          className="bg-r-neutral-card1 rounded-[12px] px-16 py-18 mt-12 relative overflow-hidden cursor-pointer"
           onClick={onLearnMore}
         >
           <div

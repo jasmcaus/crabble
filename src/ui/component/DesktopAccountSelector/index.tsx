@@ -106,12 +106,12 @@ export const DesktopAccountSelector: React.FC<DesktopAccountSelectorProps> = ({
           aria-disabled={disabled}
           aria-expanded={isOpen}
           className={clsx(
-            'h-[32px] pl-[12px] px-[10px] rounded-[8px]',
+            'h-[32px] pl-[12px] px-[10px] rounded-[12px]',
             'flex items-center gap-[6px]',
             'border border-rb-neutral-line',
             disabled
               ? 'cursor-not-allowed opacity-50'
-              : 'cursor-pointer hover:bg-rb-brand-light-1 hover:border-rb-brand-default',
+              : 'cursor-pointer hover:bg-[var(--crb-sunken)] hover:border-[var(--crb-hairline-strong)]',
             className
           )}
         >

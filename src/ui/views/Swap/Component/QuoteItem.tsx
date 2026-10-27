@@ -35,9 +35,9 @@ const ItemWrapper = styled.div`
   align-items: center;
   background: var(--r-neutral-card-1, #fff);
 
-  border-radius: 6px;
+  border-radius: 8px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
-  border-radius: 6px;
+  border-radius: 8px;
   border: var(--quote--border-width) solid transparent;
   cursor: pointer;
 
@@ -46,23 +46,23 @@ const ItemWrapper = styled.div`
       position: absolute;
       content: '';
       inset: calc(0px - var(--quote--border-width));
-      border: var(--quote--border-width) solid var(--r-blue-default, #7084ff);
+      border: var(--quote--border-width) solid var(--r-blue-default, #f26b3a);
       background: transparent;
-      border-radius: 6px;
+      border-radius: 8px;
       z-index: 2;
       pointer-events: none;
     }
   }
 
   &.active:not(.disabled, .inSufficient) {
-    background: var(--r-blue-light-1, #eef1ff);
+    background: var(--r-blue-light-1, #fdefe9);
     &::after {
       position: absolute;
       content: '';
       inset: calc(0px - var(--quote--border-width));
-      border: var(--quote--border-width) solid var(--r-blue-default, #7084ff);
+      border: var(--quote--border-width) solid var(--r-blue-default, #f26b3a);
       background: transparent;
-      border-radius: 6px;
+      border-radius: 8px;
       z-index: 2;
       pointer-events: none;
     }
@@ -77,7 +77,7 @@ const ItemWrapper = styled.div`
 
   &:not(.cex).inSufficient,
   &:not(.cex).disabled {
-    border: var(--quote--border-width) solid var(--r-neutral-line, #d3d8e0);
+    border: var(--quote--border-width) solid var(--r-neutral-line, #d4d4d8);
     box-shadow: none;
   }
 
@@ -96,12 +96,12 @@ const ItemWrapper = styled.div`
 
   &.combined {
     height: 76px;
-    border-radius: 8px;
+    border-radius: 12px;
     border: none;
     box-shadow: none;
 
     &::after {
-      border-radius: 8px !important;
+      border-radius: 12px !important;
     }
 
     &:hover:not(.disabled, .inSufficient, .active)::after {
@@ -137,14 +137,14 @@ const ItemWrapper = styled.div`
     text-overflow: ellipsis;
     white-space: nowrap;
     font-weight: 500;
-    color: var(--r-neutral-title-1, #192945);
+    color: var(--r-neutral-title-1, #09090b);
   }
 
   .percent {
     font-weight: 500;
     font-size: 13px;
     font-weight: 500;
-    color: var(--r-blue-default, #7084ff);
+    color: var(--r-blue-default, #f26b3a);
     &.red {
       color: var(--r-red-default, #e34935);
     }
@@ -594,7 +594,7 @@ export const DexQuoteItem = (
                 ? 'quote-tag left-0 top-0 flex h-16 w-60 items-center justify-center px-8 py-1 text-12 font-medium leading-normal'
                 : 'left-[-1px] top-[-1px] px-6 py-[1px]',
               props.combined && !props.isBestQuote
-                ? 'rounded-tl-[8px] rounded-br-[8px]'
+                ? 'rounded-tl-[12px] rounded-br-[12px]'
                 : 'rounded-tl-[4px] rounded-br-[4px]',
               props.isBestQuote
                 ? 'bg-r-blue-light2 text-r-blue-default'

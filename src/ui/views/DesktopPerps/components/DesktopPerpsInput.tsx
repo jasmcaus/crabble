@@ -12,8 +12,8 @@ const StyledInput = styled(Input)`
   }
 
   &.ant-input-affix-wrapper {
-    border-radius: 8px;
-    border: 1px solid var(--rb-neutral-line, #e0e5ec);
+    border-radius: 12px;
+    border: 1px solid var(--rb-neutral-line, #e4e4e7);
     background: var(--rb-neutral-bg-1, #fff);
     padding: 11px;
     line-height: 1;

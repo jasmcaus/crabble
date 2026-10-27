@@ -53,7 +53,7 @@ const Approval: React.FC<{
     // "忽略所有" 只允许作用于当前审批, 不能在同窗口排队切换时残留到下一笔
     resetCurrentTx();
     setApproval(approval);
-    document.title = 'Rabby Wallet Notification';
+    document.title = 'Crabble Wallet Notification';
     const account = approval.data.account || (await wallet.getCurrentAccount());
     if (!account) {
       // Trusted loading boundary: rejects the exact approval just read, not whatever's current later.

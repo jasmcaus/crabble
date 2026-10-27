@@ -9,7 +9,7 @@
   }
   .card-risk-amount {
     padding: 14px;
-    border-radius: 6px;
+    border-radius: 8px;
     background-color: #fff;
     margin-bottom: 16px;
 
@@ -38,7 +38,7 @@
     }
   }
   &-list {
-    border-radius: 6px;
+    border-radius: 8px;
     background-color: #fff;
     &-header {
       display: flex;
@@ -65,9 +65,9 @@
         opacity: 0.4;
       }
       &:hover {
-        border: 1px solid var(--r-blue-default, #7084ff);
+        border: 1px solid var(--crb-hairline-strong);
         box-sizing: border-box;
-        border-radius: 6px;
+        border-radius: 8px;
       }
     }
   }
@@ -80,13 +80,13 @@
     align-items: center;
     padding: 10px 8px 10px 12px;
     border: 1px solid transparent;
-    border-radius: 6px;
+    border-radius: 8px;
     gap: 8px;
     overflow: hidden;
     cursor: pointer;
     &:hover {
-      background: var(--r-blue-light-1, #eef1ff);
-      border: 1px solid var(--r-blue-default, #7084ff);
+      background: var(--crb-sunken);
+      border: 1px solid var(--crb-hairline-strong);
     }
     &-icon {
       width: 24px;
@@ -125,14 +125,14 @@
   }
   &-card {
     border: 1px solid @color-border;
-    border-radius: 6px;
+    border-radius: 8px;
     &:not(:last-child) {
       margin-bottom: 20px;
     }
     &-header {
       background-color: @color-border;
       padding: 12px;
-      border-radius: 6px 6px 0px 0px;
+      border-radius: 8px 8px 0px 0px;
       display: flex;
       gap: 12px;
       align-items: center;
@@ -161,7 +161,7 @@
     }
     &-body {
       background-color: #fff;
-      border-radius: 6px;
+      border-radius: 8px;
     }
   }
   &-tag {
@@ -190,13 +190,13 @@
       align-items: center;
       padding: 10px 8px 10px 12px;
       border: 1px solid transparent;
-      border-radius: 6px;
+      border-radius: 8px;
       gap: 8px;
       overflow: hidden;
       min-height: 53px;
       &:hover {
-        background: var(--r-blue-light-1, #eef1ff);
-        border: 1px solid var(--r-blue-default, #7084ff);
+        background: var(--r-blue-light-1, #fdefe9);
+        border: 1px solid var(--r-blue-default, #f26b3a);
         .token-approval-project-item-risk-amount,
         .token-approval-project-item-risk-usd {
           display: none;
@@ -283,12 +283,12 @@
       height: 16px;
     }
     .ant-input-affix-wrapper-focused {
-      border-color: var(--r-blue-default, #7084ff) !important;
-      background-color: var(--r-blue-light-1, #eef1ff) !important;
+      border-color: var(--r-blue-default, #f26b3a) !important;
+      background-color: var(--r-blue-light-1, #fdefe9) !important;
     }
     .ant-input-affix-wrapper-lg {
       padding: 12px;
-      border-radius: 6px;
+      border-radius: 8px;
       border: 1px solid @color-border;
       background-color: @color-bg;
       transition: border-color 0.3s;
@@ -298,7 +298,7 @@
       }
       &:hover,
       &.active {
-        border-color: var(--r-blue-default, #7084ff);
+        border-color: var(--r-blue-default, #f26b3a);
       }
     }
   }
