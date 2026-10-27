@@ -142,7 +142,9 @@ class SwapService {
         ...quoteInfo,
         tx,
         tx_id: hash,
-      }).catch((err) => {});
+      }).catch((err) => {
+        console.error('[swap] postSwap failed', err);
+      });
     }
   };
 

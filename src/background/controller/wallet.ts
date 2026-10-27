@@ -571,7 +571,9 @@ export class WalletController extends BaseController {
     } catch (error) {
       try {
         await postGasStationOrder();
-      } catch (error) {}
+      } catch (error) {
+        console.error('[gasTopUp] postGasStationOrder failed', error);
+      }
     }
   };
 

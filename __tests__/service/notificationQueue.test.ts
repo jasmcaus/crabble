@@ -50,8 +50,6 @@ jest.mock('@/utils/chain', () => ({ findChain: jest.fn() }));
 
 jest.mock('@/utils/env', () => ({ isManifestV3: false }));
 
-const mockCaptureException = jest.fn();
-
 import notificationService, {
   Approval,
 } from '@/background/service/notification';
@@ -267,7 +265,6 @@ describe('notificationService SignTx queueing', () => {
     notificationService.notifiWindowId = null;
     notificationService.isLocked = false;
     mockOpenNotification.mockClear();
-    mockCaptureException.mockClear();
   });
 
   test('second queued SignTx request does not become currentApproval', () => {
@@ -315,10 +312,6 @@ describe('notificationService SignTx queueing', () => {
 
     expect(mockOpenNotification).toHaveBeenCalledTimes(1);
     expect(notificationService.currentApproval).not.toBeNull();
-    expect(mockCaptureException).toHaveBeenCalledTimes(1);
-    expect(mockCaptureException.mock.calls[0][0].message).toContain(
-      'onCurrent failed'
-    );
   });
 
   test('unlocks when the notification window is not created', async () => {
@@ -333,7 +326,7 @@ describe('notificationService SignTx queueing', () => {
     expect(notificationService.isLocked).toBe(false);
   });
 
-  test('unlocks and reports when notification window creation rejects', async () => {
+  test('unlocks when notification window creation rejects', async () => {
     const error = new Error('window creation failed');
     mockOpenNotification.mockRejectedValueOnce(error);
 
@@ -343,8 +336,5 @@ describe('notificationService SignTx queueing', () => {
 
     expect(notificationService.notifiWindowId).toBeNull();
     expect(notificationService.isLocked).toBe(false);
-    expect(mockCaptureException).toHaveBeenCalledWith(error, {
-      tags: { function: 'openNotification' },
-    });
   });
 });

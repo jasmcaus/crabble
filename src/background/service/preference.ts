@@ -186,7 +186,9 @@ class PreferenceService {
     let defaultLang = 'en';
     try {
       defaultLang = await getFirstPreferredLangCode();
-    } catch (e) {}
+    } catch (e) {
+      console.error('[preference] failed to read preferred language', e);
+    }
     this.store = await createPersistStore<PreferenceStore>({
       name: 'preference',
       template: {

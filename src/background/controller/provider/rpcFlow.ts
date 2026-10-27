@@ -271,7 +271,9 @@ const flowContext = flow
               !isFromRabby && origin !== INTERNAL_REQUEST_ORIGIN
             ) as Tx & Record<string, any>)
           : undefined;
-      } catch (e) {}
+      } catch (e) {
+        console.error('[rpcFlow] normalizeTxParams failed', e);
+      }
       const hasEip7702Authorization = Boolean(
         (Array.isArray(signTx?.authorizationList) &&
           signTx.authorizationList.length > 0) ||

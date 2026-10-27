@@ -408,7 +408,9 @@ class NotificationService extends Events {
             id: approval.id,
             component: approval.data.approvalComponent,
           });
-        } catch (e) {}
+        } catch (e) {
+          console.error('[notification] onCurrent failed', e);
+        }
       }
 
       if (

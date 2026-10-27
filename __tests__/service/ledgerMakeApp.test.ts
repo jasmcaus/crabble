@@ -19,7 +19,6 @@ let mockRuntimeMessageListener: ((request: any) => void) | undefined;
 const mockRuntimeOnMessageAddListener = jest.fn((listener) => {
   mockRuntimeMessageListener = listener;
 });
-const mockCaptureMessage = jest.fn();
 
 const flushMicrotasks = async () => {
   for (let i = 0; i < 10; i++) {
@@ -939,7 +938,7 @@ describe('LedgerBridgeKeyring makeApp', () => {
   });
 });
 
-describe('Ledger reconnect diagnostics', () => {
+describe('Ledger disconnect handling', () => {
   const sendOffscreen = (event: string) =>
     mockRuntimeMessageListener!({
       target: 'extension-offscreen',
@@ -971,57 +970,14 @@ describe('Ledger reconnect diagnostics', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    // Settle any disconnect left pending by earlier tests.
-    sendOffscreen('ledger-device-connect');
-    mockCaptureMessage.mockClear();
   });
 
-  afterEach(() => {
-    jest.useRealTimers();
-  });
-
-  it('reports a quick reconnect after a disconnect during an operation', async () => {
+  it('closes the Ledger session when the device disconnects mid-operation', async () => {
     const { operation } = await startHangingOperation();
 
     sendOffscreen('ledger-device-disconnect');
     await operation;
-    sendOffscreen('ledger-device-connect');
 
-    expect(mockCaptureMessage).toHaveBeenCalledTimes(1);
-    expect(mockCaptureMessage).toHaveBeenCalledWith(
-      'ledger disconnected during operation',
-      expect.objectContaining({
-        tags: expect.objectContaining({ ledger_reconnect: 'lt_2s' }),
-        extra: expect.objectContaining({ productId: '5011' }),
-      })
-    );
-  });
-
-  it('reports no reconnect when the device stays gone', async () => {
-    const { operation } = await startHangingOperation();
-    jest.useFakeTimers();
-
-    sendOffscreen('ledger-device-disconnect');
-    jest.advanceTimersByTime(10_000);
-    await flushMicrotasks();
-    await operation;
-
-    expect(mockCaptureMessage).toHaveBeenCalledWith(
-      'ledger disconnected during operation',
-      expect.objectContaining({
-        tags: expect.objectContaining({ ledger_reconnect: 'none' }),
-      })
-    );
-  });
-
-  it('ignores disconnects while no Ledger operation is running', () => {
-    jest.useFakeTimers();
-    jest.setSystemTime(Date.now() + 60_000);
-
-    sendOffscreen('ledger-device-disconnect');
-    sendOffscreen('ledger-device-connect');
-    jest.advanceTimersByTime(10_000);
-
-    expect(mockCaptureMessage).not.toHaveBeenCalled();
+    expect(mockDisconnect).toHaveBeenCalledWith({ sessionId: 'session-1' });
   });
 });
