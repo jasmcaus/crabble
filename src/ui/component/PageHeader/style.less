@@ -49,6 +49,12 @@
     background-color: var(--r-neutral-bg-2);
     padding: 0 20px;
     min-height: 64px;
+
+    /* 20px top + the 30px serif title + 14px = the 64px spacer above;
+       the default 20px bottom margin hid the top 6px of the content */
+    > .page-header:not(.switch-account) {
+      margin-bottom: 14px;
+    }
   }
   .icon-back-container {
     width: 32px;
