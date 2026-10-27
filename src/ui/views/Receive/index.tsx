@@ -290,12 +290,7 @@ const Receive = () => {
           </div>
         </div>
 
-        <SeedPhraseBackupAlert
-          className={clsx(
-            'text-r-red-default bg-r-red-light rounded-[12px]',
-            'mb-[8px] mt-[-12px]'
-          )}
-        />
+        <SeedPhraseBackupAlert className="mb-[8px] mt-[-12px]" />
         <OfflineChainNotify
           className="receive-offline-chain-notify w-full"
           itemClassName="rounded-[12px] mb-[8px]"

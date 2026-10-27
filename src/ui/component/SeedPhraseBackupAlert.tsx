@@ -7,25 +7,11 @@ import { useMemoizedFn } from 'ahooks';
 import AuthenticationModal from './AuthenticationModal';
 import { useWallet } from '../utils';
 import React from 'react';
-import { ReactComponent as RcIconInfoCC } from '@/ui/assets/dashboard/warning-cc.svg';
-import { ReactComponent as RcIconArrowRightCC } from '@/ui/assets/dashboard/arrow-right-1-cc.svg';
-import styled from 'styled-components';
+import { ChevronRight, ShieldAlert } from 'lucide-react';
+import { cn } from './ui/cn';
 import { UI_TYPE } from '@/constant/ui';
 import { obj2query } from '../utils/url';
 import browser from 'webextension-polyfill';
-
-const AlertContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 6px 14px;
-  background: var(--r-orange-light, #fff5e2);
-  font-size: 13px;
-  line-height: 16px;
-  font-weight: 500;
-  color: var(--r-orange-default, #ffb020);
-  cursor: pointer;
-`;
 
 export const SeedPhraseBackupAlert: React.FC<{
   style?: React.CSSProperties;
@@ -110,12 +96,34 @@ export const SeedPhraseBackupAlert: React.FC<{
   }
 
   return (
-    <AlertContainer style={style} className={className} onClick={handleBackup}>
-      <RcIconInfoCC />
-      <div className="truncate flex-1">
-        {t('component.SeedPhraseBackupAlert.message')}
-      </div>
-      <RcIconArrowRightCC />
-    </AlertContainer>
+    <button
+      type="button"
+      style={style}
+      className={cn(
+        'w-full flex items-center gap-[10px] px-[12px] py-[10px] rounded-[12px] border-0 cursor-pointer text-left',
+        'bg-r-orange-light shadow-[inset_0_0_0_1px_rgba(245,158,11,0.18)]',
+        'transition-[filter] hover:brightness-[0.98] active:brightness-[0.96]',
+        'focus-visible:shadow-[var(--crb-ring)] outline-none',
+        className
+      )}
+      onClick={handleBackup}
+    >
+      <span className="w-[28px] h-[28px] shrink-0 rounded-full flex items-center justify-center bg-[rgba(245,158,11,0.16)] text-r-orange-default">
+        <ShieldAlert size={16} strokeWidth={2.25} />
+      </span>
+      <span className="flex-1 min-w-0">
+        <span className="block text-[13px] leading-[16px] font-semibold text-r-neutral-title1 truncate">
+          {t('component.SeedPhraseBackupAlert.title')}
+        </span>
+        <span className="block mt-[1px] text-[12px] leading-[16px] text-r-neutral-foot truncate">
+          {t('component.SeedPhraseBackupAlert.desc')}
+        </span>
+      </span>
+      <ChevronRight
+        size={16}
+        strokeWidth={2.25}
+        className="shrink-0 text-r-neutral-foot"
+      />
+    </button>
   );
 };

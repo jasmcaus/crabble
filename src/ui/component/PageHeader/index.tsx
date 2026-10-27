@@ -1,7 +1,7 @@
 import { Account } from '@/background/service/preference';
-import { ReactComponent as RcIconDownCC } from '@/ui/assets/arrow-down-cc.svg';
 import { useSceneAccountInfo } from '@/ui/hooks/backgroundState/useAccount';
-import { useBrandIcon } from '@/ui/hooks/useBrandIcon';
+import { AddressAvatar } from '@/ui/component/ui/AddressAvatar';
+import { ChevronDown, Eye } from 'lucide-react';
 import { useRabbyDispatch } from '@/ui/store';
 import { getUiType, useAlias } from '@/ui/utils';
 import clsx from 'clsx';
@@ -143,13 +143,6 @@ const AccountSwitchInner = ({
   onSwitchAccountClick?: () => void;
   onBeforeSwitchAccountChange?: (nextAccount: Account) => void | Promise<void>;
 }) => {
-  const addressTypeIcon = useBrandIcon({
-    address: currentAccount?.address,
-    brandName: currentAccount?.brandName,
-    type: currentAccount?.type,
-    forceLight: false,
-  });
-
   const [alias] = useAlias(currentAccount.address);
   const { t } = useTranslation();
 
@@ -179,7 +172,15 @@ const AccountSwitchInner = ({
             setIsShowModal(true);
           }}
         >
-          <img className="w-[16px] h-[16px] mr-[4px]" src={addressTypeIcon} />
+          <AddressAvatar
+            address={currentAccount.address}
+            type={currentAccount.type}
+            brandName={currentAccount.brandName}
+            size={18}
+            badge={false}
+            signal={false}
+            className="mr-[4px]"
+          />
           <div
             className={clsx(
               'text-r-neutral-body text-[13px] leading-[16px] font-semibold',
@@ -188,8 +189,20 @@ const AccountSwitchInner = ({
           >
             {alias}
           </div>
+          {isWatchAddress && (
+            <Eye
+              size={13}
+              strokeWidth={2.25}
+              className="ml-[3px] shrink-0 text-r-neutral-foot"
+              aria-label={t('page.manageAddress.watch-address')}
+            />
+          )}
           {disableSwitch ? null : (
-            <RcIconDownCC className="text-r-neutral-foot w-[16px] h-[16px]" />
+            <ChevronDown
+              size={14}
+              strokeWidth={2.25}
+              className="ml-[1px] shrink-0 text-r-neutral-foot"
+            />
           )}
         </div>
       </div>

@@ -1,612 +1,598 @@
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useHistory, useLocation } from 'react-router-dom';
-import { VariableSizeList as VList, ListOnScrollProps } from 'react-window';
-import { PageHeader } from 'ui/component';
-import AddressItem from './AddressItem';
-import { ReactComponent as RcIconPinned } from 'ui/assets/icon-pinned.svg';
-import { ReactComponent as RcIconPinnedFill } from 'ui/assets/icon-pinned-fill.svg';
-
-import './style.less';
-import { obj2query } from '@/ui/utils/url';
-import { useRabbyDispatch, useRabbySelector } from '@/ui/store';
+import { Button, Input, Skeleton } from 'antd';
+import { useMemoizedFn, useRequest } from 'ahooks';
 import clsx from 'clsx';
-import { ReactComponent as RcIconAddAddress } from '@/ui/assets/address/new-address.svg';
-import { ReactComponent as RcIconRight } from '@/ui/assets/address/right.svg';
-import { ReactComponent as RcNoMatchedAddress } from '@/ui/assets/address/no-matched-addr.svg';
-
-import { EVENTS, KEYRING_CLASS } from '@/constant';
-import { useDebounceFn, useRequest } from 'ahooks';
-import { SessionStatusBar } from '@/ui/component/WalletConnect/SessionStatusBar';
-import { LedgerStatusBar } from '@/ui/component/ConnectStatus/LedgerStatusBar';
-import { GridPlusStatusBar } from '@/ui/component/ConnectStatus/GridPlusStatusBar';
-import useSyncStaleValue from '@/ui/hooks/useDebounceValue';
-// import { AddressSortIconMapping, AddressSortPopup } from './SortPopup';
-import { IDisplayedAccountWithBalance } from '@/ui/state/accountToDisplay';
-import { SortInput } from './SortInput';
-import ThemeIcon from '@/ui/component/ThemeMode/ThemeIcon';
-import { KeystoneStatusBar } from '@/ui/component/ConnectStatus/KeystoneStatusBar';
-import dayjs from 'dayjs';
-import { useAccounts } from '@/ui/hooks/useAccounts';
-import { useWallet } from '@/ui/utils';
-import { useCheckSeedPhraseBackup } from '@/ui/utils/useCheckSeedPhraseBackup';
-import { useEnterPassphraseModal } from '@/ui/hooks/useEnterPassphraseModal';
-import AuthenticationModal from '@/ui/component/AuthenticationModal';
-import { UI_TYPE } from '@/constant/ui';
-import { ReactComponent as RcIconArrowRight14 } from '@/ui/assets/address/arrow-right-14.svg';
-import { useMemoizedFn } from 'ahooks';
+import {
+  ChevronDown,
+  ChevronRight,
+  Copy,
+  Pin,
+  Plus,
+  Search,
+  Settings2,
+} from 'lucide-react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 import browser from 'webextension-polyfill';
 
-function NoAddressUI() {
+import { KEYRING_CLASS } from '@/constant';
+import { UI_TYPE } from '@/constant/ui';
+import AuthenticationModal from '@/ui/component/AuthenticationModal';
+import { LedgerStatusBar } from '@/ui/component/ConnectStatus/LedgerStatusBar';
+import { GridPlusStatusBar } from '@/ui/component/ConnectStatus/GridPlusStatusBar';
+import { KeystoneStatusBar } from '@/ui/component/ConnectStatus/KeystoneStatusBar';
+import { SessionStatusBar } from '@/ui/component/WalletConnect/SessionStatusBar';
+import { AddressAvatar } from '@/ui/component/ui/AddressAvatar';
+import { IconButton } from '@/ui/component/ui/IconButton';
+import { SelectedMark } from '@/ui/component/ui/SelectedMark';
+import { useAccounts } from '@/ui/hooks/useAccounts';
+import { useCurrency } from '@/ui/hooks/useCurrency';
+import { useEnterPassphraseModal } from '@/ui/hooks/useEnterPassphraseModal';
+import { IDisplayedAccountWithBalance } from '@/ui/state/accountToDisplay';
+import { useRabbyDispatch, useRabbySelector } from '@/ui/store';
+import { formatCurrency, isSameAddress, useAlias, useWallet } from '@/ui/utils';
+import { sortAccountsByBalance } from '@/ui/utils/account';
+import { copyAddress } from '@/ui/utils/clipboard';
+import { obj2query } from '@/ui/utils/url';
+import { isSameAccount } from '@/utils/account';
+import { PageHeader } from 'ui/component';
+import { BalanceLabel } from '../Dashboard/components/BalanceView/BalanceLabel';
+import { getWalletScore, getWalletTypeName } from '../ManageAddress/hooks';
+
+type Account = IDisplayedAccountWithBalance;
+
+type AccountGroup = {
+  key: string;
+  name: string;
+  type: string;
+  accounts: Account[];
+  total: number;
+};
+
+const SEARCH_THRESHOLD = 6;
+
+const groupKey = (account: Account) => {
+  if (account.type === KEYRING_CLASS.MNEMONIC) {
+    return `hd:${account.publicKey || account.brandName}`;
+  }
+  if (account.type === KEYRING_CLASS.WATCH) return 'watch';
+  return `${account.type}:${account.brandName}`;
+};
+
+const matchesKeyword = (account: Account, keyword: string) => {
+  const kw = keyword.trim().toLowerCase();
+  if (!kw) return true;
+  const address = account.address.toLowerCase();
+  if (address === kw) return true;
+  if (account.alianName?.toLowerCase().includes(kw)) return true;
+  return kw.replace(/^0x/, '').length >= 2 && address.includes(kw);
+};
+
+const shortAddress = (address: string) => {
+  const lower = address.toLowerCase();
+  return `${lower.slice(0, 6)}…${lower.slice(-4)}`;
+};
+
+/**
+ * Accounts grouped by wallet the way the user created them: one group per
+ * seed phrase, then private keys, hardware and other brands, then watch-only.
+ */
+const useAccountGroups = (accounts: Account[], keyword: string) => {
   const { t } = useTranslation();
+  const highlighted = useRabbySelector(
+    (s) => s.addressManagement.highlightedAddresses
+  );
+
+  return useMemo(() => {
+    const isPinned = (a: Account) =>
+      highlighted.some(
+        (h) =>
+          isSameAddress(h.address, a.address) && h.brandName === a.brandName
+      );
+
+    const byKey = new Map<string, Account[]>();
+    accounts.forEach((account) => {
+      const key = groupKey(account);
+      byKey.set(key, [...(byKey.get(key) || []), account]);
+    });
+
+    const seedPhraseCount = [...byKey.keys()].filter((k) => k.startsWith('hd:'))
+      .length;
+    let seedPhraseIndex = 0;
+
+    const groups: AccountGroup[] = [...byKey.entries()].map(([key, list]) => {
+      const { type, brandName } = list[0];
+      let name = getWalletTypeName(brandName || type);
+      if (key.startsWith('hd:') && seedPhraseCount > 1) {
+        seedPhraseIndex += 1;
+        name = `${name} ${seedPhraseIndex}`;
+      }
+      if (type === KEYRING_CLASS.WATCH) {
+        name = t('page.manageAddress.watch-address');
+      }
+      const sorted = sortAccountsByBalance(list);
+      const pinned = sorted.filter(isPinned);
+      const rest = sorted.filter((a) => !isPinned(a));
+      const total = list.reduce((sum, a) => sum + (a.balance || 0), 0);
+      return { key, name, type, accounts: [...pinned, ...rest], total };
+    });
+
+    groups.sort((a, b) => {
+      if (a.type === KEYRING_CLASS.WATCH) return 1;
+      if (b.type === KEYRING_CLASS.WATCH) return -1;
+      return getWalletScore(a.accounts) - getWalletScore(b.accounts);
+    });
+
+    const visible = groups
+      .map((g) => ({
+        ...g,
+        accounts: g.accounts.filter((a) => matchesKeyword(a, keyword)),
+      }))
+      .filter((g) => g.accounts.length > 0);
+
+    return { groups: visible, isPinned };
+  }, [accounts, keyword, highlighted, t]);
+};
+
+/** which seed phrase groups still need a backup, keyed by group */
+const useSeedPhraseBackupStatus = (groups: AccountGroup[]) => {
+  const wallet = useWallet();
+  const seedGroups = groups.filter((g) => g.type === KEYRING_CLASS.MNEMONIC);
+  const depKey = seedGroups.map((g) => g.key).join(',');
+
+  const { data } = useRequest(
+    async () => {
+      const entries = await Promise.all(
+        seedGroups.map(async (g) => {
+          try {
+            const hasBackup = await wallet.checkSeedPhraseBackup(
+              g.accounts[0].address
+            );
+            return [g.key, !hasBackup] as const;
+          } catch (e) {
+            return [g.key, false] as const;
+          }
+        })
+      );
+      return Object.fromEntries(entries) as Record<string, boolean>;
+    },
+    { refreshDeps: [depKey], refreshOnWindowFocus: true }
+  );
+
+  return data || {};
+};
+
+const AccountRow = ({
+  account,
+  isCurrent,
+  isPinned,
+  onSelect,
+  onDetail,
+  children,
+}: {
+  account: Account;
+  isCurrent: boolean;
+  isPinned: boolean;
+  onSelect: () => void;
+  onDetail: () => void;
+  children?: React.ReactNode;
+}) => {
+  const { t } = useTranslation();
+  const [alias] = useAlias(account.address);
+  const { currency } = useCurrency();
+  const hiddenBalance = useRabbySelector((s) => s.preference.hiddenBalance);
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    if (!copied) return;
+    const timer = setTimeout(() => setCopied(false), 1400);
+    return () => clearTimeout(timer);
+  }, [copied]);
 
   return (
-    <div className="no-address pt-[90px]">
-      <ThemeIcon
-        className="no-data-image w-[52px] h-[52px]"
-        src={RcNoMatchedAddress}
-      />
-      <p className="text-14 text-r-neutral-body mt-[24px]">
-        {t('page.manageAddress.no-address')}
-      </p>
+    <div
+      className={clsx(
+        'rounded-[14px]',
+        isCurrent && 'bg-r-neutral-card1 shadow-[var(--crb-shadow-card)]'
+      )}
+    >
+      <div
+        role="button"
+        tabIndex={0}
+        aria-current={isCurrent ? 'true' : undefined}
+        className={clsx(
+          'group/row flex items-center gap-[12px] h-[60px] pl-[10px] pr-[12px] rounded-[14px] cursor-pointer outline-none',
+          'focus-visible:shadow-[var(--crb-ring)]',
+          !isCurrent && 'crb-row'
+        )}
+        onClick={onSelect}
+        onKeyDown={(e) => {
+          if (e.target !== e.currentTarget) return;
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            onSelect();
+          }
+        }}
+      >
+        <AddressAvatar
+          address={account.address}
+          type={account.type}
+          brandName={account.brandName}
+          size={36}
+        />
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-[4px] min-w-0">
+            <span
+              className="text-[14px] leading-[18px] font-medium text-r-neutral-title1 truncate"
+              title={alias || account.alianName}
+            >
+              {alias || account.alianName}
+            </span>
+            {isPinned && (
+              <Pin
+                size={11}
+                strokeWidth={2.25}
+                className="shrink-0 text-r-neutral-foot"
+                aria-label={t('page.manageAddress.pinned')}
+              />
+            )}
+          </div>
+          <div className="flex items-center gap-[6px] mt-[2px] text-[12px] leading-[16px] text-r-neutral-foot tabular-nums">
+            <span className="crb-mono" title={account.address}>
+              {shortAddress(account.address)}
+            </span>
+            <span aria-hidden>·</span>
+            <span className="truncate">
+              {hiddenBalance
+                ? '*****'
+                : formatCurrency(account.balance || 0, { currency })}
+            </span>
+          </div>
+        </div>
+        <div
+          className={clsx(
+            'flex items-center gap-[2px] opacity-0 transition-opacity',
+            'group-hover/row:opacity-100 group-focus-within/row:opacity-100'
+          )}
+        >
+          <IconButton
+            size="sm"
+            label={copied ? t('global.copied') : t('global.copyAddress')}
+            onClick={(e) => {
+              e.stopPropagation();
+              copyAddress(account.address);
+              setCopied(true);
+            }}
+          >
+            <Copy size={14} strokeWidth={2.25} />
+          </IconButton>
+          <IconButton
+            size="sm"
+            label={t('page.manageAddress.accountDetails')}
+            onClick={(e) => {
+              e.stopPropagation();
+              onDetail();
+            }}
+          >
+            <Settings2 size={14} strokeWidth={2.25} />
+          </IconButton>
+        </div>
+        <span className="w-[20px] flex justify-end shrink-0">
+          {isCurrent && <SelectedMark />}
+        </span>
+      </div>
+      {children}
     </div>
   );
-}
+};
 
-function NoSearchedAddressUI() {
-  const { t } = useTranslation();
+const AccountRowsSkeleton = () => (
+  <div className="px-[10px] pt-[16px] flex flex-col gap-[16px]">
+    {[0, 1, 2].map((i) => (
+      <div key={i} className="flex items-center gap-[12px]">
+        <Skeleton.Avatar active shape="square" size={36} />
+        <div className="flex-1">
+          <Skeleton.Input active size="small" style={{ width: 140 }} />
+        </div>
+      </div>
+    ))}
+  </div>
+);
 
-  return (
-    <div className="no-matched-address">
-      <ThemeIcon
-        className="no-data-image w-[52px] h-[52px]"
-        src={RcNoMatchedAddress}
+const CurrentAccountStatusBar = ({ account }: { account: Account }) => {
+  const cls = 'mx-[10px] mb-[10px] mt-0 bg-r-neutral-card2';
+  if (account.type === KEYRING_CLASS.WALLETCONNECT) {
+    return (
+      <SessionStatusBar
+        address={account.address}
+        brandName={account.brandName}
+        type={account.type}
+        className={cls}
       />
-      <p className="text-14 text-r-neutral-body mt-[24px]">
-        {t('page.manageAddress.no-match')}
-      </p>
-    </div>
-  );
-}
+    );
+  }
+  if (account.type === KEYRING_CLASS.Coinbase) {
+    return (
+      <SessionStatusBar
+        address={account.address}
+        brandName={KEYRING_CLASS.Coinbase}
+        type={KEYRING_CLASS.Coinbase}
+        className={cls}
+      />
+    );
+  }
+  if (account.type === KEYRING_CLASS.HARDWARE.LEDGER) {
+    return <LedgerStatusBar className={cls} />;
+  }
+  if (account.type === KEYRING_CLASS.HARDWARE.GRIDPLUS) {
+    return <GridPlusStatusBar className={cls} />;
+  }
+  if (account.brandName === 'Keystone') {
+    return <KeystoneStatusBar className={cls} />;
+  }
+  return null;
+};
 
-const AddressManagement = () => {
+const AccountSwitcher = () => {
   const { t } = useTranslation();
   const history = useHistory();
-  const location = useLocation();
-  const enableSwitch = location.pathname === '/switch-address';
   const dispatch = useRabbyDispatch();
-
-  const {
-    sortedAccountsList,
-    watchSortedAccountsList,
-    addressSortStore,
-    accountsList,
-    highlightedAddresses,
-    fetchAllAccounts,
-    loadingAccounts,
-    allSortedAccountList,
-  } = useAccounts();
-  const [searchKeyword, setSearchKeyword] = React.useState(
-    addressSortStore?.search || ''
-  );
-  const debouncedSearchKeyword = useSyncStaleValue(searchKeyword, 250);
   const wallet = useWallet();
+  const { currency } = useCurrency();
 
-  const {
-    accountList,
-    filteredAccounts,
-    noAnyAccount,
-    noAnySearchedAccount,
-  } = useMemo(() => {
-    const result = {
-      accountList: allSortedAccountList,
-      filteredAccounts: [] as typeof sortedAccountsList,
-      noAnyAccount: false,
-      noAnySearchedAccount: false,
-    };
+  const { accountsList, fetchAllAccounts, loadingAccounts } = useAccounts();
+  const currentAccount = useRabbySelector((s) => s.account.currentAccount);
+  const hiddenBalance = useRabbySelector((s) => s.preference.hiddenBalance);
 
-    result.filteredAccounts = [...result.accountList];
-    if (addressSortStore.sortType === 'addressType') {
-      result.filteredAccounts = sortedAccountsList;
-    }
-
-    if (debouncedSearchKeyword) {
-      const lKeyword = debouncedSearchKeyword.toLowerCase();
-
-      if (addressSortStore.sortType === 'addressType') {
-        result.filteredAccounts = (result.filteredAccounts as IDisplayedAccountWithBalance[][])
-          .map((group) =>
-            group.filter((account) => {
-              const lowerAddress = account.address.toLowerCase();
-              const aliasName = account.alianName?.toLowerCase();
-              let addrIncludeKw = false;
-              if (lKeyword.replace(/^0x/, '').length >= 2) {
-                addrIncludeKw = account.address
-                  .toLowerCase()
-                  .includes(lKeyword.toLowerCase());
-              }
-
-              return (
-                lowerAddress === lKeyword ||
-                aliasName?.includes(lKeyword) ||
-                addrIncludeKw
-              );
-            })
-          )
-          .filter((group) => group.length > 0);
-      } else {
-        result.filteredAccounts = result.accountList.filter((account) => {
-          const lowerAddress = account.address.toLowerCase();
-          const aliasName = account.alianName?.toLowerCase();
-          let addrIncludeKw = false;
-          if (lKeyword.replace(/^0x/, '').length >= 2) {
-            addrIncludeKw = account.address
-              .toLowerCase()
-              .includes(lKeyword.toLowerCase());
-          }
-
-          return (
-            lowerAddress === lKeyword ||
-            aliasName?.includes(lKeyword) ||
-            addrIncludeKw
-          );
-        });
-      }
-    }
-
-    result.noAnyAccount = result.accountList.length <= 0 && !loadingAccounts;
-    result.noAnySearchedAccount =
-      result.filteredAccounts.length <= 0 && !loadingAccounts;
-
-    return result;
-  }, [
-    sortedAccountsList,
-    watchSortedAccountsList,
-    debouncedSearchKeyword,
-    addressSortStore.sortType,
-  ]);
+  const [keyword, setKeyword] = useState('');
+  const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     fetchAllAccounts();
   }, []);
 
-  const {
-    runAsync: handleUpdateAllBalance,
-    loading: isUpdateAllBalanceLoading,
-  } = useRequest(() => dispatch.accountToDisplay.updateAllBalance(), {
-    manual: true,
-    // onError: (e) => {
-    //   message.error('Update balance failed');
-    // },
+  const { groups, isPinned } = useAccountGroups(accountsList, keyword);
+  const needsBackup = useSeedPhraseBackupStatus(groups);
+
+  const { ownedTotal, watchedTotal, hasWatched } = useMemo(() => {
+    let owned = 0;
+    let watched = 0;
+    let anyWatched = false;
+    accountsList.forEach((a) => {
+      if (a.type === KEYRING_CLASS.WATCH) {
+        watched += a.balance || 0;
+        anyWatched = true;
+      } else {
+        owned += a.balance || 0;
+      }
+    });
+    return { ownedTotal: owned, watchedTotal: watched, hasWatched: anyWatched };
+  }, [accountsList]);
+
+  const switchAccount = useMemoizedFn(async (account: Account) => {
+    if (!currentAccount || !isSameAccount(account, currentAccount)) {
+      await dispatch.account.changeAccountAsync(account);
+    }
+    history.replace('/dashboard');
   });
 
-  const currentAccount = useRabbySelector((s) => s.account.currentAccount);
-
-  const { hasBackup } = useCheckSeedPhraseBackup(
-    {
-      address: currentAccount?.address || '',
-      type: currentAccount?.type || '',
-    },
-    {
-      refreshOnWindowFocus: true,
-    }
-  );
+  const gotoDetail = useMemoizedFn((account: Account) => {
+    history.push(
+      `/settings/address-detail?${obj2query({
+        address: account.address,
+        type: account.type,
+        brandName: account.brandName,
+        byImport: ((account.byImport as unknown) as string) || '',
+      })}`
+    );
+  });
 
   const invokeEnterPassphrase = useEnterPassphraseModal('address');
-
-  const handleBackupSeedPhrase = useMemoizedFn(async () => {
-    const address = currentAccount?.address;
-    if (!address) return;
-
-    let data = '';
+  const backupSeedPhrase = useMemoizedFn(async (address: string) => {
     if (UI_TYPE.isDesktop) {
       await wallet.setPageStateCache({
         path: '/switch-address',
-        params: {
-          action: 'address-backup',
-          backupType: 'mneonics',
-        },
-        states: {
-          action: 'address-backup',
-        },
+        params: { action: 'address-backup', backupType: 'mneonics' },
+        states: { action: 'address-backup' },
       });
       try {
         await browser.action.openPopup();
       } catch (e) {
         console.error('open popup failed', e);
       }
-    } else {
-      await AuthenticationModal({
-        confirmText: t('global.confirm'),
-        cancelText: t('global.Cancel'),
-        title: t('page.addressDetail.backup-seed-phrase'),
-        validationHandler: async (password: string) => {
-          await invokeEnterPassphrase(address);
-          data = await wallet.getMnemonics(password, address);
-        },
-        onFinished() {
-          history.push({
-            pathname: '/settings/address-backup/mneonics',
-            state: {
-              data: data,
-              goBack: true,
-            },
-          });
-        },
-        onCancel() {},
-        wallet,
-      });
+      return;
     }
+
+    let data = '';
+    await AuthenticationModal({
+      confirmText: t('global.confirm'),
+      cancelText: t('global.Cancel'),
+      title: t('page.addressDetail.backup-seed-phrase'),
+      validationHandler: async (password: string) => {
+        await invokeEnterPassphrase(address);
+        data = await wallet.getMnemonics(password, address);
+      },
+      onFinished() {
+        history.push({
+          pathname: '/settings/address-backup/mneonics',
+          state: { data, goBack: true },
+        });
+      },
+      onCancel() {
+        // keep the switcher open
+      },
+      wallet,
+    });
   });
 
-  const currentAccountIndex = useMemo(() => {
-    if (!currentAccount || !enableSwitch) {
-      return -1;
-    }
-    return accountList.findIndex((e) =>
-      (['address', 'brandName', 'type'] as const).every(
-        (key) => e[key]?.toLowerCase() === currentAccount[key]?.toLowerCase()
-      )
-    );
-  }, [accountList, currentAccount, enableSwitch]);
-
-  const gotoAddAddress = useCallback(() => {
-    history.push('/add-address');
-  }, []);
-
-  const gotoManageAddress = useCallback(() => {
-    history.push('/settings/address?back=true');
-  }, []);
-
-  const switchAccount = useCallback(
-    async (account: typeof accountsList[number]) => {
-      await dispatch.account.changeAccountAsync(account);
-      history.push('/dashboard');
-    },
-    [dispatch?.account?.changeAccountAsync]
-  );
-
-  const AddNewAddressColumn = useMemo(() => {
-    return (
-      <div
-        onClick={gotoAddAddress}
-        className="address-add-button mt-20 h-[52px] flex items-center justify-center gap-[8px] rounded-lg cursor-pointer transition-colors"
-      >
-        <RcIconAddAddress className={clsx('w-[20px] h-[20px]')} />
-
-        <span className="text-13 font-medium">
-          {t('page.manageAddress.addNewAddress')}
-        </span>
-      </div>
-    );
-  }, [gotoAddAddress]);
-
-  const Row = useCallback(
-    (
-      props: any //ListChildComponentProps<typeof accountsList[] | typeof accountsList>
-    ) => {
-      const { data, index, style } = props;
-      const account = data[index];
-
-      const render = (
-        account: typeof accountsList[number],
-        isGroup = false
-      ) => {
-        const favorited = highlightedAddresses.some(
-          (highlighted) =>
-            account.address === highlighted.address &&
-            account.brandName === highlighted.brandName
-        );
-
-        return (
-          <>
-            <div
-              className={clsx(
-                'address-wrap-with-padding px-[20px]',
-                isGroup && 'row-group'
-              )}
-              style={!isGroup ? style : undefined}
-              key={account.address}
-            >
-              <AddressItem
-                balance={account.balance}
-                address={account.address}
-                type={account.type}
-                brandName={account.brandName}
-                alias={account.alianName}
-                isUpdatingBalance={isUpdateAllBalanceLoading}
-                extra={
-                  <div
-                    className={clsx(
-                      'icon-star border-none px-0',
-                      favorited
-                        ? 'is-active'
-                        : 'opacity-0 group-hover:opacity-100'
-                    )}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      dispatch.addressManagement.toggleHighlightedAddressAsync({
-                        address: account.address,
-                        brandName: account.brandName,
-                      });
-                      wallet.emitEvent(EVENTS.RELOAD_ACCOUNT_LIST);
-                    }}
-                  >
-                    <ThemeIcon
-                      className="w-[13px] h-[13px]"
-                      src={favorited ? RcIconPinnedFill : RcIconPinned}
-                    />
-                  </div>
-                }
-                onClick={() => {
-                  history.push(
-                    `/settings/address-detail?${obj2query({
-                      address: account.address,
-                      type: account.type,
-                      brandName: account.brandName,
-                      //@ts-expect-error byImport is boolean
-                      byImport: account.byImport || '',
-                    })}`
-                  );
-                }}
-                onSwitchCurrentAccount={() => {
-                  switchAccount(account);
-                }}
-                enableSwitch={enableSwitch}
-              />
-
-              {!isGroup && index === data.length - 1
-                ? AddNewAddressColumn
-                : null}
-            </div>
-          </>
-        );
-      };
-
-      if (addressSortStore.sortType === 'addressType') {
-        return (
-          <div style={style} className="address-type-container">
-            {(account as typeof accountsList)?.map((e) => render(e, true))}
-            {index === data.length - 1 ? (
-              <div className="mx-20">{AddNewAddressColumn}</div>
-            ) : null}
-          </div>
-        );
-      }
-
-      return render(account as typeof accountsList[number]);
-    },
-    [
-      highlightedAddresses,
-      isUpdateAllBalanceLoading,
-      switchAccount,
-      addressSortStore?.sortType,
-      dispatch?.addressManagement?.toggleHighlightedAddressAsync,
-    ]
-  );
-
-  const isWalletConnect =
-    accountList[currentAccountIndex]?.type === KEYRING_CLASS.WALLETCONNECT;
-  const isLedger =
-    accountList[currentAccountIndex]?.type === KEYRING_CLASS.HARDWARE.LEDGER;
-  const isKeystone = accountList[currentAccountIndex]?.brandName === 'Keystone';
-  const isGridPlus =
-    accountList[currentAccountIndex]?.type === KEYRING_CLASS.HARDWARE.GRIDPLUS;
-  const isCoinbase =
-    accountList[currentAccountIndex]?.type === KEYRING_CLASS.Coinbase;
-  const hasStatusBar = isWalletConnect || isLedger || isGridPlus || isCoinbase;
-  const showBackupWarning =
-    currentAccountIndex !== -1 &&
-    accountList[currentAccountIndex]?.type === KEYRING_CLASS.MNEMONIC &&
-    !hasBackup;
-
-  useEffect(() => {
-    dispatch.preference.setAddressSortStoreValue({
-      key: 'search',
-      value: searchKeyword,
-    });
-  }, [searchKeyword]);
-
-  const listRef = useRef<
-    VList<IDisplayedAccountWithBalance[] | IDisplayedAccountWithBalance[][]>
-  >(null);
-
-  const { run: handleScroll } = useDebounceFn(
-    (p: ListOnScrollProps) => {
-      dispatch.preference.setAddressSortStoreValue({
-        key: 'lastScrollOffset',
-        value: p.scrollOffset,
-      });
-    },
-    {
-      wait: 500,
-    }
-  );
-
-  useEffect(() => {
-    if (
-      addressSortStore.lastCurrentRecordTime &&
-      dayjs().isAfter(
-        dayjs.unix(addressSortStore.lastCurrentRecordTime).add(15, 'minute')
-      )
-    ) {
-      setSearchKeyword('');
-      return () => {
-        dispatch.preference.setAddressSortStoreValue({
-          key: 'lastCurrentRecordTime',
-          value: dayjs().unix(),
-        });
-      };
-    }
-
-    if (
-      addressSortStore.lastCurrentRecordTime &&
-      addressSortStore.lastScrollOffset &&
-      filteredAccounts?.length
-    ) {
-      listRef.current?.scrollTo(addressSortStore.lastScrollOffset);
-
-      return () => {
-        dispatch.preference.setAddressSortStoreValue({
-          key: 'lastCurrentRecordTime',
-          value: dayjs().unix(),
-        });
-      };
-    }
-  }, []);
-
-  const getItemSize = React.useCallback(
-    (i: number) => {
-      const lastAddAddrBtn = 52 + 20;
-      const lastPadding =
-        i === filteredAccounts.length - 1 ? 24 + lastAddAddrBtn : 0;
-      if (addressSortStore.sortType === 'addressType') {
-        return (
-          52 * (filteredAccounts as typeof accountsList[])[i].length +
-          20 +
-          lastPadding
-        );
-      }
-
-      return lastPadding + (i !== sortedAccountsList.length - 1 ? 60 : 76);
-    },
-    [filteredAccounts, sortedAccountsList, addressSortStore.sortType]
-  );
-
-  useEffect(() => {
-    listRef.current?.resetAfterIndex(0);
-  }, [accountsList.length]);
+  const showSearch = accountsList.length > SEARCH_THRESHOLD || !!keyword;
 
   return (
-    <div className="page-address-management px-0 overflow-hidden">
-      <PageHeader className="address-page-header mx-[20px]">
-        {enableSwitch
-          ? t('page.manageAddress.current-address')
-          : t('page.manageAddress.address-management')}
-        <div
-          className="address-header-add rounded absolute top-20 right-0 w-[32px] h-[28px] flex items-center justify-center cursor-pointer transition-colors"
-          onClick={gotoAddAddress}
-        >
-          <RcIconAddAddress className={clsx('w-[20px] h-[20px]')} />
+    <div className="h-[100vh] flex flex-col bg-r-neutral-bg2">
+      <div className="px-[20px] shrink-0">
+        <PageHeader className="mb-[12px]">
+          {t('page.manageAddress.accounts')}
+        </PageHeader>
+      </div>
+
+      <section className="px-[20px] pb-[16px] shrink-0">
+        <div className="crb-eyebrow">{t('page.manageAddress.totalAssets')}</div>
+        <div className="mt-[2px] text-r-neutral-title1">
+          <BalanceLabel balanceUsd={ownedTotal} currency={currency} />
         </div>
-      </PageHeader>
-      {currentAccountIndex !== -1 && accountList[currentAccountIndex] && (
-        <>
-          <div className="address-wrap-with-padding px-[20px]">
-            <AddressItem
-              balance={accountList[currentAccountIndex].balance || 0}
-              address={accountList[currentAccountIndex].address || ''}
-              type={accountList[currentAccountIndex].type || ''}
-              brandName={accountList[currentAccountIndex].brandName || ''}
-              alias={accountList[currentAccountIndex].alianName}
-              isCurrentAccount
-              isUpdatingBalance={isUpdateAllBalanceLoading}
-              onClick={() => {
-                history.push(
-                  `/settings/address-detail?${obj2query({
-                    address: accountList[currentAccountIndex].address,
-                    type: accountList[currentAccountIndex].type,
-                    brandName: accountList[currentAccountIndex].brandName,
-                    byImport:
-                      ((accountList[currentAccountIndex]
-                        .byImport as unknown) as string) || '',
-                  })}`
-                );
-              }}
-            >
-              {isWalletConnect && (
-                <SessionStatusBar
-                  address={accountList[currentAccountIndex].address || ''}
-                  brandName={accountList[currentAccountIndex].brandName || ''}
-                  className="m-[16px] mt-0 text-white bg-[#0000001A]"
-                  type={accountList[currentAccountIndex].type}
-                />
-              )}
-              {isLedger && (
-                <LedgerStatusBar className="m-[16px] mt-0 text-white bg-[#0000001A]" />
-              )}
-              {isKeystone && (
-                <KeystoneStatusBar className="m-[16px] mt-0 text-white bg-[#0000001A]" />
-              )}
-              {isGridPlus && (
-                <GridPlusStatusBar className="m-[16px] mt-0 text-white bg-[#0000001A]" />
-              )}
-              {isCoinbase && (
-                <SessionStatusBar
-                  address={accountList[currentAccountIndex].address || ''}
-                  brandName={KEYRING_CLASS.Coinbase}
-                  className="m-[16px] mt-0 text-white bg-[#0000001A]"
-                  type={KEYRING_CLASS.Coinbase}
-                />
-              )}
-              {accountList[currentAccountIndex]?.type ===
-                KEYRING_CLASS.MNEMONIC &&
-                !hasBackup && (
-                  <div
-                    className="mx-[16px] mb-[16px] px-[8px] h-[28px] bg-[rgba(0,0,0,0.1)] rounded-[4px] flex items-center cursor-pointer"
-                    onClick={handleBackupSeedPhrase}
-                  >
-                    <div className="w-[6px] h-[6px] rounded-full bg-r-orange-default shrink-0" />
-                    <span className="text-13 text-r-orange-default font-medium flex-1 ml-[4px]">
-                      {t('page.manageAddress.seedPhraseNotBackedUp')}
-                    </span>
-                    <div className="flex items-center shrink-0">
-                      <span className="text-12 leading-[14px] text-white font-medium text-right whitespace-nowrap">
-                        {t('page.manageAddress.backupSeedPhraseNow')}
-                      </span>
-                      <RcIconArrowRight14 className="w-[14px] h-[14px] shrink-0 text-white" />
+        {hasWatched && (
+          <div className="mt-[2px] text-[12px] leading-[16px] text-r-neutral-foot tabular-nums">
+            {t('page.manageAddress.watchingValue', {
+              value: hiddenBalance
+                ? '*****'
+                : formatCurrency(watchedTotal, { currency }),
+            })}
+          </div>
+        )}
+      </section>
+
+      <div className="h-px mx-[20px] bg-[var(--crb-hairline)] shrink-0" />
+
+      {showSearch && (
+        <div className="px-[20px] pt-[12px] shrink-0">
+          <Input
+            allowClear
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            placeholder={t('page.manageAddress.search')}
+            prefix={
+              <Search
+                size={15}
+                strokeWidth={2.25}
+                className="text-r-neutral-foot"
+              />
+            }
+            className="h-[40px]"
+          />
+        </div>
+      )}
+
+      <div className="flex-1 min-h-0 overflow-y-auto px-[10px] pb-[12px]">
+        {loadingAccounts && !accountsList.length ? (
+          <AccountRowsSkeleton />
+        ) : !groups.length ? (
+          <div className="pt-[48px] text-center text-[13px] text-r-neutral-foot">
+            {keyword
+              ? t('page.manageAddress.no-match')
+              : t('page.manageAddress.no-address')}
+          </div>
+        ) : (
+          groups.map((group) => {
+            const isCollapsed = !!collapsed[group.key] && !keyword;
+            const groupContainsCurrent =
+              !!currentAccount &&
+              group.accounts.some((a) => isSameAccount(a, currentAccount));
+            return (
+              <section key={group.key} className="pt-[14px]">
+                <button
+                  type="button"
+                  aria-expanded={!isCollapsed}
+                  className={clsx(
+                    'w-full flex items-center justify-between gap-[8px] px-[10px] py-[6px] rounded-[10px]',
+                    'border-0 bg-transparent text-left cursor-pointer crb-row'
+                  )}
+                  onClick={() =>
+                    setCollapsed((prev) => ({
+                      ...prev,
+                      [group.key]: !prev[group.key],
+                    }))
+                  }
+                >
+                  <div className="min-w-0">
+                    <div className="text-[15px] leading-[20px] font-semibold text-r-neutral-title1 truncate">
+                      {group.name}
+                    </div>
+                    <div className="text-[12px] leading-[16px] text-r-neutral-foot tabular-nums">
+                      {hiddenBalance
+                        ? '*****'
+                        : formatCurrency(group.total, { currency })}
+                      {isCollapsed && groupContainsCurrent && (
+                        <span className="ml-[6px] text-r-neutral-body">
+                          · {t('page.manageAddress.current')}
+                        </span>
+                      )}
                     </div>
                   </div>
+                  <ChevronDown
+                    size={16}
+                    strokeWidth={2.25}
+                    className={clsx(
+                      'shrink-0 text-r-neutral-foot transition-transform duration-200',
+                      !isCollapsed && 'rotate-180'
+                    )}
+                  />
+                </button>
+
+                {!isCollapsed && (
+                  <div className="mt-[4px] flex flex-col gap-[2px]">
+                    {group.accounts.map((account) => {
+                      const isCurrent =
+                        !!currentAccount &&
+                        isSameAccount(account, currentAccount);
+                      return (
+                        <AccountRow
+                          key={`${account.type}-${account.brandName}-${account.address}`}
+                          account={account}
+                          isCurrent={isCurrent}
+                          isPinned={isPinned(account)}
+                          onSelect={() => switchAccount(account)}
+                          onDetail={() => gotoDetail(account)}
+                        >
+                          {isCurrent && (
+                            <CurrentAccountStatusBar account={account} />
+                          )}
+                        </AccountRow>
+                      );
+                    })}
+                  </div>
                 )}
-            </AddressItem>
-          </div>
-        </>
-      )}
-      <div className="address-toolbar flex justify-between items-center text-r-neutral-body text-13 px-20 pt-[20px] pb-[8px]">
-        <SortInput
-          value={searchKeyword}
-          onChange={(e) => setSearchKeyword(e.target.value)}
-        />
-        <div
-          className="flex items-center cursor-pointer"
-          onClick={gotoManageAddress}
-        >
-          <span>{t('page.manageAddress.manage-address')}</span>
-          <RcIconRight className="relative top-1" />
-        </div>
+
+                {needsBackup[group.key] && (
+                  <button
+                    type="button"
+                    className={clsx(
+                      'mt-[6px] mx-auto flex items-center gap-[4px] px-[10px] h-[28px] rounded-[8px]',
+                      'border-0 bg-transparent cursor-pointer text-[13px] font-medium text-r-red-default',
+                      'hover:bg-[var(--crb-hover)]'
+                    )}
+                    onClick={() => backupSeedPhrase(group.accounts[0].address)}
+                  >
+                    {t('page.manageAddress.seedPhraseNotBackedUp')} ·{' '}
+                    {t('page.manageAddress.backupSeedPhraseNow')}
+                    <ChevronRight size={14} strokeWidth={2.25} />
+                  </button>
+                )}
+              </section>
+            );
+          })
+        )}
       </div>
-      {noAnyAccount ? (
-        <NoAddressUI />
-      ) : noAnySearchedAccount ? (
-        <NoSearchedAddressUI />
-      ) : (
-        <div className={'address-group-list management'}>
-          <VList
-            ref={listRef}
-            key={addressSortStore.sortType + debouncedSearchKeyword}
-            height={
-              currentAccountIndex === -1
-                ? 461
-                : hasStatusBar
-                ? 358
-                : showBackupWarning
-                ? 372
-                : 416
-            }
-            width="100%"
-            itemData={filteredAccounts}
-            itemCount={filteredAccounts.length}
-            itemSize={getItemSize}
-            className="address-scroll-container"
-            overscanCount={6}
-            onScroll={handleScroll}
-          >
-            {Row}
-          </VList>
-        </div>
-      )}
+
+      <footer className="shrink-0 flex gap-[10px] px-[20px] pt-[12px] pb-[16px] border-t border-solid border-0 border-t-[var(--crb-hairline)] bg-r-neutral-bg2">
+        <Button
+          size="large"
+          className="flex-1 h-[48px]"
+          onClick={() => history.push('/settings/address?back=true')}
+        >
+          {t('page.manageAddress.manage')}
+        </Button>
+        <Button
+          type="primary"
+          size="large"
+          className="flex-[1.6] h-[48px] inline-flex items-center justify-center gap-[6px]"
+          onClick={() => history.push('/add-address')}
+        >
+          <Plus size={16} strokeWidth={2.5} />
+          {t('page.manageAddress.addNewAddress')}
+        </Button>
+      </footer>
     </div>
   );
 };
 
-export default AddressManagement;
+export default AccountSwitcher;

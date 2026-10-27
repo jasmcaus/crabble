@@ -2,18 +2,11 @@ import { matomoRequestEvent } from '@/utils/matomo-request';
 import type { UserFeedbackItem } from '@rabby-wallet/rabby-api/dist/types';
 import { Button } from 'antd';
 import clsx from 'clsx';
-import {
-  KEYRING_CLASS,
-  KEYRING_ICONS,
-  KEYRING_ICONS_WHITE,
-  KEYRING_TYPE,
-  WALLET_BRAND_CONTENT,
-} from 'consts';
+import { KEYRING_TYPE } from 'consts';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { useInterval } from 'react-use';
-import WatchLogo from 'ui/assets/waitcup.svg';
 
 import { Popup } from 'ui/component';
 import { useRabbySelector } from 'ui/store';
@@ -22,15 +15,13 @@ import { formatUsdValue, useWallet } from 'ui/utils';
 import { getKRCategoryByType } from '@/utils/transaction';
 
 import { Check, ChevronDown, Copy, History, Settings } from 'lucide-react';
+import { AddressAvatar } from '@/ui/component/ui/AddressAvatar';
 import { IconButton } from '@/ui/component/ui/IconButton';
 import { useExtensionUpdateBadge } from '@/ui/hooks/useExtensionUpdateSettingsCard';
 import { ReactComponent as RcIconGasFullCC } from '@/ui/assets/gas-full-cc.svg';
 import { ReactComponent as RcIconGasLowCC } from '@/ui/assets/gas-low-cc.svg';
-import { CommonSignal } from '@/ui/component/ConnectStatus/CommonSignal';
 import { SeedPhraseBackupAlert } from '@/ui/component/SeedPhraseBackupAlert';
-import { useWalletConnectIcon } from '@/ui/component/WalletConnect/useWalletConnectIcon';
 import { useCurrentAccount } from '@/ui/hooks/backgroundState/useAccount';
-import { useThemeMode } from '@/ui/hooks/usePreference';
 import { copyAddress } from '@/ui/utils/clipboard';
 import {
   useGasAccountInfo,
@@ -73,7 +64,6 @@ export const DashboardHeader: React.FC<{
   const wallet = useWallet();
 
   const currentAccount = useCurrentAccount();
-  const { isDarkTheme } = useThemeMode();
 
   const pendingTxCount = useTransactionsStore(
     (state) => state.pendingTransactionCount
@@ -139,7 +129,6 @@ export const DashboardHeader: React.FC<{
     }
   );
 
-  const brandIcon = useWalletConnectIcon(currentAccount);
   const { t } = useTranslation();
 
   const onClickOpenInDesktop = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -176,32 +165,12 @@ export const DashboardHeader: React.FC<{
               }
             }}
           >
-            <div
-              className={clsx(
-                'relative shrink-0 w-[34px] h-[34px] rounded-full',
-                'flex items-center justify-center',
-                'bg-[var(--crb-raised)] shadow-[var(--crb-shadow-card)]'
-              )}
-            >
-              <img
-                className="w-[18px] h-[18px]"
-                src={
-                  brandIcon ||
-                  WALLET_BRAND_CONTENT[currentAccount.brandName]?.image ||
-                  (isDarkTheme
-                    ? currentAccount.type === KEYRING_CLASS.WATCH
-                      ? WatchLogo
-                      : KEYRING_ICONS_WHITE[currentAccount.type]
-                    : KEYRING_ICONS[currentAccount.type])
-                }
-              />
-              <CommonSignal
-                type={currentAccount.type}
-                brandName={currentAccount.brandName}
-                address={currentAccount.address}
-                className="bottom-[-1px] right-[-1px]"
-              />
-            </div>
+            <AddressAvatar
+              address={currentAccount.address}
+              type={currentAccount.type}
+              brandName={currentAccount.brandName}
+              size={36}
+            />
             <div className="min-w-0 flex flex-col">
               <div className="flex items-center gap-[2px] min-w-0">
                 <span
@@ -265,8 +234,8 @@ export const DashboardHeader: React.FC<{
           {isGnosis ? <Queue count={0} className="transition-all" /> : null}
         </div>
         {dashboardBalanceCacheInited && <OfflineChainNotify />}
-        <SeedPhraseBackupAlert className="absolute left-0 right-0 bottom-0" />
       </div>
+      <SeedPhraseBackupAlert className="mt-[8px]" />
     </Container>
   );
 };

@@ -15,8 +15,10 @@ import { BalanceLabel } from '@/ui/views/Dashboard/components/BalanceView/Balanc
 import {
   CurveChartData,
   formChartData,
+  getCurveCoverage,
   useCurve,
 } from '@/ui/views/Dashboard/components/BalanceView/useCurve';
+import { getAppChainNames } from '@/ui/hooks/useAppChain';
 import {
   useHomeBalanceView,
   useRefreshHomeBalanceView,
@@ -122,7 +124,13 @@ export const BalanceView: React.FC<{
 
   const currentHover = isDebounceHover;
 
-  const currentBalance = currentHover ? curvePoint?.value || balance : balance;
+  // the curve is EVM-only; when app chains hold real value it can't stand in
+  // for net worth, so the headline keeps the total (the tooltip has the point)
+  const coverage = getCurveCoverage(balance, evmBalance, appChainIds);
+  const currentBalance =
+    currentHover && !coverage.isPartial
+      ? curvePoint?.value || balance
+      : balance;
   const currentChangePercent = currentHover
     ? curvePoint?.changePercent || curveChartData?.changePercent
     : curveChartData?.changePercent;
@@ -156,10 +164,6 @@ export const BalanceView: React.FC<{
 
   const shouldRenderCurve =
     !shouldShowLoading && !hiddenBalance && !!curveChartData && !isLoading;
-
-  const showAppChainTips = useMemo(() => {
-    return evmBalance !== balance;
-  }, [evmBalance, balance]);
 
   const handleHoverCurve = (data) => {
     setCurvePoint(data);
@@ -236,6 +240,8 @@ export const BalanceView: React.FC<{
                 {currentChangeValue
                   ? `${currentIsLoss ? '-' : '+'}${currentChangeValue}`
                   : t('page.signTx.BroadcastMode.lowGasDeadline.24h')}
+                {coverage.isPartial &&
+                  ` · ${t('page.dashboard.home.evmChainsOnly')}`}
               </span>
             )}
             <RcIconRefreshCC
@@ -264,6 +270,16 @@ export const BalanceView: React.FC<{
             />
           )}
         </div>
+        {coverage.isPartial && !!shouldRenderCurve && (
+          <div className="px-[28px] mt-[4px] text-[12px] leading-[16px] text-r-neutral-foot">
+            {t('page.dashboard.home.chartExcludes', {
+              names:
+                getAppChainNames(appChainIds) ||
+                t('page.dashboard.home.appChains'),
+              value: formatUsdValue(coverage.excludedValue),
+            })}
+          </div>
+        )}
         <div className="mt-[8px] grid grid-cols-4 border-0 border-t border-solid border-[var(--crb-hairline)]">
           {[
             {
