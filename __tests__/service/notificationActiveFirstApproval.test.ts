@@ -1,6 +1,5 @@
 const mockGetAll = jest.fn().mockResolvedValue([]);
 const mockOpenNotification = jest.fn();
-const mockCaptureException = jest.fn();
 
 jest.mock('webextension-polyfill', () => ({
   __esModule: true,
@@ -39,15 +38,8 @@ jest.mock('@/background/service/preference', () => ({
   __esModule: true,
   default: { getCurrentAccount: jest.fn() },
 }));
-jest.mock('@/stats', () => ({
-  __esModule: true,
-  default: { report: jest.fn() },
-}));
 jest.mock('@/utils/chain', () => ({ findChain: jest.fn() }));
 jest.mock('@/utils/env', () => ({ isManifestV3: false }));
-jest.mock('@sentry/browser', () => ({
-  captureException: (...args: unknown[]) => mockCaptureException(...args),
-}));
 
 import notificationService from '@/background/service/notification';
 
@@ -58,7 +50,6 @@ describe('notificationService.activeFirstApproval', () => {
     notificationService.notifiWindowId = null;
     mockGetAll.mockReset();
     mockOpenNotification.mockReset();
-    mockCaptureException.mockReset();
   });
 
   test('ignores a queue cleared while checking browser windows', async () => {
@@ -90,17 +81,14 @@ describe('notificationService.activeFirstApproval', () => {
     await activation;
 
     expect(mockOpenNotification).not.toHaveBeenCalled();
-    expect(mockCaptureException).not.toHaveBeenCalled();
   });
 
-  test('reports the original error with an approval flow tag', async () => {
-    const error = new Error('windows lookup failed');
-    mockGetAll.mockRejectedValueOnce(error);
+  test('clears the queue when the windows lookup fails', async () => {
+    notificationService.approvals = [{ id: 'approval-1' } as any];
+    mockGetAll.mockRejectedValueOnce(new Error('windows lookup failed'));
 
     await notificationService.activeFirstApproval();
 
-    expect(mockCaptureException).toHaveBeenCalledWith(error, {
-      tags: { function: 'activeFirstApproval' },
-    });
+    expect(notificationService.approvals).toEqual([]);
   });
 });

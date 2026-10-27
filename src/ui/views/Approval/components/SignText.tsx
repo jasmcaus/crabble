@@ -2,15 +2,10 @@ import { useEnterPassphraseModal } from '@/ui/hooks/useEnterPassphraseModal';
 import { useSecurityEngineStore } from '@/ui/state/securityEngine';
 import { findChain } from '@/utils/chain';
 import { useLedgerDeviceConnected } from '@/ui/utils/ledger';
-import { matomoRequestEvent } from '@/utils/matomo-request';
-import { getKRCategoryByType } from '@/utils/transaction';
 import { ParseTextResponse } from '@rabby-wallet/rabby-api/dist/types';
 import { Result } from '@rabby-wallet/rabby-security-engine';
-import {
-  Level,
-  defaultRules,
-} from '@rabby-wallet/rabby-security-engine/dist/rules';
-import { useSize, useDebounceFn, useRequest } from 'ahooks';
+import { Level } from '@rabby-wallet/rabby-security-engine/dist/rules';
+import { useSize, useRequest } from 'ahooks';
 import { Button, Drawer, message, Modal, Skeleton } from 'antd';
 import { Account } from 'background/service/preference';
 import {
@@ -37,7 +32,6 @@ import { FooterBar } from './FooterBar/FooterBar';
 import RuleDrawer from './SecurityEngine/RuleDrawer';
 import Actions from './TextActions';
 import { WaitingSignMessageComponent } from './map';
-import stats from '@/stats';
 import {
   parseAction,
   formatSecurityEngineContext,
@@ -49,7 +43,6 @@ import { generateTypedData } from '@safe-global/protocol-kit';
 import { useGetCurrentSafeInfo } from '../hooks/useGetCurrentSafeInfo';
 import { useGetMessageHash } from '../hooks/useGetCurrentMessageHash';
 import { useCheckCurrentSafeMessage } from '../hooks/useCheckCurrentSafeMessage';
-import { ga4 } from '@/utils/ga4';
 import { TokenDetailPopup } from '@/ui/views/Dashboard/components/TokenDetailPopup';
 import { useSignStore } from '@/ui/state/sign';
 import { tokenizeSignMessageText } from './signMessageHighlighter';
@@ -99,7 +92,6 @@ const SignText = ({
   const scrollRefSize = useSize(scrollRef);
   const scrollInfo = useScroll(scrollRef);
   const securityEngineCtx = useRef<any>(null);
-  const logId = useRef('');
   const [footerShowShadow, setFooterShowShadow] = useState(false);
   const [engineResults, setEngineResults] = useState<Result[]>([]);
   const [
@@ -196,47 +188,7 @@ const SignText = ({
 
   const isViewGnosisSafe = params?.$ctx?.isViewGnosisSafe;
 
-  const report = async (
-    action:
-      | 'createSignText'
-      | 'startSignText'
-      | 'cancelSignText'
-      | 'completeSignText',
-    extra?: Record<string, any>
-  ) => {
-    if (!currentAccount) {
-      return;
-    }
-    matomoRequestEvent({
-      category: 'SignText',
-      action: action,
-      label: [
-        getKRCategoryByType(currentAccount.type),
-        currentAccount.brandName,
-      ].join('|'),
-      transport: 'beacon',
-    });
-
-    if (action === 'createSignText') {
-      ga4.fireEvent('Init_SignText', {
-        event_category: 'SignText',
-      });
-    } else if (action === 'startSignText') {
-      ga4.fireEvent('Submit_SignText', {
-        event_category: 'SignText',
-      });
-    }
-
-    await wallet.reportStats(action, {
-      type: currentAccount.brandName,
-      category: getKRCategoryByType(currentAccount.type),
-      method: 'personalSign',
-      ...extra,
-    });
-  };
-
   const handleCancel = () => {
-    report('cancelSignText');
     rejectApproval('User rejected the request.');
   };
 
@@ -274,7 +226,6 @@ const SignText = ({
 
       return;
     }
-    report('startSignText');
     resolveApproval({});
   };
 
@@ -393,7 +344,6 @@ const SignText = ({
     signText: string,
     sender: string
   ) => {
-    logId.current = textActionData.log_id;
     securityEngine.init();
     if (
       currentAccount?.type &&
@@ -427,17 +377,6 @@ const SignText = ({
     setIsLoading(false);
   };
 
-  const { run: reportLogId } = useDebounceFn(
-    (rules) => {
-      wallet.openapi.postActionLog({
-        id: logId.current,
-        type: 'text',
-        rules,
-      });
-    },
-    { wait: 1000 }
-  );
-
   useEffect(() => {
     if (!loading) {
       if (textActionData) {
@@ -468,37 +407,6 @@ const SignText = ({
     renderStartAt.current = Date.now();
     checkWachMode();
   }, []);
-
-  useEffect(() => {
-    report('createSignText');
-  }, []);
-
-  useEffect(() => {
-    if (logId.current && !isLoading && securityEngineCtx.current) {
-      try {
-        const keys = Object.keys(securityEngineCtx.current);
-        const key: any = keys[0];
-        const notTriggeredRules = defaultRules.filter((rule) => {
-          return (
-            rule.requires.includes(key) &&
-            !engineResults.some((item) => item.id === rule.id)
-          );
-        });
-        reportLogId([
-          ...notTriggeredRules.map((rule) => ({
-            id: rule.id,
-            level: null,
-          })),
-          ...engineResults.map((result) => ({
-            id: result.id,
-            level: result.level,
-          })),
-        ]);
-      } catch (e) {
-        // IGNORE
-      }
-    }
-  }, [isLoading, engineResults]);
 
   const handleDrawerCancel = () => {
     setDrawerVisible(false);
@@ -582,18 +490,6 @@ const SignText = ({
     }
     return;
   };
-
-  useEffect(() => {
-    if (!isLoading) {
-      const duration = Date.now() - renderStartAt.current;
-      stats.report('signPageRenderTime', {
-        type: 'text',
-        actionType: actionType.current,
-        chain: '',
-        duration,
-      });
-    }
-  }, [isLoading]);
 
   return (
     <>

@@ -6,8 +6,6 @@ import {
 import { CUSTOM_RPC_ENABLED } from '@/constant';
 import { customTestnetTokenToTokenItem } from '@/ui/utils/token';
 import { findChain, isSameTesnetToken, updateChainStore } from '@/utils/chain';
-import { ga4 } from '@/utils/ga4';
-import { matomoRequestEvent } from '@/utils/matomo-request';
 import { CHAINS_ENUM } from '@debank/common';
 import { intToHex } from '@ethereumjs/util';
 import { abiERC1155, abiERC721 } from '@metamask/metamask-eth-abis';
@@ -233,17 +231,6 @@ class CustomTestnetService {
     }
     this.syncChainList();
 
-    if (this.getList().length) {
-      matomoRequestEvent({
-        category: 'Custom Network',
-        action: 'Custom Network Status',
-        value: this.getList().length,
-      });
-
-      ga4.fireEvent('Has_CustomNetwork', {
-        event_category: 'Custom Network',
-      });
-    }
     return this.store.customTestnet[chain.id];
   };
 
@@ -256,17 +243,6 @@ class CustomTestnetService {
     });
     delete this.chains[chainId];
     this.syncChainList();
-    if (this.getList().length) {
-      matomoRequestEvent({
-        category: 'Custom Network',
-        action: 'Custom Network Status',
-        value: this.getList().length,
-      });
-
-      ga4.fireEvent('Has_CustomNetwork', {
-        event_category: 'Custom Network',
-      });
-    }
   };
 
   getClient = (chainId: number) => {

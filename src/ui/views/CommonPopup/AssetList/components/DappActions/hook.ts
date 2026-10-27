@@ -16,7 +16,6 @@ import BigNumber from 'bignumber.js';
 import { DisplayedProject } from '@/ui/utils/portfolio/project';
 import { ActionType } from './DappActionsForPopup';
 import { useTranslation } from 'react-i18next';
-import * as Sentry from '@sentry/browser';
 
 const rpcQueue = new PQueue({
   concurrency: 20,
@@ -291,36 +290,11 @@ export const useDappAction = (
 
     let calldata: `0x${string}`;
     let methodName = '';
-    let expectedParamCount: number | undefined;
     try {
       const built = buildActionCalldata(data.func, data.str_params);
-      expectedParamCount = built.abi.inputs.length;
       methodName = built.abi.name;
       calldata = built.calldata;
     } catch (error) {
-      const errorName =
-        error instanceof Error && error.name ? error.name : 'UnknownError';
-
-      Sentry.captureException(
-        new Error(`DappAction parameter encoding failed: ${errorName}`),
-        {
-          tags: {
-            feature: 'dapp_action',
-            error_stage: 'encode_params',
-            protocol_name: protocolName || 'unknown',
-            chain_id: String(chainInfo.id),
-            chain_server_id: chainInfo.serverId,
-            action_type: data.type,
-            original_error_name: errorName,
-          },
-          fingerprint: ['dapp-action', 'encode-params', errorName],
-          extra: {
-            function_signature: data.func,
-            expected_param_count: expectedParamCount,
-            actual_param_count: data.str_params?.length || 0,
-          },
-        }
-      );
       return [];
     }
 

@@ -2,21 +2,11 @@ import browser, { Windows } from 'webextension-polyfill';
 import Events from 'events';
 import { ethErrors } from 'eth-rpc-errors';
 import { v4 as uuidv4 } from 'uuid';
-import * as Sentry from '@sentry/browser';
 import { EthereumProviderError } from 'eth-rpc-errors/dist/classes';
 import { winMgr } from 'background/webapi';
-import {
-  KEYRING_CATEGORY_MAP,
-  IS_LINUX,
-  IS_VIVALDI,
-  IS_CHROME,
-  KEYRING_CATEGORY,
-  IS_WINDOWS,
-} from 'consts';
+import { IS_LINUX, IS_VIVALDI, IS_CHROME, IS_WINDOWS } from 'consts';
 import transactionHistoryService from './transactionHistory';
-import preferenceService, { Account } from './preference';
-import stats from '@/stats';
-import { findChain } from '@/utils/chain';
+import { Account } from './preference';
 import { isManifestV3 } from '@/utils/env';
 
 type IApprovalComponents = typeof import('@/ui/views/Approval/components');
@@ -107,23 +97,6 @@ const QUEUE_APPROVAL_COMPONENTS_WHITELIST: ApprovalKind[] = [
   'ImKeyHardwareWaiting',
 ];
 
-export type StatsData = {
-  signed: boolean;
-  signedSuccess: boolean;
-  submit: boolean;
-  submitSuccess: boolean;
-  type: string;
-  chainId: string;
-  category: KEYRING_CATEGORY;
-  preExecSuccess: boolean;
-  createdBy: string;
-  source: any;
-  trigger: any;
-  reported: boolean;
-  signMethod?: string;
-  networkType?: string;
-};
-
 // something need user approval in window
 // should only open one window, unfocus will close the current notification
 class NotificationService extends Events {
@@ -142,7 +115,6 @@ class NotificationService extends Events {
   private openingNotification?: Promise<void>;
   isLocked = false;
   currentRequestDeferFn?: (retry?: boolean) => void;
-  statsData: StatsData | undefined;
 
   get approvals() {
     return this._approvals;
@@ -228,9 +200,6 @@ class NotificationService extends Events {
       this.currentApproval = approval;
       this.openNotification(approval.winProps, true);
     } catch (e) {
-      Sentry.captureException(e, {
-        tags: { function: 'activeFirstApproval' },
-      });
       this.clear();
     }
   };
@@ -375,35 +344,6 @@ class NotificationService extends Events {
         );
       }
     }
-    const currentAccount =
-      data.account || preferenceService.getCurrentAccount();
-    const reportExplain = (signingTxId?: string) => {
-      const signingTx = signingTxId
-        ? transactionHistoryService.getSigningTx(signingTxId)
-        : null;
-      const explain = signingTx?.explain;
-
-      const chain = findChain({
-        id: signingTx?.rawTx.chainId,
-      });
-
-      if ((explain || chain?.isTestnet) && currentAccount) {
-        stats.report('preExecTransaction', {
-          type: currentAccount.brandName,
-          category: KEYRING_CATEGORY_MAP[currentAccount.type],
-          chainId: chain?.serverId || '',
-          success: explain
-            ? explain.calcSuccess && explain.pre_exec.success
-            : true,
-          createdBy: data?.params.$ctx?.ga ? 'rabby' : 'dapp',
-          source: data?.params.$ctx?.ga?.source || '',
-          trigger: data?.params.$ctx?.ga?.trigger || '',
-          networkType: chain?.isTestnet
-            ? 'Custom Network'
-            : 'Integrated Network',
-        });
-      }
-    };
     return new Promise((resolve, reject) => {
       const uuid = uuidv4();
       let signingTxId;
@@ -422,15 +362,9 @@ class NotificationService extends Events {
         data,
         winProps,
         resolve(data) {
-          if (this.data.approvalComponent === 'SignTx') {
-            reportExplain(this.signingTxId);
-          }
           resolve(data);
         },
         reject(data) {
-          if (this.data.approvalComponent === 'SignTx') {
-            reportExplain(this.signingTxId);
-          }
           reject(data);
         },
       };
@@ -475,9 +409,7 @@ class NotificationService extends Events {
             component: approval.data.approvalComponent,
           });
         } catch (e) {
-          Sentry.captureException(
-            new Error('onCurrent failed: ' + JSON.stringify(e))
-          );
+          console.error('[notification] onCurrent failed', e);
         }
       }
 
@@ -558,9 +490,6 @@ class NotificationService extends Events {
         if (this.notifiWindowId === null) {
           this.unLock();
         }
-        Sentry.captureException(e, {
-          tags: { function: 'openNotification' },
-        });
       })
       .finally(() => {
         this.openingNotification = undefined;
@@ -579,14 +508,6 @@ class NotificationService extends Events {
 
   callCurrentRequestDeferFn = (retry?: boolean) => {
     return this.currentRequestDeferFn?.(retry);
-  };
-
-  setStatsData = (data?: StatsData) => {
-    this.statsData = data;
-  };
-
-  getStatsData = () => {
-    return this.statsData;
   };
 
   private addLastRejectDapp() {

@@ -1,6 +1,3 @@
-import { matomoRequestEvent } from '@/utils/matomo-request';
-import type { UserFeedbackItem } from '@rabby-wallet/rabby-api/dist/types';
-import { Button } from 'antd';
 import clsx from 'clsx';
 import { KEYRING_TYPE } from 'consts';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -8,11 +5,8 @@ import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { useInterval } from 'react-use';
 
-import { Popup } from 'ui/component';
 import { useRabbySelector } from 'ui/store';
 import { formatUsdValue, useWallet } from 'ui/utils';
-
-import { getKRCategoryByType } from '@/utils/transaction';
 
 import { Check, ChevronDown, Copy, History, Settings } from 'lucide-react';
 import { AddressAvatar } from '@/ui/component/ui/AddressAvatar';
@@ -28,7 +22,6 @@ import {
   useGasAccountInfoV2,
   useGasAccountLogin,
 } from '@/ui/views/GasAccount/hooks';
-import { ga4 } from '@/utils/ga4';
 import { useMemoizedFn } from 'ahooks';
 import styled from 'styled-components';
 import {
@@ -41,13 +34,7 @@ import { OfflineChainNotify } from '../OfflineChainNotify';
 import Queue from '../Queue';
 import Tooltip from 'antd/es/tooltip';
 import { LOW_GAS_ACCOUNT_BALANCE } from '@/constant/gas-account';
-import { ReactComponent as RcIconFeedbackCC } from '@/ui/assets/icon-feedback-cc.svg';
-import { RcIconSuccessCC } from '@/ui/assets/desktop/common';
 import { useTransactionsStore } from '@/ui/state/transactions';
-import {
-  useLatestRepliedFeedbacks,
-  useViewingFeedback,
-} from '@/ui/component/ScreenshotContextMenu/hooks';
 
 const Container = styled.div`
   width: 100%;
@@ -96,16 +83,6 @@ export const DashboardHeader: React.FC<{
   );
 
   const handleSwitchAddress = useMemoizedFn(() => {
-    matomoRequestEvent({
-      category: 'Front Page Click',
-      action: 'Click',
-      label: 'Change Address',
-    });
-
-    ga4.fireEvent('Click_ChangeAddress', {
-      event_category: 'Front Page Click',
-    });
-
     history.push('/switch-address');
   });
 
@@ -114,18 +91,6 @@ export const DashboardHeader: React.FC<{
       event.stopPropagation();
       if (!currentAccount) return;
       copyAddress(currentAccount.address);
-      matomoRequestEvent({
-        category: 'AccountInfo',
-        action: 'headCopyAddress',
-        label: [
-          getKRCategoryByType(currentAccount?.type),
-          currentAccount?.brandName,
-        ].join('|'),
-      });
-
-      ga4.fireEvent('Click_CopyAddress', {
-        event_category: 'Front Page Click',
-      });
     }
   );
 
@@ -198,7 +163,6 @@ export const DashboardHeader: React.FC<{
           </div>
 
           <div className="shrink-0 ml-auto flex items-center gap-[2px]">
-            <FeedbackEntry />
             <IconButton
               label={t('page.dashboard.home.panel.transactions')}
               count={isGnosis ? 0 : pendingTxCount}
@@ -280,131 +244,6 @@ const CopyButton = ({
         <Copy size={12} strokeWidth={2.25} />
       )}
     </button>
-  );
-};
-
-const FeedbackEntry = () => {
-  const { t } = useTranslation();
-  const { lastRepliedFeedback } = useLatestRepliedFeedbacks();
-  const { startViewingFeedback } = useViewingFeedback();
-
-  const handleClick = useCallback(
-    (evt: React.MouseEvent<HTMLButtonElement>) => {
-      evt.preventDefault();
-      evt.stopPropagation();
-
-      if (!lastRepliedFeedback) return;
-
-      startViewingFeedback(lastRepliedFeedback);
-
-      // matomoRequestEvent({
-      //   category: 'Click_Header',
-      //   action: 'Click_Setting',
-      // });
-
-      // ga4.fireEvent('Click_Setting', {
-      //   event_category: 'Click_Header',
-      // });
-    },
-    [lastRepliedFeedback, startViewingFeedback]
-  );
-
-  if (lastRepliedFeedback?.status !== 'complete') {
-    return null;
-  }
-
-  return (
-    <>
-      <IconButton
-        label={t('component.feedbackPopup.title')}
-        dot="brand"
-        onClick={handleClick}
-      >
-        <RcIconFeedbackCC className="w-[18px] h-[18px]" />
-      </IconButton>
-      <FeedbackResponsePopup lastRepliedFeedback={lastRepliedFeedback} />
-    </>
-  );
-};
-
-const FeedbackResponsePopup = ({
-  lastRepliedFeedback,
-}: {
-  lastRepliedFeedback: UserFeedbackItem;
-}) => {
-  const { viewingFeedback, finishViewFeedback } = useViewingFeedback();
-  const feedback = viewingFeedback || lastRepliedFeedback;
-  const visible = !!viewingFeedback && feedback?.status === 'complete';
-  const imageUrl = feedback?.image_url_list?.[0];
-  const comment = feedback?.comment;
-  const { t } = useTranslation();
-
-  return (
-    <Popup
-      open={visible}
-      title={t('component.feedbackPopup.title')}
-      height={'fit-content'}
-      closable={false}
-      onCancel={finishViewFeedback}
-      onClose={finishViewFeedback}
-      bodyStyle={{ padding: '20px 24px 24px 24px' }}
-    >
-      <div className="flex max-h-[460px] flex-col">
-        <div className="relative flex-1 min-h-0 pl-[8px] overflow-auto">
-          <div className="relative pb-[28px] pl-[16px] pr-[2px]">
-            <div className="absolute left-0 top-0 h-[16px] w-[16px] rounded-full bg-r-blue-default translate-x-[-50%]" />
-            <div className="absolute left-0 top-[0] bottom-[0px] w-[1px] bg-r-blue-default" />
-            <div className="relative top-[-2px]">
-              <div className="text-[16px] leading-[19px] font-medium text-r-neutral-title1">
-                {t('component.feedbackPopup.issueReported')}
-              </div>
-              <div className="mt-[12px] rounded-[12px] bg-r-neutral-card2 p-[12px]">
-                {feedback?.content ? (
-                  <div className="mb-[8px] whitespace-pre-wrap break-words text-[14px] leading-[16px] text-r-neutral-body">
-                    {feedback.content}
-                  </div>
-                ) : null}
-                {imageUrl ? (
-                  <div className="w-[96px] h-[96px] rounded-[12px] overflow-hidden">
-                    <img
-                      src={imageUrl}
-                      alt="Feedback screenshot"
-                      className="w-full"
-                    />
-                  </div>
-                ) : null}
-              </div>
-            </div>
-          </div>
-
-          <div className="relative pl-[16px] pr-[2px]">
-            <RcIconSuccessCC
-              viewBox="0 0 24 24"
-              className="absolute left-0 top-0 w-[16px] h-[16px] text-r-green-default translate-x-[-50%]"
-            />
-            <div className="relative top-[-2px]">
-              <div className="text-[16px] leading-[19px] font-medium text-r-neutral-title1">
-                {t('component.feedbackPopup.issueReplied')}
-              </div>
-              <div className="mt-[12px] rounded-[12px] bg-r-neutral-card2 p-[12px]">
-                <div className="whitespace-pre-wrap break-words text-[14px] leading-[16px] text-r-neutral-body">
-                  {comment}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <Button
-          type="primary"
-          block
-          className="mt-[24px] h-[48px] shrink-0"
-          onClick={finishViewFeedback}
-        >
-          {t('global.ok')}
-        </Button>
-      </div>
-    </Popup>
   );
 };
 

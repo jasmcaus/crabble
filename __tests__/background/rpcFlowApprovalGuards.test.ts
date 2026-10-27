@@ -19,8 +19,6 @@ const mockKeyringService = {
 const mockNotificationService = {
   getApproval: jest.fn(() => state.currentApproval),
   requestApproval: jest.fn(async (..._args: any[]) => ({} as any)),
-  setStatsData: jest.fn(),
-  getStatsData: jest.fn(() => undefined),
   unLock: jest.fn(),
 };
 const mockPermissionService = {
@@ -72,11 +70,6 @@ jest.mock('@/background/service/signTxPreparation', () => ({
   getSignTxPreparation: jest.fn(),
   cancelSignTxPreparation: jest.fn(),
   cancelAllSignTxPreparations: jest.fn(),
-}));
-jest.mock('@sentry/browser', () => ({ captureException: jest.fn() }));
-jest.mock('@/stats', () => ({
-  __esModule: true,
-  default: { report: jest.fn() },
 }));
 jest.mock('@/eventBus', () => ({
   __esModule: true,

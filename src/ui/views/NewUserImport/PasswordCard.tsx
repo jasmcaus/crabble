@@ -1,6 +1,5 @@
 import { Card } from '@/ui/component/NewUserImport';
-import { useHideScreenshotContextMenu } from '@/ui/hooks/useScreenshotContextMenuVisible';
-import { openInTab, useWallet } from '@/ui/utils';
+import { openInTab } from '@/ui/utils';
 import { useMemoizedFn } from 'ahooks';
 import { Button, Form, Input } from 'antd';
 import clsx from 'clsx';
@@ -127,7 +126,6 @@ interface Props {
 
 export const PasswordCard: React.FC<Props> = ({ onSubmit, step, onBack }) => {
   const { t } = useTranslation();
-  const wallet = useWallet();
   const [agreeTerm, setAgreeTerm] = useState(true);
   const [isShowPassword, setIsShowPassword] = useState(false);
 
@@ -141,7 +139,6 @@ export const PasswordCard: React.FC<Props> = ({ onSubmit, step, onBack }) => {
       return;
     }
     await form.validateFields();
-    await wallet.setUserDataTrackingOptOut(false);
     onSubmit?.(form.getFieldsValue().password);
   });
 
@@ -153,7 +150,6 @@ export const PasswordCard: React.FC<Props> = ({ onSubmit, step, onBack }) => {
     openInTab('https://rabby.io/docs/privacy', false);
   });
 
-  useHideScreenshotContextMenu();
   return (
     <Container>
       <Card

@@ -40,7 +40,6 @@ import eventBus from '@/eventBus';
 import { isSameAddress } from 'background/utils';
 import contactBook from '../contactBook';
 import { filterKeyringData, generateAliasName } from '@/utils/account';
-import * as Sentry from '@sentry/browser';
 import { GET_WALLETCONNECT_CONFIG, allChainIds } from '@/utils/walletconnect';
 import { EthImKeyKeyring } from './eth-imkey-keyring/eth-imkey-keyring';
 import { getKeyringBridge, hasBridge } from './bridge';
@@ -51,7 +50,6 @@ import {
   passwordClearKey,
   PersistType,
 } from 'background/utils/password';
-import uninstalledMetricService from '../uninstalled';
 import { isEmpty } from 'lodash';
 import { sanitizeUnencryptedKeyringData } from './sanitizeUnencryptedKeyringData';
 import { SigningAttempt, withSigningDiagnostics } from './signing-diagnostics';
@@ -286,9 +284,6 @@ export class KeyringService extends EventEmitter {
             name: alias,
           });
         }
-        uninstalledMetricService.setWalletByKeyringType(
-          KEYRING_TYPE.SimpleKeyring
-        );
         return this.persistAllKeyrings.bind(this);
       })
       .then(this.setUnlocked.bind(this))
@@ -360,7 +355,6 @@ export class KeyringService extends EventEmitter {
       })
     );
 
-    uninstalledMetricService.setWalletByKeyringType(KEYRING_TYPE.SimpleKeyring);
     await this.persistAllKeyrings();
     await this._updateMemStoreKeyrings();
     this.setUnlocked();
@@ -687,7 +681,6 @@ export class KeyringService extends EventEmitter {
     return selectedKeyring
       .addAccounts(1)
       .then(() => {
-        uninstalledMetricService.setWalletByKeyringType(selectedKeyring.type);
         if (selectedKeyring.getAccountsWithBrand) {
           return selectedKeyring.getAccountsWithBrand();
         } else {
@@ -1291,7 +1284,6 @@ export class KeyringService extends EventEmitter {
       });
       keyring.on('error', (error) => {
         console.error(error);
-        Sentry.captureException(error);
       });
     }
 

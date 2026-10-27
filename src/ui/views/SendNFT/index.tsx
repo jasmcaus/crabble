@@ -13,7 +13,6 @@ import clsx from 'clsx';
 import BigNumber from 'bignumber.js';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useLocation } from 'react-router-dom';
-import { matomoRequestEvent } from '@/utils/matomo-request';
 import { Form, message, Button } from 'antd';
 import { isValidAddress, toChecksumAddress } from '@ethereumjs/util';
 import abiCoderInst, { AbiCoder } from 'web3-eth-abi';
@@ -31,7 +30,6 @@ import NumberInput from '@/ui/component/NFTNumberInput';
 import NFTAvatar from 'ui/views/Dashboard/components/NFT/NFTAvatar';
 import { ReactComponent as RcIconSwitchCC } from '@/ui/assets/send-token/switch-cc.svg';
 import './style.less';
-import { getKRCategoryByType } from '@/utils/transaction';
 import { filterRbiSource, useRbiSource } from '@/ui/utils/ga-event';
 import { ReactComponent as RcIconExternal } from 'ui/assets/icon-share-currentcolor.svg';
 import { useMiniSigner } from '@/ui/hooks/useSigner';
@@ -364,18 +362,6 @@ const SendNFT = () => {
       });
 
       try {
-        matomoRequestEvent({
-          category: 'Send',
-          action: 'createTx',
-          label: [
-            findChainByEnum(chain)?.name,
-            getKRCategoryByType(currentAccount?.type),
-            currentAccount?.brandName,
-            'nft',
-            filterRbiSource('sendNFT', rbisource) && rbisource,
-          ].join('|'),
-        });
-
         const params = getNFTTransferParams(amount);
         if (!params) {
           throw new Error('Missing required data for NFT transfer');

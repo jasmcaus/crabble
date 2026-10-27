@@ -1,6 +1,3 @@
-/* eslint "react-hooks/exhaustive-deps": ["error"] */
-/* eslint-enable react-hooks/exhaustive-deps */
-import { matomoRequestEvent } from '@/utils/matomo-request';
 import { Button, DrawerProps, Form, Input, message, Modal, Switch } from 'antd';
 import clsx from 'clsx';
 import {
@@ -11,7 +8,6 @@ import {
 } from 'consts';
 import React, { useEffect, useMemo, useState } from 'react';
 import {
-  Activity,
   AtSign,
   Boxes,
   ChartCandlestick,
@@ -90,11 +86,9 @@ import { ReactComponent as RcIconI18n } from 'ui/assets/dashboard/settings/i18n.
 import { ReactComponent as RcIconRemovedToken } from 'ui/assets/settings/removed-token.svg';
 import { ReactComponent as RcIconFeedback } from 'ui/assets/dashboard/settings/feedback.svg';
 import { ReactComponent as RcIconWarning } from 'ui/assets/warning-cc.svg';
-import { ReactComponent as RcIconDataAnalysisCC } from 'ui/assets/dashboard/settings/data-analysis-cc.svg';
 
 import IconIntro from 'ui/assets/dashboard/dapp-account-intro.png';
 
-import stats from '@/stats';
 import Contacts from '../Contacts';
 import RecentConnections from '../RecentConnections';
 import { AppearanceSwitch } from './components/AppearanceSwitch';
@@ -104,13 +98,10 @@ import ThemeIcon from '@/ui/component/ThemeMode/ThemeIcon';
 import FeedbackPopup from '../Feedback';
 import { getChainList } from '@/utils/chain';
 import { sendPersonalMessage } from '@/ui/utils/sendPersonalMessage';
-import { ga4 } from '@/utils/ga4';
 import { EcosystemBanner } from './components/EcosystemBanner';
 import { ExtensionUpdateCard } from './components/ExtensionUpdateCard';
 import { ExtensionUpdateDialog } from './components/ExtensionUpdateDialog';
 import { useMemoizedFn } from 'ahooks';
-import RateModalTriggerOnSettings from '@/ui/component/RateModal/RateModalTriggerOnSettings';
-import { useMakeMockDataForRateGuideExposure } from '@/ui/component/RateModal/hooks';
 import { PwdForNonWhitelistedTxModal } from '@/ui/component/Whitelist/Modal';
 import { useCurrency } from '@/ui/hooks/useCurrency';
 import { useExtensionUpdateSettingsCard } from '@/ui/hooks/useExtensionUpdateSettingsCard';
@@ -651,7 +642,6 @@ const SETTING_LUCIDE_ICONS = new Map<ThemeIconType, LucideIcon>([
   [RcIconPerps, ChartCandlestick],
   [RcIconSwitchPwdForNonWhitelistedTx, KeyRound],
   [RcIconDappSwitchAddress, Link2],
-  [RcIconDataAnalysisCC, Activity],
   [RcIconCustomTestnet, FlaskConical],
   [RcIconCustomRPC, Network],
   [RcIconI18n, Languages],
@@ -728,7 +718,6 @@ const SettingsInner = ({
   const [biometricBusy, setBiometricBusy] = useState(false);
   const [perpsWidgetEnabled, setPerpsWidgetEnabled] = useState(false);
   const [perpsWidgetBusy, setPerpsWidgetBusy] = useState(false);
-  const [dataAnalysisPending, setDataAnalysisPending] = useState(false);
 
   const [perpsIncludeWatchForTest, setPerpsIncludeWatchForTest] = useState(
     () => localStorage.getItem(PERPS_TEST_INCLUDE_WATCH_KEY) === '1'
@@ -760,9 +749,6 @@ const SettingsInner = ({
   const isShowTestnet = useRabbySelector(
     (state) => state.preference.isShowTestnet
   );
-  const userDataTrackingOptOut = useRabbySelector(
-    (state) => state.preference.userDataTrackingOptOut
-  );
 
   const openapiStore = useOpenapiStore();
 
@@ -781,18 +767,6 @@ const SettingsInner = ({
   }, [locale]);
 
   const handleTogglePwdForNonWhitelistedTx = useMemoizedFn(() => {
-    matomoRequestEvent({
-      category: 'Setting',
-      action: 'clickToUse',
-      label: 'PasswordForNonWhitelistedTx',
-    });
-
-    ga4.fireEvent('Password_For_NonWhitelisted_Tx', {
-      event_category: 'Click More',
-    });
-
-    reportSettings('PasswordForNonWhitelistedTx');
-
     // if (isEnabledPwdForNonWhitelistedTx) {
     //   dispatch.preference.enablePwdForNonWhitelistedTx(false);
     // } else {
@@ -802,18 +776,6 @@ const SettingsInner = ({
   });
 
   const handleEnableDappAccount = useMemoizedFn(() => {
-    matomoRequestEvent({
-      category: 'Setting',
-      action: 'clickToUse',
-      label: 'DappAccount',
-    });
-
-    ga4.fireEvent('Dapp_Account', {
-      event_category: 'Click More',
-    });
-
-    reportSettings('DappAccount');
-
     if (isEnabledDappAccount) {
       dispatch.preference.enableDappAccount(false);
     } else {
@@ -863,28 +825,12 @@ const SettingsInner = ({
     try {
       await wallet.setPerpsWidgetEnabled(checked);
       setPerpsWidgetEnabled(checked);
-      ga4.fireEvent(`PerpsFloating_${checked ? 'On' : 'Off'}`, {
-        event_category: 'Settings Snapshot',
-      });
     } catch (error) {
       message.error((error as Error)?.message || 'Failed to update setting');
     } finally {
       setPerpsWidgetBusy(false);
     }
   });
-
-  const handleToggleUserDataTrackingOptOut = useMemoizedFn(
-    async (checked: boolean) => {
-      try {
-        setDataAnalysisPending(true);
-        await dispatch.preference.setUserDataTrackingOptOut(!checked);
-      } catch (error) {
-        message.error((error as Error)?.message || 'Failed to update setting');
-      } finally {
-        setDataAnalysisPending(false);
-      }
-    }
-  );
 
   const handleClickClearWatchMode = () => {
     confirm({
@@ -949,10 +895,6 @@ const SettingsInner = ({
     syncCurrencyList();
   }, [visible, syncCurrencyList]);
 
-  const {
-    mockExposureRateGuide,
-    resetExposureRateGuide,
-  } = useMakeMockDataForRateGuideExposure();
   const renderData = {
     features: {
       label: t('page.dashboard.settings.features.label'),
@@ -975,17 +917,6 @@ const SettingsInner = ({
           ),
           onClick: () => {
             lockWallet();
-            matomoRequestEvent({
-              category: 'Setting',
-              action: 'clickToUse',
-              label: 'Lock Wallet',
-            });
-
-            ga4.fireEvent('More_LockWallet', {
-              event_category: 'Click More',
-            });
-
-            reportSettings('Lock Wallet');
           },
         },
         {
@@ -993,17 +924,6 @@ const SettingsInner = ({
           content: t('page.dashboard.settings.features.signatureRecord'),
           onClick: () => {
             history.push('/activities');
-            matomoRequestEvent({
-              category: 'Setting',
-              action: 'clickToUse',
-              label: 'Signature Record',
-            });
-
-            ga4.fireEvent('More_SignatureRecord', {
-              event_category: 'Click More',
-            });
-
-            reportSettings('Signature Record');
           },
         },
         {
@@ -1011,17 +931,6 @@ const SettingsInner = ({
           content: t('page.dashboard.settings.features.manageAddress'),
           onClick: () => {
             history.push('/settings/address');
-            matomoRequestEvent({
-              category: 'Setting',
-              action: 'clickToUse',
-              label: 'Manage Address',
-            });
-
-            ga4.fireEvent('More_ManageAddress', {
-              event_category: 'Click More',
-            });
-
-            reportSettings('Manage Address');
           },
         },
         {
@@ -1052,17 +961,6 @@ const SettingsInner = ({
           leftIcon: RcIconSettingsSearchDapps,
           content: t('page.dashboard.settings.features.searchDapps'),
           onClick: () => {
-            matomoRequestEvent({
-              category: 'Setting',
-              action: 'clickToUse',
-              label: 'Search Dapps',
-            });
-
-            ga4.fireEvent('More_SearchDapps', {
-              event_category: 'Click More',
-            });
-
-            reportSettings('Search Dapps');
             openInternalPageInTab('dapp-search');
           },
         },
@@ -1071,17 +969,6 @@ const SettingsInner = ({
           content: t('page.dashboard.settings.features.connectedDapp'),
           onClick: () => {
             setConnectedDappsVisible(true);
-            matomoRequestEvent({
-              category: 'Setting',
-              action: 'clickToUse',
-              label: 'Connected Dapps',
-            });
-
-            ga4.fireEvent('More_ConnectedDapps', {
-              event_category: 'Click More',
-            });
-
-            reportSettings('Connected Dapps');
           },
         },
       ] as SettingItem[],
@@ -1144,34 +1031,10 @@ const SettingsInner = ({
           ),
         },
         {
-          leftIcon: RcIconDataAnalysisCC,
-          leftIconClassName: 'text-r-neutral-body',
-          content: t('page.dashboard.settings.settings.dataAnalysis'),
-          rightIcon: (
-            <Switch
-              checked={!userDataTrackingOptOut}
-              onChange={handleToggleUserDataTrackingOptOut}
-              loading={dataAnalysisPending}
-              disabled={dataAnalysisPending}
-            />
-          ),
-        },
-        {
           leftIcon: RcIconCustomTestnet,
           content: t('page.dashboard.settings.settings.customTestnet'),
           onClick: () => {
             history.push('/custom-testnet');
-            matomoRequestEvent({
-              category: 'Setting',
-              action: 'clickToUse',
-              label: 'Custom Testnet',
-            });
-
-            ga4.fireEvent('More_CustomTestnet', {
-              event_category: 'Click More',
-            });
-
-            reportSettings('Custom Testnet');
           },
         },
         ...(CUSTOM_RPC_ENABLED
@@ -1181,17 +1044,6 @@ const SettingsInner = ({
                 content: t('page.dashboard.settings.settings.customRpc'),
                 onClick: () => {
                   history.push('/custom-rpc');
-                  matomoRequestEvent({
-                    category: 'Setting',
-                    action: 'clickToUse',
-                    label: 'Custom RPC',
-                  });
-
-                  ga4.fireEvent('More_CustomRPC', {
-                    event_category: 'Click More',
-                  });
-
-                  reportSettings('Custom RPC');
                 },
               },
             ]
@@ -1200,17 +1052,6 @@ const SettingsInner = ({
           leftIcon: RcIconI18n,
           content: t('page.dashboard.settings.settings.currentLanguage'),
           onClick: () => {
-            matomoRequestEvent({
-              category: 'Setting',
-              action: 'clickToUse',
-              label: 'Current Language',
-            });
-
-            ga4.fireEvent('More_CurrentLanguage', {
-              event_category: 'Click More',
-            });
-
-            reportSettings('Current Language');
             setIsShowLangModal(true);
           },
           rightIcon: (
@@ -1236,7 +1077,6 @@ const SettingsInner = ({
                   'text-r-neutral-body [&_path]:stroke-current',
                 content: t('page.dashboard.settings.removedToken.title'),
                 onClick: () => {
-                  reportSettings('Removed Token');
                   openRemovedTokenPopup();
                 },
                 rightIcon: (
@@ -1257,7 +1097,6 @@ const SettingsInner = ({
           leftIcon: RcIconCurrency,
           content: t('page.dashboard.settings.settings.currency'),
           onClick: () => {
-            reportSettings('Currency');
             setIsShowCurrencyModal(true);
           },
           rightIcon: (
@@ -1284,34 +1123,12 @@ const SettingsInner = ({
           ),
           onClick: () => {
             history.push('/metamask-mode-dapps');
-            matomoRequestEvent({
-              category: 'Setting',
-              action: 'clickToUse',
-              label: 'MetaMask Mode Dapps',
-            });
-
-            ga4.fireEvent('More_MetaMaskModeDapps', {
-              event_category: 'Click More',
-            });
-
-            reportSettings('MetaMask Mode Dapps');
           },
         },
         {
           leftIcon: RcIconAutoLock,
           content: t('page.dashboard.settings.autoLockTime'),
           onClick: () => {
-            matomoRequestEvent({
-              category: 'Setting',
-              action: 'clickToUse',
-              label: 'Auto lock time',
-            });
-
-            ga4.fireEvent('More_AutoLockTime', {
-              event_category: 'Click More',
-            });
-
-            reportSettings('Auto lock time');
             setIsShowAutoLockModal(true);
           },
           rightIcon: (
@@ -1333,18 +1150,7 @@ const SettingsInner = ({
           leftIcon: RcIconClear,
           content: t('page.dashboard.settings.clearPending'),
           onClick: () => {
-            matomoRequestEvent({
-              category: 'Setting',
-              action: 'clickToUse',
-              label: 'Reset Account',
-            });
-
-            ga4.fireEvent('More_ResetAccount', {
-              event_category: 'Click More',
-            });
-
             setShowResetAccountModal(true);
-            reportSettings('Reset Account');
           },
           rightIcon: (
             <ThemeIcon
@@ -1391,42 +1197,6 @@ const SettingsInner = ({
           leftIcon: RcIconClearCC,
           content: <span>{t('page.dashboard.settings.clearWatchMode')}</span>,
           onClick: handleClickClearWatchMode,
-        },
-        {
-          leftIcon: RcIconSettingsCodeCC,
-          content: <div className="shrink-0">Mock Exposure Rate Guidance</div>,
-          rightIcon: (
-            <div className="flex items-center justify-end gap-8">
-              <Button
-                type="link"
-                danger
-                onClick={(evt) => {
-                  evt.preventDefault();
-                  mockExposureRateGuide();
-                  message.success({
-                    className: 'toast-message-2025',
-                    content: 'Mock exposure rate guide data',
-                  });
-                }}
-              >
-                Mock
-              </Button>
-              <Button
-                type="primary"
-                ghost
-                onClick={(evt) => {
-                  evt.preventDefault();
-                  resetExposureRateGuide();
-                  message.success({
-                    className: 'toast-message-2025',
-                    content: 'Reset exposure rate guide mock data',
-                  });
-                }}
-              >
-                Reset
-              </Button>
-            </div>
-          ),
         },
         {
           leftIcon: RcIconSettingsGitForkCC,
@@ -1506,17 +1276,6 @@ const SettingsInner = ({
           leftIcon: RcIconFeedback,
           content: t('page.dashboard.home.panel.feedback'),
           onClick: () => {
-            matomoRequestEvent({
-              category: 'Setting',
-              action: 'clickToUse',
-              label: 'feedback',
-            });
-
-            ga4.fireEvent('More_Feedback', {
-              event_category: 'Click More',
-            });
-
-            reportSettings('feedback');
             openInTab('https://support.rabby.io/en/');
           },
           rightIcon: (
@@ -1531,17 +1290,6 @@ const SettingsInner = ({
           content: t('page.dashboard.settings.currentVersion'),
           onClick: () => {
             updateVersion();
-            matomoRequestEvent({
-              category: 'Setting',
-              action: 'clickToUse',
-              label: 'Current Version',
-            });
-
-            ga4.fireEvent('More_CurrentVersion', {
-              event_category: 'Click More',
-            });
-
-            reportSettings('Current Version');
           },
           rightIcon: (
             <>
@@ -1586,17 +1334,6 @@ const SettingsInner = ({
           content: t('page.dashboard.settings.supportedChains'),
           onClick: () => {
             history.push('/settings/chain-list');
-            matomoRequestEvent({
-              category: 'Setting',
-              action: 'clickToUse',
-              label: 'Supported Chains',
-            });
-
-            ga4.fireEvent('More_SupportedChains', {
-              event_category: 'Click More',
-            });
-
-            reportSettings('Supported Chains');
           },
           rightIcon: (
             <>
@@ -1623,19 +1360,6 @@ const SettingsInner = ({
                 href="https://twitter.com/rabby_io"
                 target="_blank"
                 rel="noreferrer"
-                onClick={() => {
-                  matomoRequestEvent({
-                    category: 'Setting',
-                    action: 'clickToUse',
-                    label: 'Find us|Twitter',
-                  });
-
-                  ga4.fireEvent('More_FindUsTwitter', {
-                    event_category: 'Click More',
-                  });
-
-                  reportSettings('twitter');
-                }}
                 className="ml-12 group"
               >
                 <ThemeIcon
@@ -1651,19 +1375,6 @@ const SettingsInner = ({
                 href="https://discord.com/invite/seFBCWmUre"
                 target="_blank"
                 rel="noreferrer"
-                onClick={() => {
-                  matomoRequestEvent({
-                    category: 'Setting',
-                    action: 'clickToUse',
-                    label: 'Find us|Discord',
-                  });
-
-                  ga4.fireEvent('More_FindUsDiscord', {
-                    event_category: 'Click More',
-                  });
-
-                  reportSettings('discord');
-                }}
                 className="ml-12 group"
               >
                 <ThemeIcon
@@ -1688,7 +1399,6 @@ const SettingsInner = ({
   }
 
   const lockWallet = async () => {
-    reportSettings('lockWallet');
     await wallet.lockWallet();
     history.push('/unlock');
   };
@@ -1718,9 +1428,7 @@ const SettingsInner = ({
               onUpdate={reloadForUpdate}
               onClose={dismissSettingsCard}
             />
-          ) : (
-            <RateModalTriggerOnSettings className="mb-[16px]" />
-          )}
+          ) : null}
 
           <div className="setting-block">
             <div className="setting-title">
@@ -1913,11 +1621,5 @@ const Settings = (props: SettingsProps) => {
     </>
   );
 };
-
-function reportSettings(moduleName: string) {
-  stats.report('settingsModule', {
-    moduleName,
-  });
-}
 
 export default Settings;

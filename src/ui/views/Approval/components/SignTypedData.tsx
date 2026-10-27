@@ -4,13 +4,11 @@ import { useAsyncRetry } from 'react-use';
 import { Result } from '@rabby-wallet/rabby-security-engine';
 import { Button, Drawer, Modal, Skeleton } from 'antd';
 import { useScroll } from 'react-use';
-import { useSize, useDebounceFn } from 'ahooks';
+import { useSize } from 'ahooks';
 import { cloneDeep } from 'lodash';
 import { useQuery } from '@tanstack/react-query';
 import { createQueryKey } from '@/ui/query/queryKey';
 import { underline2Camelcase } from '@/background/utils';
-import { matomoRequestEvent } from '@/utils/matomo-request';
-import { getKRCategoryByType } from '@/utils/transaction';
 import {
   ALIAS_ADDRESS,
   CHAINS,
@@ -46,16 +44,12 @@ import {
   isDeepJSON,
   normalizeTypeData,
 } from './TypedDataActions/utils';
-import {
-  Level,
-  defaultRules,
-} from '@rabby-wallet/rabby-security-engine/dist/rules';
+import { Level } from '@rabby-wallet/rabby-security-engine/dist/rules';
 import { isTestnetChainId, findChain } from '@/utils/chain';
 import { TokenDetailPopup } from '@/ui/views/Dashboard/components/TokenDetailPopup';
 import { useSignStore } from '@/ui/state/sign';
 import { useEnterPassphraseModal } from '@/ui/hooks/useEnterPassphraseModal';
 import clsx from 'clsx';
-import stats from '@/stats';
 import {
   parseAction,
   formatSecurityEngineContext,
@@ -68,7 +62,6 @@ import { useGetMessageHash } from '../hooks/useGetCurrentMessageHash';
 import { useCheckCurrentSafeMessage } from '../hooks/useCheckCurrentSafeMessage';
 import GnosisDrawer from './TxComponents/GnosisDrawer';
 import { generateTypedData } from '@safe-global/protocol-kit';
-import { ga4 } from '@/utils/ga4';
 import IconGnosis from 'ui/assets/walletlogo/safe.svg';
 import { getCexInfo } from '@/ui/state/exchange';
 import {
@@ -174,7 +167,6 @@ const SignTypedData = ({
   const scrollRefSize = useSize(scrollRef);
   const scrollInfo = useScroll(scrollRef);
   const securityEngineCtx = useRef<any>(null);
-  const logId = useRef('');
   const [isWatch, setIsWatch] = useState(false);
   const [isLedger, setIsLedger] = useState(false);
   const [footerShowShadow, setFooterShowShadow] = useState(false);
@@ -617,46 +609,7 @@ const SignTypedData = ({
     return () => modal.destroy();
   }, [finishedSafeMessage, requestKey, securityEvaluation, securityBlocked]);
 
-  const report = async (
-    action:
-      | 'createSignText'
-      | 'startSignText'
-      | 'cancelSignText'
-      | 'completeSignText',
-    extra?: Record<string, any>
-  ) => {
-    if (currentAccount) {
-      matomoRequestEvent({
-        category: 'SignText',
-        action: action,
-        label: [
-          getKRCategoryByType(currentAccount.type),
-          currentAccount.brandName,
-        ].join('|'),
-        transport: 'beacon',
-      });
-
-      if (action === 'createSignText') {
-        ga4.fireEvent('Init_SignText', {
-          event_category: 'SignText',
-        });
-      } else if (action === 'startSignText') {
-        ga4.fireEvent('Submit_SignText', {
-          event_category: 'SignText',
-        });
-      }
-
-      await wallet.reportStats(action, {
-        type: currentAccount.brandName,
-        category: getKRCategoryByType(currentAccount.type),
-        method: underline2Camelcase(params.method),
-        ...extra,
-      });
-    }
-  };
-
   const handleCancel = () => {
-    report('cancelSignText');
     rejectApproval('User rejected the request.');
   };
 
@@ -704,7 +657,6 @@ const SignTypedData = ({
 
       return;
     }
-    report('startSignText');
     resolveWithSecurityGate({});
   };
 
@@ -824,17 +776,6 @@ const SignTypedData = ({
     securityEngine.closeRuleDrawer();
   };
 
-  const { run: reportLogId } = useDebounceFn(
-    (rules) => {
-      wallet.openapi.postActionLog({
-        id: logId.current,
-        type: 'typed_data',
-        rules,
-      });
-    },
-    { wait: 1000 }
-  );
-
   const handleDrawerCancel = () => {
     setDrawerVisible(false);
   };
@@ -949,7 +890,6 @@ const SignTypedData = ({
         });
         return;
       }
-      logId.current = typedDataActionData.log_id;
       actionType.current = typedDataActionData.action?.type || '';
       const multi = typedDataActionData.action?.type === 'multi_actions';
       const actionsToParse = multi
@@ -1050,33 +990,6 @@ const SignTypedData = ({
     }
   }, [scrollInfo, scrollRefSize]);
 
-  useEffect(() => {
-    if (logId.current && evaluationReady && securityEngineCtx.current) {
-      try {
-        const keys = Object.keys(securityEngineCtx.current);
-        const key: any = keys[0];
-        const notTriggeredRules = defaultRules.filter((rule) => {
-          return (
-            rule.requires.includes(key) &&
-            !engineResults.some((item) => item.id === rule.id)
-          );
-        });
-        reportLogId([
-          ...notTriggeredRules.map((rule) => ({
-            id: rule.id,
-            level: null,
-          })),
-          ...engineResults.map((result) => ({
-            id: result.id,
-            level: result.level,
-          })),
-        ]);
-      } catch (e) {
-        // IGNORE
-      }
-    }
-  }, [evaluationReady, securityEvaluation]);
-
   useEffect(
     () => () => {
       securityStateRef.current.canSign = false;
@@ -1090,20 +1003,7 @@ const SignTypedData = ({
     init();
     securityEngine.init();
     checkWachMode();
-    report('createSignText');
   }, []);
-
-  useEffect(() => {
-    if (!isLoading) {
-      const duration = Date.now() - renderStartAt.current;
-      stats.report('signPageRenderTime', {
-        type: 'typedata',
-        actionType: actionType.current,
-        chain: chain?.serverId || '',
-        duration,
-      });
-    }
-  }, [isLoading]);
 
   return (
     <SecurityEngineScopeProvider scope={actionSecurityGroups[0]?.scope}>

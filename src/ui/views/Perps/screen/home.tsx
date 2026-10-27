@@ -41,7 +41,6 @@ import {
 import { PositionItem } from '../components/PositionItem';
 import { PerpsLimitOrdersSection } from '../components/PerpsLimitOrdersSection';
 import { useHomeLimitOrders } from '../hooks/useLimitOrders';
-import BigNumber from 'bignumber.js';
 import { AssetItem } from '../components/AssetMetaItem';
 import NewUserProcessPopup from '../popup/NewUserProcessPopup';
 import { useRabbyDispatch, useRabbySelector } from '@/ui/store';
@@ -55,11 +54,8 @@ import {
 } from '../constants';
 import { useMemoizedFn } from 'ahooks';
 import { getPerpsSDK } from '../sdkManager';
-import { capturePerpsError } from '../sentry';
 import { RiskLevelPopup } from '../popup/RiskLevelPopup';
 import { useThemeMode } from '@/ui/hooks/usePreference';
-import stats from '@/stats';
-import { getStatsReportSide } from '../../DesktopPerps/utils';
 import { PerpsHeaderRight } from '../components/PerpsHeaderRight';
 import { SearchPerpsPopup } from '../popup/SearchPerpsPopup';
 import { PerpsCategorySectionHeader } from '../components/PerpsCategorySectionHeader';
@@ -308,28 +304,6 @@ export const Perps: React.FC = () => {
       await handleActionApproveStatus();
       const ok = await handleCloseAllPositions(clearinghouseState);
       if (!ok) return;
-      clearinghouseState.assetPositions.forEach((item) => {
-        const isBuy = Number(item.position.szi || 0) > 0;
-        const price = new BigNumber(item.position.positionValue || 0).div(
-          new BigNumber(item.position.szi || 1).abs()
-        );
-        stats.report('perpsTradeHistory', {
-          created_at: new Date().getTime(),
-          user_addr: currentPerpsAccount?.address || '',
-          trade_type: 'close all market',
-          leverage: item.position.leverage.value.toString(),
-          trade_side: getStatsReportSide(!isBuy, true),
-          margin_mode:
-            item.position.leverage.type === 'cross' ? 'cross' : 'isolated',
-          coin: item.position.coin,
-          size: Math.abs(Number(item.position.szi || 0)),
-          price: price.toFixed(2),
-          trade_usd_value: item.position.positionValue,
-          service_provider: 'hyperliquid',
-          app_version: process.env.release || '0',
-          address_type: currentPerpsAccount?.type || '',
-        });
-      });
     } catch (error) {
       console.error('close all position error', error);
       message.error({
@@ -337,7 +311,6 @@ export const Perps: React.FC = () => {
         duration: 1.5,
         content: error?.message || 'close all position error',
       });
-      capturePerpsError('close all position error', error);
     }
   });
 

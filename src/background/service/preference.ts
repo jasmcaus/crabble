@@ -1,5 +1,4 @@
 import cloneDeep from 'lodash/cloneDeep';
-import * as Sentry from '@sentry/browser';
 import type { BalanceCacheData } from '@/db/schema/balance';
 import eventBus from '@/eventBus';
 import { createPersistStore, isSameAddress } from 'background/utils';
@@ -19,11 +18,6 @@ import dayjs from 'dayjs';
 import type { IExtractFromPromise } from '@/ui/utils/type';
 import { OpenApiService } from '@rabby-wallet/rabby-api';
 import { getFirstPreferredLangCode } from './i18n';
-import {
-  getDefaultRateGuideLastExposure,
-  LAST_EXPOSURE_VERSIONED_KEY,
-  RateGuideLastExposure,
-} from '@/utils/rateGuidance';
 import { findChain } from '@/utils/chain';
 
 const version = process.env.release || '0';
@@ -117,13 +111,9 @@ export interface PreferenceStore {
   addedToken: addedToken;
   tokenApprovalChain: Record<string, CHAINS_ENUM>;
   nftApprovalChain: Record<string, CHAINS_ENUM>;
-  sendLogTime?: number;
   needSwitchWalletCheck?: boolean;
   lastSelectedSwapPayToken?: Record<string, TokenItem>;
   lastSelectedGasTopUpChain?: Record<string, CHAINS_ENUM>;
-  sendEnableTime?: number;
-  ga4EventTime?: number;
-  userDataTrackingOptOut?: boolean;
   customizedToken?: Token[];
   blockedToken?: Token[];
   collectionStarred?: Token[];
@@ -148,8 +138,6 @@ export interface PreferenceStore {
   biometricUnlockEncryptedPassword?: string;
   biometricUnlockIv?: string;
   unlockPreferredMethod?: UnlockPreferredMethod;
-
-  rateGuideLastExposure?: RateGuideLastExposure;
 
   /** @deprecated use desktopTabIds instead */
   desktopTabId?: number;
@@ -199,9 +187,7 @@ class PreferenceService {
     try {
       defaultLang = await getFirstPreferredLangCode();
     } catch (e) {
-      Sentry.captureException(
-        `i18n getFirstPreferredLangCode error: ${JSON.stringify(e)}`
-      );
+      console.error('[preference] failed to read preferred language', e);
     }
     this.store = await createPersistStore<PreferenceStore>({
       name: 'preference',
@@ -230,9 +216,7 @@ class PreferenceService {
         addedToken: {},
         tokenApprovalChain: {},
         nftApprovalChain: {},
-        sendLogTime: 0,
         needSwitchWalletCheck: true,
-        sendEnableTime: 0,
         customizedToken: [],
         blockedToken: [],
         collectionStarred: [],
@@ -252,9 +236,6 @@ class PreferenceService {
         biometricUnlockEncryptedPassword: '',
         biometricUnlockIv: '',
         unlockPreferredMethod: 'biometric',
-        ga4EventTime: 0,
-        userDataTrackingOptOut: true,
-        rateGuideLastExposure: getDefaultRateGuideLastExposure(),
         desktopTabId: undefined,
         desktopTabIds: {},
         desktopTokensAllMode: false,
@@ -322,14 +303,8 @@ class PreferenceService {
     if (!this.store.nftApprovalChain) {
       this.store.nftApprovalChain = {};
     }
-    if (!this.store.sendLogTime) {
-      this.store.sendLogTime = 0;
-    }
     if (this.store.needSwitchWalletCheck == null) {
       this.store.needSwitchWalletCheck = true;
-    }
-    if (!this.store.sendEnableTime) {
-      this.store.sendEnableTime = 0;
     }
     if (!this.store.customizedToken) {
       this.store.customizedToken = [];
@@ -392,12 +367,6 @@ class PreferenceService {
 
     this.store.currentVersion = version;
 
-    if (this.store.ga4EventTime) {
-      this.store.ga4EventTime = 0;
-    }
-    if (this.store.userDataTrackingOptOut == null) {
-      this.store.userDataTrackingOptOut = false;
-    }
     if (!this.store.sceneAccountMap) {
       this.store.sceneAccountMap = {};
     }
@@ -968,24 +937,6 @@ class PreferenceService {
     );
   };
 
-  getSendLogTime = () => {
-    return this.store.sendLogTime || 0;
-  };
-  updateSendLogTime = (time: number) => {
-    this.store.sendLogTime = time;
-  };
-  getSendEnableTime = () => {
-    return this.store.sendEnableTime || 0;
-  };
-  updateSendEnableTime = (time: number) => {
-    this.store.sendEnableTime = time;
-  };
-  getUserDataTrackingOptOut = () => {
-    return this.store.userDataTrackingOptOut === true;
-  };
-  setUserDataTrackingOptOut = (value: boolean) => {
-    this.store.userDataTrackingOptOut = value;
-  };
   getNeedSwitchWalletCheck = () => {
     if (this.store.needSwitchWalletCheck == null) {
       return true;
@@ -1062,25 +1013,6 @@ class PreferenceService {
   };
   setIsHideEcologyNoticeDict = (v: Record<string | number, boolean>) => {
     this.store.isHideEcologyNoticeDict = v;
-  };
-
-  getRateGuideLastExposure = () => {
-    return (
-      this.store.rateGuideLastExposure || getDefaultRateGuideLastExposure()
-    );
-  };
-
-  setRateGuideLastExposure = (exposure: Partial<RateGuideLastExposure>) => {
-    this.store.rateGuideLastExposure = {
-      txCount: 0,
-      ...this.store.rateGuideLastExposure,
-      ...exposure,
-      [LAST_EXPOSURE_VERSIONED_KEY]: {
-        time: -1,
-        ...this.store.rateGuideLastExposure?.[LAST_EXPOSURE_VERSIONED_KEY],
-        ...exposure[LAST_EXPOSURE_VERSIONED_KEY],
-      },
-    };
   };
 
   updateDashboardPanelOrder = (order: string[]) => {

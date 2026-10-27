@@ -2,20 +2,8 @@ import eventBus from '@/eventBus';
 import migrateData from '@/migrations';
 import { getOriginFromUrl, transformFunctionsToZero } from '@/utils';
 import { appIsDev, isManifestV3 } from '@/utils/env';
-import { matomoRequestEvent } from '@/utils/matomo-request';
-import {
-  Message,
-  sendReadyMessageToTabs,
-  setMessageErrorReporter,
-} from '@/utils/message';
-import { getSentryConfig } from '@/utils/sentry-config';
-import {
-  getSigningContext,
-  isSigningCarrierReported,
-  takeSigningCarrier,
-} from '@/utils/sentry';
+import { Message, sendReadyMessageToTabs } from '@/utils/message';
 import Safe from '@rabby-wallet/gnosis-sdk';
-import * as Sentry from '@sentry/browser';
 import fetchAdapter from '@/services/openapi/fetchAdapter';
 import { WalletController } from 'background/controller/wallet';
 import {
@@ -32,13 +20,12 @@ import {
   EVENTS_IN_BG,
   INTERNAL_REQUEST_ORIGIN,
   IS_FIREFOX,
-  KEYRING_CATEGORY_MAP,
   KEYRING_TYPE,
 } from 'consts';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import { ethErrors } from 'eth-rpc-errors';
-import { groupBy, isNull, omit, pick } from 'lodash';
+import { isNull, omit, pick } from 'lodash';
 import 'reflect-metadata';
 import browser from 'webextension-polyfill';
 import BigNumber from 'bignumber.js';
@@ -65,12 +52,10 @@ import {
   transactionBroadcastWatchService,
   transactionHistoryService,
   transactionWatchService,
-  uninstalledService,
   whitelistService,
   OfflineChainsService,
   perpsService,
   transactionsService,
-  feedbackService,
 } from './service';
 import { customTestnetService } from './service/customTestnet';
 import { GasAccountServiceStore } from './service/gasAccount';
@@ -97,9 +82,8 @@ const PERPS_WIDGET_RPC_ALLOWLIST = new Set<string>([
 import rpcCache from './utils/rpcCache';
 import { storage } from './webapi';
 import { metamaskModeService } from './service/metamaskModeService';
-import { ga4 } from '@/utils/ga4';
-import { ALARMS_SYNC_DEFAULT_RPC, ALARMS_USER_ENABLE } from './utils/alarms';
-import { subscribeTxCompleted } from './subscriptions/rateGuidance';
+import { ALARMS_SYNC_DEFAULT_RPC } from './utils/alarms';
+
 import extensionUpdateService from './service/extensionUpdate';
 
 // Register synchronously so update events can wake the MV3 service worker.
@@ -117,49 +101,6 @@ dayjs.extend(utc);
 const { PortMessage } = Message;
 
 let appStoreLoaded = false;
-
-Sentry.init(getSentryConfig());
-
-// Errors thrown by pm.listen callbacks are caught in Message.onRequest and
-// forwarded to the calling page as the response, so they never reach this
-// context's global handlers. Business failures (user rejections, RPC errors)
-// carry an rpc error code and must stay report-free; only programming errors
-// are captured here.
-//
-// The allowlist is deliberately restricted to native engine error subtypes
-// (TypeError/ReferenceError/RangeError) rather than any uncoded Error. The
-// background throws hundreds of plain `new Error(...)` intentionally — mostly
-// i18n business validations like "no current account" / "invalid chain id" —
-// which have no rpc code either, so broadening to all uncoded Error instances
-// would flood Sentry with those expected states. The engine practically never
-// raises these subtypes for business logic, so they are a clean bug signal.
-setMessageErrorReporter((error) => {
-  const signingCarrier = takeSigningCarrier(error);
-  if (signingCarrier) {
-    if (!isSigningCarrierReported(signingCarrier)) {
-      Sentry.captureException(signingCarrier);
-    }
-    return true;
-  }
-
-  // rpcFlow normally captures signing failures first. Capturing the same Error
-  // here is deduplicated by Sentry and also covers direct wallet-controller calls.
-  if (getSigningContext(error)) {
-    Sentry.captureException(error);
-    return true;
-  }
-
-  if (
-    (error instanceof TypeError ||
-      error instanceof ReferenceError ||
-      error instanceof RangeError) &&
-    (error as { code?: unknown }).code === undefined
-  ) {
-    Sentry.captureException(error);
-    return true;
-  }
-  return false;
-});
 
 async function restoreAppState() {
   await onInstall();
@@ -192,13 +133,11 @@ async function restoreAppState() {
   await HDKeyRingLastAddAddrTimeService.init();
   await bridgeService.init();
   await gasAccountService.init();
-  await uninstalledService.init();
   await metamaskModeService.init();
   await OfflineChainsService.init();
   await syncChainService.init();
   await perpsService.init();
   await transactionsService.init();
-  await feedbackService.init();
 
   // WS is lazy — subscribes only after the first content-script port attaches
   perpsLive.boot();
@@ -215,19 +154,13 @@ async function restoreAppState() {
   transactionBroadcastWatchService.roll();
   walletController.syncMainnetChainList();
 
-  // check if user has enabled the extension
   if (isManifestV3) {
-    browser.alarms.create(ALARMS_USER_ENABLE, {
-      when: Date.now(),
-      periodInMinutes: 60,
-    });
     browser.alarms.create(ALARMS_SYNC_DEFAULT_RPC, {
       when: Date.now(),
       periodInMinutes: 60,
     });
   } else {
     setInterval(() => {
-      startEnableUser();
       RPCService.syncDefaultRPC();
     }, 1 * 60 * 60 * 1000);
   }
@@ -274,7 +207,6 @@ async function restoreAppState() {
     };
   }
   await sendReadyMessageToTabs();
-  subscribeTxCompleted({ preferenceService });
 
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.type === 'getBackgroundReady') {
@@ -314,92 +246,24 @@ async function restoreAppState() {
     }
   });
 
-  uninstalledService.setUninstalled();
+  // Builds before tracking was removed set Rabby's uninstall survey page and
+  // stored analytics install IDs. Clear both.
+  browser.runtime.setUninstallURL('').catch(() => undefined);
+  browser.storage.local
+    .remove(['clientId', 'extensionId', 'UninstalledMetric'])
+    .catch(() => undefined);
 }
 
 restoreAppState().catch((e) => {
   // A throw here leaves `appStoreLoaded` false and `getBackgroundReady`
   // unregistered, so every UI page waits until its bootstrap timeout.
   console.error('[restoreAppState] failed', e);
-  Sentry.captureException(e, {
-    tags: { bootstrap_stage: 'restoreAppState' },
-  });
 });
 {
-  let interval: NodeJS.Timeout | null;
   keyringService.on('unlock', () => {
     walletController.syncMainnetChainList();
     contactBookService.detectWhiteListCex();
     perpsService.unlockAgentWallets();
-
-    if (interval) {
-      clearInterval(interval);
-    }
-    const sendEvent = async () => {
-      const time = preferenceService.getSendLogTime();
-      if (dayjs(time).utc().isSame(dayjs().utc(), 'day')) {
-        return;
-      }
-      const customTestnetLength = customTestnetService.getList()?.length;
-      if (customTestnetLength) {
-        matomoRequestEvent({
-          category: 'Custom Network',
-          action: 'Custom Network Status',
-          value: customTestnetLength,
-        });
-
-        ga4.fireEvent('Has_CustomNetwork', {
-          event_category: 'Custom Network',
-        });
-      }
-      const chains = preferenceService.getSavedChains();
-      matomoRequestEvent({
-        category: 'User',
-        action: 'pinnedChains',
-        label: chains.join(','),
-      });
-      const accounts = await walletController.getAccounts();
-      const list = await Promise.all(
-        accounts.map(async (account) => {
-          const category = KEYRING_CATEGORY_MAP[account.type];
-          const action = account.brandName;
-          const balance = await walletController.getAddressCacheBalance(
-            account.address
-          );
-          const label = (balance?.total_usd_value || 0) <= 0;
-          return {
-            category,
-            action,
-            label: label ? 'empty' : 'notEmpty',
-          };
-        })
-      );
-      const groups = groupBy(list, (item) => {
-        return `${item.category}_${item.action}_${item.label}`;
-      });
-      Object.values(groups).forEach((group) => {
-        matomoRequestEvent({
-          category: 'UserAddress',
-          action: group[0].category,
-          label: [group[0].action, group[0].label, group.length].join('|'),
-          value: group.length,
-        });
-
-        ga4.fireEvent(`${group[0].category}_${group[0].label}`, {
-          event_category: 'UserAddress',
-        });
-      });
-      preferenceService.updateSendLogTime(Date.now());
-    };
-    sendEvent();
-    interval = setInterval(sendEvent, 5 * 60 * 1000);
-  });
-
-  keyringService.on('lock', () => {
-    if (interval) {
-      clearInterval(interval);
-      interval = null;
-    }
   });
 
   keyringService.on(
@@ -538,9 +402,6 @@ browser.runtime.onConnect.addListener((port) => {
       if (port.name === 'popup') {
         preferenceService.setPopupOpen(true);
       }
-      feedbackService.setScreenshotContextMenuVisible(true).catch(() => {
-        // Reset the native menu for newly opened extension pages.
-      });
       browser.runtime.sendMessage({ type: 'pageOpened' });
       pm.send('message', { event: BACKGROUND_READY_MESSAGE });
     };
@@ -647,24 +508,6 @@ declare global {
   }
 }
 
-function startEnableUser() {
-  const time = preferenceService.getSendEnableTime();
-  if (dayjs(time).utc().isSame(dayjs().utc(), 'day')) {
-    return;
-  }
-  matomoRequestEvent({
-    category: 'User',
-    action: 'enable',
-  });
-
-  browser.action.getUserSettings().then((res) => {
-    ga4.fireEvent(`User_Enable_${res.isOnToolbar ? 'Pin' : 'unPin'}`, {
-      event_category: 'User Enable',
-    });
-  });
-  preferenceService.updateSendEnableTime(Date.now());
-}
-
 // On first install, open a new tab with Rabby
 async function onInstall() {
   const storeAlreadyExisted = await userGuideService.isStorageExisted();
@@ -677,9 +520,6 @@ async function onInstall() {
 
 if (isManifestV3) {
   browser.alarms.onAlarm.addListener((alarm) => {
-    if (alarm.name === ALARMS_USER_ENABLE) {
-      startEnableUser();
-    }
     if (alarm.name === ALARMS_SYNC_DEFAULT_RPC) {
       RPCService.syncDefaultRPC();
     }

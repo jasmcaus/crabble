@@ -1,6 +1,6 @@
 import { TestnetChainBase } from '@/background/service/customTestnet';
 import { CustomTestnetForm } from '@/ui/views/CustomTestnet/components/CustomTestnetForm';
-import { useMount, useRequest } from 'ahooks';
+import { useRequest } from 'ahooks';
 import { Button } from 'antd';
 import { useForm } from 'antd/lib/form/Form';
 import clsx from 'clsx';
@@ -8,7 +8,6 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { bindApproval, useApproval, useWallet } from 'ui/utils';
 import { AddEthereumChainParams } from './type';
-import { matomoRequestEvent } from '@/utils/matomo-request';
 
 interface AddChainProps {
   data: AddEthereumChainParams[];
@@ -45,13 +44,6 @@ const AddChain = ({
       scanLink: addChainParams.blockExplorerUrls?.[0],
     });
   }, [form, addChainParams]);
-
-  useMount(() => {
-    matomoRequestEvent({
-      category: 'Custom Network',
-      action: 'Dapp Add Network',
-    });
-  });
 
   const { loading, runAsync: runAddChain } = useRequest(
     async () => {

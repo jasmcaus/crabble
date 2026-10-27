@@ -11,7 +11,6 @@ import IconCopy from 'ui/assets/component/icon-copy.svg';
 import IconMaskIcon from '@/ui/assets/create-mnemonics/mask-lock.svg';
 import { ReactComponent as IconRcMask } from '@/ui/assets/create-mnemonics/mask-lock.svg';
 import clsx from 'clsx';
-import { useHideScreenshotContextMenu } from '@/ui/hooks/useScreenshotContextMenuVisible';
 
 const AddressBackupPrivateKey: React.FC<{
   isInModal?: boolean;
@@ -27,7 +26,6 @@ const AddressBackupPrivateKey: React.FC<{
   const data = state?.data;
   const [masked, setMasked] = useState(true);
   const [isShowPrivateKey, setIsShowPrivateKey] = useState(false);
-  useHideScreenshotContextMenu();
 
   useEffect(() => {
     if (!data) {

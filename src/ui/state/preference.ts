@@ -10,13 +10,6 @@ import type {
 import { CHAINS_ENUM, DARK_MODE_TYPE } from '@/constant';
 import { changeLanguage } from '@/i18n';
 import { wallet } from '@/ui/wallet';
-import { ga4 } from '@/utils/ga4';
-import {
-  getDefaultRateGuideLastExposure,
-  LAST_EXPOSURE_VERSIONED_KEY,
-  RateGuideLastExposure,
-  userCouldRated,
-} from '@/utils/rateGuidance';
 
 export interface PreferenceState {
   externalLinkAck: boolean;
@@ -35,7 +28,6 @@ export interface PreferenceState {
   autoLockTime: number;
   hiddenBalance: boolean;
   isShowTestnet: boolean;
-  userDataTrackingOptOut: boolean;
   addressSortStore: AddressSortStore;
   themeMode: DARK_MODE_TYPE;
   reserveGasOnSendToken: boolean;
@@ -47,7 +39,6 @@ export interface PreferenceState {
   biometricUnlockEncryptedPassword?: string;
   biometricUnlockIv?: string;
   unlockPreferredMethod?: UnlockPreferredMethod;
-  rateGuideLastExposure?: RateGuideLastExposure;
   dashboardPanelOrder?: string[];
 
   /** @deprecated */
@@ -88,7 +79,6 @@ export type PreferenceActions = {
   ) => Promise<void>;
   setHiddenBalance: (hidden: boolean) => Promise<void>;
   setIsShowTestnet: (value: boolean) => Promise<void>;
-  setUserDataTrackingOptOut: (value: boolean) => Promise<void>;
   setDesktopTokensAllMode: (value: boolean) => Promise<void>;
   switchLocale: (locale: string) => Promise<void>;
   switchThemeMode: (themeMode: DARK_MODE_TYPE) => Promise<void>;
@@ -109,9 +99,6 @@ export type PreferenceActions = {
     iv?: string;
   }) => Promise<void>;
   setUnlockPreferredMethod: (method: UnlockPreferredMethod) => Promise<void>;
-  setRateGuideLastExposure: (
-    lastExposure: Partial<RateGuideLastExposure>
-  ) => Promise<void>;
 };
 
 export type PreferenceStore = PreferenceState & PreferenceActions;
@@ -133,7 +120,6 @@ export const getDefaultPreferenceState = (): PreferenceState => ({
   autoLockTime: 0,
   hiddenBalance: false,
   isShowTestnet: false,
-  userDataTrackingOptOut: true,
   addressSortStore: {} as AddressSortStore,
   themeMode: DARK_MODE_TYPE.system,
   reserveGasOnSendToken: false,
@@ -145,19 +131,12 @@ export const getDefaultPreferenceState = (): PreferenceState => ({
   biometricUnlockEncryptedPassword: '',
   biometricUnlockIv: '',
   unlockPreferredMethod: 'biometric',
-  rateGuideLastExposure: getDefaultRateGuideLastExposure(),
   desktopTokensAllMode: false,
   dashboardPanelOrder: [],
 });
 
 export const selectIsReserveGasOnSendToken = (state: PreferenceState) =>
   state.reserveGasOnSendToken;
-
-export const selectRateGuideLastExposureTimestamp = (state: PreferenceState) =>
-  state.rateGuideLastExposure?.[LAST_EXPOSURE_VERSIONED_KEY]?.time;
-
-export const selectUserViewedRate = (state: PreferenceState) =>
-  userCouldRated(state.rateGuideLastExposure);
 
 export const usePreferenceStore = create<PreferenceStore>()((set, get) => ({
   ...getDefaultPreferenceState(),
@@ -259,11 +238,6 @@ export const usePreferenceStore = create<PreferenceStore>()((set, get) => ({
     await wallet.setIsShowTestnet(isShowTestnet);
     void get().getPreference('isShowTestnet');
   },
-  async setUserDataTrackingOptOut(userDataTrackingOptOut) {
-    set({ userDataTrackingOptOut });
-    await wallet.setUserDataTrackingOptOut(userDataTrackingOptOut);
-    void get().getPreference('userDataTrackingOptOut');
-  },
   async setDesktopTokensAllMode(desktopTokensAllMode) {
     set({ desktopTokensAllMode });
     await wallet.setDesktopTokensAllMode(desktopTokensAllMode);
@@ -279,10 +253,6 @@ export const usePreferenceStore = create<PreferenceStore>()((set, get) => ({
     set({ themeMode });
     await wallet.setThemeMode(themeMode);
     void get().getPreference('themeMode');
-    ga4.fireEvent(
-      `ThemeMode_${themeMode === DARK_MODE_TYPE.dark ? 'Dark' : 'Light'}`,
-      { event_category: 'Settings Snapshot' }
-    );
   },
   async setIsReserveGasOnSendToken(reserveGasOnSendToken) {
     set({ reserveGasOnSendToken });
@@ -307,16 +277,10 @@ export const usePreferenceStore = create<PreferenceStore>()((set, get) => ({
   async enablePwdForNonWhitelistedTx(value) {
     await wallet.enablePwdForNonWhitelistedTx(value);
     void get().getPreference('isEnabledPwdForNonWhitelistedTx');
-    ga4.fireEvent(`PwdForNonWhitelistedTx_${value ? 'On' : 'Off'}`, {
-      event_category: 'Settings Snapshot',
-    });
   },
   async enableDappAccount(value) {
     await wallet.enableDappAccount(value);
     void get().getPreference('isEnabledDappAccount');
-    ga4.fireEvent(`DappAccount_${value ? 'On' : 'Off'}`, {
-      event_category: 'Settings Snapshot',
-    });
   },
   async setBiometricUnlock(payload) {
     await wallet.setBiometricUnlock(payload);
@@ -326,27 +290,10 @@ export const usePreferenceStore = create<PreferenceStore>()((set, get) => ({
       biometricUnlockEncryptedPassword: payload.encryptedPassword || '',
       biometricUnlockIv: payload.iv || '',
     });
-    ga4.fireEvent(`Unlock_Biometrics_${payload.enabled ? 'On' : 'Off'}`, {
-      event_category: 'Settings Snapshot',
-    });
   },
   async setUnlockPreferredMethod(unlockPreferredMethod) {
     await wallet.setUnlockPreferredMethod(unlockPreferredMethod);
     set({ unlockPreferredMethod });
-  },
-  async setRateGuideLastExposure(lastExposure) {
-    await wallet.setRateGuideLastExposure(lastExposure);
-    set({
-      rateGuideLastExposure: {
-        ...getDefaultRateGuideLastExposure(),
-        ...lastExposure,
-        [LAST_EXPOSURE_VERSIONED_KEY]: {
-          time: -1,
-          userViewedRate: false,
-          ...lastExposure[LAST_EXPOSURE_VERSIONED_KEY],
-        },
-      },
-    });
   },
 }));
 

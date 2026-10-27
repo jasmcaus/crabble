@@ -26,21 +26,6 @@ export class MessageDisconnectedError extends Error {
   }
 }
 
-/** Returns true when the error was actually captured, so the response can
- * be flagged and the receiving page's Sentry skips its duplicate copy. */
-type MessageErrorReporter = (error: unknown) => boolean;
-
-/**
- * Message also runs in dapp pages / content-scripts, so it must not depend on
- * any reporting SDK itself; hosts that have one (e.g. the background's Sentry)
- * inject a reporter here to surface errors swallowed by the onRequest catch.
- */
-let messageErrorReporter: MessageErrorReporter | undefined;
-
-export const setMessageErrorReporter = (reporter: MessageErrorReporter) => {
-  messageErrorReporter = reporter;
-};
-
 const sanitizeFeePayer = (feePayer: any) => {
   if (
     feePayer === null ||
@@ -241,14 +226,6 @@ abstract class Message extends EventEmitter {
         };
         e.code && (err.code = e.code);
         e.data && (err.data = e.data);
-
-        try {
-          if (messageErrorReporter?.(e)) {
-            err.reportedFromBackground = true;
-          }
-        } catch (reportError) {
-          // reporting must never break the response channel
-        }
       }
 
       this.send('response', { ident, res, err });

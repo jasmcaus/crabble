@@ -3,15 +3,16 @@
  */
 import userDataTrackingOptOutMigration from '../../src/migrations/userDataTrackingOptOutMigration';
 
-test('sets userDataTrackingOptOut to false for existing users', async () => {
+test('drops the leftover analytics opt-out key', async () => {
   const result = await userDataTrackingOptOutMigration.migrator({
     preference: {
       currentVersion: '0.93.92',
       firstOpen: false,
+      userDataTrackingOptOut: false,
     } as any,
   });
 
-  expect(result?.preference?.userDataTrackingOptOut).toBe(false);
+  expect(result?.preference).not.toHaveProperty('userDataTrackingOptOut');
   expect(result?.preference?.currentVersion).toBe('0.93.92');
 });
 

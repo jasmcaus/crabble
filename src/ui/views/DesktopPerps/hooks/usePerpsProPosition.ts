@@ -13,7 +13,6 @@ import {
   SLIPPAGE,
 } from '@rabby-wallet/hyperliquid-sdk';
 import { perpsToast } from '../components/PerpsToast';
-import { capturePerpsError } from '../../Perps/sentry';
 import { useMemoizedFn } from 'ahooks';
 import { useRabbyDispatch, useRabbySelector } from '@/ui/store';
 import { useTranslation } from 'react-i18next';
@@ -101,7 +100,6 @@ export const usePerpsProPosition = () => {
       });
     } catch (error) {
       console.error('Failed to send new approve agent:', error);
-      capturePerpsError('send new approve agent failed', error);
     }
   });
 
@@ -153,7 +151,7 @@ export const usePerpsProPosition = () => {
         if (isExpired) {
           return;
         }
-        // builder fee not approved yet — flag for re-prompt, skip Sentry.
+        // builder fee not approved yet — flag for re-prompt.
         if (isBuilderFeeNotApprovedError(error?.message)) {
           dispatch.perps.setAccountNeedApproveBuilderFee(true);
           perpsToast.error({
@@ -167,7 +165,6 @@ export const usePerpsProPosition = () => {
           title: errorMessage,
           description: error?.message?.toString() || 'unknown error',
         });
-        capturePerpsError(errorMessage, error, { params });
       }
     }
   );

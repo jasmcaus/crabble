@@ -41,13 +41,8 @@ jest.mock('@/background/service/preference', () => ({
   __esModule: true,
   default: { getCurrentAccount: jest.fn() },
 }));
-jest.mock('@/stats', () => ({
-  __esModule: true,
-  default: { report: jest.fn() },
-}));
 jest.mock('@/utils/chain', () => ({ findChain: jest.fn() }));
 jest.mock('@/utils/env', () => ({ isManifestV3: false }));
-jest.mock('@sentry/browser', () => ({ captureException: jest.fn() }));
 
 import { KNOWN_APPROVAL_KINDS } from '@/background/service/notification';
 

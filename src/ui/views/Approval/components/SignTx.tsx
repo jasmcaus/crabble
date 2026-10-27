@@ -1,4 +1,3 @@
-import stats from '@/stats';
 import {
   BlockInfo,
   calcGasLimit,
@@ -9,7 +8,6 @@ import {
   explainGas,
   GasTokenInfo,
   getGasTokenBalance,
-  getKRCategoryByType,
   getPendingTxs,
   applySelectedGasToTx,
   is7702Tx,
@@ -20,7 +18,6 @@ import {
   validateGasPriceRange,
 } from '@/utils/transaction';
 import Safe, { BasicSafeInfo } from '@rabby-wallet/gnosis-sdk';
-import * as Sentry from '@sentry/browser';
 import { Drawer, message, Modal } from 'antd';
 import { maxBy } from 'lodash';
 import {
@@ -41,15 +38,13 @@ import {
   KEYRING_CLASS,
   KEYRING_TYPE,
   SUPPORT_1559_KEYRING_TYPE,
-  KEYRING_CATEGORY_MAP,
   GAS_TOP_UP_ADDRESS,
   ALIAS_ADDRESS,
 } from 'consts';
 import React, { ReactNode, useEffect, useMemo, useRef, useState } from 'react';
-import { matomoRequestEvent } from '@/utils/matomo-request';
 import { useTranslation, Trans } from 'react-i18next';
 import { useScroll } from 'react-use';
-import { useSize, useDebounceFn, useRequest, useMemoizedFn } from 'ahooks';
+import { useSize, useRequest, useMemoizedFn } from 'ahooks';
 import IconGnosis from 'ui/assets/walletlogo/safe.svg';
 import {
   bindApproval,
@@ -66,10 +61,7 @@ import { FooterBar } from './FooterBar/FooterBar';
 import Actions from './Actions';
 import { useRabbySelector } from '@/ui/store';
 import RuleDrawer from './SecurityEngine/RuleDrawer';
-import {
-  ContextActionData,
-  defaultRules,
-} from '@rabby-wallet/rabby-security-engine/dist/rules';
+import { ContextActionData } from '@rabby-wallet/rabby-security-engine/dist/rules';
 import { TokenDetailPopup } from '@/ui/views/Dashboard/components/TokenDetailPopup';
 import { useSignStore } from '@/ui/state/sign';
 import {
@@ -111,7 +103,6 @@ import {
   ActionRequireData,
   ParsedTransactionActionData,
 } from '@rabby-wallet/rabby-action';
-import { ga4 } from '@/utils/ga4';
 import { EIP7702Warning } from './EIP7702Warning';
 import { getEIP7702MiniGasLimit } from '@/background/utils/7702';
 import { MultiActionProps } from './TypedDataActions';
@@ -156,9 +147,6 @@ export const normalizeTxParams = (tx, isDapp?: boolean) => {
   try {
     return normalizeTransactionParams(tx, isDapp);
   } catch (e) {
-    Sentry.captureException(
-      new Error(`normalizeTxParams failed, ${JSON.stringify(e)}`)
-    );
     return tx;
   }
 };
@@ -566,59 +554,6 @@ const SignTx = ({
   const preparationGasReadyRef = useRef(false);
   const signTxPreparationId = params.signTxPreparationId;
 
-  const gaEvent = async (type: 'allow' | 'cancel') => {
-    const ga:
-      | {
-          category: 'Send' | 'Security';
-          source: 'sendNFT' | 'sendToken' | 'nftApproval' | 'tokenApproval';
-          trigger: string;
-        }
-      | undefined = params?.$ctx?.ga;
-    if (!ga) {
-      return;
-    }
-    const { category, source, trigger } = ga;
-
-    if (category === 'Send') {
-      matomoRequestEvent({
-        category,
-        action: type === 'cancel' ? 'cancelSignTx' : 'signTx',
-        label: [
-          chain.name,
-          getKRCategoryByType(currentAccount.type),
-          currentAccount.brandName,
-          source === 'sendNFT' ? 'nft' : 'token',
-          trigger,
-        ].join('|'),
-        transport: 'beacon',
-      });
-    } else if (category === 'Security') {
-      let action = '';
-      if (type === 'cancel') {
-        if (source === 'nftApproval') {
-          action = 'cancelSignDeclineNFTApproval';
-        } else {
-          action = 'cancelSignDeclineTokenApproval';
-        }
-      } else {
-        if (source === 'nftApproval') {
-          action = 'signDeclineNFTApproval';
-        } else {
-          action = 'signDeclineTokenApproval';
-        }
-      }
-      matomoRequestEvent({
-        category,
-        action,
-        label: [
-          chain.name,
-          getKRCategoryByType(currentAccount.type),
-          currentAccount.brandName,
-        ].join('|'),
-        transport: 'beacon',
-      });
-    }
-  };
   const customRPCErrorModalRef = useRef(false);
   const triggerCustomRPCErrorModal = () => {
     if (customRPCErrorModalRef.current) return;
@@ -1537,7 +1472,6 @@ const SignTx = ({
         content: e.message || JSON.stringify(e),
         className: 'modal-support-darkmode',
       });
-      Sentry.captureException(e);
     }
   };
 
@@ -1571,17 +1505,6 @@ const SignTx = ({
       await invokeEnterPassphrase(account.address);
     }
 
-    wallet.reportStats('signTransaction', {
-      type: KEYRING_TYPE.GnosisKeyring,
-      category: KEYRING_CATEGORY_MAP[KEYRING_CLASS.GNOSIS],
-      chainId: chain.serverId,
-      preExecSuccess:
-        checkErrors.length > 0 || !txDetail?.pre_exec.success ? false : true,
-      createdBy: params?.$ctx?.ga ? 'rabby' : 'dapp',
-      source: params?.$ctx?.ga?.source || '',
-      trigger: params?.$ctx?.ga?.trigger || '',
-      networkType: chain?.isTestnet ? 'Custom Network' : 'Integrated Network',
-    });
     if (!isViewGnosisSafe) {
       const params: any = {
         from: tx.from,
@@ -1681,18 +1604,6 @@ const SignTx = ({
   const handleCoboArugsConfirm = async (account: Account) => {
     if (!coboArgusInfo || !(await canSubmitCurrentApproval())) return;
 
-    wallet.reportStats('signTransaction', {
-      type: KEYRING_TYPE.CoboArgusKeyring,
-      category: KEYRING_CATEGORY_MAP[KEYRING_CLASS.CoboArgus],
-      chainId: chain.serverId,
-      preExecSuccess:
-        checkErrors.length > 0 || !txDetail?.pre_exec.success ? false : true,
-      createdBy: params?.$ctx?.ga ? 'rabby' : 'dapp',
-      source: params?.$ctx?.ga?.source || '',
-      trigger: params?.$ctx?.ga?.trigger || '',
-      networkType: chain?.isTestnet ? 'Custom Network' : 'Integrated Network',
-    });
-
     let newTx;
 
     try {
@@ -1714,7 +1625,6 @@ const SignTx = ({
         title: 'Error',
         content,
       });
-      Sentry.captureException(e);
       return;
     }
 
@@ -1785,7 +1695,6 @@ const SignTx = ({
         title: 'Error',
         content: e.message || JSON.stringify(e),
       });
-      Sentry.captureException(e);
       return;
     }
 
@@ -1871,7 +1780,6 @@ const SignTx = ({
       !isCurrentSecurityEvaluation()
     )
       return;
-    gaEvent('allow');
 
     approval.signingTxId &&
       (await wallet.updateSigningTx(approval.signingTxId, {
@@ -1920,28 +1828,6 @@ const SignTx = ({
       setDrawerVisible(true);
       return;
     }
-
-    await wallet.reportStats('signTransaction', {
-      type: currentAccount.brandName,
-      chainId: chain.serverId,
-      category: KEYRING_CATEGORY_MAP[currentAccount.type],
-      preExecSuccess:
-        checkErrors.length > 0 || !txDetail?.pre_exec.success ? false : true,
-      createdBy: params?.$ctx?.ga ? 'rabby' : 'dapp',
-      source: params?.$ctx?.ga?.source || '',
-      trigger: params?.$ctx?.ga?.trigger || '',
-      networkType: chain?.isTestnet ? 'Custom Network' : 'Integrated Network',
-    });
-
-    matomoRequestEvent({
-      category: 'Transaction',
-      action: 'Submit',
-      label: chain?.isTestnet ? 'Custom Network' : 'Integrated Network',
-    });
-
-    ga4.fireEvent(`Submit_${chain?.isTestnet ? 'Custom' : 'Integrated'}`, {
-      event_category: 'Transaction',
-    });
 
     resolveApproval({
       ...submitTransaction,
@@ -2060,7 +1946,6 @@ const SignTx = ({
   const handleCancel = () => {
     explainEpochRef.current += 1;
     invalidateSecurity();
-    gaEvent('cancel');
     rejectApproval('User rejected the request.');
   };
 
@@ -2303,17 +2188,6 @@ const SignTx = ({
     securityEngine.closeRuleDrawer();
   };
 
-  const { run: reportLogId } = useDebounceFn(
-    (rules) => {
-      wallet.openapi.postActionLog({
-        id: logId.current,
-        type: 'tx',
-        rules,
-      });
-    },
-    { wait: 1000 }
-  );
-
   const checkBlockedAddress = useMemoizedFn(async () => {
     try {
       const isBlockedFromPromise = wallet.openapi.isBlockedAddress(tx.from);
@@ -2509,16 +2383,6 @@ const SignTx = ({
       const accountInitResultPromise = settle(accountInitPromise);
       await Promise.all([syncDefaultRPCPromise, loadInitialGasTokenState()]);
 
-      matomoRequestEvent({
-        category: 'Transaction',
-        action: 'init',
-        label: chain?.isTestnet ? 'Custom Network' : 'Integrated Network',
-      });
-
-      ga4.fireEvent(`Init_${chain?.isTestnet ? 'Custom' : 'Integrated'}`, {
-        event_category: 'Transaction',
-      });
-
       const accountInitResult = await accountInitResultPromise;
       if ('error' in accountInitResult) {
         throw accountInitResult.error;
@@ -2535,18 +2399,6 @@ const SignTx = ({
       );
       const { gasList, gas, fee, tx: selectedTx } = initialGasSelection;
       setGasList(gasList);
-
-      wallet.reportStats('createTransaction', {
-        type: currentAccount.brandName,
-        category: KEYRING_CATEGORY_MAP[currentAccount.type],
-        chainId: chain.serverId,
-        createdBy: params?.$ctx?.ga ? 'rabby' : 'dapp',
-        source: params?.$ctx?.ga?.source || '',
-        trigger: params?.$ctx?.ga?.trigger || '',
-        networkType: chain?.isTestnet ? 'Custom Network' : 'Integrated Network',
-        swapUseSlider: params?.$ctx?.ga?.swapUseSlider ?? '',
-        gasLevel: gas?.level || 'normal',
-      });
 
       setMaxPriorityFee(fee);
 
@@ -2582,7 +2434,6 @@ const SignTx = ({
         title: 'Error',
         content: e.message || JSON.stringify(e),
       });
-      Sentry.captureException(e);
     }
   };
 
@@ -2688,13 +2539,6 @@ const SignTx = ({
       if (scrollRef.current && scrollRef.current.scrollTop > 0) {
         scrollRef.current && (scrollRef.current.scrollTop = 0);
       }
-      const duration = Date.now() - renderStartAt.current;
-      stats.report('signPageRenderTime', {
-        type: 'transaction',
-        actionType: actionType.current,
-        chain: chain?.serverId || '',
-        duration,
-      });
       reportedRenderDuration.current = true;
     }
   }, [isReady]);
@@ -2765,7 +2609,6 @@ const SignTx = ({
       })
       .catch((error) => {
         if (cancelled || evaluationSequence.current !== version) return;
-        Sentry.captureException(error);
         setSecurityError(true);
       });
     return () => {
@@ -2781,38 +2624,6 @@ const SignTx = ({
     },
     []
   );
-
-  useEffect(() => {
-    if (
-      logId.current &&
-      isReady &&
-      isSecurityReady &&
-      securityEngineCtx.current
-    ) {
-      try {
-        const keys = Object.keys(securityEngineCtx.current);
-        const key: any = keys[0];
-        const notTriggeredRules = defaultRules.filter((rule) => {
-          return (
-            rule.requires.includes(key) &&
-            !engineResults.some((item) => item.id === rule.id)
-          );
-        });
-        reportLogId([
-          ...notTriggeredRules.map((rule) => ({
-            id: rule.id,
-            level: null,
-          })),
-          ...engineResults.map((result) => ({
-            id: result.id,
-            level: result.level,
-          })),
-        ]);
-      } catch (e) {
-        // IGNORE
-      }
-    }
-  }, [isReady, isSecurityReady, engineResults]);
 
   useEffect(() => {
     if (scrollRef.current && scrollInfo && scrollRefSize) {

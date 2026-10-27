@@ -22,7 +22,6 @@ import {
   calcMinReceiveAmount,
   getNFTTradingCurrency,
   NFTOrderVerifyError,
-  reportNFTOrderVerifyError,
   verifyCreateListingTypedData,
 } from '@/utils/nftVerify';
 import { OPENSEA_CONDUIT_ADDRESS } from '@opensea/seaport-js/lib/constants';
@@ -712,7 +711,6 @@ export const Content: React.FC<Props> = (props) => {
         console.error(e);
         if (e instanceof NFTOrderVerifyError) {
           message.error(e.message);
-          reportNFTOrderVerifyError(e, { flow: 'listing', chainId: chain?.id });
         }
         // onFailed?.();
       },

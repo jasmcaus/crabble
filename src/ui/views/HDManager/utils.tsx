@@ -4,7 +4,6 @@ import PQueue from 'p-queue';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Account } from './AccountList';
-import * as Sentry from '@sentry/browser';
 import { KEYRING_CLASS } from '@/constant';
 import { useImportMnemonicsStore } from '@/ui/state/importMnemonics';
 import { useTranslation } from 'react-i18next';
@@ -213,7 +212,6 @@ const useTaskQueue = ({ keyring }) => {
         return;
       }
       console.error(e);
-      Sentry.captureException(e);
       message.error({
         content: t('page.newAddress.hd.tooltip.disconnected'),
         key: 'ledger-error',

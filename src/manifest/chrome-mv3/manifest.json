@@ -65,7 +65,6 @@
     "activeTab",
     "notifications",
     "offscreen",
-    "contextMenus",
     "webRequest"
   ],
   "host_permissions": [

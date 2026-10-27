@@ -20,7 +20,6 @@
     "build:pro": "cross-env MANIFEST_TYPE=chrome-mv3 npm run build:pro:default",
     "build:debug": "cross-env MANIFEST_TYPE=chrome-mv3 npm run build:debug:default",
     "build:sourcemap": "npm run clean && npm run make-theme && webpack --progress --env config=sourcemap",
-    "upload:sourcemap": "npx sentry-cli sourcemaps upload --org $SENTRY_ORG --project $SENTRY_PROJECT --release $npm_package_version dist tmp/sourcemaps/mv3",
     "sync-chain": "node ./scripts/sync-support-chain.js",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
     "lint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx ./src",
@@ -34,7 +33,6 @@
     "@bitboxswiss/bitbox-api": "0.1.1",
     "@coinbase/wallet-sdk": "3.8.0-beta.3",
     "@debank/common": "0.3.60",
-    "@debank/festats": "1.0.1",
     "@dnd-kit/core": "5.0.1",
     "@dnd-kit/sortable": "6.0.0",
     "@dnd-kit/utilities": "3.0.2",
@@ -90,8 +88,6 @@
     "@safe-global/sdk-starter-kit": "1.1.1",
     "@safe-global/types-kit": "1.0.2",
     "@scure/bip39": "1.2.1",
-    "@sentry/browser": "10.58.0",
-    "@sentry/react": "10.58.0",
     "@tanstack/react-query": "5.102.2",
     "@trezor/connect-web": "9.6.4",
     "@trezor/connect-webextension": "9.6.4",
@@ -169,7 +165,6 @@
   },
   "devDependencies": {
     "@pmmmwh/react-refresh-webpack-plugin": "0.6.2",
-    "@sentry/webpack-plugin": "5.3.0",
     "@svgr/webpack": "5.5.0",
     "@tailwindcss/postcss": "4.3.0",
     "@types/chrome": "0.0.263",
@@ -244,6 +239,7 @@
     "webpack-merge": "5.7.3"
   },
   "resolutions": {
+    "@sentry/minimal": "file:./build/stubs/sentry-minimal",
     "@debank/common": "^0.3.0",
     "blake2b": "https://github.com/RabbyHub/mirror-blake2b#55b93cc51a50b0af6b81bb44fcdf88e95c7e6b36",
     "@coinbase/wallet-sdk@npm:beta": "npm:3.8.0-beta.3",

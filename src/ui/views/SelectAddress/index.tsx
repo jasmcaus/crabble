@@ -5,8 +5,6 @@ import { KEYRING_CLASS } from 'consts';
 import './style.less';
 import { HDManager } from '../HDManager/HDManager';
 import { useImportMnemonicsStore } from '@/ui/state/importMnemonics';
-import { matomoRequestEvent } from '@/utils/matomo-request';
-import { ga4 } from '@/utils/ga4';
 
 type State = {
   keyring: string;
@@ -73,16 +71,6 @@ const SelectAddress = () => {
       return;
     }
     hasReportedRef.current = true;
-    const mnemonicSuffix =
-      state.keyring === KEYRING_CLASS.MNEMONIC ? '_Add' : '';
-    matomoRequestEvent({
-      category: 'User',
-      action: 'importAddress',
-      label: `${state.keyring}${mnemonicSuffix}`,
-    });
-    ga4.fireEvent(`Import_${state.keyring}${mnemonicSuffix}`, {
-      event_category: 'Import Address',
-    });
   }, [state.keyring]);
 
   const { keyring, brand } = state;

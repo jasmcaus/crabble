@@ -43,11 +43,9 @@ import {
   HDKeyRingLastAddAddrTimeService,
   bridgeService,
   gasAccountService,
-  uninstalledService,
   OfflineChainsService,
   perpsService,
   miscService,
-  feedbackService,
 } from 'background/service';
 import type { GasAccountServiceStore } from 'background/service/gasAccount';
 import extensionUpdateService from 'background/service/extensionUpdate';
@@ -108,10 +106,7 @@ import {
   isSameAddress,
   setPopupIcon,
 } from 'background/utils';
-import {
-  handleGasAccountLoginSuccess as syncGasAccountLoginSuccess,
-  trackGasAccountActiveStatus as trackCurrentGasAccountActiveStatus,
-} from '../utils/gasAccountLogin';
+import { handleGasAccountLoginSuccess as syncGasAccountLoginSuccess } from '../utils/gasAccountLogin';
 import {
   discoverGasAccountRuntimeState,
   GAS_ACCOUNT_DISCOVERY_TOP_BALANCE_ACCOUNT_LIMIT,
@@ -125,14 +120,12 @@ import KeystoneKeyring, {
   MemStoreDataReady,
 } from '../service/keyring/eth-keystone-keyring';
 import WatchKeyring from '@rabby-wallet/eth-watch-keyring';
-import stats, { EventParams } from '@/stats';
 import {
   generateAliasName,
   isFullVersionAccountType,
   isSameAccount,
 } from '@/utils/account';
 import BigNumber from 'bignumber.js';
-import * as Sentry from '@sentry/browser';
 import PQueue from 'p-queue';
 import { ProviderRequest } from './provider/type';
 import { QuoteResult } from '@rabby-wallet/rabby-swap/dist/quote';
@@ -189,7 +182,6 @@ import {
 } from '../service/customTestnet';
 import { getKeyringBridge, hasBridge } from '../service/keyring/bridge';
 import { syncChainService } from '../service/syncChain';
-import { matomoRequestEvent } from '@/utils/matomo-request';
 import { BALANCE_LOADING_CONFS } from '@/constant/timeout';
 import { IExtractFromPromise } from '@/ui/utils/type';
 import { Wallet, thirdparty } from '@ethereumjs/wallet';
@@ -224,7 +216,6 @@ import Browser, { Windows } from 'webextension-polyfill';
 import { hashSafeMessage } from '@safe-global/protocol-kit';
 import { userGuideService } from '../service/userGuide';
 import { metamaskModeService } from '../service/metamaskModeService';
-import { ga4 } from '@/utils/ga4';
 import { bgRetryTxMethods } from '../utils/errorTxRetry';
 import {
   BridgeTxHistoryItem,
@@ -240,7 +231,6 @@ import {
   calcMinReceiveAmount,
   getNFTTradingCurrency,
   NFTOrderVerifyError,
-  reportNFTOrderVerifyError,
   verifyAcceptOfferTx,
 } from '@/utils/nftVerify';
 import { buildCreateListingTypedData } from '@/utils/nft';
@@ -260,183 +250,6 @@ import {
   BalanceCacheData,
   normalizeBalanceCacheData,
 } from '@/db/schema/balance';
-
-type ScreenshotFeedbackPageInfo = {
-  uiType?: string;
-  pageUrl?: string;
-  routePath?: string;
-  userAgent?: string;
-  userAgentData?: {
-    architecture?: string;
-    bitness?: string;
-    brands?: { brand: string; version: string }[];
-    fullVersionList?: { brand: string; version: string }[];
-    mobile?: boolean;
-    model?: string;
-    platform?: string;
-    platformVersion?: string;
-    uaFullVersion?: string;
-  };
-  language?: string;
-  platform?: string;
-  viewport?: {
-    width: number;
-    height: number;
-    dpr: number;
-  };
-  screen?: {
-    width: number;
-    height: number;
-    availWidth: number;
-    availHeight: number;
-  };
-};
-
-type ScreenshotFeedbackExtra = {
-  currentScreen?: string;
-  pageInfo?: ScreenshotFeedbackPageInfo;
-  appVersionText: string;
-  appVersion: string;
-  appBuildNumber: string;
-  appBuildRevision: string;
-  applicationId?: string;
-  extensionVersion: string;
-  extensionName?: string;
-  totalBalanceText?: string;
-  myCallableAddressCount?: number;
-  myUncallableAddressCount?: number;
-  myFirstAddress?: string;
-  myFirstImportedAddress?: string;
-  myCurrentAddress?: string;
-  mySceneAddresses?: Record<string, string>;
-  systemName?: string;
-  systemVersion?: string;
-  deviceModel?: string;
-  manufacturer?: string;
-  userAgent?: string;
-  language?: string;
-  platform?: string;
-  themeMode?: DARK_MODE_TYPE;
-};
-
-type PostUserFeedbackParams = {
-  content: string;
-  image: string;
-  pageInfo?: ScreenshotFeedbackPageInfo;
-  totalBalanceText?: string;
-};
-
-const getSystemNameFromUserAgent = (userAgent?: string, platform?: string) => {
-  const value = `${platform || ''} ${userAgent || ''}`;
-
-  if (/windows/i.test(value)) return 'Windows';
-  if (/android/i.test(value)) return 'Android';
-  if (/iphone|ipad|ipod/i.test(value)) return 'iOS';
-  if (/macintosh|mac os/i.test(value)) return 'macOS';
-  if (/linux/i.test(value)) return 'Linux';
-
-  return platform;
-};
-
-const getSystemVersionFromUserAgent = (userAgent?: string) => {
-  if (!userAgent) return undefined;
-
-  const windowsVersion = userAgent.match(/Windows NT ([0-9.]+)/i)?.[1];
-  if (windowsVersion) return windowsVersion;
-
-  const androidVersion = userAgent.match(/Android ([0-9.]+)/i)?.[1];
-  if (androidVersion) return androidVersion;
-
-  const iosVersion = userAgent
-    .match(/(?:CPU (?:iPhone )?OS|CPU OS) ([0-9_]+)/i)?.[1]
-    ?.replace(/_/g, '.');
-  if (iosVersion) return iosVersion;
-
-  const macVersion = userAgent
-    .match(/Mac OS X ([0-9_]+)/i)?.[1]
-    ?.replace(/_/g, '.');
-  if (macVersion) return macVersion;
-
-  return undefined;
-};
-
-const getDeviceModelFromUserAgent = (
-  userAgent?: string,
-  systemName?: string
-) => {
-  if (!userAgent) return undefined;
-
-  if (systemName === 'iOS') {
-    if (/ipad/i.test(userAgent)) return 'iPad';
-    if (/iphone/i.test(userAgent)) return 'iPhone';
-    if (/ipod/i.test(userAgent)) return 'iPod';
-  }
-
-  if (systemName === 'macOS') return 'Mac';
-  if (systemName === 'Windows') return 'Windows PC';
-
-  const androidModel = userAgent
-    .match(/Android [^;]+;\s*([^;)]+?)(?:\s+Build\/|;|\))/i)?.[1]
-    ?.trim();
-  if (androidModel) return androidModel;
-
-  return undefined;
-};
-
-const inferManufacturer = (params: {
-  deviceModel?: string;
-  systemName?: string;
-  userAgent?: string;
-}) => {
-  const { deviceModel, systemName, userAgent } = params;
-  const value = `${deviceModel || ''} ${userAgent || ''}`;
-
-  if (systemName === 'iOS' || systemName === 'macOS') return 'Apple';
-  if (/pixel/i.test(value)) return 'Google';
-  if (/\bSM-|samsung/i.test(value)) return 'Samsung';
-  if (/huawei/i.test(value)) return 'Huawei';
-  if (/honor/i.test(value)) return 'Honor';
-  if (/\bmi\b|redmi|xiaomi/i.test(value)) return 'Xiaomi';
-  if (/oneplus/i.test(value)) return 'OnePlus';
-  if (/oppo/i.test(value)) return 'OPPO';
-  if (/vivo/i.test(value)) return 'vivo';
-  if (/motorola|moto/i.test(value)) return 'Motorola';
-
-  return undefined;
-};
-
-const getScreenshotFeedbackDeviceInfo = (
-  pageInfo?: ScreenshotFeedbackPageInfo
-) => {
-  const userAgent =
-    pageInfo?.userAgent ||
-    (typeof navigator !== 'undefined' ? navigator.userAgent : undefined);
-  const platform =
-    pageInfo?.userAgentData?.platform ||
-    pageInfo?.platform ||
-    (typeof navigator !== 'undefined' ? navigator.platform : undefined);
-  const systemName =
-    pageInfo?.userAgentData?.platform ||
-    getSystemNameFromUserAgent(userAgent, platform);
-  const systemVersion =
-    pageInfo?.userAgentData?.platformVersion ||
-    getSystemVersionFromUserAgent(userAgent);
-  const deviceModel =
-    pageInfo?.userAgentData?.model ||
-    getDeviceModelFromUserAgent(userAgent, systemName);
-  const manufacturer = inferManufacturer({
-    deviceModel,
-    systemName,
-    userAgent,
-  });
-
-  return {
-    deviceModel,
-    manufacturer,
-    systemName,
-    systemVersion,
-  };
-};
 
 const stashKeyrings: Record<string | number, any> = {};
 
@@ -737,24 +550,9 @@ export class WalletController extends BaseController {
       ...others
     } = params;
 
-    stats.report('gasTopUpConfirm', {
-      topUpChain: toChainId,
-      topUpAmount: fromUsdValue,
-      topUpToken: gasTokenSymbol,
-      paymentChain: others.chainServerId,
-      paymentToken: paymentTokenSymbol,
-    });
-
     const account = await preferenceService.getCurrentAccount();
     if (!account) throw new Error(t('background.error.noCurrentAccount'));
     const txId = await this.sendToken(others);
-
-    stats.report('gasTopUpTxFinished', {
-      topUpChain: toChainId,
-      topUpAmount: fromUsdValue,
-      paymentChain: others.chainServerId,
-      paymentToken: paymentTokenSymbol,
-    });
 
     const postGasStationOrder = async () =>
       await this.openapi.postGasStationOrder({
@@ -768,37 +566,13 @@ export class WalletController extends BaseController {
         fromUsdValue,
       });
 
-    const reportGasTopUpPostGasStationOrder = () =>
-      stats.report('gasTopUpPostGasStationOrder', {
-        topUpChain: toChainId,
-        topUpAmount: fromUsdValue,
-        paymentChain: others.chainServerId,
-        paymentToken: paymentTokenSymbol,
-      });
-
     try {
       await postGasStationOrder();
-      reportGasTopUpPostGasStationOrder();
     } catch (error) {
       try {
         await postGasStationOrder();
-        reportGasTopUpPostGasStationOrder();
       } catch (error) {
-        Sentry.captureException(
-          new Error(
-            'postGasStationOrder failed, params: ' +
-              JSON.stringify({
-                userAddr: account.address,
-                fromChainId: others.chainServerId,
-                fromTxId: txId,
-                toChainId: toChainId,
-                toTokenAmount,
-                fromTokenId: others.tokenId,
-                fromTokenAmount: fromTokenAmount,
-                fromUsdValue,
-              })
-          )
-        );
+        console.error('[gasTopUp] postGasStationOrder failed', error);
       }
     }
   };
@@ -2149,8 +1923,6 @@ export class WalletController extends BaseController {
       setPopupIcon(isDefaultWallet ? 'rabby' : 'metamask');
     }
 
-    uninstalledService.syncStatus();
-
     setTimeout(() => {
       eventBus.emit(EVENTS.broadcastToUI, {
         method: EVENTS.UNLOCK_WALLET,
@@ -2198,14 +1970,6 @@ export class WalletController extends BaseController {
 
   setIsShowTestnet = (value: boolean) => {
     return preferenceService.setIsShowTestnet(value);
-  };
-
-  getUserDataTrackingOptOut = () => {
-    return preferenceService.getUserDataTrackingOptOut();
-  };
-
-  setUserDataTrackingOptOut = (value: boolean) => {
-    return preferenceService.setUserDataTrackingOptOut(value);
   };
 
   setDesktopTokensAllMode = (value: boolean) => {
@@ -2657,10 +2421,6 @@ export class WalletController extends BaseController {
     });
   };
 
-  updateGa4EventTime = (timestamp: number) => {
-    preferenceService.setPreferencePartials({ ga4EventTime: timestamp });
-  };
-
   getLastTimeSendToken = () => preferenceService.getLastTimeSendToken();
   setLastTimeSendToken = (token: TokenItem) =>
     preferenceService.setLastTimeSendToken(token);
@@ -2895,27 +2655,6 @@ export class WalletController extends BaseController {
     }
 
     return discoverGasAccountRuntimeState(accounts, options);
-  };
-  setGasAccountBalanceState = (accountId?: string, hasBalance?: boolean) => {
-    gasAccountService.setCurrentBalanceState(accountId, hasBalance);
-  };
-
-  trackGasAccountActiveStatus = async () => {
-    const { sig, accountId } = this.getGasAccountSig();
-    return trackCurrentGasAccountActiveStatus(sig, accountId);
-  };
-
-  trackGasAccountActiveStatusOncePerDay = async () => {
-    if (gasAccountService.hasTrackedGa4ActiveToday()) {
-      return false;
-    }
-
-    const tracked = await this.trackGasAccountActiveStatus();
-    if (tracked) {
-      gasAccountService.markGa4ActiveTracked();
-    }
-
-    return tracked;
   };
 
   handleGasAccountLoginSuccess = async (
@@ -4031,7 +3770,6 @@ export class WalletController extends BaseController {
       });
       keyring.on('error', (error) => {
         console.error(error);
-        Sentry.captureException(error);
       });
     }
     this._currentWalletConnectStashId = stashId;
@@ -5711,9 +5449,6 @@ export class WalletController extends BaseController {
 
   removeCollectionStarred = preferenceService.removeCollectionStarred;
 
-  reportStats = (name: string, params: EventParams) => {
-    stats.report(name, params);
-  };
   getNeedSwitchWalletCheck = preferenceService.getNeedSwitchWalletCheck;
 
   updateNeedSwitchWalletCheck = preferenceService.updateNeedSwitchWalletCheck;
@@ -6222,14 +5957,6 @@ export class WalletController extends BaseController {
     return await keyring.scanAccount();
   };
 
-  setStatsData = (data: any) => {
-    notificationService.setStatsData(data);
-  };
-
-  getStatsData = () => {
-    return notificationService.getStatsData();
-  };
-
   _currentCoinbaseStashId?: undefined | null | number;
 
   connectCoinbase = async () => {
@@ -6657,20 +6384,7 @@ export class WalletController extends BaseController {
       };
     }
   ) => {
-    const source = ctx?.ga?.source || 'setting';
-
     const res = await customTestnetService.add(chain);
-    if (!('error' in res)) {
-      matomoRequestEvent({
-        category: 'Custom Network',
-        action: 'Success Add Network',
-        label: `${source}_${String(chain.id)}`,
-      });
-
-      ga4.fireEvent('Add_CustomNetwork', {
-        event_category: 'Custom Network',
-      });
-    }
     return res;
   };
   updateCustomTestnet = customTestnetService.update;
@@ -6828,8 +6542,6 @@ export class WalletController extends BaseController {
     return true;
   };
 
-  uninstalledSyncStatus = uninstalledService.syncStatus;
-
   gasMarketV2 = loadGasMarketV2;
 
   changeDappProvider = ({
@@ -6929,12 +6641,6 @@ export class WalletController extends BaseController {
       highligtedAddresses: filteredHighligtedAddresses,
       alianNames: filteredAlianNames,
     });
-  };
-
-  setRateGuideLastExposure: typeof preferenceService.setRateGuideLastExposure = async (
-    ...args
-  ) => {
-    return preferenceService.setRateGuideLastExposure(...args);
   };
 
   /**
@@ -7153,127 +6859,9 @@ export class WalletController extends BaseController {
   };
 
   setReportGasLevel = miscService.setCurrentGasLevel;
-  getReportGasLevel = miscService.getCurrentGasLevel;
-
   getPendingExtensionVersion = extensionUpdateService.getPendingVersion;
   requestExtensionUpdateCheck = extensionUpdateService.requestUpdateCheck;
   reloadExtensionForUpdate = extensionUpdateService.reloadForUpdate;
-
-  getScreenshotFeedbacks = feedbackService.getScreenshotFeedbacks;
-  onScreenshotFeedbackSubmitted = feedbackService.onScreenshotFeedbackSubmitted;
-  removeScreenshotFeedback = feedbackService.removeScreenshotFeedback;
-  clearScreenshotFeedbacks = feedbackService.clearScreenshotFeedbacks;
-  setScreenshotContextMenuVisible =
-    feedbackService.setScreenshotContextMenuVisible;
-
-  getScreenshotFeedbackExtra = async ({
-    pageInfo,
-  }: Pick<
-    PostUserFeedbackParams,
-    'pageInfo'
-  >): Promise<ScreenshotFeedbackExtra> => {
-    const version = process.env.release || '0';
-    const manifest = Browser.runtime.getManifest();
-    const manifestVersion = manifest.version || version;
-    const deviceInfo = getScreenshotFeedbackDeviceInfo(pageInfo);
-    const extra: ScreenshotFeedbackExtra = {
-      // source: 'extension_screenshot',
-      currentScreen: pageInfo?.routePath || pageInfo?.pageUrl,
-      pageInfo,
-      appVersionText: version,
-      appVersion: version,
-      appBuildNumber: manifestVersion,
-      appBuildRevision: process.env.RABBY_BUILD_GIT_HASH || '',
-      applicationId: Browser.runtime.id,
-      extensionVersion: manifestVersion,
-      extensionName: manifest.name,
-      // totalBalanceText,
-      systemName: deviceInfo.systemName,
-      systemVersion: deviceInfo.systemVersion,
-      deviceModel: deviceInfo.deviceModel,
-      manufacturer: deviceInfo.manufacturer,
-      userAgent:
-        pageInfo?.userAgent ||
-        (typeof navigator !== 'undefined' ? navigator.userAgent : undefined),
-      language:
-        pageInfo?.language ||
-        (typeof navigator !== 'undefined' ? navigator.language : undefined),
-      platform:
-        pageInfo?.platform ||
-        (typeof navigator !== 'undefined' ? navigator.platform : undefined),
-    };
-
-    try {
-      const accounts = await keyringService.getAllVisibleAccountsArray();
-      const importedAccounts = accounts.filter(
-        (item) =>
-          item.type !== KEYRING_TYPE.WatchAddressKeyring &&
-          item.type !== KEYRING_TYPE.GnosisKeyring
-      );
-
-      extra.myCallableAddressCount = accounts.length;
-      extra.myUncallableAddressCount = importedAccounts.length;
-      extra.myFirstAddress = accounts[0]?.address;
-      extra.myFirstImportedAddress = importedAccounts[0]?.address;
-    } catch (error) {
-      console.error('Failed to get screenshot feedback accounts extra', error);
-    }
-
-    try {
-      const currentAccount = preferenceService.getCurrentAccount();
-
-      extra.myCurrentAddress = currentAccount?.address;
-    } catch (error) {
-      console.error(
-        'Failed to get screenshot feedback current account extra',
-        error
-      );
-    }
-
-    try {
-      const mySceneAddresses: Record<string, string> = {};
-      const perpsAccount = await perpsService.getCurrentAccount();
-
-      if (perpsAccount?.address) {
-        mySceneAddresses.Perps = perpsAccount.address;
-      }
-      const gasAccount = gasAccountService.getGasAccountData() as GasAccountServiceStore;
-      if (gasAccount?.account?.address) {
-        mySceneAddresses.GasAccount = gasAccount?.account?.address;
-      }
-      extra.mySceneAddresses = mySceneAddresses;
-    } catch (error) {
-      console.error(
-        'Failed to get screenshot feedback scene account extra',
-        error
-      );
-    }
-
-    try {
-      extra.themeMode = preferenceService.getThemeMode();
-    } catch (error) {
-      console.error('Failed to get screenshot feedback theme extra', error);
-    }
-
-    return extra;
-  };
-
-  postUserFeedback = async ({
-    content,
-    image,
-    pageInfo,
-  }: PostUserFeedbackParams) => {
-    const extra = await this.getScreenshotFeedbackExtra({
-      pageInfo,
-    });
-
-    return openapiService.postUserFeedback({
-      content,
-      image_url_list: image ? [image] : [],
-      title: '',
-      extra,
-    });
-  };
 
   checkIsApprovedForAll = async ({
     owner,
@@ -7443,142 +7031,132 @@ export class WalletController extends BaseController {
     feeBpsList: number[];
   }) => {
     // Name of the Seaport function the backend picked, for failure reports
-    let rawFunctionName: string | undefined;
-    try {
-      const chain = findChain({
-        id: chainId,
-      });
-      if (!chain) {
-        throw new Error('chain not found');
-      }
-      // Derive the minimum the user must receive from what the UI displayed,
-      // before trusting any fulfillment data from the backend.
-      const currency = getNFTTradingCurrency(chainId, 'offer');
-      if (order.price.decimals !== currency.decimals) {
-        throw new NFTOrderVerifyError(
-          'unexpected offer price decimals',
-          'currency'
-        );
-      }
-      const orderNFTQuantity = order.protocol_data.parameters.consideration.find(
-        (item) => isSameAddress(item.token, collectionId)
-      )?.startAmount;
-      if (!orderNFTQuantity || !(BigInt(orderNFTQuantity) > BigInt(0))) {
-        throw new NFTOrderVerifyError('cannot resolve offer quantity');
-      }
-      if (!feeBpsList.every((bps) => Number.isInteger(bps) && bps >= 0)) {
-        throw new NFTOrderVerifyError('invalid fee', 'amount');
-      }
-      const minReceiveAmount = calcMinReceiveAmount({
-        gross:
-          (BigInt(order.price.value) * BigInt(quantity)) /
-          BigInt(orderNFTQuantity),
-        feeBps: feeBpsList.reduce((sum, bps) => sum + bps, 0),
-        // Seaport fractions are exact and OpenSea floors fees, so only an
-        // optional creator fee rounded up can cost the seller, by at most
-        // 1 wei per displayed fee item
-        toleranceWei: BigInt(feeBpsList.length),
-      });
-      const res = await this.openapi.prepareAcceptNFTOffer({
-        chain_id: chain?.serverId,
-        order_hash: order.order_hash,
-        fulfiller: address,
-        collection_id: collectionId,
-        inner_id: innerId,
-        quantity,
-        include_optional_creator_fees: isIncludeCreatorFee,
-      });
-      const fulfillmentData = res.data;
-      const transaction = fulfillmentData.fulfillment_data.transaction;
-      const inputData = transaction.input_data;
-      const FULFILL_BASIC_ORDER_ALIAS = 'fulfillBasicOrder_efficient_6GL6yc';
-      // Extract function name and build parameters array in correct order
-      rawFunctionName = transaction.function.split('(')[0];
-      const functionName =
-        rawFunctionName === FULFILL_BASIC_ORDER_ALIAS
-          ? 'fulfillBasicOrder'
-          : rawFunctionName;
-      let params: unknown[];
+    const chain = findChain({
+      id: chainId,
+    });
+    if (!chain) {
+      throw new Error('chain not found');
+    }
+    // Derive the minimum the user must receive from what the UI displayed,
+    // before trusting any fulfillment data from the backend.
+    const currency = getNFTTradingCurrency(chainId, 'offer');
+    if (order.price.decimals !== currency.decimals) {
+      throw new NFTOrderVerifyError(
+        'unexpected offer price decimals',
+        'currency'
+      );
+    }
+    const orderNFTQuantity = order.protocol_data.parameters.consideration.find(
+      (item) => isSameAddress(item.token, collectionId)
+    )?.startAmount;
+    if (!orderNFTQuantity || !(BigInt(orderNFTQuantity) > BigInt(0))) {
+      throw new NFTOrderVerifyError('cannot resolve offer quantity');
+    }
+    if (!feeBpsList.every((bps) => Number.isInteger(bps) && bps >= 0)) {
+      throw new NFTOrderVerifyError('invalid fee', 'amount');
+    }
+    const minReceiveAmount = calcMinReceiveAmount({
+      gross:
+        (BigInt(order.price.value) * BigInt(quantity)) /
+        BigInt(orderNFTQuantity),
+      feeBps: feeBpsList.reduce((sum, bps) => sum + bps, 0),
+      // Seaport fractions are exact and OpenSea floors fees, so only an
+      // optional creator fee rounded up can cost the seller, by at most
+      // 1 wei per displayed fee item
+      toleranceWei: BigInt(feeBpsList.length),
+    });
+    const res = await this.openapi.prepareAcceptNFTOffer({
+      chain_id: chain?.serverId,
+      order_hash: order.order_hash,
+      fulfiller: address,
+      collection_id: collectionId,
+      inner_id: innerId,
+      quantity,
+      include_optional_creator_fees: isIncludeCreatorFee,
+    });
+    const fulfillmentData = res.data;
+    const transaction = fulfillmentData.fulfillment_data.transaction;
+    const inputData = transaction.input_data;
+    const FULFILL_BASIC_ORDER_ALIAS = 'fulfillBasicOrder_efficient_6GL6yc';
+    // Extract function name and build parameters array in correct order
+    const rawFunctionName = transaction.function.split('(')[0];
+    const functionName =
+      rawFunctionName === FULFILL_BASIC_ORDER_ALIAS
+        ? 'fulfillBasicOrder'
+        : rawFunctionName;
+    let params: unknown[];
 
-      // Order parameters based on the function being called
-      if (
-        functionName === 'fulfillAdvancedOrder' &&
-        'advancedOrder' in inputData
-      ) {
-        params = [
-          inputData.advancedOrder,
-          inputData.criteriaResolvers || [],
-          inputData.fulfillerConduitKey ||
-            '0x0000000000000000000000000000000000000000000000000000000000000000',
-          inputData.recipient,
-        ];
-      } else if (
-        (functionName === 'fulfillBasicOrder' ||
-          rawFunctionName === FULFILL_BASIC_ORDER_ALIAS) &&
-        'basicOrderParameters' in inputData
-      ) {
-        params = [inputData.basicOrderParameters];
-      } else if (functionName === 'fulfillOrder' && 'order' in inputData) {
-        // fulfillOrder(order, fulfillerConduitKey): proceeds go to msg.sender
-        params = [
-          inputData.order,
-          inputData.fulfillerConduitKey ||
-            '0x0000000000000000000000000000000000000000000000000000000000000000',
-        ];
-      } else if (
-        functionName === 'matchAdvancedOrders' &&
-        'orders' in inputData
-      ) {
-        // OpenSea matches partial offers against an order built for the fulfiller
-        const matchData = inputData as typeof inputData & {
-          criteriaResolvers?: unknown[];
-          fulfillments?: unknown[];
-          recipient?: string;
-        };
-        params = [
-          matchData.orders,
-          matchData.criteriaResolvers || [],
-          matchData.fulfillments || [],
-          matchData.recipient || zeroAddress,
-        ];
-      } else {
-        throw new NFTOrderVerifyError('unsupported function');
-      }
-      let encodedData: `0x${string}`;
-      try {
-        encodedData = encodeFunctionData({
-          abi: SeaportABI,
-          functionName: functionName as any,
-          args: params as any,
-        });
-      } catch (e) {
-        console.error(e);
-        throw e;
-      }
-      const tx = {
-        chainId,
-        from: address,
-        to: transaction.to,
-        value: transaction.value,
-        data: encodedData,
+    // Order parameters based on the function being called
+    if (
+      functionName === 'fulfillAdvancedOrder' &&
+      'advancedOrder' in inputData
+    ) {
+      params = [
+        inputData.advancedOrder,
+        inputData.criteriaResolvers || [],
+        inputData.fulfillerConduitKey ||
+          '0x0000000000000000000000000000000000000000000000000000000000000000',
+        inputData.recipient,
+      ];
+    } else if (
+      (functionName === 'fulfillBasicOrder' ||
+        rawFunctionName === FULFILL_BASIC_ORDER_ALIAS) &&
+      'basicOrderParameters' in inputData
+    ) {
+      params = [inputData.basicOrderParameters];
+    } else if (functionName === 'fulfillOrder' && 'order' in inputData) {
+      // fulfillOrder(order, fulfillerConduitKey): proceeds go to msg.sender
+      params = [
+        inputData.order,
+        inputData.fulfillerConduitKey ||
+          '0x0000000000000000000000000000000000000000000000000000000000000000',
+      ];
+    } else if (
+      functionName === 'matchAdvancedOrders' &&
+      'orders' in inputData
+    ) {
+      // OpenSea matches partial offers against an order built for the fulfiller
+      const matchData = inputData as typeof inputData & {
+        criteriaResolvers?: unknown[];
+        fulfillments?: unknown[];
+        recipient?: string;
       };
-      verifyAcceptOfferTx({
-        tx,
-        chainId,
-        account: address,
-        nft: { contract: collectionId, tokenId: innerId, quantity },
-        offerer: order.protocol_data.parameters.offerer,
-        minReceiveAmount,
+      params = [
+        matchData.orders,
+        matchData.criteriaResolvers || [],
+        matchData.fulfillments || [],
+        matchData.recipient || zeroAddress,
+      ];
+    } else {
+      throw new NFTOrderVerifyError('unsupported function');
+    }
+    let encodedData: `0x${string}`;
+    try {
+      encodedData = encodeFunctionData({
+        abi: SeaportABI,
+        functionName: functionName as any,
+        args: params as any,
       });
-      return tx;
     } catch (e) {
-      reportNFTOrderVerifyError(e, {
-        flow: 'acceptOffer',
-        chainId,
-        functionName: rawFunctionName,
-      });
+      console.error(e);
       throw e;
     }
+    const tx = {
+      chainId,
+      from: address,
+      to: transaction.to,
+      value: transaction.value,
+      data: encodedData,
+    };
+    verifyAcceptOfferTx({
+      tx,
+      chainId,
+      account: address,
+      nft: { contract: collectionId, tokenId: innerId, quantity },
+      offerer: order.protocol_data.parameters.offerer,
+      minReceiveAmount,
+    });
+    return tx;
   };
 
   getRpcTxReceipt = transactionHistoryService.getRpcTxReceipt;

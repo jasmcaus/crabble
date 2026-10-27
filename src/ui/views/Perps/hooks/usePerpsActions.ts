@@ -2,7 +2,6 @@ import { useRabbyDispatch, useRabbySelector } from '@/ui/store';
 import { useMemoizedFn } from 'ahooks';
 import { message } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { capturePerpsError } from '../sentry';
 import { UserAbstraction } from '@rabby-wallet/hyperliquid-sdk';
 import { getPerpsSDK } from '../sdkManager';
 import { usePerpsStore } from '@/ui/state/perps';
@@ -178,17 +177,6 @@ export const usePerpsActions = () => {
           message.error({
             duration: 1.5,
             content: error?.message || failedTitle,
-          });
-        }
-        if (
-          !String(error?.message || '')
-            .toLowerCase()
-            .includes('cancel')
-        ) {
-          capturePerpsError('setUserAbstraction failed', error, {
-            abstraction,
-            address: currentPerpsAccount?.address,
-            accountType: currentPerpsAccount?.type,
           });
         }
         return false;

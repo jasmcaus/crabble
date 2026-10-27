@@ -14,7 +14,7 @@ import { useDesktopProfileStore } from '@/ui/state/desktopProfile';
 import { findChainByEnum } from '@/utils/chain';
 import { useCurrentAccount } from '@/ui/hooks/backgroundState/useAccount';
 import { useDesktopBalanceView } from './hooks/useDesktopBalanceView';
-import { useMemoizedFn, useMount } from 'ahooks';
+import { useMemoizedFn } from 'ahooks';
 import { SendNftModal } from './components/SendNftModal';
 import { ReceiveTokenModal } from './components/ReceiveTokenModal';
 import { SignatureRecordModal } from './components/SignatureRecordModal';
@@ -41,7 +41,6 @@ import { TokenTab } from './components/TokensTabPane/TokenTab';
 import { DIFITab } from './components/TokensTabPane/DifiTab';
 import { useTokenAndDefiData } from './components/TokensTabPane/hook';
 import { DesktopPageWrap } from '@/ui/component/DesktopPageWrap';
-import { reportWebPageView } from '@/ui/utils/ga-event';
 import { expiredNft } from '@/db/utils/expired';
 import { useHomeBalanceViewOuterPrefetch } from '../Dashboard/components/BalanceView/useHomeBalanceView';
 
@@ -195,12 +194,6 @@ const DesktopProfileContent: React.FC<DesktopProfileProps> = ({
   useEventBusListener(EVENTS.DESKTOP.FOCUSED, () => {
     // window.location.reload();
     handleFocusedUpdate();
-  });
-
-  useMount(() => {
-    if (!action) {
-      reportWebPageView(location.pathname, location.search);
-    }
   });
 
   return (

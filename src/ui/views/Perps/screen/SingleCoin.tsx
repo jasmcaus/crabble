@@ -13,7 +13,6 @@ import { Button, Switch, Tooltip, message } from 'antd';
 import clsx from 'clsx';
 import { PerpsChart } from '../components/Chart';
 import { PERPS_MAX_NTL_VALUE, PERPS_BUILDER_INFO } from '../constants';
-import * as Sentry from '@sentry/browser';
 import { useMemoizedFn } from 'ahooks';
 import { ReactComponent as RcIconInfo } from 'ui/assets/info-cc.svg';
 import { ReactComponent as RcIconEdit } from 'ui/assets/perps/IconEditCC.svg';
@@ -55,11 +54,9 @@ import { MiniTypedDataApproval } from '../../Approval/components/MiniSignTypedDa
 import {
   formatPerpsCoin,
   formatPerpsDexName,
-  getStatsReportSide,
   handleDisplayFundingPayments,
 } from '../../DesktopPerps/utils';
 import { PerpsDisplayCoinName } from '../components/PerpsDisplayCoinName';
-import stats from '@/stats';
 import { usePerpsAccount } from '../hooks/usePerpsAccount';
 import { usePerpsActions } from '../hooks/usePerpsActions';
 import { useActiveAssetSubscription } from '../hooks/useActiveAssetSubscription';
@@ -858,24 +855,6 @@ export const PerpsSingleCoin = () => {
                         slTriggerPx: '',
                         direction: positionData?.direction as 'Long' | 'Short',
                       });
-                      const isBuy = positionData?.direction === 'Long';
-                      stats.report('perpsTradeHistory', {
-                        created_at: new Date().getTime(),
-                        user_addr: currentPerpsAccount?.address || '',
-                        trade_type: 'popup has position set tp',
-                        leverage: (positionData?.leverage || 1).toString(),
-                        trade_side: getStatsReportSide(!isBuy, true),
-                        margin_mode: marginMode,
-                        coin,
-                        size: (positionData?.size || 0).toString(),
-                        price,
-                        trade_usd_value: new BigNumber(price)
-                          .times(positionData?.size || 0)
-                          .toFixed(2),
-                        service_provider: 'hyperliquid',
-                        app_version: process.env.release || '0',
-                        address_type: currentPerpsAccount?.type || '',
-                      });
                     }}
                   />
                 </div>
@@ -946,24 +925,6 @@ export const PerpsSingleCoin = () => {
                         tpTriggerPx: '',
                         slTriggerPx: price,
                         direction: positionData?.direction as 'Long' | 'Short',
-                      });
-                      const isBuy = positionData?.direction === 'Long';
-                      stats.report('perpsTradeHistory', {
-                        created_at: new Date().getTime(),
-                        user_addr: currentPerpsAccount?.address || '',
-                        trade_type: 'popup has position set sl',
-                        leverage: (positionData?.leverage || 1).toString(),
-                        trade_side: getStatsReportSide(!isBuy, true),
-                        margin_mode: marginMode,
-                        coin,
-                        size: (positionData?.size || 0).toString(),
-                        price,
-                        trade_usd_value: new BigNumber(price)
-                          .times(positionData?.size || 0)
-                          .toFixed(2),
-                        service_provider: 'hyperliquid',
-                        app_version: process.env.release || '0',
-                        address_type: currentPerpsAccount?.type || '',
                       });
                     }}
                   />
@@ -1302,7 +1263,7 @@ export const PerpsSingleCoin = () => {
           } else {
             sizeStr = positionData?.size.toString() || '0';
           }
-          const res = await handleClosePosition({
+          await handleClosePosition({
             coin,
             dex: currentAssetCtx?.dexId ?? '',
             size: sizeStr,
@@ -1311,32 +1272,6 @@ export const PerpsSingleCoin = () => {
             orderType,
             limitPx,
           });
-          if (res) {
-            const isBuy = positionData?.direction === 'Long';
-            stats.report('perpsTradeHistory', {
-              created_at: new Date().getTime(),
-              user_addr: currentPerpsAccount?.address || '',
-              trade_type:
-                orderType === 'limit'
-                  ? 'popup close position limit'
-                  : 'popup close position',
-              leverage: (positionData?.leverage || 1).toString(),
-              trade_side: getStatsReportSide(!isBuy, true),
-              margin_mode:
-                currentPosition?.position.leverage.type === 'cross'
-                  ? 'cross'
-                  : 'isolated',
-              coin,
-              size: res.totalSz,
-              price: res.avgPx,
-              trade_usd_value: new BigNumber(res.avgPx)
-                .times(res.totalSz)
-                .toFixed(2),
-              service_provider: 'hyperliquid',
-              app_version: process.env.release || '0',
-              address_type: currentPerpsAccount?.type || '',
-            });
-          }
         }}
       />
 
@@ -1492,27 +1427,6 @@ export const PerpsSingleCoin = () => {
               });
               if (res) {
                 markHomeScrollResetOnNextRestore();
-                const isBuy = positionData?.direction === 'Long';
-                stats.report('perpsTradeHistory', {
-                  created_at: new Date().getTime(),
-                  user_addr: currentPerpsAccount?.address || '',
-                  trade_type: 'popup add position',
-                  leverage: (positionData?.leverage || 1).toString(),
-                  trade_side: getStatsReportSide(isBuy, false),
-                  margin_mode:
-                    currentPosition?.position.leverage.type === 'cross'
-                      ? 'cross'
-                      : 'isolated',
-                  coin,
-                  size: res.totalSz,
-                  price: res.avgPx,
-                  trade_usd_value: new BigNumber(res.avgPx)
-                    .times(res.totalSz)
-                    .toFixed(2),
-                  service_provider: 'hyperliquid',
-                  app_version: process.env.release || '0',
-                  address_type: currentPerpsAccount?.type || '',
-                });
               }
               setAddPositionVisible(false);
             }}

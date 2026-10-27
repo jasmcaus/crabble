@@ -1,4 +1,3 @@
-import * as Sentry from '@sentry/browser';
 import { EVENTS } from '@/constant';
 import eventBus from '@/eventBus';
 import {
@@ -19,9 +18,6 @@ export const reportWalletConnectTransportError = (error: unknown) => {
   if (isClockSkew) {
     clockSkewErrorCode = WALLETCONNECT_CLOCK_SKEW;
   }
-  Sentry.captureException(
-    isClockSkew ? error : new Error('Transport error: ' + JSON.stringify(error))
-  );
   eventBus.emit(EVENTS.broadcastToUI, {
     method: EVENTS.WALLETCONNECT.TRANSPORT_ERROR,
     // The device clock warning applies to every WalletConnect connection on

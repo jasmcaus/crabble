@@ -18,7 +18,6 @@ import UserGuide1 from '@/ui/assets/new-user-import/guide-1.png';
 import UserGuide2 from '@/ui/assets/new-user-import/guide-2.png';
 import { ReactComponent as UserGuide1Icon } from '@/ui/assets/new-user-import/guide1.svg';
 import { ReactComponent as UserGuide2Icon } from '@/ui/assets/new-user-import/guide2.svg';
-import { useHideScreenshotContextMenu } from '@/ui/hooks/useScreenshotContextMenuVisible';
 
 export const BackupSeedPhrase = () => {
   const { t } = useTranslation();
@@ -62,8 +61,6 @@ export const BackupSeedPhrase = () => {
       window.close();
     }
   });
-
-  useHideScreenshotContextMenu();
 
   return (
     <>

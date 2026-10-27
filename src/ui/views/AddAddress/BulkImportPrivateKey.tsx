@@ -16,7 +16,6 @@ import { ReactComponent as RcEyeClose } from '@/ui/assets/new-user-import/eye-cl
 import { ReactComponent as RcClose } from '@/ui/assets/new-user-import/close-cc.svg';
 import { useCreateAddressActions } from './useCreateAddress';
 import { privateKeyToAddress } from 'viem/accounts';
-import { useHideScreenshotContextMenu } from '@/ui/hooks/useScreenshotContextMenuVisible';
 
 type BulkImportTab = 'privateKey' | 'keyStore';
 
@@ -998,8 +997,6 @@ const BulkImportPrivateKey: React.FC = () => {
 
     await handleImportKeyStore();
   });
-
-  useHideScreenshotContextMenu();
 
   return (
     <>

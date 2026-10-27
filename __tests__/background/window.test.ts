@@ -26,10 +26,6 @@ jest.mock('consts', () => ({
   IS_WINDOWS: false,
 }));
 
-jest.mock('@sentry/browser', () => ({
-  captureException: jest.fn(),
-}));
-
 import winMgr from '@/background/webapi/window';
 
 const emitRemoved = (windowId: number) =>

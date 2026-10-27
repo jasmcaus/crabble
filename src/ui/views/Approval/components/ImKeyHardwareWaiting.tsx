@@ -1,14 +1,12 @@
 import React from 'react';
 import { message } from 'antd';
 import { useTranslation } from 'react-i18next';
-import { matomoRequestEvent } from '@/utils/matomo-request';
 import { Account } from 'background/service/preference';
 import {
   CHAINS,
   WALLETCONNECT_STATUS_MAP,
   EVENTS,
   KEYRING_CLASS,
-  KEYRING_CATEGORY_MAP,
 } from 'consts';
 import {
   bindApproval,
@@ -20,17 +18,14 @@ import {
 } from 'ui/utils';
 import { adjustV } from 'ui/utils/gnosis';
 import eventBus from '@/eventBus';
-import stats from '@/stats';
 import ImKeySVG from 'ui/assets/walletlogo/imkey.svg';
 import {
   ApprovalPopupContainer,
   Props as ApprovalPopupContainerProps,
 } from './Popup/ApprovalPopupContainer';
 import { useImKeyStatus } from '@/ui/component/ConnectStatus/useImKeyStatus';
-import * as Sentry from '@sentry/browser';
 import { findChain } from '@/utils/chain';
 import { emitSignComponentAmounted } from '@/utils/signEvent';
-import { ga4 } from '@/utils/ga4';
 import { useGetTxFailedResultInWaiting } from '@/ui/hooks/useMiniApprovalDirectSign';
 
 interface ApprovalParams {
@@ -149,30 +144,7 @@ export const ImKeyHardwareWaiting = ({
           setErrorMessage(t('page.signFooterBar.qrcode.failedToGetExplain'));
           return;
         }
-
-        const explain = signingTx?.explain;
-
-        wallet.reportStats('signTransaction', {
-          type: account.brandName,
-          chainId: chain?.serverId || '',
-          category: KEYRING_CATEGORY_MAP[account.type],
-          preExecSuccess: explain
-            ? explain?.calcSuccess && explain?.pre_exec.success
-            : true,
-          createdBy: params?.$ctx?.ga ? 'rabby' : 'dapp',
-          source: params?.$ctx?.ga?.source || '',
-          trigger: params?.$ctx?.ga?.trigger || '',
-          networkType: chain?.isTestnet
-            ? 'Custom Network'
-            : 'Integrated Network',
-        });
       }
-    } else {
-      stats.report('startSignText', {
-        type: account.brandName,
-        category: KEYRING_CATEGORY_MAP[account.type],
-        method: params?.extra?.signTextMethod,
-      });
     }
 
     eventBus.addEventListener(EVENTS.COMMON_HARDWARE.REJECTED, async (data) => {
@@ -211,28 +183,15 @@ export const ImKeyHardwareWaiting = ({
             }
           }
         } catch (e) {
-          Sentry.captureException(e);
           setConnectStatus(WALLETCONNECT_STATUS_MAP.FAILED);
           return;
         }
-        matomoRequestEvent({
-          category: 'Transaction',
-          action: 'Submit',
-          label: chain?.isTestnet ? 'Custom Network' : 'Integrated Network',
-        });
-
-        ga4.fireEvent(`Submit_${chain?.isTestnet ? 'Custom' : 'Integrated'}`, {
-          event_category: 'Transaction',
-        });
 
         setSignFinishedData({
           data: sig,
           approvalId: approval.id,
         });
       } else {
-        Sentry.captureException(
-          new Error('imKey sign error: ' + JSON.stringify(data))
-        );
         setConnectStatus(WALLETCONNECT_STATUS_MAP.FAILED);
         setErrorMessage(data.errorMsg);
       }

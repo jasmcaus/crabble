@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { ImportPrivateKey } from './ImportPrivateKey';
 import { ImportSeedPhrase } from './ImportSeedPhrase';
-import { useHideScreenshotContextMenu } from '@/ui/hooks/useScreenshotContextMenuVisible';
 
 export const ImportSeedOrKey = () => {
   const history = useHistory();
@@ -30,8 +29,6 @@ export const ImportSeedOrKey = () => {
   const [selectedTab, setSelectedTab] = React.useState<
     typeof options[number]['key']
   >('seedPhrase');
-
-  useHideScreenshotContextMenu();
 
   return (
     <Card

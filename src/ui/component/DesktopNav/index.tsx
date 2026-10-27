@@ -19,25 +19,11 @@ import {
 import { useHistory } from 'react-router-dom';
 import { useCurrentAccount } from '@/ui/hooks/backgroundState/useAccount';
 import { KEYRING_TYPE } from '@/constant';
-import { matomoRequestEvent } from '@/utils/matomo-request';
-import { ga4 } from '@/utils/ga4';
-import { debounce } from 'lodash';
 import { useDesktopProfileStore } from '@/ui/state/desktopProfile';
 
 type DesktopNavAction = 'swap' | 'send' | 'bridge' | 'gnosis-queue';
 
 export const DESKTOP_NAV_HEIGHT = 84;
-
-const reportNavEvent = debounce((eventKey: string) => {
-  matomoRequestEvent({
-    category: 'RabbyWeb_Active',
-    action: `RabbyWeb_${eventKey}`,
-  });
-
-  ga4.fireEvent('RabbyWeb_Active', {
-    event_category: `RabbyWeb_${eventKey}`,
-  });
-}, 300);
 
 /**
  * @deprecated
@@ -128,7 +114,6 @@ export const DesktopNav: React.FC<{
     if (!activeNav?.eventKey) {
       return;
     }
-    reportNavEvent(activeNav.eventKey);
   }, [activeNav?.eventKey]);
 
   return (

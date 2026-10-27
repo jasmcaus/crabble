@@ -32,9 +32,6 @@ import {
 import { findChain } from '@/utils/chain';
 import { Chain } from '@/types/chain';
 import styled from 'styled-components';
-import stats from '@/stats';
-import { matomoRequestEvent } from '@/utils/matomo-request';
-import { ga4 } from '@/utils/ga4';
 import browser from 'webextension-polyfill';
 import { ReactComponent as RcIconTriangle } from '@/ui/assets/new-user-import/triangle.svg';
 import UserGuide1 from '@/ui/assets/new-user-import/guide-1.png';
@@ -67,7 +64,6 @@ const AccountItem = ({
   const ref = useRef<InputRef>(null);
   const updateRef = useRef(null);
   const init = useRef(false);
-  const wallet = useWallet();
 
   const update = React.useCallback(() => {
     updateAlias(localName.trim() ? localName : defaultName);
@@ -91,10 +87,6 @@ const AccountItem = ({
       ref.current?.focus();
     }
   }, [autoFocus]);
-
-  useEffect(() => {
-    wallet.uninstalledSyncStatus();
-  }, [wallet]);
 
   return (
     <AccountItemWrapper>
@@ -257,38 +249,6 @@ export const ImportOrCreatedSuccess = () => {
       return;
     }
     hasReportedRef.current = true;
-
-    const mnemonicSource =
-      account.type === KEYRING_CLASS.MNEMONIC
-        ? isCreated
-          ? 'New'
-          : hasMnemonicImportContext && isExistedKeyring
-          ? 'Add'
-          : hasMnemonicImportContext && !isExistedKeyring
-          ? 'Import'
-          : undefined
-        : undefined;
-
-    if (Object.values(KEYRING_CLASS.HARDWARE).includes(account.type as any)) {
-      stats.report('importHardware', {
-        type: account.type,
-      });
-    }
-
-    matomoRequestEvent({
-      category: 'User',
-      action: 'importAddress',
-      label: mnemonicSource
-        ? `${account.type}_${mnemonicSource}`
-        : account.type,
-    });
-
-    ga4.fireEvent(
-      `Import_${account.type}${mnemonicSource ? `_${mnemonicSource}` : ''}`,
-      {
-        event_category: 'Import Address',
-      }
-    );
   }, [accounts, hasMnemonicImportContext, isCreated, isExistedKeyring]);
 
   const { data: chainList } = useRequest(

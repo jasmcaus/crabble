@@ -1,0 +1,8 @@
+{
+  "name": "@sentry/minimal",
+  "version": "6.19.7-crabble.0",
+  "description": "No-op stand-in: Crabble ships no Sentry client.",
+  "main": "index.js",
+  "sideEffects": false,
+  "license": "MIT"
+}

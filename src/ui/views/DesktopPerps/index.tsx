@@ -21,9 +21,6 @@ import { PerpsSettingsDrawer } from './components/PerpsSettingsDrawer';
 import { OrderConfirmProvider } from './modal/OrderConfirmProvider';
 import { usePerpsPopupNav } from './hooks/usePerpsPopupNav';
 import { usePerpsActions } from '@/ui/views/Perps/hooks/usePerpsActions';
-import { useMount } from 'ahooks';
-import { reportWebPageView } from '@/ui/utils/ga-event';
-import { useLocation } from 'react-router-dom';
 
 const Wrap = styled.div`
   width: 100%;
@@ -84,11 +81,6 @@ export const DesktopPerps: React.FC<{ isActive?: boolean }> = ({
   } = usePerpsPopupNav();
   const { handleEnableUnifiedAccount } = usePerpsActions();
   const [settingsVisible, setSettingsVisible] = useState(false);
-
-  const location = useLocation();
-  useMount(() => {
-    reportWebPageView(location.pathname, location.search);
-  });
 
   return (
     <OrderConfirmProvider>
