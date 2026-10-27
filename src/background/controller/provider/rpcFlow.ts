@@ -17,7 +17,6 @@ import providerController from './controller';
 import eventBus from '@/eventBus';
 import { resemblesETHAddress } from '@/utils';
 import { ProviderRequest } from './type';
-import * as Sentry from '@sentry/browser';
 import { addHexPrefix, intToHex, stripHexPrefix } from '@ethereumjs/util';
 import { findChain } from '@/utils/chain';
 import { waitSignComponentAmounted } from '@/utils/signEvent';
@@ -36,7 +35,6 @@ import {
   startSignTxPreparation,
 } from '@/background/service/signTxPreparation';
 import { v4 as uuidv4 } from 'uuid';
-import { isSigningCarrierReported, takeSigningCarrier } from '@/utils/sentry';
 
 const isSignApproval = (type: string) => {
   const SIGN_APPROVALS = ['SignText', 'SignTypedData', 'SignTx'];
@@ -273,9 +271,7 @@ const flowContext = flow
               !isFromRabby && origin !== INTERNAL_REQUEST_ORIGIN
             ) as Tx & Record<string, any>)
           : undefined;
-      } catch (e) {
-        Sentry.captureException(e);
-      }
+      } catch (e) {}
       const hasEip7702Authorization = Boolean(
         (Array.isArray(signTx?.authorizationList) &&
           signTx.authorizationList.length > 0) ||
@@ -518,17 +514,6 @@ const flowContext = flow
                 payload.params = e.message;
               }
 
-              const signingCarrier = takeSigningCarrier(e);
-              if (signingCarrier) {
-                if (!isSigningCarrierReported(signingCarrier)) {
-                  Sentry.captureException(signingCarrier);
-                }
-              } else if (
-                !isSignApproval(approvalType) ||
-                (e && typeof e === 'object')
-              ) {
-                Sentry.captureException(e);
-              }
               if (isSignApproval(approvalType)) {
                 eventBus.emit(EVENTS.broadcastToUI, payload);
               }

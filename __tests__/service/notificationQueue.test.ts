@@ -51,9 +51,6 @@ jest.mock('@/utils/chain', () => ({ findChain: jest.fn() }));
 jest.mock('@/utils/env', () => ({ isManifestV3: false }));
 
 const mockCaptureException = jest.fn();
-jest.mock('@sentry/browser', () => ({
-  captureException: (...args: unknown[]) => mockCaptureException(...args),
-}));
 
 import notificationService, {
   Approval,

@@ -1,9 +1,5 @@
 import {
   getSigningContext,
-  applySigningContext,
-  shouldIgnoreSentryError,
-} from '@/utils/sentry';
-import {
   registerSigningDiagnosticsProvider,
   withSigningDiagnostics,
 } from '@/background/service/keyring/signing-diagnostics';
@@ -47,21 +43,6 @@ describe('signing diagnostics port', () => {
         outcome: 'failed',
         error_category: 'unknown',
       });
-
-      const event: any = {};
-      applySigningContext(event, error);
-      expect(event.tags).toMatchObject({
-        schema_version: 1,
-        wallet_family: 'unknown',
-        sign_operation: operation,
-        sign_outcome: 'failed',
-        error_category: 'unknown',
-      });
-      expect(event.message).toBe('unknown signing failed');
-      expect(event.exception).toEqual({
-        values: [{ type: 'SigningError', value: 'unknown' }],
-      });
-      expect(event.extra).toEqual({});
     }
   );
 
@@ -76,31 +57,6 @@ describe('signing diagnostics port', () => {
       wallet_family: 'walletconnect',
       wallet_provider: 'unknown',
     });
-  });
-
-  it('promotes the sanitized device model to a Sentry tag', async () => {
-    const error = new Error('Ledger device failed');
-    registerSigningDiagnosticsProvider('tagged-ledger', () => ({
-      wallet_provider: 'ledger',
-      transport: 'webhid',
-      error_category: 'unknown',
-      provider_metadata: { device_model: 'Ledger Nano X' },
-    }));
-
-    await expect(
-      withSigningDiagnostics(
-        {
-          type: 'Ledger Hardware',
-          signingDiagnosticsProvider: 'tagged-ledger',
-        },
-        'transaction',
-        () => Promise.reject(error)
-      )
-    ).rejects.toBe(error);
-
-    const event: any = {};
-    applySigningContext(event, error);
-    expect(event.tags.signing_device_model).toBe('Ledger Nano X');
   });
 
   it('uses explicit provider capabilities and bounded categories', async () => {
@@ -366,7 +322,7 @@ describe('signing diagnostics port', () => {
     });
   });
 
-  it('filters an explicitly classified cancellation', async () => {
+  it('keeps an explicitly classified cancellation', async () => {
     const error = Object.assign(new Error('cancelled'), {
       category: 'user_cancelled',
     });
@@ -375,10 +331,10 @@ describe('signing diagnostics port', () => {
         Promise.reject(error)
       )
     ).rejects.toBe(error);
-    expect(shouldIgnoreSentryError(error)).toBe(true);
+    expect(getSigningContext(error)?.error_category).toBe('user_cancelled');
   });
 
-  it('preserves primitive rejections while reporting an error carrier', async () => {
+  it('preserves primitive rejections while classifying an error carrier', async () => {
     await expect(
       withSigningDiagnostics(
         { type: 'BitBox02 Hardware', signingDiagnosticsProvider: 'bitbox02' },

@@ -28,7 +28,6 @@ export interface PreferenceState {
   autoLockTime: number;
   hiddenBalance: boolean;
   isShowTestnet: boolean;
-  userDataTrackingOptOut: boolean;
   addressSortStore: AddressSortStore;
   themeMode: DARK_MODE_TYPE;
   reserveGasOnSendToken: boolean;
@@ -80,7 +79,6 @@ export type PreferenceActions = {
   ) => Promise<void>;
   setHiddenBalance: (hidden: boolean) => Promise<void>;
   setIsShowTestnet: (value: boolean) => Promise<void>;
-  setUserDataTrackingOptOut: (value: boolean) => Promise<void>;
   setDesktopTokensAllMode: (value: boolean) => Promise<void>;
   switchLocale: (locale: string) => Promise<void>;
   switchThemeMode: (themeMode: DARK_MODE_TYPE) => Promise<void>;
@@ -122,7 +120,6 @@ export const getDefaultPreferenceState = (): PreferenceState => ({
   autoLockTime: 0,
   hiddenBalance: false,
   isShowTestnet: false,
-  userDataTrackingOptOut: true,
   addressSortStore: {} as AddressSortStore,
   themeMode: DARK_MODE_TYPE.system,
   reserveGasOnSendToken: false,
@@ -240,11 +237,6 @@ export const usePreferenceStore = create<PreferenceStore>()((set, get) => ({
     set({ isShowTestnet });
     await wallet.setIsShowTestnet(isShowTestnet);
     void get().getPreference('isShowTestnet');
-  },
-  async setUserDataTrackingOptOut(userDataTrackingOptOut) {
-    set({ userDataTrackingOptOut });
-    await wallet.setUserDataTrackingOptOut(userDataTrackingOptOut);
-    void get().getPreference('userDataTrackingOptOut');
   },
   async setDesktopTokensAllMode(desktopTokensAllMode) {
     set({ desktopTokensAllMode });

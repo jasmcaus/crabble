@@ -71,7 +71,6 @@ jest.mock('@/background/service/signTxPreparation', () => ({
   cancelSignTxPreparation: jest.fn(),
   cancelAllSignTxPreparations: jest.fn(),
 }));
-jest.mock('@sentry/browser', () => ({ captureException: jest.fn() }));
 jest.mock('@/eventBus', () => ({
   __esModule: true,
   default: { emit: jest.fn(), addEventListener: jest.fn() },

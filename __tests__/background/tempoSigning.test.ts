@@ -41,10 +41,6 @@ jest.mock('@/utils/chain', () => {
 });
 jest.mock('@/i18n', () => ({ t: (key: string) => key }));
 jest.mock('@/utils', () => ({}));
-jest.mock('@/utils/sentry', () => ({
-  takeSigningCarrier: () => undefined,
-  getSigningContext: () => undefined,
-}));
 jest.mock('@/background/controller/base', () => class {});
 jest.mock('@/background/controller/wallet', () => ({}));
 jest.mock('@/background/controller/utils', () => ({}));

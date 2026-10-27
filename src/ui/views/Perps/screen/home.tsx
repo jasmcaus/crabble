@@ -54,7 +54,6 @@ import {
 } from '../constants';
 import { useMemoizedFn } from 'ahooks';
 import { getPerpsSDK } from '../sdkManager';
-import { capturePerpsError } from '../sentry';
 import { RiskLevelPopup } from '../popup/RiskLevelPopup';
 import { useThemeMode } from '@/ui/hooks/usePreference';
 import { PerpsHeaderRight } from '../components/PerpsHeaderRight';
@@ -312,7 +311,6 @@ export const Perps: React.FC = () => {
         duration: 1.5,
         content: error?.message || 'close all position error',
       });
-      capturePerpsError('close all position error', error);
     }
   });
 

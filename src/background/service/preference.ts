@@ -1,5 +1,4 @@
 import cloneDeep from 'lodash/cloneDeep';
-import * as Sentry from '@sentry/browser';
 import type { BalanceCacheData } from '@/db/schema/balance';
 import eventBus from '@/eventBus';
 import { createPersistStore, isSameAddress } from 'background/utils';
@@ -115,7 +114,6 @@ export interface PreferenceStore {
   needSwitchWalletCheck?: boolean;
   lastSelectedSwapPayToken?: Record<string, TokenItem>;
   lastSelectedGasTopUpChain?: Record<string, CHAINS_ENUM>;
-  userDataTrackingOptOut?: boolean;
   customizedToken?: Token[];
   blockedToken?: Token[];
   collectionStarred?: Token[];
@@ -188,11 +186,7 @@ class PreferenceService {
     let defaultLang = 'en';
     try {
       defaultLang = await getFirstPreferredLangCode();
-    } catch (e) {
-      Sentry.captureException(
-        `i18n getFirstPreferredLangCode error: ${JSON.stringify(e)}`
-      );
-    }
+    } catch (e) {}
     this.store = await createPersistStore<PreferenceStore>({
       name: 'preference',
       template: {
@@ -240,7 +234,6 @@ class PreferenceService {
         biometricUnlockEncryptedPassword: '',
         biometricUnlockIv: '',
         unlockPreferredMethod: 'biometric',
-        userDataTrackingOptOut: true,
         desktopTabId: undefined,
         desktopTabIds: {},
         desktopTokensAllMode: false,
@@ -372,9 +365,6 @@ class PreferenceService {
 
     this.store.currentVersion = version;
 
-    if (this.store.userDataTrackingOptOut == null) {
-      this.store.userDataTrackingOptOut = false;
-    }
     if (!this.store.sceneAccountMap) {
       this.store.sceneAccountMap = {};
     }
@@ -945,12 +935,6 @@ class PreferenceService {
     );
   };
 
-  getUserDataTrackingOptOut = () => {
-    return this.store.userDataTrackingOptOut === true;
-  };
-  setUserDataTrackingOptOut = (value: boolean) => {
-    this.store.userDataTrackingOptOut = value;
-  };
   getNeedSwitchWalletCheck = () => {
     if (this.store.needSwitchWalletCheck == null) {
       return true;

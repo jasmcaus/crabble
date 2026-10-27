@@ -2,19 +2,8 @@ import eventBus from '@/eventBus';
 import migrateData from '@/migrations';
 import { getOriginFromUrl, transformFunctionsToZero } from '@/utils';
 import { appIsDev, isManifestV3 } from '@/utils/env';
-import {
-  Message,
-  sendReadyMessageToTabs,
-  setMessageErrorReporter,
-} from '@/utils/message';
-import { getSentryConfig } from '@/utils/sentry-config';
-import {
-  getSigningContext,
-  isSigningCarrierReported,
-  takeSigningCarrier,
-} from '@/utils/sentry';
+import { Message, sendReadyMessageToTabs } from '@/utils/message';
 import Safe from '@rabby-wallet/gnosis-sdk';
-import * as Sentry from '@sentry/browser';
 import fetchAdapter from '@/services/openapi/fetchAdapter';
 import { WalletController } from 'background/controller/wallet';
 import {
@@ -112,49 +101,6 @@ dayjs.extend(utc);
 const { PortMessage } = Message;
 
 let appStoreLoaded = false;
-
-Sentry.init(getSentryConfig());
-
-// Errors thrown by pm.listen callbacks are caught in Message.onRequest and
-// forwarded to the calling page as the response, so they never reach this
-// context's global handlers. Business failures (user rejections, RPC errors)
-// carry an rpc error code and must stay report-free; only programming errors
-// are captured here.
-//
-// The allowlist is deliberately restricted to native engine error subtypes
-// (TypeError/ReferenceError/RangeError) rather than any uncoded Error. The
-// background throws hundreds of plain `new Error(...)` intentionally — mostly
-// i18n business validations like "no current account" / "invalid chain id" —
-// which have no rpc code either, so broadening to all uncoded Error instances
-// would flood Sentry with those expected states. The engine practically never
-// raises these subtypes for business logic, so they are a clean bug signal.
-setMessageErrorReporter((error) => {
-  const signingCarrier = takeSigningCarrier(error);
-  if (signingCarrier) {
-    if (!isSigningCarrierReported(signingCarrier)) {
-      Sentry.captureException(signingCarrier);
-    }
-    return true;
-  }
-
-  // rpcFlow normally captures signing failures first. Capturing the same Error
-  // here is deduplicated by Sentry and also covers direct wallet-controller calls.
-  if (getSigningContext(error)) {
-    Sentry.captureException(error);
-    return true;
-  }
-
-  if (
-    (error instanceof TypeError ||
-      error instanceof ReferenceError ||
-      error instanceof RangeError) &&
-    (error as { code?: unknown }).code === undefined
-  ) {
-    Sentry.captureException(error);
-    return true;
-  }
-  return false;
-});
 
 async function restoreAppState() {
   await onInstall();
@@ -312,9 +258,6 @@ restoreAppState().catch((e) => {
   // A throw here leaves `appStoreLoaded` false and `getBackgroundReady`
   // unregistered, so every UI page waits until its bootstrap timeout.
   console.error('[restoreAppState] failed', e);
-  Sentry.captureException(e, {
-    tags: { bootstrap_stage: 'restoreAppState' },
-  });
 });
 {
   keyringService.on('unlock', () => {

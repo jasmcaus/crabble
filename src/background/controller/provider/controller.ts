@@ -87,12 +87,6 @@ import {
 } from '@/utils/tempo';
 import { fixKeyringAccountOnSigned } from '../walletUtils/fix';
 import { handleGasAccountLoginSuccess } from '@/background/utils/gasAccountLogin';
-import {
-  attachSigningContext,
-  bindSigningCarrier,
-  getSigningContext,
-  takeSigningCarrier,
-} from '@/utils/sentry';
 
 const convertToHex = (data: Buffer | bigint) => {
   if (typeof data === 'bigint') {
@@ -925,22 +919,9 @@ class ProviderController extends BaseController {
       });
     } catch (e) {
       console.error(e);
-      const signingCarrier = takeSigningCarrier(e);
-      const signingContext =
-        getSigningContext(e) ?? getSigningContext(signingCarrier);
-      const carrier =
-        signingCarrier ??
-        (signingContext && e instanceof Error ? e : undefined);
       const errObj: any = {
         message: e && typeof e === 'object' ? e.message : e,
       };
-      if (signingContext && !carrier) {
-        attachSigningContext(errObj, signingContext);
-      }
-      if (carrier) {
-        bindSigningCarrier(errObj, carrier);
-        errObj.reportedFromBackground = true;
-      }
       errObj.method = EVENTS.COMMON_HARDWARE.REJECTED;
 
       throw errObj;

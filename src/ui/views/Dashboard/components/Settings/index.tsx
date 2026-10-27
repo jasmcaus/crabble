@@ -8,7 +8,6 @@ import {
 } from 'consts';
 import React, { useEffect, useMemo, useState } from 'react';
 import {
-  Activity,
   AtSign,
   Boxes,
   ChartCandlestick,
@@ -87,7 +86,6 @@ import { ReactComponent as RcIconI18n } from 'ui/assets/dashboard/settings/i18n.
 import { ReactComponent as RcIconRemovedToken } from 'ui/assets/settings/removed-token.svg';
 import { ReactComponent as RcIconFeedback } from 'ui/assets/dashboard/settings/feedback.svg';
 import { ReactComponent as RcIconWarning } from 'ui/assets/warning-cc.svg';
-import { ReactComponent as RcIconDataAnalysisCC } from 'ui/assets/dashboard/settings/data-analysis-cc.svg';
 
 import IconIntro from 'ui/assets/dashboard/dapp-account-intro.png';
 
@@ -644,7 +642,6 @@ const SETTING_LUCIDE_ICONS = new Map<ThemeIconType, LucideIcon>([
   [RcIconPerps, ChartCandlestick],
   [RcIconSwitchPwdForNonWhitelistedTx, KeyRound],
   [RcIconDappSwitchAddress, Link2],
-  [RcIconDataAnalysisCC, Activity],
   [RcIconCustomTestnet, FlaskConical],
   [RcIconCustomRPC, Network],
   [RcIconI18n, Languages],
@@ -721,7 +718,6 @@ const SettingsInner = ({
   const [biometricBusy, setBiometricBusy] = useState(false);
   const [perpsWidgetEnabled, setPerpsWidgetEnabled] = useState(false);
   const [perpsWidgetBusy, setPerpsWidgetBusy] = useState(false);
-  const [dataAnalysisPending, setDataAnalysisPending] = useState(false);
 
   const [perpsIncludeWatchForTest, setPerpsIncludeWatchForTest] = useState(
     () => localStorage.getItem(PERPS_TEST_INCLUDE_WATCH_KEY) === '1'
@@ -752,9 +748,6 @@ const SettingsInner = ({
   const AUTO_LOCK_OPTIONS = useAutoLockOptions();
   const isShowTestnet = useRabbySelector(
     (state) => state.preference.isShowTestnet
-  );
-  const userDataTrackingOptOut = useRabbySelector(
-    (state) => state.preference.userDataTrackingOptOut
   );
 
   const openapiStore = useOpenapiStore();
@@ -838,19 +831,6 @@ const SettingsInner = ({
       setPerpsWidgetBusy(false);
     }
   });
-
-  const handleToggleUserDataTrackingOptOut = useMemoizedFn(
-    async (checked: boolean) => {
-      try {
-        setDataAnalysisPending(true);
-        await dispatch.preference.setUserDataTrackingOptOut(!checked);
-      } catch (error) {
-        message.error((error as Error)?.message || 'Failed to update setting');
-      } finally {
-        setDataAnalysisPending(false);
-      }
-    }
-  );
 
   const handleClickClearWatchMode = () => {
     confirm({
@@ -1047,19 +1027,6 @@ const SettingsInner = ({
             <Switch
               checked={isEnabledDappAccount}
               onChange={handleEnableDappAccount}
-            />
-          ),
-        },
-        {
-          leftIcon: RcIconDataAnalysisCC,
-          leftIconClassName: 'text-r-neutral-body',
-          content: t('page.dashboard.settings.settings.dataAnalysis'),
-          rightIcon: (
-            <Switch
-              checked={!userDataTrackingOptOut}
-              onChange={handleToggleUserDataTrackingOptOut}
-              loading={dataAnalysisPending}
-              disabled={dataAnalysisPending}
             />
           ),
         },

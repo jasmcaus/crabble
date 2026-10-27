@@ -132,9 +132,6 @@
       "disallow": []
     }
   },
-  "node_modules/@sentry/utils/esm/misc.js": {
-    "enable": false
-  },
   "node_modules/koa-compose/index.js": {
     "global": {
       "allow": {
@@ -555,9 +552,6 @@
       "disallow": []
     }
   },
-  "node_modules/@sentry/core/build/esm/utils/worldwide.js": {
-    "enable": false
-  },
   "node_modules/antd/node_modules/lodash/_freeGlobal.js": {
     "global": {
       "allow": {
@@ -643,69 +637,6 @@
         "__core-js_shared__": "r",
         "Buffer": "r",
         "process": "r"
-      },
-      "disallow": []
-    }
-  },
-  "node_modules/@sentry/core/build/esm/asyncContext/index.js": {
-    "enable": false
-  },
-  "node_modules/@sentry/core/build/esm/attributes.js": {
-    "enable": false
-  },
-  "node_modules/@sentry/core/build/esm/currentScopes.js": {
-    "enable": false
-  },
-  "node_modules/@sentry/core/build/esm/debug-build.js": {
-    "enable": false
-  },
-  "node_modules/@sentry/core/build/esm/exports.js": {
-    "enable": false
-  },
-  "node_modules/@sentry/core/build/esm/tracing/dynamicSamplingContext.js": {
-    "enable": false
-  },
-  "node_modules/@sentry/core/build/esm/tracing/utils.js": {
-    "enable": false
-  },
-  "node_modules/@sentry/core/build/esm/utils/baggage.js": {
-    "enable": false
-  },
-  "node_modules/@sentry/core/build/esm/utils/debug-ids.js": {
-    "enable": false
-  },
-  "node_modules/@sentry/core/build/esm/utils/dsn.js": {
-    "enable": false
-  },
-  "node_modules/@sentry/core/build/esm/utils/hasSpansEnabled.js": {
-    "enable": false
-  },
-  "node_modules/@sentry/core/build/esm/utils/is.js": {
-    "enable": false
-  },
-  "node_modules/@sentry/core/build/esm/utils/misc.js": {
-    "enable": false
-  },
-  "node_modules/@sentry/core/build/esm/utils/normalizationHints.js": {
-    "enable": false
-  },
-  "node_modules/@sentry/core/build/esm/utils/normalize.js": {
-    "enable": false
-  },
-  "node_modules/@sentry/core/build/esm/utils/object.js": {
-    "enable": false
-  },
-  "node_modules/@sentry/core/build/esm/utils/spanUtils.js": {
-    "enable": false
-  },
-  "node_modules/@sentry/core/build/esm/utils/time.js": {
-    "enable": false
-  },
-  "node_modules/@sentry/utils/esm/global.js": {
-    "global": {
-      "allow": {
-        "performance": "r",
-        "__SENTRY__": "rw"
       },
       "disallow": []
     }

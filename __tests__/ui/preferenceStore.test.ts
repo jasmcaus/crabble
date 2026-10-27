@@ -35,7 +35,6 @@ jest.mock('@/ui/wallet', () => ({
     setThemeMode: jest.fn(),
     setTokenApprovalChain: jest.fn(),
     setUnlockPreferredMethod: jest.fn(),
-    setUserDataTrackingOptOut: jest.fn(),
     updateChain: jest.fn(),
   },
 }));

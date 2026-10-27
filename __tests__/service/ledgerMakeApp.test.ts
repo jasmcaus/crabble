@@ -92,11 +92,6 @@ jest.mock(
   { virtual: true }
 );
 
-jest.mock('@sentry/browser', () => ({
-  ...jest.requireActual('@sentry/browser'),
-  captureMessage: (...args: unknown[]) => mockCaptureMessage(...args),
-}));
-
 jest.mock('webextension-polyfill', () => ({
   runtime: {
     onMessage: {

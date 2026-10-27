@@ -6,7 +6,6 @@ import { CEX, DEX } from '@/constant';
 import { OpenApiService } from '@rabby-wallet/rabby-api';
 import { openapiService } from 'background/service';
 import { TokenItem } from './openapi';
-import * as Sentry from '@sentry/browser';
 import { getTxMatchData } from '@/utils/tempo';
 import { findChain, findChainByEnum } from '@/utils/chain';
 import { z } from 'zod';
@@ -143,11 +142,7 @@ class SwapService {
         ...quoteInfo,
         tx,
         tx_id: hash,
-      }).catch((err) => {
-        Sentry.captureException(
-          `postSwap error: ${JSON.stringify(err)}| ${JSON.stringify(quoteInfo)}`
-        );
-      });
+      }).catch((err) => {});
     }
   };
 

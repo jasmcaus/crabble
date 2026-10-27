@@ -945,7 +945,6 @@ const SendToken = () => {
     } catch (err) {
       result.isValidArray = false;
       console.error(err);
-      // Sentry.captureException(err);
     } finally {
       result.gasList = result.isValidArray ? reqResult : [];
       result.instantGasLevel = findInstanceLevel(result.gasList) || null;

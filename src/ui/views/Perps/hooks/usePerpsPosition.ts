@@ -4,7 +4,6 @@ import { useMemoizedFn } from 'ahooks';
 import { message } from 'antd';
 import { getPerpsSDK } from '../sdkManager';
 import { usePerpsState } from './usePerpsState';
-import { capturePerpsError } from '../sentry';
 import { sleep, useWallet } from '@/ui/utils';
 import {
   PERPS_BUILDER_INFO,
@@ -78,7 +77,7 @@ export const usePerpsPosition = ({
         const { coin, tpTriggerPx, slTriggerPx, direction } = params;
         const formattedTpTriggerPx = formatTriggerPx(tpTriggerPx);
         const formattedSlTriggerPx = formatTriggerPx(slTriggerPx);
-        const res = await sdk.exchange?.bindTpslByOrderId({
+        await sdk.exchange?.bindTpslByOrderId({
           coin,
           isBuy: direction === 'Long',
           tpTriggerPx: formattedTpTriggerPx,
@@ -118,7 +117,6 @@ export const usePerpsPosition = ({
           duration: 1.5,
           content: error?.message || errorText,
         });
-        capturePerpsError(errorText, error, { params });
       }
     }
   );
@@ -153,18 +151,12 @@ export const usePerpsPosition = ({
             duration: 1.5,
             content: actionText + ' cancel error',
           });
-          capturePerpsError(`${actionText} cancel error`, null, {
-            oid,
-            coin,
-            res,
-          });
         }
       } catch (error) {
         message.error({
           className: 'toast-message-2025',
           content: actionText + ' cancel error',
         });
-        capturePerpsError(`${actionText} cancel error`, error, { oid, coin });
       }
     }
   );
@@ -201,13 +193,6 @@ export const usePerpsPosition = ({
             duration: 1.5,
             content: msg || 'Update margin failed',
           });
-          capturePerpsError('update margin failed', null, {
-            coin,
-            dex,
-            action,
-            margin,
-            res,
-          });
         }
       } catch (error) {
         console.error('Update margin error:', error);
@@ -215,12 +200,6 @@ export const usePerpsPosition = ({
           // className: 'toast-message-2025-center',
           duration: 1.5,
           content: error?.message || 'Update margin failed',
-        });
-        capturePerpsError('update margin error', error, {
-          coin,
-          dex,
-          action,
-          margin,
         });
         throw error;
       }
@@ -260,7 +239,6 @@ export const usePerpsPosition = ({
           duration: 1.5,
           content: error?.message || 'Update margin mode failed',
         });
-        capturePerpsError('update margin mode error', error, { params });
         return false;
       }
     }
@@ -363,7 +341,6 @@ export const usePerpsPosition = ({
             duration: 1.5,
             content: msg || 'close position error',
           });
-          capturePerpsError('close position noFills', null, { params, res });
           return null;
         }
       } catch (e) {
@@ -380,7 +357,6 @@ export const usePerpsPosition = ({
           duration: 1.5,
           content: e?.message || 'close position error',
         });
-        capturePerpsError('close position error', e, { params });
         return null;
       }
     }
@@ -519,7 +495,6 @@ export const usePerpsPosition = ({
             duration: 1.5,
             content: msg || 'open position error',
           });
-          capturePerpsError('open position noFills', null, { params, res });
         }
       } catch (error) {
         const isExpired = await judgeIsUserAgentIsExpired(error?.message || '');
@@ -535,7 +510,6 @@ export const usePerpsPosition = ({
           duration: 1.5,
           content: error?.message || 'open position error',
         });
-        capturePerpsError('open position error', error, { params });
       }
     }
   );
@@ -566,7 +540,6 @@ export const usePerpsPosition = ({
           duration: 1.5,
           content: error?.message || t('page.perps.PerpsSpotSwap.swapFailed'),
         });
-        capturePerpsError('stableCoinOrder error', error, { params });
         return false;
       }
     }
@@ -602,7 +575,6 @@ export const usePerpsPosition = ({
           duration: 1.5,
           content: error?.message || 'Close all positions error',
         });
-        capturePerpsError('closeAllPositions error', error);
         return false;
       }
     }
@@ -633,11 +605,6 @@ export const usePerpsPosition = ({
                 : t('page.perps.toast.cancelLimitOrderSuccess'),
           });
           if (failCount > 0) {
-            capturePerpsError('cancel limit orders partial fail', null, {
-              failCount,
-              okCount,
-              res,
-            });
           }
           const marketDataMap = usePerpsStore.getState().marketDataMap;
           dispatch.perps.fetchPositionOpenOrdersHttpForDexes({
@@ -650,7 +617,6 @@ export const usePerpsPosition = ({
           duration: 1.5,
           content: t('page.perps.toast.cancelLimitOrderError'),
         });
-        capturePerpsError('cancel limit orders failed', null, { res });
         return false;
       } catch (error: any) {
         const isExpired = await judgeIsUserAgentIsExpired(error?.message || '');
@@ -661,7 +627,6 @@ export const usePerpsPosition = ({
           content:
             error?.message || t('page.perps.toast.cancelLimitOrderError'),
         });
-        capturePerpsError('cancel limit orders error', error);
         return false;
       }
     }

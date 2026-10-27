@@ -79,7 +79,6 @@ import {
   OffscreenCommunicationTarget,
 } from '@/constant/offscreen-communication';
 import { isManifestV3 } from '@/utils/env';
-import * as Sentry from '@sentry/browser';
 
 const HD_PATH_BASE = {
   [HDPathType.BIP44]: "m/44'/60'/0'/0",
@@ -221,17 +220,7 @@ let pendingLedgerDisconnect: {
 const reportLedgerReconnect = (
   productId: number | undefined,
   reconnectMs: number | null
-) => {
-  Sentry.captureMessage('ledger disconnected during operation', {
-    level: 'warning',
-    tags: {
-      wallet_provider: 'ledger',
-      ledger_reconnect:
-        reconnectMs === null ? 'none' : reconnectMs < 2000 ? 'lt_2s' : '2s_10s',
-    },
-    extra: { reconnectMs, productId: productId?.toString(16) },
-  });
-};
+) => {};
 
 const onLedgerDeviceDisconnect = (productId?: number) => {
   const hitOperation =

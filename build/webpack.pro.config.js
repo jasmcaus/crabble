@@ -1,11 +1,11 @@
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
-const sentrySourceMap = !!process.env.sourcemap || false;
+const sourceMap = !!process.env.sourcemap || false;
 const SecSDK = require('warden-for-js').WardenPlugin;
 
 const config = {
   mode: 'production',
-  devtool: sentrySourceMap ? 'hidden-source-map' : false,
+  devtool: sourceMap ? 'hidden-source-map' : false,
   performance: {
     maxEntrypointSize: 2500000,
     maxAssetSize: 2500000,

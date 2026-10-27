@@ -47,7 +47,6 @@ jest.mock('@/background/service/preference', () => ({
 }));
 jest.mock('@/utils/chain', () => ({ findChain: jest.fn() }));
 jest.mock('@/utils/env', () => ({ isManifestV3: true }));
-jest.mock('@sentry/browser', () => ({ captureException: jest.fn() }));
 
 import notificationService from '@/background/service/notification';
 

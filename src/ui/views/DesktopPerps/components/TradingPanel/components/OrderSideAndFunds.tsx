@@ -38,7 +38,7 @@ export const OrderSideAndFunds: React.FC<AvailableFundsProps> = ({
         try {
           await handleActionApproveStatus();
         } catch {
-          // handleActionApproveStatus already surfaces toast + Sentry.
+          // handleActionApproveStatus already surfaces a toast.
           return;
         }
       }

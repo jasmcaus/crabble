@@ -21,7 +21,6 @@ import {
   getSwapNativeTokenAddress,
   isSwapWrapToken,
 } from '../utils';
-import { reportSwapSdkVerification } from './swapReport';
 
 export interface validSlippageParams {
   chain: CHAINS_ENUM;
@@ -477,14 +476,6 @@ export const useQuoteMethods = () => {
               { sdkResult, quote: data }
             );
           }
-
-          reportSwapSdkVerification({
-            chain,
-            dexId,
-            payTokenId: payToken.id,
-            receiveTokenId: receiveToken.id,
-            result: sdkResult,
-          });
 
           if (inSufficient) {
             const quote: TDexQuoteData = {

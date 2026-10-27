@@ -22,7 +22,6 @@ import { usePerpsPosition } from '@/ui/views/Perps/hooks/usePerpsPosition';
 import { noop, set } from 'lodash';
 import { PerpsBlueBorderedButton } from '@/ui/views/Perps/components/BlueBorderedButton';
 import { useThemeMode } from '@/ui/hooks/usePreference';
-import * as Sentry from '@sentry/browser';
 import { ClosePositionModal } from '../../../modal/ClosePositionModal';
 import { PositionTpSlModal } from '../../../modal/PositionTpSlModal';
 import {

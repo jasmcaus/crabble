@@ -1,10 +1,3 @@
-import {
-  attachSigningContext,
-  getSigningContext,
-  recordPrimitiveSigningCarrier,
-} from '@/utils/sentry';
-import * as Sentry from '@sentry/browser';
-
 export type SigningOperation =
   | 'transaction'
   | 'personal_message'
@@ -118,6 +111,15 @@ export type SigningContext = {
   provider_metadata?: Record<string, string | number | boolean>;
   originalError?: unknown;
 };
+
+const signingContexts = new WeakMap<object, SigningContext>();
+
+const attachSigningContext = (error: unknown, context: SigningContext) => {
+  if (error && typeof error === 'object') signingContexts.set(error, context);
+};
+
+export const getSigningContext = (error: unknown) =>
+  error && typeof error === 'object' ? signingContexts.get(error) : undefined;
 
 const signingDiagnosticsProviders = new Map<
   string,
@@ -444,8 +446,6 @@ export const withSigningDiagnostics = (
       originalError: (error as any)?.cause ?? error,
     });
     if (preserveOriginalRejection) {
-      recordPrimitiveSigningCarrier(error, attemptError);
-      Sentry.captureException(attemptError);
       throw error;
     }
     throw attemptError;

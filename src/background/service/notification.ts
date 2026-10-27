@@ -2,7 +2,6 @@ import browser, { Windows } from 'webextension-polyfill';
 import Events from 'events';
 import { ethErrors } from 'eth-rpc-errors';
 import { v4 as uuidv4 } from 'uuid';
-import * as Sentry from '@sentry/browser';
 import { EthereumProviderError } from 'eth-rpc-errors/dist/classes';
 import { winMgr } from 'background/webapi';
 import { IS_LINUX, IS_VIVALDI, IS_CHROME, IS_WINDOWS } from 'consts';
@@ -201,9 +200,6 @@ class NotificationService extends Events {
       this.currentApproval = approval;
       this.openNotification(approval.winProps, true);
     } catch (e) {
-      Sentry.captureException(e, {
-        tags: { function: 'activeFirstApproval' },
-      });
       this.clear();
     }
   };
@@ -412,11 +408,7 @@ class NotificationService extends Events {
             id: approval.id,
             component: approval.data.approvalComponent,
           });
-        } catch (e) {
-          Sentry.captureException(
-            new Error('onCurrent failed: ' + JSON.stringify(e))
-          );
-        }
+        } catch (e) {}
       }
 
       if (
@@ -496,9 +488,6 @@ class NotificationService extends Events {
         if (this.notifiWindowId === null) {
           this.unLock();
         }
-        Sentry.captureException(e, {
-          tags: { function: 'openNotification' },
-        });
       })
       .finally(() => {
         this.openingNotification = undefined;

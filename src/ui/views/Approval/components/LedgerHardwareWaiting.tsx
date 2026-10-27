@@ -2,7 +2,6 @@ import eventBus from '@/eventBus';
 import { useLedgerStatus } from '@/ui/component/ConnectStatus/useLedgerStatus';
 import { findChain } from '@/utils/chain';
 import { emitSignComponentAmounted } from '@/utils/signEvent';
-import * as Sentry from '@sentry/browser';
 import { message } from 'antd';
 import { Account } from 'background/service/preference';
 import { EVENTS, WALLETCONNECT_STATUS_MAP } from 'consts';
@@ -182,7 +181,6 @@ const LedgerHardwareWaiting = ({
             }
           }
         } catch (e) {
-          Sentry.captureException(e);
           setConnectStatus(WALLETCONNECT_STATUS_MAP.FAILED);
           return;
         }
